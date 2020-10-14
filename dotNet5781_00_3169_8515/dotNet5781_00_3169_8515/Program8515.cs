@@ -11,13 +11,13 @@ namespace dotNet5781_00_3169_8515
 
         static void Main(string[] args)
         {
-            Welcome3169();
             Welcome8515();
+            Welcome3169();
             Console.ReadKey();
         }
 
-        static partial void Welcome8515();
-        private static void Welcome3169()
+        static partial void Welcome3169();
+        private static void Welcome8515()
         {
             Console.WriteLine("Enter your name:  ");
             string userName = Console.ReadLine();
