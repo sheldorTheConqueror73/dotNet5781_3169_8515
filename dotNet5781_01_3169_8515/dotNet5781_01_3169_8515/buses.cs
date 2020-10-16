@@ -6,10 +6,27 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_3169_8515
 {
-    struct DateTime
+    public struct DateTime
     {
-        int day, month, year;
-       
+        public int day;
+        public int month;
+        public int year;
+
+        public void Date()
+        {
+           
+            Console.WriteLine("enter day: ");
+            string input = Console.ReadLine();
+            Int32.TryParse(input, out day);
+            Console.WriteLine("enter month: ");
+            input = Console.ReadLine();
+            Int32.TryParse(input, out month);
+            Console.WriteLine("enter year: ");
+            input = Console.ReadLine();
+            Int32.TryParse(input, out year);
+
+        }
+
     }
 
     partial class buses
