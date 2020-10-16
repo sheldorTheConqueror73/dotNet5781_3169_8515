@@ -51,7 +51,7 @@ namespace dotNet5781_01_3169_8515
         const int LIMIT = 1200;
         int id, fuel, distance,totalDistance;
         bool dangerous;
-        DateTime startDate, lastMaintenance;
+        DateTimes startDate, lastMaintenance;
           
 
         public buses()
@@ -69,7 +69,7 @@ namespace dotNet5781_01_3169_8515
             lastMaintenance.year = 0;
 
         }
-        public buses(int id,int fuel, int distance, bool dangerous,int totalDistance, DateTime date, DateTime lm)
+        public buses(int id,int fuel, int distance, bool dangerous,int totalDistance, DateTimes date, DateTimes lm)
         {
             this.id = id;
             this.fuel = fuel;
@@ -79,7 +79,7 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance= lm;
             this.totalDistance = totalDistance;
         }
-        void setAllint(int id, int fuel, int distance, bool dangerous, int totalDistance, DateTime date, DateTime lm)
+        void setAllint(int id, int fuel, int distance, bool dangerous, int totalDistance, DateTimes date, DateTimes lm)
         {
             this.id = id;
             this.fuel = fuel;
@@ -99,16 +99,20 @@ namespace dotNet5781_01_3169_8515
         void setTotalDistance(int totalDistance) { this.totalDistance = totalDistance; }
         bool getDangerous() { return this.dangerous; }
         void setDangerous(bool dangerous) { this.dangerous = dangerous; }
-        DateTime getStartDate() { return this.startDate; }
-        void setDistance(DateTime startDate) { this.startDate = startDate; }
-        DateTime getLastMaintenance() { return this.lastMaintenance; }
-        void setLastMaintenance(DateTime lm) { this.lastMaintenance = lm; }
+        DateTimes getStartDate() { return this.startDate; }
+        void setDistance(DateTimes startDate) { this.startDate = startDate; }
+        DateTimes getLastMaintenance() { return this.lastMaintenance; }
+        void setLastMaintenance(DateTimes lm) { this.lastMaintenance = lm; }
         
-      
+    
 
     }
     partial class buses
     {
-
+        public void BusDangerous()
+        {
+            if (distance > 20000)
+                dangerous = true;
+        }
     }
 }
