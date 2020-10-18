@@ -20,7 +20,7 @@ namespace dotNet5781_01_3169_8515
                 string input = Console.ReadLine();
                 Int32.TryParse(input,out  day);
                  if (day < 1 || day > 31)
-                     throw new ArgumentException();
+                     throw new ArgumentException("invalid input: day cannot be greater than 31 or lesser than 1");
                
                
                 Console.WriteLine("enter month: ");
@@ -33,7 +33,7 @@ namespace dotNet5781_01_3169_8515
                 input = Console.ReadLine();
                 Int32.TryParse(input, out year);
                  if(year<2000||year>2020)
-                     throw new ArgumentException();
+                     throw new ArgumentException("invalid input: year cannot be greater than 12 or lesser than 1");
 
 
 
@@ -139,6 +139,7 @@ namespace dotNet5781_01_3169_8515
                 return false;
             return true;
         } 
+
 
        
     }

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -11,8 +14,8 @@ namespace dotNet5781_01_3169_8515
    partial class Main01
     {
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
-        List<buses> buses = new List<buses>();
-        
+       public static List<buses> buses = new List<buses>();
+     
        
         static void Main(string[] args)
         {
@@ -66,13 +69,33 @@ namespace dotNet5781_01_3169_8515
                 Int32.TryParse(input, out choice);
             }
         }
+        public static int[] ReadId(int year) 
+        {
+            Console.WriteLine("enter id: ");
+            int []id=new int[8];
+            if (year >= 2018) {
+                for (int i = 0; i < 8; i++)
+                {
+                    id[i] = int.Parse(Console.ReadLine());
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    id[i] = int.Parse(Console.ReadLine());
+                }
+            }
+            
+            return id;
+        }
         public static void Addbus()
         {
-            Console.WriteLine("enter start date of oparation and id:");                 
-                DateTimes dateTimes = new DateTimes(0);            
-            int id;
-            string input = Console.ReadLine();
-            Int32.TryParse(input, out id);
+            Console.WriteLine("enter start date of oparation:");                 
+            DateTimes dateTimes = new DateTimes(0);
+            int[] id=ReadId(dateTimes.GetYear());
+            buses.Add(new buses(dateTimes, dateTimes, id));
+           
         }
     }
 
