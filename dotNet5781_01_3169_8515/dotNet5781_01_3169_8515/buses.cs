@@ -12,7 +12,7 @@ namespace dotNet5781_01_3169_8515
         public int day;
         public int month;
         public int year;
-
+       
         public DateTimes(int sum=0) 
         {
 
@@ -109,6 +109,55 @@ namespace dotNet5781_01_3169_8515
     }
     partial class buses
     {
+        //bool needRefuel=false;
+        int refuelDistance=0;
+
+
+        /* public void NeedRefueling()
+         {
+             if (refuelDistance > 1200)
+                 needRefuel = true;
+         }
+
+         public void BusDangerous()
+         {
+             if (distance > 20000||passedYearNowAndThen())
+                 dangerous = true;
+         }*/
+
+        // 'על פי התוכנית הראשית בקטע של 'אינו יכול לבצע נסיעה ועל פי סעיף ג
+
+        public bool CanMakeDrive()
+        {
+            if (refuelDistance > 1200 || distance > 20000 || passedYearNowAndThen())
+                return false;
+            return true;
+        }
+
+        public void UpdateMaintenance()
+        {
+            distance = 0;
+            DateTime currentDate = DateTime.Now;
+            lastMaintenance.day = currentDate.Day;
+            lastMaintenance.month = currentDate.Month;
+            lastMaintenance.year = currentDate.Year;
+
+        }
+        public bool passedYearNowAndThen()
+        {
+            DateTime currentDate = DateTime.Now;
+            if ((currentDate.Year - lastMaintenance.year) < 1)
+                return false;
+            if ((currentDate.Month - lastMaintenance.month) < 0)
+                return false;
+            if ((currentDate.Day - lastMaintenance.day) < 0)
+                return false;
+            return true;
+        } 
+
+        public void PrintMileage()
+        {
+            Console.WriteLine("Bus id: {0} \nmileage: {1}", id, totalDistance);
         public void BusDangerous()
         {   
             if (distance > 20000)
