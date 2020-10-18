@@ -52,14 +52,15 @@ namespace dotNet5781_01_3169_8515
     partial class buses
     {
         const int LIMIT = 1200;
-        int id, fuel, distance,totalDistance;
+        int  fuel, distance,totalDistance;
+        int[] id;
         bool dangerous;
         DateTimes startDate, lastMaintenance;
           
 
         public buses()
         {
-            id = -1; // bus id number
+            id =  new int[8] { -1,-1,-1,-1,-1,-1,-1,-1 }; // bus id number
             fuel = 0; //how much fuel is left
             distance = 0; // distance since last maintenance
             totalDistance = 0; // total distance driven
@@ -72,9 +73,15 @@ namespace dotNet5781_01_3169_8515
             lastMaintenance.year = 0;
 
         }
-        public buses(int id,int fuel, int distance, bool dangerous,int totalDistance, DateTimes date, DateTimes lm)
+        public buses(DateTimes date, DateTimes lm, int[] id =null, int fuel=0, int distance=0, bool dangerous=false,int totalDistance=0 )
         {
-            this.id = id; 
+            if(id!=null)
+            for (int i = 0; i < 8; i++)
+                this.id[i] = id[i];
+            if(id==null)
+            {
+                id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
+            }
             this.fuel = fuel; 
             this.distance = distance;
             this.dangerous = dangerous; 
@@ -82,9 +89,15 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance= lm;
             this.totalDistance = totalDistance;
         }
-        void setAllint(int id, int fuel, int distance, bool dangerous, int totalDistance, DateTimes date, DateTimes lm)
+       public void setAll(DateTimes date, DateTimes lm, int[] id = null, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
         {
-            this.id = id;
+            if (id != null)
+                for (int i = 0; i < 8; i++)
+                    this.id[i] = id[i];
+            if (id == null)
+            {
+                id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
+            }
             this.fuel = fuel;
             this.distance = distance;
             this.dangerous = dangerous;
@@ -92,21 +105,36 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
         }
-        int getId() { return this.id; }
-        void setId(int id) { this.id = id; }
-        int getFuel() { return this.fuel; }
-        void setFuel(int fuel) { this.fuel = fuel; }
-        int getDistance() { return this.distance; }
-        void setDistance(int distance) { this.distance = distance; }
-        int getTotalDistance() { return this.totalDistance; }
-        void setTotalDistance(int totalDistance) { this.totalDistance = totalDistance; }
-        bool getDangerous() { return this.dangerous; }
-        void setDangerous(bool dangerous) { this.dangerous = dangerous; }
-        DateTimes getStartDate() { return this.startDate; }
-        void setDistance(DateTimes startDate) { this.startDate = startDate; }
-        DateTimes getLastMaintenance() { return this.lastMaintenance; }
-        void setLastMaintenance(DateTimes lm) { this.lastMaintenance = lm; }
-        
+        public int[] getId() { return this.id; }
+        public void setId(int[] id)
+        {
+            if (id != null)
+                for (int i = 0; i < 8; i++)
+                    this.id[i] = id[i];
+            if (id == null)
+            {
+                id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
+            }
+        }
+        public int getFuel() { return this.fuel; }
+        public void setFuel(int fuel) { this.fuel = fuel; }
+        public int getDistance() { return this.distance; }
+        public void setDistance(int distance) { this.distance = distance; }
+        public int getTotalDistance() { return this.totalDistance; }
+        public void setTotalDistance(int totalDistance) { this.totalDistance = totalDistance; }
+        public bool getDangerous() { return this.dangerous; }
+        public void setDangerous(bool dangerous) { this.dangerous = dangerous; }
+        public DateTimes getStartDate() { return this.startDate; }
+        public void setDistance(DateTimes startDate) { this.startDate = startDate; }
+        public DateTimes getLastMaintenance() { return this.lastMaintenance; }
+        public void setLastMaintenance(DateTimes lm) { this.lastMaintenance = lm; }
+        public void printId()
+        {
+            if(this.startDate.year<2018)
+            {
+                Console.WriteLine("{0}{1}-{}");
+            }
+        }
     
 
     }
