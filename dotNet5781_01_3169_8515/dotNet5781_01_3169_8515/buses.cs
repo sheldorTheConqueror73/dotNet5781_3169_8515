@@ -110,7 +110,7 @@ namespace dotNet5781_01_3169_8515
     partial class buses
     {
         public void BusDangerous()
-        {
+        {   
             if (distance > 20000)
                 dangerous = true;
         }
