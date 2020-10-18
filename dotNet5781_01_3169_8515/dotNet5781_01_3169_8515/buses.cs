@@ -132,8 +132,19 @@ namespace dotNet5781_01_3169_8515
         {
             if(this.startDate.year<2018)
             {
-                Console.WriteLine("{0}{1}-{}");
+                Console.WriteLine("ID:\t{0}{1}-{2}{3}{4}-{5}{6}",this.id[0], this.id[1], this.id[2], this.id[3], this.id[4], this.id[5], this.id[6]);
+                return;
             }
+            Console.WriteLine("ID:\t{0}{1}{2}-{3}{4}-{5}{6}{7}", this.id[0], this.id[1], this.id[2], this.id[3], this.id[4], this.id[5], this.id[6],this.id[7]);
+        }
+        public void print()
+        {
+            this.printId();
+            Console.WriteLine("mileage:\t{0}",totalDistance);
+        }
+        public void printDistance()
+        {
+            Console.WriteLine("mileage since last maintenance:\t{0}",this.distance);
         }
     
 
