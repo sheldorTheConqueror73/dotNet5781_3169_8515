@@ -158,13 +158,6 @@ namespace dotNet5781_01_3169_8515
             return true;
         } 
 
-        public void PrintMileage()
-        {
-            Console.WriteLine("Bus id: {0} \nmileage: {1}", id, totalDistance);
-        public void BusDangerous()
-        {   
-            if (distance > 20000)
-                dangerous = true;
-        }
+       
     }
 }

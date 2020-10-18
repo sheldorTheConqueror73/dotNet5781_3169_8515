@@ -10,7 +10,7 @@ namespace dotNet5781_01_3169_8515
    
    partial class Main01
     {
-       enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
+        enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
         List<buses> buses = new List<buses>();
         
        
@@ -70,9 +70,6 @@ namespace dotNet5781_01_3169_8515
         {
             Console.WriteLine("enter start date of oparation and id:");                 
                 DateTimes dateTimes = new DateTimes(0);            
-            
-           
-
             int id;
             string input = Console.ReadLine();
             Int32.TryParse(input, out id);
