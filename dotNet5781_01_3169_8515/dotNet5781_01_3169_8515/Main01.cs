@@ -70,31 +70,31 @@ namespace dotNet5781_01_3169_8515
                 Int32.TryParse(input, out choice);
             }
         }
-        public static int[] ReadId(int year) 
+        public static string ReadId(int year) 
         {
             Console.WriteLine("enter id: ");
-            int []id=new int[8];
-            if (year >= 2018) {
-                for (int i = 0; i < 8; i++)
-                {
-                    id[i] = int.Parse(Console.ReadLine());
-                }
-            }
-            else
+            string idst = Console.ReadLine();
+            for (int i = 0; i < idst.Length; i++)
             {
-                for (int i = 0; i < 7; i++)
-                {
-                    id[i] = int.Parse(Console.ReadLine());
-                }
+                if(idst[i]>57|| idst[i] < 48)
+                    throw  new ArgumentException("invalid input: id cannot be a letter");
+
             }
-            
-            return id;
+            if((idst.Length==8&&year<2018)|| (idst.Length == 7 && year >= 2018))
+                throw new ArgumentException("invalid input: id format doesn't match commitioning date");
+
+            return idst;
         }
         public static void Addbus()
         {
-            Console.WriteLine("enter start date of oparation:");                 
+            Console.WriteLine("enter start date of commitioning:");                 
             DateTimes dateTimes = new DateTimes(0);
-            int[] id=ReadId(dateTimes.GetYear());
+            string idst=ReadId(dateTimes.GetYear());
+            int[]id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
+            for (int i = 0; i < id.Length; i++)
+            {         
+                Int32.TryParse(idst[i].ToString(), out id[i]);
+            }
             buses.Add(new buses(dateTimes, dateTimes, id));
            
         }
