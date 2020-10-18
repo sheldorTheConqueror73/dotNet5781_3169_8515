@@ -19,20 +19,23 @@ namespace dotNet5781_01_3169_8515
                 Console.WriteLine("enter day: ");
                 string input = Console.ReadLine();
                 Int32.TryParse(input,out  day);
-                //if (day < 1 || day > 31)
+                 if (day < 1 || day > 31)
+                     throw new ArgumentException();
                
                
                 Console.WriteLine("enter month: ");
                 input = Console.ReadLine();
                 Int32.TryParse(input, out month);
-                //if(month<1||month>12)
+                    if(month<1||month>12)
+                     throw new ArgumentException();
 
-                Console.WriteLine("enter year: ");
+                 Console.WriteLine("enter year: ");
                 input = Console.ReadLine();
                 Int32.TryParse(input, out year);
-               // if(year<2000||year>2020)
-           
-            
+                 if(year<2000||year>2020)
+                     throw new ArgumentException();
+
+
 
         }
         public int GetDay() { return this.day; }
@@ -138,19 +141,19 @@ namespace dotNet5781_01_3169_8515
         {
             distance = 0;
             DateTime currentDate = DateTime.Now;
-            lastMaintenance.day = currentDate.Day;
-            lastMaintenance.month = currentDate.Month;
-            lastMaintenance.year = currentDate.Year;
+            lastMaintenance.SetDay(currentDate.Day);
+            lastMaintenance.SetMonth(currentDate.Month);
+            lastMaintenance.SetYear(currentDate.Year);
 
         }
         public bool passedYearNowAndThen()
         {
             DateTime currentDate = DateTime.Now;
-            if ((currentDate.Year - lastMaintenance.year) < 1)
+            if ((currentDate.Year - lastMaintenance.GetYear()) < 1)
                 return false;
-            if ((currentDate.Month - lastMaintenance.month) < 0)
+            if ((currentDate.Month - lastMaintenance.GetMonth()) < 0)
                 return false;
-            if ((currentDate.Day - lastMaintenance.day) < 0)
+            if ((currentDate.Day - lastMaintenance.GetDay()) < 0)
                 return false;
             return true;
         } 
