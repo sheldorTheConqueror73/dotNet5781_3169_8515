@@ -45,7 +45,7 @@ namespace dotNet5781_01_3169_8515
                         try { Addbus(); }
                         catch (Exception e)
                         {
-                            Console.WriteLine(" please try again");
+                            Console.WriteLine(e.Message);
                         }
                         break;
                     case (int)CHOICE.DRIVE:                     

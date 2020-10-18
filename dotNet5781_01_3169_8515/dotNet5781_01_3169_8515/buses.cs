@@ -27,7 +27,7 @@ namespace dotNet5781_01_3169_8515
                 input = Console.ReadLine();
                 Int32.TryParse(input, out month);
                     if(month<1||month>12)
-                     throw new ArgumentException();
+                     throw new ArgumentException("invalid input: month cannot be greater than 12 or lesser than 1");
 
                  Console.WriteLine("enter year: ");
                 input = Console.ReadLine();
@@ -59,12 +59,12 @@ namespace dotNet5781_01_3169_8515
 
         public buses()
         {
-            id = -1;
-            fuel = 0;
-            distance = 0;
-            totalDistance = 0;
-            dangerous = false;
-            startDate.day = 0;
+            id = -1; // bus id number
+            fuel = 0; //how much fuel is left
+            distance = 0; // distance since last maintenance
+            totalDistance = 0; // total distance driven
+            dangerous = false;  //is this bus dangerous
+            startDate.day = 0;      
             startDate.month = 0;
             startDate.year = 0;
             lastMaintenance.day = 0;
@@ -74,10 +74,10 @@ namespace dotNet5781_01_3169_8515
         }
         public buses(int id,int fuel, int distance, bool dangerous,int totalDistance, DateTimes date, DateTimes lm)
         {
-            this.id = id;
-            this.fuel = fuel;
+            this.id = id; 
+            this.fuel = fuel; 
             this.distance = distance;
-            this.dangerous = dangerous;
+            this.dangerous = dangerous; 
             this.startDate = date;
             this.lastMaintenance= lm;
             this.totalDistance = totalDistance;
@@ -112,27 +112,9 @@ namespace dotNet5781_01_3169_8515
     }
     partial class buses
     {
-        //bool needRefuel=false;
-        int refuelDistance=0;
-
-
-        /* public void NeedRefueling()
-         {
-             if (refuelDistance > 1200)
-                 needRefuel = true;
-         }
-
-         public void BusDangerous()
-         {
-             if (distance > 20000||passedYearNowAndThen())
-                 dangerous = true;
-         }*/
-
-        // 'על פי התוכנית הראשית בקטע של 'אינו יכול לבצע נסיעה ועל פי סעיף ג
-
         public bool CanMakeDrive()
         {
-            if (refuelDistance > 1200 || distance > 20000 || passedYearNowAndThen())
+            if (fuel > 1200 || distance > 20000 || passedYearNowAndThen())
                 return false;
             return true;
         }
