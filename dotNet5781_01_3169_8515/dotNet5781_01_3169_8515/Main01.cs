@@ -159,7 +159,7 @@ namespace dotNet5781_01_3169_8515
 
 
         }
-        public static string IdToString(int[] arr)
+        public static string IdToString(int[] arr)// turns an int[] to  a string
         {
             string str = "";
             for(int i=0;i<arr.Length;i++)
@@ -181,7 +181,7 @@ namespace dotNet5781_01_3169_8515
         public static void reful()
         {
             bool found=false;
-            string idst = ReadId(0, 1);
+            string idst = ReadId(0, 1);// we should make this part a separate function
             if (idst.Length != 8 && idst.Length != 7)
                 throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
             int[] id = ConvertStingIdToArr(idst);
