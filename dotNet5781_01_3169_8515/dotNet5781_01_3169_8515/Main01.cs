@@ -65,7 +65,7 @@ namespace dotNet5781_01_3169_8515
                         break;
                     case (int)CHOICE.MAINTANANCE:
                         break;
-                    case (int)CHOICE.MILEAGE:
+                    case (int)CHOICE.MILEAGE: PrintMileage();
                         break;
                     case (int)CHOICE.EXIT:
                         break;
@@ -145,6 +145,14 @@ namespace dotNet5781_01_3169_8515
                 throw new ArgumentException("error: id bus does not exist.");
 
 
+        }
+
+        public static void PrintMileage()
+        {
+            foreach(buses bs in buses)
+            {
+                bs.print();
+            }
         }
     }
 
