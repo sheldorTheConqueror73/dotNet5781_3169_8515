@@ -140,7 +140,7 @@ namespace dotNet5781_01_3169_8515
         public void print()
         {
             this.printId();
-            Console.WriteLine("mileage:\t{0}",totalDistance);
+            Console.WriteLine("mileage:\t{0}",distance);
         }
         public void printDistance()
         {
@@ -188,6 +188,9 @@ namespace dotNet5781_01_3169_8515
             }
             return true;
         }
-       
+       public static void test()
+        {
+            Console.WriteLine( "hi");
+        }
     }
-}
+}   
