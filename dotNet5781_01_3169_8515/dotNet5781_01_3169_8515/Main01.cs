@@ -13,11 +13,11 @@ namespace dotNet5781_01_3169_8515
 {
 
     
-   partial class Main01
+   partial class Main01//pointer to function? 
     {
-        const short FULL_TANK = 1200;
+        const short  FULL_TANK = 1200;
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
-       public static List<buses> buses = new List<buses>();
+       public static List<buses> busPool = new List<buses>();
         public static Random r = new Random();
      
        
@@ -114,7 +114,7 @@ namespace dotNet5781_01_3169_8515
         public static int[] ConvertStingIdToArr(string idst)
         {
             int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
-            for (int i = 0; i < id.Length; i++)
+            for (int i = 0; i < idst.Length; i++)
             {
                 Int32.TryParse(idst[i].ToString(), out id[i]);
             }
@@ -125,8 +125,8 @@ namespace dotNet5781_01_3169_8515
             Console.WriteLine("enter start date of commitioning:");                 
             DateTimes dateTimes = new DateTimes(0);
             string idst=ReadId(dateTimes.GetYear(),0);
-            int[] id = ConvertStingIdToArr(idst);
-            buses.Add(new buses(dateTimes, dateTimes, id));
+            int[] id = ConvertStingIdToArr(idst);//add check here
+            busPool.Add(new buses(dateTimes, dateTimes, id));
            
         }
 
@@ -138,7 +138,7 @@ namespace dotNet5781_01_3169_8515
             int[] id = ConvertStingIdToArr(idst);
             int km= r.Next(1, 1199);
             bool busExist = false;
-            foreach(buses bs in buses)
+            foreach(buses bs in busPool)
             {
                 if (bs.EqualId(id))
                 {
@@ -173,7 +173,7 @@ namespace dotNet5781_01_3169_8515
         }
         public static void PrintMileage()
         {
-            foreach(buses bs in buses)
+            foreach(buses bs in busPool)
             {
                 bs.print();
             }
@@ -185,7 +185,7 @@ namespace dotNet5781_01_3169_8515
             if (idst.Length != 8 && idst.Length != 7)
                 throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
             int[] id = ConvertStingIdToArr(idst);
-            foreach (buses b1 in buses)
+            foreach (buses b1 in busPool)
             {
                 if(b1.EqualId(id))
                 {
@@ -206,7 +206,7 @@ namespace dotNet5781_01_3169_8515
             if (idst.Length != 8 && idst.Length != 7)
                 throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
             int[] id = ConvertStingIdToArr(idst);
-            foreach (buses b1 in buses)
+            foreach (buses b1 in busPool)
             {
                 if (b1.EqualId(id))
                 {
