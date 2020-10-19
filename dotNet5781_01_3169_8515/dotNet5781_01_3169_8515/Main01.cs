@@ -101,7 +101,7 @@ namespace dotNet5781_01_3169_8515
         public static int[] ConvertStingIdToArr(string idst)
         {
             int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
-            for (int i = 0; i < id.Length; i++)
+            for (int i = 0; i < idst.Length; i++)
             {
                 Int32.TryParse(idst[i].ToString(), out id[i]);
             }
