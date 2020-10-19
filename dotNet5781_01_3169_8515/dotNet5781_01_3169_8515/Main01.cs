@@ -129,14 +129,16 @@ namespace dotNet5781_01_3169_8515
             {
                 if (bs.EqualId(id))
                 {
-                    bs.setDistance(km);
+                    bs.setFuel(bs.getFuel() + km);
+                    bs.setDistance(bs.getDistance()+km);
                     busExist = true;
                     if (bs.CanMakeDrive() == false)
                     {
+                        bs.setFuel(bs.getFuel() - km);
                         bs.setDistance(bs.getDistance()-km);
                         throw new ArgumentException("error: bus cannot make this drive.");
                     }
-
+                    
                 }
             }
             if (busExist == false)
