@@ -96,14 +96,11 @@ namespace dotNet5781_01_3169_8515
             string idst = Console.ReadLine();
             if (idst.Length != 8 && idst.Length != 7)
                 throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
+            for (int i = 0; i < idst.Length; i++)      
+                if (idst[i] > 57 || idst[i] < 48)
+                    throw new ArgumentException("invalid input: id cannot be a letter");        
             if (mode == 0)
-            {
-                for (int i = 0; i < idst.Length; i++)
-                {
-                    if (idst[i] > 57 || idst[i] < 48)
-                        throw new ArgumentException("invalid input: id cannot be a letter");
-
-                }
+            {        
                 if ((idst.Length == 8 && year < 2018) || (idst.Length == 7 && year >= 2018))
                     throw new ArgumentException("invalid input: id format doesn't match commitioning date");
             }else if (mode == 1)
@@ -131,7 +128,7 @@ namespace dotNet5781_01_3169_8515
             foreach(buses bs in busPool)
                 if(bs.EqualId(id))
                     throw new ArgumentException("error: id  already exists.");
-            busPool.Add(new buses(dateTimes, dateTimes, id));
+            busPool.Add(new buses(dateTimes, new DateTimes(), id));
            
         }
 
