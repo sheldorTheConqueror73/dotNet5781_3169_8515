@@ -17,8 +17,8 @@ namespace dotNet5781_01_3169_8515
     {
         const short  FULL_TANK = 1200;
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
-       public static List<buses> busPool = new List<buses>();
-        public static Random r = new Random();
+       private static List<buses> busPool = new List<buses>();
+        private static Random r = new Random();
      
        
         static void Main(string[] args)
@@ -27,7 +27,7 @@ namespace dotNet5781_01_3169_8515
             GetInfoFromUser();
         }
 
-        public static void PrintMenu()
+        private static void PrintMenu()
         {
             Console.WriteLine(@"Enter your choice: 
                    1-add a bus.
@@ -38,7 +38,7 @@ namespace dotNet5781_01_3169_8515
                    0-exit.");
         }
 
-        public static void GetInfoFromUser()
+        private static void GetInfoFromUser()
         {
             CHOICE Choise;
             int choice;
@@ -90,10 +90,12 @@ namespace dotNet5781_01_3169_8515
                 Int32.TryParse(input, out choice);
             }
         }
-        public static string ReadId(int year,int mode) 
+        private static string ReadId(int year,int mode) 
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
+            if (idst.Length != 8 && idst.Length != 7)
+                throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
             if (mode == 0)
             {
                 for (int i = 0; i < idst.Length; i++)
@@ -111,7 +113,7 @@ namespace dotNet5781_01_3169_8515
             return idst;
         }
 
-        public static int[] ConvertStingIdToArr(string idst)
+        private static int[] ConvertStingIdToArr(string idst)
         {
             int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
             for (int i = 0; i < idst.Length; i++)
@@ -120,21 +122,22 @@ namespace dotNet5781_01_3169_8515
             }
             return id;
         }
-        public static void Addbus()
+        private static void Addbus()
         {
             Console.WriteLine("enter start date of commitioning:");                 
             DateTimes dateTimes = new DateTimes(0);
             string idst=ReadId(dateTimes.GetYear(),0);
             int[] id = ConvertStingIdToArr(idst);//add check here
+            foreach(buses bs in busPool)
+                if(bs.EqualId(id))
+                    throw new ArgumentException("error: id  already exists.");
             busPool.Add(new buses(dateTimes, dateTimes, id));
            
         }
 
-        public static void Drive()
+        private static void Drive()
         {
              string idst=ReadId(0,1);
-            if(idst.Length!=8&& idst.Length != 7)
-                throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
             int[] id = ConvertStingIdToArr(idst);
             int km= r.Next(1, 1199);
             bool busExist = false;
@@ -159,7 +162,7 @@ namespace dotNet5781_01_3169_8515
 
 
         }
-        public static string IdToString(int[] arr)// turns an int[] to  a string
+        private static string IdToString(int[] arr)// turns an int[] to  a string
         {
             string str = "";
             for(int i=0;i<arr.Length;i++)
@@ -171,19 +174,18 @@ namespace dotNet5781_01_3169_8515
             }
             return str;
         }
-        public static void PrintMileage()
+        private static void PrintMileage()
         {
             foreach(buses bs in busPool)
             {
                 bs.print();
             }
         }
-        public static void reful()
+        private static void reful()
         {
             bool found=false;
             string idst = ReadId(0, 1);// we should make this part a separate function
-            if (idst.Length != 8 && idst.Length != 7)
-                throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
+           
             int[] id = ConvertStingIdToArr(idst);
             foreach (buses b1 in busPool)
             {
@@ -199,12 +201,10 @@ namespace dotNet5781_01_3169_8515
                 throw new ArgumentException("error: no bus matches id number {0} ",IdToString(id));
             }
         }
-        public static void maintenance()
+        private static void maintenance()
         {
             bool found = false;
             string idst = ReadId(0, 1);
-            if (idst.Length != 8 && idst.Length != 7)
-                throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
             int[] id = ConvertStingIdToArr(idst);
             foreach (buses b1 in busPool)
             {
