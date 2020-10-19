@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
@@ -10,9 +11,11 @@ using System.Xml.Serialization;
 
 namespace dotNet5781_01_3169_8515
 {
-   
+
+    
    partial class Main01
     {
+        const short FULL_TANK = 1200;
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
        public static List<buses> buses = new List<buses>();
         public static Random r = new Random();
@@ -62,8 +65,18 @@ namespace dotNet5781_01_3169_8515
 
                         break;
                     case (int)CHOICE.REFUEL:
+                        try {reful(); }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                         break;
                     case (int)CHOICE.MAINTANANCE:
+                        try { maintenance(); }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                         break;
                     case (int)CHOICE.MILEAGE: PrintMileage();
                         break;
@@ -121,7 +134,7 @@ namespace dotNet5781_01_3169_8515
         {
              string idst=ReadId(0,1);
             if(idst.Length!=8&& idst.Length != 7)
-                throw new ArgumentException("invalid input: id format most be 7/8 letters");
+                throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
             int[] id = ConvertStingIdToArr(idst);
             int km= r.Next(1, 1199);
             bool busExist = false;
@@ -136,23 +149,80 @@ namespace dotNet5781_01_3169_8515
                     {
                         bs.setFuel(bs.getFuel() - km);
                         bs.setDistance(bs.getDistance()-km);
-                        throw new ArgumentException("error: bus cannot make this drive.");
+                        throw new ArgumentException("error: bus cannot make selected drive.");
                     }
                     
                 }
             }
             if (busExist == false)
-                throw new ArgumentException("error: id bus does not exist.");
+                throw new ArgumentException("error: no bus matches id number ");//add bus id in exception
 
 
         }
-
+        public static string IdToString(int[] arr)
+        {
+            string str = "";
+            for(int i=0;i<arr.Length;i++)
+            {
+                if(arr[i]!=-1)
+                {
+                    str += (char)(arr[i] + (int)'0');//make sure this stands to regulations
+                }
+            }
+            return str;
+        }
         public static void PrintMileage()
         {
             foreach(buses bs in buses)
             {
                 bs.print();
             }
+        }
+        public static void reful()
+        {
+            bool found=false;
+            string idst = ReadId(0, 1);
+            if (idst.Length != 8 && idst.Length != 7)
+                throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
+            int[] id = ConvertStingIdToArr(idst);
+            foreach (buses b1 in buses)
+            {
+                if(b1.EqualId(id))
+                {
+                    found = true;
+                    b1.setFuel(FULL_TANK);
+                    return;//exit after changes
+                }
+            }
+            if (found == false)
+            {
+                throw new ArgumentException("error: no bus matches id number {0} ",IdToString(id));
+            }
+        }
+        public static void maintenance()
+        {
+            bool found = false;
+            string idst = ReadId(0, 1);
+            if (idst.Length != 8 && idst.Length != 7)
+                throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
+            int[] id = ConvertStingIdToArr(idst);
+            foreach (buses b1 in buses)
+            {
+                if (b1.EqualId(id))
+                {
+                    found = true;
+                    b1.setDistance(0);
+                    DateTimes d1 = new DateTimes(0);
+                    b1.setLastMaintenance(d1);
+                    return;//exit after changes
+                }
+            }
+            if (found == false)
+            {
+                throw new ArgumentException("error: no bus matches id number {0} ", IdToString(id));
+            }
+
+
         }
     }
 
