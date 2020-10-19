@@ -15,6 +15,7 @@ namespace dotNet5781_01_3169_8515
     {
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
        public static List<buses> buses = new List<buses>();
+        public static Random r = new Random();
      
        
         static void Main(string[] args)
@@ -52,7 +53,13 @@ namespace dotNet5781_01_3169_8515
                             Console.WriteLine(e.Message);
                         }
                         break;
-                    case (int)CHOICE.DRIVE:                     
+                    case (int)CHOICE.DRIVE:
+                        try { Drive(); }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
                         break;
                     case (int)CHOICE.REFUEL:
                         break;
@@ -70,33 +77,72 @@ namespace dotNet5781_01_3169_8515
                 Int32.TryParse(input, out choice);
             }
         }
-        public static string ReadId(int year) 
+        public static string ReadId(int year,int mode) 
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
-            for (int i = 0; i < idst.Length; i++)
+            if (mode == 0)
             {
-                if(idst[i]>57|| idst[i] < 48)
-                    throw  new ArgumentException("invalid input: id cannot be a letter");
+                for (int i = 0; i < idst.Length; i++)
+                {
+                    if (idst[i] > 57 || idst[i] < 48)
+                        throw new ArgumentException("invalid input: id cannot be a letter");
 
+                }
+                if ((idst.Length == 8 && year < 2018) || (idst.Length == 7 && year >= 2018))
+                    throw new ArgumentException("invalid input: id format doesn't match commitioning date");
+            }else if (mode == 1)
+            {
+                return idst;
             }
-            if((idst.Length==8&&year<2018)|| (idst.Length == 7 && year >= 2018))
-                throw new ArgumentException("invalid input: id format doesn't match commitioning date");
-
             return idst;
+        }
+
+        public static int[] ConvertStingIdToArr(string idst)
+        {
+            int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
+            for (int i = 0; i < id.Length; i++)
+            {
+                Int32.TryParse(idst[i].ToString(), out id[i]);
+            }
+            return id;
         }
         public static void Addbus()
         {
             Console.WriteLine("enter start date of commitioning:");                 
             DateTimes dateTimes = new DateTimes(0);
-            string idst=ReadId(dateTimes.GetYear());
-            int[]id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
-            for (int i = 0; i < id.Length; i++)
-            {         
-                Int32.TryParse(idst[i].ToString(), out id[i]);
-            }
+            string idst=ReadId(dateTimes.GetYear(),0);
+            int[] id = ConvertStingIdToArr(idst);
             buses.Add(new buses(dateTimes, dateTimes, id));
            
+        }
+
+        public static void Drive()
+        {
+             string idst=ReadId(0,1);
+            if(idst.Length!=8&& idst.Length != 7)
+                throw new ArgumentException("invalid input: id format most be 7/8 letters");
+            int[] id = ConvertStingIdToArr(idst);
+            int km= r.Next(1, 1199);
+            bool busExist = false;
+            foreach(buses bs in buses)
+            {
+                if (bs.EqualId(id))
+                {
+                    bs.setDistance(km);
+                    busExist = true;
+                    if (bs.CanMakeDrive() == false)
+                    {
+                        bs.setDistance(bs.getDistance()-km);
+                        throw new ArgumentException("error: bus cannot make this drive.");
+                    }
+
+                }
+            }
+            if (busExist == false)
+                throw new ArgumentException("error: id bus does not exist.");
+
+
         }
     }
 

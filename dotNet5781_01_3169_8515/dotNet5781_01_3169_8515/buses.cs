@@ -162,24 +162,32 @@ namespace dotNet5781_01_3169_8515
         {
             distance = 0;
             DateTime currentDate = DateTime.Now;
-            lastMaintenance.SetDay(currentDate.Day);
-            lastMaintenance.SetMonth(currentDate.Month);
-            lastMaintenance.SetYear(currentDate.Year);
+            this.lastMaintenance.SetDay(currentDate.Day);
+            this.lastMaintenance.SetMonth(currentDate.Month);
+            this.lastMaintenance.SetYear(currentDate.Year);
 
         }
         public bool passedYearNowAndThen()
         {
             DateTime currentDate = DateTime.Now;
-            if ((currentDate.Year - lastMaintenance.GetYear()) < 1)
+            if ((currentDate.Year - this.lastMaintenance.GetYear()) < 1)
                 return false;
-            if ((currentDate.Month - lastMaintenance.GetMonth()) < 0)
+            if ((currentDate.Month - this.lastMaintenance.GetMonth()) < 0)
                 return false;
-            if ((currentDate.Day - lastMaintenance.GetDay()) < 0)
+            if ((currentDate.Day - this.lastMaintenance.GetDay()) < 0)
                 return false;
             return true;
         } 
 
-
+       public bool EqualId(int[]_id)
+        {
+            for (int i = 0; i < this.id.Length; i++)
+            {
+                if (id[i] != _id[i])
+                    return false;
+            }
+            return true;
+        }
        
     }
 }
