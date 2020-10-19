@@ -148,9 +148,4 @@ namespace dotNet5781_01_3169_8515
         }
     }
 
-    partial class Main01
-    {
-
-    }
-
 }
