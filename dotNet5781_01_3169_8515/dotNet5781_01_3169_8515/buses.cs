@@ -151,14 +151,14 @@ namespace dotNet5781_01_3169_8515
     }
     partial class buses
     {
-        public bool CanMakeDrive()
+        public bool CanMakeDrive()//return true if a bus can make a drive.
         {
             if (fuel > 1200 || distance > 20000 || passedYearNowAndThen())
                 return false;
             return true;
         }
 
-        public void UpdateMaintenance()
+        public void UpdateMaintenance()//update the date of the last maintenance to current day.
         {
             distance = 0;
             DateTime currentDate = DateTime.Now;
@@ -167,7 +167,7 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance.SetYear(currentDate.Year);
 
         }
-        public bool passedYearNowAndThen()
+        public bool passedYearNowAndThen()//return true if passed a year since the last maintenance.
         {
             DateTime currentDate = DateTime.Now;
             if ((currentDate.Year - this.lastMaintenance.GetYear()) < 1)
@@ -179,7 +179,7 @@ namespace dotNet5781_01_3169_8515
             return true;
         } 
 
-       public bool EqualId(int[]_id)
+       public bool EqualId(int[]_id)//check if this id's bus equal to some id.
         {
             for (int i = 0; i < this.id.Length; i++)
             {
@@ -188,9 +188,37 @@ namespace dotNet5781_01_3169_8515
             }
             return true;
         }
-       public static void test()
+
+        //moved from main class.
+        public static string ReadId(int year, int mode)//get input of id from the user
         {
-            Console.WriteLine( "hi");
+            Console.WriteLine("enter id: ");
+            string idst = Console.ReadLine();
+            if (idst.Length != 8 && idst.Length != 7)
+                throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
+            for (int i = 0; i < idst.Length; i++)
+                if (idst[i] > 57 || idst[i] < 48)
+                    throw new ArgumentException("invalid input: id cannot be a letter");
+            if (mode == 0)
+            {
+                if ((idst.Length == 8 && year < 2018) || (idst.Length == 7 && year >= 2018))
+                    throw new ArgumentException("invalid input: id format doesn't match commitioning date");
+            }
+            else if (mode == 1)
+            {
+                return idst;
+            }
+            return idst;
+        }
+
+        public static int[] ConvertStingIdToArr(string idst)//convert the input of id to array of int.
+        {
+            int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
+            for (int i = 0; i < idst.Length; i++)
+            {
+                Int32.TryParse(idst[i].ToString(), out id[i]);
+            }
+            return id;
         }
     }
 }   

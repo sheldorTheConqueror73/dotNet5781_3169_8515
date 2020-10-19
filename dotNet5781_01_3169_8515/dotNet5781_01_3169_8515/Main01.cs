@@ -27,7 +27,7 @@ namespace dotNet5781_01_3169_8515
             GetInfoFromUser();
         }
 
-        private static void PrintMenu()
+        private static void PrintMenu()//print the suggested menu
         {
             Console.WriteLine(@"Enter your choice: 
                    1-add a bus.
@@ -90,41 +90,13 @@ namespace dotNet5781_01_3169_8515
                 Int32.TryParse(input, out choice);
             }
         }
-        private static string ReadId(int year,int mode) 
-        {
-            Console.WriteLine("enter id: ");
-            string idst = Console.ReadLine();
-            if (idst.Length != 8 && idst.Length != 7)
-                throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
-            for (int i = 0; i < idst.Length; i++)      
-                if (idst[i] > 57 || idst[i] < 48)
-                    throw new ArgumentException("invalid input: id cannot be a letter");        
-            if (mode == 0)
-            {        
-                if ((idst.Length == 8 && year < 2018) || (idst.Length == 7 && year >= 2018))
-                    throw new ArgumentException("invalid input: id format doesn't match commitioning date");
-            }else if (mode == 1)
-            {
-                return idst;
-            }
-            return idst;
-        }
-
-        private static int[] ConvertStingIdToArr(string idst)
-        {
-            int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
-            for (int i = 0; i < idst.Length; i++)
-            {
-                Int32.TryParse(idst[i].ToString(), out id[i]);
-            }
-            return id;
-        }
-        private static void Addbus()
+        
+        private static void Addbus()//add bus to the list.
         {
             Console.WriteLine("enter start date of commitioning:");                 
             DateTimes dateTimes = new DateTimes(0);
-            string idst=ReadId(dateTimes.GetYear(),0);
-            int[] id = ConvertStingIdToArr(idst);//add check here
+            string idst=buses.ReadId(dateTimes.GetYear(),0);
+            int[] id = buses.ConvertStingIdToArr(idst);
             foreach(buses bs in busPool)
                 if(bs.EqualId(id))
                     throw new ArgumentException("error: id  already exists.");
@@ -132,10 +104,10 @@ namespace dotNet5781_01_3169_8515
            
         }
 
-        private static void Drive()
+        private static void Drive()//add a new drive to a bus.
         {
-             string idst=ReadId(0,1);
-            int[] id = ConvertStingIdToArr(idst);
+             string idst=buses.ReadId(0,1);
+            int[] id = buses.ConvertStingIdToArr(idst);
             int km= r.Next(1, 1199);
             bool busExist = false;
             foreach(buses bs in busPool)
@@ -181,9 +153,9 @@ namespace dotNet5781_01_3169_8515
         private static void reful()
         {
             bool found=false;
-            string idst = ReadId(0, 1);// we should make this part a separate function
+            string idst = buses.ReadId(0, 1);// we should make this part a separate function
            
-            int[] id = ConvertStingIdToArr(idst);
+            int[] id = buses.ConvertStingIdToArr(idst);
             foreach (buses b1 in busPool)
             {
                 if(b1.EqualId(id))
@@ -201,8 +173,8 @@ namespace dotNet5781_01_3169_8515
         private static void maintenance()
         {
             bool found = false;
-            string idst = ReadId(0, 1);
-            int[] id = ConvertStingIdToArr(idst);
+            string idst = buses.ReadId(0, 1);
+            int[] id = buses.ConvertStingIdToArr(idst);
             foreach (buses b1 in busPool)
             {
                 if (b1.EqualId(id))
