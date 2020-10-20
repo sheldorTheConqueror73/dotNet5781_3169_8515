@@ -190,7 +190,7 @@ namespace dotNet5781_01_3169_8515
         }
 
         //moved from main class.
-        public static string ReadId(int year, int mode)//get input of id from the user
+        public static int[] ReadId(int year, int mode)//get input of id from the user
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
@@ -204,11 +204,14 @@ namespace dotNet5781_01_3169_8515
                 if ((idst.Length == 8 && year < 2018) || (idst.Length == 7 && year >= 2018))
                     throw new ArgumentException("invalid input: id format doesn't match commitioning date");
             }
-            else if (mode == 1)
+            /*else if (mode == 1)
             {
                 return idst;
             }
-            return idst;
+            */
+            // return idst;
+            int[] arr=buses.ConvertStingIdToArr(idst);
+            return arr;
         }
 
         public static int[] ConvertStingIdToArr(string idst)//convert the input of id to array of int.

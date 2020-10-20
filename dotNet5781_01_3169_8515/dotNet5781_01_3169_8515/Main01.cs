@@ -17,7 +17,7 @@ namespace dotNet5781_01_3169_8515
     {
         const short  FULL_TANK = 1200;
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
-       private static List<buses> busPool = new List<buses>();
+        private static List<buses> busPool = new List<buses>();
         private static Random r = new Random();
      
        
@@ -95,9 +95,8 @@ namespace dotNet5781_01_3169_8515
         {
             Console.WriteLine("enter start date of commitioning:");                 
             DateTimes dateTimes = new DateTimes(0);
-            string idst=buses.ReadId(dateTimes.GetYear(),0);
-            int[] id = buses.ConvertStingIdToArr(idst);
-            foreach(buses bs in busPool)
+            int[] id = buses.ReadId(0, 1);
+            foreach (buses bs in busPool)
                 if(bs.EqualId(id))
                     throw new ArgumentException("error: id  already exists.");
             busPool.Add(new buses(dateTimes, new DateTimes(), id));
@@ -106,8 +105,7 @@ namespace dotNet5781_01_3169_8515
 
         private static void Drive()//add a new drive to a bus.
         {
-             string idst=buses.ReadId(0,1);
-            int[] id = buses.ConvertStingIdToArr(idst);
+            int[] id = buses.ReadId(0, 1);
             int km= r.Next(1, 1199);
             bool busExist = false;
             foreach(buses bs in busPool)
@@ -153,9 +151,7 @@ namespace dotNet5781_01_3169_8515
         private static void reful()
         {
             bool found=false;
-            string idst = buses.ReadId(0, 1);// we should make this part a separate function
-           
-            int[] id = buses.ConvertStingIdToArr(idst);
+            int[] id = buses.ReadId(0, 1);
             foreach (buses b1 in busPool)
             {
                 if(b1.EqualId(id))
@@ -173,8 +169,7 @@ namespace dotNet5781_01_3169_8515
         private static void maintenance()
         {
             bool found = false;
-            string idst = buses.ReadId(0, 1);
-            int[] id = buses.ConvertStingIdToArr(idst);
+            int[] id = buses.ReadId(0, 1);
             foreach (buses b1 in busPool)
             {
                 if (b1.EqualId(id))
