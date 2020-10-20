@@ -52,10 +52,12 @@ namespace dotNet5781_01_3169_8515
     partial class buses
     {
         const int LIMIT = 1200;
-        int  fuel, distance,totalDistance;
-        int[] id;
-        bool dangerous;
-        DateTimes startDate, lastMaintenance;
+        int fuel;//how much fuel is left
+        int distance;// distance since last maintenance
+        int totalDistance;// total distance driven
+        int[] id; //bus id number
+        bool dangerous; //is this bus dangerous
+        DateTimes registrationDate, lastMaintenance;
           
 
         public buses()
@@ -65,9 +67,9 @@ namespace dotNet5781_01_3169_8515
             distance = 0; // distance since last maintenance
             totalDistance = 0; // total distance driven
             dangerous = false;  //is this bus dangerous
-            startDate.day = 0;      
-            startDate.month = 0;
-            startDate.year = 0;
+            registrationDate.day = 0;      
+            registrationDate.month = 0;
+            registrationDate.year = 0;
             lastMaintenance.day = 0;
             lastMaintenance.month = 0;
             lastMaintenance.year = 0;
@@ -86,7 +88,7 @@ namespace dotNet5781_01_3169_8515
             this.fuel = fuel; 
             this.distance = distance;
             this.dangerous = dangerous; 
-            this.startDate = date;
+            this.registrationDate = date;
             this.lastMaintenance= lm;
             this.totalDistance = totalDistance;
         }
@@ -102,7 +104,7 @@ namespace dotNet5781_01_3169_8515
             this.fuel = fuel;
             this.distance = distance;
             this.dangerous = dangerous;
-            this.startDate = date;
+            this.registrationDate = date;
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
         }
@@ -125,13 +127,13 @@ namespace dotNet5781_01_3169_8515
         public void setTotalDistance(int totalDistance) { this.totalDistance = totalDistance; }
         public bool getDangerous() { return this.dangerous; }
         public void setDangerous(bool dangerous) { this.dangerous = dangerous; }
-        public DateTimes getStartDate() { return this.startDate; }
-        public void setDistance(DateTimes startDate) { this.startDate = startDate; }
+        public DateTimes getStartDate() { return this.registrationDate; }
+        public void setDistance(DateTimes registrationDate) { this.registrationDate = registrationDate; }
         public DateTimes getLastMaintenance() { return this.lastMaintenance; }
         public void setLastMaintenance(DateTimes lm) { this.lastMaintenance = lm; }
         public void printId()
         {
-            if(this.startDate.year<2018)
+            if(this.registrationDate.year<2018)
             {
                 Console.WriteLine("ID:\t{0}{1}-{2}{3}{4}-{5}{6}",this.id[0], this.id[1], this.id[2], this.id[3], this.id[4], this.id[5], this.id[6]);
                 return;
@@ -163,14 +165,14 @@ namespace dotNet5781_01_3169_8515
     }
     partial class buses
     {
-        public bool CanMakeDrive(int km)//return true if a bus can make a drive.
+        public bool CanMakeDrive(int km)//return true if sleceted bus can drive that far.
         {
             if ((fuel >= km) && (distance + km <= 20000)&&(this.passedYearNowAndThen()==false))
                 return true;
             return false;
         }
 
-        public void UpdateMaintenance()//update the date of the last maintenance to current day.
+        public void UpdateMaintenance()//update last maintenance date to current day.
         {
             distance = 0;
             DateTime currentDate = DateTime.Now;
@@ -179,7 +181,7 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance.SetYear(currentDate.Year);
 
         }
-        public bool passedYearNowAndThen()//return true if passed a year since the last maintenance.
+        public bool passedYearNowAndThen()//return true if a year has passed since the last maintenance.
         {
             DateTime currentDate = DateTime.Now;
             if ((currentDate.Year - this.lastMaintenance.GetYear()) < 1)
@@ -191,7 +193,7 @@ namespace dotNet5781_01_3169_8515
             return true;
         } 
 
-       public bool EqualId(int[]_id)//check if this id's bus equal to some id.
+       public bool EqualId(int[]_id)//checks if two buses types have the same id
         {
             for (int i = 0; i < this.id.Length; i++)
             {
@@ -202,7 +204,7 @@ namespace dotNet5781_01_3169_8515
         }
 
         //moved from main class.
-        public static int[] ReadId(int year, int mode)//get input of id from the user
+        public static int[] ReadId(int year, int mode)//read id from the user and return an int[]
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
@@ -214,7 +216,7 @@ namespace dotNet5781_01_3169_8515
             if (mode == 0)
             {
                 if ((idst.Length == 8 && year < 2018) || (idst.Length == 7 && year >= 2018))
-                    throw new ArgumentException("invalid input: id format doesn't match commitioning date");
+                    throw new ArgumentException("invalid input: id format doesn't match registration date");
             }
             /*else if (mode == 1)
             {
@@ -226,7 +228,7 @@ namespace dotNet5781_01_3169_8515
             return arr;
         }
             
-        public static int[] ConvertStingIdToArr(string idst)//convert the input of id to array of int.
+        public static int[] ConvertStingIdToArr(string idst)//converts the input of readid(string) to int[]
         {
             int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
             for (int i = 0; i < idst.Length; i++)

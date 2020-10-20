@@ -105,6 +105,7 @@ namespace dotNet5781_01_3169_8515
 
         private static void Drive()//add a new drive to a bus.
         {
+             
             int[] id = buses.ReadId(0, 1);
             int km= r.Next(1, 1199);
             bool busExist = false;
