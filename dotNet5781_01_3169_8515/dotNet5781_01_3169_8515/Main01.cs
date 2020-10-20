@@ -112,13 +112,16 @@ namespace dotNet5781_01_3169_8515
             {
                 if (bs.EqualId(id))
                 {
-                    bs.setFuel(bs.getFuel() + km);
-                    bs.setDistance(bs.getDistance()+km);
                     busExist = true;
-                    if (bs.CanMakeDrive() == false)
+                    if (bs.CanMakeDrive(km) == true)
                     {
                         bs.setFuel(bs.getFuel() - km);
-                        bs.setDistance(bs.getDistance()-km);
+                        bs.setDistance(bs.getDistance() + km);
+                        bs.setTotalDistance(bs.getTotalDistance() + km);
+                        
+                    }
+                    else
+                    {
                         throw new ArgumentException("error: bus cannot make selected drive.");
                     }
                     

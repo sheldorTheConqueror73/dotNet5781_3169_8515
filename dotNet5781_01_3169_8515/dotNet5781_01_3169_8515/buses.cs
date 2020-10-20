@@ -82,6 +82,7 @@ namespace dotNet5781_01_3169_8515
             {
                 id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
             }
+         
             this.fuel = fuel; 
             this.distance = distance;
             this.dangerous = dangerous; 
@@ -146,16 +147,27 @@ namespace dotNet5781_01_3169_8515
         {
             Console.WriteLine("mileage since last maintenance:\t{0}",this.distance);
         }
-    
-
+         /*
+        public ref buses find(int[] id,ref List<buses> ls1)///need to ask mr gerbergergerger//work in progress
+        {
+            foreach (buses bs in ls1)
+            {
+                if(bs.EqualId(id))
+                {
+                    bs.
+                }
+            }
+                throw new ArgumentException("return code 404: no match");
+        }
+         */
     }
     partial class buses
     {
-        public bool CanMakeDrive()//return true if a bus can make a drive.
+        public bool CanMakeDrive(int km)//return true if a bus can make a drive.
         {
-            if (fuel > 1200 || distance > 20000 || passedYearNowAndThen())
-                return false;
-            return true;
+            if ((fuel >= km) && (distance + km <= 20000)&&(this.passedYearNowAndThen()==false))
+                return true;
+            return false;
         }
 
         public void UpdateMaintenance()//update the date of the last maintenance to current day.
@@ -213,7 +225,7 @@ namespace dotNet5781_01_3169_8515
             int[] arr=buses.ConvertStingIdToArr(idst);
             return arr;
         }
-
+            
         public static int[] ConvertStingIdToArr(string idst)//convert the input of id to array of int.
         {
             int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };

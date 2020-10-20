@@ -22,3 +22,4 @@ debuggin
 
 
 לשאול את המרצה על unsafe
+לשאול על accessors
