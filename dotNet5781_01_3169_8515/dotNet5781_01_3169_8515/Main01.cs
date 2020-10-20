@@ -123,7 +123,7 @@ namespace dotNet5781_01_3169_8515
                     }
                     else
                     {
-                        throw new ArgumentException("error: bus cannot make selected drive. fuel left:"+ bs.getFuel().ToString() + " km, the drive was:" + km.ToString()+ " km, distanse since last maintenance:"+bs.getDistance.ToString()+" km");//check if conversion method stands to regulations
+                        throw new ArgumentException("error: bus cannot make selected drive. fuel left:"+ bs.getFuel().ToString() + " km, the drive was:" + km.ToString()+ " km, distanse untill next maintenance:"+((20000-bs.getDistance()).ToString())+" km");//check if conversion method stands to regulations
                      }
                     
                 }
@@ -167,8 +167,8 @@ namespace dotNet5781_01_3169_8515
                 {
                     found = true;
                     b1.setDistance(0);
-                    DateTimes d1 = new DateTimes(0);
-                    b1.setLastMaintenance(d1);
+                    DateTimes d2 = DateTimes.current();
+                    b1.setLastMaintenance(d2);
                     return;//exit after changes
                 }
             }

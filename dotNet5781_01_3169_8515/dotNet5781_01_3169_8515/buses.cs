@@ -45,7 +45,20 @@ namespace dotNet5781_01_3169_8515
         public void SetDay(int _day) { this.day = _day; }
         public void SetMonth(int _month) { this.month = _month; }
         public void SetYear(int _year) { this.year = _year; }
-
+        
+        public void set(DateTime d1)
+        {
+            this.day = d1.Day;
+            this.month = d1.Month;
+            this.year = d1.Year;
+        }
+        public static DateTimes current()
+        {
+            DateTime d1 = DateTime.Now;
+            DateTimes d2 = new DateTimes();
+            d2.set(d1);
+            return d2;
+        }
 
 
     }
@@ -176,7 +189,6 @@ namespace dotNet5781_01_3169_8515
               //  return false;
             if ((fuel >= km) && (distance + km <= 20000)&&(this.passedYearNowAndThen()==false))
                 return true;
-            this.dangerous=
             return false;
         }
 
@@ -184,10 +196,7 @@ namespace dotNet5781_01_3169_8515
         {
             distance = 0;
             dangerous = false;
-            DateTime currentDate = DateTime.Now;
-            this.lastMaintenance.SetDay(currentDate.Day);
-            this.lastMaintenance.SetMonth(currentDate.Month);
-            this.lastMaintenance.SetYear(currentDate.Year);
+            this.lastMaintenance.set(DateTime.Now);
 
         }
         public bool passedYearNowAndThen()//return true if a year has passed since the last maintenance.
