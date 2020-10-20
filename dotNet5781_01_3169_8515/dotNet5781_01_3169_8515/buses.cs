@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace dotNet5781_01_3169_8515
                 input = Console.ReadLine();
                 Int32.TryParse(input, out year);
                  if(year<2000||year>2020)
-                     throw new ArgumentException("invalid input: year cannot be greater than 12 or lesser than 1");
+                     throw new ArgumentException("invalid input: year cannot be greater than 2020 or lesser than 2000");
 
 
 
@@ -77,9 +78,12 @@ namespace dotNet5781_01_3169_8515
         }
         public buses(DateTimes date, DateTimes lm, int[] id =null, int fuel=0, int distance=0, bool dangerous=false,int totalDistance=0 )
         {
-            if(id!=null)
-            for (int i = 0; i < 8; i++)
-                this.id[i] = id[i];
+            if (id != null)
+            {
+                this.id = new int[8];
+                for (int i = 0; i < 8; i++)
+                    this.id[i] = id[i];
+            }
             if(id==null)
             {
                 id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
@@ -167,14 +171,19 @@ namespace dotNet5781_01_3169_8515
     {
         public bool CanMakeDrive(int km)//return true if sleceted bus can drive that far.
         {
+            
+           // if (this.dangerous == true)
+              //  return false;
             if ((fuel >= km) && (distance + km <= 20000)&&(this.passedYearNowAndThen()==false))
                 return true;
+            this.dangerous=
             return false;
         }
 
         public void UpdateMaintenance()//update last maintenance date to current day.
         {
             distance = 0;
+            dangerous = false;
             DateTime currentDate = DateTime.Now;
             this.lastMaintenance.SetDay(currentDate.Day);
             this.lastMaintenance.SetMonth(currentDate.Month);
@@ -236,6 +245,19 @@ namespace dotNet5781_01_3169_8515
                 Int32.TryParse(idst[i].ToString(), out id[i]);
             }
             return id;
+        }
+
+        public static string IdToString(int[] arr)// turns an int[] to  a string
+        {
+            string str = "";
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] != -1)
+                {
+                    str += (char)(arr[i] + (int)'0');//make sure this stands to regulations
+                }
+            }
+            return str;
         }
     }
 }   

@@ -91,15 +91,15 @@ namespace dotNet5781_01_3169_8515
             }
         }
         
-        private static void Addbus()//add bus to the list.
+        private static void Addbus()//add a new bus to the list.
         {
-            Console.WriteLine("enter start date of commitioning:");                 
-            DateTimes dateTimes = new DateTimes(0);
-            int[] id = buses.ReadId(0, 1);
+            Console.WriteLine("enter registration date:");                 
+            DateTimes dateTimes1 = new DateTimes(0);
+            int[] id = buses.ReadId(dateTimes1.GetYear(), 0);
             foreach (buses bs in busPool)
                 if(bs.EqualId(id))
                     throw new ArgumentException("error: id  already exists.");
-            busPool.Add(new buses(dateTimes, new DateTimes(), id));
+            busPool.Add(new buses(dateTimes1, new DateTimes(), id));
            
         }
 
@@ -123,28 +123,15 @@ namespace dotNet5781_01_3169_8515
                     }
                     else
                     {
-                        throw new ArgumentException("error: bus cannot make selected drive.");
-                    }
+                        throw new ArgumentException("error: bus cannot make selected drive. fuel left:"+ bs.getFuel().ToString() + " km, the drive was:" + km.ToString()+ " km, distanse since last maintenance:"+bs.getDistance.ToString()+" km");//check if conversion method stands to regulations
+                     }
                     
                 }
             }
             if (busExist == false)
-                throw new ArgumentException("error: no bus matches id number ");//add bus id in exception
-
-
+                throw new ArgumentException("error: no bus matches id number {0} ", buses.IdToString(id));
         }
-        private static string IdToString(int[] arr)// turns an int[] to  a string
-        {
-            string str = "";
-            for(int i=0;i<arr.Length;i++)
-            {
-                if(arr[i]!=-1)
-                {
-                    str += (char)(arr[i] + (int)'0');//make sure this stands to regulations
-                }
-            }
-            return str;
-        }
+        
         private static void PrintMileage()
         {
             foreach(buses bs in busPool)
@@ -167,7 +154,7 @@ namespace dotNet5781_01_3169_8515
             }
             if (found == false)
             {
-                throw new ArgumentException("error: no bus matches id number {0} ",IdToString(id));
+                throw new ArgumentException("error: no bus matches id number {0} ",buses.IdToString(id));
             }
         }
         private static void maintenance()
@@ -187,7 +174,7 @@ namespace dotNet5781_01_3169_8515
             }
             if (found == false)
             {
-                throw new ArgumentException("error: no bus matches id number {0} ", IdToString(id));
+                throw new ArgumentException("error: no bus matches id number {0} ", buses.IdToString(id));
             }
 
 
