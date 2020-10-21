@@ -96,7 +96,6 @@ namespace dotNet5781_01_3169_8515
         private static void Addbus()//add a new bus to the list.
         {
             Console.WriteLine("enter registration date:");
-            Console.ReadLine();
             DateTime dateTimes1 = buses.readDate();
             int[] id = buses.ReadId(dateTimes1.Year, 0);
             foreach (buses bs in busPool)
