@@ -120,14 +120,14 @@ namespace dotNet5781_01_3169_8515
     }
     partial class buses
     {
-        internal bool CanMakeDrive(int km)//return true if sleceted bus can drive that far.
+        internal void UpdateDangerous(int km)//return true if sleceted bus can drive that far.
         {
 
             // if (this.dangerous == true)
             //  return false;
             if ((fuel >= km) && (distance + km <= 20000) && (this.passedYearNowAndThen() == false))
-                return true;
-            return false;
+                this.dangerous= true;
+            this.dangerous= false;
         }
 
         internal void UpdateMaintenance()//update last maintenance date to current day.
