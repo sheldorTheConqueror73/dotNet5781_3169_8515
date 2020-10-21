@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -23,7 +24,7 @@ namespace dotNet5781_01_3169_8515
        
         static void Main(string[] args)
         {
-            
+           
             GetInfoFromUser();
         }
 
@@ -40,23 +41,24 @@ namespace dotNet5781_01_3169_8515
 
         private static void GetInfoFromUser()
         {
-            CHOICE Choise;
-            int choice;
-            PrintMenu();
-            string input = Console.ReadLine();
-            Int32.TryParse(input, out choice);
-            while (choice!= (int)CHOICE.EXIT)
+            CHOICE choice;          
+            do
             {
+                PrintMenu();
+                bool sucsses = true;
+                sucsses=Enum.TryParse(Console.ReadLine(),out choice);
+                if (!sucsses)
+                    continue;
                 switch (choice)
                 {
-                    case (int)CHOICE.ADD:
+                    case CHOICE.ADD:
                         try { Addbus(); }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
-                    case (int)CHOICE.DRIVE:
+                    case CHOICE.DRIVE:
                         try { Drive(); }
                         catch (Exception e)
                         {
@@ -64,31 +66,30 @@ namespace dotNet5781_01_3169_8515
                         }
 
                         break;
-                    case (int)CHOICE.REFUEL:
-                        try {reful(); }
+                    case CHOICE.REFUEL:
+                        try { reful(); }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
-                    case (int)CHOICE.MAINTANANCE:
+                    case CHOICE.MAINTANANCE:
                         try { maintenance(); }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
-                    case (int)CHOICE.MILEAGE: PrintMileage();
+                    case CHOICE.MILEAGE:
+                        PrintMileage();
                         break;
-                    case (int)CHOICE.EXIT:
+                    case CHOICE.EXIT:
                         break;
-                    default: Console.WriteLine("please try again");
+                    default:
+                        Console.WriteLine("please try again");
                         break;
-                }
-                PrintMenu();
-                input = Console.ReadLine();
-                Int32.TryParse(input, out choice);
-            }
+                }             
+            } while (choice != (int)CHOICE.EXIT);
         }
         
         private static void Addbus()//add bus to the list.
@@ -101,7 +102,6 @@ namespace dotNet5781_01_3169_8515
                 if(bs.EqualId(id))
                     throw new ArgumentException("error: id  already exists.");
             busPool.Add(new buses(dateTimes, new DateTimes(), id));
-           
         }
 
         private static void Drive()//add a new drive to a bus.
@@ -114,7 +114,7 @@ namespace dotNet5781_01_3169_8515
             {
                 if (bs.EqualId(id))
                 {
-                    bs.setFuel(bs.getFuel() + km);
+                    bs.setFuel(bs.getFuel() + km);                    
                     bs.setDistance(bs.getDistance()+km);
                     busExist = true;
                     if (bs.CanMakeDrive() == false)

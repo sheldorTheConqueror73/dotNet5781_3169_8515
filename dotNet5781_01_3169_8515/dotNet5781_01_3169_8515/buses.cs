@@ -15,24 +15,27 @@ namespace dotNet5781_01_3169_8515
        
         public DateTimes(int sum=0) 
         {
-
+            bool sucsses = true;
                 Console.WriteLine("enter day: ");
-                string input = Console.ReadLine();
-                Int32.TryParse(input,out  day);
+                 sucsses= Int32.TryParse(Console.ReadLine(),out  day);
+                 if(!sucsses)
+                 throw new ArgumentException("invalid input: day most be a number");
                  if (day < 1 || day > 31)
                      throw new ArgumentException("invalid input: day cannot be greater than 31 or lesser than 1");
                
                
                 Console.WriteLine("enter month: ");
-                input = Console.ReadLine();
-                Int32.TryParse(input, out month);
-                    if(month<1||month>12)
+                sucsses = Int32.TryParse(Console.ReadLine(), out month);
+                if (!sucsses)
+                    throw new ArgumentException("invalid input: day most be a number");
+                if (month<1||month>12)
                      throw new ArgumentException("invalid input: month cannot be greater than 12 or lesser than 1");
 
                  Console.WriteLine("enter year: ");
-                input = Console.ReadLine();
-                Int32.TryParse(input, out year);
-                 if(year<2000||year>2020)
+                sucsses = Int32.TryParse(Console.ReadLine(), out year);
+                if (!sucsses)
+                    throw new ArgumentException("invalid input: day most be a number");
+                if (year<2000||year>2020)
                      throw new ArgumentException("invalid input: year cannot be greater than 12 or lesser than 1");
 
 
@@ -151,6 +154,14 @@ namespace dotNet5781_01_3169_8515
     }
     partial class buses
     {
+        
+        private int test;
+        public int Test 
+        {
+            get { return test; }
+            set { test = value; }
+        }
+        
         public bool CanMakeDrive()//return true if a bus can make a drive.
         {
             if (fuel > 1200 || distance > 20000 || passedYearNowAndThen())
@@ -190,7 +201,7 @@ namespace dotNet5781_01_3169_8515
         }
 
         //moved from main class.
-        public static string ReadId(int year, int mode)//get input of id from the user
+        public static string ReadId(int year=0, int mode=1)//get input of id from the user
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
