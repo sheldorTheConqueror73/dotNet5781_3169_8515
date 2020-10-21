@@ -109,23 +109,11 @@ namespace dotNet5781_01_3169_8515
         }
         internal static DateTime readDate()
         {
-            bool flag1,flag2,flag3;
-            int day, year, month;
-            Console.WriteLine("enter day:");
-            flag1=Int32.TryParse(Console.ReadLine(), out day);
-            Console.WriteLine("enter month:");
-            flag2 = Int32.TryParse(Console.ReadLine(), out month);
-            Console.WriteLine("enter year:");
-            flag3 = Int32.TryParse(Console.ReadLine(), out year);
-            if (!(flag1 && flag2 && flag3))
-                throw new ArgumentException("error: failed to convert string to int");
-            if (day < 1 || day > 31)
-                throw new ArgumentException("invalid input: day cannot be greater than 31 or lesser than 1");
-            if (month < 1 || month > 12)
-                throw new ArgumentException("invalid input: month cannot be greater than 12 or lesser than 1");
-            if (year < 2000 || year > 2020)
-                throw new ArgumentException("invalid input: year cannot be greater than 2020 or lesser than 2000");
-            DateTime d1 = new DateTime(year, month, day);
+            Console.WriteLine("enter registration date:");
+            DateTime d1;
+            bool flag = DateTime.TryParse(Console.ReadLine(),out d1);
+            if (!flag)
+                throw new ArgumentException("invalid input: no such date");
             return d1;
         }
 

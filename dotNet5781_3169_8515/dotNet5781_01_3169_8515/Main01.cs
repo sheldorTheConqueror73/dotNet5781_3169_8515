@@ -93,8 +93,7 @@ namespace dotNet5781_01_3169_8515
         }
 
         private static void Addbus()//add a new bus to the list.
-        {
-            Console.WriteLine("enter registration date:");
+        { 
             DateTime dateTimes1 = buses.readDate();
             int[] id = buses.ReadId(dateTimes1.Year, 0);
             foreach (buses bs in busPool)
@@ -106,9 +105,10 @@ namespace dotNet5781_01_3169_8515
 
         private static void Drive()//add a new drive to a bus.
         {
-
+            Console.WriteLine("here are all the avilable buses:");
+            PrintMileage();
             int[] id = buses.ReadId(0, 1);
-            int km = r.Next(1, 1199);
+            int km = r.Next(1, 1201);
             bool busExist = false;
             foreach (buses bs in busPool)
             {
@@ -176,8 +176,6 @@ namespace dotNet5781_01_3169_8515
             {
                 throw new ArgumentException("error: no bus matches id number {0} ", buses.IdToString(id));
             }
-
-
         }
         
     }
