@@ -101,7 +101,7 @@ namespace dotNet5781_01_3169_8515
             foreach (buses bs in busPool)
                 if (bs.EqualId(id))
                     throw new ArgumentException("error: id  already exists.");
-            busPool.Add(new buses(dateTimes1, new DateTime(), id));///-----------------------> make him re enter
+            busPool.Add(new buses(dateTimes1, new DateTime(), id));///-----------------------> make him re enter?
 
         }
 
@@ -169,8 +169,7 @@ namespace dotNet5781_01_3169_8515
                 {
                     found = true;
                     b1.setDistance(0);
-                    DateTime d2 = DateTime.Now;
-                    b1.setLastMaintenance(d2);
+                    b1.setLastMaintenance(DateTime.Now);
                     return;//exit after changes
                 }
             }

@@ -160,7 +160,6 @@ namespace dotNet5781_01_3169_8515
                 return false;
             return true;
         }
-
         internal bool EqualId(int[] _id)//checks if two buses types have the same id
         {
             for (int i = 0; i < this.id.Length; i++)
@@ -170,7 +169,6 @@ namespace dotNet5781_01_3169_8515
             }
             return true;
         }
-
         //moved from main class.
         internal static int[] ReadId(int year, int mode)//read id from the user and return an int[]
         {
@@ -189,7 +187,6 @@ namespace dotNet5781_01_3169_8515
             int[] arr = buses.ConvertStingIdToArr(idst);
             return arr;
         }
-
         internal static int[] ConvertStingIdToArr(string idst)//converts the input of readid(string) to int[]
         {
             int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
@@ -199,7 +196,6 @@ namespace dotNet5781_01_3169_8515
             }
             return id;
         }
-
         internal static string IdToString(int[] arr)// turns an int[] to  a string
         {
             string str = "";
