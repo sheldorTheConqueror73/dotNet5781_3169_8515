@@ -14,14 +14,14 @@ namespace dotNet5781_01_3169_8515
         int fuel;//how much fuel is left
         int distance;// distance since last maintenance
         int totalDistance;// total distance driven
-        int[] id; //bus id number
+        string id; //bus id number
         bool dangerous; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
 
 
         internal buses()
         {
-            id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 }; // bus id number
+            id = ""; // bus id number
             fuel = 0; //how much fuel is left
             distance = 0; // distance since last maintenance
             totalDistance = 0; // total distance driven
@@ -30,19 +30,9 @@ namespace dotNet5781_01_3169_8515
             lastMaintenance = new DateTime(0, 0, 0);
 
         }
-        internal buses(DateTime date, DateTime lm, int[] id = null, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
+        internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
         {
-            if (id != null)
-            {
-                this.id = new int[8];
-                for (int i = 0; i < 8; i++)
-                    this.id[i] = id[i];
-            }
-            if (id == null)
-            {
-                id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
-            }
-
+            this.id = id;
             this.fuel = fuel;
             this.distance = distance;
             this.dangerous = dangerous;
@@ -50,15 +40,9 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
         }
-        internal void setAll(DateTime date, DateTime lm, int[] id = null, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
+        internal void setAll(DateTime date, DateTime lm, string id, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
         {
-            if (id != null)
-                for (int i = 0; i < 8; i++)
-                    this.id[i] = id[i];
-            if (id == null)
-            {
-                id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
-            }
+            this.id = id;
             this.fuel = fuel;
             this.distance = distance;
             this.dangerous = dangerous;
@@ -66,17 +50,8 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
         }
-        internal int[] getId() { return this.id; }
-        internal void setId(int[] id)
-        {
-            if (id != null)
-                for (int i = 0; i < 8; i++)
-                    this.id[i] = id[i];
-            if (id == null)
-            {
-                id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
-            }
-        }
+        internal string getId() { return this.id; }
+        internal void setId(string id) {  this.id = id; }
         internal int getFuel() { return this.fuel; }
         internal void setFuel(int fuel) { this.fuel = fuel; }
         internal int getDistance() { return this.distance; }
@@ -128,7 +103,7 @@ namespace dotNet5781_01_3169_8515
                     return true;
             return false;
         }
-        internal void UpdateDangerous()//return true if sleceted bus can drive that far.
+        internal void UpdateDangerous()
         {
             if ((distance >= 20000) || (this.passedYearNowAndThen() == false))
                 this.dangerous= true;
@@ -153,17 +128,14 @@ namespace dotNet5781_01_3169_8515
                 return false;
             return true;
         }
-        internal bool EqualId(int[] _id)//checks if two buses types have the same id
+        internal bool EqualId(string _id)//checks if two buses types have the same id
         {
-            for (int i = 0; i < this.id.Length; i++)
-            {
-                if (id[i] != _id[i])
-                    return false;
-            }
+            if(this.id==_id)
             return true;
+            return false;
         }
         //moved from main class.
-        internal static int[] ReadId(int year, int mode)//read id from the user and return an int[]
+        internal static string ReadId(int year, int mode)//read id from the user and return an int[]
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
@@ -176,30 +148,9 @@ namespace dotNet5781_01_3169_8515
             {
                 if ((idst.Length == 8 && year < 2018) || (idst.Length == 7 && year >= 2018))
                     throw new ArgumentException("invalid input: id format doesn't match registration date");
-            }
-            int[] arr = buses.ConvertStingIdToArr(idst);
-            return arr;
+            }         
+            return idst;
         }
-        internal static int[] ConvertStingIdToArr(string idst)//converts the input of readid(string) to int[]
-        {
-            int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
-            for (int i = 0; i < idst.Length; i++)
-            {
-                Int32.TryParse(idst[i].ToString(), out id[i]);
-            }
-            return id;
-        }
-        internal static string IdToString(int[] arr)// turns an int[] to  a string
-        {
-            string str = "";
-            for (int i = 0; i < arr.Length; i++)
-            {
-                if (arr[i] != -1)
-                {
-                    str += (char)(arr[i] + (int)'0');//make sure this stands to regulations
-                }
-            }
-            return str;
-        }
+      
     }
 }

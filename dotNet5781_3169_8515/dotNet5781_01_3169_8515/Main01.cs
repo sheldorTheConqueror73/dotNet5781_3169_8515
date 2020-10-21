@@ -18,7 +18,13 @@ namespace dotNet5781_01_3169_8515
     {
         const short FULL_TANK = 1200;
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
-        private static List<buses> busPool = new List<buses>();
+        private static List<buses> busPool = new List<buses>()
+        {
+            new buses(new DateTime(2020,11,9),new DateTime(),"12345678",FULL_TANK),
+            new buses(new DateTime(2015,3,23),new DateTime(),"1145611",850,9000,false,30000),
+            new buses(new DateTime(2020,5,15),new DateTime(),"78911345",FULL_TANK,15000),
+            new buses(new DateTime(2010,10,19),new DateTime(),"9078612"),
+        };
         private static Random r = new Random();
 
 
@@ -89,13 +95,13 @@ namespace dotNet5781_01_3169_8515
                         Console.WriteLine("please try again");
                         break;
                 }             
-            } while (choice != (int)CHOICE.EXIT);
+            } while (choice != CHOICE.EXIT);
         }
 
         private static void Addbus()//add a new bus to the list.
         { 
             DateTime dateTimes1 = buses.readDate();
-            int[] id = buses.ReadId(dateTimes1.Year, 0);
+            string id = buses.ReadId(dateTimes1.Year, 0);
             foreach (buses bs in busPool)
                 if (bs.EqualId(id))
                     throw new ArgumentException("error: id  already exists.");
@@ -107,19 +113,20 @@ namespace dotNet5781_01_3169_8515
         {
             Console.WriteLine("here are all the avilable buses:");
             PrintMileage();
-            int[] id = buses.ReadId(0, 1);
+            string id = buses.ReadId(0, 1);
             int km = r.Next(1, 1201);
             bool busExist = false;
             foreach (buses bs in busPool)
             {
                 if (bs.EqualId(id))
                 {
-                    busExist = true;                   
+                    busExist = true;
                     if (bs.CanMakeDrive(km) == true)
                     {
                         bs.setFuel(bs.getFuel() - km);
                         bs.setDistance(bs.getDistance() + km);
-                        bs.setTotalDistance(bs.getTotalDistance() + km);                       
+                        bs.setTotalDistance(bs.getTotalDistance() + km);
+                        Console.WriteLine("fuel left:" + bs.getFuel().ToString() + " km, the drive was:" + km.ToString() + " km.");
                     }
                     else
                     {
@@ -129,8 +136,9 @@ namespace dotNet5781_01_3169_8515
                 }
             }
             if (busExist == false)
-                throw new ArgumentException("error: no bus matches id number {0} ", buses.IdToString(id));
+                throw new ArgumentException("error: no bus matches id number: " + id);
         }
+        
 
         private static void PrintMileage()
         {
@@ -142,7 +150,7 @@ namespace dotNet5781_01_3169_8515
         private static void reful()
         {
             bool found = false;
-            int[] id = buses.ReadId(0, 1);
+            string id = buses.ReadId(0, 1);
             foreach (buses b1 in busPool)
             {
                 if (b1.EqualId(id))
@@ -154,13 +162,13 @@ namespace dotNet5781_01_3169_8515
             }
             if (found == false)
             {
-                throw new ArgumentException("error: no bus matches id number {0} ", buses.IdToString(id));
+                throw new ArgumentException("error: no bus matches id number :"+ id);
             }
         }
         private static void maintenance()
         {
             bool found = false;
-            int[] id = buses.ReadId(0, 1);
+            string id = buses.ReadId(0, 1);
             foreach (buses b1 in busPool)
             {
                 if (b1.EqualId(id))
@@ -173,7 +181,7 @@ namespace dotNet5781_01_3169_8515
             }
             if (found == false)
             {
-                throw new ArgumentException("error: no bus matches id number {0} ", buses.IdToString(id));
+                throw new ArgumentException("error: no bus matches id number: "+ id);
             }
         }
         
