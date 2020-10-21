@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1D6AAFE9-2C9B-4E1F-96E1-20BA1C0183FA}</ProjectGuid>
+    <ProjectGuid>{F23AFE3D-6673-4F0D-9275-12C581F9ACE8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>dotNet5781_01_3169_8515</RootNamespace>
     <AssemblyName>dotNet5781_01_3169_8515</AssemblyName>
@@ -43,15 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main01.cs" />
     <Compile Include="buses.cs" />
+    <Compile Include="Main01.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TODO.txt" />
+    <Content Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

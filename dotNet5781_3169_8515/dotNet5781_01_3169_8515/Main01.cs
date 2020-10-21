@@ -13,18 +13,18 @@ using System.Xml.Serialization;
 namespace dotNet5781_01_3169_8515
 {
 
-    
-   partial class Main01//pointer to function? 
+
+    partial class Main01//pointer to function? 
     {
-        const short  FULL_TANK = 1200;
+        const short FULL_TANK = 1200;
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
-       private static List<buses> busPool = new List<buses>();
+        private static List<buses> busPool = new List<buses>();
         private static Random r = new Random();
-     
-       
+
+
         static void Main(string[] args)
         {
-           
+
             GetInfoFromUser();
         }
 
@@ -91,74 +91,62 @@ namespace dotNet5781_01_3169_8515
                 }             
             } while (choice != (int)CHOICE.EXIT);
         }
-        
-        private static void Addbus()//add bus to the list.
+
+        private static void Addbus()//add a new bus to the list.
         {
-            Console.WriteLine("enter start date of commitioning:");                 
-            DateTimes dateTimes = new DateTimes(0);
-            string idst=buses.ReadId(dateTimes.GetYear(),0);
-            int[] id = buses.ConvertStingIdToArr(idst);
-            foreach(buses bs in busPool)
-                if(bs.EqualId(id))
+            Console.WriteLine("enter registration date:");
+            DateTime dateTimes1 = buses.readDate();
+            int[] id = buses.ReadId(dateTimes1.Year, 0);
+            foreach (buses bs in busPool)
+                if (bs.EqualId(id))
                     throw new ArgumentException("error: id  already exists.");
-            busPool.Add(new buses(dateTimes, new DateTimes(), id));
+            busPool.Add(new buses(dateTimes1, new DateTime(), id));///-----------------------> make him re enter?
+
         }
 
         private static void Drive()//add a new drive to a bus.
         {
-             string idst=buses.ReadId(0,1);
-            int[] id = buses.ConvertStingIdToArr(idst);
-            int km= r.Next(1, 1199);
+
+            int[] id = buses.ReadId(0, 1);
+            int km = r.Next(1, 1199);
             bool busExist = false;
-            foreach(buses bs in busPool)
+            foreach (buses bs in busPool)
             {
                 if (bs.EqualId(id))
                 {
-                    bs.setFuel(bs.getFuel() + km);                    
-                    bs.setDistance(bs.getDistance()+km);
                     busExist = true;
-                    if (bs.CanMakeDrive() == false)
+                    if (bs.CanMakeDrive(km) == true)
                     {
                         bs.setFuel(bs.getFuel() - km);
-                        bs.setDistance(bs.getDistance()-km);
-                        throw new ArgumentException("error: bus cannot make selected drive.");
+                        bs.setDistance(bs.getDistance() + km);
+                        bs.setTotalDistance(bs.getTotalDistance() + km);
+
                     }
-                    
+                    else
+                    {
+                        throw new ArgumentException("error: bus cannot make selected drive. fuel left:" + bs.getFuel().ToString() + " km, the drive was:" + km.ToString() + " km, distanse untill next maintenance:" + ((20000 - bs.getDistance()).ToString()) + " km");//check if conversion method stands to regulations
+                    }
+
                 }
             }
             if (busExist == false)
-                throw new ArgumentException("error: no bus matches id number ");//add bus id in exception
-
-
+                throw new ArgumentException("error: no bus matches id number {0} ", buses.IdToString(id));
         }
-        private static string IdToString(int[] arr)// turns an int[] to  a string
-        {
-            string str = "";
-            for(int i=0;i<arr.Length;i++)
-            {
-                if(arr[i]!=-1)
-                {
-                    str += (char)(arr[i] + (int)'0');//make sure this stands to regulations
-                }
-            }
-            return str;
-        }
+
         private static void PrintMileage()
         {
-            foreach(buses bs in busPool)
+            foreach (buses bs in busPool)
             {
                 bs.print();
             }
         }
         private static void reful()
         {
-            bool found=false;
-            string idst = buses.ReadId(0, 1);// we should make this part a separate function
-           
-            int[] id = buses.ConvertStingIdToArr(idst);
+            bool found = false;
+            int[] id = buses.ReadId(0, 1);
             foreach (buses b1 in busPool)
             {
-                if(b1.EqualId(id))
+                if (b1.EqualId(id))
                 {
                     found = true;
                     b1.setFuel(FULL_TANK);
@@ -167,32 +155,31 @@ namespace dotNet5781_01_3169_8515
             }
             if (found == false)
             {
-                throw new ArgumentException("error: no bus matches id number {0} ",IdToString(id));
+                throw new ArgumentException("error: no bus matches id number {0} ", buses.IdToString(id));
             }
         }
         private static void maintenance()
         {
             bool found = false;
-            string idst = buses.ReadId(0, 1);
-            int[] id = buses.ConvertStingIdToArr(idst);
+            int[] id = buses.ReadId(0, 1);
             foreach (buses b1 in busPool)
             {
                 if (b1.EqualId(id))
                 {
                     found = true;
                     b1.setDistance(0);
-                    DateTimes d1 = new DateTimes(0);
-                    b1.setLastMaintenance(d1);
+                    b1.setLastMaintenance(DateTime.Now);
                     return;//exit after changes
                 }
             }
             if (found == false)
             {
-                throw new ArgumentException("error: no bus matches id number {0} ", IdToString(id));
+                throw new ArgumentException("error: no bus matches id number {0} ", buses.IdToString(id));
             }
 
 
         }
+        
     }
 
 }
