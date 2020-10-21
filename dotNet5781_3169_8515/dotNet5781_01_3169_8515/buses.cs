@@ -8,61 +8,6 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_3169_8515
 {
-    public struct DateTimes
-    {
-        public int day;
-        public int month;
-        public int year;
-
-        public DateTimes(int sum = 0)
-        {
-
-            Console.WriteLine("enter day: ");
-            string input = Console.ReadLine();
-            Int32.TryParse(input, out day);
-            if (day < 1 || day > 31)
-                throw new ArgumentException("invalid input: day cannot be greater than 31 or lesser than 1");
-
-
-            Console.WriteLine("enter month: ");
-            input = Console.ReadLine();
-            Int32.TryParse(input, out month);
-            if (month < 1 || month > 12)
-                throw new ArgumentException("invalid input: month cannot be greater than 12 or lesser than 1");
-
-            Console.WriteLine("enter year: ");
-            input = Console.ReadLine();
-            Int32.TryParse(input, out year);
-            if (year < 2000 || year > 2020)
-                throw new ArgumentException("invalid input: year cannot be greater than 2020 or lesser than 2000");
-
-
-
-        }
-        public int GetDay() { return this.day; }
-        public int GetMonth() { return this.month; }
-        public int GetYear() { return this.year; }
-        public void SetDay(int _day) { this.day = _day; }
-        public void SetMonth(int _month) { this.month = _month; }
-        public void SetYear(int _year) { this.year = _year; }
-
-        public void set(DateTime d1)
-        {
-            this.day = d1.Day;
-            this.month = d1.Month;
-            this.year = d1.Year;
-        }
-        public static DateTimes current()
-        {
-            DateTime d1 = DateTime.Now;
-            DateTimes d2 = new DateTimes();
-            d2.set(d1);
-            return d2;
-        }
-
-
-    }
-
     partial class buses
     {
         const int LIMIT = 1200;
@@ -71,25 +16,21 @@ namespace dotNet5781_01_3169_8515
         int totalDistance;// total distance driven
         int[] id; //bus id number
         bool dangerous; //is this bus dangerous
-        DateTimes registrationDate, lastMaintenance;
+        DateTime registrationDate, lastMaintenance;
 
 
-        public buses()
+        internal buses()
         {
             id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 }; // bus id number
             fuel = 0; //how much fuel is left
             distance = 0; // distance since last maintenance
             totalDistance = 0; // total distance driven
             dangerous = false;  //is this bus dangerous
-            registrationDate.day = 0;
-            registrationDate.month = 0;
-            registrationDate.year = 0;
-            lastMaintenance.day = 0;
-            lastMaintenance.month = 0;
-            lastMaintenance.year = 0;
+            registrationDate = new DateTime(0,0,0);
+            lastMaintenance = new DateTime(0, 0, 0);
 
         }
-        public buses(DateTimes date, DateTimes lm, int[] id = null, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
+        internal buses(DateTime date, DateTime lm, int[] id = null, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
         {
             if (id != null)
             {
@@ -109,7 +50,7 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
         }
-        public void setAll(DateTimes date, DateTimes lm, int[] id = null, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
+        internal void setAll(DateTime date, DateTime lm, int[] id = null, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
         {
             if (id != null)
                 for (int i = 0; i < 8; i++)
@@ -125,8 +66,8 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
         }
-        public int[] getId() { return this.id; }
-        public void setId(int[] id)
+        internal int[] getId() { return this.id; }
+        internal void setId(int[] id)
         {
             if (id != null)
                 for (int i = 0; i < 8; i++)
@@ -136,53 +77,57 @@ namespace dotNet5781_01_3169_8515
                 id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
             }
         }
-        public int getFuel() { return this.fuel; }
-        public void setFuel(int fuel) { this.fuel = fuel; }
-        public int getDistance() { return this.distance; }
-        public void setDistance(int distance) { this.distance = distance; }
-        public int getTotalDistance() { return this.totalDistance; }
-        public void setTotalDistance(int totalDistance) { this.totalDistance = totalDistance; }
-        public bool getDangerous() { return this.dangerous; }
-        public void setDangerous(bool dangerous) { this.dangerous = dangerous; }
-        public DateTimes getStartDate() { return this.registrationDate; }
-        public void setDistance(DateTimes registrationDate) { this.registrationDate = registrationDate; }
-        public DateTimes getLastMaintenance() { return this.lastMaintenance; }
-        public void setLastMaintenance(DateTimes lm) { this.lastMaintenance = lm; }
-        public void printId()
+        internal int getFuel() { return this.fuel; }
+        internal void setFuel(int fuel) { this.fuel = fuel; }
+        internal int getDistance() { return this.distance; }
+        internal void setDistance(int distance) { this.distance = distance; }
+        internal int getTotalDistance() { return this.totalDistance; }
+        internal void setTotalDistance(int totalDistance) { this.totalDistance = totalDistance; }
+        internal bool getDangerous() { return this.dangerous; }
+        internal void setDangerous(bool dangerous) { this.dangerous = dangerous; }
+        internal DateTime getStartDate() { return this.registrationDate; }
+        internal void setDistance(DateTime registrationDate) { this.registrationDate = registrationDate; }
+        internal DateTime getLastMaintenance() { return this.lastMaintenance; }
+        internal void setLastMaintenance(DateTime lm) { this.lastMaintenance = lm; }
+        internal void printId()
         {
-            if (this.registrationDate.year < 2018)
+            if (this.registrationDate.Year < 2018)
             {
                 Console.WriteLine("ID:\t{0}{1}-{2}{3}{4}-{5}{6}", this.id[0], this.id[1], this.id[2], this.id[3], this.id[4], this.id[5], this.id[6]);
                 return;
             }
             Console.WriteLine("ID:\t{0}{1}{2}-{3}{4}-{5}{6}{7}", this.id[0], this.id[1], this.id[2], this.id[3], this.id[4], this.id[5], this.id[6], this.id[7]);
         }
-        public void print()
+        internal void print()
         {
             this.printId();
             Console.WriteLine("mileage:\t{0}", distance);
         }
-        public void printDistance()
+        internal void printDistance()
         {
             Console.WriteLine("mileage since last maintenance:\t{0}", this.distance);
         }
-        /*
-       public ref buses find(int[] id,ref List<buses> ls1)///need to ask mr gerbergergerger//work in progress
-       {
-           foreach (buses bs in ls1)
-           {
-               if(bs.EqualId(id))
-               {
-                   bs.
-               }
-           }
-               throw new ArgumentException("return code 404: no match");
-       }
-        */
+        internal static DateTime readDate()
+        {
+            bool flag1,flag2,flag3;
+            int day, year, month;
+            Console.WriteLine("enter day:");
+            flag1=Int32.TryParse(Console.ReadLine(), out day);
+            Console.WriteLine("enter month:");
+            flag2 = Int32.TryParse(Console.ReadLine(), out month);
+            Console.WriteLine("enter year:");
+            flag3 = Int32.TryParse(Console.ReadLine(), out year);
+            if (!(flag1 && flag2 && flag3))
+                throw new ArgumentException("error: failed to convert to int"); 
+            ///=========================> add input vaildtion here
+            DateTime d1 = new DateTime(year, month, day);
+            return d1;
+        }
+
     }
     partial class buses
     {
-        public bool CanMakeDrive(int km)//return true if sleceted bus can drive that far.
+        internal bool CanMakeDrive(int km)//return true if sleceted bus can drive that far.
         {
 
             // if (this.dangerous == true)
@@ -192,26 +137,26 @@ namespace dotNet5781_01_3169_8515
             return false;
         }
 
-        public void UpdateMaintenance()//update last maintenance date to current day.
+        internal void UpdateMaintenance()//update last maintenance date to current day.
         {
             distance = 0;
             dangerous = false;
-            this.lastMaintenance.set(DateTime.Now);
+            this.lastMaintenance=DateTime.Now;
 
         }
-        public bool passedYearNowAndThen()//return true if a year has passed since the last maintenance.
+        internal bool passedYearNowAndThen()//return true if a year has passed since the last maintenance.
         {
             DateTime currentDate = DateTime.Now;
-            if ((currentDate.Year - this.lastMaintenance.GetYear()) < 1)
+            if ((currentDate.Year - this.lastMaintenance.Year) < 1)
                 return false;
-            if ((currentDate.Month - this.lastMaintenance.GetMonth()) < 0)
+            if ((currentDate.Month - this.lastMaintenance.Month) < 0)
                 return false;
-            if ((currentDate.Day - this.lastMaintenance.GetDay()) < 0)
+            if ((currentDate.Day - this.lastMaintenance.Day) < 0)
                 return false;
             return true;
         }
 
-        public bool EqualId(int[] _id)//checks if two buses types have the same id
+        internal bool EqualId(int[] _id)//checks if two buses types have the same id
         {
             for (int i = 0; i < this.id.Length; i++)
             {
@@ -222,7 +167,7 @@ namespace dotNet5781_01_3169_8515
         }
 
         //moved from main class.
-        public static int[] ReadId(int year, int mode)//read id from the user and return an int[]
+        internal static int[] ReadId(int year, int mode)//read id from the user and return an int[]
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
@@ -246,7 +191,7 @@ namespace dotNet5781_01_3169_8515
             return arr;
         }
 
-        public static int[] ConvertStingIdToArr(string idst)//converts the input of readid(string) to int[]
+        internal static int[] ConvertStingIdToArr(string idst)//converts the input of readid(string) to int[]
         {
             int[] id = new int[8] { -1, -1, -1, -1, -1, -1, -1, -1 };
             for (int i = 0; i < idst.Length; i++)
@@ -256,7 +201,7 @@ namespace dotNet5781_01_3169_8515
             return id;
         }
 
-        public static string IdToString(int[] arr)// turns an int[] to  a string
+        internal static string IdToString(int[] arr)// turns an int[] to  a string
         {
             string str = "";
             for (int i = 0; i < arr.Length; i++)

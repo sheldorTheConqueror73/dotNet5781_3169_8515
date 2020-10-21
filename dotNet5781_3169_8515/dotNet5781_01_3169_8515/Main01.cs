@@ -96,12 +96,13 @@ namespace dotNet5781_01_3169_8515
         private static void Addbus()//add a new bus to the list.
         {
             Console.WriteLine("enter registration date:");
-            DateTimes dateTimes1 = new DateTimes(0);
-            int[] id = buses.ReadId(dateTimes1.GetYear(), 0);
+            Console.ReadLine();
+            DateTime dateTimes1 = buses.readDate();
+            int[] id = buses.ReadId(dateTimes1.Year, 0);
             foreach (buses bs in busPool)
                 if (bs.EqualId(id))
                     throw new ArgumentException("error: id  already exists.");
-            busPool.Add(new buses(dateTimes1, new DateTimes(), id));
+            busPool.Add(new buses(dateTimes1, new DateTime(), id));///-----------------------> make him re enter
 
         }
 
@@ -169,7 +170,7 @@ namespace dotNet5781_01_3169_8515
                 {
                     found = true;
                     b1.setDistance(0);
-                    DateTimes d2 = DateTimes.current();
+                    DateTime d2 = DateTime.Now;
                     b1.setLastMaintenance(d2);
                     return;//exit after changes
                 }
@@ -181,6 +182,7 @@ namespace dotNet5781_01_3169_8515
 
 
         }
+        
     }
 
 }
