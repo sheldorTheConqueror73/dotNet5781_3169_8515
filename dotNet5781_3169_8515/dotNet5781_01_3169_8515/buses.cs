@@ -118,8 +118,13 @@ namespace dotNet5781_01_3169_8515
             Console.WriteLine("enter year:");
             flag3 = Int32.TryParse(Console.ReadLine(), out year);
             if (!(flag1 && flag2 && flag3))
-                throw new ArgumentException("error: failed to convert to int"); 
-            ///=========================> add input vaildtion here
+                throw new ArgumentException("error: failed to convert string to int");
+            if (day < 1 || day > 31)
+                throw new ArgumentException("invalid input: day cannot be greater than 31 or lesser than 1");
+            if (month < 1 || month > 12)
+                throw new ArgumentException("invalid input: month cannot be greater than 12 or lesser than 1");
+            if (year < 2000 || year > 2020)
+                throw new ArgumentException("invalid input: year cannot be greater than 2020 or lesser than 2000");
             DateTime d1 = new DateTime(year, month, day);
             return d1;
         }
@@ -181,12 +186,6 @@ namespace dotNet5781_01_3169_8515
                 if ((idst.Length == 8 && year < 2018) || (idst.Length == 7 && year >= 2018))
                     throw new ArgumentException("invalid input: id format doesn't match registration date");
             }
-            /*else if (mode == 1)
-            {
-                return idst;
-            }
-            */
-            // return idst;
             int[] arr = buses.ConvertStingIdToArr(idst);
             return arr;
         }
