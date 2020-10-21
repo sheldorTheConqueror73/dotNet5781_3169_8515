@@ -114,13 +114,12 @@ namespace dotNet5781_01_3169_8515
             {
                 if (bs.EqualId(id))
                 {
-                    busExist = true;
-                    if (bs.getDangerous() == false)
+                    busExist = true;                   
+                    if (bs.CanMakeDrive(km) == true)
                     {
                         bs.setFuel(bs.getFuel() - km);
                         bs.setDistance(bs.getDistance() + km);
-                        bs.setTotalDistance(bs.getTotalDistance() + km);
-                        bs.UpdateDangerous(km);
+                        bs.setTotalDistance(bs.getTotalDistance() + km);                       
                     }
                     else
                     {
