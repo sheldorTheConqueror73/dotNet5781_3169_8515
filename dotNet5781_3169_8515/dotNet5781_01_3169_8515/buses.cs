@@ -170,10 +170,10 @@ namespace dotNet5781_01_3169_8515
                 return false;
             }
         }
-        //(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
         internal static bool load(List<buses> ls1)//overwrites busepool list and updates it from text file
         {
             string path = Environment.CurrentDirectory + "\\data.txt";
+
             try
             { 
                 string[] arr =File.ReadAllLines(path);
@@ -182,20 +182,16 @@ namespace dotNet5781_01_3169_8515
                 foreach(var line in input)
                 {
                     string[] entries = line.Split(',');
-                    int day,month,year,fuel,distance,total;
+                    int fuel,distance,total;
                     bool flag=true, danger;
-                    Int32.TryParse(entries[0], out year);
-                    Int32.TryParse(entries[1], out month);
-                    Int32.TryParse(entries[2], out day);
-                    DateTime d1 = new DateTime(year, month, day);
-                    Int32.TryParse(entries[3], out year);
-                    Int32.TryParse(entries[4], out month);
-                    Int32.TryParse(entries[5], out day);
+                    DateTime d2,d1;
+                    DateTime.TryParse($"{entries[0]},{entries[1]},{entries[2]}",out d1);
+                    DateTime.TryParse($"{entries[3]},{entries[4]},{entries[5]}", out d2);
                     Int32.TryParse(entries[7], out fuel);
                     Int32.TryParse(entries[8], out distance);
                     bool.TryParse(entries[9], out danger);
                     Int32.TryParse(entries[10], out total);
-                    ls1.Add(new buses(d1, new DateTime(year, month, day), entries[6], fuel,distance, danger, total));
+                    ls1.Add(new buses(d1, d2, entries[6], fuel,distance, danger, total));
                 }
                 return true;
             }

@@ -17,7 +17,8 @@ namespace dotNet5781_01_3169_8515
     partial class Main01//pointer to function? 
     {
         const short FULL_TANK = 1200;
-        enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
+        static bool autoSave = false;
+        enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE,SETTINGS };
         private static List<buses> busPool = new List<buses>()
         {
             new buses(new DateTime(2020,11,9),new DateTime(),"12345678",FULL_TANK),
@@ -41,6 +42,7 @@ namespace dotNet5781_01_3169_8515
                    3-to do a refuel.     
                    4-to do maintanance.
                    5-print the total mileage  
+                   6-settings menu
                    0-exit.");
         }
 
@@ -88,6 +90,9 @@ namespace dotNet5781_01_3169_8515
                     case CHOICE.MILEAGE:
                         PrintMileage();
                         break;
+                    case CHOICE.SETTINGS:
+                        setting();
+                        break;
                     case CHOICE.EXIT:
                         break;
                     default:
@@ -98,14 +103,17 @@ namespace dotNet5781_01_3169_8515
         }
 
         private static void Addbus()//add a new bus to the list.
-        { 
+        {
+            if (autoSave)
+                buses.load(busPool);
             DateTime dateTimes1 = buses.readDate();
             string id = buses.ReadId(dateTimes1.Year, 0);
             foreach (buses bs in busPool)
                 if (bs.EqualId(id))
                     throw new ArgumentException("error: id  already exists.");
             busPool.Add(new buses(dateTimes1, new DateTime(), id));///-----------------------> make him re enter?
-
+            if (autoSave)
+                buses.save(busPool);
         }
 
         private static void Drive()//add a new drive to a bus.
@@ -115,6 +123,8 @@ namespace dotNet5781_01_3169_8515
             string id = buses.ReadId(0, 1);
             int km = r.Next(1, 1201);
             bool busExist = false;
+            if (autoSave)
+                buses.load(busPool);
             foreach (buses bs in busPool)
             {
                 if (bs.EqualId(id))
@@ -126,6 +136,8 @@ namespace dotNet5781_01_3169_8515
                         bs.setDistance(bs.getDistance() + km);
                         bs.setTotalDistance(bs.getTotalDistance() + km);
                         Console.WriteLine("fuel left:" + bs.getFuel().ToString() + " km, the drive was:" + km.ToString() + " km.");
+                        if (autoSave)
+                            buses.save(busPool);
                     }
                     else
                     {
@@ -150,12 +162,16 @@ namespace dotNet5781_01_3169_8515
         {
             bool found = false;
             string id = buses.ReadId(0, 1);
+            if (autoSave)
+                buses.load(busPool);
             foreach (buses b1 in busPool)
             {
                 if (b1.EqualId(id))
                 {
                     found = true;
                     b1.setFuel(FULL_TANK);
+                    if (autoSave)
+                        buses.save(busPool);
                     return;//exit after changes
                 }
             }
@@ -168,6 +184,8 @@ namespace dotNet5781_01_3169_8515
         {
             bool found = false;
             string id = buses.ReadId(0, 1);
+            if (autoSave)
+                buses.load(busPool);
             foreach (buses b1 in busPool)
             {
                 if (b1.EqualId(id))
@@ -175,12 +193,47 @@ namespace dotNet5781_01_3169_8515
                     found = true;
                     b1.setDistance(0);
                     b1.setLastMaintenance(DateTime.Now);
+                    if (autoSave)
+                        buses.save(busPool);
                     return;//exit after changes
                 }
             }
             if (found == false)
             {
                 throw new ArgumentException("error: no bus matches id number: "+ id);
+            }
+        }
+        private static void setting()
+        {
+            System.ConsoleKeyInfo key;
+            Console.Write("settings:\nauto save is");
+            Console.ForegroundColor = ConsoleColor.Red;
+            if (autoSave)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("  ENABLED  ");
+                Console.ResetColor();
+                Console.WriteLine("your data will be saved automatically. to turn off please press N button or press any other key to go back");
+                key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.N)
+                {
+                    autoSave = false;
+                    setting();
+                }
+               
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("  DISABLED  ");
+                Console.ResetColor();
+                Console.WriteLine("your data will NOT be saved automatically. to turn on please press Y button or press any other key to go back");
+                key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.Y)
+                {
+                    autoSave = true;
+                    setting();
+                }
             }
         }
         
