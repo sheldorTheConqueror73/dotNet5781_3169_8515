@@ -18,7 +18,7 @@ namespace dotNet5781_01_3169_8515
     {
         const short FULL_TANK = 1200;
         static bool autoSave = false;
-        enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE,SETTINGS };
+        enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE,SETTINGS,SAVE,LOAD };
         private static List<buses> busPool = new List<buses>()
         {
             new buses(new DateTime(2020,11,9),new DateTime(),"12345678",FULL_TANK),
@@ -38,12 +38,14 @@ namespace dotNet5781_01_3169_8515
         {
             Console.WriteLine(@"Enter your choice: 
                    1-add a bus.
-                   2-chose bus for a drive.
-                   3-to do a refuel.     
-                   4-to do maintanance.
-                   5-print the total mileage  
-                   6-settings menu
-                   0-exit.");
+                   2-take a bus for a drive.
+                   3-refuel.     
+                   4-maintanance.
+                   5-print total mileage  
+                   6-settings menu");
+            if(!autoSave)
+                Console.WriteLine("                   7-save date to file\n                   8-load data from file");
+            Console.WriteLine("0-exit.");
         }
 
         private static void GetInfoFromUser()
@@ -92,6 +94,17 @@ namespace dotNet5781_01_3169_8515
                         break;
                     case CHOICE.SETTINGS:
                         setting();
+                        break;
+                    case CHOICE.SAVE:
+                        { if (!autoSave)
+                                buses.save(busPool);        
+                        }
+                        break;
+                    case CHOICE.LOAD:
+                        {
+                            if (!autoSave)
+                                buses.load(busPool);
+                        };
                         break;
                     case CHOICE.EXIT:
                         break;
@@ -206,14 +219,14 @@ namespace dotNet5781_01_3169_8515
         private static void setting()
         {
             System.ConsoleKeyInfo key;
-            Console.Write("settings:\nauto save is");
+            Console.Write("settings:\nAutosave ");
             Console.ForegroundColor = ConsoleColor.Red;
             if (autoSave)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("  ENABLED  ");
+                Console.Write(" ENABLED\n");
                 Console.ResetColor();
-                Console.WriteLine("your data will be saved automatically. to turn off please press N button or press any other key to go back");
+                Console.WriteLine("your data will be saved automatically. to turn off please press N button or press any other key to exit");
                 key = Console.ReadKey(true);
                 if (key.Key == ConsoleKey.N)
                 {
@@ -225,9 +238,9 @@ namespace dotNet5781_01_3169_8515
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("  DISABLED  ");
+                Console.Write(" DISABLED\n");
                 Console.ResetColor();
-                Console.WriteLine("your data will NOT be saved automatically. to turn on please press Y button or press any other key to go back");
+                Console.WriteLine("your data will NOT be saved automatically. to turn on please press Y button or press any other key to exit");
                 key = Console.ReadKey(true);
                 if (key.Key == ConsoleKey.Y)
                 {
