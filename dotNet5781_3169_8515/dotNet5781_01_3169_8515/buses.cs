@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,6 @@ namespace dotNet5781_01_3169_8515
 {
     partial class buses
     {
-        const int LIMIT = 1200;
         int fuel;//how much fuel is left
         int distance;// distance since last maintenance
         int totalDistance;// total distance driven
@@ -151,6 +151,59 @@ namespace dotNet5781_01_3169_8515
             }         
             return idst;
         }
-      
+        internal static bool save(List<buses> ls1)//write buspool list to file 
+        {
+            string path = Environment.CurrentDirectory + "\\data.txt";
+            List<string> output = new List<string>();
+            foreach(buses bs1 in ls1 )
+            {
+                output.Add($"{bs1.registrationDate.Year.ToString()},{bs1.registrationDate.Month.ToString()},{bs1.registrationDate.Day.ToString()},{bs1.lastMaintenance.Year.ToString()},{bs1.lastMaintenance.Month.ToString()},{bs1.lastMaintenance.Day.ToString()},{bs1.id},{(bs1.fuel).ToString()},{(bs1.distance).ToString()},{(bs1.dangerous).ToString()},{(bs1.totalDistance).ToString()}");
+            }
+            try
+            {
+                File.WriteAllLines(path, output.ToArray());
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        //(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
+        internal static bool load(List<buses> ls1)//overwrites busepool list and updates it from text file
+        {
+            string path = Environment.CurrentDirectory + "\\data.txt";
+            try
+            { 
+                string[] arr =File.ReadAllLines(path);
+                List<string> input = arr.ToList();
+                ls1 = new List<buses>();
+                foreach(var line in input)
+                {
+                    string[] entries = line.Split(',');
+                    int day,month,year,fuel,distance,total;
+                    bool flag=true, danger;
+                    Int32.TryParse(entries[0], out year);
+                    Int32.TryParse(entries[1], out month);
+                    Int32.TryParse(entries[2], out day);
+                    DateTime d1 = new DateTime(year, month, day);
+                    Int32.TryParse(entries[3], out year);
+                    Int32.TryParse(entries[4], out month);
+                    Int32.TryParse(entries[5], out day);
+                    Int32.TryParse(entries[7], out fuel);
+                    Int32.TryParse(entries[8], out distance);
+                    bool.TryParse(entries[9], out danger);
+                    Int32.TryParse(entries[10], out total);
+                    ls1.Add(new buses(d1, new DateTime(year, month, day), entries[6], fuel,distance, danger, total));
+                }
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
     }
 }
