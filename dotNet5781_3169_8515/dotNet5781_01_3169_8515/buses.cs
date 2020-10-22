@@ -170,19 +170,36 @@ namespace dotNet5781_01_3169_8515
                 return false;
             }
         }
-        internal static bool load(List<buses> ls1)//overwrites busepool list and updates it from text file
+        internal static bool load(List<buses> ls1,int TTL=0)//overwrites busepool list and updates it from text file
         {
             string path = Environment.CurrentDirectory + "\\data.txt";
-
+            string[] arr;
             try
             {
-                string[] arr = File.ReadAllLines(path);
+                 arr = File.ReadAllLines(path);
             }
             catch(Exception e)
             {
-                File.Create(path);
+                if (ls1.Count == 0)
+                {
+                    File.Create(path);
+                    return true;
+                }
+                else
+                {
+                    if(TTL==3)
+                    {
+                        Console.WriteLine("fatal error.  terminating program");
+                        System.Environment.Exit(1);
+
+                    }
+                    save(ls1);
+                    load(ls1);
+                    return true;
+                }
+
             }
-            try { 
+           try { 
                 List<string> input = arr.ToList();
                 ls1 = new List<buses>();
                 foreach(var line in input)
