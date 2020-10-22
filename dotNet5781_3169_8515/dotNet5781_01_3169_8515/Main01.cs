@@ -45,7 +45,7 @@ namespace dotNet5781_01_3169_8515
                    6-settings menu");
             if(!autoSave)
                 Console.WriteLine("                   7-save date to file\n                   8-load data from file");
-            Console.WriteLine("0-exit.");
+            Console.WriteLine("                   0-exit.");
         }
 
         private static void GetInfoFromUser()

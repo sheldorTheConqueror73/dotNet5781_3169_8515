@@ -175,8 +175,14 @@ namespace dotNet5781_01_3169_8515
             string path = Environment.CurrentDirectory + "\\data.txt";
 
             try
-            { 
-                string[] arr =File.ReadAllLines(path);
+            {
+                string[] arr = File.ReadAllLines(path);
+            }
+            catch(Exception e)
+            {
+                File.Create(path);
+            }
+            try { 
                 List<string> input = arr.ToList();
                 ls1 = new List<buses>();
                 foreach(var line in input)
