@@ -162,6 +162,7 @@ namespace dotNet5781_01_3169_8515
             try
             {
                 File.WriteAllLines(path, output.ToArray());
+                Console.WriteLine($"your data was saved successfully, {output.Count} entries were saved.");
                 return true;
             }
             catch(Exception e)
@@ -170,35 +171,10 @@ namespace dotNet5781_01_3169_8515
                 return false;
             }
         }
-        internal static bool load(ref List<buses> ls1,int TTL=0)//overwrites busepool list and updates it from text file
+        internal static bool load(ref List<buses> ls1)//overwrites busepool list and updates it from text file
         {
             string path = Environment.CurrentDirectory + "\\data.txt";
-            string[] arr;
-            try
-            {
-                 arr = File.ReadAllLines(path);
-            }
-            catch(Exception e)
-            {
-                if (ls1.Count == 0)
-                {
-                    File.Create(path);
-                    return true;
-                }
-                else
-                {
-                    if(TTL==3)
-                    {
-                        Console.WriteLine("fatal error.  terminating program");
-                        System.Environment.Exit(1);
-
-                    }
-                    save(ls1);
-                    load(ref ls1);
-                    return true;
-                }
-
-            }
+            string[] arr = File.ReadAllLines(path);
            try { 
                 List<string> input = arr.ToList();
                 ls1 = new List<buses>();
@@ -216,6 +192,7 @@ namespace dotNet5781_01_3169_8515
                     Int32.TryParse(entries[10], out total);
                     ls1.Add(new buses(d1, d2, entries[6], fuel,distance, danger, total));
                 }
+                Console.WriteLine($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
                 return true;
             }
             catch(Exception e)

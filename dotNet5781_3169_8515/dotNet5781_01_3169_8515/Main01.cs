@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics.SymbolStore;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
@@ -21,17 +22,20 @@ namespace dotNet5781_01_3169_8515
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE,SETTINGS,SAVE,LOAD };
         private static List<buses> busPool = new List<buses>()
         {
-           // new buses(new DateTime(2020,11,9),new DateTime(),"12345678",FULL_TANK),
-           // new buses(new DateTime(2015,3,23),new DateTime(),"1145611",850,9000,false,30000),
-           // new buses(new DateTime(2020,5,15),new DateTime(),"78911345",FULL_TANK,15000),
-           // new buses(new DateTime(2010,10,19),new DateTime(),"9078612"),
+            
+            new buses(new DateTime(2020,11,9),new DateTime(),"12345678",FULL_TANK),
+            new buses(new DateTime(2015,3,23),new DateTime(),"1145611",850,9000,false,30000),
+            new buses(new DateTime(2020,5,15),new DateTime(),"78911345",FULL_TANK,15000),
+            new buses(new DateTime(2010,10,19),new DateTime(),"9078612"),
         };
         private static Random r = new Random();
 
 
         static void Main(string[] args)
         {
-            GetInfoFromUser();
+            if (!File.Exists(Environment.CurrentDirectory + "\\data.txt"))
+                File.Create(Environment.CurrentDirectory + "\\data.txt");
+            GetInfoFromUser();//add file exsist check here
         }
 
         private static void PrintMenu()//print the suggested menu
@@ -107,6 +111,10 @@ namespace dotNet5781_01_3169_8515
                         };
                         break;
                     case CHOICE.EXIT:
+                        {
+                            Console.WriteLine();
+                            System.Environment.Exit(0);
+                        }
                         break;
                     default:
                         Console.WriteLine("please try again");
