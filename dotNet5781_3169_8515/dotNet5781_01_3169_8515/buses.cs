@@ -170,7 +170,7 @@ namespace dotNet5781_01_3169_8515
                 return false;
             }
         }
-        internal static bool load(List<buses> ls1,int TTL=0)//overwrites busepool list and updates it from text file
+        internal static bool load(ref List<buses> ls1,int TTL=0)//overwrites busepool list and updates it from text file
         {
             string path = Environment.CurrentDirectory + "\\data.txt";
             string[] arr;
@@ -194,7 +194,7 @@ namespace dotNet5781_01_3169_8515
 
                     }
                     save(ls1);
-                    load(ls1);
+                    load(ref ls1);
                     return true;
                 }
 

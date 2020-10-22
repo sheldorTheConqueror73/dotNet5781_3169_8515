@@ -21,10 +21,10 @@ namespace dotNet5781_01_3169_8515
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE,SETTINGS,SAVE,LOAD };
         private static List<buses> busPool = new List<buses>()
         {
-            new buses(new DateTime(2020,11,9),new DateTime(),"12345678",FULL_TANK),
-            new buses(new DateTime(2015,3,23),new DateTime(),"1145611",850,9000,false,30000),
-            new buses(new DateTime(2020,5,15),new DateTime(),"78911345",FULL_TANK,15000),
-            new buses(new DateTime(2010,10,19),new DateTime(),"9078612"),
+           // new buses(new DateTime(2020,11,9),new DateTime(),"12345678",FULL_TANK),
+           // new buses(new DateTime(2015,3,23),new DateTime(),"1145611",850,9000,false,30000),
+           // new buses(new DateTime(2020,5,15),new DateTime(),"78911345",FULL_TANK,15000),
+           // new buses(new DateTime(2010,10,19),new DateTime(),"9078612"),
         };
         private static Random r = new Random();
 
@@ -103,7 +103,7 @@ namespace dotNet5781_01_3169_8515
                     case CHOICE.LOAD:
                         {
                             if (!autoSave)
-                                buses.load(busPool);
+                                buses.load(ref busPool);
                         };
                         break;
                     case CHOICE.EXIT:
@@ -118,7 +118,7 @@ namespace dotNet5781_01_3169_8515
         private static void Addbus()//add a new bus to the list.
         {
             if (autoSave)
-                buses.load(busPool);
+                buses.load(ref busPool);
             DateTime dateTimes1 = buses.readDate();
             string id = buses.ReadId(dateTimes1.Year, 0);
             foreach (buses bs in busPool)
@@ -137,7 +137,7 @@ namespace dotNet5781_01_3169_8515
             int km = r.Next(1, 1201);
             bool busExist = false;
             if (autoSave)
-                buses.load(busPool);
+                buses.load(ref busPool);
             foreach (buses bs in busPool)
             {
                 if (bs.EqualId(id))
@@ -176,7 +176,7 @@ namespace dotNet5781_01_3169_8515
             bool found = false;
             string id = buses.ReadId(0, 1);
             if (autoSave)
-                buses.load(busPool);
+                buses.load(ref busPool);
             foreach (buses b1 in busPool)
             {
                 if (b1.EqualId(id))
@@ -198,7 +198,7 @@ namespace dotNet5781_01_3169_8515
             bool found = false;
             string id = buses.ReadId(0, 1);
             if (autoSave)
-                buses.load(busPool);
+                buses.load(ref busPool);
             foreach (buses b1 in busPool)
             {
                 if (b1.EqualId(id))
