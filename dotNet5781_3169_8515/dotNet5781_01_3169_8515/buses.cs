@@ -18,7 +18,6 @@ namespace dotNet5781_01_3169_8515
         bool dangerous; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
 
-
         internal buses()
         {
             id = ""; // bus id number
@@ -26,11 +25,10 @@ namespace dotNet5781_01_3169_8515
             distance = 0; // distance since last maintenance
             totalDistance = 0; // total distance driven
             dangerous = false;  //is this bus dangerous
-            registrationDate = new DateTime(0,0,0);
-            lastMaintenance = new DateTime(0, 0, 0);
-
+            registrationDate = new DateTime(0, 0, 0);
+            lastMaintenance = new DateTime(0, 0, 0
         }
-        internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
+        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
         {
             this.id = id;
             this.fuel = fuel;
@@ -51,7 +49,7 @@ namespace dotNet5781_01_3169_8515
             this.totalDistance = totalDistance;
         }
         internal string getId() { return this.id; }
-        internal void setId(string id) {  this.id = id; }
+        internal void setId(string id) { this.id = id; }
         internal int getFuel() { return this.fuel; }
         internal void setFuel(int fuel) { this.fuel = fuel; }
         internal int getDistance() { return this.distance; }
@@ -86,7 +84,7 @@ namespace dotNet5781_01_3169_8515
         {
             Console.WriteLine("enter registration date:");
             DateTime d1;
-            bool flag = DateTime.TryParse(Console.ReadLine(),out d1);
+            bool flag = DateTime.TryParse(Console.ReadLine(), out d1);
             if (!flag)
                 throw new ArgumentException("invalid input: no such date");
             return d1;
@@ -106,15 +104,15 @@ namespace dotNet5781_01_3169_8515
         internal void UpdateDangerous()
         {
             if ((distance >= 20000) || (this.passedYearNowAndThen() == false))
-                this.dangerous= true;
-            this.dangerous= false;
+                this.dangerous = true;
+            this.dangerous = false;
         }
 
         internal void UpdateMaintenance()//update last maintenance date to current day.
         {
             distance = 0;
             dangerous = false;
-            this.lastMaintenance=DateTime.Now;
+            this.lastMaintenance = DateTime.Now;
 
         }
         internal bool passedYearNowAndThen()//return true if a year has passed since the last maintenance.
@@ -130,8 +128,8 @@ namespace dotNet5781_01_3169_8515
         }
         internal bool EqualId(string _id)//checks if two buses types have the same id
         {
-            if(this.id==_id)
-            return true;
+            if (this.id == _id)
+                return true;
             return false;
         }
         //moved from main class.
@@ -148,14 +146,14 @@ namespace dotNet5781_01_3169_8515
             {
                 if ((idst.Length == 8 && year < 2018) || (idst.Length == 7 && year >= 2018))
                     throw new ArgumentException("invalid input: id format doesn't match registration date");
-            }         
+            }
             return idst;
         }
         internal static bool save(List<buses> ls1)//write buspool list to file 
         {
             string path = Environment.CurrentDirectory + "\\data.txt";
             List<string> output = new List<string>();
-            foreach(buses bs1 in ls1 )
+            foreach (buses bs1 in ls1)
             {
                 output.Add($"{bs1.registrationDate.Year.ToString()},{bs1.registrationDate.Month.ToString()},{bs1.registrationDate.Day.ToString()},{bs1.lastMaintenance.Year.ToString()},{bs1.lastMaintenance.Month.ToString()},{bs1.lastMaintenance.Day.ToString()},{bs1.id},{(bs1.fuel).ToString()},{(bs1.distance).ToString()},{(bs1.dangerous).ToString()},{(bs1.totalDistance).ToString()}");
             }
@@ -165,7 +163,7 @@ namespace dotNet5781_01_3169_8515
                 Console.WriteLine($"your data was saved successfully, {output.Count} entries were saved.");
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return false;
@@ -175,27 +173,28 @@ namespace dotNet5781_01_3169_8515
         {
             string path = Environment.CurrentDirectory + "\\data.txt";
             string[] arr = File.ReadAllLines(path);
-           try { 
+            try
+            {
                 List<string> input = arr.ToList();
                 ls1 = new List<buses>();
-                foreach(var line in input)
+                foreach (var line in input)
                 {
                     string[] entries = line.Split(',');
-                    int fuel,distance,total;
-                    bool flag=true, danger;
-                    DateTime d2,d1;
-                    DateTime.TryParse($"{entries[0]},{entries[1]},{entries[2]}",out d1);
+                    int fuel, distance, total;
+                    bool flag = true, danger;
+                    DateTime d2, d1;
+                    DateTime.TryParse($"{entries[0]},{entries[1]},{entries[2]}", out d1);
                     DateTime.TryParse($"{entries[3]},{entries[4]},{entries[5]}", out d2);
                     Int32.TryParse(entries[7], out fuel);
                     Int32.TryParse(entries[8], out distance);
                     bool.TryParse(entries[9], out danger);
                     Int32.TryParse(entries[10], out total);
-                    ls1.Add(new buses(d1, d2, entries[6], fuel,distance, danger, total));
+                    ls1.Add(new buses(d1, d2, entries[6], fuel, distance, danger, total));
                 }
                 Console.WriteLine($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return false;

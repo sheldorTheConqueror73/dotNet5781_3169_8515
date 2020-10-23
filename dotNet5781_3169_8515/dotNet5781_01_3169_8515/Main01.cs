@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Diagnostics.SymbolStore;
 using System.IO;
 using System.Linq;
@@ -18,11 +19,11 @@ namespace dotNet5781_01_3169_8515
     partial class Main01//pointer to function? 
     {
         const short FULL_TANK = 1200;
-        static bool autoSave = false;
-        enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE,SETTINGS,SAVE,LOAD };
+        static bool autoSave;
+        enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE, SETTINGS, SAVE, LOAD };
         private static List<buses> busPool = new List<buses>()
         {
-            
+
             new buses(new DateTime(2020,11,9),new DateTime(),"12345678",FULL_TANK),
             new buses(new DateTime(2015,3,23),new DateTime(),"1145611",850,9000,false,30000),
             new buses(new DateTime(2020,5,15),new DateTime(),"78911345",FULL_TANK,15000),
@@ -33,9 +34,10 @@ namespace dotNet5781_01_3169_8515
 
         static void Main(string[] args)
         {
+            Console.WriteLine(Console.ReadKey().Key);
             if (!File.Exists(Environment.CurrentDirectory + "\\data.txt"))
                 File.Create(Environment.CurrentDirectory + "\\data.txt");
-            GetInfoFromUser();//add file exsist check here
+            GetInfoFromUser();
         }
 
         private static void PrintMenu()//print the suggested menu
@@ -47,19 +49,19 @@ namespace dotNet5781_01_3169_8515
                    4-maintanance.
                    5-print total mileage  
                    6-settings menu");
-            if(!autoSave)
+            if (!autoSave)
                 Console.WriteLine("                   7-save date to file\n                   8-load data from file");
             Console.WriteLine("                   0-exit.");
         }
 
         private static void GetInfoFromUser()
         {
-            CHOICE choice;          
+            CHOICE choice;
             do
             {
                 PrintMenu();
                 bool sucsses = true;
-                sucsses=Enum.TryParse(Console.ReadLine(),out choice);
+                sucsses = Enum.TryParse(Console.ReadLine(), out choice);
                 if (!sucsses)
                     continue;
                 switch (choice)
@@ -100,8 +102,9 @@ namespace dotNet5781_01_3169_8515
                         setting();
                         break;
                     case CHOICE.SAVE:
-                        { if (!autoSave)
-                                buses.save(busPool);        
+                        {
+                            if (!autoSave)
+                                buses.save(busPool);
                         }
                         break;
                     case CHOICE.LOAD:
@@ -119,7 +122,7 @@ namespace dotNet5781_01_3169_8515
                     default:
                         Console.WriteLine("please try again");
                         break;
-                }             
+                }
             } while (choice != CHOICE.EXIT);
         }
 
@@ -170,7 +173,7 @@ namespace dotNet5781_01_3169_8515
             if (busExist == false)
                 throw new ArgumentException("error: no bus matches id number: " + id);
         }
-        
+
 
         private static void PrintMileage()
         {
@@ -198,7 +201,7 @@ namespace dotNet5781_01_3169_8515
             }
             if (found == false)
             {
-                throw new ArgumentException("error: no bus matches id number :"+ id);
+                throw new ArgumentException("error: no bus matches id number :" + id);
             }
         }
         private static void maintenance()
@@ -221,43 +224,37 @@ namespace dotNet5781_01_3169_8515
             }
             if (found == false)
             {
-                throw new ArgumentException("error: no bus matches id number: "+ id);
+                throw new ArgumentException("error: no bus matches id number: " + id);
             }
         }
         private static void setting()
         {
+            string str;
             System.ConsoleKeyInfo key;
             Console.Write("settings:\nAutosave ");
-            Console.ForegroundColor = ConsoleColor.Red;
             if (autoSave)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(" ENABLED\n");
-                Console.ResetColor();
-                Console.WriteLine("your data will be saved automatically. to turn off please press N button or press any other key to exit");
-                key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.N)
-                {
-                    autoSave = false;
-                    setting();
-                }
-               
+                str = "";
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(" DISABLED\n");
-                Console.ResetColor();
-                Console.WriteLine("your data will NOT be saved automatically. to turn on please press Y button or press any other key to exit");
-                key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Y)
-                {
-                    autoSave = true;
-                    setting();
-                }
+                str = "NOT";
             }
+            Console.ResetColor();
+            Console.WriteLine($"your data will {str} be saved automatically. to toggle on/off please press the 1 button or press any other button to exit");
+            key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.D1)
+            {
+                autoSave = !autoSave;
+                setting();
+            }
+
         }
-        
     }
 
 }
+
