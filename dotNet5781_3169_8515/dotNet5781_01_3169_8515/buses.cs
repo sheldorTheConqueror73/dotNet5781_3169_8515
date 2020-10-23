@@ -26,7 +26,7 @@ namespace dotNet5781_01_3169_8515
             totalDistance = 0; // total distance driven
             dangerous = false;  //is this bus dangerous
             registrationDate = new DateTime(0, 0, 0);
-            lastMaintenance = new DateTime(0, 0, 0
+            lastMaintenance = new DateTime(0, 0, 0);
         }
         internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
         {
@@ -149,7 +149,7 @@ namespace dotNet5781_01_3169_8515
             }
             return idst;
         }
-        internal static bool save(List<buses> ls1)//write buspool list to file 
+        internal static bool save(List<buses> ls1,bool show)//write buspool list to file 
         {
             string path = Environment.CurrentDirectory + "\\data.txt";
             List<string> output = new List<string>();
@@ -160,7 +160,8 @@ namespace dotNet5781_01_3169_8515
             try
             {
                 File.WriteAllLines(path, output.ToArray());
-                Console.WriteLine($"your data was saved successfully, {output.Count} entries were saved.");
+                if (show)
+                    Console.WriteLine($"your data was saved successfully, {output.Count} entries were saved.");
                 return true;
             }
             catch (Exception e)
@@ -169,7 +170,7 @@ namespace dotNet5781_01_3169_8515
                 return false;
             }
         }
-        internal static bool load(ref List<buses> ls1)//overwrites busepool list and updates it from text file
+        internal static bool load(ref List<buses> ls1,bool show)//overwrites busepool list and updates it from text file
         {
             string path = Environment.CurrentDirectory + "\\data.txt";
             string[] arr = File.ReadAllLines(path);
@@ -191,7 +192,8 @@ namespace dotNet5781_01_3169_8515
                     Int32.TryParse(entries[10], out total);
                     ls1.Add(new buses(d1, d2, entries[6], fuel, distance, danger, total));
                 }
-                Console.WriteLine($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
+                if(show)
+                    Console.WriteLine($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
                 return true;
             }
             catch (Exception e)
