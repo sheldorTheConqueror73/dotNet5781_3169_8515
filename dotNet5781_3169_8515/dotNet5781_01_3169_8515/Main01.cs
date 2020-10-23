@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Diagnostics.SymbolStore;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace dotNet5781_01_3169_8515
     partial class Main01//pointer to function? 
     {
         const short FULL_TANK = 1200;
-        static bool autoSave = false;
+        static bool autoSave;
         enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE,SETTINGS,SAVE,LOAD };
         private static List<buses> busPool = new List<buses>()
         {
@@ -33,9 +34,10 @@ namespace dotNet5781_01_3169_8515
 
         static void Main(string[] args)
         {
+            Console.WriteLine(Console.ReadKey().Key);
             if (!File.Exists(Environment.CurrentDirectory + "\\data.txt"))
                 File.Create(Environment.CurrentDirectory + "\\data.txt");
-            GetInfoFromUser();//add file exsist check here
+            GetInfoFromUser();
         }
 
         private static void PrintMenu()//print the suggested menu
@@ -226,38 +228,32 @@ namespace dotNet5781_01_3169_8515
         }
         private static void setting()
         {
+            string str;
             System.ConsoleKeyInfo key;
             Console.Write("settings:\nAutosave ");
-            Console.ForegroundColor = ConsoleColor.Red;
             if (autoSave)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(" ENABLED\n");
+                str = "";
+            }
+            else 
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(" DISABLED\n");
+                str = "NOT";
+            }
                 Console.ResetColor();
-                Console.WriteLine("your data will be saved automatically. to turn off please press N button or press any other key to exit");
+                Console.WriteLine($"your data will {str} be saved automatically. to toggle on/off please press the 1 button or press any other button to exit");
                 key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.N)
+                if (key.Key == ConsoleKey.D1)
                 {
-                    autoSave = false;
+                    autoSave = !autoSave;
                     setting();
                 }
                
             }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write(" DISABLED\n");
-                Console.ResetColor();
-                Console.WriteLine("your data will NOT be saved automatically. to turn on please press Y button or press any other key to exit");
-                key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Y)
-                {
-                    autoSave = true;
-                    setting();
-                }
-            }
         }
-        
+
     }
 
-}
