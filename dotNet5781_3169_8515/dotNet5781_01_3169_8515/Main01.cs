@@ -75,7 +75,7 @@ namespace dotNet5781_01_3169_8515
 
                         break;
                     case CHOICE.REFUEL:
-                        try { reful(); }
+                        try { refuel(); }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
@@ -109,12 +109,12 @@ namespace dotNet5781_01_3169_8515
             Console.WriteLine("new bus added seccessfully ");
         }
 
-        private static void Drive()//add a new drive to a bus.
+        private static void Drive()//take a bus for a drive
         {
             Console.WriteLine("here are all the avilable buses:");
             PrintMileage();
             string id = buses.ReadId(0, 1);
-            int km = 10000;// r.Next(1, 1201);
+            int km =  r.Next(1, 1201);
             bool busExist = false;
             foreach (buses bs in busPool)
             {
@@ -147,7 +147,7 @@ namespace dotNet5781_01_3169_8515
                 bs.print();
             }
         }
-        private static void reful()
+        private static void refuel()
         {
             Console.WriteLine("here are all the avilable buses:");
             PrintMileage();
