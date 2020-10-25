@@ -51,15 +51,6 @@ namespace dotNet5781_01_3169_8515
             this.totalDistance = totalDistance;
         }
         internal string getId() { return this.id; }
-        internal string getIdString()
-        {
-            if (this.registrationDate.Year < 2018)
-            {
-                return $"ID:\t+{this.id[0]}+{this.id[1]}-{ this.id[2]}{this.id[3]}{ this.id[4]}-{this.id[5]}{this.id[6]}";
-                
-            }
-            return $"ID:\t{this.id[0]}{this.id[1]}{this.id[2]}-{this.id[3]}{this.id[4]}-{this.id[5]}{this.id[6]}{this.id[7]}";
-        }
         internal void setId(string id) {  this.id = id; }
         internal int getFuel() { return this.fuel; }
         internal void setFuel(int fuel) { this.fuel = fuel; }
@@ -159,6 +150,14 @@ namespace dotNet5781_01_3169_8515
                     throw new ArgumentException("invalid input: id format doesn't match registration date");
             }         
             return idst;
-        }      
+        }
+        internal static string formatId(string id)
+        {
+            if (id.Length==7)
+            {
+                return $"ID:\t+{id[0]}+{id[1]}-{ id[2]}{id[3]}{ id[4]}-{id[5]}{id[6]}";
+            }
+            return $"ID:\t{id[0]}{id[1]}{id[2]}-{id[3]}{id[4]}-{id[5]}{id[6]}{id[7]}";
+        }
     }
 }

@@ -92,7 +92,7 @@ namespace dotNet5781_01_3169_8515
                         PrintMileage();
                         break;
                     default:
-                        Console.WriteLine("please try again");
+                        Console.WriteLine("invalid input: please try again");
                         break;
                 }
             } while (choice != CHOICE.EXIT);
@@ -104,9 +104,9 @@ namespace dotNet5781_01_3169_8515
             string id = buses.ReadId(dateTimes1.Year, 0);
             foreach (buses bs in busPool)
                 if (bs.EqualId(id))
-                    throw new ArgumentException("error: id  already exists.");
+                    throw new ArgumentException($"error: id number {buses.formatId(id)} is already taken.");
             busPool.Add(new buses(dateTimes1, new DateTime(), id));
-            Console.WriteLine("new bus added seccessfully (in british accecnt)");
+            Console.WriteLine("new bus added seccessfully ");
         }
 
         private static void Drive()//add a new drive to a bus.
@@ -136,7 +136,7 @@ namespace dotNet5781_01_3169_8515
                 }
             }
             if (busExist == false)
-                throw new ArgumentException("error: no bus matches");
+                throw new ArgumentException($"error: no bus matches id number {buses.formatId(id)}");
         }
 
 
@@ -157,15 +157,13 @@ namespace dotNet5781_01_3169_8515
                 {
                     found = true;
                     b1.setFuel(FULL_TANK);
-                    Console.Write("bus ");
-                    b1.printId();
-                    Console.WriteLine("has been refueled");
+                    Console.WriteLine($"bus number {buses.formatId(id)} has been refueled");
                     return;//exit after changes
                 }
             }
             if (found == false)
             {
-                throw new ArgumentException("error: no bus matches id number ");
+                throw new ArgumentException($"error: no bus matches id number {buses.formatId(id)}");
             }
         }
         private static void maintenance()
@@ -179,15 +177,13 @@ namespace dotNet5781_01_3169_8515
                     found = true;
                     b1.setDistance(0);
                     b1.setLastMaintenance(DateTime.Now);
-                    Console.Write("bus ");
-                    b1.printId();
-                    Console.WriteLine("has finished routine maintenance");
+                    Console.WriteLine($"bus number {buses.formatId(id)} has finished routine maintenance");
                     return;//exit after changes
                 }
             }
             if (found == false)
             {
-                throw new ArgumentException("error: no bus matches id number ");
+                throw new ArgumentException($"error: no bus matches id number {buses.formatId(id)}");
             }
         }
     }
