@@ -34,7 +34,7 @@ namespace dotNet5781_01_3169_8515
 
         static void Main(string[] args)
         {
-            Console.WriteLine(Console.ReadKey().Key);
+
             if (!File.Exists(Environment.CurrentDirectory + "\\data.txt"))
                 File.Create(Environment.CurrentDirectory + "\\data.txt");
             GetInfoFromUser();
