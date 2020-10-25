@@ -51,6 +51,15 @@ namespace dotNet5781_01_3169_8515
             this.totalDistance = totalDistance;
         }
         internal string getId() { return this.id; }
+        internal string getIdString()
+        {
+            if (this.registrationDate.Year < 2018)
+            {
+                return $"ID:\t+{this.id[0]}+{this.id[1]}-{ this.id[2]}{this.id[3]}{ this.id[4]}-{this.id[5]}{this.id[6]}";
+                
+            }
+            return $"ID:\t{this.id[0]}{this.id[1]}{this.id[2]}-{this.id[3]}{this.id[4]}-{this.id[5]}{this.id[6]}{this.id[7]}";
+        }
         internal void setId(string id) {  this.id = id; }
         internal int getFuel() { return this.fuel; }
         internal void setFuel(int fuel) { this.fuel = fuel; }
@@ -88,7 +97,7 @@ namespace dotNet5781_01_3169_8515
             DateTime d1;
             bool flag = DateTime.TryParse(Console.ReadLine(),out d1);
             if (!flag)
-                throw new ArgumentException("invalid input: no such date");
+                throw new ArgumentException("invalid input: this is this not a valid date");
             return d1;
         }
 
@@ -140,66 +149,16 @@ namespace dotNet5781_01_3169_8515
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
             if (idst.Length != 8 && idst.Length != 7)
-                throw new ArgumentException("invalid input: id  must be 7 or 8 digits");
+                throw new ArgumentException("invalid input: id can only contain 7 or 8 digits");
             for (int i = 0; i < idst.Length; i++)
                 if (idst[i] > 57 || idst[i] < 48)
-                    throw new ArgumentException("invalid input: id cannot be a letter");
+                    throw new ArgumentException("invalid input: id can only contain 7 or 8 digits");
             if (mode == 0)
             {
                 if ((idst.Length == 8 && year < 2018) || (idst.Length == 7 && year >= 2018))
                     throw new ArgumentException("invalid input: id format doesn't match registration date");
             }         
             return idst;
-        }
-        internal static bool save(List<buses> ls1)//write buspool list to file 
-        {
-            string path = Environment.CurrentDirectory + "\\data.txt";
-            List<string> output = new List<string>();
-            foreach(buses bs1 in ls1 )
-            {
-                output.Add($"{bs1.registrationDate.Year.ToString()},{bs1.registrationDate.Month.ToString()},{bs1.registrationDate.Day.ToString()},{bs1.lastMaintenance.Year.ToString()},{bs1.lastMaintenance.Month.ToString()},{bs1.lastMaintenance.Day.ToString()},{bs1.id},{(bs1.fuel).ToString()},{(bs1.distance).ToString()},{(bs1.dangerous).ToString()},{(bs1.totalDistance).ToString()}");
-            }
-            try
-            {
-                File.WriteAllLines(path, output.ToArray());
-                Console.WriteLine($"your data was saved successfully, {output.Count} entries were saved.");
-                return true;
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-        }
-        internal static bool load(ref List<buses> ls1)//overwrites busepool list and updates it from text file
-        {
-            string path = Environment.CurrentDirectory + "\\data.txt";
-            string[] arr = File.ReadAllLines(path);
-           try { 
-                List<string> input = arr.ToList();
-                ls1 = new List<buses>();
-                foreach(var line in input)
-                {
-                    string[] entries = line.Split(',');
-                    int fuel,distance,total;
-                    bool flag=true, danger;
-                    DateTime d2,d1;
-                    DateTime.TryParse($"{entries[0]},{entries[1]},{entries[2]}",out d1);
-                    DateTime.TryParse($"{entries[3]},{entries[4]},{entries[5]}", out d2);
-                    Int32.TryParse(entries[7], out fuel);
-                    Int32.TryParse(entries[8], out distance);
-                    bool.TryParse(entries[9], out danger);
-                    Int32.TryParse(entries[10], out total);
-                    ls1.Add(new buses(d1, d2, entries[6], fuel,distance, danger, total));
-                }
-                Console.WriteLine($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
-                return true;
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-        }
+        }      
     }
 }
