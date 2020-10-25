@@ -149,6 +149,8 @@ namespace dotNet5781_01_3169_8515
         }
         private static void reful()
         {
+            Console.WriteLine("here are all the avilable buses:");
+            PrintMileage();
             bool found = false;
             string id = buses.ReadId(0, 1);
             foreach (buses b1 in busPool)
@@ -168,6 +170,8 @@ namespace dotNet5781_01_3169_8515
         }
         private static void maintenance()
         {
+            Console.WriteLine("here are all the avilable buses:");
+            PrintMileage();
             bool found = false;
             string id = buses.ReadId(0, 1);
             foreach (buses b1 in busPool)
