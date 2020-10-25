@@ -155,7 +155,7 @@ namespace dotNet5781_01_3169_8515
         {
             if (id.Length==7)
             {
-                return $"ID:\t+{id[0]}+{id[1]}-{ id[2]}{id[3]}{ id[4]}-{id[5]}{id[6]}";
+                return $"ID:\t{id[0]}{id[1]}-{ id[2]}{id[3]}{ id[4]}-{id[5]}{id[6]}";
             }
             return $"ID:\t{id[0]}{id[1]}{id[2]}-{id[3]}{id[4]}-{id[5]}{id[6]}{id[7]}";
         }
