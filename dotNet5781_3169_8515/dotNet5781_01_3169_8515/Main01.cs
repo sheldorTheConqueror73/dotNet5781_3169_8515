@@ -190,7 +190,7 @@ namespace dotNet5781_01_3169_8515
                 }
             }
             if (found == false)
-            {
+            { 
                 throw new ArgumentException($"error: no bus matches id number {buses.formatId(id)}");
             }
         }
