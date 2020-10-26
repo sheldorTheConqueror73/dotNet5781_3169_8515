@@ -74,14 +74,14 @@ namespace dotNet5781_01_3169_8515
             }
             Console.WriteLine("ID:\t{0}{1}{2}-{3}{4}-{5}{6}{7}", this.id[0], this.id[1], this.id[2], this.id[3], this.id[4], this.id[5], this.id[6], this.id[7]);
         }
-        internal void print()//prints id and total mileage
+        internal void print()//prints id and  mileage since last maintenance
         {
             this.printId();
-            Console.WriteLine("mileage:\t{0}", distance);
+            Console.WriteLine("mileage since last maintenance:\t{0}\n", distance);
         }
-        internal void printDistance()//prints total distance
+        internal void printMileage()//prints total distance
         {
-            Console.WriteLine("mileage since last maintenance:\t{0}", this.distance);
+            Console.WriteLine("total mileage :\t{0}", this.totalDistance);
         }
         internal static DateTime readDate()//reads date from user
         {
@@ -156,9 +156,9 @@ namespace dotNet5781_01_3169_8515
         {
             if (id.Length==7)
             {
-                return $"ID:\t{id[0]}{id[1]}-{ id[2]}{id[3]}{ id[4]}-{id[5]}{id[6]}";
+                return $"{id[0]}{id[1]}-{ id[2]}{id[3]}{ id[4]}-{id[5]}{id[6]}";
             }
-            return $"ID:\t{id[0]}{id[1]}{id[2]}-{id[3]}{id[4]}-{id[5]}{id[6]}{id[7]}";
+            return $"{id[0]}{id[1]}{id[2]}-{id[3]}{id[4]}-{id[5]}{id[6]}{id[7]}";
         }
     }
 }

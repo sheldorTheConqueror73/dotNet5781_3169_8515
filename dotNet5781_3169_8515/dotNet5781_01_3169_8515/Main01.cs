@@ -20,7 +20,7 @@ namespace dotNet5781_01_3169_8515
     partial class Main01
     {
         const short FULL_TANK = 1200;
-        enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
+        enum CHOICE { ADD = 1, DRIVE, REFUEL, MAINTANANCE, MILEAGE, EXIT };
         private static List<buses> busPool = new List<buses>()
         {
 
@@ -44,7 +44,7 @@ namespace dotNet5781_01_3169_8515
                    3-refuel.     
                    4-maintanance.
                    5-print total mileage  
-                   0-exit.");
+                   6-exit.");
         }
 
         private static void GetInfoFromUser()
@@ -56,7 +56,11 @@ namespace dotNet5781_01_3169_8515
                 bool sucsses = true;
                 sucsses = Enum.TryParse(Console.ReadLine(), out choice);
                 if (!sucsses)
+                {
+                    Console.WriteLine("invalid input, please try again");
                     continue;
+                }
+                    
                 switch (choice)
                 {
                     case CHOICE.ADD:
@@ -92,7 +96,7 @@ namespace dotNet5781_01_3169_8515
                         PrintMileage();
                         break;
                     default:
-                        Console.WriteLine("invalid input: please try again");
+                        Console.WriteLine("invalid input, please try again");
                         break;
                 }
             } while (choice != CHOICE.EXIT);
