@@ -19,18 +19,18 @@ namespace dotNet5781_01_3169_8515
         DateTime registrationDate, lastMaintenance;
 
 
-        internal buses()
+        internal buses()//ctor
         {
-            id = ""; // bus id number
-            fuel = 0; //how much fuel is left
-            distance = 0; // distance since last maintenance
-            totalDistance = 0; // total distance driven
-            dangerous = false;  //is this bus dangerous
+            id = "";
+            fuel = 0; 
+            distance = 0; 
+            totalDistance = 0; 
+            dangerous = false;
             registrationDate = new DateTime(0,0,0);
             lastMaintenance = new DateTime(0, 0, 0);
 
         }
-        internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
+        internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -40,7 +40,7 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
         }
-        internal void setAll(DateTime date, DateTime lm, string id, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)
+        private void setAll(DateTime date, DateTime lm, string id, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//set all mebmers at once
         {
             this.id = id;
             this.fuel = fuel;
@@ -50,6 +50,7 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
         }
+        //accessors
         internal string getId() { return this.id; }
         internal void setId(string id) {  this.id = id; }
         internal int getFuel() { return this.fuel; }
@@ -64,7 +65,7 @@ namespace dotNet5781_01_3169_8515
         internal void setDistance(DateTime registrationDate) { this.registrationDate = registrationDate; }
         internal DateTime getLastMaintenance() { return this.lastMaintenance; }
         internal void setLastMaintenance(DateTime lm) { this.lastMaintenance = lm; }
-        internal void printId()
+        internal void printId()//prints id
         {
             if (this.registrationDate.Year < 2018)
             {
@@ -73,16 +74,16 @@ namespace dotNet5781_01_3169_8515
             }
             Console.WriteLine("ID:\t{0}{1}{2}-{3}{4}-{5}{6}{7}", this.id[0], this.id[1], this.id[2], this.id[3], this.id[4], this.id[5], this.id[6], this.id[7]);
         }
-        internal void print()
+        internal void print()//prints id and total mileage
         {
             this.printId();
             Console.WriteLine("mileage:\t{0}", distance);
         }
-        internal void printDistance()
+        internal void printDistance()//prints total distance
         {
             Console.WriteLine("mileage since last maintenance:\t{0}", this.distance);
         }
-        internal static DateTime readDate()
+        internal static DateTime readDate()//reads date from user
         {
             Console.WriteLine("enter registration date:");
             DateTime d1;
@@ -103,7 +104,7 @@ namespace dotNet5781_01_3169_8515
                     return true;
             return false;
         }
-        internal void UpdateDangerous()
+        internal void UpdateDangerous()//updates dangerous status of selected bus
         {
             if ((distance >= 20000) || (this.passedYearNowAndThen() == false))
                 this.dangerous= true;
@@ -135,7 +136,7 @@ namespace dotNet5781_01_3169_8515
             return false;
         }
         //moved from main class.
-        internal static string ReadId(int year, int mode)//read id from the user and return an int[]
+        internal static string ReadId(int year, int mode)//read id from the user and returns a string
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
@@ -151,7 +152,7 @@ namespace dotNet5781_01_3169_8515
             }         
             return idst;
         }
-        internal static string formatId(string id)
+        internal static string formatId(string id)//converts a string id to XXX-XX-XX or XX-XXX-XX 
         {
             if (id.Length==7)
             {

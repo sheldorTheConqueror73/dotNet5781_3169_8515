@@ -36,7 +36,7 @@ namespace dotNet5781_01_3169_8515
             GetInfoFromUser();
         }
 
-        private static void PrintMenu()//print the suggested menu
+        private static void PrintMenu()//print options menu
         {
             Console.WriteLine(@"Enter your choice: 
                    1-add a bus.
@@ -140,14 +140,14 @@ namespace dotNet5781_01_3169_8515
         }
 
 
-        private static void PrintMileage()
+        private static void PrintMileage()//print the id and total milage all buses
         {
             foreach (buses bs in busPool)
             {
                 bs.print();
             }
         }
-        private static void refuel()
+        private static void refuel()//refuel a bus
         {
             Console.WriteLine("here are all the avilable buses:");
             PrintMileage();
@@ -168,7 +168,7 @@ namespace dotNet5781_01_3169_8515
                 throw new ArgumentException($"error: no bus matches id number {buses.formatId(id)}");
             }
         }
-        private static void maintenance()
+        private static void maintenance()//send bus to routine maintenance
         {
             Console.WriteLine("here are all the avilable buses:");
             PrintMileage();
