@@ -91,6 +91,8 @@ namespace dotNet5781_01_3169_8515
                     case CHOICE.MILEAGE:
                         PrintMileage();
                         break;
+                    case CHOICE.EXIT:
+                        break;
                     default:
                         Console.WriteLine("invalid input: please try again");
                         break;

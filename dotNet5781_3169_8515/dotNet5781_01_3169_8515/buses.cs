@@ -88,7 +88,7 @@ namespace dotNet5781_01_3169_8515
             DateTime d1;
             bool flag = DateTime.TryParse(Console.ReadLine(),out d1);
             if (!flag)
-                throw new ArgumentException("invalid input: this is this not a valid date");
+                throw new ArgumentException("invalid input: this is not a valid date");
             return d1;
         }
 
