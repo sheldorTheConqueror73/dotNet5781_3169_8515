@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_3169_8515
 {
     class bus
-    { 
-        List<busLineStation> path = new List<busLineStation>();
+    {
         private readonly string id;
+        List<busLineStation> path = new List<busLineStation>();
         private string firstStation, lastStation;
         Areas area;
         public bus(List<busLineStation> _path,string _id, string _firstStation, string _lastStation)
