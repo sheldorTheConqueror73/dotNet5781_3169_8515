@@ -63,8 +63,7 @@ namespace dotNet5781_02_3169_8515
         }
         public override string ToString()
         {
-            string str = $"ID:{this.id},LAT:{this.latitude},LONG:{this.longitude},ADDR:{this.address}";
-            return str;
+            return $"ID:{this.id},LAT:{this.latitude},LONG:{this.longitude},ADDR:{this.address}";
         }   
     }
 }

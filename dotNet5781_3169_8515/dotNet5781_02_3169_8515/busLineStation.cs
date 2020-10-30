@@ -30,9 +30,14 @@ namespace dotNet5781_02_3169_8515
             distance = -1;
             driveTime= new TimeSpan();
         }
-        internal busLineStation(string id, int lat, int lon, string address= "")
+        internal busLineStation(string id, int lat, int lon,int distance, TimeSpan time, string address= "") :base(id, lat, lon, address)
         {
-
+            this.distance = distance;
+            this.driveTime = time;
+        }
+        public override string ToString()
+        {
+             return $"ID:{this.id},LAT:{this.latitude},LONG:{this.longitude},ADDR:{this.address},DIST:{this.distance},TIME:{this.DriveTime.ToString()}";
         }
     }
 }
