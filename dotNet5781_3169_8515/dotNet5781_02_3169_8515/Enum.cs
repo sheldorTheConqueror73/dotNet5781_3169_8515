@@ -8,6 +8,8 @@ namespace dotNet5781_02_3169_8515
 {
     public enum Areas
     {
-        General,North,South,Center,Jerusalem,JurdenVally
+        General,
+        North,South,Center, JurdenVally, Narnia,NewAnkh,
+        Jerusalem,AnkhMorpork,Alantis,
     }
 }
