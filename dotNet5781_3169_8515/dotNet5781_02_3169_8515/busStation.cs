@@ -32,15 +32,13 @@ namespace dotNet5781_02_3169_8515
             {
                 if (!((value < -180) || (value > 180)))
                     latitude = value;
-            }
-           
+            }   
         }
         internal string Address
         {
             get => address;
             set { address = value; }
         }
-
         internal busStation() 
         {
             id = "";
@@ -55,7 +53,13 @@ namespace dotNet5781_02_3169_8515
             this.latitude = lat;
             this.longitude = lon;
         }
-
-
+        internal static string ReadId()//read id from the user and returns a string
+        {
+            Console.WriteLine("enter id: ");
+            string idst = Console.ReadLine();
+            if (idst.Length != 6)
+                throw new ArgumentException("invalid input: id can only contain 6 digits");
+            return idst;
+        }
     }
 }
