@@ -62,5 +62,9 @@ namespace dotNet5781_02_3169_8515
                 throw new ArgumentException("invalid input: this bus can only do one route and said route in reverse ");//beeter garmmer needed
             }
         }
+        internal void remove(string id)// meed to look up imdexer ref
+        {
+
+        }
     }
 }
