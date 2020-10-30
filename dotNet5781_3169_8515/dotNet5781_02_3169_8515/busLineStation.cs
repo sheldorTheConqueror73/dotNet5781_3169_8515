@@ -11,6 +11,20 @@ namespace dotNet5781_02_3169_8515
         private int distance;//maybe add readonly?
         private TimeSpan driveTime;
 
+        public int Distance
+        {
+            get => distance;
+            set
+            {
+                if (value > 0)
+                    distance = value;
+            }
+        }
+        public TimeSpan DriveTime
+        {
+            get => driveTime;
+        }
+
         internal busLineStation()
         {
             distance = -1;
