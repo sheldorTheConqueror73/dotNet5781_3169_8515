@@ -61,5 +61,10 @@ namespace dotNet5781_02_3169_8515
                 throw new ArgumentException("invalid input: id can only contain 6 digits");
             return idst;
         }
+        public override string ToString()
+        {
+            string str = $"ID:{this.id},LAT:{this.latitude},LONG:{this.longitude},ADDR:{this.address}";
+            return str;
+        }   
     }
 }
