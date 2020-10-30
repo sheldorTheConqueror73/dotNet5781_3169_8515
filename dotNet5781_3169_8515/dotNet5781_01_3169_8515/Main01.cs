@@ -20,7 +20,7 @@ namespace dotNet5781_01_3169_8515
     partial class Main01
     {
         const short FULL_TANK = 1200;
-        enum CHOICE { EXIT, ADD, DRIVE, REFUEL, MAINTANANCE, MILEAGE };
+        enum CHOICE { ADD = 1, DRIVE, REFUEL, MAINTANANCE, MILEAGE, EXIT };
         private static List<buses> busPool = new List<buses>()
         {
 
@@ -36,7 +36,7 @@ namespace dotNet5781_01_3169_8515
             GetInfoFromUser();
         }
 
-        private static void PrintMenu()//print the suggested menu
+        private static void PrintMenu()//print options menu
         {
             Console.WriteLine(@"Enter your choice: 
                    1-add a bus.
@@ -44,7 +44,7 @@ namespace dotNet5781_01_3169_8515
                    3-refuel.     
                    4-maintanance.
                    5-print total mileage  
-                   0-exit.");
+                   6-exit.");
         }
 
         private static void GetInfoFromUser()
@@ -56,7 +56,11 @@ namespace dotNet5781_01_3169_8515
                 bool sucsses = true;
                 sucsses = Enum.TryParse(Console.ReadLine(), out choice);
                 if (!sucsses)
+                {
+                    Console.WriteLine("invalid input, please try again");
                     continue;
+                }
+                    
                 switch (choice)
                 {
                     case CHOICE.ADD:
@@ -94,7 +98,7 @@ namespace dotNet5781_01_3169_8515
                     case CHOICE.EXIT:
                         break;
                     default:
-                        Console.WriteLine("invalid input: please try again");
+                        Console.WriteLine("invalid input, please try again");
                         break;
                 }
             } while (choice != CHOICE.EXIT);
@@ -142,14 +146,14 @@ namespace dotNet5781_01_3169_8515
         }
 
 
-        private static void PrintMileage()
+        private static void PrintMileage()//print the id and total milage all buses
         {
             foreach (buses bs in busPool)
             {
                 bs.print();
             }
         }
-        private static void refuel()
+        private static void refuel()//refuel a bus
         {
             Console.WriteLine("here are all the avilable buses:");
             PrintMileage();
@@ -170,7 +174,7 @@ namespace dotNet5781_01_3169_8515
                 throw new ArgumentException($"error: no bus matches id number {buses.formatId(id)}");
             }
         }
-        private static void maintenance()
+        private static void maintenance()//send bus to routine maintenance
         {
             Console.WriteLine("here are all the avilable buses:");
             PrintMileage();
@@ -188,7 +192,7 @@ namespace dotNet5781_01_3169_8515
                 }
             }
             if (found == false)
-            {
+            { 
                 throw new ArgumentException($"error: no bus matches id number {buses.formatId(id)}");
             }
         }
