@@ -144,7 +144,11 @@ namespace dotNet5781_02_3169_8515
         }
         static void searchLine()
         {
-
+            string id = readId(0);
+            Console.WriteLine($"here are all the bus lines who drive through station{id}:");
+            bool flag = central.printAllOf(id);
+            if(!flag)
+                Console.WriteLine($"no bus lines drive through station{id}");
         }
         static void searchTravel()
         {

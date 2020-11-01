@@ -146,5 +146,16 @@ namespace dotNet5781_02_3169_8515
                 if (b1.existStation(id))
                     b1.deleteStation(id);
         }
+        internal bool printAllOf(string id)
+        {
+            bool flag = false;
+            foreach (var b1 in lines)
+                if (b1.existStation(id))
+                {
+                    Console.WriteLine(b1.ToString());
+                    flag = true;
+                }
+            return flag;
+        }
     }
 }   
