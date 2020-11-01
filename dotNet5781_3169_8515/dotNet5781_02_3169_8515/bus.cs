@@ -118,6 +118,20 @@ namespace dotNet5781_02_3169_8515
             }
             return false;
         }
+        internal bool canIgetThere(string start, string end)//returns true if theres a path from start to end
+        {
+            bool found = false; ;
+            foreach(var bst1 in path)
+            {
+                if(bst1.Id==start)
+                {
+                    found = true;
+                }
+                if ((found) && (bst1.Id == end))
+                    return true;
+            }
+            return false;
+        }
 
         public int distanceBetweenStations(string fStation, string secStation)
         {
@@ -153,7 +167,7 @@ namespace dotNet5781_02_3169_8515
                 index++;
             }
             if (first == "" || last == "")
-                throw new ArgumentException("error: the stations are not exists.");
+                throw new ArgumentException("error: the stations do not exists.");
 
             tmp.firstStation = first;
             for (int i = index; i < path.Count; i++)
@@ -173,7 +187,7 @@ namespace dotNet5781_02_3169_8515
             tmp.area = this.area;
             tmp.path = tmpLineStations;
             return tmp;
-            throw new ArgumentException("error: the stations are not exists.");
+            throw new ArgumentException("error: the stations do not exists.");
 
         }
 
@@ -200,7 +214,7 @@ namespace dotNet5781_02_3169_8515
                 index++;
             }
             if(first==""||last=="")
-                throw new ArgumentException("error: the stations are not exists.");
+                throw new ArgumentException("error: the stations do not exists.");
 
             for (int i = index; i < path.Count; i++)
             {

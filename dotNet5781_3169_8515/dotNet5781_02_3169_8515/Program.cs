@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Services;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -152,9 +153,10 @@ namespace dotNet5781_02_3169_8515
         }
         static void searchTravel()
         {
-
+            string start, end;
+            Console.WriteLine(Ente);
         }
-        
+            
         static void printBuses()
         {
 
