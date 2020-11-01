@@ -8,7 +8,7 @@ namespace dotNet5781_02_3169_8515
 {
     class busLines
     {
-        List<bus> lines;
+        protected List<bus> lines;
 
         internal busLines()
         {
@@ -62,9 +62,15 @@ namespace dotNet5781_02_3169_8515
                 throw new ArgumentException("invalid input: this bus can only do one route and said route in reverse ");//beeter garmmer needed
             }
         }
-        internal void remove(string id)// meed to look up imdexer ref
+        internal bus this[string id]// meed to look up imdexer ref
         {
-
+                get 
+            {
+                foreach (var b1 in lines)
+                    if (b1.Id == id)
+                        return b1;
+                throw new ArgumentException($"error: no bus line matches number {id}");
+            }
         }
     }
 }
