@@ -76,40 +76,31 @@ namespace dotNet5781_02_3169_8515
         }
         public void addStationBefore(busLineStation bs,string _id)
         {
-            int i = 0;
-            foreach(busLineStation bsl in path)
-            {
-                i++;
-                if (bsl.Id == _id)
-                {                 
-                    path.Insert(i, bs);
-                    break;
-                }
-            }
+            utilityAddOrRemoveStation(bs, _id, 1);
         }
         public void addStationAfter(busLineStation bs, string _id)
         {
-            int i = 0;
-            foreach (busLineStation bsl in path)
-            {
-               
-                if (bsl.Id == _id)
-                {
-                    path.Insert(i+1, bs);
-                    break;
-                }
-                i++;
-            }
+            utilityAddOrRemoveStation(bs, _id, 2);
         }
+      
         public void deleteStation(string _id)
+        {
+            utilityAddOrRemoveStation(null, _id, 3);
+        }
+        public void utilityAddOrRemoveStation(busLineStation bs, string _id, int mode)
         {
             int i = 0;
             foreach (busLineStation bsl in path)
             {
-                
+
                 if (bsl.Id == _id)
                 {
-                    path.RemoveAt(i);
+                    if(mode==1)
+                        path.Insert(i, bs);
+                    else if(mode==2)
+                        path.Insert(i + 1, bs);
+                    else if(mode==3)
+                        path.RemoveAt(i);
                     break;
                 }
                 i++;
