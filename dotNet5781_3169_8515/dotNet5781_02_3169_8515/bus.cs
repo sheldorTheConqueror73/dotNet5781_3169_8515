@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_3169_8515
 {
-    class bus
+    class bus:IComparable
     { 
         List<busLineStation> path = new List<busLineStation>();
         private readonly string id;
@@ -128,17 +128,17 @@ namespace dotNet5781_02_3169_8515
             return false;
         }
 
-        public int distanceBetweenStations(string id1,string id2)
+        public int distanceBetweenStations(string fStation, string secStation)
         {
-            return utilityBetweenStations(id1, id2, 1);
+            return utilityBetweenStations(fStation, secStation, 1);
         }
 
-        public int timeBetweenStations(string id1, string id2)
+        public int timeBetweenStations(string fStation, string secStation)
         {
-            return utilityBetweenStations(id1, id2, 2);
+            return utilityBetweenStations(fStation, secStation, 2);
         }
 
-        public bus subRoute(string id1,string id2)
+        public bus subRoute(string fStation,string secStation)
         {
             bus tmp = new bus(this.id);
             List<busLineStation> tmpLineStations = new List<busLineStation>();
@@ -147,16 +147,16 @@ namespace dotNet5781_02_3169_8515
             string last = "";
             foreach (busLineStation bsl in path)
             {
-                if (bsl.Id == id1)
+                if (bsl.Id == fStation)
                 {
-                    first = id1;
-                    last = id2;
+                    first = fStation;
+                    last = secStation;
                     break;
                 }
-                else if (bsl.Id == id2)
+                else if (bsl.Id == secStation)
                 {
-                    first = id2;
-                    last = id1;
+                    first = secStation;
+                    last = fStation;
                     break;
                 }
                 index++;
@@ -186,7 +186,7 @@ namespace dotNet5781_02_3169_8515
 
         }
 
-        public int utilityBetweenStations(string id1, string id2, int mode)
+        public int utilityBetweenStations(string fStation, string secStaion, int mode)
         {
             int sum = 0;
             int index = 0;
@@ -194,16 +194,16 @@ namespace dotNet5781_02_3169_8515
             string last = "";
             foreach (busLineStation bsl in path)
             {
-                if (bsl.Id == id1)
+                if (bsl.Id == fStation)
                 {
-                    first = id1;
-                    last = id2;
+                    first = fStation;
+                    last = secStaion;
                     break;
                 }
-                else if (bsl.Id == id2)
+                else if (bsl.Id == secStaion)
                 {
-                    first = id2;
-                    last = id1;
+                    first = secStaion;
+                    last = fStation;
                     break;
                 }
                 index++;
@@ -227,8 +227,14 @@ namespace dotNet5781_02_3169_8515
             
         }
 
-
-
-
+        public int CompareTo(object obj)//צריך לבדוק מה בדיוק ההשואה בין איזה תחנות
+        {
+            string fStation, lStation;
+            Console.WriteLine("enter Outlet Station:");
+            fStation = Console.ReadLine();
+            Console.WriteLine("enter Destination Station:");
+            lStation = Console.ReadLine();
+            return timeBetweenStations(fStation,lStation).CompareTo(((bus)obj).timeBetweenStations(fStation, lStation));
+        }
     }
 }
