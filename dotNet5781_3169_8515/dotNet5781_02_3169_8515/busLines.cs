@@ -146,16 +146,42 @@ namespace dotNet5781_02_3169_8515
                 if (b1.existStation(id))
                     b1.deleteStation(id);
         }
-        internal bool printAllOf(string id)
+        internal bool printAllOf(string id, bus[] buses = null)
         {
+
             bool flag = false;
-            foreach (var b1 in lines)
-                if (b1.existStation(id))
-                {
-                    Console.WriteLine(b1.ToString());
-                    flag = true;
+            if (buses == null)
+            {
+                foreach (var b1 in lines)
+                    if (b1.existStation(id))
+                    {
+                        Console.WriteLine(b1.ToString());
+                        flag = true;
+                    }
+                    return flag;
+            }
+            else
+            {
+                int i = 0;
+                foreach(var bs in buses)
+                { 
+                    Console.WriteLine(bs.ToString());
+                    i++;
                 }
-            return flag;
+                if(i!=0)
+                    return true;
+                return false;
+            }
+        }
+
+        internal bool canIgetThere(string start, string end)
+        {
+            List<bus> buses = new List<bus>();
+            foreach (var b1 in lines)
+                if (b1.canIgetThere(start, end))
+                    buses.Add(b1);
+            
+
         }
     }
 }   
