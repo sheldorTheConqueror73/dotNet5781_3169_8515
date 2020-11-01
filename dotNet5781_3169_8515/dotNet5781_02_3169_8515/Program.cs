@@ -8,7 +8,7 @@ namespace dotNet5781_02_3169_8515
 {
     class Program
     {
-        enum CHOICE { ADD = 1, DELETEBUS, DELETESTATION, SEARCHLINE, SEARCHTRAVEL,PRINTBUSES,STATIONANDBUSES, EXIT };
+        enum CHOICE { ADD = 1, DELETEBUS, DELETESTATION, SEARCHLINE, SEARCHTRAVEL,PRINTBUSES,STATIONANDLINES, EXIT };
         static void Main(string[] args)
         {
             GetInfoFromUser();
@@ -23,7 +23,7 @@ namespace dotNet5781_02_3169_8515
                    4-Search lines in station.     
                    5-Search travel options.
                    6-Print all bus lines.
-                   7-List of all stations and line numbers passing through them.
+                   7-List of all stations and lines passing through them.
                    8-exit.");
         }
 
@@ -44,51 +44,51 @@ namespace dotNet5781_02_3169_8515
                 switch (choice)
                 {
                     case CHOICE.ADD:
-                        try {  }
-                        catch (Exception e)
+                        try { add(); }
+                        catch (ArgumentException e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.DELETEBUS:
-                        try {}
-                        catch (Exception e)
+                        try { deleteBus(); }
+                        catch (ArgumentException e)
                         {
                             Console.WriteLine(e.Message);
                         }
 
                         break;
                     case CHOICE.DELETESTATION:
-                        try {  }
-                        catch (Exception e)
+                        try { deleteStation(); }
+                        catch (ArgumentException e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.SEARCHLINE:
-                        try {  }
-                        catch (Exception e)
+                        try { searchLine(); }
+                        catch (ArgumentException e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.SEARCHTRAVEL:
-                        try { }
-                        catch (Exception e)
+                        try { searchTravel(); }
+                        catch (ArgumentException e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.PRINTBUSES:
-                        try {  }
-                        catch (Exception e)
+                        try { printBuses(); }
+                        catch (ArgumentException e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
-                    case CHOICE.STATIONANDBUSES:
-                        try {  }
-                        catch (Exception e)
+                    case CHOICE.STATIONANDLINES:
+                        try { printStationAndLines(); }
+                        catch (ArgumentException e)
                         {
                             Console.WriteLine(e.Message);
                         }
@@ -100,6 +100,38 @@ namespace dotNet5781_02_3169_8515
                         break;
                 }
             } while (choice != CHOICE.EXIT);
+        }
+        static void add()
+        {
+
+        }
+
+        static void deleteBus()
+        {
+
+        }
+
+        static void deleteStation()
+        {
+
+        }
+        static void searchLine()
+        {
+
+        }
+        static void searchTravel()
+        {
+
+        }
+        
+        static void printBuses()
+        {
+
+        }
+
+        static void printStationAndLines()
+        {
+
         }
     }
 }
