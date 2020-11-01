@@ -8,9 +8,11 @@ namespace dotNet5781_02_3169_8515
 {
     class Program
     {
+        private static busLines central = new busLines();//add more buses here
         enum CHOICE { ADD = 1, DELETEBUS, DELETESTATION, SEARCHLINE, SEARCHTRAVEL,PRINTBUSES,STATIONANDLINES, EXIT };
         static void Main(string[] args)
         {
+          
             GetInfoFromUser();
         }
 
@@ -101,6 +103,27 @@ namespace dotNet5781_02_3169_8515
                 }
             } while (choice != CHOICE.EXIT);
         }
+        private static string readId(int mode)
+        {
+            int limit = 3;
+            string str = "bus line";
+            if (mode == 1)
+            {
+                str = "station";
+                limit = 6;
+            }
+                Console.WriteLine($"please enter {str} id:");
+            string id = Console.ReadLine();
+            if (id.Length != limit)
+                throw new ArgumentException($"invalid input: id must be {limit} digits");
+            foreach (char i in id)
+            {
+                if((i<'9')||(i>'0'))
+                    throw new ArgumentException($"invalid input: id must be {limit} digits");
+            }
+            return id;
+        }
+
         static void add()
         {
 
@@ -108,11 +131,16 @@ namespace dotNet5781_02_3169_8515
 
         static void deleteBus()
         {
-
+            string id=readId(1);
+            central.remove(id);
         }
 
+        
         static void deleteStation()
         {
+            bool flag = false;
+            string id = readId(1);
+                throw new ArgumentException($"error: no bus line matches number {id}");
 
         }
         static void searchLine()

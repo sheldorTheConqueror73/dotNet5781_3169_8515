@@ -8,7 +8,7 @@ namespace dotNet5781_02_3169_8515
 {
     class busLineStation : busStation
     {
-        private int distance;//maybe add readonly?
+        private int distance;
         private TimeSpan driveTime;
 
         public int Distance
