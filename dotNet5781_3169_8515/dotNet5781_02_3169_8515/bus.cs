@@ -11,6 +11,7 @@ namespace dotNet5781_02_3169_8515
     { 
         List<busLineStation> path = new List<busLineStation>();
         private string firstStation, lastStation;
+        readonly string id;
         Areas area;
         public bus(List<busLineStation> _path,string _id, string _firstStation, string _lastStation)
         {
