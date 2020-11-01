@@ -45,14 +45,14 @@ namespace dotNet5781_02_3169_8515
                 {
                     case CHOICE.ADD:
                         try { add(); }
-                        catch (ArgumentException e)
+                        catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.DELETEBUS:
                         try { deleteBus(); }
-                        catch (ArgumentException e)
+                        catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
@@ -60,35 +60,35 @@ namespace dotNet5781_02_3169_8515
                         break;
                     case CHOICE.DELETESTATION:
                         try { deleteStation(); }
-                        catch (ArgumentException e)
+                        catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.SEARCHLINE:
                         try { searchLine(); }
-                        catch (ArgumentException e)
+                        catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.SEARCHTRAVEL:
                         try { searchTravel(); }
-                        catch (ArgumentException e)
+                        catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.PRINTBUSES:
                         try { printBuses(); }
-                        catch (ArgumentException e)
+                        catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.STATIONANDLINES:
                         try { printStationAndLines(); }
-                        catch (ArgumentException e)
+                        catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
