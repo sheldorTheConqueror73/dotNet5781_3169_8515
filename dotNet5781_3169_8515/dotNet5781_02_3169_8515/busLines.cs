@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -120,5 +121,15 @@ namespace dotNet5781_02_3169_8515
                 Console.WriteLine("bus line(s) deleted, my lord ");
             }
         }   
+        internal bus[] findAllLines(string id)
+        {
+            List<bus> l1 = new List<bus>();
+            foreach (var b1 in this.lines)
+                if (b1.existStation(id))
+                    l1.Add(b1);
+            if (l1.Count == 0)
+                throw new ArgumentException($"error: no bus lines pass through station {id}");
+            return l1.ToArray();
+        }
     }
 }
