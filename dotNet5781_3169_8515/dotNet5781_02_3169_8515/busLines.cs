@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace dotNet5781_02_3169_8515
 {
-    class busLines
+    class busLines//:IEnumerable<bus>
     {
         protected List<bus> lines;
 
@@ -131,5 +132,13 @@ namespace dotNet5781_02_3169_8515
                 throw new ArgumentException($"error: no bus lines pass through station {id}");
             return l1.ToArray();
         }
+        internal bus[] sort()
+        {
+            if (this.lines.Count == 0)
+                throw new ArgumentException("error:bus lines list is empty");//change to custom exeption
+            List<bus> l1 = new List<bus>();
+            l1.Sort((x, y) => x.CompareTo(y));
+            return l1.ToArray();
+        }
     }
-}
+}   
