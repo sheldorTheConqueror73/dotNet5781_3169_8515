@@ -140,8 +140,7 @@ namespace dotNet5781_02_3169_8515
         {
             bool flag = false;
             string id = readId(1);
-                throw new ArgumentException($"error: no bus line matches number {id}");
-
+            central.deleteAllOf(id);//add exeption ?
         }
         static void searchLine()
         {

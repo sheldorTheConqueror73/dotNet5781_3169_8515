@@ -140,5 +140,11 @@ namespace dotNet5781_02_3169_8515
             l1.Sort((x, y) => x.CompareTo(y));
             return l1.ToArray();
         }
+        internal void deleteAllOf(string id)
+        {
+            foreach (var b1 in lines)
+                if (b1.existStation(id))
+                    b1.deleteStation(id);
+        }
     }
 }   
