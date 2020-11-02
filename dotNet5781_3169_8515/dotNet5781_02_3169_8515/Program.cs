@@ -20,7 +20,7 @@ namespace dotNet5781_02_3169_8515
         private static void PrintMenu()//print options menu
         {
             Console.WriteLine(@"Enter your choice: 
-                   1-Add a bus.
+                   1-Add a bus. 
                    2-Delete a bus.
                    3-Delete a station from path of bus.
                    4-Search lines in station.     
