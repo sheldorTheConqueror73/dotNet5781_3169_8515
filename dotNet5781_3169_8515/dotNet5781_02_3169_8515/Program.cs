@@ -127,7 +127,7 @@ namespace dotNet5781_02_3169_8515
 
         static void add()
         {
-
+            central.create();
         }
 
         static void deleteBus()

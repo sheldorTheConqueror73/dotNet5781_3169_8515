@@ -51,6 +51,78 @@ namespace dotNet5781_02_3169_8515
             return i;
 
         }
+        internal static string readId()
+        {
+            Console.WriteLine("enter id:");
+            string rid = Console.ReadLine();
+            for (int i = 0; i < rid.Length; i++)
+                if (rid[i] > 57 || rid[i] < 48)
+                    throw new ArgumentException("invalid input: id must contain be 1-3 digits.");
+            if (rid.Length == 0 || int.Parse(rid) > 1000)
+                throw new ArgumentException("invalid input: id must contain be 1-3 digits. ");
+            
+            return rid;
+
+        }
+        public void create()
+        {
+            string ridBus = readId();
+            bus bs = new bus(ridBus);
+            string rid = "", adress = "";
+            int distance; double lat, longtitude;
+            Console.WriteLine("enter area of the line:");
+            Areas a;
+            int i = 1;
+            foreach (Areas ar in Enum.GetValues(typeof(Areas)))
+            {
+                Console.WriteLine("press " + i + " to  " + ar);
+                i++;
+            }
+            int rArea;
+            bool sucsses = int.TryParse(Console.ReadLine(), out rArea);
+            if (!sucsses)
+                throw new ArgumentException("invalid input: it can only in the range that offered.");
+            bs.Area = (Areas)(Enum.GetValues(bs.Area.GetType())).GetValue(rArea - 1);
+            string choice = "e";
+            do
+            {
+                Console.WriteLine("Press A to add station or any other key to exit:");
+                choice = Console.ReadLine();
+                if (choice == "A" || choice == "a")
+                {
+                    rid = busLineStation.ReadId();
+                    foreach (bus b in lines)
+                    {
+                        foreach (busLineStation bsStation in b.Path)
+                        {
+                            if (bsStation.Id == rid)
+                                throw new ArgumentException("Invalid input: id of station must be unique.");
+                        }
+                    }
+                    lat = busLineStation.ReadlatitudeorLong(1);// do a random nuber
+                    longtitude = busLineStation.ReadlatitudeorLong(2);
+                    Console.WriteLine("enter adress:");
+                    adress = Console.ReadLine();
+                    distance = busLineStation.readDistance();
+                    TimeSpan ts = busLineStation.ReadTimeDrive();
+                    bs.Path.Add(new busLineStation(rid, lat, longtitude, distance, ts, adress));
+                }
+                else
+                {
+                    if (bs.Path.Count == 1)
+                    {
+                        Console.WriteLine(@"Line must contain at least two stations.
+                                              To add station press A to cancel press any key:");
+                        choice = Console.ReadLine();
+                    }
+                }
+
+            } while (choice == "A" || choice == "a");
+            add(bs);
+            Console.WriteLine("sucsses!");
+        }
+
+
         internal void add(bus b1)
         {
             int count = this.count(b1.Id);
