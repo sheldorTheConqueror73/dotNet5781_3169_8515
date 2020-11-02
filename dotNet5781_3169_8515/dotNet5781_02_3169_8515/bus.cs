@@ -10,10 +10,10 @@ namespace dotNet5781_02_3169_8515
     class bus:IComparable
     { 
         List<busLineStation> path = new List<busLineStation>();
-        private string firstStation, lastStation;
+        private busLineStation firstStation, lastStation;
         readonly string id;
         Areas area;
-        public bus(List<busLineStation> _path,string _id, string _firstStation, string _lastStation)
+        public bus(List<busLineStation> _path,string _id, busLineStation _firstStation, busLineStation _lastStation)
         {
             this.path = _path;
             this.id = _id;
@@ -31,7 +31,7 @@ namespace dotNet5781_02_3169_8515
         {
             get => id;
         }
-        internal string FirstStation
+        internal busLineStation FirstStation
         {
             get => firstStation;
             set
@@ -39,7 +39,7 @@ namespace dotNet5781_02_3169_8515
                 firstStation = value;
             }
         }
-        internal string LastStation
+        internal busLineStation LastStation
         {
             get => lastStation;
             set
@@ -169,7 +169,7 @@ namespace dotNet5781_02_3169_8515
             if (first == "" || last == "")
                 throw new ArgumentException("error: the stations do not exists.");
 
-            tmp.firstStation = first;
+            tmp.firstStation =new busLineStation(first);
             for (int i = index; i < path.Count; i++)
             {
                 if (path[i].Id != last)
@@ -183,7 +183,7 @@ namespace dotNet5781_02_3169_8515
                 }
 
             }
-            tmp.lastStation = last;
+            tmp.lastStation = new busLineStation(last);
             tmp.area = this.area;
             tmp.path = tmpLineStations;
             return tmp;

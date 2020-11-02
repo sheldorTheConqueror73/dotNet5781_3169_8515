@@ -8,9 +8,11 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace dotNet5781_02_3169_8515
-{
+{ 
     class busLines//:IEnumerable<bus>
     {
+       static Random r = new Random();
+       static List<busStation> stations;
         protected List<bus> lines;
 
         internal busLines()
@@ -68,8 +70,8 @@ namespace dotNet5781_02_3169_8515
         {
             string ridBus = readId();
             bus bs = new bus(ridBus);
-            string rid = "", adress = "";
-            int distance; double lat, longtitude;
+            string rid = "";
+            int distance;
             Console.WriteLine("enter area of the line:");
             Areas a;
             int i = 1;
@@ -84,28 +86,28 @@ namespace dotNet5781_02_3169_8515
                 throw new ArgumentException("invalid input: it can only in the range that offered.");
             bs.Area = (Areas)(Enum.GetValues(bs.Area.GetType())).GetValue(rArea - 1);
             string choice = "e";
-            do
-            {
-                Console.WriteLine("Press A to add station or any other key to exit:");
-                choice = Console.ReadLine();
-                if (choice == "A" || choice == "a")
+            int choiceint;
+            
+             do
+              {
+                Console.WriteLine("press the number to add station from the list or E to end : ");
+                i = 1;
+                foreach (busStation station in stations)
                 {
-                    rid = busLineStation.ReadId();
-                    foreach (bus b in lines)
-                    {
-                        foreach (busLineStation bsStation in b.Path)
-                        {
-                            if (bsStation.Id == rid)
-                                throw new ArgumentException("Invalid input: id of station must be unique.");
-                        }
-                    }
-                    lat = busLineStation.ReadlatitudeorLong(1);// do a random nuber
-                    longtitude = busLineStation.ReadlatitudeorLong(2);
-                    Console.WriteLine("enter adress:");
-                    adress = Console.ReadLine();
+                    Console.WriteLine("Press " + i + " ID: " + station.Id + " Adress: " + station.Address);
+                    i++;
+                }
+                choice = Console.ReadLine();
+                sucsses = int.TryParse(choice, out choiceint);
+                if(!sucsses&&(choice!="E"&&choice!="e"))
+                    throw new ArgumentException("invalid input: it can only a number in the range that offered or E.");
+                if(choiceint<1||choiceint>i)
+                    throw new ArgumentException("invalid input: it can only a number in the range that offered or E.");
+                if (choice != "e" && choice != "E")
+                {
                     distance = busLineStation.readDistance();
                     TimeSpan ts = busLineStation.ReadTimeDrive();
-                    bs.Path.Add(new busLineStation(rid, lat, longtitude, distance, ts, adress));
+                    bs.Path.Add(new busLineStation(rid, stations[choiceint].Latitude, stations[choiceint].Longitude, distance, ts, stations[choiceint].Address));
                 }
                 else
                 {
@@ -116,12 +118,21 @@ namespace dotNet5781_02_3169_8515
                         choice = Console.ReadLine();
                     }
                 }
-
+          
             } while (choice == "A" || choice == "a");
             add(bs);
             Console.WriteLine("sucsses!");
         }
 
+        internal static void addStationToList()
+        {
+            string rid = busStation.ReadId();
+            Console.WriteLine("enter address: ");
+            string raddress = Console.ReadLine();
+            double rLatitude = r.NextDouble() * (180) - 90;
+            double rLongitude = r.NextDouble() * (360) - 180;
+            stations.Add(new busStation(rid,rLatitude,rLongitude,raddress));
+        }
 
         internal void add(bus b1)
         {

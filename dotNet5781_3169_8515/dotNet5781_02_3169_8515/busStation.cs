@@ -46,6 +46,13 @@ namespace dotNet5781_02_3169_8515
             latitude = NULL;
             longitude = NULL;
         }
+        internal busStation(string _id)
+        {
+            this.id = _id;
+            address = "";
+            latitude = NULL;
+            longitude = NULL;
+        }
         internal busStation(string id, double lat, double lon, string address="")
         {
             this.id = id;

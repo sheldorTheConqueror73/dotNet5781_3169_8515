@@ -10,7 +10,7 @@ namespace dotNet5781_02_3169_8515
     class Program
     {
         private static busLines central = new busLines();//add more buses here
-        enum CHOICE { ADD = 1, DELETEBUS, DELETESTATION, SEARCHLINE, SEARCHTRAVEL,PRINTBUSES,STATIONANDLINES, EXIT };
+        enum CHOICE { ADD = 1,ADDSTATION,ADDSTATOLINE, DELETEBUS, DELETESTATION, SEARCHLINE, SEARCHTRAVEL,PRINTBUSES,STATIONANDLINES, EXIT };
         static void Main(string[] args)
         {
           
@@ -20,14 +20,16 @@ namespace dotNet5781_02_3169_8515
         private static void PrintMenu()//print options menu
         {
             Console.WriteLine(@"Enter your choice: 
-                   1-Add a bus. 
-                   2-Delete a bus.
-                   3-Delete a station from path of bus.
-                   4-Search lines in station.     
-                   5-Search travel options.
-                   6-Print all bus lines.
-                   7-List of all stations and lines passing through them.
-                   8-exit.");
+                   1-Add a bus.
+                   2-Add station.
+                   3-Add station to specific line.
+                   4-Delete a bus.
+                   5-Delete a station from path of bus.
+                   6-Search lines in station.     
+                   7-Search travel options.
+                   8-Print all bus lines.
+                   9-List of all stations and lines passing through them.
+                   0-exit.");
         }
 
         private static void GetInfoFromUser()
@@ -47,7 +49,21 @@ namespace dotNet5781_02_3169_8515
                 switch (choice)
                 {
                     case CHOICE.ADD:
-                        try { add(); }
+                        try { addBus(); }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                        break;
+                    case CHOICE.ADDSTATION:
+                        try { addStation(); }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                        break;
+                    case CHOICE.ADDSTATOLINE:
+                        try { addStationToLine(); }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
@@ -125,9 +141,18 @@ namespace dotNet5781_02_3169_8515
             return id;
         }
 
-        static void add()
+        static void addBus()
         {
             central.create();
+        }
+        static void addStation()
+        {
+            busLines.addStationToList();
+        }
+
+        static void addStationToLine()
+        {
+
         }
 
         static void deleteBus()

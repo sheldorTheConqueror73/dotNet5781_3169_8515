@@ -30,6 +30,11 @@ namespace dotNet5781_02_3169_8515
             distance = -1;
             driveTime= new TimeSpan();
         }
+        internal busLineStation(string _id):base(_id)
+        {
+            distance = -1;
+            driveTime = new TimeSpan();
+        }
         internal busLineStation(string id, double lat, double lon,int distance, TimeSpan time, string address= "") :base(id, lat, lon, address)
         {
             this.distance = distance;
