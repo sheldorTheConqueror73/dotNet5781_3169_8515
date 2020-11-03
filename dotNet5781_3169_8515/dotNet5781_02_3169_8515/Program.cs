@@ -120,16 +120,21 @@ namespace dotNet5781_02_3169_8515
                 }
             } while (choice != CHOICE.EXIT);
         }
-        private static string readId(int mode)
+        private static string readId(int mode,int station=-1)
         {
             int limit = 3;
             string str = "bus line";
+            string station1 = "";
+            if(station==1)
+                station1="start ";
+            if (station == 0)
+                station1 = "end ";
             if (mode == 1)
             {
                 str = "station";
                 limit = 6;
             }
-                Console.WriteLine($"please enter {str} id:");
+                Console.WriteLine($"please enter {station1}{str} id:");
             string id = Console.ReadLine();
             if (id.Length != limit)
                 throw new ArgumentException($"invalid input: id must be {limit} digits");
@@ -179,7 +184,9 @@ namespace dotNet5781_02_3169_8515
         static void searchTravel()
         {
             string start, end;
-            Console.WriteLine(Ente);
+            start = readId(1, 0);
+            end = readId(1, 1);
+            central.canIgetThere(start, end);
         }
             
         static void printBuses()
