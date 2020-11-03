@@ -263,8 +263,27 @@ namespace dotNet5781_02_3169_8515
             foreach (var b1 in lines)
                 if (b1.canIgetThere(start, end))
                     buses.Add(b1);
-            
-
+            if (buses.Count == 0)
+            {
+                Console.WriteLine($"no bus line starts at {start} and ends at {end}");
+                return false;
+            }
+            else
+            {
+                bool flag=printAllOf("",buses.ToArray());
+                return flag;
+            }
+        }
+        internal void printAll()
+        {
+            if(lines.Count==0)
+            {
+                Console.WriteLine("there are no buse lines currently. you shuld really add some, you know");
+                throw new ArgumentException("ther ");//make custom exeption
+            }    
+            bool falg= printAllOf("control", lines.ToArray());
+            if (falg == false)
+                throw new ArgumentException("unexpected error");///make custom exeption
         }
     }
 }   
