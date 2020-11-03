@@ -12,7 +12,7 @@ namespace dotNet5781_02_3169_8515
     class busLines//:IEnumerable<bus>
     {
        static Random r = new Random();
-       static List<busLineStation> stations;
+        static List<busLineStation> stations = new List<busLineStation>();
         protected List<bus> lines;
 
         internal busLines()
@@ -108,11 +108,15 @@ namespace dotNet5781_02_3169_8515
             
              do
               {
-                Console.WriteLine("press the number to add station from the list or E to end : ");
+                if(stations.Count==0)
+                    throw new ArgumentException("Error: the list of stations are empty return to menu to add new station.");
+
+                Console.WriteLine(@" press the number to add station from the list or E to end : 
+                 (If the station it's not found return to menu and adding it to the list).");
                 i = 1;
                 foreach (busStation station in stations)
                 {
-                    Console.WriteLine("Press " + i + " ID: " + station.Id + " Adress: " + station.Address);
+                    Console.WriteLine("Press " + i + " for- ID: " + station.Id + " Adress: " + station.Address);
                     i++;
                 }
                 choice = Console.ReadLine();
@@ -162,7 +166,7 @@ namespace dotNet5781_02_3169_8515
             int i = 1, choiceint;
             foreach (busStation station in stations)
             {
-                Console.WriteLine("Press " + i + " ID: " + station.Id + " Adress: " + station.Address);
+                Console.WriteLine("Press " + i + " for- ID: " + station.Id + " Adress: " + station.Address);
                 i++;
             }
             bool sucsses = int.TryParse(Console.ReadLine(), out choiceint);
@@ -342,6 +346,25 @@ namespace dotNet5781_02_3169_8515
             bool falg= printAllOf("control", lines.ToArray());
             if (falg == false)
                 throw new ArgumentException("unexpected error");///make custom exeption
+        }
+
+        internal void PrintStationAndLines()
+        {
+            foreach(busLineStation station in stations)
+            {
+                station.ToString();
+                foreach(bus bs in lines)
+                {
+                    for(int i = 0; i < bs.Path.Count; i++)
+                    {
+                        if (bs.Path[i].Id == station.Id)
+                        {
+                            Console.WriteLine(bs.Id);
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }   
