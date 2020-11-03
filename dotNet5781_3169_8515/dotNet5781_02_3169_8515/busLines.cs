@@ -12,7 +12,7 @@ namespace dotNet5781_02_3169_8515
     class busLines//:IEnumerable<bus>
     {
        static Random r = new Random();
-       static List<busStation> stations;
+       static List<busLineStation> stations;
         protected List<bus> lines;
 
         internal busLines()
@@ -53,7 +53,7 @@ namespace dotNet5781_02_3169_8515
             return i;
 
         }
-        internal static string readId()
+        private static string readId()
         {
             Console.WriteLine("enter id:");
             string rid = Console.ReadLine();
@@ -65,6 +65,24 @@ namespace dotNet5781_02_3169_8515
             
             return rid;
 
+        }
+        private  int readIdOfExistLine()
+        {
+            int index = -1;
+            Console.WriteLine("Enter line: ");
+            string rid = Console.ReadLine();
+            for (int i = 0; i < rid.Length; i++)
+                if (rid[i] > 57 || rid[i] < 48)
+                    throw new ArgumentException("invalid input: id must contain be 1-3 digits.");
+            if (rid.Length == 0 || int.Parse(rid) > 1000)
+                throw new ArgumentException("invalid input: id must contain be 1-3 digits. ");
+            foreach (bus bs1 in this.lines)
+            {
+                if (bs1.Id == rid)
+                    return index;
+                index++;
+            }
+            return -1 ;
         }
         public void create()
         {
@@ -120,20 +138,60 @@ namespace dotNet5781_02_3169_8515
                 }
           
             } while (choice == "A" || choice == "a");
+            bs.FirstStation = bs.Path[0];
+            bs.LastStation = bs.Path[bs.Path.Count-1];
             add(bs);
             Console.WriteLine("sucsses!");
         }
 
-        internal static void addStationToList()
+        internal  void addStationToList()
         {
             string rid = busStation.ReadId();
+            foreach (busStation bs in stations)
+                if (bs.Id==rid)
+                    throw new ArgumentException("invalid input: the id must to be unique.");
             Console.WriteLine("enter address: ");
             string raddress = Console.ReadLine();
             double rLatitude = r.NextDouble() * (180) - 90;
             double rLongitude = r.NextDouble() * (360) - 180;
-            stations.Add(new busStation(rid,rLatitude,rLongitude,raddress));
+            stations.Add(new busLineStation(rid,rLatitude,rLongitude,raddress));
         }
+        private int choseStationFromList()
+        {
+            Console.WriteLine("press the number to chose station from the list: ");
+            int i = 1, choiceint;
+            foreach (busStation station in stations)
+            {
+                Console.WriteLine("Press " + i + " ID: " + station.Id + " Adress: " + station.Address);
+                i++;
+            }
+            bool sucsses = int.TryParse(Console.ReadLine(), out choiceint);
+            if (!sucsses)
+                throw new ArgumentException("invalid input: it can only a number in the range that offered.");
+            if (choiceint < 1 || choiceint > i)
+                throw new ArgumentException("invalid input: it can only a number in the range that offered.");
+            return choiceint;
+        }
+        internal  void addStationToLine()
+        {
+            Console.WriteLine("Enter line:");
+            int index = readIdOfExistLine();
+            int choiceStationToAdd = choseStationFromList();
+            choiceAorBstart:
+            Console.WriteLine("Enter B to chose enter your station before a specific station or A to enter it after a station:");
+            string choiceAorB = Console.ReadLine();
+            if (choiceAorB != "A" && choiceAorB != "B" && choiceAorB != "a" && choiceAorB != "b")
+            {
+                Console.WriteLine("Invalid Input.");
+                goto choiceAorBstart;
+            }
+            int ChoiceStationAorB = choseStationFromList();
+            if (choiceAorB == "A" || choiceAorB == "a")
+                lines[index].addStationAfter(stations[choiceStationToAdd], stations[ChoiceStationAorB].Id);
+            if (choiceAorB == "B" || choiceAorB == "b")
+                lines[index].addStationBefore(stations[choiceStationToAdd], stations[ChoiceStationAorB].Id);
 
+        }
         internal void add(bus b1)
         {
             int count = this.count(b1.Id);

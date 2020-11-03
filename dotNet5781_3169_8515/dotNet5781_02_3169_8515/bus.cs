@@ -105,6 +105,8 @@ namespace dotNet5781_02_3169_8515
                 }
                 i++;
             }
+            throw new ArgumentException("error: the line doesnt exist in this line.");
+
         }
 
         public bool existStation(string _id)

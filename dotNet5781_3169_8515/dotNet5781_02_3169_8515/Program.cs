@@ -152,12 +152,12 @@ namespace dotNet5781_02_3169_8515
         }
         static void addStation()
         {
-            busLines.addStationToList();
+            central.addStationToList();
         }
 
         static void addStationToLine()
         {
-
+            central.addStationToLine();
         }
 
         static void deleteBus()
@@ -195,7 +195,7 @@ namespace dotNet5781_02_3169_8515
 
         static void printStationAndLines()
         {
-
+           
         }
     }
 }
