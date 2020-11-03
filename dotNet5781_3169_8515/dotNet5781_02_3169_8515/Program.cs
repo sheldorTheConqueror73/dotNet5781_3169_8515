@@ -169,7 +169,6 @@ namespace dotNet5781_02_3169_8515
         
         static void deleteStation()
         {
-            bool flag = false;
             string id = readId(1);
             central.deleteAllOf(id);//add exeption ?
         }
@@ -191,7 +190,7 @@ namespace dotNet5781_02_3169_8515
             
         static void printBuses()
         {
-
+            central.printAll();
         }
 
         static void printStationAndLines()
