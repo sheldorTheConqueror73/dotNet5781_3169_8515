@@ -9,7 +9,7 @@ namespace dotNet5781_02_3169_8515
 {
     class Program
     {
-        private static busLines central = new busLines();//add more buses here
+        private static busLines central = new busLines(); //add more buses here
         enum CHOICE { ADD = 1,ADDSTATION,ADDSTATOLINE, DELETEBUS, DELETESTATION, SEARCHLINE, SEARCHTRAVEL,PRINTBUSES,STATIONANDLINES, EXIT=0 };
         static void Main(string[] args)
         {

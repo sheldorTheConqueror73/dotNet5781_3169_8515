@@ -16,7 +16,17 @@ namespace dotNet5781_02_3169_8515
 
 
        static Random r = new Random();
-        static List<busLineStation> stations = new List<busLineStation>();
+        static List<busLineStation> stations = new List<busLineStation>()
+        {new busLineStation("123456",33.4563,120.3454,"shadmot mechola"),new busLineStation("234567",34.4653,121.3344,"mechola"),new busLineStation("345678",35.45453,112.1894,"Argaman"),new busLineStation("456789",53.353,-32.1894,"Yericho"),
+        new busLineStation("567890",12.353453,02.5442,"Beit Shean"),new busLineStation("678901",11.975,43.245,"Meitar"),new busLineStation("789012",89.34532,-54.2345,"Mahale Adomim"),new busLineStation("890123",54.64523,12.3517,"Kdumim"),
+        new busLineStation("901234",54.4563,-26.363),new busLineStation("012345",-78.4563,31.363),new busLineStation("098765",1.9776,130.353),new busLineStation("876543",77.232,-66.346),
+        new busLineStation("765432",54.4563,-26.363),new busLineStation("654321",66.235,-127.345),new busLineStation("543210",63.76,165.345),new busLineStation("432109",34.543,-43.65325),
+        new busLineStation("321098",35.876543,-54.362236),new busLineStation("210987",-65.574325,153.3463),new busLineStation("109876",73.463352,99.457432),new busLineStation("987654",35.84334,-65.574532),
+        new busLineStation("123890",54.4563,-26.363),new busLineStation("234901",54.4563,-26.363),new busLineStation("345012",54.4563,-26.363),new busLineStation("456123",54.4563,-26.363),
+        new busLineStation("567234",54.4563,-26.363),new busLineStation("678345",54.4563,-26.363),new busLineStation("789456",54.4563,-26.363),new busLineStation("890567",54.4563,-26.363),
+        new busLineStation("012890",54.4563,-26.363),new busLineStation("123123",54.4563,-26.363),new busLineStation("345763",54.4563,-26.363),new busLineStation("876568",54.4563,-26.363),
+        new busLineStation("111333",54.4563,-26.363),new busLineStation("555666",54.4563,-26.363),new busLineStation("222999",54.4563,-26.363),new busLineStation("888333",54.4563,-26.363),
+        new busLineStation("333111",54.4563,-26.363),new busLineStation("432888",54.4563,-26.363),new busLineStation("999339",54.4563,-26.363),new busLineStation("765765",54.4563,-26.363)};
         protected List<bus> lines;
 
         internal busLines()
