@@ -128,9 +128,10 @@ namespace dotNet5781_02_3169_8515
                 Console.WriteLine(@" press the number to add station from the list or E to end : 
                  (If the station it's not found return to menu and adding it to the list).");
                 i = 1;
-                foreach (busStation station in stations)
+                foreach (busLineStation station in stations)
                 {
-                    Console.WriteLine("Press " + i + " for- ID: " + station.Id + " Adress: " + station.Address);
+                    Console.Write("Press " + i + " for-");
+                    Console.WriteLine(station.ToString());                   
                     i++;
                 }
                 choice = Console.ReadLine();
@@ -178,9 +179,10 @@ namespace dotNet5781_02_3169_8515
         {
             Console.WriteLine("press the number to chose station from the list: ");
             int i = 1, choiceint;
-            foreach (busStation station in stations)
+            foreach (busLineStation station in stations)
             {
-                Console.WriteLine("Press " + i + " for- ID: " + station.Id + " Adress: " + station.Address);
+                Console.Write("Press " + i + " for-");
+                Console.WriteLine(station.ToString());
                 i++;
             }
             bool sucsses = int.TryParse(Console.ReadLine(), out choiceint);

@@ -47,7 +47,8 @@ namespace dotNet5781_02_3169_8515
         }
         public override string ToString()
         {
-             return base.ToString()+$",DIST:{this.distance},TIME:{this.DriveTime.ToString()}";
+            // return base.ToString()+$",DIST:{this.distance},TIME:{this.DriveTime.ToString()}";
+            return string.Format("Bus Station Code: {0}, {1}°N  {2}°E", Id, Latitude, Longitude);       
         }
 
         public static int readDistance()
