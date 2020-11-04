@@ -62,8 +62,8 @@ namespace dotNet5781_02_3169_8515
 
         public static TimeSpan ReadTimeDrive()
         {
-            Console.WriteLine(@"enter time travel from last station :
-                         enter hours: ");
+            Console.WriteLine(@"enter time travel from last station :");
+             Console.WriteLine("enter hours: ");
             string inputHours = Console.ReadLine();
             for (int i = 0; i < inputHours.Length; i++)
                 if (inputHours[i] > 57 || inputHours[i] < 48)

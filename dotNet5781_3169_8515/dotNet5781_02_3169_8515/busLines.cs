@@ -17,16 +17,16 @@ namespace dotNet5781_02_3169_8515
 
        static Random r = new Random();
         static List<busLineStation> stations = new List<busLineStation>()
-        {new busLineStation("123456",33.4563,120.3454,"shadmot mechola"),new busLineStation("234567",34.4653,121.3344,"mechola"),new busLineStation("345678",35.45453,112.1894,"Argaman"),new busLineStation("456789",53.353,-32.1894,"Yericho"),
-        new busLineStation("567890",12.353453,02.5442,"Beit Shean"),new busLineStation("678901",11.975,43.245,"Meitar"),new busLineStation("789012",89.34532,-54.2345,"Mahale Adomim"),new busLineStation("890123",54.64523,12.3517,"Kdumim"),
-        new busLineStation("901234",54.4563,-26.363),new busLineStation("012345",-78.4563,31.363),new busLineStation("098765",1.9776,130.353),new busLineStation("876543",77.232,-66.346),
-        new busLineStation("765432",54.4563,-26.363),new busLineStation("654321",66.235,-127.345),new busLineStation("543210",63.76,165.345),new busLineStation("432109",34.543,-43.65325),
-        new busLineStation("321098",35.876543,-54.362236),new busLineStation("210987",-65.574325,153.3463),new busLineStation("109876",73.463352,99.457432),new busLineStation("987654",35.84334,-65.574532),
-        new busLineStation("123890",54.4563,-26.363),new busLineStation("234901",54.4563,-26.363),new busLineStation("345012",54.4563,-26.363),new busLineStation("456123",54.4563,-26.363),
-        new busLineStation("567234",54.4563,-26.363),new busLineStation("678345",54.4563,-26.363),new busLineStation("789456",54.4563,-26.363),new busLineStation("890567",54.4563,-26.363),
-        new busLineStation("012890",54.4563,-26.363),new busLineStation("123123",54.4563,-26.363),new busLineStation("345763",54.4563,-26.363),new busLineStation("876568",54.4563,-26.363),
-        new busLineStation("111333",54.4563,-26.363),new busLineStation("555666",54.4563,-26.363),new busLineStation("222999",54.4563,-26.363),new busLineStation("888333",54.4563,-26.363),
-        new busLineStation("333111",54.4563,-26.363),new busLineStation("432888",54.4563,-26.363),new busLineStation("999339",54.4563,-26.363),new busLineStation("765765",54.4563,-26.363)};
+        {new busLineStation("123456",(float)33.4563,(float)120.3454,"shadmot mechola"),new busLineStation("234567",(float)34.4653,(float)121.3344,"mechola"),new busLineStation("345678",(float)35.45453,(float)112.1894,"Argaman"),new busLineStation("456789",(float)53.353,(float)-32.1894,"Yericho"),
+        new busLineStation("567890",(float)12.353453,(float)02.5442,"Beit Shean"),new busLineStation("678901",(float)11.975,(float)43.245,"Meitar"),new busLineStation("789012",(float)89.34532,(float)-54.2345,"Mahale Adomim"),new busLineStation("890123",(float)54.64523,(float)12.3517,"Kdumim"),
+        new busLineStation("901234",(float)54.5643,(float)-27.46743),new busLineStation("012345",(float)-78.4563,(float)31.363),new busLineStation("098765",(float)1.9776,(float)130.353),new busLineStation("876543",(float)77.232,(float)-66.346),
+        new busLineStation("765432",(float)55.2223,(float)-26.363),new busLineStation("654321",(float)66.235,(float)-127.345),new busLineStation("543210",(float)63.76,(float)165.345),new busLineStation("432109",(float)34.543,(float)-43.65325),
+        new busLineStation("321098",(float)35.876543,(float)-54.362236),new busLineStation("210987",(float)-65.574325,(float)153.3463),new busLineStation("109876",(float)73.463352,(float)99.457432),new busLineStation("987654",(float)35.84334,(float)-65.574532),
+        new busLineStation("123890",(float)11.5434,(float)-74.563234),new busLineStation("234901",(float)43.3643,(float)-65.35734),new busLineStation("345012",(float)-74.25223,(float)11.11111),new busLineStation("456123",(float)-22.223333,(float)22.333222),
+        new busLineStation("567234",(float)55.55553,(float)99.99911),new busLineStation("678345",(float)88.6765,(float)88.7654),new busLineStation("789456",(float)-88.8897,(float)111.13232),new busLineStation("890567",(float)-56.77744,(float)-112.776567),
+        new busLineStation("012890",(float)-44.554433,(float)-177.352232),new busLineStation("123123",(float)-76.661102,(float)10.35323),new busLineStation("345763",(float)70.09677,(float)102.2203),new busLineStation("876568",(float)40.03432,(float)-100.04332),
+        new busLineStation("111333",(float)30.7070,(float)30.3030),new busLineStation("555666",(float)10.10103,(float)-10.10105),new busLineStation("222999",(float)66.0096,(float)9.0909),new busLineStation("888333",(float)40.404032,(float)-90.10203),
+        new busLineStation("333111",(float)32.00001,(float)-32.00007),new busLineStation("432888",(float)51.09874,(float)-52.09143),new busLineStation("999339",(float)22.33088,(float)-66.0083),new busLineStation("765765",(float)34.650652,(float)133.02074)};
         protected List<bus> lines;
 
         internal busLines()
