@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dotNet5781_02_3169_8515.utility;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_3169_8515
 { 
-    class busLines//:IEnumerable<bus>
+    class busLines : IEnumerable<bus>
     {
+
+
        static Random r = new Random();
         static List<busLineStation> stations = new List<busLineStation>();
         protected List<bus> lines;
@@ -341,11 +345,11 @@ namespace dotNet5781_02_3169_8515
             if(lines.Count==0)
             {
                 Console.WriteLine("there are no buse lines currently. you shuld really add some, you know");
-                throw new ArgumentException("ther ");//make custom exeption
+                throw new ListEmptyExeption("ther ");
             }    
             bool falg= printAllOf("control", lines.ToArray());
             if (falg == false)
-                throw new ArgumentException("unexpected error");///make custom exeption
+                throw new unexpectedException("unexpected error");
         }
 
         internal void PrintStationAndLines()
@@ -365,6 +369,16 @@ namespace dotNet5781_02_3169_8515
                     }
                 }
             }
+        }
+
+        public IEnumerator<bus> GetEnumerator()
+        {
+            return ((IEnumerable<bus>)lines).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)lines).GetEnumerator();
         }
     }
 }   
