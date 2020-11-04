@@ -160,8 +160,8 @@ namespace dotNet5781_02_3169_8515
                     throw new ArgumentException("invalid input: the id must to be unique.");
             Console.WriteLine("enter address: ");
             string raddress = Console.ReadLine();
-            double rLatitude = r.NextDouble() * (180) - 90;
-            double rLongitude = r.NextDouble() * (360) - 180;
+            float rLatitude =(float) r.NextDouble() * (180) - 90;
+            float rLongitude = (float)r.NextDouble() * (360) - 180;
             stations.Add(new busLineStation(rid,rLatitude,rLongitude,raddress));
         }
         private int choseStationFromList()

@@ -11,12 +11,12 @@ namespace dotNet5781_02_3169_8515
         readonly static int NULL = -200;//not too sure about this - used to mark empty variable
         protected readonly string id;
         protected string address;
-        protected double latitude, longitude;//set up accessors for these two
+        protected float latitude, longitude;//set up accessors for these two
         internal string Id
         {
             get => id;
         }
-        internal double Latitude
+        internal float Latitude
         {
             get => latitude;
             set
@@ -25,7 +25,7 @@ namespace dotNet5781_02_3169_8515
                     latitude = value;
             }
         }
-        internal double Longitude
+        internal float Longitude
         {
             get => latitude;
             set
@@ -53,7 +53,7 @@ namespace dotNet5781_02_3169_8515
             latitude = NULL;
             longitude = NULL;
         }
-        internal busStation(string id, double lat, double lon, string address="")
+        internal busStation(string id, float lat, float lon, string address="")
         {
             this.id = id;
             this.address = address;
