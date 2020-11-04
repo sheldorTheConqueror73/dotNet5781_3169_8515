@@ -22,7 +22,7 @@ namespace dotNet5781_02_3169_8515
         }
         public bus(string _id)
         {
-            this.path =null;
+            this.path =new List<busLineStation>();
             this.id =_id;
             this.firstStation = null;
             this.lastStation = null;

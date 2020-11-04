@@ -138,13 +138,13 @@ namespace dotNet5781_02_3169_8515
                 sucsses = int.TryParse(choice, out choiceint);
                 if(!sucsses&&(choice!="E"&&choice!="e"))
                     throw new ArgumentException("invalid input: it can only a number in the range that offered or E.");
-                if(choiceint<1||choiceint>i)
+                if((choiceint<1||choiceint>i) && (choice != "E" && choice != "e"))
                     throw new ArgumentException("invalid input: it can only a number in the range that offered or E.");
                 if (choice != "e" && choice != "E")
                 {
                     distance = busLineStation.readDistance();
                     TimeSpan ts = busLineStation.ReadTimeDrive();
-                    bs.Path.Add(new busLineStation(rid, stations[choiceint].Latitude, stations[choiceint].Longitude, distance, ts, stations[choiceint].Address));
+                    bs.Path.Add(new busLineStation(rid, stations[choiceint-1].Latitude, stations[choiceint-1].Longitude, distance, ts, stations[choiceint-1].Address));
                 }
                 else
                 {
@@ -156,7 +156,7 @@ namespace dotNet5781_02_3169_8515
                     }
                 }
           
-            } while (choice == "A" || choice == "a");
+            } while (choice != "e" && choice != "E");
             bs.FirstStation = bs.Path[0];
             bs.LastStation = bs.Path[bs.Path.Count-1];
             add(bs);
