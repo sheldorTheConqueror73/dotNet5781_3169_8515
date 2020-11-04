@@ -20,5 +20,19 @@ namespace dotNet5781_02_3169_8515.utility
         internal unexpectedException(string msg) :base(msg){ }
         internal unexpectedException(string msg, Exception inner):base(msg,inner) { }
 
+    } 
+    class couldntFindBusExeption : Exception
+    {
+        internal couldntFindBusExeption() { }
+        internal couldntFindBusExeption(string msg) :base(msg){ }
+        internal couldntFindBusExeption(string msg, Exception inner):base(msg,inner) { }
+
+    }
+    class noMatchExeption : Exception
+    {
+        internal noMatchExeption() { }
+        internal noMatchExeption(string msg) :base(msg){ }
+        internal noMatchExeption(string msg, Exception inner):base(msg,inner) { }
+
     }
 }

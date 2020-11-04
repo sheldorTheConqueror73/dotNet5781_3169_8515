@@ -221,14 +221,14 @@ namespace dotNet5781_02_3169_8515
                 foreach (var b1 in lines)
                     if (b1.Id == id)
                         return b1;
-                throw new ArgumentException($"error: no bus line matches number {id}");
+                throw new couldntFindBusExeption($"error: no bus line matches number {id}");
             }
         }
         internal void remove(string id)
         {
             int count = this.count(id);
             if(count==0)
-                throw new ArgumentException($"error: no bus line matches number {id}");
+                throw new couldntFindBusExeption($"error: no bus line matches number {id}");
             if (count == 1)
                 foreach (var b1 in lines)
                     if (b1.Id == id)
@@ -278,13 +278,13 @@ namespace dotNet5781_02_3169_8515
                 if (b1.existStation(id))
                     l1.Add(b1);
             if (l1.Count == 0)
-                throw new ArgumentException($"error: no bus lines pass through station {id}");
+                throw new noMatchExeption($"error: no bus lines pass through station {id}");
             return l1.ToArray();
         }
         internal bus[] sort()
         {
             if (this.lines.Count == 0)
-                throw new ArgumentException("error:bus lines list is empty");//change to custom exeption
+                throw new ListEmptyExeption("error:bus lines list is empty");
             List<bus> l1 = new List<bus>();
             l1.Sort((x, y) => x.CompareTo(y));
             return l1.ToArray();
@@ -345,7 +345,7 @@ namespace dotNet5781_02_3169_8515
             if(lines.Count==0)
             {
                 Console.WriteLine("there are no buse lines currently. you shuld really add some, you know");
-                throw new ListEmptyExeption("ther ");
+                throw new ListEmptyExeption("there are no buse lines currently. you shuld really add some, you know");
             }    
             bool falg= printAllOf("control", lines.ToArray());
             if (falg == false)
