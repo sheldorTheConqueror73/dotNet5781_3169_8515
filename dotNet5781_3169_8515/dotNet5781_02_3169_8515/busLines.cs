@@ -128,11 +128,24 @@ namespace dotNet5781_02_3169_8515
                 Console.WriteLine(@" press the number to add station from the list or E to end : 
                  (If the station it's not found return to menu and adding it to the list).");
                 i = 1;
+                
                 foreach (busLineStation station in stations)
                 {
-                    Console.Write("Press " + i + " for-");
-                    Console.WriteLine(station.ToString());                   
-                    i++;
+                    bool passAway = false;
+                    foreach (busLineStation st in bs.Path)
+                    {
+                        if(st.Id==station.Id)
+                        {
+                            passAway = true;
+                            break;
+                        }
+                    }
+                    if (passAway == false)
+                    {
+                        Console.Write("Press " + i + " for-");
+                        Console.WriteLine(station.ToString());
+                        i++;
+                    }
                 }
                 choice = Console.ReadLine();
                 sucsses = int.TryParse(choice, out choiceint);
