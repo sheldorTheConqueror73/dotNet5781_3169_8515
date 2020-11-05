@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_3169_8515
 {
-    class busLineStation : busStation
+    class busLineStation : busStation ,IEquatable<busLineStation>,IComparable<busLineStation>
     {
         private int distance;
         private TimeSpan driveTime;
@@ -80,6 +80,23 @@ namespace dotNet5781_02_3169_8515
             TimeSpan ts = new TimeSpan(int.Parse(inputHours), int.Parse(inputMinutes), 0);
             return ts;
 
+        }
+
+        public int CompareTo(busLineStation other)
+        {
+            if (other == null)
+                return 1;
+
+            else
+                return this.id.CompareTo(other.Id);
+        }
+
+        public bool Equals(busLineStation obj)
+        {
+            if (obj == null) return false;
+            busLineStation objAsPart = obj as busLineStation;
+            if (objAsPart == null) return false;
+            else return Equals(objAsPart);
         }
     }
 }

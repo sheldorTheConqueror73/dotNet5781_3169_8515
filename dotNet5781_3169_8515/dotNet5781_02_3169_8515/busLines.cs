@@ -107,6 +107,7 @@ namespace dotNet5781_02_3169_8515
         }
         public void create()
         {
+            stations.Sort();
             string ridBus = readId();
             bus bs = new bus(ridBus);
             string rid = "";
@@ -209,6 +210,7 @@ namespace dotNet5781_02_3169_8515
         }
         private int choseStationFromList()
         {
+            stations.Sort();
             Console.WriteLine("press the number to chose station from the list: ");
             int i = 1, choiceint;
             foreach (busLineStation station in stations)
