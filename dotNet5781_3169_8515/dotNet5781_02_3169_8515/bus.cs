@@ -78,13 +78,13 @@ namespace dotNet5781_02_3169_8515
             //  need add the reverse list
             return str;
         }
-        public void addStationBefore(busLineStation bs,string _id)
+        public void addStationBefore(busLineStation st,string _id)
         {
-            utilityAddOrRemoveStation(bs, _id, 1);
+            utilityAddOrRemoveStation(st, _id, 1);
         }
-        public void addStationAfter(busLineStation bs, string _id)
+        public void addStationAfter(busLineStation st, string _id)
         {
-            utilityAddOrRemoveStation(bs, _id, 2);
+            utilityAddOrRemoveStation(st, _id, 2);
         }
       
         public void deleteStation(string _id)

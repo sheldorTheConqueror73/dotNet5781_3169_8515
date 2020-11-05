@@ -57,28 +57,28 @@ namespace dotNet5781_02_3169_8515
                 switch (choice)
                 {
                     case CHOICE.ADD:
-                        try { addBus(); }
+                        try { addBus(); Console.WriteLine("The bus added successfully."); }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.ADDSTATION:
-                        try { addStation(); }
+                        try { addStation(); Console.WriteLine("The station added successfully."); }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.ADDSTATOLINE:
-                        try { addStationToLine(); }
+                        try { addStationToLine(); Console.WriteLine("The station added successfully."); }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
                         break;
                     case CHOICE.DELETEBUS:
-                        try { deleteBus(); }
+                        try { deleteBus();; }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
@@ -86,7 +86,7 @@ namespace dotNet5781_02_3169_8515
 
                         break;
                     case CHOICE.DELETESTATION:
-                        try { deleteStation(); }
+                        try { deleteStation(); Console.WriteLine("The station removed successfully."); }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
