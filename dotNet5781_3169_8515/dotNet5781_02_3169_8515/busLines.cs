@@ -14,8 +14,7 @@ namespace dotNet5781_02_3169_8515
     class busLines : IEnumerable<bus>
     {
 
-
-       static Random r = new Random();
+        static Random r = new Random();
         static List<busLineStation> stations = new List<busLineStation>()
         {new busLineStation("123456",(float)33.4563,(float)120.3454,"shadmot mechola"),new busLineStation("234567",(float)34.4653,(float)121.3344,"mechola"),new busLineStation("345678",(float)35.45453,(float)112.1894,"Argaman"),new busLineStation("456789",(float)53.353,(float)-32.1894,"Yericho"),
         new busLineStation("567890",(float)12.353453,(float)02.5442,"Beit Shean"),new busLineStation("678901",(float)11.975,(float)43.245,"Meitar"),new busLineStation("789012",(float)89.34532,(float)-54.2345,"Mahale Adomim"),new busLineStation("890123",(float)54.64523,(float)12.3517,"Kdumim"),
@@ -27,11 +26,19 @@ namespace dotNet5781_02_3169_8515
         new busLineStation("012890",(float)-44.554433,(float)-177.352232),new busLineStation("123123",(float)-76.661102,(float)10.35323),new busLineStation("345763",(float)70.09677,(float)102.2203),new busLineStation("876568",(float)40.03432,(float)-100.04332),
         new busLineStation("111333",(float)30.7070,(float)30.3030),new busLineStation("555666",(float)10.10103,(float)-10.10105),new busLineStation("222999",(float)66.0096,(float)9.0909),new busLineStation("888333",(float)40.404032,(float)-90.10203),
         new busLineStation("333111",(float)32.00001,(float)-32.00007),new busLineStation("432888",(float)51.09874,(float)-52.09143),new busLineStation("999339",(float)22.33088,(float)-66.0083),new busLineStation("765765",(float)34.650652,(float)133.02074)};
-        protected List<bus> lines;
+        protected List<bus> lines=new List<bus>() {
+        new bus(new List<busLineStation>(){ new busLineStation("123456",(float)33.4563,(float)120.3454,"shadmot mechola"),new busLineStation("234567",(float)34.4653,(float)121.3344,"mechola"),new busLineStation("345678",(float)35.45453,(float)112.1894,"Argaman"),new busLineStation("456789",(float)53.353,(float)-32.1894,"Yericho"),
+        new busLineStation("567890",(float)12.353453,(float)02.5442,"Beit Shean"),new busLineStation("678901",(float)11.975,(float)43.245,"Meitar"),new busLineStation("789012",(float)89.34532,(float)-54.2345,"Mahale Adomim"),new busLineStation("890123",(float)54.64523,(float)12.3517,"Kdumim"),
+        new busLineStation("901234",(float)54.5643,(float)-27.46743),new busLineStation("012345",(float)-78.4563,(float)31.363),new busLineStation("098765",(float)1.9776,(float)130.353),new busLineStation("876543",(float)77.232,(float)-66.346),
+        new busLineStation("765432",(float)55.2223,(float)-26.363)},"966",new busLineStation("123456",(float)33.4563,(float)120.3454,"shadmot mechola"),new busLineStation("765432",(float)55.2223,(float)-26.363))};
 
         internal busLines()
         {
             this.lines = new List<bus>();
+        }
+        internal busLines(List<bus> bs)
+        {
+            this.lines = bs;
         }
         internal busLines(bus b1)
         {
@@ -106,7 +113,7 @@ namespace dotNet5781_02_3169_8515
             int distance;
             Console.WriteLine("enter area of the line:");
             Areas a;
-            int i = 1;
+            int i = 1, tIndex = 0;
             foreach (Areas ar in Enum.GetValues(typeof(Areas)))
             {
                 Console.WriteLine("press " + i + " to  " + ar);
@@ -128,10 +135,11 @@ namespace dotNet5781_02_3169_8515
                 Console.WriteLine(@" press the number to add station from the list or E to end : 
                  (If the station it's not found return to menu and adding it to the list).");
                 i = 1;
-                
+                tIndex = 0;
+                List<IntLinesArr> tmpIndex = new List<IntLinesArr>();
                 foreach (busLineStation station in stations)
-                {
-                    bool passAway = false;
+                {                   
+                    bool passAway = false;     
                     foreach (busLineStation st in bs.Path)
                     {
                         if(st.Id==station.Id)
@@ -142,10 +150,12 @@ namespace dotNet5781_02_3169_8515
                     }
                     if (passAway == false)
                     {
+                        tmpIndex.Add(new IntLinesArr(tIndex, i));
                         Console.Write("Press " + i + " for-");
                         Console.WriteLine(station.ToString());
                         i++;
                     }
+                    tIndex++;
                 }
                 choice = Console.ReadLine();
                 sucsses = int.TryParse(choice, out choiceint);
@@ -157,7 +167,15 @@ namespace dotNet5781_02_3169_8515
                 {
                     distance = busLineStation.readDistance();
                     TimeSpan ts = busLineStation.ReadTimeDrive();
-                    bs.Path.Add(new busLineStation(rid, stations[choiceint-1].Latitude, stations[choiceint-1].Longitude, distance, ts, stations[choiceint-1].Address));
+                    foreach(IntLinesArr inArr in tmpIndex)
+                    {
+                        if (inArr.Choice == choiceint)
+                        {
+                            choiceint = inArr.Index;
+                            break;
+                        }
+                    }
+                    bs.Path.Add(new busLineStation(stations[choiceint].Id, stations[choiceint].Latitude, stations[choiceint].Longitude, distance, ts, stations[choiceint].Address));
                 }
                 else
                 {
@@ -168,7 +186,6 @@ namespace dotNet5781_02_3169_8515
                         choice = Console.ReadLine();
                     }
                 }
-          
             } while (choice != "e" && choice != "E");
             bs.FirstStation = bs.Path[0];
             bs.LastStation = bs.Path[bs.Path.Count-1];
@@ -233,9 +250,15 @@ namespace dotNet5781_02_3169_8515
             if(count<2)
             {
                 if (count == 0)
+                {
                     this.lines.Add(b1);
+                    return;
+                }
                 if ((b1.FirstStation == this.lines[count].LastStation) && (b1.LastStation == this.lines[count].FirstStation))// make sure indexer is right
+                {
                     this.lines.Add(b1);
+                    return;
+                }
                 throw new ArgumentException("invalid input: this bus can only do one route and said route in reverse ");//beeter garmmer needed
             }
         }
@@ -379,20 +402,29 @@ namespace dotNet5781_02_3169_8515
 
         internal void PrintStationAndLines()
         {
+            string id="";            
             foreach(busLineStation station in stations)
             {
-                station.ToString();
+                List<string> st = new List<string>();
+                bool exist = false;              
                 foreach(bus bs in lines)
                 {
                     for(int i = 0; i < bs.Path.Count; i++)
                     {
                         if (bs.Path[i].Id == station.Id)
                         {
-                            Console.WriteLine(bs.Id);
+                            exist = true;
+                            st.Add(bs.Id);
                             break;
                         }
                     }
                 }
+                if (exist == true)
+                {
+                    Console.WriteLine(station.ToString());
+                    foreach(string s in st)
+                        Console.WriteLine(s);
+                }                
             }
         }
 
