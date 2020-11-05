@@ -199,7 +199,6 @@ namespace dotNet5781_02_3169_8515
             bs.FirstStation = bs.Path[0];
             bs.LastStation = bs.Path[bs.Path.Count-1];
             add(bs);
-            Console.WriteLine("sucsses!");
         }
 
         internal  void addStationToList()
@@ -216,16 +215,31 @@ namespace dotNet5781_02_3169_8515
         }
         private int choseStationFromList(int mode,int index)
         {
-            stations.Sort();
-            
+            stations.Sort();     
             int i = 1, choiceint;
+            int tIndex = 0;
+            List<IntLinesArr> tmpIndex = new List<IntLinesArr>();
             if (mode == 1)
             {
                 foreach (busLineStation station in stations)
                 {
-                    Console.Write("Press " + i + " for-");
-                    Console.WriteLine(station.ToString());
-                    i++;
+                    bool passAway = false;
+                    foreach (busLineStation tmpst in lines[index].Path)
+                    {
+                        if (tmpst.Id == station.Id)
+                        {
+                            passAway = true;
+                            break;
+                        }
+                    }
+                    if (passAway == false)
+                    {
+                        tmpIndex.Add(new IntLinesArr(tIndex, i));
+                        Console.Write("Press " + i + " for-");
+                        Console.WriteLine(station.ToString());
+                        i++;
+                    }
+                    tIndex++;
                 }
             }
             else
@@ -243,6 +257,14 @@ namespace dotNet5781_02_3169_8515
                 throw new ArgumentException("invalid input: it can only a number in the range that offered.");
             if (choiceint < 1 || choiceint > i)
                 throw new ArgumentException("invalid input: it can only a number in the range that offered.");
+            foreach (IntLinesArr inArr in tmpIndex)
+            {
+                if (inArr.Choice == choiceint)
+                {
+                    choiceint = inArr.Index;
+                    break;
+                }
+            }
             return choiceint;
         }
         internal  void addStationToLine()
@@ -250,7 +272,7 @@ namespace dotNet5781_02_3169_8515
             int index = readIdOfExistLine();
             if(index==-1)
                 throw new ArgumentException("invalid input: it can only a line  that already exist.");
-            int choiceStationToAdd = choseStationFromList(1,0);
+            int choiceStationToAdd = choseStationFromList(1,index);
             choiceAorBstart:
             Console.WriteLine("Enter B to chose enter your station before a specific station or A to enter it after a station:");
             string choiceAorB = Console.ReadLine();
@@ -259,11 +281,13 @@ namespace dotNet5781_02_3169_8515
                 Console.WriteLine("Invalid Input.");
                 goto choiceAorBstart;
             }
-            int ChoiceStationAorB = choseStationFromList(2,index);
+            int ChoiceStationAorB = choseStationFromList(2,index)-1;
             if (choiceAorB == "A" || choiceAorB == "a")
-                lines[index].addStationAfter(stations[choiceStationToAdd], stations[ChoiceStationAorB].Id);
+            {
+                lines[index].addStationAfter(stations[choiceStationToAdd], lines[index].Path[ChoiceStationAorB].Id);
+            }
             if (choiceAorB == "B" || choiceAorB == "b")
-                lines[index].addStationBefore(stations[choiceStationToAdd], stations[ChoiceStationAorB].Id);
+                lines[index].addStationBefore( stations[choiceStationToAdd], lines[index].Path[ChoiceStationAorB].Id);
 
         }
         internal void add(bus b1)

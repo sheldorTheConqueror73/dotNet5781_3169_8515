@@ -69,12 +69,14 @@ namespace dotNet5781_02_3169_8515
             for (int i = 0; i < inputHours.Length; i++)
                 if (inputHours[i] > 57 || inputHours[i] < 48)
                     throw new ArgumentException("invalid input: can only be a positive number.");
+            if(int.Parse(inputHours)<0)
+                throw new ArgumentException("invalid input: can only be a positive number.");
             Console.WriteLine("enter minutes: ");
             string inputMinutes = Console.ReadLine();
             for (int i = 0; i < inputMinutes.Length; i++)
                 if (inputMinutes[i] > 57 || inputMinutes[i] < 48)
                     throw new ArgumentException("invalid input: can only be a positive number.");
-            if (int.Parse(inputMinutes) > 59)
+            if (int.Parse(inputMinutes) > 59|| int.Parse(inputMinutes) < 0)
                 throw new ArgumentException("invalid input: can only be a between 1-59.");
 
             TimeSpan ts = new TimeSpan(int.Parse(inputHours), int.Parse(inputMinutes), 0);

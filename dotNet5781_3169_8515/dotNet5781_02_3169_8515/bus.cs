@@ -99,13 +99,13 @@ namespace dotNet5781_02_3169_8515
 
                 if (bsl.Id == _id)
                 {
-                    if(mode==1)
+                    if (mode == 1) 
                         path.Insert(i, bs);
                     else if(mode==2)
                         path.Insert(i + 1, bs);
                     else if(mode==3)
                         path.RemoveAt(i);
-                    break;
+                    return;
                 }
                 i++;
             }
