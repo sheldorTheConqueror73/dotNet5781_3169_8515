@@ -127,7 +127,6 @@ namespace dotNet5781_02_3169_8515
             string choice = "e";
             int choiceint;
             busLineStation tmpStat = new busLineStation() ;
-            bool firstChice=true;
              do
               {
                 if(stations.Count==0)
@@ -177,17 +176,11 @@ namespace dotNet5781_02_3169_8515
                         }
                     }
                     tmpStat = new busLineStation(stations[choiceint].Id, stations[choiceint].Latitude, stations[choiceint].Longitude, distance, ts, stations[choiceint].Address);
-                    bs.Path.Add(tmpStat);
-                    if (firstChice == true)
-                    {
-                        bs.FirstStation = tmpStat;
-                        firstChice = false;
-                    }
+                    bs.Path.Add(tmpStat);                   
                     
                 }
                 else
-                {
-                    bs.LastStation = tmpStat;
+                {                  
                     if (bs.Path.Count == 1)
                     {
                         Console.WriteLine(@"Line must contain at least two stations.
