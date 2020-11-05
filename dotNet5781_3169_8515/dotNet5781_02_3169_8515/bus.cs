@@ -66,9 +66,13 @@ namespace dotNet5781_02_3169_8515
         public override string ToString()
         {
             string str = $"ID:{this.id},AREA:{this.area},PATH:";
+            int i = 0;
             foreach(busLineStation bs in path)
             {
-                str += bs.Id+"!";
+                str += bs.Id;
+                if (i != path.Count - 1)
+                    str += " -> ";
+                i++;
             }
          
             //  need add the reverse list

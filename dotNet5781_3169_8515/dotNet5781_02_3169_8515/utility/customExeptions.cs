@@ -35,4 +35,11 @@ namespace dotNet5781_02_3169_8515.utility
         internal noMatchExeption(string msg, Exception inner):base(msg,inner) { }
 
     }
+    class BusLimitExceededExecption : Exception
+    {
+        internal BusLimitExceededExecption() { }
+        internal BusLimitExceededExecption(string msg) :base(msg){ }
+        internal BusLimitExceededExecption(string msg, Exception inner):base(msg,inner) { }
+
+    }
 }

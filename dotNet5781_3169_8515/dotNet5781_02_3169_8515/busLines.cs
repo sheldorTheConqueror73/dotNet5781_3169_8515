@@ -247,6 +247,7 @@ namespace dotNet5781_02_3169_8515
         internal void add(bus b1)
         {
             int count = this.count(b1.Id);
+            int index = this.indexof(b1.Id);
             if (count == 2)
                 throw new ArgumentException("invalid input: there are already two buse lines with this id in the system. the limit is 2");
             if(count<2)
@@ -256,12 +257,12 @@ namespace dotNet5781_02_3169_8515
                     this.lines.Add(b1);
                     return;
                 }
-                if ((b1.FirstStation == this.lines[count].LastStation) && (b1.LastStation == this.lines[count].FirstStation))// make sure indexer is right
+                if ((b1.FirstStation == this.lines[index].LastStation) && (b1.LastStation == this.lines[index].FirstStation))// make sure indexer is right
                 {
                     this.lines.Add(b1);
                     return;
                 }
-                throw new ArgumentException("invalid input: this bus can only do one route and said route in reverse ");//beeter garmmer needed
+                throw new BusLimitExceededExecption("invalid input: this bus can only do one route and said route in reverse ");//beeter garmmer needed
             }
         }
         internal bus this[string id]// meed to look up imdexer ref
@@ -282,7 +283,10 @@ namespace dotNet5781_02_3169_8515
             if (count == 1)
                 foreach (var b1 in lines)
                     if (b1.Id == id)
+                    {
                         lines.Remove(b1);
+                        return;
+                    }
             if(count==2)
             {
                 bool first = true,flag;
