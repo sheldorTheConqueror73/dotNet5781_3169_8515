@@ -264,7 +264,7 @@ namespace dotNet5781_02_3169_8515
                     this.lines.Add(b1);
                     return;
                 }
-                if ((b1.FirstStation == this.lines[index].LastStation) && (b1.LastStation == this.lines[index].FirstStation))// make sure indexer is right
+                if ((b1.FirstStation.Id == this.lines[index].LastStation.Id) && (b1.LastStation.Id == this.lines[index].FirstStation.Id))// make sure indexer is right
                 {
                     this.lines.Add(b1);
                     return;
