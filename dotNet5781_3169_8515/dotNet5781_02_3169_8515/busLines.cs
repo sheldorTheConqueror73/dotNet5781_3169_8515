@@ -272,19 +272,20 @@ namespace dotNet5781_02_3169_8515
                 foreach (var b1 in lines)
                     if (b1.Id == id)
                         return b1;
-                throw new couldntFindBusExeption($"error: no bus line matches number {id}");
+                throw new couldntFindBusExeption($"error: no bus line matches id {id}");
             }
         }
         internal void remove(string id)
         {
             int count = this.count(id);
             if(count==0)
-                throw new couldntFindBusExeption($"error: no bus line matches number {id}");
+                throw new couldntFindBusExeption($"error: no bus line matches id {id}");
             if (count == 1)
                 foreach (var b1 in lines)
                     if (b1.Id == id)
                     {
                         lines.Remove(b1);
+                        Console.WriteLine("bus line deleted, my lord ");
                         return;
                     }
             if(count==2)
