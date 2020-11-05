@@ -126,7 +126,8 @@ namespace dotNet5781_02_3169_8515
             bs.Area = (Areas)(Enum.GetValues(bs.Area.GetType())).GetValue(rArea - 1);
             string choice = "e";
             int choiceint;
-            
+            busLineStation tmpStat = new busLineStation() ;
+            bool firstChice=true;
              do
               {
                 if(stations.Count==0)
@@ -157,7 +158,7 @@ namespace dotNet5781_02_3169_8515
                     }
                     tIndex++;
                 }
-                choice = Console.ReadLine();
+                choice = Console.ReadLine();               
                 sucsses = int.TryParse(choice, out choiceint);
                 if(!sucsses&&(choice!="E"&&choice!="e"))
                     throw new ArgumentException("invalid input: it can only a number in the range that offered or E.");
@@ -175,10 +176,18 @@ namespace dotNet5781_02_3169_8515
                             break;
                         }
                     }
-                    bs.Path.Add(new busLineStation(stations[choiceint].Id, stations[choiceint].Latitude, stations[choiceint].Longitude, distance, ts, stations[choiceint].Address));
+                    tmpStat = new busLineStation(stations[choiceint].Id, stations[choiceint].Latitude, stations[choiceint].Longitude, distance, ts, stations[choiceint].Address);
+                    bs.Path.Add(tmpStat);
+                    if (firstChice == true)
+                    {
+                        bs.FirstStation = tmpStat;
+                        firstChice = false;
+                    }
+                    
                 }
                 else
                 {
+                    bs.LastStation = tmpStat;
                     if (bs.Path.Count == 1)
                     {
                         Console.WriteLine(@"Line must contain at least two stations.
