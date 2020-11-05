@@ -151,7 +151,7 @@ namespace dotNet5781_02_3169_8515
                 throw new ArgumentException($"invalid input: id must be {limit} digits");
             foreach (char i in id)
             {
-                if((i<'9')||(i>'0'))
+                if((i>'9')||(i<'0'))
                     throw new ArgumentException($"invalid input: id must be {limit} digits");
             }
             return id;
@@ -173,7 +173,7 @@ namespace dotNet5781_02_3169_8515
 
         static void deleteBus()
         {
-            string id=readId(1);
+            string id=readId(0);
             central.remove(id);
         }
 

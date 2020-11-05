@@ -260,7 +260,7 @@ namespace dotNet5781_02_3169_8515
                     this.lines.Add(b1);
                     return;
                 }
-                throw new ArgumentException("invalid input: this bus can only do one route and said route in reverse ");//beeter garmmer needed
+                throw new BusLimitExceededExecption("invalid input: this bus can only do one route and said route in reverse ");//beeter garmmer needed
             }
         }
         internal bus this[string id]// meed to look up imdexer ref
@@ -281,7 +281,10 @@ namespace dotNet5781_02_3169_8515
             if (count == 1)
                 foreach (var b1 in lines)
                     if (b1.Id == id)
+                    {
                         lines.Remove(b1);
+                        return;
+                    }
             if(count==2)
             {
                 bool first = true,flag;
