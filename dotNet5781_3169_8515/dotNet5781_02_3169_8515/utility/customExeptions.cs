@@ -42,4 +42,11 @@ namespace dotNet5781_02_3169_8515.utility
         internal BusLimitExceededExecption(string msg, Exception inner):base(msg,inner) { }
 
     }
+    class pathEmptyException : Exception
+    {
+        internal pathEmptyException() { }
+        internal pathEmptyException(string msg) :base(msg){ }
+        internal pathEmptyException(string msg, Exception inner):base(msg,inner) { }
+
+    }
 }

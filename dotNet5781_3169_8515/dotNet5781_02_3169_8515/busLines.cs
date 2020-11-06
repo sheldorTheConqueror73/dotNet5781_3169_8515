@@ -190,12 +190,13 @@ namespace dotNet5781_02_3169_8515
                 {                  
                     if (bs.Path.Count == 1)
                     {
-                        Console.WriteLine(@"Line must contain at least two stations.
-                                              To add station press A to cancel press any key:");
+                        Console.WriteLine("Line must contain at least two stations.\nTo add station press A, to cancel press any key:");
                         choice = Console.ReadLine();
                     }
                 }
             } while (choice != "e" && choice != "E");
+            if (bs.Path.Count == 0)
+                throw new pathEmptyException("invalid input: path is empty");
             bs.FirstStation = bs.Path[0];
             bs.LastStation = bs.Path[bs.Path.Count-1];
             add(bs);
@@ -455,7 +456,7 @@ namespace dotNet5781_02_3169_8515
 
         internal void PrintStationAndLines()
         {
-            stations.Sort();
+            stations.Sort();    
             foreach(busLineStation station in stations)
             {
                 List<string> st = new List<string>();
