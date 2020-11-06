@@ -143,8 +143,12 @@ namespace dotNet5781_02_3169_8515
             }
                 Console.WriteLine($"please enter {station1}{str} id:");
             string id = Console.ReadLine();
+            if(mode==0)
             if (id.Length <1||id.Length>3)
                 throw new ArgumentException($"invalid input: id must be 1-3 digits");
+            if (mode == 1)
+                if (id.Length < 1 || id.Length > 6)
+                    throw new ArgumentException($"invalid input: id must be 1-6 digits");
             foreach (char i in id)
             {
                 if((i>'9')||(i<'0'))
@@ -181,17 +185,21 @@ namespace dotNet5781_02_3169_8515
         }
         static void searchLine()
         {
-            string id = readId(0);
-            Console.WriteLine($"here are all the bus lines who drive through station{id}:");
+            string id = readId(1);
+            if (!central.existStationInMainList(id))
+                throw new ArgumentException("Invalid input: it can only be an exist station.");
+            Console.WriteLine($"here are all the bus lines who drive through station {id}:");
             bool flag = central.printAllOf(id);
             if(!flag)
-                Console.WriteLine($"no bus lines drive through station{id}");
+                Console.WriteLine($"no bus lines drive through station {id}");
         }
         static void searchTravel()
         {
             string start, end;
             start = readId(1, 0);
             end = readId(1, 1);
+            if (!central.existStationInMainList(start)|| !central.existStationInMainList(end))
+                throw new ArgumentException("Invalid input: it can only be an exist stations.");
             central.canIgetThere(start, end);
         }
             

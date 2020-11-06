@@ -423,6 +423,13 @@ namespace dotNet5781_02_3169_8515
                 if (b1.existStation(id))
                     b1.deleteStation(id);
         }
+        internal bool existStationInMainList(string id)
+        {
+            foreach (busLineStation station in stations)
+                if (station.Id == id)
+                    return true;
+            return false;
+        }
         internal bool printAllOf(string id, bus[] buses = null)
         {
 
