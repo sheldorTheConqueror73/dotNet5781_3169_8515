@@ -87,7 +87,7 @@ namespace dotNet5781_02_3169_8515
                 throw new ArgumentException("invalid input: id must contain be 1-3 digits. ");
             
             return rid;
-
+            
         }
         private  int readIdOfExistLine()
         {
