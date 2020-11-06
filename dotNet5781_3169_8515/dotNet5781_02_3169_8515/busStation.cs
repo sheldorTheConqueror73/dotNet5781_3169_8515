@@ -27,7 +27,7 @@ namespace dotNet5781_02_3169_8515
         }
         internal float Longitude
         {
-            get => latitude;
+            get => longitude;
             set
             {
                 if (!((value < -180) || (value > 180)))

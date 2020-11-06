@@ -455,7 +455,7 @@ namespace dotNet5781_02_3169_8515
 
         internal void PrintStationAndLines()
         {
-            string id="";            
+            stations.Sort();
             foreach(busLineStation station in stations)
             {
                 List<string> st = new List<string>();
