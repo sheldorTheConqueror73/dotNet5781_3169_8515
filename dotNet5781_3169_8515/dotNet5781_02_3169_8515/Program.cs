@@ -176,7 +176,7 @@ namespace dotNet5781_02_3169_8515
         }
 
         
-        static void deleteStation()
+        static void deleteStation()// delete from one bus only
         {
             string id = readId(1);
             central.deleteAllOf(id);//add exeption ?
