@@ -99,7 +99,7 @@ namespace dotNet5781_02_3169_8515
 
                 if (station.Id == _id)
                 {
-                    if ((path[0].Id == station.Id) || (path[path.Count - 1].Id == station.Id))
+                    if (((path[0].Id == station.Id)&&(mode==1)) || ((path[path.Count - 1].Id == station.Id)&&(mode==2)))
                         throw new ArgumentException("station can added only between the outlet station to destination station.");
                     if (mode == 1) 
                         path.Insert(i, bs);
