@@ -94,11 +94,13 @@ namespace dotNet5781_02_3169_8515
         public void utilityAddOrRemoveStation(busLineStation bs, string _id, int mode)
         {
             int i = 0;
-            foreach (busLineStation bsl in path)
+            foreach (busLineStation station in path)
             {
 
-                if (bsl.Id == _id)
+                if (station.Id == _id)
                 {
+                    if ((path[0].Id == station.Id) || (path[path.Count - 1].Id == station.Id))
+                        throw new ArgumentException("station can added only between the outlet station to destination station.");
                     if (mode == 1) 
                         path.Insert(i, bs);
                     else if(mode==2)

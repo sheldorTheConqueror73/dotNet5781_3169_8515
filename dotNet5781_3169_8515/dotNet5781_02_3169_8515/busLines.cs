@@ -95,31 +95,57 @@ namespace dotNet5781_02_3169_8515
             {
                 Console.WriteLine(bs.Id);
             }
-            int index = 0;
+            int k=0;
+            int indexOfBus1 = -1, indexOfBus2 = -1;
+            bus bs1 = null, bs2 = null;
             Console.WriteLine("Enter line: ");
             string rid = Console.ReadLine();
+            int choice = 1;
             for (int i = 0; i < rid.Length; i++)
                 if (rid[i] > 57 || rid[i] < 48)
                     throw new ArgumentException("invalid input: id must contain be 1-3 digits.");
             if (rid.Length == 0 || int.Parse(rid) > 1000)
                 throw new ArgumentException("invalid input: id must contain be 1-3 digits. ");
-            foreach (bus bs1 in this.lines)
+            foreach (bus bs in this.lines)
             {
-                if (bs1.Id == rid)
-                    return index;
-                index++;
+                if (bs.Id == rid)
+                {
+                    if (indexOfBus2 == -1 && indexOfBus1 != -1)
+                    {
+                        indexOfBus2 = k;
+                        break;
+                    }
+                    if (indexOfBus1 == -1)
+                        indexOfBus1 = k;                    
+                }                  
+                k++;
             }
+            if (indexOfBus2 != -1 && indexOfBus1 != -1)
+            {
+                bs1 = lines[indexOfBus1];
+                bs2 = lines[indexOfBus2];
+                Console.WriteLine($"Press 1 for {bs1.ToString()}");
+                Console.WriteLine($"Press 2 for {bs2.ToString()}");
+                bool sucsses = int.TryParse(Console.ReadLine(), out choice);
+                if ((!sucsses) || (choice != 1 && choice != 2))
+                    throw new ArgumentException("invalid input: it can be only 1/2/3 .");
+                if (choice == 1)
+                    return indexOfBus1;
+                if (choice == 2)
+                    return indexOfBus2;
+            }
+            else if (indexOfBus1 != -1)
+                return indexOfBus1;
             return -1 ;
         }
+
         public void create()
         {
             stations.Sort();
             string ridBus = readId();
             bus bs = new bus(ridBus);
-            string rid = "";
             int distance;
             Console.WriteLine("enter area of the line:");
-            Areas a;
             int i = 1, tIndex = 0;
             foreach (Areas ar in Enum.GetValues(typeof(Areas)))
             {
