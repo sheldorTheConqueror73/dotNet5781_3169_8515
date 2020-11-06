@@ -131,7 +131,6 @@ namespace dotNet5781_02_3169_8515
         }
         private static string readId(int mode,int station=-1)
         {
-            int limit = 3;
             string str = "bus line";
             string station1 = "";
             if(station==1)
@@ -141,16 +140,15 @@ namespace dotNet5781_02_3169_8515
             if (mode == 1)
             {
                 str = "station";
-                limit = 6;
             }
                 Console.WriteLine($"please enter {station1}{str} id:");
             string id = Console.ReadLine();
-            if (id.Length != limit)
-                throw new ArgumentException($"invalid input: id must be {limit} digits");
+            if (id.Length <1||id.Length>3)
+                throw new ArgumentException($"invalid input: id must be 1-3 digits");
             foreach (char i in id)
             {
                 if((i>'9')||(i<'0'))
-                    throw new ArgumentException($"invalid input: id must be {limit} digits");
+                    throw new ArgumentException($"invalid input: id must be up to 6 digits digits");
             }
             return id;
         }

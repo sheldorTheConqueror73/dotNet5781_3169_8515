@@ -64,8 +64,8 @@ namespace dotNet5781_02_3169_8515
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
-            if (idst.Length != 6)
-                throw new ArgumentException("invalid input: id can only contain 6 digits");
+            if (idst.Length > 6|| idst.Length <1)
+                throw new ArgumentException("invalid input: id can only contain 1-6 digits");
             return idst;
         }
         public override string ToString()
@@ -73,7 +73,9 @@ namespace dotNet5781_02_3169_8515
             string str = $"{this.Address} ,";
             if (this.Address == "")
                 str = "";
-            return $"{str}Bus Station Code: {Id}, {Latitude}°N  {Longitude}°E"; 
+            string lat=(Latitude>0)?"N":"S";
+            string lon = (Longitude > 0) ? "E" : "W";
+            return $"{str}Bus Station Code: {Id}, {Latitude}°{lat}  {Longitude}°{lon}"; 
         }
 
     }
