@@ -128,7 +128,7 @@ namespace dotNet5781_02_3169_8515
             }
             int rArea;
             bool sucsses = int.TryParse(Console.ReadLine(), out rArea);
-            if (!sucsses)
+            if ((!sucsses)||((rArea<1)||(rArea>i)))
                 throw new ArgumentException("invalid input: it can only in the range that offered.");
             bs.Area = (Areas)(Enum.GetValues(bs.Area.GetType())).GetValue(rArea - 1);
             string choice = "e";
