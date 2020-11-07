@@ -206,6 +206,7 @@ namespace dotNet5781_02_3169_8515
             
         static void printBuses()
         {
+            central.order();
             central.printAll();
         }
 

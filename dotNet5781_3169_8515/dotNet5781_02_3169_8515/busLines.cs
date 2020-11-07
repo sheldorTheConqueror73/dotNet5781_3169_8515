@@ -562,7 +562,28 @@ namespace dotNet5781_02_3169_8515
                 }                
             }
         }
-
+        internal void orderById()
+        {
+            bool flag, flag2;
+            bus temp;
+            int num, num2;
+            for (int j = 0; j <= lines.Count - 2; j++)
+            {
+                for (int i = 0; i <= lines.Count - 2; i++)
+                {
+                    flag=int.TryParse(lines[i].Id, out num);
+                    flag2= int.TryParse(lines[i + 1].Id, out num2);
+                    if ((!flag) | (!flag2))
+                        throw new unexpectedException("error, please try again");
+                    if (num > num2)
+                    {
+                        temp = lines[i + 1];
+                        lines[i + 1] = lines[i];
+                        lines[i] = temp;
+                    }
+                }
+            }
+        }
         public IEnumerator<bus> GetEnumerator()
         {
             return ((IEnumerable<bus>)lines).GetEnumerator();
