@@ -1,4 +1,5 @@
-﻿using System;
+﻿using dotNet5781_02_3169_8515.utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Services;
@@ -188,7 +189,7 @@ namespace dotNet5781_02_3169_8515
         {
             string id = readId(1);
             if (!central.existStationInMainList(id))
-                throw new ArgumentException("Invalid input: it can only be an exist station.");
+                throw new noMatchExeption($"Invalid input: no station matches id {id}.");
             Console.WriteLine($"here are all the bus lines who drive through station {id}:");
             bool flag = central.printAllOf(id);
             if(!flag)
