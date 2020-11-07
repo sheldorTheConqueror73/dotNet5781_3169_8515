@@ -419,9 +419,15 @@ namespace dotNet5781_02_3169_8515
         }
         internal void deleteAllOf(string id)
         {
+            bool flag = false;
             foreach (var b1 in lines)
                 if (b1.existStation(id))
+                { 
                     b1.deleteStation(id);
+                    flag = true;
+                }
+            if (flag == false)
+                throw new noMatchExeption($"no station matches id {id}");
         }
         internal bool existStationInMainList(string id)
         {
