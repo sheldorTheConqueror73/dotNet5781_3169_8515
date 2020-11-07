@@ -201,7 +201,7 @@ namespace dotNet5781_02_3169_8515
             start = readId(1, 0);
             end = readId(1, 1);
             if (!central.existStationInMainList(start)|| !central.existStationInMainList(end))
-                throw new ArgumentException("Invalid input: it can only be an exist stations.");
+                throw new ArgumentException($"Invalid input: no such station.");
             central.canIgetThere(start, end);
         }
             
