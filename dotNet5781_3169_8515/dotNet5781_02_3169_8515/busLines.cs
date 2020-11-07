@@ -417,17 +417,59 @@ namespace dotNet5781_02_3169_8515
             l1.Sort((x, y) => x.CompareTo(y));
             return l1.ToArray();
         }
-        internal void deleteAllOf(string id)
+        internal void deleteAllOf(string Bid, string id)
         {
-            bool flag = false;
+            int count = 0;
+            foreach (var bi in lines)
+                if ((bi.Id==Bid)&&(bi.existStation(id)))
+                    count++;
+            if (count==0)
+                throw new noMatchExeption($"no station matches id {id}");
+            if(count==1)
             foreach (var b1 in lines)
-                if (b1.existStation(id))
+                if ((b1.Id == Bid) && (b1.existStation(id)))
                 { 
                     b1.deleteStation(id);
-                    flag = true;
                 }
-            if (flag == false)
-                throw new noMatchExeption($"no station matches id {id}");
+            if (count == 2)
+            {
+                bool first = true, flag;
+                bus b1 = null, b2 = null;
+                foreach (var bn in lines)
+                    if (bn.Id == Bid)
+                    {
+                        if (first)
+                        {
+                            b1 = bn;
+                            first = false;
+                        }
+                        else
+                            b2 = bn;
+                    }
+                Console.WriteLine($"there are 2 matches for you search. which one would you like to delete?\nenter 1 for:\n{b1.ToString()}\n 2 for:\n{b2.ToString()}\n or enter 3 to delete both:");
+                int option;
+                flag = int.TryParse(Console.ReadLine(), out option);
+                if ((!flag) || ((option != 1) && (option != 2) && (option != 3)))
+                    throw new ArgumentException($"error: invalid input. please enter 1,2 or 3");
+                if (option == 1)
+                {
+                    b1.deleteStation(id);
+                }
+
+                if (option == 2)
+                {
+                    b2.deleteStation(id);
+
+                }
+                if (option == 3)
+                {
+                    b1.deleteStation(id);
+                    b2.deleteStation(id);
+                }
+               // Console.WriteLine("bus station(s) deleted, my lord ");
+            }
+            else
+                throw new unexpectedException("error, please try again");
         }
         internal bool existStationInMainList(string id)
         {

@@ -180,8 +180,9 @@ namespace dotNet5781_02_3169_8515
         
         static void deleteStation()// delete from one bus only
         {
+            string BId = readId(0);
             string id = readId(1);
-            central.deleteAllOf(id);//add exeption ?
+            central.deleteAllOf(BId,id);//add exeption ?
         }
         static void searchLine()
         {
