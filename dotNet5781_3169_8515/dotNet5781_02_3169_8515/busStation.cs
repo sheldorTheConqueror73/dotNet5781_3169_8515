@@ -56,6 +56,9 @@ namespace dotNet5781_02_3169_8515
         internal busStation(string id, float lat, float lon, string address="")
         {
             this.id = id;
+            if (address == "")
+                address = "Unnamed station";
+
             this.address = address;
             this.latitude = lat;
             this.longitude = lon;
