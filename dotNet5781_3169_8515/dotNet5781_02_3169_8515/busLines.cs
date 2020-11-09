@@ -419,10 +419,18 @@ namespace dotNet5781_02_3169_8515
         }
         internal void deleteAllOf(string Bid, string id)
         {
+            bool match=false;
             int count = 0;
             foreach (var bi in lines)
-                if ((bi.Id==Bid)&&(bi.existStation(id)))
-                    count++;
+            {   if(bi.Id==Bid)
+                {
+                    match = true;
+                    if (bi.existStation(id))
+                        count++;
+                }
+            }
+            if(!match)
+                throw new noMatchExeption($"no bus matches id {id}");
             if (count==0)
                 throw new noMatchExeption($"no station matches id {id}");
             if(count==1)
