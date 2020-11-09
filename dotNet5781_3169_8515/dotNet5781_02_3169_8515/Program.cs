@@ -153,7 +153,7 @@ namespace dotNet5781_02_3169_8515
             foreach (char i in id)
             {
                 if((i>'9')||(i<'0'))
-                    throw new ArgumentException($"invalid input: id must be up to 6 digits digits");
+                    throw new ArgumentException($"invalid input: id must be up to 6  digits");
             }
             return id;
         }
@@ -171,6 +171,7 @@ namespace dotNet5781_02_3169_8515
         {
             Console.WriteLine("heare are all the available bus lines:");
             central.orderById();
+            Console.WriteLine("Enter your choice: ");
             central.addStationToLine();
         }
 
@@ -200,8 +201,8 @@ namespace dotNet5781_02_3169_8515
         static void searchTravel()
         {
             string start, end;
-            start = readId(1, 0);
-            end = readId(1, 1);
+            start = readId(1, 1);
+            end = readId(1, 0);
             if (!central.existStationInMainList(start)|| !central.existStationInMainList(end))
                 throw new ArgumentException($"Invalid input: no such station.");
             central.canIgetThere(start, end);
