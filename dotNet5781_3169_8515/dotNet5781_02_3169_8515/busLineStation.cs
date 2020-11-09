@@ -51,7 +51,7 @@ namespace dotNet5781_02_3169_8515
             Console.WriteLine("enter distance from last station:");
             bool sucsses = int.TryParse(Console.ReadLine(), out rdistance);
             if (rdistance <= 0)
-                throw new ArgumentException("invalid input: distance must be bigger then 0.");
+                throw new ArgumentException("invalid input: distance can inly be a number that bigger then 0.");
             return rdistance;
         }
 

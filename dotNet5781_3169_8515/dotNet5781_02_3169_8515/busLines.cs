@@ -154,8 +154,8 @@ namespace dotNet5781_02_3169_8515
             }
             int rArea;
             bool sucsses = int.TryParse(Console.ReadLine(), out rArea);
-            if ((!sucsses)||((rArea<1)||(rArea>i)))
-                throw new ArgumentException("invalid input: it can only in the range that offered.");
+            if ((!sucsses)||((rArea<1)||(rArea>i-1)))
+                throw new ArgumentException("invalid input: it can only be a number in the range that offered.");
             bs.Area = (Areas)(Enum.GetValues(bs.Area.GetType())).GetValue(rArea - 1);
             string choice = "e";
             int choiceint;
@@ -194,7 +194,7 @@ namespace dotNet5781_02_3169_8515
                 sucsses = int.TryParse(choice, out choiceint);
                 if(!sucsses&&(choice!="E"&&choice!="e"))
                     throw new ArgumentException("invalid input: it can only a number in the range that offered or E.");
-                if((choiceint<1||choiceint>i) && (choice != "E" && choice != "e"))
+                if((choiceint<1||choiceint>i-1) && (choice != "E" && choice != "e"))
                     throw new ArgumentException("invalid input: it can only a number in the range that offered or E.");
                 if (choice != "e" && choice != "E")
                 {
@@ -282,7 +282,7 @@ namespace dotNet5781_02_3169_8515
             bool sucsses = int.TryParse(Console.ReadLine(), out choiceint);
             if (!sucsses)
                 throw new ArgumentException("invalid input: it can only a number in the range that offered.");
-            if (choiceint < 1 || choiceint > i)
+            if (choiceint < 1 || choiceint > i-1)
                 throw new ArgumentException("invalid input: it can only a number in the range that offered.");
             foreach (IntLinesArr inArr in tmpIndex)
             {

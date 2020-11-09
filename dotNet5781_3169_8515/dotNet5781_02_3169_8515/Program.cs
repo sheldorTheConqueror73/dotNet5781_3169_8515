@@ -153,7 +153,7 @@ namespace dotNet5781_02_3169_8515
             foreach (char i in id)
             {
                 if((i>'9')||(i<'0'))
-                    throw new ArgumentException($"invalid input: id must be up to 6 digits digits");
+                    throw new ArgumentException($"invalid input: id must be up to 6  digits");
             }
             return id;
         }
@@ -170,6 +170,7 @@ namespace dotNet5781_02_3169_8515
         static void addStationToLine()
         {
             central.orderById();
+            Console.WriteLine("Enter your choice: ");
             central.addStationToLine();
         }
 
