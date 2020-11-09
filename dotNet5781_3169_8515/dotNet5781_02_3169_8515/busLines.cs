@@ -82,9 +82,9 @@ namespace dotNet5781_02_3169_8515
             string rid = Console.ReadLine();
             for (int i = 0; i < rid.Length; i++)
                 if (rid[i] > 57 || rid[i] < 48)
-                    throw new ArgumentException("invalid input: id must contain be 1-3 digits.");
+                    throw new ArgumentException("invalid input: id must contain  1-3 digits.");
             if (rid.Length == 0 || int.Parse(rid) > 1000)
-                throw new ArgumentException("invalid input: id must contain be 1-3 digits. ");
+                throw new ArgumentException("invalid input: id must contain  1-3 digits. ");
             
             return rid;
             
@@ -155,7 +155,7 @@ namespace dotNet5781_02_3169_8515
             int rArea;
             bool sucsses = int.TryParse(Console.ReadLine(), out rArea);
             if ((!sucsses)||((rArea<1)||(rArea>i-1)))
-                throw new ArgumentException("invalid input: it can only be a number in the range that offered.");
+                throw new ArgumentException("invalid input: can only be a number in the offered range .");
             bs.Area = (Areas)(Enum.GetValues(bs.Area.GetType())).GetValue(rArea - 1);
             string choice = "e";
             int choiceint;
@@ -163,10 +163,10 @@ namespace dotNet5781_02_3169_8515
              do
               {
                 if(stations.Count==0)
-                    throw new ArgumentException("Error: the list of stations are empty return to menu to add new station.");
+                    throw new ListEmptyExeption("Error: station list empty. return to main menu and add new ones.");
 
-                Console.WriteLine(@" press the number to add station from the list or E to end : 
-                 (If the station it's not found return to menu and adding it to the list).");
+                Console.WriteLine(@" enter the corresponding number to add station from the list or E to end : 
+                 (If the station is not found consider returning to main menu and adding it).");
                 i = 1;
                 tIndex = 0;
                 List<IntLinesArr> tmpIndex = new List<IntLinesArr>();
@@ -193,9 +193,9 @@ namespace dotNet5781_02_3169_8515
                 choice = Console.ReadLine();               
                 sucsses = int.TryParse(choice, out choiceint);
                 if(!sucsses&&(choice!="E"&&choice!="e"))
-                    throw new ArgumentException("invalid input: it can only a number in the range that offered or E.");
+                    throw new ArgumentException("invalid input: can only be a number in the offered range or E.");
                 if((choiceint<1||choiceint>i-1) && (choice != "E" && choice != "e"))
-                    throw new ArgumentException("invalid input: it can only a number in the range that offered or E.");
+                    throw new ArgumentException("invalid input: can only be a number in the offered range or E.");
                 if (choice != "e" && choice != "E")
                 {
                     distance = busLineStation.readDistance();
@@ -278,12 +278,12 @@ namespace dotNet5781_02_3169_8515
                     i++;
                 }
             }
-            Console.WriteLine("press the number to chose station from the list: ");
+            Console.WriteLine("press the corresponding number to chose station from the list: ");
             bool sucsses = int.TryParse(Console.ReadLine(), out choiceint);
             if (!sucsses)
-                throw new ArgumentException("invalid input: it can only a number in the range that offered.");
+                throw new ArgumentException("invalid input: can only be a number in the offered range.");
             if (choiceint < 1 || choiceint > i-1)
-                throw new ArgumentException("invalid input: it can only a number in the range that offered.");
+                throw new ArgumentException("invalid input: can only be a number in the offered range.");
             foreach (IntLinesArr inArr in tmpIndex)
             {
                 if (inArr.Choice == choiceint)
@@ -345,14 +345,14 @@ namespace dotNet5781_02_3169_8515
                 foreach (var b1 in lines)
                     if (b1.Id == id)
                         return b1;
-                throw new couldntFindBusExeption($"error: no bus line matches id {id}");
+                throw new couldntFindBusExeption($"invalid input: no bus line matches id {id}");
             }
         }
         internal void remove(string id)
         {
             int count = this.count(id);
             if(count==0)
-                throw new couldntFindBusExeption($"error: no bus line matches id {id}");
+                throw new couldntFindBusExeption($"invalid input: no bus line matches id {id}");
             if (count == 1)
                 foreach (var b1 in lines)
                     if (b1.Id == id)
@@ -380,7 +380,7 @@ namespace dotNet5781_02_3169_8515
                 int option;
                 flag = int.TryParse(Console.ReadLine(), out option);
                 if((!flag)||((option!=1)&&(option!=2)&&(option!=3)))
-                    throw new ArgumentException($"error: invalid input. please enter 1,2 or 3");
+                    throw new ArgumentException($"invalid input: please enter 1,2 or 3");
                 if (option == 1)
                 {
                     lines.Remove(b1);
@@ -459,7 +459,7 @@ namespace dotNet5781_02_3169_8515
                 int option;
                 flag = int.TryParse(Console.ReadLine(), out option);
                 if ((!flag) || ((option != 1) && (option != 2) && (option != 3)))
-                    throw new ArgumentException($"error: invalid input. please enter 1,2 or 3");
+                    throw new ArgumentException($"invalid input: please enter 1,2 or 3");
                 if (option == 1)
                 {
                     b1.deleteStation(id);
@@ -541,7 +541,7 @@ namespace dotNet5781_02_3169_8515
             }    
             bool falg= printAllOf("control", lines.ToArray());
             if (falg == false)
-                throw new unexpectedException("unexpected error");
+                throw new unexpectedException("error, please try again");
         }
 
         internal void PrintStationAndLines()
