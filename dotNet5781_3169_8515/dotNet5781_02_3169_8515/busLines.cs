@@ -28,11 +28,7 @@ namespace dotNet5781_02_3169_8515
         new busLineStation("110545",(float)8.34532,(float)-5.2345,"Ankh-Morpork Central Station"),new busLineStation("110546",(float)8.74532,(float)-5.2325,"Unseen University Station"),new busLineStation("110547",(float)8.94532,(float)-4.2325,"City Watch Station"),
         new busLineStation("000007",(float)36.4763,(float)130.3454,"Narnia"),new busLineStation("000008",(float)34.4653,(float)121.3344,"Atlantis"),new busLineStation("000505",(float)54.355,(float)-30.4894,"New Ankh"),
         new busLineStation("333111",(float)32.00001,(float)-32.00007),new busLineStation("432888",(float)51.09874,(float)-52.09143),new busLineStation("999339",(float)22.33088,(float)-66.0083),new busLineStation("765765",(float)34.650652,(float)133.02074)};
-        protected List<bus> lines=new List<bus>() {
-        new bus(new List<busLineStation>(){ new busLineStation("123456",(float)33.4563,(float)120.3454,"shadmot mechola"),new busLineStation("234567",(float)34.4653,(float)121.3344,"mechola"),new busLineStation("345678",(float)35.45453,(float)112.1894,"Argaman"),new busLineStation("456789",(float)53.353,(float)-32.1894,"Yericho"),
-        new busLineStation("567890",(float)12.353453,(float)02.5442,"Beit Shean"),new busLineStation("678901",(float)11.975,(float)43.245,"Meitar"),new busLineStation("789012",(float)89.34532,(float)-54.2345,"Mahale Adomim"),new busLineStation("890123",(float)54.64523,(float)12.3517,"Kdumim"),
-        new busLineStation("901234",(float)54.5643,(float)-27.46743),new busLineStation("012345",(float)-78.4563,(float)31.363),new busLineStation("098765",(float)1.9776,(float)130.353),new busLineStation("876543",(float)77.232,(float)-66.346),
-        new busLineStation("765432",(float)55.2223,(float)-26.363)},"966",new busLineStation("123456",(float)33.4563,(float)120.3454,"shadmot mechola"),new busLineStation("765432",(float)55.2223,(float)-26.363))};
+        protected List<bus> lines;
 
         internal busLines()
         {
