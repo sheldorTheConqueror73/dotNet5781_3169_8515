@@ -432,7 +432,7 @@ namespace dotNet5781_02_3169_8515
                 Console.WriteLine("bus line(s) deleted, my lord ");
             }
         }   
-        internal bus[] findAllLines(string id)
+        internal bus[] findAllLines(string id)//returns an array of all the buses who pass through the station 
         {
             List<bus> l1 = new List<bus>();
             foreach (var b1 in this.lines)
@@ -442,7 +442,7 @@ namespace dotNet5781_02_3169_8515
                 throw new noMatchExeption($"error: no bus lines pass through station {id}");
             return l1.ToArray();
         }
-        internal bus[] sort()
+        internal bus[] sort()//sorts <bus> array by travel time
         {
             if (this.lines.Count == 0)
                 throw new ListEmptyExeption("error:bus lines list is empty");
@@ -450,7 +450,7 @@ namespace dotNet5781_02_3169_8515
             l1.Sort((x, y) => x.CompareTo(y));
             return l1.ToArray();
         }
-        internal void deleteAllOf(string Bid, string id)
+        internal void deleteAllOf(string Bid, string id)//deletes a station from a given bus line(s)
         {
             bool match=false;
             int count = 0;
@@ -513,14 +513,14 @@ namespace dotNet5781_02_3169_8515
             else
                 throw new unexpectedException("error, please try again");
         }
-        internal bool existStationInMainList(string id)
+        internal bool existStationInMainList(string id)//checks if station exists in the main station list (stations)
         {
             foreach (busLineStation station in stations)
                 if (station.Id == id)
                     return true;
             return false;
         }
-        internal bool printAllOf(string id, bus[] buses = null)
+        internal bool printAllOf(string id, bus[] buses = null)//prints  all the lines who pass through a given station, or ptints the given bus aray
         {
 
             bool flag = false;
@@ -548,7 +548,7 @@ namespace dotNet5781_02_3169_8515
             }
         }
 
-        internal bool canIgetThere(string start, string end)
+        internal bool canIgetThere(string start, string end)//checks if you can get from station start to end station
         {
             List<bus> buses = new List<bus>();
             foreach (var b1 in lines)
@@ -589,7 +589,7 @@ namespace dotNet5781_02_3169_8515
                 return false;
             }
         }
-        internal void printAll()
+        internal void printAll()//prints all the bus lines
         {
             if(lines.Count==0)
             {
@@ -601,7 +601,7 @@ namespace dotNet5781_02_3169_8515
                 throw new unexpectedException("error, please try again");
         }
 
-        internal void PrintStationAndLines()
+        internal void PrintStationAndLines()//prints all staions and the bus lines that drive through them
         {
             stations.Sort();    
             foreach(busLineStation station in stations)
@@ -628,7 +628,7 @@ namespace dotNet5781_02_3169_8515
                 }                
             }
         }
-        internal void orderById()
+        internal void orderById()//orders bus list by id
         {
             bool flag, flag2;
             bus temp;
