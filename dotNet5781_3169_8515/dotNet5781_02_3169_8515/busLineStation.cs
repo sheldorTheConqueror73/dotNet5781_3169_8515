@@ -57,19 +57,19 @@ namespace dotNet5781_02_3169_8515
 
         public static TimeSpan ReadTimeDrive()
         {
-            Console.WriteLine(@"enter time travel from last station :");
+             Console.WriteLine(@"enter time travel from last station :");
              Console.WriteLine("enter hours: ");
             string inputHours = Console.ReadLine();
             for (int i = 0; i < inputHours.Length; i++)
                 if (inputHours[i] > 57 || inputHours[i] < 48)
-                    throw new ArgumentException("invalid input: can only be a positive number.");
+                    throw new ArgumentException("invalid input: can only be a integer number.");
             if(int.Parse(inputHours)<0)
-                throw new ArgumentException("invalid input: can only be a positive number.");
+                throw new ArgumentException("invalid input: can only be a integer number.");
             Console.WriteLine("enter minutes: ");
             string inputMinutes = Console.ReadLine();
             for (int i = 0; i < inputMinutes.Length; i++)
                 if (inputMinutes[i] > 57 || inputMinutes[i] < 48)
-                    throw new ArgumentException("invalid input: can only be a positive number.");
+                    throw new ArgumentException("invalid input: can only be a integer number.");
             if (int.Parse(inputMinutes) > 59|| int.Parse(inputMinutes) < 0)
                 throw new ArgumentException("invalid input: can only be a between 1-59.");
 

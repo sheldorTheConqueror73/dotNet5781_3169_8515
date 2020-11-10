@@ -141,6 +141,7 @@ namespace dotNet5781_02_3169_8515
             string ridBus = readId();
             bus bs = new bus(ridBus);
             int distance;
+            bool firststation = true;
             Console.WriteLine("enter area of the line:");
             int i = 1, tIndex = 0;
             foreach (Areas ar in Enum.GetValues(typeof(Areas)))
@@ -194,8 +195,17 @@ namespace dotNet5781_02_3169_8515
                     throw new ArgumentException("invalid input: can only be a number in the offered range or E.");
                 if (choice != "e" && choice != "E")
                 {
-                    distance = busLineStation.readDistance();
-                    TimeSpan ts = busLineStation.ReadTimeDrive();
+                    TimeSpan ts;
+                    if (firststation == true)
+                    {
+                        distance = 0;
+                        ts = new TimeSpan(0, 0, 0);
+                        firststation = false;
+                    }else
+                    {
+                        distance = busLineStation.readDistance();
+                        ts = busLineStation.ReadTimeDrive();
+                    }
                     foreach(IntLinesArr inArr in tmpIndex)
                     {
                         if (inArr.Choice == choiceint)
