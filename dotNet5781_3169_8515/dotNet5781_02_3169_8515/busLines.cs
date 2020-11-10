@@ -155,7 +155,7 @@ namespace dotNet5781_02_3169_8515
                 throw new ArgumentException("invalid input: can only be a number in the offered range .");
             bs.Area = (Areas)(Enum.GetValues(bs.Area.GetType())).GetValue(rArea - 1);
             string choice = "e";
-            int choiceint;
+            int choiceint,count=1;
             busLineStation tmpStat = new busLineStation() ;
              do
               {
@@ -187,6 +187,7 @@ namespace dotNet5781_02_3169_8515
                     }
                     tIndex++;
                 }
+                Console.WriteLine($"this will be station number: {count++}");
                 choice = Console.ReadLine();               
                 sucsses = int.TryParse(choice, out choiceint);
                 if(!sucsses&&(choice!="E"&&choice!="e"))
