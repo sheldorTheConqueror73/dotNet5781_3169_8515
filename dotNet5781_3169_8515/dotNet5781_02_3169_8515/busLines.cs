@@ -74,7 +74,7 @@ namespace dotNet5781_02_3169_8515
         }
         private static string readId()//read id from the user.
         {
-            Console.WriteLine("enter id: (0 not counted)");
+            Console.WriteLine("enter id: (any 0s at the start do not matter [007==7])");
             string rid = Console.ReadLine();
             for (int i = 0; i < rid.Length; i++)
                 if (rid[i] > 57 || rid[i] < 48)
@@ -153,7 +153,7 @@ namespace dotNet5781_02_3169_8515
                 foreach(busLineStation sta in stations)
                 {
                     if(int.Parse(sta.Id)==int.Parse(id))
-                        throw new ArgumentException("invalid input: there is already a station with this id (0 not counted).");
+                        throw new ArgumentException("invalid input: there is already a station with this id (any 0s at the start do not  matter[007==7]).");
                 }
                 return id;
             }
