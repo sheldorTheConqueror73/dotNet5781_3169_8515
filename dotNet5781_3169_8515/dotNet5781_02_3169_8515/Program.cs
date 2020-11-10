@@ -216,6 +216,7 @@ namespace dotNet5781_02_3169_8515
 
         static void printStationAndLines()
         {
+            Console.WriteLine("here are all the stations and the bus lines who pass through them:");
             central.PrintStationAndLines();
         }
     }
