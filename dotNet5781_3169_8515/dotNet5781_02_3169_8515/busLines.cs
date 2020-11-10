@@ -534,10 +534,28 @@ namespace dotNet5781_02_3169_8515
             }
             else
             {
+                bool flag, flag2;
+                bus temp;
+                int num, num2;
+                 for (int j = 0; j <= buses.Count - 2; j++)
+                 {
+                        for (int k = 0; k <= buses.Count - 2; k++)
+                    {
+                        num2 = buses[k+1].timeBetweenStations(start, end);
+                        num = buses[k].timeBetweenStations(start, end);
+                         if (num > num2)
+                         {
+                             temp = buses[k + 1];
+                            buses[k + 1] = buses[k];
+                            buses[k] = temp;
+                        }
+                    }
+                }
+                
                 int i = 0;
                 foreach (var bs in buses)
                 {
-                    Console.WriteLine($"{bs.convert(bs.timeBetweenStations(start,end))}  line:{bs.ToString()}");
+                    Console.WriteLine($"{bs.convert(bs.timeBetweenStations(start,end))} line:{bs.ToString()}");
                     i++;
                 }
                 if (i != 0)
@@ -606,6 +624,8 @@ namespace dotNet5781_02_3169_8515
                 }
             }
         }
+    
+        
         public IEnumerator<bus> GetEnumerator()
         {
             return ((IEnumerable<bus>)lines).GetEnumerator();

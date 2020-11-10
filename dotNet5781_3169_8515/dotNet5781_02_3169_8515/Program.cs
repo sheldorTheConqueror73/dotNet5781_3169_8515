@@ -187,7 +187,7 @@ namespace dotNet5781_02_3169_8515
             string BId = readId(0);
             string id = readId(1);
             central.deleteAllOf(BId,id);//add exeption ?
-        }
+        } 
         static void searchLine()
         {
             string id = readId(1);
