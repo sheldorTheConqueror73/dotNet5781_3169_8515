@@ -455,7 +455,7 @@ namespace dotNet5781_02_3169_8515
             bool match=false;
             int count = 0;
             foreach (var bi in lines)
-            {   if(bi.Id==Bid)
+            {   if(bi.Id==Bid)  
                 {
                     match = true;
                     if (bi.existStation(id))
