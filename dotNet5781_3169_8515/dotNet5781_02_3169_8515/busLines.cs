@@ -465,7 +465,7 @@ namespace dotNet5781_02_3169_8515
             if(!match)
                 throw new noMatchExeption($"no bus matches id {id}");
             if (count==0)
-                throw new noMatchExeption($"no station matches id {id}");
+                throw new noMatchExeption($"this bus drives through station {id}");
             if(count==1)
             foreach (var b1 in lines)
                 if ((b1.Id == Bid) && (b1.existStation(id)))
