@@ -51,7 +51,7 @@ namespace dotNet5781_02_3169_8515
             Console.WriteLine("enter distance from last station:");
             bool sucsses = int.TryParse(Console.ReadLine(), out rdistance);
             if (rdistance <= 0)
-                throw new ArgumentException("invalid input: distance can inly be a number that bigger then 0.");
+                throw new ArgumentException("invalid input: distance must be a number greater than 0.");
             return rdistance;
         }
 
@@ -62,14 +62,14 @@ namespace dotNet5781_02_3169_8515
             string inputHours = Console.ReadLine();
             for (int i = 0; i < inputHours.Length; i++)
                 if (inputHours[i] > 57 || inputHours[i] < 48)
-                    throw new ArgumentException("invalid input: can only be a integer number.");
+                    throw new ArgumentException("invalid input: can only be an integer.");
             if(int.Parse(inputHours)<0)
-                throw new ArgumentException("invalid input: can only be a integer number.");
+                throw new ArgumentException("invalid input: can only be an integer.");
             Console.WriteLine("enter minutes: ");
             string inputMinutes = Console.ReadLine();
             for (int i = 0; i < inputMinutes.Length; i++)
                 if (inputMinutes[i] > 57 || inputMinutes[i] < 48)
-                    throw new ArgumentException("invalid input: can only be a integer number.");
+                    throw new ArgumentException("invalid input: can only be an integer .");
             if (int.Parse(inputMinutes) > 59|| int.Parse(inputMinutes) < 0)
                 throw new ArgumentException("invalid input: can only be a between 1-59.");
 
