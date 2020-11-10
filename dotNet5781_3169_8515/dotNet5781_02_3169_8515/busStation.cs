@@ -12,6 +12,7 @@ namespace dotNet5781_02_3169_8515
         protected readonly string id;
         protected string address;
         protected float latitude, longitude;//set up accessors for these two
+        //getters and setters:
         internal string Id
         {
             get => id;
@@ -39,21 +40,21 @@ namespace dotNet5781_02_3169_8515
             get => address;
             set { address = value; }
         }
-        internal busStation() 
+        internal busStation() //ctor
         {
             id = "";
             address = "";
             latitude = NULL;
             longitude = NULL;
         }
-        internal busStation(string _id)
+        internal busStation(string _id)//ctor
         {
             this.id = _id;
             address = "";
             latitude = NULL;
             longitude = NULL;
         }
-        internal busStation(string id, float lat, float lon, string address="")
+        internal busStation(string id, float lat, float lon, string address="")//ctor
         {
             this.id = id;
             if (address == "")

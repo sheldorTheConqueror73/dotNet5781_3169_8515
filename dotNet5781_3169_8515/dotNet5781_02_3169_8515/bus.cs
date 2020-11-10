@@ -13,20 +13,22 @@ namespace dotNet5781_02_3169_8515
         private busLineStation firstStation, lastStation;
         readonly string id;
         Areas area;
-        public bus(List<busLineStation> _path,string _id, busLineStation _firstStation, busLineStation _lastStation)
+        public bus(List<busLineStation> _path,string _id, busLineStation _firstStation, busLineStation _lastStation)//ctor
         {
             this.path = _path;
             this.id = _id;
             this.firstStation = _firstStation;
             this.lastStation = _lastStation;
         }
-        public bus(string _id)
+        public bus(string _id)//ctor
         {
             this.path =new List<busLineStation>();
             this.id =_id;
             this.firstStation = null;
             this.lastStation = null;
         }
+
+        // getters and setters:
         internal string Id
         {
             get => id;
@@ -63,7 +65,7 @@ namespace dotNet5781_02_3169_8515
                 path = value;
             }
         }
-        public override string ToString()
+        public override string ToString()//print the bus details
         {
             string str = $"ID:{this.id},AREA:{this.area},PATH:";
             int i = 0;
@@ -78,20 +80,20 @@ namespace dotNet5781_02_3169_8515
             //  need add the reverse list
             return str;
         }
-        public void addStationBefore(busLineStation st,string _id)
+        public void addStationBefore(busLineStation st,string _id)//add station beffore another station
         {
             utilityAddOrRemoveStation(st, _id, 1);
         }
-        public void addStationAfter(busLineStation st, string _id)
+        public void addStationAfter(busLineStation st, string _id)//add station after another station
         {
             utilityAddOrRemoveStation(st, _id, 2);
         }
       
-        public void deleteStation(string _id)
+        public void deleteStation(string _id)//delete station form the path
         {
             utilityAddOrRemoveStation(null, _id, 3);
         }
-        public void utilityAddOrRemoveStation(busLineStation bs, string _id, int mode)
+        public void utilityAddOrRemoveStation(busLineStation bs, string _id, int mode)//insert or remove station to the path list.
         {
             int i = 0;
             foreach (busLineStation station in path)
@@ -115,7 +117,7 @@ namespace dotNet5781_02_3169_8515
 
         }
 
-        public bool existStation(string _id)
+        public bool existStation(string _id)//check if station it's exist in the path list.
         {
             foreach (busLineStation bsl in path)
             {              
@@ -141,12 +143,12 @@ namespace dotNet5781_02_3169_8515
             return false;
         }
 
-        public int distanceBetweenStations(string fStation, string secStation)
+        public int distanceBetweenStations(string fStation, string secStation)//retun the distance between two station.
         {
             return utilityBetweenStations(fStation, secStation, 1);
         }
 
-        internal string convert(int num)
+        internal string convert(int num)//convert the time form minutes to HH:MM.
         {
             int hr=0, min = num;
             hr = num / 60;
@@ -154,12 +156,12 @@ namespace dotNet5781_02_3169_8515
           return$"Time:{hr}:{min}";
 
         }
-        public int timeBetweenStations(string fStation, string secStation)
+        public int timeBetweenStations(string fStation, string secStation)//return the time between two station(in minutes).
         {
             return utilityBetweenStations(fStation, secStation, 2);
         }
 
-        public bus subRoute(string fStation,string secStation)
+        public bus subRoute(string fStation,string secStation)//return a bus object that contain the path from one station to another.
         {
             bus tmp = new bus(this.id);
             List<busLineStation> tmpLineStations = new List<busLineStation>();
@@ -207,7 +209,7 @@ namespace dotNet5781_02_3169_8515
 
         }
 
-        public int utilityBetweenStations(string fStation, string secStaion, int mode)
+        public int utilityBetweenStations(string fStation, string secStaion, int mode)//the implementation of time/distance between stations. 
         {
             int sum = 0;
             int index = 0;
@@ -252,7 +254,7 @@ namespace dotNet5781_02_3169_8515
             
         }
 
-        public int CompareTo(object obj)//צריך לבדוק מה בדיוק ההשואה בין איזה תחנות
+        public int CompareTo(object obj)//compare between two objects of bus by there time.
         {
             string fStation, lStation;
             Console.WriteLine("enter Outlet Station:");

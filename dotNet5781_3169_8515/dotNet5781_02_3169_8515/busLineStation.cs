@@ -10,7 +10,7 @@ namespace dotNet5781_02_3169_8515
     {
         private int distance;
         private TimeSpan driveTime;
-
+        //getters and setters:
         public int Distance
         {
             get => distance;
@@ -25,27 +25,27 @@ namespace dotNet5781_02_3169_8515
             get => driveTime;
         }
 
-        internal busLineStation()
+        internal busLineStation()//ctor
         {
             distance = -1;
             driveTime= new TimeSpan();
         }
-        internal busLineStation(string _id):base(_id)
+        internal busLineStation(string _id):base(_id)//ctor
         {
             distance = -1;
             driveTime = new TimeSpan();
         }
-        internal busLineStation(string id, float lat, float lon, string address = "") : base(id, lat, lon, address)
+        internal busLineStation(string id, float lat, float lon, string address = "") : base(id, lat, lon, address)//ctor
         {
             this.distance = 0;
             this.driveTime = new TimeSpan() ;
         }
-        internal busLineStation(string id, float lat, float lon,int distance, TimeSpan time, string address= "") :base(id, lat, lon, address)
+        internal busLineStation(string id, float lat, float lon,int distance, TimeSpan time, string address= "") :base(id, lat, lon, address)//ctor
         {
             this.distance = distance;
             this.driveTime = time;
         }
-        public static int readDistance()
+        public static int readDistance()//read the distance from the user.
         {
             int rdistance;
             Console.WriteLine("enter distance from last station:");
@@ -55,7 +55,7 @@ namespace dotNet5781_02_3169_8515
             return rdistance;
         }
 
-        public static TimeSpan ReadTimeDrive()
+        public static TimeSpan ReadTimeDrive()//read the time from the user.
         {
              Console.WriteLine(@"enter time travel from last station :");
              Console.WriteLine("enter hours: ");
@@ -78,7 +78,7 @@ namespace dotNet5781_02_3169_8515
 
         }
 
-        public int CompareTo(busLineStation other)
+        public int CompareTo(busLineStation other)//compare between two objects of busLineStation by Id.
         {
             if (other == null)
                 return 1;

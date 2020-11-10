@@ -30,26 +30,26 @@ namespace dotNet5781_02_3169_8515
         new busLineStation("333111",(float)32.00001,(float)-32.00007),new busLineStation("432888",(float)51.09874,(float)-52.09143),new busLineStation("999339",(float)22.33088,(float)-66.0083),new busLineStation("765765",(float)34.650652,(float)133.02074)};
         protected List<bus> lines;
 
-        internal busLines()
+        internal busLines()//ctor
         {
             this.lines = new List<bus>();
         }
-        internal busLines(List<bus> bs)
+        internal busLines(List<bus> bs)//ctor
         {
             this.lines = bs;
         }
-        internal busLines(bus b1)
+        internal busLines(bus b1)//ctor
         {
             this.lines = new List<bus>();
             lines.Add(b1);
         }
-        internal busLines(bus[] b1)
+        internal busLines(bus[] b1)//ctor
         {
             this.lines = new List<bus>();
             foreach(var b2 in b1)
                 lines.Add(b2);
         }
-        internal int indexof(string id)
+        internal int indexof(string id)//return index of line in the list.
         {
             int i = 0;
             foreach(var b1 in this.lines)
@@ -61,7 +61,7 @@ namespace dotNet5781_02_3169_8515
             return -1;
 
         }
-        internal int count(string id)
+        internal int count(string id)//retrun the amount of specific lines.
         {
             int i = 0;
             foreach (var b1 in this.lines)
@@ -72,7 +72,7 @@ namespace dotNet5781_02_3169_8515
             return i;
 
         }
-        private static string readId()
+        private static string readId()//read id from the user.
         {
             Console.WriteLine("enter id: (0 not counted)");
             string rid = Console.ReadLine();
@@ -85,7 +85,7 @@ namespace dotNet5781_02_3169_8515
             return rid;
             
         }
-        private  int readIdOfExistLine()
+        private  int readIdOfExistLine()//read id from the user only from exsisted lines.
         {
             foreach (bus bs in lines)
             {
@@ -134,7 +134,7 @@ namespace dotNet5781_02_3169_8515
                 return indexOfBus1;
             return -1 ;
         }
-        private string countLinesOrStations(string id,int mode=0)
+        private string countLinesOrStations(string id,int mode=0)//get id and return it if there is no problems with zeroes.
         {
             int count = 0;
             if (mode == 0) {
@@ -159,7 +159,7 @@ namespace dotNet5781_02_3169_8515
             }
         }
 
-        public void create()
+        public void create()//create a new bus
         {
             stations.Sort();
             string ridBus = readId();
@@ -169,7 +169,7 @@ namespace dotNet5781_02_3169_8515
             bool firststation = true;
             Console.WriteLine("enter area of the line:");
             int i = 1, tIndex = 0;
-            foreach (Areas ar in Enum.GetValues(typeof(Areas)))
+            foreach (Areas ar in Enum.GetValues(typeof(Areas)))//prints the list of the areas.
             {
                 Console.WriteLine("press " + i + " to  " + ar);
                 i++;
@@ -192,7 +192,7 @@ namespace dotNet5781_02_3169_8515
                 i = 1;
                 tIndex = 0;
                 List<IntLinesArr> tmpIndex = new List<IntLinesArr>();
-                foreach (busLineStation station in stations)
+                foreach (busLineStation station in stations)//prints the exsisted stations.
                 {                   
                     bool passAway = false;     
                     foreach (busLineStation st in bs.Path)
@@ -260,7 +260,7 @@ namespace dotNet5781_02_3169_8515
             add(bs);
         }
 
-        internal  void addStationToList()
+        internal  void addStationToList()//add station to the general list of stations.
         {
             string rid = busStation.ReadId();
             rid = countLinesOrStations(rid,1);
@@ -273,7 +273,7 @@ namespace dotNet5781_02_3169_8515
             float rLongitude = (float)r.NextDouble() * (360) - 180;
             stations.Add(new busLineStation(rid,rLatitude,rLongitude,raddress));
         }
-        private int choseStationFromList(int mode,int index)
+        private int choseStationFromList(int mode,int index)//return the index of station from the list of stations.
         {
             stations.Sort();     
             int i = 1, choiceint;
@@ -327,7 +327,7 @@ namespace dotNet5781_02_3169_8515
             }
             return choiceint;
         }
-        internal  void addStationToLine()
+        internal  void addStationToLine()//add station to specific line.
         {
             int index = readIdOfExistLine();
             if(index==-1)
@@ -350,7 +350,7 @@ namespace dotNet5781_02_3169_8515
                 lines[index].addStationBefore( stations[choiceStationToAdd], lines[index].Path[ChoiceStationAorB].Id);
 
         }
-        internal void add(bus b1)
+        internal void add(bus b1)//add bus to list.
         {
             int count = this.count(b1.Id);
             int index = this.indexof(b1.Id);
@@ -381,7 +381,7 @@ namespace dotNet5781_02_3169_8515
                 throw new couldntFindBusExeption($"invalid input: no bus line matches id {id}");
             }
         }
-        internal void remove(string id)
+        internal void remove(string id)//remove bus from the list.
         {
             int count = this.count(id);
             if(count==0)
