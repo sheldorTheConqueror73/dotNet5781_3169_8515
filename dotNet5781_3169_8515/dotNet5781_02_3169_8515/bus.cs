@@ -146,6 +146,14 @@ namespace dotNet5781_02_3169_8515
             return utilityBetweenStations(fStation, secStation, 1);
         }
 
+        internal string convert(int num)
+        {
+            int hr=0, min = num;
+            hr = num / 60;
+            min -= hr * 60;
+          return$"Time:{hr}:{min}";
+
+        }
         public int timeBetweenStations(string fStation, string secStation)
         {
             return utilityBetweenStations(fStation, secStation, 2);

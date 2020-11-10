@@ -528,8 +528,15 @@ namespace dotNet5781_02_3169_8515
             }
             else
             {
-                bool flag=printAllOf("",buses.ToArray());
-                return flag;
+                int i = 0;
+                foreach (var bs in buses)
+                {
+                    Console.WriteLine($"{bs.convert(bs.timeBetweenStations(start,end))}  line:{bs.ToString()}");
+                    i++;
+                }
+                if (i != 0)
+                    return true;
+                return false;
             }
         }
         internal void printAll()
