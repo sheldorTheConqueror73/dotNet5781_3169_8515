@@ -242,7 +242,11 @@ namespace dotNet5781_02_3169_8515
                         sum += (path[i].DriveTime.Hours * 60) + (path[i].DriveTime.Minutes);
                 }
                 else
+                {
+                    sum += (path[i].DriveTime.Hours * 60) + (path[i].DriveTime.Minutes);
                     break;
+                }
+                
             }
             return sum;
             
