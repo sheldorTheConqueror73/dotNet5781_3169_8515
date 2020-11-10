@@ -74,7 +74,7 @@ namespace dotNet5781_02_3169_8515
         }
         private static string readId()
         {
-            Console.WriteLine("enter id:");
+            Console.WriteLine("enter id: (0 not counted)");
             string rid = Console.ReadLine();
             for (int i = 0; i < rid.Length; i++)
                 if (rid[i] > 57 || rid[i] < 48)
@@ -94,7 +94,7 @@ namespace dotNet5781_02_3169_8515
             int k=0;
             int indexOfBus1 = -1, indexOfBus2 = -1;
             bus bs1 = null, bs2 = null;
-            Console.WriteLine("Enter line: ");
+            Console.WriteLine("Enter line:");
             string rid = Console.ReadLine();
             int choice = 1;
             for (int i = 0; i < rid.Length; i++)
@@ -134,11 +134,36 @@ namespace dotNet5781_02_3169_8515
                 return indexOfBus1;
             return -1 ;
         }
+        private string countLinesOrStations(string id,int mode=0)
+        {
+            int count = 0;
+            if (mode == 0) {
+                foreach (bus b in lines)
+                {
+                    if (int.Parse(b.Id) == int.Parse(id))
+                        count++;
+                }
+                if (count == 2)
+                    throw new ArgumentException("invalid input: there is already two lines with this id.");
+
+                return int.Parse(id).ToString();
+            }
+            else
+            {
+                foreach(busLineStation sta in stations)
+                {
+                    if(int.Parse(sta.Id)==int.Parse(id))
+                        throw new ArgumentException("invalid input: there is already a station with this id (0 not counted).");
+                }
+                return id;
+            }
+        }
 
         public void create()
         {
             stations.Sort();
             string ridBus = readId();
+            ridBus = countLinesOrStations(ridBus,0);
             bus bs = new bus(ridBus);
             int distance;
             bool firststation = true;
@@ -237,6 +262,7 @@ namespace dotNet5781_02_3169_8515
         internal  void addStationToList()
         {
             string rid = busStation.ReadId();
+            rid = countLinesOrStations(rid,1);
             foreach (busStation bs in stations)
                 if (bs.Id==rid)
                     throw new ArgumentException("invalid input: the id must to be unique.");
