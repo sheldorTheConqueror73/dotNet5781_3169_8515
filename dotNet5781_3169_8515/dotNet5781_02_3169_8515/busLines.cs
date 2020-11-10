@@ -79,7 +79,7 @@ namespace dotNet5781_02_3169_8515
             for (int i = 0; i < rid.Length; i++)
                 if (rid[i] > 57 || rid[i] < 48)
                     throw new ArgumentException("invalid input: id must contain  1-3 digits.");
-            if (rid.Length == 0 || int.Parse(rid) > 1000)
+            if (rid.Length == 0 || rid.Length>3)
                 throw new ArgumentException("invalid input: id must contain  1-3 digits. ");
             
             return rid;
@@ -180,7 +180,7 @@ namespace dotNet5781_02_3169_8515
                 throw new ArgumentException("invalid input: can only be a number in the offered range .");
             bs.Area = (Areas)(Enum.GetValues(bs.Area.GetType())).GetValue(rArea - 1);
             string choice = "e";
-            int choiceint;
+            int choiceint,count=1;
             busLineStation tmpStat = new busLineStation() ;
              do
               {
@@ -212,6 +212,7 @@ namespace dotNet5781_02_3169_8515
                     }
                     tIndex++;
                 }
+                Console.WriteLine($"this will be station number: {count++}");
                 choice = Console.ReadLine();               
                 sucsses = int.TryParse(choice, out choiceint);
                 if(!sucsses&&(choice!="E"&&choice!="e"))
@@ -370,7 +371,7 @@ namespace dotNet5781_02_3169_8515
                 throw new BusLimitExceededExecption("invalid input: this bus can only do one route and said route in reverse ");//beeter garmmer needed
             }
         }
-        internal bus this[string id]// meed to look up imdexer ref
+        internal bus this[string id]
         {
                 get 
             {
@@ -560,7 +561,6 @@ namespace dotNet5781_02_3169_8515
             }
             else
             {
-                bool flag, flag2;
                 bus temp;
                 int num, num2;
                  for (int j = 0; j <= buses.Count - 2; j++)
