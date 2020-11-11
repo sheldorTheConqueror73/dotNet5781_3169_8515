@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_3169_8515
 {
-    class busStation
+    public class busStation
     {
         readonly static int NULL = -200;//not too sure about this - used to mark empty variable
         protected readonly string id;
         protected string address;
         protected float latitude, longitude;//set up accessors for these two
         //getters and setters:
-        internal string Id
+        public string Id
         {
             get => id;
         }
-        internal float Latitude
+        public float Latitude
         {
             get => latitude;
             set
@@ -26,7 +26,7 @@ namespace dotNet5781_02_3169_8515
                     latitude = value;
             }
         }
-        internal float Longitude
+        public float Longitude
         {
             get => longitude;
             set
@@ -35,26 +35,26 @@ namespace dotNet5781_02_3169_8515
                     latitude = value;
             }   
         }
-        internal string Address
+        public string Address
         {
             get => address;
             set { address = value; }
         }
-        internal busStation() //ctor
+        public busStation() //ctor
         {
             id = "";
             address = "";
             latitude = NULL;
             longitude = NULL;
         }
-        internal busStation(string _id)//ctor
+        public busStation(string _id)//ctor
         {
             this.id = _id;
             address = "";
             latitude = NULL;
             longitude = NULL;
         }
-        internal busStation(string id, float lat, float lon, string address="")//ctor
+        public busStation(string id, float lat, float lon, string address="")//ctor
         {
             this.id = id;
             if (address == "")
@@ -64,7 +64,7 @@ namespace dotNet5781_02_3169_8515
             this.latitude = lat;
             this.longitude = lon;
         }
-        internal static string ReadId()//read id from the user and returns a string
+        public static string ReadId()//read id from the user and returns a string
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();

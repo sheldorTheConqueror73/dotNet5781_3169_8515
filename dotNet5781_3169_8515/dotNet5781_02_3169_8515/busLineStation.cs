@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_3169_8515
 {
-    class busLineStation : busStation ,IComparable<busLineStation>
+    public class busLineStation : busStation ,IComparable<busLineStation>
     {
         private int distance;
         private TimeSpan driveTime;
@@ -25,22 +25,22 @@ namespace dotNet5781_02_3169_8515
             get => driveTime;
         }
 
-        internal busLineStation()//ctor
+        public busLineStation()//ctor
         {
             distance = -1;
             driveTime= new TimeSpan();
         }
-        internal busLineStation(string _id):base(_id)//ctor
+        public busLineStation(string _id):base(_id)//ctor
         {
             distance = -1;
             driveTime = new TimeSpan();
         }
-        internal busLineStation(string id, float lat, float lon, string address = "") : base(id, lat, lon, address)//ctor
+        public busLineStation(string id, float lat, float lon, string address = "") : base(id, lat, lon, address)//ctor
         {
             this.distance = 0;
             this.driveTime = new TimeSpan() ;
         }
-        internal busLineStation(string id, float lat, float lon,int distance, TimeSpan time, string address= "") :base(id, lat, lon, address)//ctor
+        public busLineStation(string id, float lat, float lon,int distance, TimeSpan time, string address= "") :base(id, lat, lon, address)//ctor
         {
             this.distance = distance;
             this.driveTime = time;

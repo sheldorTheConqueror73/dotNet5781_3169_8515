@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_3169_8515
 {
-    class bus:IComparable
+    public class bus:IComparable
     { 
         List<busLineStation> path = new List<busLineStation>();
         private busLineStation firstStation, lastStation;
@@ -29,11 +29,11 @@ namespace dotNet5781_02_3169_8515
         }
 
         // getters and setters:
-        internal string Id
+        public string Id
         {
             get => id;
         }
-        internal busLineStation FirstStation
+        public busLineStation FirstStation
         {
             get => firstStation;
             set
@@ -41,7 +41,7 @@ namespace dotNet5781_02_3169_8515
                 firstStation = value;
             }
         }
-        internal busLineStation LastStation
+        public busLineStation LastStation
         {
             get => lastStation;
             set
@@ -49,7 +49,7 @@ namespace dotNet5781_02_3169_8515
                 lastStation = value;
             }
         }
-        internal Areas Area
+        public Areas Area
         {
             get => area;
             set
@@ -57,7 +57,7 @@ namespace dotNet5781_02_3169_8515
                 area = value;
             }
         }
-        internal List<busLineStation> Path
+        public List<busLineStation> Path
         {
             get => path;
             set
@@ -128,7 +128,7 @@ namespace dotNet5781_02_3169_8515
             }
             return false;
         }
-        internal bool canIgetThere(string start, string end)//returns true if theres a path from start to end
+        public bool canIgetThere(string start, string end)//returns true if theres a path from start to end
         {
             bool found = false; ;
             foreach(var bst1 in path)
@@ -148,7 +148,7 @@ namespace dotNet5781_02_3169_8515
             return utilityBetweenStations(fStation, secStation, 1);
         }
 
-        internal string convert(int num)//convert the time form minutes to HH:MM.
+        public string convert(int num)//convert the time form minutes to HH:MM.
         {
             int hr=0, min = num;
             hr = num / 60;

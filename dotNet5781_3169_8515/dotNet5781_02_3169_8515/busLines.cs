@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_3169_8515
 { 
-    class busLines : IEnumerable<bus>
+    public class busLines : IEnumerable<bus>
     {
 
         static Random r = new Random();
@@ -30,26 +30,26 @@ namespace dotNet5781_02_3169_8515
         new busLineStation("333111",(float)32.00001,(float)-32.00007),new busLineStation("432888",(float)51.09874,(float)-52.09143),new busLineStation("999339",(float)22.33088,(float)-66.0083),new busLineStation("765765",(float)34.650652,(float)133.02074)};
         protected List<bus> lines;
 
-        internal busLines()//ctor
+        public busLines()//ctor
         {
             this.lines = new List<bus>();
         }
-        internal busLines(List<bus> bs)//ctor
+        public busLines(List<bus> bs)//ctor
         {
             this.lines = bs;
         }
-        internal busLines(bus b1)//ctor
+        public busLines(bus b1)//ctor
         {
             this.lines = new List<bus>();
             lines.Add(b1);
         }
-        internal busLines(bus[] b1)//ctor
+        public busLines(bus[] b1)//ctor
         {
             this.lines = new List<bus>();
             foreach(var b2 in b1)
                 lines.Add(b2);
         }
-        internal int indexof(string id)//return index of line in the list.
+        public int indexof(string id)//return index of line in the list.
         {
             int i = 0;
             foreach(var b1 in this.lines)
@@ -61,7 +61,7 @@ namespace dotNet5781_02_3169_8515
             return -1;
 
         }
-        internal int count(string id)//retrun the amount of specific lines.
+        public int count(string id)//retrun the amount of specific lines.
         {
             int i = 0;
             foreach (var b1 in this.lines)
@@ -260,7 +260,7 @@ namespace dotNet5781_02_3169_8515
             add(bs);
         }
 
-        internal  void addStationToList()//add station to the general list of stations.
+        public  void addStationToList()//add station to the general list of stations.
         {
             string rid = busStation.ReadId();
             rid = countLinesOrStations(rid,1);
@@ -327,7 +327,7 @@ namespace dotNet5781_02_3169_8515
             }
             return choiceint;
         }
-        internal  void addStationToLine()//add station to specific line.
+        public  void addStationToLine()//add station to specific line.
         {
             int index = readIdOfExistLine();
             if(index==-1)
@@ -350,7 +350,7 @@ namespace dotNet5781_02_3169_8515
                 lines[index].addStationBefore( stations[choiceStationToAdd], lines[index].Path[ChoiceStationAorB].Id);
 
         }
-        internal void add(bus b1)//add bus to list.
+        public void add(bus b1)//add bus to list.
         {
             int count = this.count(b1.Id);
             int index = this.indexof(b1.Id);
@@ -371,7 +371,7 @@ namespace dotNet5781_02_3169_8515
                 throw new BusLimitExceededExecption("invalid input: this bus can only do one route and said route in reverse ");//beeter garmmer needed
             }
         }
-        internal bus this[string id]
+        public bus this[string id]
         {
                 get 
             {
@@ -381,7 +381,7 @@ namespace dotNet5781_02_3169_8515
                 throw new couldntFindBusExeption($"invalid input: no bus line matches id {id}");
             }
         }
-        internal void remove(string id)//remove bus from the list.
+        public void remove(string id)//remove bus from the list.
         {
             int count = this.count(id);
             if(count==0)
@@ -432,7 +432,7 @@ namespace dotNet5781_02_3169_8515
                 Console.WriteLine("bus line(s) deleted, my lord ");
             }
         }   
-        internal bus[] findAllLines(string id)//returns an array of all the buses who pass through the station 
+        public bus[] findAllLines(string id)//returns an array of all the buses who pass through the station 
         {
             List<bus> l1 = new List<bus>();
             foreach (var b1 in this.lines)
@@ -442,7 +442,7 @@ namespace dotNet5781_02_3169_8515
                 throw new noMatchExeption($"error: no bus lines pass through station {id}");
             return l1.ToArray();
         }
-        internal bus[] sort()//sorts <bus> array by travel time
+        public bus[] sort()//sorts <bus> array by travel time
         {
             if (this.lines.Count == 0)
                 throw new ListEmptyExeption("error:bus lines list is empty");
@@ -450,7 +450,7 @@ namespace dotNet5781_02_3169_8515
             l1.Sort((x, y) => x.CompareTo(y));
             return l1.ToArray();
         }
-        internal void deleteAllOf(string Bid, string id)//deletes a station from a given bus line(s)
+        public void deleteAllOf(string Bid, string id)//deletes a station from a given bus line(s)
         {
             bool match=false;
             int count = 0;
@@ -513,14 +513,14 @@ namespace dotNet5781_02_3169_8515
             else
                 throw new unexpectedException("error, please try again");
         }
-        internal bool existStationInMainList(string id)//checks if station exists in the main station list (stations)
+        public bool existStationInMainList(string id)//checks if station exists in the main station list (stations)
         {
             foreach (busLineStation station in stations)
                 if (station.Id == id)
                     return true;
             return false;
         }
-        internal bool printAllOf(string id, bus[] buses = null)//prints  all the lines who pass through a given station, or ptints the given bus aray
+        public bool printAllOf(string id, bus[] buses = null)//prints  all the lines who pass through a given station, or ptints the given bus aray
         {
 
             bool flag = false;
@@ -548,7 +548,7 @@ namespace dotNet5781_02_3169_8515
             }
         }
 
-        internal bool canIgetThere(string start, string end)//checks if you can get from station start to end station
+        public bool canIgetThere(string start, string end)//checks if you can get from station start to end station
         {
             List<bus> buses = new List<bus>();
             foreach (var b1 in lines)
@@ -589,7 +589,7 @@ namespace dotNet5781_02_3169_8515
                 return false;
             }
         }
-        internal void printAll()//prints all the bus lines
+        public void printAll()//prints all the bus lines
         {
             if(lines.Count==0)
             {
@@ -601,7 +601,7 @@ namespace dotNet5781_02_3169_8515
                 throw new unexpectedException("error, please try again");
         }
 
-        internal void PrintStationAndLines()//prints all staions and the bus lines that drive through them
+        public void PrintStationAndLines()//prints all staions and the bus lines that drive through them
         {
             stations.Sort();    
             foreach(busLineStation station in stations)
@@ -628,7 +628,7 @@ namespace dotNet5781_02_3169_8515
                 }                
             }
         }
-        internal void orderById()//orders bus list by id
+        public void orderById()//orders bus list by id
         {
             bool flag, flag2;
             bus temp;
