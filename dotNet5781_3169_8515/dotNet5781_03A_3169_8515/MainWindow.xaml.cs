@@ -37,9 +37,17 @@ namespace dotNet5781_03A_3169_8515
         {
             for (int i = 0; i < 10; i++)
             {
-                int id = r.Next(1, 1000);
+
+                string id = (r.Next(1, 1000)).ToString();
                 Areas a1 = (Areas)r.Next(0, 10);
-                //add path and first and last stations
+                int size = r.Next(2, 11);
+                busLineStation[] arr = busLines.tandom(size);
+                try
+                {
+                    buses.add(new bus(arr.ToList<busLineStation>(), id, arr[0], arr[size - 1]));
+                }
+                catch (Exception e) { Console.WriteLine(e.Message); i--; }
+                
             }
 
         }

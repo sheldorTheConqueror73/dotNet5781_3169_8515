@@ -661,5 +661,26 @@ namespace dotNet5781_02_3169_8515
         {
             return ((IEnumerable)lines).GetEnumerator();
         }
+
+        public static busLineStation[] tandom(int size)
+        {
+            busLineStation b1;
+            busLineStation[] arr=new busLineStation[size];
+            for(int i=0;i<size;i++)
+            {
+                int num = r.Next(0, stations.Count);
+                
+                for (int j = 0; j < i; j++)
+                {
+                    if(arr[j].Id==stations[num].Id)
+                    {
+                        i--;
+                        break;
+                    }
+                    arr[i] = stations[num];
+                }
+            }
+            return arr;
+        }
     }
 }   
