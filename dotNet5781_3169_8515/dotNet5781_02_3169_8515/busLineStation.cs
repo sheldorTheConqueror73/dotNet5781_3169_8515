@@ -23,6 +23,7 @@ namespace dotNet5781_02_3169_8515
         public TimeSpan DriveTime
         {
             get => driveTime;
+            set { driveTime = value; }
         }
 
         public busLineStation()//ctor

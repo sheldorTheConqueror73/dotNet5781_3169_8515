@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label HorizontalAlignment="Center" Height="68" Content="Bus Line Number:" VerticalAlignment="Center" Width="198"  FontSize="22" VerticalContentAlignment="Center"/>
-            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="198" Height="68" Name="scBusLines" />
+            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="198" Height="68" Name="scBusLines" SelectionChanged="scBusLines_SelectionChanged"  />
             <Label Grid.Column="2" HorizontalAlignment="Center" Height="68" Content="Area:" HorizontalContentAlignment="Center" Width="198" RenderTransformOrigin="0.479,0.636" FontSize="22" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
             <TextBox Grid.Column="3" HorizontalAlignment="Stretch" Height="68" TextWrapping="Wrap" Text="{Binding Path=Area}" VerticalAlignment="Stretch" Width="198" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tbArea"/>
         </Grid>

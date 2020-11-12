@@ -23,10 +23,16 @@ namespace dotNet5781_03A_3169_8515
     {
         Random r = new Random();
         static busLines buses = new busLines();
-        
+
+        private bus currentDisplayBusLine;
         public MainWindow()
         {
             InitializeComponent();
+            scBusLines.ItemsSource = buses.lines;
+            scBusLines.DisplayMemberPath ="Id";
+            scBusLines.SelectedIndex = 0;
+            ShowBusLine((scBusLines.SelectedValue as bus).Id);
+            
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -44,12 +50,21 @@ namespace dotNet5781_03A_3169_8515
                 busLineStation[] arr = busLines.tandom(size);
                 try
                 {
-                    buses.add(new bus(arr.ToList<busLineStation>(), id, arr[0], arr[size - 1]));
+                    buses.add(new bus(arr.ToList<busLineStation>(), id, arr[0], arr[size - 1],a1));
                 }
                 catch (Exception e) { Console.WriteLine(e.Message); i--; }
                 
             }
 
+        }
+        public void ShowBusLine(string id)
+        {
+          
+        }
+
+        private void scBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowBusLine((scBusLines.SelectedValue as bus).Id);
         }
     }
 }

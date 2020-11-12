@@ -28,7 +28,7 @@ namespace dotNet5781_02_3169_8515
         new busLineStation("110545",(float)8.34532,(float)-5.2345,"Ankh-Morpork Central Station"),new busLineStation("110546",(float)8.74532,(float)-5.2325,"Unseen University Station"),new busLineStation("110547",(float)8.94532,(float)-4.2325,"City Watch Station"),
         new busLineStation("000007",(float)36.4763,(float)130.3454,"Narnia"),new busLineStation("000008",(float)34.4653,(float)121.3344,"Atlantis"),new busLineStation("000505",(float)54.355,(float)-30.4894,"New Ankh"),
         new busLineStation("333111",(float)32.00001,(float)-32.00007),new busLineStation("432888",(float)51.09874,(float)-52.09143),new busLineStation("999339",(float)22.33088,(float)-66.0083),new busLineStation("765765",(float)34.650652,(float)133.02074)};
-        protected List<bus> lines;
+        public List<bus> lines;
 
         public busLines()//ctor
         {
@@ -666,18 +666,28 @@ namespace dotNet5781_02_3169_8515
         {
             busLineStation b1;
             busLineStation[] arr=new busLineStation[size];
+           
             for(int i=0;i<size;i++)
             {
+                bool flag = false;
                 int num = r.Next(0, stations.Count);
-                
+
                 for (int j = 0; j < i; j++)
                 {
-                    if(arr[j].Id==stations[num].Id)
+                    if (arr[j].Id == stations[num].Id)
                     {
                         i--;
+                        flag = true;
                         break;
                     }
-                    arr[i] = stations[num];
+                }
+                if (flag)
+                    continue;
+                arr[i] = stations[num];
+                if (i != 0)
+                {
+                   arr[i].Distance = r.Next(5, 301);
+                   arr[i].DriveTime = new TimeSpan(r.Next(0, 3), r.Next(1, 60), 0);
                 }
             }
             return arr;
