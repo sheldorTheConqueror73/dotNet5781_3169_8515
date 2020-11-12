@@ -20,6 +20,14 @@ namespace dotNet5781_02_3169_8515
             this.firstStation = _firstStation;
             this.lastStation = _lastStation;
         }
+        public bus(List<busLineStation> _path, string _id, busLineStation _firstStation, busLineStation _lastStation,Areas _area)//ctor
+        {
+            this.area = _area;
+            this.path = _path;
+            this.id = _id;
+            this.firstStation = _firstStation;
+            this.lastStation = _lastStation;
+        }
         public bus(string _id)//ctor
         {
             this.path =new List<busLineStation>();
