@@ -90,6 +90,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="rcs\fonts\KaushanScript-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -100,5 +101,6 @@
       <Name>dotNet5781_02_3169_8515</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

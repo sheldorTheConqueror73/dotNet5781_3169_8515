@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:dotNet5781_03A_3169_8515"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="customfont1">
+            <Setter Property="TextElement.FontFamily" Value="/rcs/fonts/#KaushanScript"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

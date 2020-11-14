@@ -28,6 +28,7 @@ namespace dotNet5781_03A_3169_8515
         public MainWindow()
         {
             InitializeComponent();
+            initBus();
             scBusLines.ItemsSource = buses.lines;
             scBusLines.DisplayMemberPath ="Id";
             scBusLines.SelectedIndex = 0;
@@ -52,14 +53,17 @@ namespace dotNet5781_03A_3169_8515
                 {
                     buses.add(new bus(arr.ToList<busLineStation>(), id, arr[0], arr[size - 1],a1));
                 }
-                catch (Exception e) { Console.WriteLine(e.Message); i--; }
+                catch (Exception e) { Console.WriteLine(e.Message); i--; }// remove error print
                 
             }
 
         }
         public void ShowBusLine(string id)
         {
-          
+            currentDisplayBusLine =buses.lines[buses.indexof(id)];//add error check
+            UpGrid.DataContext = currentDisplayBusLine;
+            lbBusLineStations.DataContext = currentDisplayBusLine.Path;
+
         }
 
         private void scBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
