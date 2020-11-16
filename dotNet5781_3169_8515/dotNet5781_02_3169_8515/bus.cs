@@ -161,7 +161,7 @@ namespace dotNet5781_02_3169_8515
             int hr=0, min = num;
             hr = num / 60;
             min -= hr * 60;
-          return$"Time:{hr}:{min}";
+          return$"Time: {hr}:{min}";
 
         }
         public int timeBetweenStations(string fStation, string secStation)//return the time between two station(in minutes).

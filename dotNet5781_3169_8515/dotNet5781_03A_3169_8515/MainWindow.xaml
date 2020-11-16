@@ -24,9 +24,10 @@
             <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="scBusLines" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="scBusLines_SelectionChanged"  FontSize="15" Margin="10"/>
             <Label Grid.Column="2" HorizontalAlignment="Center" Height="68" Content="Area:" HorizontalContentAlignment="Center" Width="132" RenderTransformOrigin="0.479,0.636" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
             <Label Grid.Column="3" HorizontalAlignment="Stretch" Height="68" Content="{Binding Path=Area}" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tbArea" FontSize="15"/>
-            <Label Content="Time" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15"/>
-            <Label Content="timedisplay" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="5" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15"/>
+            <Label Content="Total Time(hr:min):" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14"/>
+            <Label Name="lbl1"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="5" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" />
         </Grid>
         <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="1" VerticalAlignment="Top" Width="792" Name="lbBusLineStations" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="#58F5FF"/>
+        
     </Grid>
 </Window>

@@ -23,6 +23,7 @@ namespace dotNet5781_03A_3169_8515
     {
         Random r = new Random();
         static busLines buses = new busLines();
+        string Time;
 
         private bus currentDisplayBusLine;
         public MainWindow()
@@ -32,6 +33,7 @@ namespace dotNet5781_03A_3169_8515
             scBusLines.ItemsSource = buses.lines;
             scBusLines.DisplayMemberPath ="Id";
             scBusLines.SelectedIndex = 0;
+            lbl1.Content = (scBusLines.SelectedValue as bus).convert((scBusLines.SelectedValue as bus).timeBetweenStations((scBusLines.SelectedValue as bus).FirstStation.Id, (scBusLines.SelectedValue as bus).LastStation.Id)).Split(' ')[1];
             ShowBusLine((scBusLines.SelectedValue as bus).Id);
             
         }
@@ -69,6 +71,7 @@ namespace dotNet5781_03A_3169_8515
         private void scBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowBusLine((scBusLines.SelectedValue as bus).Id);
+            lbl1.Content  = (scBusLines.SelectedValue as bus).convert((scBusLines.SelectedValue as bus).timeBetweenStations((scBusLines.SelectedValue as bus).FirstStation.Id, (scBusLines.SelectedValue as bus).LastStation.Id)).Split(' ')[1];
         }
     }
 }
