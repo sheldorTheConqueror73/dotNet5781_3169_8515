@@ -87,6 +87,11 @@ namespace dotNet5781_02_3169_8515
                 return this.id.CompareTo(other.Id);
         }
 
-       
+        public override string ToString()
+        {
+            return $"{base.ToString()} {driveTime.ToString(@"hh\:mm")}";
+        }
+
+
     }
 }
