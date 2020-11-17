@@ -24,14 +24,13 @@ namespace dotNet5781_03A_3169_8515
     {
         Random r = new Random();
         static busLines buses = new busLines();
+        string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
 
         private bus currentDisplayBusLine;
         public MainWindow()
         {
             System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            string path = AppDomain.CurrentDomain.BaseDirectory+ "..\\..\\";
-            Console.WriteLine(path);
-            player.SoundLocation = $"{path}rcs\\audio\\shadilay.wav";
+            player.SoundLocation = $"{appPath}rcs\\a   udio\\shadilay.wav";
 
             try
             {
