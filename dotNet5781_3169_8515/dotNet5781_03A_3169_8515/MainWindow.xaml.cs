@@ -36,11 +36,6 @@ namespace dotNet5781_03A_3169_8515
             ShowBusLine((scBusLines.SelectedValue as bus).Id);
             
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
         public void initBus()
         {
             for (int i = 0; i < 10; i++)

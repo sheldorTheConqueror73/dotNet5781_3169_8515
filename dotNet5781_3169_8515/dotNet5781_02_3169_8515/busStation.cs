@@ -91,7 +91,7 @@ namespace dotNet5781_02_3169_8515
                 str = "";
             string lat=(Latitude>0)?"N":"S";
             string lon = (Longitude > 0) ? "E" : "W";
-            return $"{str}Bus Station Code: {Id}  {Latitude}°{lat}  {Longitude}°{lon}"; 
+            return $"{str} Bus Station Code: {Id}  {Latitude}°{lat}  {Longitude}°{lon}"; 
         }
 
     }

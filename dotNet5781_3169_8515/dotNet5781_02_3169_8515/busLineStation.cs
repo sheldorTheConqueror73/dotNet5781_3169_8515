@@ -96,7 +96,7 @@ namespace dotNet5781_02_3169_8515
 
         public override string ToString()
         {
-            return $"{base.ToString()} {driveTime.ToString(@"hh\:mm")}";
+            return $"{base.ToString()} Time: {driveTime.ToString(@"hh\:mm")}";
         }
 
 
