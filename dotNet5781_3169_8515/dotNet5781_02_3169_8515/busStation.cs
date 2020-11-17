@@ -64,6 +64,14 @@ namespace dotNet5781_02_3169_8515
             this.latitude = lat;
             this.longitude = lon;
         }
+
+        public busStation(busStation bs)
+        {
+            this.id = bs.Id;        
+            this.address = bs.Address;
+            this.latitude = bs.Latitude;
+            this.longitude = bs.Longitude;
+        }
         public static string ReadId()//read id from the user and returns a string
         {
             Console.WriteLine("enter id: ");

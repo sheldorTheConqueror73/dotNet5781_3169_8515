@@ -34,6 +34,10 @@ namespace dotNet5781_02_3169_8515
         {
             this.lines = new List<bus>();
         }
+        public busLines(busLines bs)
+        {
+            this.lines = bs.lines;
+        }
         public busLines(List<bus> bs)//ctor
         {
             this.lines = bs;
@@ -664,7 +668,6 @@ namespace dotNet5781_02_3169_8515
 
         public static busLineStation[] tandom(int size)
         {
-            busLineStation b1;
             busLineStation[] arr=new busLineStation[size];
            
             for(int i=0;i<size;i++)
@@ -688,6 +691,10 @@ namespace dotNet5781_02_3169_8515
                 {
                    arr[i].Distance = r.Next(5, 301);
                    arr[i].DriveTime = new TimeSpan(0, r.Next(1, 60), 0);
+                }else
+                {
+                    arr[i].Distance = 0;
+                    arr[i].DriveTime = new TimeSpan(0, 0, 0);
                 }
             }
             return arr;

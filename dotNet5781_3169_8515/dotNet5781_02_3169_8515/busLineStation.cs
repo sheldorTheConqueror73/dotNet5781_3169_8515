@@ -46,6 +46,13 @@ namespace dotNet5781_02_3169_8515
             this.distance = distance;
             this.driveTime = time;
         }
+
+        public busLineStation(busLineStation bs):base(bs)
+        {
+            this.distance = bs.Distance;
+            this.driveTime = bs.DriveTime;
+        }
+
         public static int readDistance()//read the distance from the user.
         {
             int rdistance;

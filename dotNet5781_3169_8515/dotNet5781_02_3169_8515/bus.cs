@@ -36,6 +36,15 @@ namespace dotNet5781_02_3169_8515
             this.lastStation = null;
         }
 
+        public bus(bus bs)
+        {
+            this.area = bs.Area;
+            this.path = bs.Path;
+            this.id = bs.Id;
+            this.firstStation = bs.FirstStation;
+            this.lastStation = bs.LastStation;
+        }
+
         // getters and setters:
         public string Id
         {
