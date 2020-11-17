@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,16 @@ namespace dotNet5781_03A_3169_8515
         private bus currentDisplayBusLine;
         public MainWindow()
         {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+            string path = AppDomain.CurrentDomain.BaseDirectory+ "..\\..\\";
+            Console.WriteLine(path);
+            player.SoundLocation = $"{path}rcs\\audio\\shadilay.wav";
+
+            try
+            {
+                player.Play();
+            }
+            catch (Exception e) { };
             InitializeComponent();
             initBus();
             scBusLines.ItemsSource = buses.lines;

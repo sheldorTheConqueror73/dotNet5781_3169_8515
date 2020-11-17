@@ -107,5 +107,8 @@
   <ItemGroup>
     <Resource Include="rcs\pics\favicon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="rcs\audio\shadilay.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
