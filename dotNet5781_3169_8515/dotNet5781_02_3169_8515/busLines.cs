@@ -686,7 +686,7 @@ namespace dotNet5781_02_3169_8515
                 }
                 if (flag)
                     continue;
-                arr[i] = stations[num];
+                arr[i] = new busLineStation (stations[num]);
                 if (i != 0)
                 {
                    arr[i].Distance = r.Next(5, 301);
