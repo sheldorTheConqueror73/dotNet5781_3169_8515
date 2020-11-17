@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03A_3169_8515"
         mc:Ignorable="d"
-        Title="ENJ busual studio 2020" Background="AliceBlue" Height="640" Width="800" Icon="rcs/pics/favicon.ico">
+        Title="INJ illuminati studio 2020" Background="AliceBlue" Height="640" Width="800" Icon="rcs/pics/favicon.ico">
     <Grid Name="MainGrid"  >
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
@@ -20,14 +20,17 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label HorizontalAlignment="Center" Height="68" Content="Bus Line Number:" VerticalAlignment="Center" Width="132"  FontSize="15" VerticalContentAlignment="Center" />
-            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="scBusLines" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="scBusLines_SelectionChanged"  FontSize="15" Margin="10"/>
-            <Label Grid.Column="2" HorizontalAlignment="Center" Height="68" Content="Area:" HorizontalContentAlignment="Center" Width="132" RenderTransformOrigin="0.479,0.636" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
-            <Label Grid.Column="3" HorizontalAlignment="Stretch" Height="68" Content="{Binding Path=Area}" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tbArea" FontSize="15"/>
-            <Label Content="Total Time(hr:min):" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14"/>
-            <Label Name="lbl1"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="5" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" />
+            <Label HorizontalAlignment="Center" Height="68" Content="Bus Line Number:" VerticalAlignment="Center" Width="132"  FontSize="15" VerticalContentAlignment="Center" Foreground="AliceBlue"/>
+            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="scBusLines" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="scBusLines_SelectionChanged"  FontSize="15" Margin="10" />
+            <Label Grid.Column="2" HorizontalAlignment="Center" Height="68" Content="Area:" HorizontalContentAlignment="Center" Width="132" RenderTransformOrigin="0.479,0.636" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="AliceBlue" />
+            <Label Grid.Column="3" HorizontalAlignment="Stretch" Height="68" Content="{Binding Path=Area}" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tbArea" FontSize="15" />
+            <Label Content="Total Time(HH:MM):" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Foreground="AliceBlue" />
+            <Label Name="lbl1"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="5" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="PH" FontSize="15" Foreground="PaleVioletRed"/>
         </Grid>
-        <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="1" VerticalAlignment="Top" Width="792" Name="lbBusLineStations" ItemsSource="{Binding}" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="#58F5FF"/>
-        
+       
+        <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="1" VerticalAlignment="Top" Width="792"  Name="lbBusLineStations" ItemsSource="{Binding}" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="Transparent"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/rcs/pics/spaceilluminati.jpg"/>
+        </Grid.Background>
     </Grid>
 </Window>
