@@ -687,7 +687,7 @@ namespace dotNet5781_02_3169_8515
                 if (i != 0)
                 {
                    arr[i].Distance = r.Next(5, 301);
-                   arr[i].DriveTime = new TimeSpan(r.Next(0, 3), r.Next(1, 60), 0);
+                   arr[i].DriveTime = new TimeSpan(0, r.Next(1, 60), 0);
                 }
             }
             return arr;

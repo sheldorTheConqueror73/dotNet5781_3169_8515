@@ -23,7 +23,6 @@ namespace dotNet5781_03A_3169_8515
     {
         Random r = new Random();
         static busLines buses = new busLines();
-        string Time;
 
         private bus currentDisplayBusLine;
         public MainWindow()
