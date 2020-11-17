@@ -26,7 +26,7 @@ namespace dotNet5781_03A_3169_8515
         static busLines buses = new busLines();
         string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
 
-        private bus currentDisplayBusLine;
+        private bus currentDisplayBusLine;  
         public MainWindow()
         {
             /*
