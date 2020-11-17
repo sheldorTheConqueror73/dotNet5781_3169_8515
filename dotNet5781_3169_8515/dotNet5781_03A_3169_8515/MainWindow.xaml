@@ -23,12 +23,12 @@
             <Label HorizontalAlignment="Center" Height="68" Content="Bus Line Number:" VerticalAlignment="Center" Width="132"  FontSize="15" VerticalContentAlignment="Center" Foreground="AliceBlue"/>
             <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="scBusLines" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="scBusLines_SelectionChanged"  FontSize="15" Margin="10" />
             <Label Grid.Column="2" HorizontalAlignment="Center" Height="68" Content="Area:" HorizontalContentAlignment="Center" Width="132" RenderTransformOrigin="0.479,0.636" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="AliceBlue" />
-            <Label Grid.Column="3" HorizontalAlignment="Stretch" Height="68" Content="{Binding Path=Area}" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tbArea" FontSize="15" />
+            <Label Grid.Column="3" HorizontalAlignment="Stretch" Height="68" Content="{Binding Path=Area}" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tbArea" FontSize="15" Foreground="GreenYellow" />
             <Label Content="Total Time(HH:MM):" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Foreground="AliceBlue" />
-            <Label Name="lbl1"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="5" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="PH" FontSize="15" Foreground="PaleVioletRed"/>
+            <Label Name="lbl1"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="5" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="PH" FontSize="15" Foreground="GreenYellow"/>
         </Grid>
        
-        <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="1" VerticalAlignment="Top" Width="792"  Name="lbBusLineStations" ItemsSource="{Binding}" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="Transparent"/>
+        <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="1" VerticalAlignment="Top" Width="792"  Name="lbBusLineStations" ItemsSource="{Binding}" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="Transparent" Foreground="GreenYellow" />
         <Grid.Background>
             <ImageBrush ImageSource="/rcs/pics/spaceilluminati.jpg"/>
         </Grid.Background>
