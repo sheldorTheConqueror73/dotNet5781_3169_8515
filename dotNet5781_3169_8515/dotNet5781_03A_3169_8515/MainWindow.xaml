@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03A_3169_8515"
         mc:Ignorable="d"
-        Title="INJ illuminati studio 2020" Background="AliceBlue" Height="640" Width="800" Icon="rcs/pics/favicon.ico">
-    <Grid Name="MainGrid"  >
+        Title="INJ illuminati studio 2020" Background=" AliceBlue" Height="640" Width="800" Icon="rcs/pics/favicon.ico">
+    
+    <Grid Name="MainGrid"  >    
         <Grid.RowDefinitions>
             <RowDefinition Height="38*"/>
             <RowDefinition Height="400*"/>
