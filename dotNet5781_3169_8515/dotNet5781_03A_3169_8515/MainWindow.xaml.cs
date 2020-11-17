@@ -29,6 +29,7 @@ namespace dotNet5781_03A_3169_8515
         private bus currentDisplayBusLine;
         public MainWindow()
         {
+            /*
             System.Media.SoundPlayer player = new System.Media.SoundPlayer();
             player.SoundLocation = $"{appPath}rcs\\audio\\shadilay.wav";
 
@@ -37,6 +38,7 @@ namespace dotNet5781_03A_3169_8515
                 player.Play();
             }
             catch (Exception e) { };
+            */
             InitializeComponent();
             initBus();
             scBusLines.ItemsSource = buses.lines;
