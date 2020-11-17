@@ -78,12 +78,12 @@ namespace dotNet5781_02_3169_8515
         }
         public override string ToString()
         {
-            string str = $"{this.Address} ,";
+            string str = $"{this.Address}  ";
             if (this.Address == "")
                 str = "";
             string lat=(Latitude>0)?"N":"S";
             string lon = (Longitude > 0) ? "E" : "W";
-            return $"{str}Bus Station Code: {Id}, {Latitude}°{lat}  {Longitude}°{lon}"; 
+            return $"{str}Bus Station Code: {Id}  {Latitude}°{lat}  {Longitude}°{lon}"; 
         }
 
     }
