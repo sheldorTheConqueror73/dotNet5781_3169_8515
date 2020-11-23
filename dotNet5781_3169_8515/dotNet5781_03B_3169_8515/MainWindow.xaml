@@ -7,11 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="Transparent">
-        <TabControl  VerticalAlignment="Top">
-            <TabItem Header="Bus Mangment"  Background="green">
-                <Grid>
-                   
-                </Grid> 
+        <TabControl  VerticalAlignment="Stretch" >
+            <TabItem Header="Bus Mangment" Height="auto" Width="auto" Background="green" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <Grid Background="Green" />
             </TabItem>
             <TabItem Header="Settings" Height="auto" Width="auto" Background="red">
                 <Grid Background="red"/>
