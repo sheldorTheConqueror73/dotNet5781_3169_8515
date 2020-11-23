@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNet5781_02_3169_8515", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNet5781_03A_3169_8515", "dotNet5781_03A_3169_8515\dotNet5781_03A_3169_8515.csproj", "{F9172766-027F-4E75-B065-0F2F44C4D394}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNet5781_03B_3169_8515", "dotNet5781_03B_3169_8515\dotNet5781_03B_3169_8515.csproj", "{F6DA12F7-F5E2-42BC-94BE-C54DD06CB4AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F9172766-027F-4E75-B065-0F2F44C4D394}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9172766-027F-4E75-B065-0F2F44C4D394}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9172766-027F-4E75-B065-0F2F44C4D394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6DA12F7-F5E2-42BC-94BE-C54DD06CB4AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6DA12F7-F5E2-42BC-94BE-C54DD06CB4AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6DA12F7-F5E2-42BC-94BE-C54DD06CB4AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6DA12F7-F5E2-42BC-94BE-C54DD06CB4AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
