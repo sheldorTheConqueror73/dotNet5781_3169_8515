@@ -24,6 +24,7 @@ namespace dotNet5781_03B_3169_8515
         private static List<buses> busPool;
         Random r = new Random();
         string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
+        const short FULL_TANK = 1200;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,15 +32,48 @@ namespace dotNet5781_03B_3169_8515
         }
         public void initBus()
         {
-            int month, day, year;
-            year = r.Next(1980, DateTime.Now.Year + 1);
-            if(year=DateTime.Now.Year)
-
-            DateTime rd = new DateTime(r.Next(1980,DateTime.Now.Year+1),)
             for (int i = 0; i < 13; i++)
             {
-                busPool[i] = new buses();
+                bool flag = true;
+                string id="";
+                while(flag)
+                {
+                    id=r.Next(100000, 1000000).ToString();
+                    flag = false;
+                    foreach(var bus in busPool)
+                        if(id==bus.getId())//need to change accessers
+                        {
+                            flag = true;
+                            break;
+                        }
+                }
+                DateTime rd = randomDate();
+                DateTime lastM = randomDate();
+                busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000)));
             }
+            //set 3 buses to match requirments
+            busPool[0].setLastMaintenance(new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day));
+            busPool[1].setDistance(19999);
+            busPool[2].setFuel(0);
+        }
+        private DateTime randomDate()
+        {
+            int month, day, year;
+            year = r.Next(1980, DateTime.Now.Year + 1);
+            if (year == DateTime.Now.Year)
+            {
+                month = r.Next(1, DateTime.Now.Month + 1);
+                if (month == DateTime.Now.Month)
+                    day = r.Next(1, DateTime.Now.Day + 1);
+                else
+                    day = r.Next(1, 32);
+            }
+            else
+            {
+                month = r.Next(1, 13);
+                day = r.Next(1, 32);
+            }
+          return new DateTime(year, month, day);
         }
     }
 
