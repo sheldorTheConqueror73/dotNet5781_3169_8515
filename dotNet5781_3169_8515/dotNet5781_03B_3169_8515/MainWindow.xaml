@@ -7,12 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="Transparent">
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
         <TabControl  VerticalAlignment="Stretch" >
-            <TabItem Header="Bus Mangment" Height="auto" Width="auto" Background="green" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
-                <Grid Background="Green" />
+            <TabItem Header="Bus Mangment" Height="auto" Width="auto" Background="#1576bb" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Foreground="White">
+                <Grid Background="AliceBlue" >
+                    <ListBox Name="bsDisplay" >
+                        
+                    </ListBox>
+                </Grid>
             </TabItem>
-            <TabItem Header="Settings" Height="auto" Width="auto" Background="red">
-                <Grid Background="red"/>
+            <TabItem Header="Settings" Height="auto" Width="auto" Background="#1576bb" Foreground="White" >
+                <Grid Background="AliceBlue"/>
             </TabItem>
         </TabControl>
 
