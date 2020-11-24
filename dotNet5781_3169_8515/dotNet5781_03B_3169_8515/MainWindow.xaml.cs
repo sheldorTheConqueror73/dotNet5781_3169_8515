@@ -21,16 +21,17 @@ namespace dotNet5781_03B_3169_8515
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static List<buses> busPool=new List<buses>();
+        private static List<buses> busPool = new List<buses>();
         Random r = new Random();
         string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         const short FULL_TANK = 1200;
+        private buses currentBus;
         public MainWindow()
         {
             InitializeComponent();
             initBus();
             bsDisplay.ItemsSource = busPool;
-            bsDisplay.DisplayMemberPath ="Id";
+            bsDisplay.DisplayMemberPath = "Id";
             bsDisplay.SelectedIndex = 0;
         }
         public void initBus()
@@ -38,13 +39,13 @@ namespace dotNet5781_03B_3169_8515
             for (int i = 0; i < 13; i++)
             {
                 bool flag = true;
-                string id="";
-                while(flag)
+                string id = "";
+                while (flag)
                 {
-                    id=r.Next(100000, 1000000).ToString();
+                    id = r.Next(100000, 1000000).ToString();
                     flag = false;
-                    foreach(var bus in busPool)
-                        if(id==bus.getId())//need to change accessers
+                    foreach (var bus in busPool)
+                        if (id == bus.getId())//need to change accessers
                         {
                             flag = true;
                             break;
@@ -59,7 +60,7 @@ namespace dotNet5781_03B_3169_8515
             busPool[1].setDistance(19999);
             busPool[2].setFuel(0);
         }
-        private DateTime randomDate(int mode=0)
+        private DateTime randomDate(int mode = 0)
         {
             int month, day, year;
             year = r.Next(1980, DateTime.Now.Year + 1);
@@ -76,11 +77,28 @@ namespace dotNet5781_03B_3169_8515
                 month = r.Next(1, 13);
                 day = r.Next(1, 32);
             }
-            if(mode==0)
+            if (mode == 0)
                 return new DateTime(year, month, day);//problem if days do not match month (ex: 31/4/1995)
-            if(mode==1)
+            if (mode == 1)
                 return new DateTime(DateTime.Now.Year, month, day);
             throw new Exception("");//need to add exeptions
+        }
+        private void showBuses(string id)
+        {
+            currentBus = busPool[find(id)];
+            busesgrid.DataContext = currentBus;
+            //add label data here
+        }
+        private int find(string id)
+        {
+            int i = 0;
+            foreach (var bus in busPool)
+            {
+                if (bus.getId() == id)
+                    return i;
+                i++;
+            }
+            throw new Exception("no Match");//change
         }
     }
 
