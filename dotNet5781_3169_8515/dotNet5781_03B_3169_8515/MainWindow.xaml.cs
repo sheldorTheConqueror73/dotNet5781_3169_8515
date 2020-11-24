@@ -21,7 +21,7 @@ namespace dotNet5781_03B_3169_8515
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static List<buses> busPool;
+        private static List<buses> busPool=new List<buses>();
         Random r = new Random();
         string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         const short FULL_TANK = 1200;
@@ -56,7 +56,7 @@ namespace dotNet5781_03B_3169_8515
             busPool[1].setDistance(19999);
             busPool[2].setFuel(0);
         }
-        private DateTime randomDate()
+        private DateTime randomDate(int mode=0)
         {
             int month, day, year;
             year = r.Next(1980, DateTime.Now.Year + 1);
@@ -73,7 +73,11 @@ namespace dotNet5781_03B_3169_8515
                 month = r.Next(1, 13);
                 day = r.Next(1, 32);
             }
-          return new DateTime(year, month, day);
+            if(mode==0)
+                return new DateTime(year, month, day);
+            if(mode==1)
+                return new DateTime(DateTime.Now.Year, month, day);
+            throw new Exception("");//need to add exeptions
         }
     }
 
