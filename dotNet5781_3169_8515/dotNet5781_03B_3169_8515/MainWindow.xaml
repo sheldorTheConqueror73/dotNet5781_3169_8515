@@ -13,9 +13,13 @@
         <TabControl  VerticalAlignment="Stretch" >
             <TabItem Header="Bus Mangment" Height="auto" Width="auto" Background="#1576bb" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Foreground="White">
                 <Grid Background="AliceBlue" >
-                    <ListBox Name="bsDisplay" >
-                        
-                    </ListBox>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox  Grid.Row="1" HorizontalAlignment="Left">
+                        <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="1" VerticalAlignment="Top" Width="auto"  Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="Transparent" Foreground="LawnGreen" />
+                    </Viewbox>
                 </Grid>
             </TabItem>
             <TabItem Header="Settings" Height="auto" Width="auto" Background="#1576bb" Foreground="White" >

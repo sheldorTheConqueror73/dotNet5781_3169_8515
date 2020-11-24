@@ -29,6 +29,9 @@ namespace dotNet5781_03B_3169_8515
         {
             InitializeComponent();
             initBus();
+            bsDisplay.ItemsSource = busPool;
+            bsDisplay.DisplayMemberPath ="Id";
+            bsDisplay.SelectedIndex = 0;
         }
         public void initBus()
         {
@@ -48,7 +51,7 @@ namespace dotNet5781_03B_3169_8515
                         }
                 }
                 DateTime rd = randomDate();
-                DateTime lastM = randomDate();
+                DateTime lastM = randomDate(1);
                 busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000)));
             }
             //set 3 buses to match requirments
@@ -74,7 +77,7 @@ namespace dotNet5781_03B_3169_8515
                 day = r.Next(1, 32);
             }
             if(mode==0)
-                return new DateTime(year, month, day);
+                return new DateTime(year, month, day);//problem if days do not match month (ex: 31/4/1995)
             if(mode==1)
                 return new DateTime(DateTime.Now.Year, month, day);
             throw new Exception("");//need to add exeptions
