@@ -23,16 +23,15 @@ namespace dotNet5781_03B_3169_8515
     {
         private static List<buses> busPool = new List<buses>();
         Random r = new Random();
-        string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
+        readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         const short FULL_TANK = 1200;
         private buses currentBus;
-        public MainWindow()
+        public MainWindow()//add mini payer to menu
         {
             InitializeComponent();
             initBus();
             bsDisplay.ItemsSource = busPool;
-            bsDisplay.DisplayMemberPath = "Id";
-            bsDisplay.SelectedIndex = 0;
+            showBuses(busPool[0].getId());
         }
         public void initBus()
         {
@@ -42,7 +41,7 @@ namespace dotNet5781_03B_3169_8515
                 string id = "";
                 while (flag)
                 {
-                    id = r.Next(100000, 1000000).ToString();
+                    id = r.Next(100000, 1000000).ToString();//make sure id format matches MD 
                     flag = false;
                     foreach (var bus in busPool)
                         if (id == bus.getId())//need to change accessers
@@ -51,6 +50,7 @@ namespace dotNet5781_03B_3169_8515
                             break;
                         }
                 }
+                //updatedanr
                 DateTime rd = randomDate();
                 DateTime lastM = randomDate(1);
                 busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000)));
@@ -77,17 +77,21 @@ namespace dotNet5781_03B_3169_8515
                 month = r.Next(1, 13);
                 day = r.Next(1, 32);
             }
-            if (mode == 0)
-                return new DateTime(year, month, day);//problem if days do not match month (ex: 31/4/1995)
             if (mode == 1)
-                return new DateTime(DateTime.Now.Year, month, day);
-            throw new Exception("");//need to add exeptions
+                year = DateTime.Now.Year;
+            try { 
+            return new DateTime(year, month, day);
+            }
+            catch(Exception e)
+            {
+                return randomDate(mode);
+            }
         }
         private void showBuses(string id)
         {
             currentBus = busPool[find(id)];
             busesgrid.DataContext = currentBus;
-            //add label data here
+            bsDisplay.DataContext = currentBus.ToString();
         }
         private int find(string id)
         {

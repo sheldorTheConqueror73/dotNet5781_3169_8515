@@ -6,19 +6,22 @@
         xmlns:local="clr-namespace:dotNet5781_03B_3169_8515"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Background="Transparent" Name="busesgrid">
+    <Grid Background="Transparent" >
+
         <Grid.ColumnDefinitions>
-            
         </Grid.ColumnDefinitions>
         <TabControl  VerticalAlignment="Stretch" >
-            <TabItem Header="Bus Mangment" Height="auto" Width="auto" Background="#1576bb" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Foreground="White">
-                <Grid Background="AliceBlue" >
+            <TabItem Header="Bus Mangment" Height="auto" Width="auto" Background="#1576bb"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Foreground="White">
+                <Grid  Name="busesgrid" >
+                    <Grid.Background>
+                        <ImageBrush ImageSource="src/pics/spaceilluminati.jpg"/>
+                    </Grid.Background>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Viewbox  Grid.Row="1" HorizontalAlignment="Left">
-                        <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="1" VerticalAlignment="Top" Width="auto"  Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="Transparent" Foreground="LawnGreen" />
+                        <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="0" VerticalAlignment="Top" Width="500"  Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="Transparent" Foreground="LawnGreen" />
                     </Viewbox>
                 </Grid>
             </TabItem>

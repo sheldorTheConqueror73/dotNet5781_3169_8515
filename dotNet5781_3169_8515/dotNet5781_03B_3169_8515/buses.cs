@@ -160,5 +160,9 @@ namespace dotNet5781_01_3169_8515
             }
             return $"{id[0]}{id[1]}{id[2]}-{id[3]}{id[4]}-{id[5]}{id[6]}{id[7]}";
         }
+        public override string ToString()
+        {
+            return $"Id:{this.id} ,/........";
+        }
     }
 }
