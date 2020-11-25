@@ -155,6 +155,10 @@ namespace dotNet5781_03B_3169_8515
             return -1;
         }
 
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }
