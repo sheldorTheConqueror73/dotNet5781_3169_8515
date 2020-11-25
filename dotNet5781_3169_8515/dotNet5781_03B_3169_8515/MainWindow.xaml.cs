@@ -33,6 +33,11 @@ namespace dotNet5781_03B_3169_8515
             bsDisplay.ItemsSource = busPool;
             showBuses(busPool[0].getId());
         }
+
+        public List<buses> BusPool
+        {
+            get => busPool;          
+        }
         public void initBus()
         {
             for (int i = 0; i < 13; i++)
@@ -53,12 +58,23 @@ namespace dotNet5781_03B_3169_8515
                 //updatedanr
                 DateTime rd = randomDate();
                 DateTime lastM = randomDate(1);
-                busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000)));
+                busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),randomStatus(r.Next(0,4))));
             }
             //set 3 buses to match requirments
             busPool[0].setLastMaintenance(new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day));
             busPool[1].setDistance(19999);
             busPool[2].setFuel(0);
+        }
+
+        private string randomStatus(int i)
+        {
+            switch (i)
+            {
+                case 0: return "ready";
+                case 1: return "mid-ride";
+                case 2: return "refueling";
+                default: return "in maintenance";
+            }
         }
         private DateTime randomDate(int mode = 0)
         {
@@ -104,6 +120,41 @@ namespace dotNet5781_03B_3169_8515
             }
             throw new Exception("no Match");//change
         }
+
+        private void bsDisplay_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            string st= (bsDisplay.SelectedItem as buses).getId();
+            int fuel = (bsDisplay.SelectedItem as buses).getFuel();
+            DateTime lmaintenance = (bsDisplay.SelectedItem as buses).getLastMaintenance();
+            busDetailsByDoubleClick bDLClk = new busDetailsByDoubleClick();
+            bDLClk.labNameBus.Content = "Bus Id: " + st;
+            bDLClk.labfuel.Content = fuel.ToString();
+            bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).getDistance().ToString();
+            bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).getTotalDistance().ToString(); ;
+            if ((bsDisplay.SelectedItem as buses).getDangerous())
+                st = "dangerous";
+            else
+                st = "not dengerous";
+             bDLClk.labDangerous.Content =st ;
+            bDLClk.labLMaintenance.Content = lmaintenance.ToString();
+
+
+            bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).setFuel(1200);
+            bDLClk.ShowDialog();
+        }
+
+        public int indexOf(string id)
+        {
+            int i = 0;
+            foreach(buses bs in busPool)
+            {
+                if (bs.getId() == id)
+                    return i;
+                i++;
+            }
+            return -1;
+        }
+
     }
 
 }
