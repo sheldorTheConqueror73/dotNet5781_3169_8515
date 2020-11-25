@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_3169_8515
 {
-    partial class buses
+    public partial class buses
     {
+        string status;
         int fuel;//how much fuel is left
         int distance;// distance since last maintenance
         int totalDistance;// total distance driven
@@ -41,6 +42,17 @@ namespace dotNet5781_01_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
         }
+        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready")//cotr
+        {
+            this.id = id;
+            this.fuel = fuel;
+            this.distance = distance;
+            this.dangerous = dangerous;
+            this.registrationDate = date;
+            this.lastMaintenance = lm;
+            this.totalDistance = totalDistance;
+            this.status = _status;
+        }
         private void setAll(DateTime date, DateTime lm, string id, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//set all mebmers at once
         {
             this.id = id;
@@ -52,6 +64,7 @@ namespace dotNet5781_01_3169_8515
             this.totalDistance = totalDistance;
         }
         //accessors
+
        internal string Id
         {
             get => id;
@@ -90,6 +103,19 @@ namespace dotNet5781_01_3169_8515
             get => registrationDate;
             set { registrationDate = value; }
         }
+
+
+        public string Status
+        {
+            get => status;
+            set
+            {
+                if (value == "ready" || value == "mid-ride" || value == "refueling" || value == "maintenance")
+                    status = value;
+            }
+        }
+       
+      
         internal void printId()//prints id
         {
             if (this.registrationDate.Year < 2018)
@@ -187,7 +213,7 @@ namespace dotNet5781_01_3169_8515
         }
         public override string ToString()
         {
-            return $"Id:{this.id} ,/........";
+            return $"Id: {this.id}   Status: {this.status}";
         }
     }
 }

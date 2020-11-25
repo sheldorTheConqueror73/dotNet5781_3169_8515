@@ -11,6 +11,7 @@ namespace dotNet5781_01_3169_8515
 {
     partial class buses
     {
+        string status;
         int fuel;//how much fuel is left
         int distance;// distance since last maintenance
         int totalDistance;// total distance driven
@@ -22,15 +23,16 @@ namespace dotNet5781_01_3169_8515
         internal buses()//ctor
         {
             id = "";
-            fuel = 0; 
-            distance = 0; 
-            totalDistance = 0; 
+            fuel = 0;
+            distance = 0;
+            totalDistance = 0;
             dangerous = false;
-            registrationDate = new DateTime(0,0,0);
+            registrationDate = new DateTime(0, 0, 0);
             lastMaintenance = new DateTime(0, 0, 0);
 
         }
-        internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
+
+        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -49,6 +51,16 @@ namespace dotNet5781_01_3169_8515
             this.registrationDate = date;
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
+        }
+
+        public string Status
+        {
+            get => status;
+            set
+            {
+                if (value == "ready" || value == "mid-ride" || value == "refuelןng" || value == "in Maintenance")
+                    status = value;
+            }
         }
         //accessors
         internal string getId() { return this.id; }
