@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Windows.Threading;
+using System.Diagnostics;
+using System.Threading;
+
 using dotNet5781_01_3169_8515;
 
 namespace dotNet5781_03B_3169_8515
@@ -26,6 +31,7 @@ namespace dotNet5781_03B_3169_8515
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         const short FULL_TANK = 1200;
         private buses currentBus;
+        
         public MainWindow()//add mini payer to menu
         {
             InitializeComponent();
@@ -58,7 +64,7 @@ namespace dotNet5781_03B_3169_8515
                 //updatedanr
                 DateTime rd = randomDate();
                 DateTime lastM = randomDate(1);
-                busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),randomStatus(r.Next(0,4))));
+                busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),randomStatus(r.Next(0,1))));
             }
             //set 3 buses to match requirments
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
@@ -123,10 +129,15 @@ namespace dotNet5781_03B_3169_8515
 
         private void bsDisplay_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            
+            
             string st= (bsDisplay.SelectedItem as buses).Id;
             int fuel = (bsDisplay.SelectedItem as buses).Fuel;
             DateTime lmaintenance = (bsDisplay.SelectedItem as buses).LastMaintenance;
-            busDetailsByDoubleClick bDLClk = new busDetailsByDoubleClick();
+
+            busDetailsByDoubleClick bDLClk= new busDetailsByDoubleClick();
+           
+
             bDLClk.labNameBus.Content = "Bus Id: " + st;
             bDLClk.labfuel.Content = fuel.ToString();
             bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).Distance.ToString();
@@ -142,8 +153,9 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=value;
             bDLClk.lmaintenance += value=> (bsDisplay.SelectedItem as buses).LastMaintenance=value;
             bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance =0;
+           
 
-            bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=1200;
+
             bDLClk.Show();
         }
 

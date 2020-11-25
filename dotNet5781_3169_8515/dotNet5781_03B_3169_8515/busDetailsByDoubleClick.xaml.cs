@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Windows.Threading;
 using System.Diagnostics;
+using System.Threading;
 
 namespace dotNet5781_03B_3169_8515
 {
@@ -24,26 +25,31 @@ namespace dotNet5781_03B_3169_8515
     {
         public event Action<int> fuel1;
         public event Action<DateTime> lmaintenance;
+
+        private string st = "";
         private int counter;
         DispatcherTimer timer;
-        private int mode=0;
+        private int mode = 0;
+
 
         public busDetailsByDoubleClick()
         {
             InitializeComponent();
-            
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(Object obj, EventArgs e)
         {
+
             if (counter > 0)
             {
                 TimeSpan ts = TimeSpan.FromSeconds(counter);
-                labTimer.Content = ts.ToString(@"hh\:mm\:ss");
+                this.st = ts.ToString(@"hh\:mm\:ss");
+                setTextToLabTimer(st);
                 counter--;
             }
             else
             {
+
                 timer.Stop();
                 labTimer.Visibility = Visibility.Hidden;
                 if (mode == 1)
@@ -51,14 +57,36 @@ namespace dotNet5781_03B_3169_8515
                 else if (mode == 2)
                     maintenanceEvent();
             }
+
         }
 
-        private void timerFunc(int _counter)
+        void setTextToLabTimer(string text)
         {
-            counter = _counter;
+            if (!CheckAccess())
+            {
+                Action<string> func = setTextToLabTimer;
+                Dispatcher.BeginInvoke(func, new object[] { text });
+            }
+            else
+            {
+                this.labTimer.Content = text;
+            }
+        }
+
+
+        public void DataWindow_Closing(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void timerFunc()
+        {
+            labTimer.Visibility = Visibility.Visible;
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(timer_Tick);
             timer.Interval = new TimeSpan(0, 0, 1);
+            //this.thread = new Thread(timer_Tick);            
+            //this.thread.Start();
             timer.Start();
         }
 
@@ -69,22 +97,30 @@ namespace dotNet5781_03B_3169_8515
             btnMaintenance.IsEnabled = false;
             mode = 1;
             MessageBox.Show("sending to refuel...");
-            timerFunc(720);//need to add the simulation;
+            counter = 12;
+            timerFunc(); //need to add the simulation;
+
         }
 
         private void fuelEvent()
         {
+            btnRefuel.Content = "send to refuel";
+            btnRefuel.IsEnabled = true;
+            btnMaintenance.IsEnabled = true;
             if (fuel1 != null)
                 fuel1(1200);
-            labfuel.Content = "1200";           
+            labfuel.Content = "1200";
         }
 
         private void maintenanceEvent()
         {
+            btnMaintenance.Content = "send to maintenance";
+            btnRefuel.IsEnabled = true;
+            btnMaintenance.IsEnabled = true;
             DateTime date = DateTime.Now;
             if (lmaintenance != null)
                 lmaintenance(date);
-            labLMaintenance.Content = date.ToString();          
+            labLMaintenance.Content = date.ToString();
         }
 
         private void maintenance_Button_Click(object sender, RoutedEventArgs e)
@@ -94,9 +130,10 @@ namespace dotNet5781_03B_3169_8515
             btnMaintenance.IsEnabled = false;
             mode = 2;
             MessageBox.Show("sending to maintenance...");
-            timerFunc(8640);//need to add the simulation;
+            counter = 14;
+            timerFunc();//need to add the simulation;
         }
 
-      
+
     }
 }

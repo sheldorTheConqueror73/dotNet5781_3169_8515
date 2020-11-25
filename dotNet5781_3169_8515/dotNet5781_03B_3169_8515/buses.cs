@@ -19,8 +19,6 @@ namespace dotNet5781_01_3169_8515
         bool dangerous,locked; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
 
-
-
         internal buses()//ctor
         {
             id = "";
@@ -64,6 +62,7 @@ namespace dotNet5781_01_3169_8515
             this.totalDistance = totalDistance;
         }
         //accessors
+   
 
        internal string Id
         {
@@ -213,6 +212,7 @@ namespace dotNet5781_01_3169_8515
         }
         public override string ToString()
         {
+            
             return $"Id: {this.id}   Status: {this.status}";
         }
     }
