@@ -16,8 +16,9 @@ namespace dotNet5781_01_3169_8515
         int distance;// distance since last maintenance
         int totalDistance;// total distance driven
         string id; //bus id number
-        bool dangerous; //is this bus dangerous
+        bool dangerous,locked; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
+
 
 
         internal buses()//ctor
@@ -29,7 +30,7 @@ namespace dotNet5781_01_3169_8515
             dangerous = false;
             registrationDate = new DateTime(0,0,0);
             lastMaintenance = new DateTime(0, 0, 0);
-
+            
         }
         internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
         {
@@ -64,6 +65,46 @@ namespace dotNet5781_01_3169_8515
         }
         //accessors
 
+       internal string Id
+        {
+            get => id;
+            set { id= value; }//maybe add date format check?
+        }
+
+        internal int Fuel
+        {
+            get => fuel;
+            set { this.fuel = value; }
+        }
+
+        internal int Distance
+        {
+            get => distance;
+            set { distance = value; }
+        }
+        internal int TotalDistance
+        {
+            get => totalDistance;
+            set { totalDistance  = value; }
+        }
+
+        internal bool Dangerous
+        {
+            get => dangerous;
+            set { dangerous = value; }
+        }
+        internal DateTime LastMaintenance
+        {
+            get => lastMaintenance;
+            set { lastMaintenance = value; }
+        }
+        internal DateTime RegistrationDate
+        {
+            get => registrationDate;
+            set { registrationDate = value; }
+        }
+
+
         public string Status
         {
             get => status;
@@ -74,29 +115,7 @@ namespace dotNet5781_01_3169_8515
             }
         }
        
-        public int Fuel
-        {
-            get => fuel;
-            set
-            {
-                if (value > 0 && value < 1200)
-                    fuel = value;
-            }
-        }
-        internal string getId() { return this.id; }
-        internal void setId(string id) {  this.id = id; }
-        internal int getFuel() { return this.fuel; }
-        internal void setFuel(int fuel) { this.fuel = fuel; }
-        internal int getDistance() { return this.distance; }
-        internal void setDistance(int distance) { this.distance = distance; }
-        internal int getTotalDistance() { return this.totalDistance; }
-        internal void setTotalDistance(int totalDistance) { this.totalDistance = totalDistance; }
-        internal bool getDangerous() { return this.dangerous; }
-        internal void setDangerous(bool dangerous) { this.dangerous = dangerous; }
-        internal DateTime getStartDate() { return this.registrationDate; }
-        internal void setDistance(DateTime registrationDate) { this.registrationDate = registrationDate; }
-        internal DateTime getLastMaintenance() { return this.lastMaintenance; }
-        internal void setLastMaintenance(DateTime lm) { this.lastMaintenance = lm; }
+      
         internal void printId()//prints id
         {
             if (this.registrationDate.Year < 2018)

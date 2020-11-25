@@ -110,5 +110,8 @@
   <ItemGroup>
     <Content Include="rcs\audio\shadilay.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="utility\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
