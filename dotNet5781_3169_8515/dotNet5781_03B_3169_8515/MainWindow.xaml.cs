@@ -31,7 +31,7 @@ namespace dotNet5781_03B_3169_8515
             InitializeComponent();
             initBus();
             bsDisplay.ItemsSource = busPool;
-            showBuses(busPool[0].getId());
+            showBuses(busPool[0].Id);
         }
         public void initBus()
         {
@@ -44,7 +44,7 @@ namespace dotNet5781_03B_3169_8515
                     id = r.Next(100000, 1000000).ToString();//make sure id format matches MD 
                     flag = false;
                     foreach (var bus in busPool)
-                        if (id == bus.getId())//need to change accessers
+                        if (id == bus.Id)//need to change accessers
                         {
                             flag = true;
                             break;
@@ -56,9 +56,9 @@ namespace dotNet5781_03B_3169_8515
                 busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000)));
             }
             //set 3 buses to match requirments
-            busPool[0].setLastMaintenance(new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day));
-            busPool[1].setDistance(19999);
-            busPool[2].setFuel(0);
+            busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
+            busPool[1].Distance=19999;
+            busPool[2].Fuel = 0;
         }
         private DateTime randomDate(int mode = 0)
         {
@@ -98,7 +98,7 @@ namespace dotNet5781_03B_3169_8515
             int i = 0;
             foreach (var bus in busPool)
             {
-                if (bus.getId() == id)
+                if (bus.Id == id)
                     return i;
                 i++;
             }

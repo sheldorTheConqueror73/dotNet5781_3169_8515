@@ -51,20 +51,44 @@ namespace dotNet5781_01_3169_8515
             this.totalDistance = totalDistance;
         }
         //accessors
-        internal string getId() { return this.id; }
-        internal void setId(string id) {  this.id = id; }
-        internal int getFuel() { return this.fuel; }
-        internal void setFuel(int fuel) { this.fuel = fuel; }
-        internal int getDistance() { return this.distance; }
-        internal void setDistance(int distance) { this.distance = distance; }
-        internal int getTotalDistance() { return this.totalDistance; }
-        internal void setTotalDistance(int totalDistance) { this.totalDistance = totalDistance; }
-        internal bool getDangerous() { return this.dangerous; }
-        internal void setDangerous(bool dangerous) { this.dangerous = dangerous; }
-        internal DateTime getStartDate() { return this.registrationDate; }
-        internal void setDistance(DateTime registrationDate) { this.registrationDate = registrationDate; }
-        internal DateTime getLastMaintenance() { return this.lastMaintenance; }
-        internal void setLastMaintenance(DateTime lm) { this.lastMaintenance = lm; }
+       internal string Id
+        {
+            get => id;
+            set { id= value; }//maybe add date format check?
+        }
+
+        internal int Fuel
+        {
+            get => fuel;
+            set { this.fuel = value; }
+        }
+
+        internal int Distance
+        {
+            get => distance;
+            set { distance = value; }
+        }
+        internal int TotalDistance
+        {
+            get => totalDistance;
+            set { totalDistance  = value; }
+        }
+
+        internal bool Dangerous
+        {
+            get => dangerous;
+            set { dangerous = value; }
+        }
+        internal DateTime LastMaintenance
+        {
+            get => lastMaintenance;
+            set { lastMaintenance = value; }
+        }
+        internal DateTime RegistrationDate
+        {
+            get => registrationDate;
+            set { registrationDate = value; }
+        }
         internal void printId()//prints id
         {
             if (this.registrationDate.Year < 2018)
