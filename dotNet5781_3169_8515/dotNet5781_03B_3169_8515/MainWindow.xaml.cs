@@ -123,15 +123,15 @@ namespace dotNet5781_03B_3169_8515
 
         private void bsDisplay_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            string st= (bsDisplay.SelectedItem as buses).getId();
-            int fuel = (bsDisplay.SelectedItem as buses).getFuel();
-            DateTime lmaintenance = (bsDisplay.SelectedItem as buses).getLastMaintenance();
+            string st= (bsDisplay.SelectedItem as buses).Id;
+            int fuel = (bsDisplay.SelectedItem as buses).Fuel;
+            DateTime lmaintenance = (bsDisplay.SelectedItem as buses).LastMaintenance;
             busDetailsByDoubleClick bDLClk = new busDetailsByDoubleClick();
             bDLClk.labNameBus.Content = "Bus Id: " + st;
             bDLClk.labfuel.Content = fuel.ToString();
-            bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).getDistance().ToString();
-            bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).getTotalDistance().ToString(); ;
-            if ((bsDisplay.SelectedItem as buses).getDangerous())
+            bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).Distance.ToString();
+            bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).TotalDistance.ToString(); ;
+            if ((bsDisplay.SelectedItem as buses).Dangerous)
                 st = "dangerous";
             else
                 st = "not dengerous";
@@ -139,7 +139,10 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.labLMaintenance.Content = lmaintenance.ToString();
 
 
-            bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).setFuel(1200);
+            bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=value;
+            bDLClk.lmaintenance += value=> (bsDisplay.SelectedItem as buses).LastMaintenance=value;
+            bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance =0;
+
             bDLClk.Show();
         }
 
@@ -148,7 +151,7 @@ namespace dotNet5781_03B_3169_8515
             int i = 0;
             foreach(buses bs in busPool)
             {
-                if (bs.getId() == id)
+                if (bs.Id == id)
                     return i;
                 i++;
             }
