@@ -143,6 +143,7 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.lmaintenance += value=> (bsDisplay.SelectedItem as buses).LastMaintenance=value;
             bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance =0;
 
+            bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=1200;
             bDLClk.Show();
         }
 
@@ -158,6 +159,10 @@ namespace dotNet5781_03B_3169_8515
             return -1;
         }
 
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }

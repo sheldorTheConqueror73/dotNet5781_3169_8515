@@ -12,17 +12,29 @@
         </Grid.ColumnDefinitions>
         <TabControl  VerticalAlignment="Stretch" >
             <TabItem Header="Bus Mangment" Height="auto" Width="auto" Background="#1576bb"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Foreground="White">
-                <Grid  Name="busesgrid" >
+                <Grid Name="mainGrid">
                     <Grid.Background>
                         <ImageBrush ImageSource="src/pics/spaceilluminati.jpg"/>
                     </Grid.Background>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox  Grid.Row="1" HorizontalAlignment="Left">
+                    <Grid  Name="busesgrid" Background="Transparent" Margin="0,0,396,0" >
+                        <Viewbox  Grid.Row="1" HorizontalAlignment="Left">
                         <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="0" VerticalAlignment="Top" Width="500"  Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="Transparent" Foreground="LawnGreen" MouseDoubleClick="bsDisplay_MouseDoubleClick"/>
                     </Viewbox>
+                </Grid>
+                    <Grid Name="functionGrid" Margin="390,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="addBtn" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Add New Bus"  Click="addBtn_Click"></Button>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Settings" Height="auto" Width="auto" Background="#1576bb" Foreground="White" >
