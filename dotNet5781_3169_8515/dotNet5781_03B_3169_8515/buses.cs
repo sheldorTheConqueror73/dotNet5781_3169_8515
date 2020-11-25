@@ -15,8 +15,9 @@ namespace dotNet5781_01_3169_8515
         int distance;// distance since last maintenance
         int totalDistance;// total distance driven
         string id; //bus id number
-        bool dangerous; //is this bus dangerous
+        bool dangerous,locked; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
+
 
 
         internal buses()//ctor
@@ -28,7 +29,7 @@ namespace dotNet5781_01_3169_8515
             dangerous = false;
             registrationDate = new DateTime(0,0,0);
             lastMaintenance = new DateTime(0, 0, 0);
-
+            
         }
         internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
         {
