@@ -25,21 +25,42 @@ namespace dotNet5781_03B_3169_8515
     {
         public event Action<int> fuel1;
         public event Action<DateTime> lmaintenance;
+        public event Action<string> status1;
+
 
         private string st = "";
-        private int counter;
+        private int counter=0;
         DispatcherTimer timer;
         private int mode = 0;
-
 
         public busDetailsByDoubleClick()
         {
             InitializeComponent();
+            status1 += value => labStatus.Content = value;
+            fuel1 += value => labfuel.Content = value;
+            lmaintenance += value => labLMaintenance.Content = value;
+            lmaintenance += value => labDistance.Content = 0;            
+
+           /* while (counter!=0)
+            {
+                if (counter!=0)
+                {
+                    btnRefuel.IsEnabled = false;
+                    btnMaintenance.IsEnabled = false;
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    btnRefuel.IsEnabled = true;
+                    btnMaintenance.IsEnabled = true;
+                    break;
+                }
+            }*/
+
         }
 
         private void timer_Tick(Object obj, EventArgs e)
         {
-
             if (counter > 0)
             {
                 TimeSpan ts = TimeSpan.FromSeconds(counter);
@@ -76,7 +97,8 @@ namespace dotNet5781_03B_3169_8515
 
         public void DataWindow_Closing(object sender, CancelEventArgs e)
         {
-
+           // e.Cancel = true;
+           // this.Visibility = Visibility.Hidden;
         }
 
         private void timerFunc()
@@ -98,6 +120,8 @@ namespace dotNet5781_03B_3169_8515
             mode = 1;
             MessageBox.Show("sending to refuel...");
             counter = 12;
+            if (status1 != null)
+                status1("refueling");
             timerFunc(); //need to add the simulation;
 
         }
@@ -110,6 +134,8 @@ namespace dotNet5781_03B_3169_8515
             if (fuel1 != null)
                 fuel1(1200);
             labfuel.Content = "1200";
+            if (status1 != null)
+                status1("ready");
         }
 
         private void maintenanceEvent()
@@ -121,6 +147,8 @@ namespace dotNet5781_03B_3169_8515
             if (lmaintenance != null)
                 lmaintenance(date);
             labLMaintenance.Content = date.ToString();
+            if (status1 != null)
+                status1("ready");
         }
 
         private void maintenance_Button_Click(object sender, RoutedEventArgs e)
@@ -131,9 +159,18 @@ namespace dotNet5781_03B_3169_8515
             mode = 2;
             MessageBox.Show("sending to maintenance...");
             counter = 14;
+            if (status1 != null)
+                status1("maintenance");
             timerFunc();//need to add the simulation;
         }
 
+
+      /* while(!=ready)
+            {
+            btn1+btn2.isenbled=false;
+            sleep(1000);
+    }
+    btn1+btn.isenbled-true;*/
 
     }
 }

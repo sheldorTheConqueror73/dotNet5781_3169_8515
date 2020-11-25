@@ -18,6 +18,7 @@ namespace dotNet5781_01_3169_8515
         string id; //bus id number
         bool dangerous,locked; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
+       
 
         internal buses()//ctor
         {

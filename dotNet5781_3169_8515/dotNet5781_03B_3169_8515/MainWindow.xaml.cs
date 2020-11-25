@@ -26,6 +26,8 @@ namespace dotNet5781_03B_3169_8515
     /// </summary>
     public partial class MainWindow : Window
     {
+      
+
         private static List<buses> busPool = new List<buses>();
         Random r = new Random();
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
@@ -129,19 +131,19 @@ namespace dotNet5781_03B_3169_8515
 
         private void bsDisplay_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
-            
+
+            busDetailsByDoubleClick bDLClk = new busDetailsByDoubleClick();
             string st= (bsDisplay.SelectedItem as buses).Id;
             int fuel = (bsDisplay.SelectedItem as buses).Fuel;
             DateTime lmaintenance = (bsDisplay.SelectedItem as buses).LastMaintenance;
 
-            busDetailsByDoubleClick bDLClk= new busDetailsByDoubleClick();
-           
+             
 
+            bDLClk.labStatus.Content= (bsDisplay.SelectedItem as buses).Status;
             bDLClk.labNameBus.Content = "Bus Id: " + st;
             bDLClk.labfuel.Content = fuel.ToString();
             bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).Distance.ToString();
-            bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).TotalDistance.ToString(); ;
+            bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).TotalDistance.ToString(); 
             if ((bsDisplay.SelectedItem as buses).Dangerous)
                 st = "dangerous";
             else
@@ -153,10 +155,9 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=value;
             bDLClk.lmaintenance += value=> (bsDisplay.SelectedItem as buses).LastMaintenance=value;
             bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance =0;
-           
+            bDLClk.status1 += value => (bsDisplay.SelectedItem as buses).Status = value;
 
-
-            bDLClk.Show();
+            bDLClk.ShowDialog();
         }
 
         public int indexOf(string id)
