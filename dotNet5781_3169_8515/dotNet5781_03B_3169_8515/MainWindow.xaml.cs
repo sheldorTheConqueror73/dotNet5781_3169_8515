@@ -140,7 +140,7 @@ namespace dotNet5781_03B_3169_8515
 
 
             bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).setFuel(1200);
-            bDLClk.ShowDialog();
+            bDLClk.Show();
         }
 
         public int indexOf(string id)

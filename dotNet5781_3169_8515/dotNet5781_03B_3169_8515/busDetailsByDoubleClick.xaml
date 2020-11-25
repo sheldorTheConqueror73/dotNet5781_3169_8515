@@ -48,8 +48,8 @@
 
         <Label Grid.Row="1" Grid.Column="3" Content="addional operation" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
 
-        <Button Grid.Column="3" Grid.Row="2" Content="send to refuel" FontSize="20" Margin="90,8,90,0" Click="refuel_Button_Click"/>
-        <Button Grid.Column="3" Grid.Row="3" Content="send to maintenance" FontSize="20" Margin="90,8,90,0" Click="maintenance_Button_Click"/>
+        <Button x:Name="btnRefuel" Grid.Column="3" Grid.Row="2" Content="send to refuel" FontSize="20" Margin="90,8,90,0" Click="refuel_Button_Click"/>
+        <Button x:Name="btnMaintenance" Grid.Column="3" Grid.Row="3" Content="send to maintenance" FontSize="20" Margin="90,8,90,0" Click="maintenance_Button_Click"/>
 
     </Grid>
 </Window>

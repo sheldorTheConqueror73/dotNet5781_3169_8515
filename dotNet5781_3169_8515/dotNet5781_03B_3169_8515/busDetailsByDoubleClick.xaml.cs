@@ -36,15 +36,20 @@ namespace dotNet5781_03B_3169_8515
 
         private void refuel_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (fuel1 != null)
+            if(fuel1 != null)
                 fuel1(1200);
+            labfuel.Content = "1200";
+            MessageBox.Show("sending to refuel...");
         }
 
         private void maintenance_Button_Click(object sender, RoutedEventArgs e)
         {
-            DateTime date = new DateTime().;
-            if(lmaintenance!=null)
-                lmaintenance()
+            DateTime date = DateTime.Now;
+            if (lmaintenance != null)
+                lmaintenance(date);
+            labLMaintenance.Content = date.ToString();
+            MessageBox.Show("sending to maintenance...");
+
         }
     }
 }

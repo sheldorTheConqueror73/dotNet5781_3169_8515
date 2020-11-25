@@ -69,7 +69,7 @@ namespace dotNet5781_01_3169_8515
             get => status;
             set
             {
-                if (value == "ready" || value == "mid-ride" || value == "refueling" || value == "in maintenance")
+                if (value == "ready" || value == "mid-ride" || value == "refueling" || value == "maintenance")
                     status = value;
             }
         }
