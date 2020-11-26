@@ -16,6 +16,8 @@ using System.ComponentModel;
 using System.Windows.Threading;
 using System.Diagnostics;
 using System.Threading;
+using System.Collections.ObjectModel;
+using dotNet5781_03B_3169_8515.utility;
 
 using dotNet5781_01_3169_8515;
 
@@ -28,21 +30,23 @@ namespace dotNet5781_03B_3169_8515
     {
       
 
-        private static BindingList<buses> busPool = new BindingList<buses>();
+        private static ObservableCollectionPropertyNotify<buses> busPool = new ObservableCollectionPropertyNotify<buses>();
         Random r = new Random();
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         const short FULL_TANK = 1200;
         private buses currentBus;
-        
+    
         public MainWindow()//add mini payer to menu
         {
             InitializeComponent();
             initBus();
             bsDisplay.ItemsSource = busPool;           
             showBuses(busPool[0].Id);
+            //Thread UiUpdate = new Thread(UpdateList);
+            //UiUpdate.Start();
         }
 
-        public BindingList<buses> BusPool
+        public ObservableCollectionPropertyNotify<buses> BusPool
         {
             get => busPool;          
         }
@@ -203,6 +207,10 @@ namespace dotNet5781_03B_3169_8515
                 return;
             }
             busPool.RemoveAt(indexOf(lineData.Id));
+        }
+        internal void UpdateList()
+        {
+            
         }
 
     }

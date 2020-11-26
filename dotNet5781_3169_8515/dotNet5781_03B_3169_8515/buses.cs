@@ -6,19 +6,27 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace dotNet5781_01_3169_8515
 {
-    public partial class buses
+    public partial class buses : INotifyPropertyChanged
     {
         string status;
         int fuel;//how much fuel is left
         int distance;// distance since last maintenance
         int totalDistance;// total distance driven
         string id; //bus id number
-        bool dangerous,locked; //is this bus dangerous
+        bool dangerous; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
-       
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propName)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
 
         internal buses()//ctor
         {
@@ -68,7 +76,7 @@ namespace dotNet5781_01_3169_8515
        internal string Id
         {
             get => id;
-            set { id= value; }//maybe add date format check?
+            set { id= value;  }//maybe add date format check?
         }
 
         internal int Fuel
@@ -111,7 +119,11 @@ namespace dotNet5781_01_3169_8515
             set
             {
                 if (value == "ready" || value == "mid-ride" || value == "refueling" || value == "maintenance")
+                {
                     status = value;
+                    this.NotifyPropertyChanged("Status");
+                }
+            
             }
         }
        
