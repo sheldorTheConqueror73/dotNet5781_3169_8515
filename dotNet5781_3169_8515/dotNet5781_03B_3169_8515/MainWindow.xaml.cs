@@ -154,10 +154,10 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.labLMaintenance.Content = lmaintenance.ToString().Split(' ')[0];
 
             
-            bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=value;
-            bDLClk.lmaintenance += value=> (bsDisplay.SelectedItem as buses).LastMaintenance=value;
-            bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance =0;
-            bDLClk.status1 += value => (bsDisplay.SelectedItem as buses).Status = value;
+           // bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=value;
+           // bDLClk.lmaintenance += value=> (bsDisplay.SelectedItem as buses).LastMaintenance=value;
+          //  bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance =0;
+           // bDLClk.status1 += value => (bsDisplay.SelectedItem as buses).Status = value;
 
             bDLClk.ShowDialog();
         }

@@ -28,15 +28,19 @@ namespace dotNet5781_03B_3169_8515
         public event Action<string> status1;
 
         private string st = "";
-        private int counter=0;
+        private int counter = 0;
         DispatcherTimer timer;
         private int mode = 0;
         MainWindow mainWindow1;
-        Thread reshreshWindow;
+        DispatcherTimer refresh;
 
         public busDetailsByDoubleClick()
         {
-            reshreshWindow = new Thread(refreshBusDetails);
+            refresh = new DispatcherTimer();
+            refresh.Tick += new EventHandler(refreshBusDetails);
+            refresh.Interval = new TimeSpan(0, 0, 1);
+
+            //reshreshWindow = new Thread(refreshBusDetails);
             InitializeComponent();
             foreach (Window window in Application.Current.Windows)
             {
@@ -49,11 +53,12 @@ namespace dotNet5781_03B_3169_8515
             fuel1 += value => labfuel.Content = value;
             lmaintenance += value => labLMaintenance.Content = value;
             lmaintenance += value => labDistance.Content = 0;
-            if((mainWindow1.bsDisplay.SelectedItem as buses).Status!="ready")
-             {
-                    btnRefuel.IsEnabled = false;
-                    btnMaintenance.IsEnabled = false;
-             }
+            if ((mainWindow1.bsDisplay.SelectedItem as buses).Status != "ready")
+            {
+                btnRefuel.IsEnabled = false;
+                btnMaintenance.IsEnabled = false;
+                refresh.Start();
+            }
         }
 
         private void timer_Tick(Object obj, EventArgs e)
@@ -95,19 +100,18 @@ namespace dotNet5781_03B_3169_8515
         public void DataWindow_Closing(object sender, CancelEventArgs e)
         {
 
-            // e.Cancel = true;
-            // this.Visibility = Visibility.Hidden;
+             e.Cancel = true;
+             this.Visibility = Visibility.Hidden;
         }
 
         private void timerFunc()
         {
-            labTimer.Visibility = Visibility.Visible;
+            
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 1);
-            //this.thread = new Thread(timer_Tick);            
-            //this.thread.Start();
+            timer.Interval = new TimeSpan(0, 0, 1);            
             timer.Start();
+            labTimer.Visibility = Visibility.Visible;
         }
 
         private void refuel_Button_Click(object sender, RoutedEventArgs e)
@@ -118,10 +122,10 @@ namespace dotNet5781_03B_3169_8515
             mode = 1;
             MessageBox.Show("sending to refuel...");
             counter = 12;
+            //(mainWindow1.bsDisplay.SelectedItem as buses).Status = "refueling";
             if (status1 != null)
             {
                 status1("refueling");
-                reshreshWindow.Start();
                 mainWindow1.BusPool.Refresh();
             }
             timerFunc();
@@ -132,13 +136,13 @@ namespace dotNet5781_03B_3169_8515
             btnRefuel.Content = "send to refuel";
             btnRefuel.IsEnabled = true;
             btnMaintenance.IsEnabled = true;
+           // (mainWindow1.bsDisplay.SelectedItem as buses).Status = "ready";
             if (fuel1 != null)
                 fuel1(1200);
             labfuel.Content = "1200";
             if (status1 != null)
-            { 
+            {
                 status1("ready");
-                reshreshWindow.Abort();
                 mainWindow1.BusPool.Refresh();
             }
         }
@@ -155,7 +159,6 @@ namespace dotNet5781_03B_3169_8515
             if (status1 != null)
             {
                 status1("ready");
-                reshreshWindow.Abort();
                 mainWindow1.BusPool.Refresh();
             }
         }
@@ -171,21 +174,33 @@ namespace dotNet5781_03B_3169_8515
             if (status1 != null)
             {
                 status1("maintenance");
-                reshreshWindow.Start();
                 mainWindow1.BusPool.Refresh();
             }
             timerFunc();//need to add the simulation;
         }
-        public void refreshBusDetails() { }
-        //{
-        //    Action func = refreshBusDetails;
-        //    Dispatcher.BeginInvoke(func, new object[] { });
-        //    if((mainWindow1.bsDisplay.SelectedItem as buses).Status=="ready")
-        //    {
-        //        btnMaintenance.IsEnabled = true;
-        //        btnRefuel.IsEnabled = true;
-        //    }
-        //    Thread.Sleep(500);
+        public void refreshBusDetails(Object obj, EventArgs e)
+        {
+            
+            if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "ready")
+            {
+                btnMaintenance.IsEnabled = true;
+                btnRefuel.IsEnabled = true;
+                labStatus.Content = "ready";
+                if ((mainWindow1.bsDisplay.SelectedItem as buses).Fuel == 1200)
+                    labfuel.Content = "1200";
+                if ((mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.Day == (DateTime.Now.Day))
+                {
+                    labLMaintenance.Content = (mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.ToString().Split(' ')[0];
+                    labDistance.Content = "0";
+                }
+                refresh.Stop();
+            }
+            else
+            {            
+            }
         }
+       
+
     }
+}
 

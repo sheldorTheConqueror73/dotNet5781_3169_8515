@@ -18,12 +18,12 @@
                     </Grid.Background>
                     <Grid  Name="busesgrid" Background="Transparent" Margin="0,0,396,0" >
                         <Viewbox  Grid.Row="1" HorizontalAlignment="Left">
-                            <ListBox HorizontalAlignment="Left"  Height="541" Grid.Row="0" VerticalAlignment="Top" Width="500"  Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="20" Background="Transparent" Foreground="LawnGreen" MouseDoubleClick="bsDisplay_MouseDoubleClick">
+                            <ListBox HorizontalAlignment="Left"  Height="600" Grid.Row="0" VerticalAlignment="Top" Width="550"  Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="20" Background="Transparent" Foreground="LawnGreen" MouseDoubleClick="bsDisplay_MouseDoubleClick">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock  Text="{Binding}"/>
+                                                <TextBlock  Text="{Binding}" Width="300"/>
                                             </StackPanel>
                                             <StackPanel>
                                             <Button Content="Send to drive" ToolTip="Drive Bus" Click="Button_SendDrive" Tag="{Binding Path=.}" Margin="30,0,0,0"/>
