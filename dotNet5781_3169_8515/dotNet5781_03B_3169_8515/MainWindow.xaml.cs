@@ -145,6 +145,7 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.labfuel.Content = fuel.ToString();
             bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).Distance.ToString();
             bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).TotalDistance.ToString(); 
+            bDLClk.labRegistration.Content= (bsDisplay.SelectedItem as buses).RegistrationDate.ToString().Split(' ')[0];
             if ((bsDisplay.SelectedItem as buses).Dangerous)
                 st = "Yes";
             else
