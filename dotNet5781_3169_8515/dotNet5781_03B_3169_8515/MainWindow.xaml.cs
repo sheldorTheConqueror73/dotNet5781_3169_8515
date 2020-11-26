@@ -150,7 +150,7 @@ namespace dotNet5781_03B_3169_8515
             else
                 st = "No";
              bDLClk.labDangerous.Content =st ;
-            bDLClk.labLMaintenance.Content = lmaintenance.ToString();
+            bDLClk.labLMaintenance.Content = lmaintenance.ToString().Split(' ')[0];
 
             
             bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=value;

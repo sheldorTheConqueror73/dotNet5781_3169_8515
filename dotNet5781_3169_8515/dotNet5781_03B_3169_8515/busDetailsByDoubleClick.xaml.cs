@@ -146,7 +146,7 @@ namespace dotNet5781_03B_3169_8515
             DateTime date = DateTime.Now;
             if (lmaintenance != null)
                 lmaintenance(date);
-            labLMaintenance.Content = date.ToString();
+            labLMaintenance.Content = date.ToString().Split(' ')[0];
             if (status1 != null)
                 status1("ready");
         }
