@@ -28,7 +28,7 @@
                                             <StackPanel>
                                             <Button Content="Send to drive" Click="Button_SendDrive" Tag="{Binding Path=.}" Margin="30,0,0,0"/>
                                             </StackPanel>
-                                            <Button Content="Delete" Click="Button_Delete" Tag="{Binding Path=.}" Margin="30,0,0,0"/>
+                                            <Button  Content="Delete" Click="Button_Delete" Tag="{Binding Path=.}" Margin="30,0,0,0"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>

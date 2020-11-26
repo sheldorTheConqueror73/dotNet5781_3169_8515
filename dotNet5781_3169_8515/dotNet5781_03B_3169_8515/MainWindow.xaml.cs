@@ -131,7 +131,8 @@ namespace dotNet5781_03B_3169_8515
 
         private void bsDisplay_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            if ((bsDisplay.SelectedItem as buses) == null)
+                return;
             busDetailsByDoubleClick bDLClk = new busDetailsByDoubleClick();
             string st= (bsDisplay.SelectedItem as buses).Id;
             int fuel = (bsDisplay.SelectedItem as buses).Fuel;
@@ -187,6 +188,7 @@ namespace dotNet5781_03B_3169_8515
 
         private void Button_Delete(object sender, RoutedEventArgs e)
         {
+            ((Button)sender).IsEnabled = false;
             var fxElt = sender as FrameworkElement;
             buses lineData = fxElt.DataContext as buses;
             busPool.RemoveAt(indexOf(lineData.Id));
