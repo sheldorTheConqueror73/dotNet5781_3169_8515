@@ -28,7 +28,7 @@ namespace dotNet5781_03B_3169_8515
     {
       
 
-        private static List<buses> busPool = new List<buses>();
+        private static BindingList<buses> busPool = new BindingList<buses>();
         Random r = new Random();
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         const short FULL_TANK = 1200;
@@ -38,11 +38,11 @@ namespace dotNet5781_03B_3169_8515
         {
             InitializeComponent();
             initBus();
-            bsDisplay.ItemsSource = busPool;
+            bsDisplay.ItemsSource = busPool;           
             showBuses(busPool[0].Id);
         }
 
-        public List<buses> BusPool
+        public BindingList<buses> BusPool
         {
             get => busPool;          
         }
@@ -176,6 +176,22 @@ namespace dotNet5781_03B_3169_8515
         {
 
         }
+
+        private void Button_SendDrive(object sender, RoutedEventArgs e)
+        {
+            
+           var fxElt = sender as FrameworkElement;
+            buses lineData = fxElt.DataContext as buses;         
+            MessageBox.Show(lineData.Id);
+        }
+
+        private void Button_Delete(object sender, RoutedEventArgs e)
+        {
+            var fxElt = sender as FrameworkElement;
+            buses lineData = fxElt.DataContext as buses;
+            busPool.RemoveAt(indexOf(lineData.Id));
+        }
+
     }
 
 }
