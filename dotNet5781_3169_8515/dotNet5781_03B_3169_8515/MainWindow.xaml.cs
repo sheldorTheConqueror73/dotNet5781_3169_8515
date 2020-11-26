@@ -19,8 +19,6 @@ using System.Threading;
 using System.Collections.ObjectModel;
 using dotNet5781_03B_3169_8515.utility;
 
-using dotNet5781_01_3169_8515;
-
 namespace dotNet5781_03B_3169_8515
 {
     /// <summary>
@@ -42,8 +40,6 @@ namespace dotNet5781_03B_3169_8515
             initBus();
             bsDisplay.ItemsSource = busPool;           
             showBuses(busPool[0].Id);
-            //Thread UiUpdate = new Thread(UpdateList);
-            //UiUpdate.Start();
         }
 
         public ObservableCollectionPropertyNotify<buses> BusPool
@@ -207,10 +203,6 @@ namespace dotNet5781_03B_3169_8515
                 return;
             }
             busPool.RemoveAt(indexOf(lineData.Id));
-        }
-        internal void UpdateList()
-        {
-            
         }
 
     }

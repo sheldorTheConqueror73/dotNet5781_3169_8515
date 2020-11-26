@@ -31,42 +31,29 @@ namespace dotNet5781_03B_3169_8515
         private int counter=0;
         DispatcherTimer timer;
         private int mode = 0;
-        Window mainWindow1;
-      
+        MainWindow mainWindow1;
+        Thread reshreshWindow;
 
         public busDetailsByDoubleClick()
         {
+            reshreshWindow = new Thread(refreshBusDetails);
             InitializeComponent();
             foreach (Window window in Application.Current.Windows)
             {
                 if (window.GetType() == typeof(MainWindow))
                 {
-                    mainWindow1 = window;
+                    mainWindow1 = window as MainWindow;
                 }
             }
             status1 += value => labStatus.Content = value;
             fuel1 += value => labfuel.Content = value;
             lmaintenance += value => labLMaintenance.Content = value;
             lmaintenance += value => labDistance.Content = 0;
-            
-            
-
-           /* while (counter!=0)
-            {
-                if (counter!=0)
-                {
+            if((mainWindow1.bsDisplay.SelectedItem as buses).Status!="ready")
+             {
                     btnRefuel.IsEnabled = false;
                     btnMaintenance.IsEnabled = false;
-                    Thread.Sleep(1000);
-                }
-                else
-                {
-                    btnRefuel.IsEnabled = true;
-                    btnMaintenance.IsEnabled = true;
-                    break;
-                }
-            }*/
-
+             }
         }
 
         private void timer_Tick(Object obj, EventArgs e)
@@ -134,7 +121,8 @@ namespace dotNet5781_03B_3169_8515
             if (status1 != null)
             {
                 status1("refueling");
-                (mainWindow1 as MainWindow).BusPool.Refresh();
+                reshreshWindow.Start();
+                mainWindow1.BusPool.Refresh();
             }
             timerFunc();
         }
@@ -150,7 +138,8 @@ namespace dotNet5781_03B_3169_8515
             if (status1 != null)
             { 
                 status1("ready");
-                (mainWindow1 as MainWindow).BusPool.Refresh();
+                reshreshWindow.Abort();
+                mainWindow1.BusPool.Refresh();
             }
         }
 
@@ -166,7 +155,8 @@ namespace dotNet5781_03B_3169_8515
             if (status1 != null)
             {
                 status1("ready");
-                (mainWindow1 as MainWindow).BusPool.Refresh();
+                reshreshWindow.Abort();
+                mainWindow1.BusPool.Refresh();
             }
         }
 
@@ -181,18 +171,21 @@ namespace dotNet5781_03B_3169_8515
             if (status1 != null)
             {
                 status1("maintenance");
-                (mainWindow1 as MainWindow).BusPool.Refresh();
+                reshreshWindow.Start();
+                mainWindow1.BusPool.Refresh();
             }
             timerFunc();//need to add the simulation;
         }
-
-
-      /* while(!=ready)
-            {
-            btn1+btn2.isenbled=false;
-            sleep(1000);
+        public void refreshBusDetails() { }
+        //{
+        //    Action func = refreshBusDetails;
+        //    Dispatcher.BeginInvoke(func, new object[] { });
+        //    if((mainWindow1.bsDisplay.SelectedItem as buses).Status=="ready")
+        //    {
+        //        btnMaintenance.IsEnabled = true;
+        //        btnRefuel.IsEnabled = true;
+        //    }
+        //    Thread.Sleep(500);
+        }
     }
-    btn1+btn.isenbled-true;*/
 
-    }
-}

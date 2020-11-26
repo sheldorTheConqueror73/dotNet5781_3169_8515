@@ -10,7 +10,7 @@ using System.Windows;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 
-namespace dotNet5781_01_3169_8515
+namespace dotNet5781_03B_3169_8515
 {
     public partial class buses : INotifyPropertyChanged
     {
@@ -37,7 +37,7 @@ namespace dotNet5781_01_3169_8515
             dangerous = false;
             registrationDate = new DateTime(0,0,0);
             lastMaintenance = new DateTime(0, 0, 0);
-            
+
         }
         internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
         {
@@ -111,8 +111,6 @@ namespace dotNet5781_01_3169_8515
             get => registrationDate;
             set { registrationDate = value; }
         }
-
-
         public string Status
         {
             get => status;
