@@ -146,13 +146,13 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).Distance.ToString();
             bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).TotalDistance.ToString(); 
             if ((bsDisplay.SelectedItem as buses).Dangerous)
-                st = "dangerous";
+                st = "Yes";
             else
-                st = "not dengerous";
+                st = "No";
              bDLClk.labDangerous.Content =st ;
             bDLClk.labLMaintenance.Content = lmaintenance.ToString();
 
-
+            
             bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=value;
             bDLClk.lmaintenance += value=> (bsDisplay.SelectedItem as buses).LastMaintenance=value;
             bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance =0;
@@ -182,7 +182,12 @@ namespace dotNet5781_03B_3169_8515
         {
             
            var fxElt = sender as FrameworkElement;
-            buses lineData = fxElt.DataContext as buses;         
+            buses lineData = fxElt.DataContext as buses;
+            if (lineData.Status != "ready")
+            {
+                MessageBox.Show("you cannot drive a bus unless its status is ready");
+                return;
+            }
             MessageBox.Show(lineData.Id);
         }
 
@@ -191,6 +196,11 @@ namespace dotNet5781_03B_3169_8515
             ((Button)sender).IsEnabled = false;
             var fxElt = sender as FrameworkElement;
             buses lineData = fxElt.DataContext as buses;
+            if(lineData.Status!="ready")
+            {
+                MessageBox.Show("you cannot delete a bus unless its status is ready");
+                return;
+            }
             busPool.RemoveAt(indexOf(lineData.Id));
         }
 
