@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Windows.Threading;
+using dotNet5781_03B_3169_8515.utility;
 
 namespace dotNet5781_03B_3169_8515
 {
@@ -21,6 +23,7 @@ namespace dotNet5781_03B_3169_8515
         string id; //bus id number
         bool dangerous; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
+        Timerclasstest timer;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -28,6 +31,11 @@ namespace dotNet5781_03B_3169_8515
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
+       internal Timerclasstest Timer
+        {
+            get => timer;
+            set { timer = value; }
+        }
         internal buses()//ctor
         {
             id = "";
@@ -60,6 +68,36 @@ namespace dotNet5781_03B_3169_8515
             this.totalDistance = totalDistance;
             this.status = _status;
         }
+        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclasstest _timer=null)//cotr
+        {
+            this.id = id;
+            this.fuel = fuel;
+            this.distance = distance;
+            this.dangerous = dangerous;
+            this.registrationDate = date;
+            this.lastMaintenance = lm;
+            this.totalDistance = totalDistance;
+            this.status = _status;
+            this.timer = new Timerclasstest(0);
+            this.timer= _timer;
+        }
+        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",string _timer="")//cotr
+        {
+            this.id = id;
+            this.fuel = fuel;
+            this.distance = distance;
+            this.dangerous = dangerous;
+            this.registrationDate = date;
+            this.lastMaintenance = lm;
+            this.totalDistance = totalDistance;
+            this.status = _status;
+            if (_timer != "")
+                this.timer = new Timerclasstest(double.Parse(_timer));
+            else
+                this.timer = null;
+        }
+
+
         private void setAll(DateTime date, DateTime lm, string id, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//set all mebmers at once
         {
             this.id = id;
@@ -223,8 +261,13 @@ namespace dotNet5781_03B_3169_8515
         }
         public override string ToString()
         {
-            
-            return $"Id: {this.id}   Status: {this.status}";
+            string st = "";
+            if (this.timer != null)
+                if (this.timer.TimeNow == "00:00:00")
+                    st = "";
+                 else
+                    st = this.timer.TimeNow;
+            return $"Id: {this.id}   Status: {this.status} {st}";
         }
     }
 }

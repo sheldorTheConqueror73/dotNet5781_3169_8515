@@ -55,8 +55,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="busDrive.xaml.cs">
+      <DependentUpon>busDrive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="utility\ObservableCollectionPropertyNotify.cs" />
+    <Compile Include="utility\Timerclasstest.cs" />
     <Page Include="busDetailsByDoubleClick.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="busDrive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

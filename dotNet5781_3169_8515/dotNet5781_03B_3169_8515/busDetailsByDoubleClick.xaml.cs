@@ -15,6 +15,8 @@ using System.ComponentModel;
 using System.Windows.Threading;
 using System.Diagnostics;
 using System.Threading;
+using dotNet5781_03B_3169_8515.utility;
+
 
 namespace dotNet5781_03B_3169_8515
 {
@@ -26,6 +28,7 @@ namespace dotNet5781_03B_3169_8515
         public event Action<int> fuel1;
         public event Action<DateTime> lmaintenance;
         public event Action<string> status1;
+        public event Action<double> tim;
 
         private string st = "";
         private int counter = 0;
@@ -36,11 +39,8 @@ namespace dotNet5781_03B_3169_8515
 
         public busDetailsByDoubleClick()
         {
-            refresh = new DispatcherTimer();
-            refresh.Tick += new EventHandler(refreshBusDetails);
-            refresh.Interval = new TimeSpan(0, 0, 1);
+          
 
-            //reshreshWindow = new Thread(refreshBusDetails);
             InitializeComponent();
             foreach (Window window in Application.Current.Windows)
             {
@@ -49,10 +49,17 @@ namespace dotNet5781_03B_3169_8515
                     mainWindow1 = window as MainWindow;
                 }
             }
+           
             status1 += value => labStatus.Content = value;
             fuel1 += value => labfuel.Content = value;
             lmaintenance += value => labLMaintenance.Content = value;
             lmaintenance += value => labDistance.Content = 0;
+
+            refresh = new DispatcherTimer();
+            refresh.Tick += new EventHandler(refreshBusDetails);
+            refresh.Interval = new TimeSpan(0, 0,0,0,100);
+
+
             if ((mainWindow1.bsDisplay.SelectedItem as buses).Status != "ready")
             {
                 btnRefuel.IsEnabled = false;
@@ -122,12 +129,17 @@ namespace dotNet5781_03B_3169_8515
             mode = 1;
             MessageBox.Show("sending to refuel...");
             counter = 12;
-            //(mainWindow1.bsDisplay.SelectedItem as buses).Status = "refueling";
+
+            if (tim != null)
+            {
+                tim(counter);
+                mainWindow1.BusPool.Refresh();
+            }
             if (status1 != null)
             {
                 status1("refueling");
                 mainWindow1.BusPool.Refresh();
-            }
+            }           
             timerFunc();
         }
 
@@ -136,7 +148,7 @@ namespace dotNet5781_03B_3169_8515
             btnRefuel.Content = "send to refuel";
             btnRefuel.IsEnabled = true;
             btnMaintenance.IsEnabled = true;
-           // (mainWindow1.bsDisplay.SelectedItem as buses).Status = "ready";
+
             if (fuel1 != null)
                 fuel1(1200);
             labfuel.Content = "1200";
@@ -170,7 +182,12 @@ namespace dotNet5781_03B_3169_8515
             btnMaintenance.IsEnabled = false;
             mode = 2;
             MessageBox.Show("sending to maintenance...");
-            counter = 14;
+            counter = 144;
+            if (tim != null)
+            {
+                tim(counter);
+                mainWindow1.BusPool.Refresh();
+            }
             if (status1 != null)
             {
                 status1("maintenance");
@@ -178,6 +195,8 @@ namespace dotNet5781_03B_3169_8515
             }
             timerFunc();//need to add the simulation;
         }
+
+        private bool flag = true;
         public void refreshBusDetails(Object obj, EventArgs e)
         {
             
@@ -193,10 +212,18 @@ namespace dotNet5781_03B_3169_8515
                     labLMaintenance.Content = (mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.ToString().Split(' ')[0];
                     labDistance.Content = "0";
                 }
+                
+
                 refresh.Stop();
             }
             else
-            {            
+            {
+                if (flag)
+                {
+                    counter = (int.Parse((((mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow.ToString().Split(':')[0]))) * 3600 + int.Parse((((mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow.ToString().Split(':')[1]))) * 60 + int.Parse((((mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow.ToString().Split(':')[2]))))-1;
+                    timerFunc();
+                    flag = false;
+                }
             }
         }
        

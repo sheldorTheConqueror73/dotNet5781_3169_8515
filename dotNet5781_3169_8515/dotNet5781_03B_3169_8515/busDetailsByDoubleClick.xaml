@@ -41,7 +41,7 @@
         <Label Grid.Row="6" Grid.Column="0" Content="Last Maintenance:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
         
         <Label Grid.Row="0" Grid.Column="0" Content="Status: " VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-        <Label Grid.Row="0" Grid.Column="1" Name="labStatus" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="0" Grid.Column="1" Name="labStatus" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
 
         <Label Grid.Row="1" Grid.Column="1" Name="labfuel" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" />
         <Label Grid.Row="2" Grid.Column="1" Name="labDistance" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20"/>
