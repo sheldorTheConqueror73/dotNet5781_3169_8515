@@ -235,7 +235,7 @@ namespace dotNet5781_03B_3169_8515
                     bs.Fuel = 1200;
                     bs.Status = "ready";
                     BusPool.Refresh();  
-                    if(NoOperateExist())
+                    if(NoOperationExist())
                         timer.Stop();
                 }
                 if (bs.Status == "maintenance" && bs.Timer.TimeNow == "00:00:00")
@@ -244,20 +244,20 @@ namespace dotNet5781_03B_3169_8515
                     bs.Distance = 0;
                     bs.Status = "ready";
                     BusPool.Refresh();
-                    if (NoOperateExist())
+                    if (NoOperationExist())
                         timer.Stop();
                 }
                 if (bs.Status == "mid-ride" && bs.Timer.TimeNow == "00:00:00")
                 {                    
                     bs.Status = "ready";
                     BusPool.Refresh();
-                    if (NoOperateExist())
+                    if (NoOperationExist())
                         timer.Stop();
                 }
             }
         }
 
-        private bool NoOperateExist()
+        private bool NoOperationExist()
         {
             foreach(buses bs in busPool)
             {

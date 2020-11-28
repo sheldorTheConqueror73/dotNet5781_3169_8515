@@ -206,8 +206,11 @@ namespace dotNet5781_03B_3169_8515
         }
         internal void UpdateDangerous()//updates dangerous status of selected bus
         {
-            if ((distance >= 20000) || (this.passedYearNowAndThen() == false))
-                this.dangerous= true;
+            if ((distance >= 20000) || (this.passedYearNowAndThen() == true))
+            {
+                this.dangerous = true;
+                return;
+            }
             this.dangerous= false;
         }
 

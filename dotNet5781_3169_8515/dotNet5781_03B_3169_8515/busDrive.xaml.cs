@@ -58,8 +58,13 @@ namespace dotNet5781_03B_3169_8515
 
         private void TextBox_sendDrive(Object sender,KeyEventArgs e)
         {
-            if (e.Key == Key.Enter && tBoxDistance.Text != "") 
+            if (e.Key == Key.Enter && tBoxDistance.Text.ToString() != "") 
             {
+                if (!lineData.CanMakeDrive(int.Parse(tBoxDistance.Text.ToString())))
+                {
+                    MessageBox.Show("this bus can't make this drive!");
+                    return;
+                }
                 timer.Start();
                 MessageBox.Show("enter pressed");
                 int speed = r.Next(20, 51);
