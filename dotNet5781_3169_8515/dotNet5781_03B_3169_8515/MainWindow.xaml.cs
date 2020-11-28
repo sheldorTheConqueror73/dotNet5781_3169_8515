@@ -203,8 +203,7 @@ namespace dotNet5781_03B_3169_8515
                 return;
             busDrive busDrive = new busDrive(ref fxElt,timer);
             busDrive.tim += value => lineData.Timer = new Timerclass(value);
-
-
+           
             busDrive.ShowDialog();
             //MessageBox.Show(lineData.Id);
         }

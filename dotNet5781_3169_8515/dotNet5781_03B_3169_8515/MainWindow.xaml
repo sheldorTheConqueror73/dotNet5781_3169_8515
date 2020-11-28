@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="890">
     <Grid Background="Transparent" >
-
+       
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
         <TabControl  VerticalAlignment="Stretch" >
@@ -18,12 +18,25 @@
                     </Grid.Background>
                     <Grid  Name="busesgrid" Background="Transparent" Margin="0,0,396,0" >
                         <Viewbox  Grid.Row="1" HorizontalAlignment="Left">
-                            <ListBox HorizontalAlignment="Left"  Height="600" Grid.Row="0" VerticalAlignment="Top" Width="660"  Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="20" Background="Transparent" Foreground="LawnGreen" MouseDoubleClick="bsDisplay_MouseDoubleClick">
+                            <ListBox  HorizontalAlignment="Left"  Height="600" Grid.Row="0" VerticalAlignment="Top" Width="660"  Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="20" Background="Transparent" Foreground="LawnGreen" MouseDoubleClick="bsDisplay_MouseDoubleClick">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True" >
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Foreground" Value="DarkSeaGreen" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                        <Style.Resources>
+                                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                                        </Style.Resources>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock  Text="{Binding}" Width="400"/>
+                                                <TextBlock x:Name="tBoxBusList" Text="{Binding}" Width="400"/>
                                             </StackPanel>
                                         
                                             <StackPanel>
