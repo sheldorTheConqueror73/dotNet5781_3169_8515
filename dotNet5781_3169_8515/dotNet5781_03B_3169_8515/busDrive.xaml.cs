@@ -25,11 +25,16 @@ namespace dotNet5781_03B_3169_8515
     /// </summary>
     public partial class busDrive : Window
     {
-
+        public event Action<double> tim;
         MainWindow mainWindow1;
-        buses lineData;       
-        public busDrive(ref FrameworkElement fx)
+        buses lineData;
+        DispatcherTimer timer;
+        private int counter = 0;
+        Random r = new Random();
+        
+        public busDrive(ref FrameworkElement fx,DispatcherTimer _dt)
         {
+            timer = _dt;
             InitializeComponent();
 
             foreach (Window window in Application.Current.Windows)
@@ -42,7 +47,7 @@ namespace dotNet5781_03B_3169_8515
 
             lineData = fx.DataContext as buses;
             labId.Content = "Bus Id: "+lineData.Id;
-
+            
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -53,10 +58,22 @@ namespace dotNet5781_03B_3169_8515
 
         private void TextBox_sendDrive(Object sender,KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (e.Key == Key.Enter && tBoxDistance.Text != "") 
             {
+                timer.Start();
                 MessageBox.Show("enter pressed");
+                int speed = r.Next(20, 51);
+                counter = ((int.Parse(tBoxDistance.Text))*1000) / ((speed*1000)/3600);
+                if (tim != null)
+                {
+                    lineData.Status="mid-ride";
+                    tim(counter);
+                    mainWindow1.BusPool.Refresh();
+                }
+                this.Close();
             }
         }
+
+      
     }
 }

@@ -27,24 +27,25 @@ namespace dotNet5781_03B_3169_8515
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Timerclasstest> listss = new ObservableCollection<Timerclasstest>();
+        ObservableCollection<Timerclass> listss = new ObservableCollection<Timerclass>();
         private static ObservableCollectionPropertyNotify<buses> busPool = new ObservableCollectionPropertyNotify<buses>();
         Random r = new Random();
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         const short FULL_TANK = 1200;
         private buses currentBus;
+        DispatcherTimer timer;
 
-        DispatcherTimer tim;
         public MainWindow()//add mini payer to menu
         {
             InitializeComponent();
             initBus();
             bsDisplay.ItemsSource = busPool;           
             showBuses(busPool[0].Id);
-           /* tim = new DispatcherTimer();
-            tim.Tick += new EventHandler(refreshingProgram);
-            tim.Interval = new TimeSpan(0, 0, 1);
-            tim.Start();*/
+
+            timer = new DispatcherTimer();
+            timer.Tick += new EventHandler(refreshingProgram);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            
         }
 
       
@@ -73,7 +74,7 @@ namespace dotNet5781_03B_3169_8515
                 //updatedanr
                 DateTime rd = randomDate();
                 DateTime lastM = randomDate(1);
-                listss.Add(new Timerclasstest(0) { TimeNow = "00:00:00" });
+                listss.Add(new Timerclass(0) { TimeNow = "00:00:00" });
                 busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),randomStatus(r.Next(0,1)),listss[i]));
             }
             //set 3 buses to match requirments
@@ -141,7 +142,7 @@ namespace dotNet5781_03B_3169_8515
         {
             if ((bsDisplay.SelectedItem as buses) == null)
                 return;
-            busDetailsByDoubleClick bDLClk = new busDetailsByDoubleClick();
+            busDetailsByDoubleClick bDLClk = new busDetailsByDoubleClick(timer);
             string st= (bsDisplay.SelectedItem as buses).Id;
             int fuel = (bsDisplay.SelectedItem as buses).Fuel;
             DateTime lmaintenance = (bsDisplay.SelectedItem as buses).LastMaintenance;
@@ -166,7 +167,7 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.lmaintenance += value=> (bsDisplay.SelectedItem as buses).LastMaintenance=value;
             bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance =0;
             bDLClk.status1 += value => (bsDisplay.SelectedItem as buses).Status = value;
-            bDLClk.tim += value => (bsDisplay.SelectedItem as buses).Timer = new Timerclasstest(value);            
+            bDLClk.tim += value => (bsDisplay.SelectedItem as buses).Timer = new Timerclass(value);            
             bDLClk.ShowDialog();
         }
 
@@ -200,7 +201,9 @@ namespace dotNet5781_03B_3169_8515
 
             if (lineData == null)
                 return;
-            busDrive busDrive = new busDrive(ref fxElt);           
+            busDrive busDrive = new busDrive(ref fxElt,timer);
+            busDrive.tim += value => lineData.Timer = new Timerclass(value);
+
 
             busDrive.ShowDialog();
             //MessageBox.Show(lineData.Id);
@@ -223,21 +226,32 @@ namespace dotNet5781_03B_3169_8515
        
         private void refreshingProgram(Object ob,EventArgs e)
         {
-           /* BusPool.Refresh();
+           
+            //BusPool.Refresh();
             foreach(buses bs in busPool)
             {
-                if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
+                 if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
                 {
                     bs.Fuel = 1200;
                     bs.Status = "ready";
+                    BusPool.Refresh();
+                    timer.Stop();
                 }
                 if (bs.Status == "maintenance" && bs.Timer.TimeNow == "00:00:00")
                 {
                     bs.LastMaintenance = DateTime.Now;
                     bs.Distance = 0;
                     bs.Status = "ready";
+                    BusPool.Refresh();
+                    timer.Stop();
                 }
-            }*/
+                if (bs.Status == "mid-ride" && bs.Timer.TimeNow == "00:00:00")
+                {                    
+                    bs.Status = "ready";
+                    BusPool.Refresh();
+                    timer.Stop();
+                }
+            }
         }
 
     }

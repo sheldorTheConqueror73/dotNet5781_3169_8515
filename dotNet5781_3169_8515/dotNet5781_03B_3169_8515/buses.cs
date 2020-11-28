@@ -23,7 +23,7 @@ namespace dotNet5781_03B_3169_8515
         string id; //bus id number
         bool dangerous; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
-        Timerclasstest timer;
+        Timerclass timer;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -31,7 +31,7 @@ namespace dotNet5781_03B_3169_8515
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
-       internal Timerclasstest Timer
+       internal Timerclass Timer
         {
             get => timer;
             set { timer = value; }
@@ -68,7 +68,7 @@ namespace dotNet5781_03B_3169_8515
             this.totalDistance = totalDistance;
             this.status = _status;
         }
-        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclasstest _timer=null)//cotr
+        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null)//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -78,8 +78,9 @@ namespace dotNet5781_03B_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
             this.status = _status;
-            this.timer = new Timerclasstest(0);
+            this.timer = new Timerclass(0);
             this.timer= _timer;
+            
         }
         internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",string _timer="")//cotr
         {
@@ -92,7 +93,7 @@ namespace dotNet5781_03B_3169_8515
             this.totalDistance = totalDistance;
             this.status = _status;
             if (_timer != "")
-                this.timer = new Timerclasstest(double.Parse(_timer));
+                this.timer = new Timerclass(double.Parse(_timer));
             else
                 this.timer = null;
         }
@@ -269,5 +270,8 @@ namespace dotNet5781_03B_3169_8515
                     st = this.timer.TimeNow;
             return $"Id: {this.id}   Status: {this.status} {st}";
         }
+
+
+      
     }
 }

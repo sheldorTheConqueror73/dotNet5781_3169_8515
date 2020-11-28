@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace dotNet5781_03B_3169_8515.utility
 {
-    public class Timerclasstest : INotifyPropertyChanged
+    public class Timerclass : INotifyPropertyChanged
     {
         public void OnPropertyChanged(string name)
         {
@@ -21,7 +21,7 @@ namespace dotNet5781_03B_3169_8515.utility
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Timerclasstest(double mincount)
+        public Timerclass(double mincount)
         {
             DispatcherTimer _timer = new DispatcherTimer();
             TimeSpan _time = new TimeSpan();

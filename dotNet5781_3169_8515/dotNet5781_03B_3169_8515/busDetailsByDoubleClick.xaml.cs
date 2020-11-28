@@ -36,11 +36,11 @@ namespace dotNet5781_03B_3169_8515
         private int mode = 0;
         MainWindow mainWindow1;
         DispatcherTimer refresh;
+        DispatcherTimer dt;
 
-        public busDetailsByDoubleClick()
+        public busDetailsByDoubleClick(DispatcherTimer _dt)
         {
-          
-
+            dt = _dt;
             InitializeComponent();
             foreach (Window window in Application.Current.Windows)
             {
@@ -107,8 +107,8 @@ namespace dotNet5781_03B_3169_8515
         public void DataWindow_Closing(object sender, CancelEventArgs e)
         {
 
-             e.Cancel = true;
-             this.Visibility = Visibility.Hidden;
+            // e.Cancel = true;
+             //this.Visibility = Visibility.Hidden;
         }
 
         private void timerFunc()
@@ -123,6 +123,12 @@ namespace dotNet5781_03B_3169_8515
 
         private void refuel_Button_Click(object sender, RoutedEventArgs e)
         {
+            if (labfuel.Content.ToString() == "1200")
+            {
+                MessageBox.Show("bus already is fueled.");
+                return;
+            }
+            dt.Start();
             btnRefuel.Content = "Refueling...";
             btnRefuel.IsEnabled = false;
             btnMaintenance.IsEnabled = false;
@@ -177,6 +183,7 @@ namespace dotNet5781_03B_3169_8515
 
         private void maintenance_Button_Click(object sender, RoutedEventArgs e)
         {
+            dt.Start();
             btnMaintenance.Content = "Maintenance...";
             btnRefuel.IsEnabled = false;
             btnMaintenance.IsEnabled = false;
