@@ -158,11 +158,11 @@ namespace dotNet5781_03B_3169_8515
             if (fuel1 != null)
                 fuel1(1200);
             labfuel.Content = "1200";
-            if (status1 != null)
+           /* if (status1 != null)
             {
-                status1("ready");
+               // status1("ready");
                 mainWindow1.BusPool.Refresh();
-            }
+            }*/
         }
 
         private void maintenanceEvent()

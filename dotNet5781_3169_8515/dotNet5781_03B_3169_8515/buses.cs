@@ -163,6 +163,7 @@ namespace dotNet5781_03B_3169_8515
             
             }
         }
+       
       
         internal void printId()//prints id
         {
@@ -262,11 +263,11 @@ namespace dotNet5781_03B_3169_8515
         public override string ToString()
         {
             string st = "";
-            if (this.timer != null)
-                if (this.timer.TimeNow == "00:00:00")
-                    st = "";
-                 else
-                    st = this.timer.TimeNow;
+            //if (this.timer != null)
+            //    if (this.timer.TimeNow == "00:00:00")
+            //        st = "";
+            //     else
+            //        st = this.timer.TimeNow;
             return $"Id: {this.id}   Status: {this.status} {st}";
         }
 

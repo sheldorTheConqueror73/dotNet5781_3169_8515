@@ -40,7 +40,7 @@ namespace dotNet5781_03B_3169_8515
             InitializeComponent();
             initBus();
             bsDisplay.ItemsSource = busPool;           
-            showBuses(busPool[0].Id);
+            //showBuses(busPool[0].Id);
 
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(refreshingProgram);
@@ -120,12 +120,12 @@ namespace dotNet5781_03B_3169_8515
                 return randomDate(mode);
             }
         }
-        private void showBuses(string id)
+       /* private void showBuses(string id)
         {
             currentBus = busPool[find(id)];
             busesgrid.DataContext = currentBus;
             bsDisplay.DataContext = currentBus.ToString();
-        }
+        }*/
         private int find(string id)
         {
             int i = 0;
@@ -225,16 +225,18 @@ namespace dotNet5781_03B_3169_8515
        
         private void refreshingProgram(Object ob,EventArgs e)
         {
-           
+
             //BusPool.Refresh();
             foreach(buses bs in busPool)
             {
+                
                  if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
                 {
                     bs.Fuel = 1200;
                     bs.Status = "ready";
-                    BusPool.Refresh();
-                    timer.Stop();
+                    BusPool.Refresh();  
+                    if(NoOperateExist())
+                        timer.Stop();
                 }
                 if (bs.Status == "maintenance" && bs.Timer.TimeNow == "00:00:00")
                 {
@@ -242,15 +244,27 @@ namespace dotNet5781_03B_3169_8515
                     bs.Distance = 0;
                     bs.Status = "ready";
                     BusPool.Refresh();
-                    timer.Stop();
+                    if (NoOperateExist())
+                        timer.Stop();
                 }
                 if (bs.Status == "mid-ride" && bs.Timer.TimeNow == "00:00:00")
                 {                    
                     bs.Status = "ready";
                     BusPool.Refresh();
-                    timer.Stop();
+                    if (NoOperateExist())
+                        timer.Stop();
                 }
             }
+        }
+
+        private bool NoOperateExist()
+        {
+            foreach(buses bs in busPool)
+            {
+                if ((bs.Status == "refueling") || (bs.Status == "maintenance") || (bs.Status == "mid-ride"))
+                    return false;
+            }
+            return true;
         }
 
     }
