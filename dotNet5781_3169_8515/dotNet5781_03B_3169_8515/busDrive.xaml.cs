@@ -62,7 +62,7 @@ namespace dotNet5781_03B_3169_8515
             {
                 try { lineData.CanMakeDrive(int.Parse(tBoxDistance.Text.ToString())); }
 
-                catch (Exception exc)
+                    catch (Exception exc)
                 {
                     MessageBox.Show(exc.Message);
                     return;
