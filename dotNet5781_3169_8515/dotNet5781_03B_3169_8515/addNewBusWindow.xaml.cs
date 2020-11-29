@@ -74,9 +74,10 @@ namespace dotNet5781_03B_3169_8515
                 txbTotalDistance.IsEnabled = true;
                 return;
             }
-            buses bs1 = new buses((DateTime)dpRegiDate.SelectedDate, (DateTime)dplmiDate.SelectedDate, txbid.Text, fuel, dist, false, totalDist);
+            buses bs1 = new buses((DateTime)dpRegiDate.SelectedDate, (DateTime)dplmiDate.SelectedDate, txbid.Text, fuel, dist, false, totalDist, "ready");
             bs1.UpdateDangerous();
             mainWindow1.BusPool.Add(bs1);
+            mainWindow1.BusPool.Refresh();
             MessageBox.Show("Huzzah! another bus has joined our (evil) ranks. World domination will soon be ours!");
             this.Close();
         }
@@ -92,7 +93,12 @@ namespace dotNet5781_03B_3169_8515
                     throw new InvalidUserInputExecption("Invalid input: id must contain digits only");
             }
             if ((txbid.Text.Length == 8 && ((DateTime)dpRegiDate.SelectedDate).Year < 2018) || (txbid.Text.Length == 7 && ((DateTime)dpRegiDate.SelectedDate).Year >= 2018))
-                throw new ArgumentException("Invalid input: id format doesn't match registration date");
+                throw new InvalidUserInputExecption("Invalid input: id format doesn't match registration date");
+            foreach(var bus in mainWindow1.BusPool)
+            {
+                if(txbid.Text==bus.Id)
+                    throw new InvalidUserInputExecption("Invalid input: this id number is taken already");
+            }
             txbFuel.IsEnabled = false;
             flag = int.TryParse(txbFuel.Text, out fuel);
                 if(!flag)
