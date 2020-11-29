@@ -44,6 +44,7 @@ namespace dotNet5781_03B_3169_8515
             player = new System.Media.SoundPlayer(Properties.Resources.shadilay);
             try { player.Play(); }
             catch(Exception e) { }
+            buses.save(busPool,$"{appPath}\\src\\storage\\DataFile.txt");
         }
         public ObservableCollectionPropertyNotify<buses> BusPool
         {

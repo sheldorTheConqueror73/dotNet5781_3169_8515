@@ -280,7 +280,7 @@ namespace dotNet5781_03B_3169_8515
                     st = this.timer.TimeNow;
             return $"Id: {this.id}   Status: {this.status} {st}";
         }
-        internal static bool save(List<buses> ls1, string path,bool show=false)//write buspool list to file 
+        internal static bool save(ObservableCollection<buses> ls1, string path,bool show=false)//write buspool list to file 
         {
             
             List<string> output = new List<string>();
@@ -300,7 +300,7 @@ namespace dotNet5781_03B_3169_8515
                 return false;
             }
         }
-        internal static bool load(ref List<buses> ls1,string path, bool show=false)//overwrites busepool list and updates it from text file
+        internal static bool load(ref ObservableCollection<buses> ls1,string path, bool show=false)//overwrites busepool list and updates it from text file
         {
             string[] arr;
             try
@@ -313,7 +313,7 @@ namespace dotNet5781_03B_3169_8515
                 return false;
             }
             List<string> input = arr.ToList();
-                ls1 = new List<buses>();
+                ls1 = new ObservableCollection<buses>();
                 foreach (var line in input)
                 {
                     string[] entries = line.Split(',');
@@ -329,7 +329,7 @@ namespace dotNet5781_03B_3169_8515
                     ls1.Add(new buses(d1, d2, entries[6], fuel, distance, danger, total,entries[11]));//maybe add timer?
                 }
                 if (show)
-                    Console.WriteLine($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
+                   MessageBox.Show($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
                 return true;
          }
            
