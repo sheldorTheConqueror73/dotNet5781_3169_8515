@@ -23,7 +23,7 @@ namespace dotNet5781_03B_3169_8515
     {
         MainWindow mainWindow1;
         readonly string appPath;
-        public addBusWindow(string appPath)
+        public addBusWindow()
         {
             this.appPath = appPath;
             foreach (Window window in Application.Current.Windows)

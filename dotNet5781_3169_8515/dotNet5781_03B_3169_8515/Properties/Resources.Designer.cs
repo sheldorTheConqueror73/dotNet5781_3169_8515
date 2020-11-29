@@ -68,5 +68,14 @@ namespace dotNet5781_03B_3169_8515.Properties {
                 return ResourceManager.GetStream("Sad_Trombon", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream shadilay {
+            get {
+                return ResourceManager.GetStream("shadilay", resourceCulture);
+            }
+        }
     }
 }
