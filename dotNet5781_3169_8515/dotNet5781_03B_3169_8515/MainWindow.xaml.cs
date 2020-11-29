@@ -58,9 +58,13 @@ namespace dotNet5781_03B_3169_8515
             {
                 bool flag = true;
                 string id = "";
+                DateTime rd = randomDate();
                 while (flag)
                 {
-                    id = r.Next(100000, 1000000).ToString();//make sure id format matches MD 
+                    if(rd.Year<2018)
+                        id = r.Next(1000000, 10000000).ToString();//make sure id format matches MD 
+                    else
+                        id = r.Next(10000000, 100000000).ToString();
                     flag = false;
                     foreach (var bus in busPool)
                         if (id == bus.Id)//need to change accessers
@@ -70,7 +74,6 @@ namespace dotNet5781_03B_3169_8515
                         }
                 }
                 //updatedanr
-                DateTime rd = randomDate();
                 DateTime lastM = randomDate(1);
                 listss.Add(new Timerclass(0) { TimeNow = "00:00:00" });
                 busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),randomStatus(r.Next(0,1)),listss[i]));
