@@ -18,7 +18,7 @@
                     </Grid.Background>
                     <Grid  Name="busesgrid" Background="Transparent" Margin="0,0,396,0" >
                         <Viewbox  Grid.Row="1" HorizontalAlignment="Left">
-                            <ListBox  HorizontalAlignment="Left"  Height="600" Grid.Row="0" VerticalAlignment="Top" Width="660"  Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="20" Background="Transparent" Foreground="LawnGreen" MouseDoubleClick="bsDisplay_MouseDoubleClick">
+                            <ListBox  HorizontalAlignment="Left"  Height="600" Grid.Row="0" VerticalAlignment="Top" Width="660"  x:Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="20" Background="Transparent" Foreground="LawnGreen" MouseDoubleClick="bsDisplay_MouseDoubleClick">
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="ListBoxItem">
                                         <Style.Triggers>

@@ -40,7 +40,6 @@ namespace dotNet5781_03B_3169_8515
             InitializeComponent();
             initBus();
             bsDisplay.ItemsSource = busPool;           
-            //showBuses(busPool[0].Id);
 
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(refreshingProgram);
@@ -81,6 +80,7 @@ namespace dotNet5781_03B_3169_8515
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             busPool[1].Distance=19999;
             busPool[2].Fuel = 0;
+
         }
 
         private string randomStatus(int i)
@@ -120,12 +120,7 @@ namespace dotNet5781_03B_3169_8515
                 return randomDate(mode);
             }
         }
-       /* private void showBuses(string id)
-        {
-            currentBus = busPool[find(id)];
-            busesgrid.DataContext = currentBus;
-            bsDisplay.DataContext = currentBus.ToString();
-        }*/
+       
         private int find(string id)
         {
             int i = 0;
@@ -226,8 +221,9 @@ namespace dotNet5781_03B_3169_8515
         private void refreshingProgram(Object ob,EventArgs e)
         {
 
-            //BusPool.Refresh();
-            foreach(buses bs in busPool)
+            BusPool.Refresh();
+            
+            foreach (buses bs in busPool)
             {
                 
                  if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
@@ -256,6 +252,7 @@ namespace dotNet5781_03B_3169_8515
                 }
             }
         }
+    
 
         private bool NoOperationExist()
         {
@@ -266,7 +263,7 @@ namespace dotNet5781_03B_3169_8515
             }
             return true;
         }
-
+       
     }
 
 }
