@@ -31,7 +31,6 @@ namespace dotNet5781_03B_3169_8515
         private static ObservableCollectionPropertyNotify<buses> busPool = new ObservableCollectionPropertyNotify<buses>();
         Random r = new Random();
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
-        const short FULL_TANK = 1200;
         private buses currentBus;
         DispatcherTimer timer;
 
@@ -74,7 +73,7 @@ namespace dotNet5781_03B_3169_8515
                 DateTime rd = randomDate();
                 DateTime lastM = randomDate(1);
                 listss.Add(new Timerclass(0) { TimeNow = "00:00:00" });
-                busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),randomStatus(r.Next(0,1)),listss[i]));
+                busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),randomStatus(r.Next(0,1)),listss[i]));
             }
             //set 3 buses to match requirments
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);

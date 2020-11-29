@@ -24,6 +24,7 @@ namespace dotNet5781_03B_3169_8515
         bool dangerous; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
         Timerclass timer;
+        internal const short FULL_TANK = 1200;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)

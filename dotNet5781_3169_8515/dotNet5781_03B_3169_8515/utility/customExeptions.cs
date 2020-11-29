@@ -40,7 +40,12 @@ namespace dotNet5781_03B_3169_8515.utility
         internal CannotDriveExecption() { }
         internal CannotDriveExecption(string msg) :base(msg){ }
         internal CannotDriveExecption(string msg, Exception inner):base(msg,inner) { }
-
+    }
+    class InvalidUserInputExecption : Exception
+    {
+        internal InvalidUserInputExecption() { }
+        internal InvalidUserInputExecption(string msg) :base(msg){ }
+        internal InvalidUserInputExecption(string msg, Exception inner):base(msg,inner) { }
     }
 
 }
