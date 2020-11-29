@@ -58,6 +58,7 @@
     <Compile Include="busDrive.xaml.cs">
       <DependentUpon>busDrive.xaml</DependentUpon>
     </Compile>
+    <Compile Include="utility\customExeptions.cs" />
     <Compile Include="utility\ObservableCollectionPropertyNotify.cs" />
     <Compile Include="utility\Timerclasstest.cs" />
     <Page Include="busDetailsByDoubleClick.xaml">

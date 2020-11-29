@@ -199,11 +199,16 @@ namespace dotNet5781_03B_3169_8515
     {
         internal bool CanMakeDrive(int km)//return true if sleceted bus can drive that far.
         {
+           
             UpdateDangerous();
-            if (!dangerous)
-                if ((fuel >= km) && ((distance + km) < 20000))
-                    return true;
-            return false;
+            if (dangerous)
+                throw new CannotDriveExecption("selected bus is unable to drive: bus is dangerous");
+            if (fuel < km)
+                throw new CannotDriveExecption("selected bus is unable to drive: not enough fuel");
+            if ((distance + km) >= 20000)
+                throw new CannotDriveExecption("selected bus is unable to drive: distance after drive exceeds maintnace limit");
+            return true;
+
         }
         internal void UpdateDangerous()//updates dangerous status of selected bus
         {
