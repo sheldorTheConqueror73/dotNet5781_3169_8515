@@ -88,37 +88,37 @@ namespace dotNet5781_03B_3169_8515
             bool flag;
             txbid.IsEnabled = false;
             if ((txbid.Text.Length != 8) && (txbid.Text.Length != 7))
-                throw new InvalidUserInputExecption("Invalid input: id must be 7 or 8 digits",appPath+"rcs\\audio\\Sad_Trombon.wav");
+                throw new InvalidUserInputExecption("Invalid input: id must be 7 or 8 digits",Properties.Resources.Sad_Trombon);
             foreach(char latter in txbid.Text)
             {
                 if((latter>'9')||(latter<'0'))
-                    throw new InvalidUserInputExecption("Invalid input: id must contain digits only", appPath + "rcs\\audio\\Sad_Trombon.wav");
+                    throw new InvalidUserInputExecption("Invalid input: id must contain digits only", Properties.Resources.Sad_Trombon);
             }
             if ((txbid.Text.Length == 8 && ((DateTime)dpRegiDate.SelectedDate).Year < 2018) || (txbid.Text.Length == 7 && ((DateTime)dpRegiDate.SelectedDate).Year >= 2018))
-                throw new InvalidUserInputExecption("Invalid input: id format doesn't match registration date", appPath + "rcs\\audio\\Sad_Trombon.wav");
+                throw new InvalidUserInputExecption("Invalid input: id format doesn't match registration date", Properties.Resources.Sad_Trombon);
             foreach(var bus in mainWindow1.BusPool)
             {
                 if(txbid.Text==bus.Id)
-                    throw new InvalidUserInputExecption("Invalid input: this id number is taken already", appPath + "rcs\\audio\\Sad_Trombon.wav");
+                    throw new InvalidUserInputExecption("Invalid input: this id number is taken already", Properties.Resources.Sad_Trombon);
             }
             txbFuel.IsEnabled = false;
             flag = int.TryParse(txbFuel.Text, out fuel);
                 if(!flag)
-                throw new InvalidUserInputExecption("Invalid input: fuel must contain digits only", appPath + "rcs\\audio\\Sad_Trombon.wav");
+                throw new InvalidUserInputExecption("Invalid input: fuel must contain digits only", Properties.Resources.Sad_Trombon);
             if ((fuel > 1200) || (fuel < 0))
-                throw new InvalidUserInputExecption("Invalid input: fuel must be within the range of 0 to 1200", appPath + "rcs\\audio\\Sad_Trombon.wav");
+                throw new InvalidUserInputExecption("Invalid input: fuel must be within the range of 0 to 1200", Properties.Resources.Sad_Trombon);
             txbDistance.IsEnabled = false;
             flag = int.TryParse(txbDistance.Text, out distance);
                 if(!flag)
-                throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must contain digits only", appPath + "rcs\\audio\\Sad_Trombon.wav");
+                throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must contain digits only", Properties.Resources.Sad_Trombon);
             if ((distance > 20000) || (distance < 0))
-                throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must be within the range of 0 to 20000", appPath + "rcs\\audio\\Sad_Trombon.wav");
+                throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must be within the range of 0 to 20000", Properties.Resources.Sad_Trombon);
             txbTotalDistance.IsEnabled = false;
             flag = int.TryParse(txbTotalDistance.Text, out totaldistance);
                 if(!flag)
-                throw new InvalidUserInputExecption("Invalid input: total distance must contain digits only", appPath + "rcs\\audio\\Sad_Trombon.wav");
+                throw new InvalidUserInputExecption("Invalid input: total distance must contain digits only", Properties.Resources.Sad_Trombon);
             if (totaldistance < 0)
-                throw new InvalidUserInputExecption("Invalid input: total distance must not be lesser than 0", appPath + "rcs\\audio\\Sad_Trombon.wav");
+                throw new InvalidUserInputExecption("Invalid input: total distance must not be lesser than 0", Properties.Resources.Sad_Trombon);
         }
     }
 }

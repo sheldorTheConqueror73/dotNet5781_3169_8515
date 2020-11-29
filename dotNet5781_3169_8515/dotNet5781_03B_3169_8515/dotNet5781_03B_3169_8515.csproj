@@ -133,7 +133,8 @@
     <Resource Include="src\storage\settings.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\audio\Sad_Trombon.wav" />
+    <None Include="Resources\Sad_Trombon.wav" />
+    <Content Include="src\audio\shadilay.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -42,15 +42,7 @@ namespace dotNet5781_03B_3169_8515
             bsDisplay.ItemsSource = busPool;           
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(refreshingProgram);
-            timer.Interval = new TimeSpan(0, 0, 1);
-            player = new System.Media.SoundPlayer();
-
-            //player.SoundLocation = $"{appPath}rcs\\audio\\shadilay.wav";
-            //try
-            //{
-            //    player.Play();
-            //}
-            //catch (Exception e) { };
+            timer.Interval = new TimeSpan(0, 0, 1);  
         }
         public ObservableCollectionPropertyNotify<buses> BusPool
         {

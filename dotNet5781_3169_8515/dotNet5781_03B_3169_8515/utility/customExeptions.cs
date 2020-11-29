@@ -45,10 +45,9 @@ namespace dotNet5781_03B_3169_8515.utility
     {
         internal InvalidUserInputExecption() { }
         internal InvalidUserInputExecption(string msg) :base(msg){ }
-        internal InvalidUserInputExecption(string msg, string path) : base(msg) 
+        internal InvalidUserInputExecption(string msg, System.IO.UnmanagedMemoryStream effect) : base(msg) 
         {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            player.SoundLocation = path;
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(effect);
             try 
             {
                 player.Play();
