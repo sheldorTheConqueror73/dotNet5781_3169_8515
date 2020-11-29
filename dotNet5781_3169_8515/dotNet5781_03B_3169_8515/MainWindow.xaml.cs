@@ -33,21 +33,25 @@ namespace dotNet5781_03B_3169_8515
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         private buses currentBus;
         DispatcherTimer timer;
-
+        internal static System.Media.SoundPlayer player;
         public MainWindow()//add mini payer to menu
         {
+            
             InitializeComponent();
             initBus();
             bsDisplay.ItemsSource = busPool;           
-
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(refreshingProgram);
             timer.Interval = new TimeSpan(0, 0, 1);
-            
+            player = new System.Media.SoundPlayer();
+
+            //player.SoundLocation = $"{appPath}rcs\\audio\\shadilay.wav";
+            //try
+            //{
+            //    player.Play();
+            //}
+            //catch (Exception e) { };
         }
-
-      
-
         public ObservableCollectionPropertyNotify<buses> BusPool
         {
             get => busPool;          
@@ -201,7 +205,7 @@ namespace dotNet5781_03B_3169_8515
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            addBusWindow adbw = new addBusWindow();
+            addBusWindow adbw = new addBusWindow(appPath);
             adbw.ShowDialog();
         }
 

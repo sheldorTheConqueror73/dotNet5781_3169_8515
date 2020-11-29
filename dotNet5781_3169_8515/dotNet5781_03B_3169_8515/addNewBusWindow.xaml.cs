@@ -22,8 +22,10 @@ namespace dotNet5781_03B_3169_8515
     public partial class addBusWindow : Window
     {
         MainWindow mainWindow1;
-        public addBusWindow()
+        readonly string appPath;
+        public addBusWindow(string appPath)
         {
+            this.appPath = appPath;
             foreach (Window window in Application.Current.Windows)
             {
                 if (window.GetType() == typeof(MainWindow))
@@ -86,37 +88,37 @@ namespace dotNet5781_03B_3169_8515
             bool flag;
             txbid.IsEnabled = false;
             if ((txbid.Text.Length != 8) && (txbid.Text.Length != 7))
-                throw new InvalidUserInputExecption("Invalid input: id must be 7 or 8 digits");
+                throw new InvalidUserInputExecption("Invalid input: id must be 7 or 8 digits",appPath+"rcs\\audio\\Sad_Trombon.wav");
             foreach(char latter in txbid.Text)
             {
                 if((latter>'9')||(latter<'0'))
-                    throw new InvalidUserInputExecption("Invalid input: id must contain digits only");
+                    throw new InvalidUserInputExecption("Invalid input: id must contain digits only", appPath + "rcs\\audio\\Sad_Trombon.wav");
             }
             if ((txbid.Text.Length == 8 && ((DateTime)dpRegiDate.SelectedDate).Year < 2018) || (txbid.Text.Length == 7 && ((DateTime)dpRegiDate.SelectedDate).Year >= 2018))
-                throw new InvalidUserInputExecption("Invalid input: id format doesn't match registration date");
+                throw new InvalidUserInputExecption("Invalid input: id format doesn't match registration date", appPath + "rcs\\audio\\Sad_Trombon.wav");
             foreach(var bus in mainWindow1.BusPool)
             {
                 if(txbid.Text==bus.Id)
-                    throw new InvalidUserInputExecption("Invalid input: this id number is taken already");
+                    throw new InvalidUserInputExecption("Invalid input: this id number is taken already", appPath + "rcs\\audio\\Sad_Trombon.wav");
             }
             txbFuel.IsEnabled = false;
             flag = int.TryParse(txbFuel.Text, out fuel);
                 if(!flag)
-                throw new InvalidUserInputExecption("Invalid input: fuel must contain digits only");
+                throw new InvalidUserInputExecption("Invalid input: fuel must contain digits only", appPath + "rcs\\audio\\Sad_Trombon.wav");
             if ((fuel > 1200) || (fuel < 0))
-                throw new InvalidUserInputExecption("Invalid input: fuel must be within the range of 0 to 1200");
+                throw new InvalidUserInputExecption("Invalid input: fuel must be within the range of 0 to 1200", appPath + "rcs\\audio\\Sad_Trombon.wav");
             txbDistance.IsEnabled = false;
             flag = int.TryParse(txbDistance.Text, out distance);
                 if(!flag)
-                throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must contain digits only");
+                throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must contain digits only", appPath + "rcs\\audio\\Sad_Trombon.wav");
             if ((distance > 20000) || (distance < 0))
-                throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must be within the range of 0 to 20000");
+                throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must be within the range of 0 to 20000", appPath + "rcs\\audio\\Sad_Trombon.wav");
             txbTotalDistance.IsEnabled = false;
             flag = int.TryParse(txbTotalDistance.Text, out totaldistance);
                 if(!flag)
-                throw new InvalidUserInputExecption("Invalid input: total distance must contain digits only");
+                throw new InvalidUserInputExecption("Invalid input: total distance must contain digits only", appPath + "rcs\\audio\\Sad_Trombon.wav");
             if (totaldistance < 0)
-                throw new InvalidUserInputExecption("Invalid input: total distance must not be lesser than 0");
+                throw new InvalidUserInputExecption("Invalid input: total distance must not be lesser than 0", appPath + "rcs\\audio\\Sad_Trombon.wav");
         }
     }
 }

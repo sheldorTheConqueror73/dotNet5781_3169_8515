@@ -119,9 +119,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\audio\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="src\pics\spaceilluminati.jpg" />
   </ItemGroup>
@@ -133,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="src\storage\settings.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\audio\Sad_Trombon.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
