@@ -142,19 +142,38 @@ namespace dotNet5781_03B_3169_8515
             int fuel = (bsDisplay.SelectedItem as buses).Fuel;
             DateTime lmaintenance = (bsDisplay.SelectedItem as buses).LastMaintenance;
 
-             
 
-            bDLClk.labStatus.Content= (bsDisplay.SelectedItem as buses).Status;
+            bDLClk.labStatus.Content = (bsDisplay.SelectedItem as buses).Status;
+            if ((bsDisplay.SelectedItem as buses).Status=="ready")
+            {
+                bDLClk.labStatus.Foreground = Brushes.LawnGreen;
+            }
+            else if ((bsDisplay.SelectedItem as buses).Status=="mid-ride")//need to chnage fater update
+            {
+                bDLClk.labStatus.Foreground = Brushes.Orange;
+            }
+            else if ((bsDisplay.SelectedItem as buses).Status== "refueling"|| (bsDisplay.SelectedItem as buses).Status == "maintenance")
+            {
+                bDLClk.labStatus.Foreground = Brushes.Red;
+            }
             bDLClk.labNameBus.Content = "Bus Id: " + st;
             bDLClk.labfuel.Content = fuel.ToString();
             bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).Distance.ToString();
             bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).TotalDistance.ToString(); 
             bDLClk.labRegistration.Content= (bsDisplay.SelectedItem as buses).RegistrationDate.ToString().Split(' ')[0];
             if ((bsDisplay.SelectedItem as buses).Dangerous)
-                st = "Yes";
+            {
+                bDLClk.labDangerous.Content = "Yes";
+                bDLClk.labDangerous.Foreground = Brushes.Red;
+
+            }
             else
-                st = "No";
-             bDLClk.labDangerous.Content =st ;
+            {
+                bDLClk.labDangerous.Content = "No";
+                bDLClk.labDangerous.Foreground = Brushes.LawnGreen;
+            }
+         
+            
              bDLClk.labLMaintenance.Content = lmaintenance.ToString().Split(' ')[0];
 
             
@@ -180,7 +199,8 @@ namespace dotNet5781_03B_3169_8515
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            addBusWindow adbw = new addBusWindow();
+            adbw.ShowDialog();
         }
 
         private void Button_SendDrive(object sender, RoutedEventArgs e)

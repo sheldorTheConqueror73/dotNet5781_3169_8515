@@ -57,8 +57,7 @@ namespace dotNet5781_03B_3169_8515
 
             refresh = new DispatcherTimer();
             refresh.Tick += new EventHandler(refreshBusDetails);
-            refresh.Interval = new TimeSpan(0, 0,0,0,100);
-
+        
 
             if ((mainWindow1.bsDisplay.SelectedItem as buses).Status != "ready")
             {
@@ -134,6 +133,7 @@ namespace dotNet5781_03B_3169_8515
             btnMaintenance.IsEnabled = false;
             mode = 1;
             MessageBox.Show("sending to refuel...");
+            labStatus.Foreground = Brushes.Red;
             counter = 12;
 
             if (tim != null)
@@ -189,6 +189,7 @@ namespace dotNet5781_03B_3169_8515
             btnMaintenance.IsEnabled = false;
             mode = 2;
             MessageBox.Show("sending to maintenance...");
+            labStatus.Foreground = Brushes.Red;
             counter = 144;
             if (tim != null)
             {
@@ -212,6 +213,7 @@ namespace dotNet5781_03B_3169_8515
                 btnMaintenance.IsEnabled = true;
                 btnRefuel.IsEnabled = true;
                 labStatus.Content = "ready";
+                labStatus.Foreground = Brushes.LawnGreen;
                 if ((mainWindow1.bsDisplay.SelectedItem as buses).Fuel == 1200)
                     labfuel.Content = "1200";
                 if ((mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.Day == (DateTime.Now.Day))
