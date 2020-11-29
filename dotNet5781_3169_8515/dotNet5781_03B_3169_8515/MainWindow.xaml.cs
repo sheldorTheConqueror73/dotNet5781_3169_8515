@@ -32,11 +32,15 @@ namespace dotNet5781_03B_3169_8515
         Random r = new Random();
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         DispatcherTimer timer;
+        bool autosave = false;
         internal static System.Media.SoundPlayer player;
         public MainWindow()//add mini payer to menu
         {
             InitializeComponent();
-            initBus();
+            if(autosave)
+                buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt");
+            else
+                initBus();
             bsDisplay.ItemsSource = busPool;           
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(refreshingProgram);
@@ -44,7 +48,7 @@ namespace dotNet5781_03B_3169_8515
             player = new System.Media.SoundPlayer(Properties.Resources.shadilay);
             try { player.Play(); }
             catch(Exception e) { }
-            buses.save(busPool,$"{appPath}\\src\\storage\\DataFile.txt");
+         
         }
         public ObservableCollectionPropertyNotify<buses> BusPool
         {
@@ -272,7 +276,11 @@ namespace dotNet5781_03B_3169_8515
                 }
             }
         }
-    
+        internal void windowClose()
+        {
+            if(autosave)
+                buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt");
+        }
 
         private bool NoOperationExist()
         {
@@ -282,6 +290,14 @@ namespace dotNet5781_03B_3169_8515
                     return false;
             }
             return true;
+        }
+        private void readSettings()
+        {
+
+        }
+        private void writeSettings()
+        {
+
         }
        
     }
