@@ -34,7 +34,7 @@
 
 
         <Label Content="Bus Id:" Grid.Row="1" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="txbid"  Grid.Column="1" Grid.Row="1"  Text="enter total distance ehre"  />
+        <TextBox x:Name="txbid"  Grid.Column="1" Grid.Row="1" Text="enter total distance ehre"  />
 
 
         <Label Content="Registration Date:" Grid.Row="2" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
