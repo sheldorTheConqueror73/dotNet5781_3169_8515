@@ -139,12 +139,12 @@ namespace dotNet5781_03B_3169_8515
             if (tim != null)
             {
                 tim(counter);
-                mainWindow1.BusPool.Refresh();
+                mainWindow1.bsDisplay.Items.Refresh();
             }
             if (status1 != null)
             {
                 status1("refueling");
-                mainWindow1.BusPool.Refresh();
+                mainWindow1.bsDisplay.Items.Refresh();
             }           
             timerFunc();
         }
@@ -177,7 +177,7 @@ namespace dotNet5781_03B_3169_8515
             if (status1 != null)
             {
                 status1("ready");
-                mainWindow1.BusPool.Refresh();
+                mainWindow1.bsDisplay.Items.Refresh();
             }
         }
 
@@ -193,12 +193,12 @@ namespace dotNet5781_03B_3169_8515
             if (tim != null)
             {
                 tim(counter);
-                mainWindow1.BusPool.Refresh();
+                mainWindow1.bsDisplay.Items.Refresh();
             }
             if (status1 != null)
             {
                 status1("maintenance");
-                mainWindow1.BusPool.Refresh();
+                mainWindow1.bsDisplay.Items.Refresh();
             }
             timerFunc();//need to add the simulation;
         }

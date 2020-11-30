@@ -24,6 +24,7 @@ namespace dotNet5781_03B_3169_8515
         bool dangerous; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
         Timerclass timer;
+     
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -31,12 +32,16 @@ namespace dotNet5781_03B_3169_8515
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
-
-       internal Timerclass Timer
+      
+        internal Timerclass Timer
         {
             get => timer;
-            set { timer = value; }
+            set { timer = value;
+               NotifyPropertyChanged(timer.TimeNow);
+            }
         }
+      
+
         internal buses()//ctor
         {
             id = "";

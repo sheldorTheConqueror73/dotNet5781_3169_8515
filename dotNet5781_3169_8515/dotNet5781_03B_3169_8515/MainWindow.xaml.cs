@@ -27,23 +27,25 @@ namespace dotNet5781_03B_3169_8515
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Timerclass> listss = new ObservableCollection<Timerclass>();
         private static ObservableCollectionPropertyNotify<buses> busPool = new ObservableCollectionPropertyNotify<buses>();
         Random r = new Random();
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         const short FULL_TANK = 1200;
-        private buses currentBus;
         DispatcherTimer timer;
 
+       
         public MainWindow()//add mini payer to menu
         {
             InitializeComponent();
             initBus();
-            bsDisplay.ItemsSource = busPool;           
+            DataContext = busPool;
+            bsDisplay.ItemsSource = busPool;
+                       
 
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(refreshingProgram);
             timer.Interval = new TimeSpan(0, 0, 1);
+
             
         }
 
@@ -73,8 +75,7 @@ namespace dotNet5781_03B_3169_8515
                 //updatedanr
                 DateTime rd = randomDate();
                 DateTime lastM = randomDate(1);
-                listss.Add(new Timerclass(0) { TimeNow = "00:00:00" });
-                busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),randomStatus(r.Next(0,1)),listss[i]));
+                busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),"ready",new Timerclass(0) { TimeNow = "00:00:00" }));
             }
             //set 3 buses to match requirments
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
@@ -83,16 +84,7 @@ namespace dotNet5781_03B_3169_8515
 
         }
 
-        private string randomStatus(int i)
-        {
-            switch (i)
-            {
-                case 0: return "ready";
-                case 1: return "mid-ride";
-                case 2: return "refueling";
-                default: return "in maintenance";
-            }
-        }
+    
         private DateTime randomDate(int mode = 0)
         {
             int month, day, year;
@@ -185,8 +177,8 @@ namespace dotNet5781_03B_3169_8515
 
         private void Button_SendDrive(object sender, RoutedEventArgs e)
         {
-            
-           var fxElt = sender as FrameworkElement;
+           
+            var fxElt = sender as FrameworkElement;
             buses lineData = fxElt.DataContext as buses;
             if (lineData.Status != "ready")
             {
@@ -216,22 +208,21 @@ namespace dotNet5781_03B_3169_8515
             busPool.RemoveAt(indexOf(lineData.Id));
         }
 
-
        
-        private void refreshingProgram(Object ob,EventArgs e)
-        {
-
-            BusPool.Refresh();
-            
-            foreach (buses bs in busPool)
+            private void refreshingProgram(Object ob,EventArgs e)
             {
+                 //BusPool.Refresh();
+
+
+                foreach (buses bs in busPool)
+                {
                 
                  if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
                 {
                     bs.Fuel = 1200;
                     bs.Status = "ready";
-                    BusPool.Refresh();  
-                    if(NoOperationExist())
+                    bsDisplay.Items.Refresh();
+                    if (NoOperationExist())
                         timer.Stop();
                 }
                 if (bs.Status == "maintenance" && bs.Timer.TimeNow == "00:00:00")
@@ -239,20 +230,21 @@ namespace dotNet5781_03B_3169_8515
                     bs.LastMaintenance = DateTime.Now;
                     bs.Distance = 0;
                     bs.Status = "ready";
-                    BusPool.Refresh();
+                    bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
                 }
                 if (bs.Status == "mid-ride" && bs.Timer.TimeNow == "00:00:00")
                 {                    
                     bs.Status = "ready";
-                    BusPool.Refresh();
+                    bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
                 }
             }
         }
-    
+
+     
 
         private bool NoOperationExist()
         {
@@ -263,7 +255,9 @@ namespace dotNet5781_03B_3169_8515
             }
             return true;
         }
-       
+
+        
+
     }
 
 }
