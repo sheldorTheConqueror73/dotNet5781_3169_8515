@@ -188,7 +188,7 @@ namespace dotNet5781_03B_3169_8515
             mode = 2;
             MessageBox.Show("sending to maintenance...");
             labStatus.Foreground = Brushes.Red;
-            counter = 14;
+            counter = 144;
             if (tim != null)
             {
                 tim(counter);
