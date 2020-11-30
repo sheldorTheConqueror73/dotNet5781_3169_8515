@@ -39,6 +39,15 @@ namespace dotNet5781_03B_3169_8515.utility
     {
         internal CannotDriveExecption() { }
         internal CannotDriveExecption(string msg) :base(msg){ }
+        internal CannotDriveExecption(string msg, System.IO.UnmanagedMemoryStream effect) : base(msg)
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(effect);
+            try
+            {
+                player.Play();
+            }
+            catch (Exception e) { System.Windows.MessageBox.Show(e.Message); }
+        }
         internal CannotDriveExecption(string msg, Exception inner):base(msg,inner) { }
     }
     class InvalidUserInputExecption : Exception

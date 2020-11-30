@@ -205,11 +205,11 @@ namespace dotNet5781_03B_3169_8515
            
             UpdateDangerous();
             if (dangerous)
-                throw new CannotDriveExecption("selected bus is unable to drive: bus is dangerous");
+                throw new CannotDriveExecption("selected bus is unable to drive: bus is dangerous", Properties.Resources.Sad_Trombon);
             if (fuel < km)
-                throw new CannotDriveExecption("selected bus is unable to drive: not enough fuel");
+                throw new CannotDriveExecption("selected bus is unable to drive: not enough fuel", Properties.Resources.Sad_Trombon);
             if ((distance + km) >= 20000)
-                throw new CannotDriveExecption("selected bus is unable to drive: distance after drive exceeds maintnace limit");
+                throw new CannotDriveExecption("selected bus is unable to drive: distance after drive exceeds maintnace limit", Properties.Resources.Sad_Trombon);
             return true;
 
         }
