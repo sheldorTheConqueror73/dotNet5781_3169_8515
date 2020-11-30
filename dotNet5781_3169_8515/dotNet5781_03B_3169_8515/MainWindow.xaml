@@ -37,7 +37,7 @@
                                     <GridViewColumn Header="Time" Width="90" DisplayMemberBinding="{Binding Timer.TimeNow}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock  Text="{Binding}" Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color.Color}"/>
+                                                <TextBlock  Text="{Binding}" Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

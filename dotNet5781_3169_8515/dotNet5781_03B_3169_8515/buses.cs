@@ -167,7 +167,7 @@ namespace dotNet5781_03B_3169_8515
         }
         public SolidColorBrush Color
         {
-            get { return color; }
+            get => color;
             set 
             {
                

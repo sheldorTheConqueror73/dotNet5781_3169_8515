@@ -237,7 +237,8 @@ namespace dotNet5781_03B_3169_8515
        
             private void refreshingProgram(Object ob,EventArgs e)
             {
-            //bsDisplay.Items.Refresh();          
+            //bsDisplay.Items.Refresh();
+           
                 foreach (buses bs in busPool)
                 {
                 
