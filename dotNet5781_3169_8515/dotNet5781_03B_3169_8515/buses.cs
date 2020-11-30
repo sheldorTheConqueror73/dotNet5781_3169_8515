@@ -291,7 +291,7 @@ namespace dotNet5781_03B_3169_8515
             List<string> output = new List<string>();
             foreach (buses bs1 in ls1)
             {
-                output.Add($"{bs1.registrationDate.Year.ToString()},{bs1.registrationDate.Month.ToString()},{bs1.registrationDate.Day.ToString()},{bs1.lastMaintenance.Year.ToString()},{bs1.lastMaintenance.Month.ToString()},{bs1.lastMaintenance.Day.ToString()},{bs1.id},{(bs1.fuel).ToString()},{(bs1.distance).ToString()},{(bs1.dangerous).ToString()},{(bs1.totalDistance).ToString()},{bs1.status.ToString()},{bs1.iconPath}");//add timer storage?
+                output.Add($"{bs1.registrationDate.Year.ToString()},{bs1.registrationDate.Month.ToString()},{bs1.registrationDate.Day.ToString()},{bs1.lastMaintenance.Year.ToString()},{bs1.lastMaintenance.Month.ToString()},{bs1.lastMaintenance.Day.ToString()},{bs1.id},{(bs1.fuel).ToString()},{(bs1.distance).ToString()},{(bs1.dangerous).ToString()},{(bs1.totalDistance).ToString()},{bs1.status.ToString()},{bs1.timer.TimeNow},{bs1.iconPath}");//add timer storage?
             }
             try
             {
@@ -331,7 +331,7 @@ namespace dotNet5781_03B_3169_8515
                     Int32.TryParse(entries[8], out distance);
                     bool.TryParse(entries[9], out danger);
                     Int32.TryParse(entries[10], out total);
-                    ls1.Add(new buses(d1, d2,  entries[6], fuel, distance, danger, total,entries[11],entries[12]));//maybe add timer?
+                    ls1.Add(new buses(d1, d2,  entries[6], fuel, distance, danger, total,entries[11],new Timerclass(Timerclass.convert(entries[12])),entries[13]));//maybe add timer?
                 }
                 if (show)
                    MessageBox.Show($"data successfully fetched from files. {ls1.Count} entries were retrieved.");

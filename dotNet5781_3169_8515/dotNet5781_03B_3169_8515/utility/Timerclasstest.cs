@@ -48,5 +48,11 @@ namespace dotNet5781_03B_3169_8515.utility
                 OnPropertyChanged("TimeNow");
             }
         }
+        public static double convert(string time)
+        {
+            string[] data = time.Split(':');
+            return ((double.Parse(data[0]) * 3600) + (double.Parse(data[1]) * 60) + (double.Parse(data[2])));
+        }
+
     }
 }

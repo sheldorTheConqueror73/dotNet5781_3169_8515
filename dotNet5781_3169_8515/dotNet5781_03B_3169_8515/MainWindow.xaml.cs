@@ -295,7 +295,19 @@ namespace dotNet5781_03B_3169_8515
         {
 
         }
-       
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt");
+        }
+
+        private void btnLaod_Click(object sender, RoutedEventArgs e)
+        {
+            buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt");
+            bsDisplay.ItemsSource = busPool;
+            bsDisplay.Items.Refresh();
+          
+        }
     }
 
 }

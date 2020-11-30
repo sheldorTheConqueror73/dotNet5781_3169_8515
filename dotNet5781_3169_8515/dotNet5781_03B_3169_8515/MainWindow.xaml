@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_3169_8515"
         mc:Ignorable="d"
-        Title="INJ bus stuidio 2020 v0.3B" Height="550" Width="490" ResizeMode="NoResize">
+        Title="INJ bus stuidio 2020 v0.3B" Height="550" Width="450" ResizeMode="NoResize">
     <Grid Background="Transparent" >
-       
+
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
         <TabControl  VerticalAlignment="Stretch" >
@@ -16,7 +16,7 @@
                     <Grid.Background>
                         <ImageBrush ImageSource="src/pics/spaceilluminati.jpg"/>
                     </Grid.Background>
-                    <Grid  x:Name="busesgrid" Margin="0,0,2,0" >
+                    <Grid  x:Name="busesgrid" Margin="0,0,0,0" >
                         <ListView x:Name="bsDisplay" ItemsSource="{Binding BusPool}" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337">
                             <ListView.View>
                                 <GridView>
@@ -34,7 +34,7 @@
                                                 </Image>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
-                                    </GridViewColumn> 
+                                    </GridViewColumn>
                                     <GridViewColumn Header="Time" Width="90" DisplayMemberBinding="{Binding Timer.TimeNow}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -46,16 +46,16 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                <Button x:Name="Delete" Click="Button_Delete" Content="" BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
-                                                    <Button.Background>
+                                                    <Button x:Name="Delete" Click="Button_Delete" Content="" BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                        <Button.Background>
                                                             <ImageBrush ImageSource="/src/pics/deleteIcon.png" Stretch="Fill"/>
-                                                    </Button.Background>
-                                                </Button>
+                                                        </Button.Background>
+                                                    </Button>
                                                     <Button x:Name="Drive" Click="Button_SendDrive" Content="" BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
-                                                    <Button.Background>
+                                                        <Button.Background>
                                                             <ImageBrush ImageSource="/src/pics/driveIcon.png" Stretch="Fill"/>
-                                                    </Button.Background>
-                                                </Button>
+                                                        </Button.Background>
+                                                    </Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -65,25 +65,22 @@
                         </ListView>
 
                     </Grid>
-                    <Grid Name="functionGrid" Margin="390,0,0,0">
+                    <Grid Name="functionGrid" Margin="341,0,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button x:Name="addBtn" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Add New Bus"  Click="addBtn_Click"></Button>
-                        <Button x:Name="btnSave" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="save data" ToolTip="save your data to the files"  ></Button>
-                        <Button x:Name="btnLaod" Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center" Content="load data" ToolTip="load your data from the file"  ></Button>
+                        <Button x:Name="addBtn" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="Transparent"  Click="addBtn_Click" Margin="20,0,33,90" Height="34" Width="34">
+                            <Image Source="src/pics/add10.png"/>
+                        </Button>
+                        <Button x:Name="btnSave" Click="btnSave_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Content="save data" ToolTip="save your data to the files" Margin="10,34,33,72"  />
+                        <Button x:Name="btnLaod" Click="btnLaod_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Content="load data" ToolTip="load your data from the file" Margin="10,56,33,48"  />
                     </Grid>
                 </Grid>
             </TabItem>
-            
+
             <TabItem Header="Settings Menu" Height="auto" Width="auto" Background="#1576bb" Foreground="White" >
                 <Grid Background="AliceBlue">
                     <Grid.RowDefinitions>
