@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_3169_8515"
         mc:Ignorable="d"
-        Title="INJ bus stuidio 2020 v0.3B" Height="550" Width="890">
+        Title="INJ bus stuidio 2020 v0.3B" Height="550" Width="490" ResizeMode="NoResize">
     <Grid Background="Transparent" >
        
         <Grid.ColumnDefinitions>
@@ -16,8 +16,8 @@
                     <Grid.Background>
                         <ImageBrush ImageSource="src/pics/spaceilluminati.jpg"/>
                     </Grid.Background>
-                    <Grid  x:Name="busesgrid" Margin="0,0,396,0" >
-                        <ListView x:Name="bsDisplay" ItemsSource="{Binding BusPool}"  FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Width="337">
+                    <Grid  x:Name="busesgrid" Margin="0,0,2,0" >
+                        <ListView x:Name="bsDisplay" ItemsSource="{Binding BusPool}" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="ID" Width="90" DisplayMemberBinding="{Binding IdFormat}">

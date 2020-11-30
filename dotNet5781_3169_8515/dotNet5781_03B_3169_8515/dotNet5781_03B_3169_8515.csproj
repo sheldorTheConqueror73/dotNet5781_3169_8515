@@ -162,5 +162,11 @@
   <ItemGroup>
     <Resource Include="src\pics\okIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\pics\waitIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\pics\warningIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
