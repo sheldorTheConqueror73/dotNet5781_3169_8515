@@ -85,6 +85,7 @@ namespace dotNet5781_03B_3169_8515
             //set 3 buses to match requirments
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             BusPool[0].Dangerous = true;
+            busPool[0].IconPath = "/src/pics/warningIcon.png";
             busPool[1].Distance=19999;
             busPool[2].Fuel = 0;
 
@@ -245,7 +246,7 @@ namespace dotNet5781_03B_3169_8515
                 
                  if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
                 {
-                    bs.Fuel = 1200;
+                    bs.Fuel = 1200;                    
                     bs.Status = "ready";
                     bs.IconPath = "/src/pics/okIcon.png";
                     bsDisplay.Items.Refresh();

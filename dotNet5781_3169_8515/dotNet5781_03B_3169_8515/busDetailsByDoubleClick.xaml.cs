@@ -170,6 +170,9 @@ namespace dotNet5781_03B_3169_8515
             btnRefuel.IsEnabled = true;
             btnMaintenance.IsEnabled = true;
             labStatus.Content = "ready";
+            (mainWindow1.bsDisplay.SelectedItem as buses).Dangerous = false ;
+            labDangerous.Content = "No";
+            labDangerous.Foreground = Brushes.LawnGreen;
             DateTime date = DateTime.Now;
             if (lmaintenance != null)
                 lmaintenance(date);
@@ -189,7 +192,7 @@ namespace dotNet5781_03B_3169_8515
             mode = 2;
             MessageBox.Show("sending to maintenance...");
             labStatus.Foreground = Brushes.Red;
-            counter = 144;
+            counter = 14;
             if (tim != null)
             {
                 tim(counter);

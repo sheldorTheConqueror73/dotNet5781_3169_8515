@@ -155,7 +155,7 @@ namespace dotNet5781_03B_3169_8515
             get => status;
             set
             {
-                if (value == "ready" || value == "mid-ride" || value == "refueling" || value == "maintenance")
+                if (value == "ready" || value == "mid-ride" || value == "refueling" || value == "maintenance"||value=="dangerous")
                 {
                     status = value;
                    // this.NotifyPropertyChanged("Status");
