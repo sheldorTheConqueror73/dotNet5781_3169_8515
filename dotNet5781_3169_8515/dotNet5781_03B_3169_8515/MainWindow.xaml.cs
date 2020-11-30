@@ -77,7 +77,7 @@ namespace dotNet5781_03B_3169_8515
                 }
                 //updatedanr
                 DateTime lastM = randomDate(1);              
-                busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),"ready",new Timerclass(0) { TimeNow="00:00:00"}));
+                busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),"ready",new Timerclass(0) { TimeNow="00:00:00"},Brushes.LawnGreen));
             }
             //set 3 buses to match requirments
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
@@ -176,7 +176,7 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.lmaintenance += value=> (bsDisplay.SelectedItem as buses).LastMaintenance=value;
             bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance =0;
             bDLClk.status1 += value => (bsDisplay.SelectedItem as buses).Status = value;
-            bDLClk.tim += value => (bsDisplay.SelectedItem as buses).Timer = new Timerclass(value);            
+            bDLClk.tim += value => (bsDisplay.SelectedItem as buses).Timer = new Timerclass(value);
             bDLClk.ShowDialog();
         }
 
@@ -234,7 +234,7 @@ namespace dotNet5781_03B_3169_8515
        
             private void refreshingProgram(Object ob,EventArgs e)
             {
-            bsDisplay.Items.Refresh();
+                bsDisplay.Items.Refresh();
 
                 foreach (buses bs in busPool)
                 {
@@ -243,6 +243,7 @@ namespace dotNet5781_03B_3169_8515
                 {
                     bs.Fuel = 1200;
                     bs.Status = "ready";
+                    bs.Color = Brushes.LawnGreen;
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
@@ -252,6 +253,7 @@ namespace dotNet5781_03B_3169_8515
                     bs.LastMaintenance = DateTime.Now;
                     bs.Distance = 0;
                     bs.Status = "ready";
+                    bs.Color = Brushes.LawnGreen;
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
@@ -259,6 +261,7 @@ namespace dotNet5781_03B_3169_8515
                 if (bs.Status == "mid-ride" && bs.Timer.TimeNow == "00:00:00")
                 {                    
                     bs.Status = "ready";
+                    bs.Color = Brushes.LawnGreen;
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();

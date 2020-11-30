@@ -26,6 +26,7 @@ namespace dotNet5781_03B_3169_8515
         DateTime registrationDate, lastMaintenance;
         Timerclass timer;
         SolidColorBrush color;
+        string idFormat;
         internal const short FULL_TANK = 1200;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -36,12 +37,13 @@ namespace dotNet5781_03B_3169_8515
 
       
         internal Timerclass Timer
-        {
+        {            
             get => timer;
-            set { timer = value;
-               NotifyPropertyChanged(timer.TimeNow);
+            set { this.timer = value;
+               this.NotifyPropertyChanged("Timer");
             }
         }
+     
       
 
         internal buses()//ctor
@@ -54,6 +56,7 @@ namespace dotNet5781_03B_3169_8515
             registrationDate = new DateTime(0,0,0);
             lastMaintenance = new DateTime(0, 0, 0);
             color = Brushes.LawnGreen;
+            idFormat = formatId(id);
 
         }
         internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
@@ -66,6 +69,7 @@ namespace dotNet5781_03B_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
             color = Brushes.LawnGreen;
+            idFormat = formatId(id);
         }
         internal buses(DateTime date, DateTime lm, SolidColorBrush color1,string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready")//cotr
         {
@@ -80,6 +84,7 @@ namespace dotNet5781_03B_3169_8515
             color = color1;
             if (color == null)
                 color = Brushes.LawnGreen;
+            idFormat = formatId(id);
         }
         internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null, SolidColorBrush color1=null)//cotr
         {
@@ -94,12 +99,20 @@ namespace dotNet5781_03B_3169_8515
             this.timer = new Timerclass(0);
             this.timer= _timer;
             color = Brushes.LawnGreen;
+            idFormat = formatId(id);           
 
         }
      
         //accessors
    
-
+        internal string IdFormat
+        {
+            get => idFormat;
+            set
+            {
+                idFormat = value;
+            }
+        }
        internal string Id
         {
             get => id;

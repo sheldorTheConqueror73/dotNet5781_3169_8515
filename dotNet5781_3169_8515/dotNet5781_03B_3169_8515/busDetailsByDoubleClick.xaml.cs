@@ -37,7 +37,6 @@ namespace dotNet5781_03B_3169_8515
         MainWindow mainWindow1;
         DispatcherTimer refresh;
         DispatcherTimer dt;
-        private int syncTime;
 
         public busDetailsByDoubleClick(DispatcherTimer _dt)
         {
@@ -130,6 +129,7 @@ namespace dotNet5781_03B_3169_8515
                 return;
             }
             dt.Start();
+            (mainWindow1.bsDisplay.SelectedItem as buses).Color = Brushes.Red;
             btnRefuel.Content = "Refueling...";
             btnRefuel.IsEnabled = false;
             btnMaintenance.IsEnabled = false;
@@ -185,6 +185,7 @@ namespace dotNet5781_03B_3169_8515
             btnMaintenance.Content = "Maintenance...";
             btnRefuel.IsEnabled = false;
             btnMaintenance.IsEnabled = false;
+            (mainWindow1.bsDisplay.SelectedItem as buses).Color = Brushes.Red;
             mode = 2;
             MessageBox.Show("sending to maintenance...");
             labStatus.Foreground = Brushes.Red;
@@ -211,6 +212,7 @@ namespace dotNet5781_03B_3169_8515
                 btnMaintenance.IsEnabled = true;
                 btnRefuel.IsEnabled = true;
                 labStatus.Content = "ready";
+                (mainWindow1.bsDisplay.SelectedItem as buses).Color = Brushes.LawnGreen;
                 labStatus.Foreground = Brushes.LawnGreen;
                 if ((mainWindow1.bsDisplay.SelectedItem as buses).Fuel == 1200)
                     labfuel.Content = "1200";

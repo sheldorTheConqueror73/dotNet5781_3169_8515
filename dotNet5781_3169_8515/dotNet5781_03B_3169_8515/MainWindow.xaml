@@ -42,7 +42,7 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel  Orientation="Horizontal">
-                                            <TextBlock  x:Name="tBoxBusList" Text="{Binding}" Width="400"/>
+                                            <TextBlock  x:Name="tBoxBusList" Text="{Binding}" Foreground="{Binding}"  Width="400"/>
                                             <Button  Content="Send to drive" ToolTip="Drive Bus" Click="Button_SendDrive" Tag="{Binding Path=.}" Margin="30,0,0,0"/>
                                             <Button  Content="Delete" Click="Button_Delete" ToolTip="Delete" Tag="{Binding Path=.}" Margin="30,0,0,0"/>
                                         </StackPanel>
