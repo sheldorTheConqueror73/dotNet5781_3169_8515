@@ -273,7 +273,10 @@ namespace dotNet5781_03B_3169_8515
                     st = "";
                  else
                     st = this.timer.TimeNow;
-            return $"Id: {this.id}   Status: {this.status} {st}";
+            string space = "";
+            if (this.id.Length == 7)
+                space = "  ";
+            return $"Id: {this.id} {space}  Status: {this.status} {st}";
         }
         internal static bool save(ObservableCollectionPropertyNotify<buses> ls1, string path,bool show=false)//write buspool list to file 
         {

@@ -37,6 +37,7 @@ namespace dotNet5781_03B_3169_8515
         MainWindow mainWindow1;
         DispatcherTimer refresh;
         DispatcherTimer dt;
+        private int syncTime;
 
         public busDetailsByDoubleClick(DispatcherTimer _dt)
         {
@@ -71,10 +72,11 @@ namespace dotNet5781_03B_3169_8515
         {
             if (counter > 0)
             {
-                TimeSpan ts = TimeSpan.FromSeconds(counter);
-                this.st = ts.ToString(@"hh\:mm\:ss");
-                setTextToLabTimer(st);
-                counter--;
+                //TimeSpan ts = TimeSpan.FromSeconds(counter);
+               // this.st = ts.ToString(@"hh\:mm\:ss");
+                  st = (mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow;               
+                setTextToLabTimer(st);               
+                counter--;               
             }
             else
             {
@@ -154,16 +156,12 @@ namespace dotNet5781_03B_3169_8515
             btnRefuel.Content = "send to refuel";
             btnRefuel.IsEnabled = true;
             btnMaintenance.IsEnabled = true;
-
+            labStatus.Content = "ready";
             if (fuel1 != null)
                 fuel1(1200);
             labfuel.Content = "1200";
-            if (status1 != null)
-            {
-                status1("ready");
                 labStatus.Foreground = Brushes.LawnGreen;
                 mainWindow1.BusPool.Refresh();
-            }
         }
 
         private void maintenanceEvent()
@@ -171,16 +169,14 @@ namespace dotNet5781_03B_3169_8515
             btnMaintenance.Content = "send to maintenance";
             btnRefuel.IsEnabled = true;
             btnMaintenance.IsEnabled = true;
+            labStatus.Content = "ready";
             DateTime date = DateTime.Now;
             if (lmaintenance != null)
                 lmaintenance(date);
             labLMaintenance.Content = date.ToString().Split(' ')[0];
-            if (status1 != null)
-            {
-                status1("ready");
                 labStatus.Foreground = Brushes.LawnGreen;
                 mainWindow1.bsDisplay.Items.Refresh();
-            }
+           
         }
 
         private void maintenance_Button_Click(object sender, RoutedEventArgs e)
