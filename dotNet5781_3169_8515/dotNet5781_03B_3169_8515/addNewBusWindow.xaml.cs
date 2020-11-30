@@ -87,6 +87,8 @@ namespace dotNet5781_03B_3169_8515
         {
             bool flag;
             txbid.IsEnabled = false;
+            if ((txbid.Text == null) || (txbid.Text == ""))
+                throw new InvalidUserInputExecption("Invalid input: Id field cannot be empty", Properties.Resources.Sad_Trombon);
             if ((txbid.Text.Length != 8) && (txbid.Text.Length != 7))
                 throw new InvalidUserInputExecption("Invalid input: id must be 7 or 8 digits",Properties.Resources.Sad_Trombon);
             foreach(char latter in txbid.Text)
@@ -102,18 +104,24 @@ namespace dotNet5781_03B_3169_8515
                     throw new InvalidUserInputExecption("Invalid input: this id number is taken already", Properties.Resources.Sad_Trombon);
             }
             txbFuel.IsEnabled = false;
+            if ((txbFuel.Text == null) || (txbFuel.Text == ""))
+                throw new InvalidUserInputExecption("Invalid input: fuel field cannot be empty", Properties.Resources.Sad_Trombon);
             flag = int.TryParse(txbFuel.Text, out fuel);
                 if(!flag)
                 throw new InvalidUserInputExecption("Invalid input: fuel must contain digits only", Properties.Resources.Sad_Trombon);
             if ((fuel > 1200) || (fuel < 0))
                 throw new InvalidUserInputExecption("Invalid input: fuel must be within the range of 0 to 1200", Properties.Resources.Sad_Trombon);
             txbDistance.IsEnabled = false;
+            if ((txbDistance.Text == null) || (txbDistance.Text == ""))
+                throw new InvalidUserInputExecption("Invalid input: distance field cannot be empty", Properties.Resources.Sad_Trombon);
             flag = int.TryParse(txbDistance.Text, out distance);
                 if(!flag)
                 throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must contain digits only", Properties.Resources.Sad_Trombon);
             if ((distance > 20000) || (distance < 0))
                 throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must be within the range of 0 to 20000", Properties.Resources.Sad_Trombon);
             txbTotalDistance.IsEnabled = false;
+            if ((txbTotalDistance.Text == null) || (txbTotalDistance.Text == ""))
+                throw new InvalidUserInputExecption("Invalid input: total distance field cannot be empty", Properties.Resources.Sad_Trombon);
             flag = int.TryParse(txbTotalDistance.Text, out totaldistance);
                 if(!flag)
                 throw new InvalidUserInputExecption("Invalid input: total distance must contain digits only", Properties.Resources.Sad_Trombon);
