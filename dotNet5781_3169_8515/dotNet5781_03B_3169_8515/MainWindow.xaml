@@ -20,10 +20,10 @@
                         <ListView x:Name="bsDisplay" ItemsSource="{Binding BusPool}" Foreground="Black" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Width="280">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="ID" Width="90" DisplayMemberBinding="{Binding PrintID}">
+                                    <GridViewColumn Header="ID" Width="90" DisplayMemberBinding="{Binding IdFormat}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding}" Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -34,10 +34,10 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn> 
-                                    <GridViewColumn Header="Time" Width="90" DisplayMemberBinding="{Binding Timer}">
+                                    <GridViewColumn Header="Time" Width="90" DisplayMemberBinding="{Binding Timer.TimeNow}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding}" Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
+                                                <TextBlock  Text="{Binding}" Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color.Color}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -50,7 +50,7 @@
                                                         <ImageBrush Stretch="Fill"/>
                                                     </Button.Background>
                                                 </Button>
-                                                <Button x:Name="Drive" Content="" BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                    <Button x:Name="Drive" Content="" BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
                                                     <Button.Background>
                                                         <ImageBrush Stretch="Fill"/>
                                                     </Button.Background>

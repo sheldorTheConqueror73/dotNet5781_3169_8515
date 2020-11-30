@@ -27,7 +27,7 @@ namespace dotNet5781_03B_3169_8515
         Timerclass timer;
         SolidColorBrush color;
         string idFormat;
-        internal const short FULL_TANK = 1200;
+        public const short FULL_TANK = 1200;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -36,17 +36,8 @@ namespace dotNet5781_03B_3169_8515
         }
 
       
-        internal Timerclass Timer
-        {            
-            get => timer;
-            set { this.timer = value;
-               this.NotifyPropertyChanged("Timer");
-            }
-        }
-     
-      
 
-        internal buses()//ctor
+        public buses()//ctor
         {
             id = "";
             fuel = 0; 
@@ -59,7 +50,7 @@ namespace dotNet5781_03B_3169_8515
             idFormat = formatId(id);
 
         }
-        internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
+        public buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -71,7 +62,7 @@ namespace dotNet5781_03B_3169_8515
             color = Brushes.LawnGreen;
             idFormat = formatId(id);
         }
-        internal buses(DateTime date, DateTime lm, SolidColorBrush color1,string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready")//cotr
+        public buses(DateTime date, DateTime lm, SolidColorBrush color1,string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready")//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -86,7 +77,7 @@ namespace dotNet5781_03B_3169_8515
                 color = Brushes.LawnGreen;
             idFormat = formatId(id);
         }
-        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null, SolidColorBrush color1=null)//cotr
+        public buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null, SolidColorBrush color1=null)//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -105,7 +96,7 @@ namespace dotNet5781_03B_3169_8515
      
         //accessors
    
-        internal string IdFormat
+        public string IdFormat
         {
             get => idFormat;
             set
@@ -113,43 +104,53 @@ namespace dotNet5781_03B_3169_8515
                 idFormat = value;
             }
         }
-       internal string Id
+       public string Id
         {
             get => id;
             set { id= value;  }//maybe add date format check?
         }
 
-        internal int Fuel
+        public int Fuel
         {
             get => fuel;
             set { this.fuel = value; }
         }
 
-        internal int Distance
+        public int Distance
         {
             get => distance;
             set { distance = value; }
         }
-        internal int TotalDistance
+        public int TotalDistance
         {
             get => totalDistance;
             set { totalDistance  = value; }
         }
 
-        internal bool Dangerous
+        public bool Dangerous
         {
             get => dangerous;
             set { dangerous = value; }
         }
-        internal DateTime LastMaintenance
+        public DateTime LastMaintenance
         {
             get => lastMaintenance;
             set { lastMaintenance = value; }
         }
-        internal DateTime RegistrationDate
+        public DateTime RegistrationDate
         {
             get => registrationDate;
             set { registrationDate = value; }
+        }
+
+        public Timerclass Timer
+        {
+            get => timer;
+            set
+            {
+                this.timer = value;
+                this.NotifyPropertyChanged("Timer");
+            }
         }
         public string Status
         {
@@ -159,23 +160,24 @@ namespace dotNet5781_03B_3169_8515
                 if (value == "ready" || value == "mid-ride" || value == "refueling" || value == "maintenance")
                 {
                     status = value;
-                    this.NotifyPropertyChanged("Status");
+                   // this.NotifyPropertyChanged("Status");
                 }
             
             }
         }
-        internal SolidColorBrush Color
+        public SolidColorBrush Color
         {
             get { return color; }
             set 
             {
+               
                 this.color = value;
                 this.NotifyPropertyChanged("Color");
             }
         }
        
       
-        internal void printId()//prints id
+        public void printId()//prints id
         {
             if (this.registrationDate.Year < 2018)
             {
@@ -184,16 +186,16 @@ namespace dotNet5781_03B_3169_8515
             }
             Console.WriteLine("ID:\t{0}{1}{2}-{3}{4}-{5}{6}{7}", this.id[0], this.id[1], this.id[2], this.id[3], this.id[4], this.id[5], this.id[6], this.id[7]);
         }
-        internal void print()//prints id and  mileage since last maintenance
+        public void print()//prints id and  mileage since last maintenance
         {
             this.printId();
             Console.WriteLine("mileage since last maintenance:\t{0}\n", distance);
         }
-        internal void printMileage()//prints total distance
+        public void printMileage()//prints total distance
         {
             Console.WriteLine("total mileage :\t{0}", this.totalDistance);
         }
-        internal static DateTime readDate()//reads date from user
+        public static DateTime readDate()//reads date from user
         {
             Console.WriteLine("enter registration date:");
             DateTime d1;
@@ -206,7 +208,7 @@ namespace dotNet5781_03B_3169_8515
     }
     partial class buses
     {
-        internal bool CanMakeDrive(int km)//return true if sleceted bus can drive that far.
+        public bool CanMakeDrive(int km)//return true if sleceted bus can drive that far.
         {
            
             UpdateDangerous();
@@ -219,7 +221,7 @@ namespace dotNet5781_03B_3169_8515
             return true;
 
         }
-        internal void UpdateDangerous()//updates dangerous status of selected bus
+        public void UpdateDangerous()//updates dangerous status of selected bus
         {
             if ((distance >= 20000) || (this.passedYearNowAndThen() == true))
             {
@@ -229,14 +231,14 @@ namespace dotNet5781_03B_3169_8515
             this.dangerous= false;
         }
 
-        internal void UpdateMaintenance()//update last maintenance date to current day.
+        public void UpdateMaintenance()//update last maintenance date to current day.
         {
             distance = 0;
             dangerous = false;
             this.lastMaintenance=DateTime.Now;
 
         }
-        internal bool passedYearNowAndThen()//return true if a year has passed since the last maintenance.
+        public bool passedYearNowAndThen()//return true if a year has passed since the last maintenance.
         {
             DateTime currentDate = DateTime.Now;
             if ((currentDate.Year - this.lastMaintenance.Year) < 1)
@@ -247,14 +249,14 @@ namespace dotNet5781_03B_3169_8515
                 return false;
             return true;
         }
-        internal bool EqualId(string _id)//checks if two buses types have the same id
+        public bool EqualId(string _id)//checks if two buses types have the same id
         {
             if(this.id==_id)
             return true;
             return false;
         }
         //moved from main class.
-        internal static string ReadId(int year, int mode)//read id from the user and returns a string
+        public static string ReadId(int year, int mode)//read id from the user and returns a string
         {
             Console.WriteLine("enter id: ");
             string idst = Console.ReadLine();
@@ -270,7 +272,7 @@ namespace dotNet5781_03B_3169_8515
             }         
             return idst;
         }
-        internal static string formatId(string id)//converts a string id to XXX-XX-XX or XX-XXX-XX 
+        public static string formatId(string id)//converts a string id to XXX-XX-XX or XX-XXX-XX 
         {
             if (id.Length==7)
             {
@@ -291,7 +293,7 @@ namespace dotNet5781_03B_3169_8515
                 space = "  ";
             return $"Id: {this.id} {space}  Status: {this.status} {st}";
         }
-        internal static bool save(List<buses> ls1, string path,bool show=false)//write buspool list to file 
+        public static bool save(List<buses> ls1, string path,bool show=false)//write buspool list to file 
         {
             
             List<string> output = new List<string>();
@@ -311,7 +313,7 @@ namespace dotNet5781_03B_3169_8515
                 return false;
             }
         }
-        internal static bool load(ref List<buses> ls1,string path, bool show=false)//overwrites busepool list and updates it from text file
+        public static bool load(ref List<buses> ls1,string path, bool show=false)//overwrites busepool list and updates it from text file
         {
             string[] arr;
             try
