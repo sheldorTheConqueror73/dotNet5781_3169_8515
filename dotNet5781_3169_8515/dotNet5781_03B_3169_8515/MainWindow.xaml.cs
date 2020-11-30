@@ -45,7 +45,8 @@ namespace dotNet5781_03B_3169_8515
             timer.Tick += new EventHandler(refreshingProgram);
             timer.Interval = new TimeSpan(0, 0, 1);
             player = new System.Media.SoundPlayer(Properties.Resources.shadilay);
-            try { player.Play(); }
+            try { //player.Play();
+                int a=1; }
             catch(Exception e) { }
          
         }
@@ -75,12 +76,12 @@ namespace dotNet5781_03B_3169_8515
                         }
                 }
                 //updatedanr
-                DateTime lastM = randomDate(1);
-                listss.Add(new Timerclass(0) { TimeNow = "00:00:00" });
-                busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),randomStatus(r.Next(0,1)),listss[i]));
+                DateTime lastM = randomDate(1);              
+                busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),"ready",new Timerclass(0) { TimeNow="00:00:00"}));
             }
             //set 3 buses to match requirments
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
+            BusPool[0].Dangerous = true;
             busPool[1].Distance=19999;
             busPool[2].Fuel = 0;
 
@@ -233,8 +234,7 @@ namespace dotNet5781_03B_3169_8515
        
             private void refreshingProgram(Object ob,EventArgs e)
             {
-                 //BusPool.Refresh();
-
+            bsDisplay.Items.Refresh();
 
                 foreach (buses bs in busPool)
                 {

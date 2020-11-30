@@ -158,11 +158,12 @@ namespace dotNet5781_03B_3169_8515
             if (fuel1 != null)
                 fuel1(1200);
             labfuel.Content = "1200";
-           /* if (status1 != null)
+            if (status1 != null)
             {
-               // status1("ready");
+                status1("ready");
+                labStatus.Foreground = Brushes.LawnGreen;
                 mainWindow1.BusPool.Refresh();
-            }*/
+            }
         }
 
         private void maintenanceEvent()
@@ -177,6 +178,7 @@ namespace dotNet5781_03B_3169_8515
             if (status1 != null)
             {
                 status1("ready");
+                labStatus.Foreground = Brushes.LawnGreen;
                 mainWindow1.bsDisplay.Items.Refresh();
             }
         }
@@ -190,7 +192,7 @@ namespace dotNet5781_03B_3169_8515
             mode = 2;
             MessageBox.Show("sending to maintenance...");
             labStatus.Foreground = Brushes.Red;
-            counter = 144;
+            counter = 14;
             if (tim != null)
             {
                 tim(counter);
@@ -198,7 +200,7 @@ namespace dotNet5781_03B_3169_8515
             }
             if (status1 != null)
             {
-                status1("maintenance");
+                status1("maintenance");                
                 mainWindow1.bsDisplay.Items.Refresh();
             }
             timerFunc();//need to add the simulation;
