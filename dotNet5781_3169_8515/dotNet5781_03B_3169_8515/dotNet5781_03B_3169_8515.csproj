@@ -166,10 +166,10 @@
     <Resource Include="src\pics\waitIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="src\pics\warningIcon.png" />
+    <Resource Include="src\pics\add10.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="src\pics\add10.png" />
+    <Resource Include="src\pics\warningIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
