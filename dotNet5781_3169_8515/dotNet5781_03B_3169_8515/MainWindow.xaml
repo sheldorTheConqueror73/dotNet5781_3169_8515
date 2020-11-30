@@ -17,7 +17,7 @@
                         <ImageBrush ImageSource="src/pics/spaceilluminati.jpg"/>
                     </Grid.Background>
                     <Grid  x:Name="busesgrid" Margin="0,0,2,0" >
-                        <ListView x:Name="bsDisplay"  ItemsSource="{Binding BusPool}" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337">
+                        <ListView x:Name="bsDisplay"  ItemsSource="{Binding BusPool}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Style.Resources>
@@ -49,32 +49,32 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="ID" Width="90" DisplayMemberBinding="{Binding IdFormat}">
+                                    <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding IdFormat}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Status" Width="45">
+                                    <GridViewColumn Header="Status" Width="54">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Image x:Name="imageStatus" Source="{Binding IconPath}" Width="18" Height="18">
+                                                <Image x:Name="imageStatus" HorizontalAlignment="Center" Source="{Binding IconPath}" Width="18" Height="18">
                                                 </Image>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Time" Width="90" DisplayMemberBinding="{Binding Timer.TimeNow}">
+                                    <GridViewColumn Header="Time" Width="110"  DisplayMemberBinding="{Binding Timer.TimeNow}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock  Text="{Binding}" Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn Header="Options">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
+                                                <StackPanel Orientation="Horizontal" >
                                                     <Button x:Name="Delete" Click="Button_Delete" Content="" BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
                                                         <Button.Background>
                                                             <ImageBrush ImageSource="/src/pics/deleteIcon.png" Stretch="Fill"/>
