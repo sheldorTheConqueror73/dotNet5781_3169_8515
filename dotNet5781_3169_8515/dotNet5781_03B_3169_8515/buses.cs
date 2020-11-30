@@ -46,7 +46,7 @@ namespace dotNet5781_03B_3169_8515
             dangerous = false;
             registrationDate = new DateTime(0,0,0);
             lastMaintenance = new DateTime(0, 0, 0);
-            iconPath = "/Resources/okIcon.png";
+            iconPath = "pack://application:,,,/src/pics/okIcon.png";
             idFormat = formatId(id);
 
         }
@@ -59,10 +59,10 @@ namespace dotNet5781_03B_3169_8515
             this.registrationDate = date;
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
-            iconPath = "/Resources/okIcon.png";
+            iconPath = "pack://application:,,,/src/pics/okIcon.png";
             idFormat = formatId(id);
         }
-        public buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready", string path = "/Resources/okIcon.png")//cotr
+        public buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready", string path = "pack://application:,,,/src/pics/okIcon.png")//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -75,7 +75,7 @@ namespace dotNet5781_03B_3169_8515
             iconPath = path;
             idFormat = formatId(id);
         }
-        public buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null, string path = "/Resources/okIcon.png")//cotr
+        public buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null, string path = "pack://application:,,,/src/pics/okIcon.png")//cotr
         {
             this.id = id;
             this.fuel = fuel;

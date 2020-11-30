@@ -80,7 +80,7 @@ namespace dotNet5781_03B_3169_8515
                 }
                 //updatedanr
                 DateTime lastM = randomDate(1);              
-                busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),"ready",new Timerclass(0) { TimeNow="00:00:00"}, "/Resources/okIcon.png"));
+                busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),"ready",new Timerclass(0) { TimeNow="00:00:00"}, "pack://application:,,,/src/pics/okIcon.png"));
             }
             //set 3 buses to match requirments
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
@@ -246,7 +246,7 @@ namespace dotNet5781_03B_3169_8515
                 {
                     bs.Fuel = 1200;
                     bs.Status = "ready";
-                    bs.IconPath = "/Resources/okIcon.png";
+                    bs.IconPath = "pack://application:,,,/src/pics/okIcon.png";
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
@@ -256,7 +256,7 @@ namespace dotNet5781_03B_3169_8515
                     bs.LastMaintenance = DateTime.Now;
                     bs.Distance = 0;
                     bs.Status = "ready";
-                    bs.IconPath = "/Resources/okIcon.png";
+                    bs.IconPath = "pack://application:,,,/src/pics/okIcon.png";
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
@@ -264,7 +264,7 @@ namespace dotNet5781_03B_3169_8515
                 if (bs.Status == "mid-ride" && bs.Timer.TimeNow == "00:00:00")
                 {                    
                     bs.Status = "ready";
-                    bs.IconPath = "/Resources/okIcon.png";
+                    bs.IconPath = "pack://application:,,,/src/pics/okIcon.png";
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();

@@ -22,10 +22,8 @@ namespace dotNet5781_03B_3169_8515
     public partial class addBusWindow : Window
     {
         MainWindow mainWindow1;
-        readonly string appPath;
         public addBusWindow()
         {
-            this.appPath = appPath;
             foreach (Window window in Application.Current.Windows)
             {
                 if (window.GetType() == typeof(MainWindow))
@@ -76,7 +74,7 @@ namespace dotNet5781_03B_3169_8515
                 txbTotalDistance.IsEnabled = true;
                 return;
             }
-            buses bs1 = new buses((DateTime)dpRegiDate.SelectedDate, (DateTime)dplmiDate.SelectedDate, txbid.Text, fuel, dist, false, totalDist, "ready","/Resources/okIcon.png");
+            buses bs1 = new buses((DateTime)dpRegiDate.SelectedDate, (DateTime)dplmiDate.SelectedDate, txbid.Text, fuel, dist, false, totalDist, "ready","pack://application:,,,/src/pics/okIcon.png");
             bs1.UpdateDangerous();
             mainWindow1.BusPool.Add(bs1);
             mainWindow1.bsDisplay.Items.Refresh();

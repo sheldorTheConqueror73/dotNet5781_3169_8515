@@ -147,5 +147,17 @@
   <ItemGroup>
     <None Include="Resources\warningIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\driveIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\pics\deleteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\pics\driveIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

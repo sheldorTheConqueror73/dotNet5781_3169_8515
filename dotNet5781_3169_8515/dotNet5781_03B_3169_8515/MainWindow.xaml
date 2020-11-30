@@ -47,12 +47,12 @@
                                                 <StackPanel Orientation="Horizontal">
                                                 <Button x:Name="Delete" Content="" BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
                                                     <Button.Background>
-                                                        <ImageBrush Stretch="Fill"/>
+                                                            <ImageBrush ImageSource="pack://application:,,,/src/pics/deleteIcon.png" Stretch="Fill"/>
                                                     </Button.Background>
                                                 </Button>
                                                     <Button x:Name="Drive" Content="" BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
                                                     <Button.Background>
-                                                        <ImageBrush Stretch="Fill"/>
+                                                            <ImageBrush ImageSource="pack://application:,,,/src/pics/driveIcon.png" Stretch="Fill"/>
                                                     </Button.Background>
                                                 </Button>
                                                 </StackPanel>

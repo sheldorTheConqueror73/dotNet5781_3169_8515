@@ -75,7 +75,7 @@ namespace dotNet5781_03B_3169_8515
                 if (tim != null)
                 {
                     lineData.Status="mid-ride";
-                    lineData.IconPath = "/Resources/waitIcon.png";
+                    lineData.IconPath = "pack://application:,,,/src/pics/waitIcon.png";
                     tim(counter);
                     mainWindow1.bsDisplay.Items.Refresh();
                 }
