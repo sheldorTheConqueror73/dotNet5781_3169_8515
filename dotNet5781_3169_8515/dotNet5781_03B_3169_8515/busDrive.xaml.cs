@@ -60,13 +60,16 @@ namespace dotNet5781_03B_3169_8515
         {
             if (e.Key == Key.Enter && tBoxDistance.Text.ToString() != "") 
             {
-                if (!lineData.CanMakeDrive(int.Parse(tBoxDistance.Text.ToString())))
+                try { lineData.CanMakeDrive(int.Parse(tBoxDistance.Text.ToString())); }
+
+                    catch (Exception exc)
                 {
-                    MessageBox.Show("this bus can't make this drive!");
+                    MessageBox.Show(exc.Message);
                     return;
                 }
+
                 timer.Start();
-                MessageBox.Show("enter pressed");
+                MessageBox.Show("selected bus is on its way");
                 int speed = r.Next(20, 51);
                 counter = ((int.Parse(tBoxDistance.Text))*1000) / ((speed*1000)/3600);
                 if (tim != null)

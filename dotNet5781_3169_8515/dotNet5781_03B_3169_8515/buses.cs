@@ -24,7 +24,7 @@ namespace dotNet5781_03B_3169_8515
         bool dangerous; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
         Timerclass timer;
-     
+        internal const short FULL_TANK = 1200;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -204,11 +204,16 @@ namespace dotNet5781_03B_3169_8515
     {
         internal bool CanMakeDrive(int km)//return true if sleceted bus can drive that far.
         {
+           
             UpdateDangerous();
-            if (!dangerous)
-                if ((fuel >= km) && ((distance + km) < 20000))
-                    return true;
-            return false;
+            if (dangerous)
+                throw new CannotDriveExecption("selected bus is unable to drive: bus is dangerous");
+            if (fuel < km)
+                throw new CannotDriveExecption("selected bus is unable to drive: not enough fuel");
+            if ((distance + km) >= 20000)
+                throw new CannotDriveExecption("selected bus is unable to drive: distance after drive exceeds maintnace limit");
+            return true;
+
         }
         internal void UpdateDangerous()//updates dangerous status of selected bus
         {
@@ -279,8 +284,60 @@ namespace dotNet5781_03B_3169_8515
                     st = this.timer.TimeNow;
             return $"Id: {this.id}   Status: {this.status} {st}";
         }
+        internal static bool save(ObservableCollectionPropertyNotify<buses> ls1, string path,bool show=false)//write buspool list to file 
+        {
+            
+            List<string> output = new List<string>();
+            foreach (buses bs1 in ls1)
+            {
+                output.Add($"{bs1.registrationDate.Year.ToString()},{bs1.registrationDate.Month.ToString()},{bs1.registrationDate.Day.ToString()},{bs1.lastMaintenance.Year.ToString()},{bs1.lastMaintenance.Month.ToString()},{bs1.lastMaintenance.Day.ToString()},{bs1.id},{(bs1.fuel).ToString()},{(bs1.distance).ToString()},{(bs1.dangerous).ToString()},{(bs1.totalDistance).ToString()},{bs1.status.ToString()}");//add timer storage?
+            }
+            try
+            {
+                File.WriteAllLines(path, output.ToArray());
+                if (show)
+                    MessageBox.Show($"your data was saved successfully, {output.Count} entries were saved.");
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        internal static bool load(ref ObservableCollectionPropertyNotify<buses> ls1,string path, bool show=false)//overwrites busepool list and updates it from text file
+        {
+            string[] arr;
+            try
+            {
+                 arr = File.ReadAllLines(path);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            List<string> input = arr.ToList();
+                ls1 = new ObservableCollectionPropertyNotify<buses>();
+                foreach (var line in input)
+                {
+                    string[] entries = line.Split(',');
+                    int fuel, distance, total;
+                    bool flag = true, danger;
+                    DateTime d2, d1;
+                    DateTime.TryParse($"{entries[0]},{entries[1]},{entries[2]}", out d1);
+                    DateTime.TryParse($"{entries[3]},{entries[4]},{entries[5]}", out d2);
+                    Int32.TryParse(entries[7], out fuel);
+                    Int32.TryParse(entries[8], out distance);
+                    bool.TryParse(entries[9], out danger);
+                    Int32.TryParse(entries[10], out total);
+                    ls1.Add(new buses(d1, d2, entries[6], fuel, distance, danger, total,entries[11]));//maybe add timer?
+                }
+                if (show)
+                   MessageBox.Show($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
+                return true;
+         }
+           
+     }
 
 
-      
-    }
-}
+ }

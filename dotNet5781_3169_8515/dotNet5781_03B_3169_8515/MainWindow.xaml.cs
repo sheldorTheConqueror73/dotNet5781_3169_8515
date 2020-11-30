@@ -30,27 +30,25 @@ namespace dotNet5781_03B_3169_8515
         private static ObservableCollectionPropertyNotify<buses> busPool = new ObservableCollectionPropertyNotify<buses>();
         Random r = new Random();
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
-        const short FULL_TANK = 1200;
         DispatcherTimer timer;
-
-       
+        bool autosave = false;
+        internal static System.Media.SoundPlayer player;
         public MainWindow()//add mini payer to menu
         {
             InitializeComponent();
-            initBus();
-            DataContext = busPool;
-            bsDisplay.ItemsSource = busPool;
-                       
-
+            if(autosave)
+                buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt");
+            else
+                initBus();
+            bsDisplay.ItemsSource = busPool;           
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(refreshingProgram);
             timer.Interval = new TimeSpan(0, 0, 1);
-
-            
+            player = new System.Media.SoundPlayer(Properties.Resources.shadilay);
+            try { player.Play(); }
+            catch(Exception e) { }
+         
         }
-
-      
-
         public ObservableCollectionPropertyNotify<buses> BusPool
         {
             get => busPool;          
@@ -61,9 +59,13 @@ namespace dotNet5781_03B_3169_8515
             {
                 bool flag = true;
                 string id = "";
+                DateTime rd = randomDate();
                 while (flag)
                 {
-                    id = r.Next(100000, 1000000).ToString();//make sure id format matches MD 
+                    if(rd.Year<2018)
+                        id = r.Next(1000000, 10000000).ToString();//make sure id format matches MD 
+                    else
+                        id = r.Next(10000000, 100000000).ToString();
                     flag = false;
                     foreach (var bus in busPool)
                         if (id == bus.Id)//need to change accessers
@@ -73,9 +75,9 @@ namespace dotNet5781_03B_3169_8515
                         }
                 }
                 //updatedanr
-                DateTime rd = randomDate();
                 DateTime lastM = randomDate(1);
-                busPool.Add(new buses(rd, lastM, id, r.Next(0, FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),"ready",new Timerclass(0) { TimeNow = "00:00:00" }));
+                listss.Add(new Timerclass(0) { TimeNow = "00:00:00" });
+                busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),randomStatus(r.Next(0,1)),listss[i]));
             }
             //set 3 buses to match requirments
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
@@ -134,19 +136,38 @@ namespace dotNet5781_03B_3169_8515
             int fuel = (bsDisplay.SelectedItem as buses).Fuel;
             DateTime lmaintenance = (bsDisplay.SelectedItem as buses).LastMaintenance;
 
-             
 
-            bDLClk.labStatus.Content= (bsDisplay.SelectedItem as buses).Status;
+            bDLClk.labStatus.Content = (bsDisplay.SelectedItem as buses).Status;
+            if ((bsDisplay.SelectedItem as buses).Status=="ready")
+            {
+                bDLClk.labStatus.Foreground = Brushes.LawnGreen;
+            }
+            else if ((bsDisplay.SelectedItem as buses).Status=="mid-ride")//need to chnage fater update
+            {
+                bDLClk.labStatus.Foreground = Brushes.Orange;
+            }
+            else if ((bsDisplay.SelectedItem as buses).Status== "refueling"|| (bsDisplay.SelectedItem as buses).Status == "maintenance")
+            {
+                bDLClk.labStatus.Foreground = Brushes.Red;
+            }
             bDLClk.labNameBus.Content = "Bus Id: " + st;
             bDLClk.labfuel.Content = fuel.ToString();
             bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).Distance.ToString();
             bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).TotalDistance.ToString(); 
             bDLClk.labRegistration.Content= (bsDisplay.SelectedItem as buses).RegistrationDate.ToString().Split(' ')[0];
             if ((bsDisplay.SelectedItem as buses).Dangerous)
-                st = "Yes";
+            {
+                bDLClk.labDangerous.Content = "Yes";
+                bDLClk.labDangerous.Foreground = Brushes.Red;
+
+            }
             else
-                st = "No";
-             bDLClk.labDangerous.Content =st ;
+            {
+                bDLClk.labDangerous.Content = "No";
+                bDLClk.labDangerous.Foreground = Brushes.LawnGreen;
+            }
+         
+            
              bDLClk.labLMaintenance.Content = lmaintenance.ToString().Split(' ')[0];
 
             
@@ -172,7 +193,8 @@ namespace dotNet5781_03B_3169_8515
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            addBusWindow adbw = new addBusWindow();
+            adbw.ShowDialog();
         }
 
         private void Button_SendDrive(object sender, RoutedEventArgs e)
@@ -243,8 +265,11 @@ namespace dotNet5781_03B_3169_8515
                 }
             }
         }
-
-     
+        internal void windowClose()
+        {
+            if(autosave)
+                buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt");
+        }
 
         private bool NoOperationExist()
         {
@@ -255,9 +280,15 @@ namespace dotNet5781_03B_3169_8515
             }
             return true;
         }
+        private void readSettings()
+        {
 
-        
+        }
+        private void writeSettings()
+        {
 
+        }
+       
     }
 
 }

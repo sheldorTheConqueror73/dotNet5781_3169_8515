@@ -1,0 +1,69 @@
+﻿<Window x:Class="dotNet5781_03B_3169_8515.addBusWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_3169_8515"
+        mc:Ignorable="d"
+        Title="Add a New Bus" Height="450" Width="400">
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0,0,3,0" Grid.RowSpan="6" Grid.Row="1" Grid.Column="0"  BorderBrush="SaddleBrown"/>
+        <Border BorderThickness="0,0,3,0" Grid.RowSpan="6" Grid.Row="1" Grid.Column="1"  BorderBrush="SaddleBrown"/>
+        <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="0"  BorderBrush="SaddleBrown"/>
+        <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="1"  BorderBrush="SaddleBrown"/>
+        <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="2"  BorderBrush="SaddleBrown"/>
+        <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="3"  BorderBrush="SaddleBrown"/>
+        <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="4"  BorderBrush="SaddleBrown"/>
+        <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="5"  BorderBrush="SaddleBrown"/>
+        <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="6"  BorderBrush="SaddleBrown"/>
+
+
+        <Label Content="Bus Id:" Grid.Row="1" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="txbid"  Grid.Column="1" Grid.Row="1" Text="enter total distance ehre"  />
+
+
+        <Label Content="Registration Date:" Grid.Row="2" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+        <DatePicker Name="dpRegiDate" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980">
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="IsReadOnly" Value="True"/>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
+
+        <Label Content="last Maintenance:" Grid.Row="3" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  />
+        <DatePicker Name="dplmiDate" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayDateStart="1/1/1980" >
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="IsReadOnly" Value="True"/>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
+
+        <Label Content="Total Distance:" Grid.Row="4" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+        <TextBox x:Name="txbTotalDistance" Grid.Column="1" Grid.Row="4" Text="enter total distance ehre"/>
+
+        <Label Content="Distance from last Maintenance:" Grid.Row="5" Grid.Column="0" FontSize="12" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+        <TextBox x:Name="txbDistance" Grid.Column="1" Grid.Row="5" Text="enter distance since last masdsmsd" />
+
+        <Label Content="Fuel:" Grid.Row="6" Grid.Column="0" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+        <TextBox x:Name="txbFuel" Grid.Column="1" Grid.Row="6" Text="enter fuel" />
+        <Button Content="Add" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="75" Grid.ColumnSpan="2" Margin="161,0,156,41" Grid.Row="7" Grid.RowSpan="2" Click="insert" />
+    </Grid>
+
+</Window>
