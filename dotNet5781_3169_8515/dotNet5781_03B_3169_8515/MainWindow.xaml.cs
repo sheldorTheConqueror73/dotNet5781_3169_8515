@@ -27,7 +27,13 @@ namespace dotNet5781_03B_3169_8515
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static ObservableCollectionPropertyNotify<buses> busPool = new ObservableCollectionPropertyNotify<buses>();
+
+        private static List<buses> busPool=new List<buses>();
+        public  List<buses> BusPool
+        {
+            get { return busPool; }
+            set { busPool = value; }
+        }
         Random r = new Random();
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         DispatcherTimer timer;
@@ -50,10 +56,7 @@ namespace dotNet5781_03B_3169_8515
             catch(Exception e) { }
          
         }
-        public ObservableCollectionPropertyNotify<buses> BusPool
-        {
-            get => busPool;          
-        }
+   
         public void initBus()
         {
             for (int i = 0; i < 13; i++)
