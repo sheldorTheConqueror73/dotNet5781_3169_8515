@@ -71,7 +71,7 @@ namespace dotNet5781_03B_3169_8515
                 timer.Start();
                 MessageBox.Show("selected bus is on its way");
                 int speed = r.Next(20, 51);
-                counter = ((int.Parse(tBoxDistance.Text))*1000) / ((speed*1000)/3600);
+                counter =(int) ((((int.Parse(tBoxDistance.Text))*(double)1000) / ((speed*1000)/(double)3600))/(double)10);
                 if (tim != null)
                 {
                     lineData.Status="mid-ride";

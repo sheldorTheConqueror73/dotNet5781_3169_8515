@@ -120,5 +120,6 @@ namespace dotNet5781_03B_3169_8515
             if (totaldistance < 0)
                 throw new InvalidUserInputExecption("Invalid input: total distance must not be lesser than 0", Properties.Resources.Sad_Trombon);
         }
+       
     }
 }
