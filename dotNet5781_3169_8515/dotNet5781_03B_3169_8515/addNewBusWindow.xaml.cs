@@ -79,7 +79,7 @@ namespace dotNet5781_03B_3169_8515
             buses bs1 = new buses((DateTime)dpRegiDate.SelectedDate, (DateTime)dplmiDate.SelectedDate, txbid.Text, fuel, dist, false, totalDist, "ready");
             bs1.UpdateDangerous();
             mainWindow1.BusPool.Add(bs1);
-            mainWindow1.BusPool.Refresh();
+            mainWindow1.bsDisplay.Items.Refresh();
             MessageBox.Show("Huzzah! another bus has joined our (evil) ranks. World domination will soon be ours!");
             this.Close();
         }

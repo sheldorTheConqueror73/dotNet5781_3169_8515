@@ -161,7 +161,7 @@ namespace dotNet5781_03B_3169_8515
                 fuel1(1200);
             labfuel.Content = "1200";
                 labStatus.Foreground = Brushes.LawnGreen;
-                mainWindow1.BusPool.Refresh();
+            mainWindow1.bsDisplay.Items.Refresh();
         }
 
         private void maintenanceEvent()

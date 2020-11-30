@@ -11,45 +11,58 @@
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
         <TabControl  VerticalAlignment="Stretch" >
-            <TabItem Header="Bus Mangment" Height="auto" Width="auto" Background="#1576bb"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Foreground="White">
+            <TabItem Header="Bus List" Height="auto" Width="auto" Background="#1576bb"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Foreground="White" MouseDoubleClick="bsDisplay_MouseDoubleClick">
                 <Grid Name="mainGrid">
                     <Grid.Background>
                         <ImageBrush ImageSource="src/pics/spaceilluminati.jpg"/>
                     </Grid.Background>
-                    <Grid  Name="busesgrid" Background="Transparent" Margin="0,0,396,0" >
-                        <Viewbox  Grid.Row="1" HorizontalAlignment="Left">
-                            <ListBox  HorizontalAlignment="Left"  Height="600" Grid.Row="0" VerticalAlignment="Top" Width="660"  x:Name="bsDisplay" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="20" Background="Transparent" Foreground="LawnGreen" MouseDoubleClick="bsDisplay_MouseDoubleClick">
-                                <ListBox.ItemContainerStyle>
-                                    <Style TargetType="ListBoxItem">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                    <ContentPresenter />
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsSelected" Value="True" >
-                                                <Setter Property="Background" Value="Transparent" />
-                                                <Setter Property="Foreground" Value="DarkSeaGreen" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                        <Style.Resources>
-                                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
-                                        </Style.Resources>
-                                    </Style>
-                                </ListBox.ItemContainerStyle>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel  Orientation="Horizontal">
-                                            <TextBlock  x:Name="tBoxBusList" Text="{Binding}" Foreground="{Binding}"  Width="400"/>
-                                            <Button  Content="Send to drive" ToolTip="Drive Bus" Click="Button_SendDrive" Tag="{Binding Path=.}" Margin="30,0,0,0"/>
-                                            <Button  Content="Delete" Click="Button_Delete" ToolTip="Delete" Tag="{Binding Path=.}" Margin="30,0,0,0"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </Viewbox>
+                    <Grid  x:Name="busesgrid" Margin="0,0,396,0" >
+                        <ListView x:Name="bsDisplay" ItemsSource="{Binding BusPool}" Foreground="Black" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Width="280">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="90" DisplayMemberBinding="{Binding PrintID}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Status" Width="90" DisplayMemberBinding="{Binding Status}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn> 
+                                    <GridViewColumn Header="Time" Width="90" DisplayMemberBinding="{Binding Timer}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Options">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                <Button x:Name="Delete" Content="" BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                    <Button.Background>
+                                                        <ImageBrush Stretch="Fill"/>
+                                                    </Button.Background>
+                                                </Button>
+                                                <Button x:Name="Drive" Content="" BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                    <Button.Background>
+                                                        <ImageBrush Stretch="Fill"/>
+                                                    </Button.Background>
+                                                </Button>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
                     </Grid>
                     <Grid Name="functionGrid" Margin="390,0,0,0">
                         <Grid.RowDefinitions>
