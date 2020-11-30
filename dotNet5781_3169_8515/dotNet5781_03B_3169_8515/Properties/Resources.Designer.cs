@@ -61,6 +61,16 @@ namespace dotNet5781_03B_3169_8515.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap okIcon {
+            get {
+                object obj = ResourceManager.GetObject("okIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Sad_Trombon {
@@ -75,6 +85,26 @@ namespace dotNet5781_03B_3169_8515.Properties {
         internal static System.IO.UnmanagedMemoryStream shadilay {
             get {
                 return ResourceManager.GetStream("shadilay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap waitIcon {
+            get {
+                object obj = ResourceManager.GetObject("waitIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap warningIcon {
+            get {
+                object obj = ResourceManager.GetObject("warningIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

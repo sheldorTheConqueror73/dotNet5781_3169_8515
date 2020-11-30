@@ -25,7 +25,7 @@ namespace dotNet5781_03B_3169_8515
         bool dangerous; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
         Timerclass timer;
-        SolidColorBrush color;
+        string iconPath;
         string idFormat;
         public const short FULL_TANK = 1200;
 
@@ -46,7 +46,7 @@ namespace dotNet5781_03B_3169_8515
             dangerous = false;
             registrationDate = new DateTime(0,0,0);
             lastMaintenance = new DateTime(0, 0, 0);
-            color = Brushes.LawnGreen;
+            iconPath = "/Resources/okIcon.png";
             idFormat = formatId(id);
 
         }
@@ -59,10 +59,10 @@ namespace dotNet5781_03B_3169_8515
             this.registrationDate = date;
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
-            color = Brushes.LawnGreen;
+            iconPath = "/Resources/okIcon.png";
             idFormat = formatId(id);
         }
-        public buses(DateTime date, DateTime lm, SolidColorBrush color1,string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready")//cotr
+        public buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready", string path = "/Resources/okIcon.png")//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -72,12 +72,10 @@ namespace dotNet5781_03B_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
             this.status = _status;
-            color = color1;
-            if (color == null)
-                color = Brushes.LawnGreen;
+            iconPath = path;
             idFormat = formatId(id);
         }
-        public buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null, SolidColorBrush color1=null)//cotr
+        public buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null, string path = "/Resources/okIcon.png")//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -89,7 +87,7 @@ namespace dotNet5781_03B_3169_8515
             this.status = _status;
             this.timer = new Timerclass(0);
             this.timer= _timer;
-            color = Brushes.LawnGreen;
+            iconPath = path;
             idFormat = formatId(id);           
 
         }
@@ -165,17 +163,11 @@ namespace dotNet5781_03B_3169_8515
             
             }
         }
-        public SolidColorBrush Color
+        public string IconPath
         {
-            get => color;
-            set 
-            {
-               
-                this.color = value;
-                this.NotifyPropertyChanged("Color");
-            }
+            get => iconPath;
+            set { iconPath = value; }
         }
-       
       
         public void printId()//prints id
         {
@@ -299,7 +291,7 @@ namespace dotNet5781_03B_3169_8515
             List<string> output = new List<string>();
             foreach (buses bs1 in ls1)
             {
-                output.Add($"{bs1.registrationDate.Year.ToString()},{bs1.registrationDate.Month.ToString()},{bs1.registrationDate.Day.ToString()},{bs1.lastMaintenance.Year.ToString()},{bs1.lastMaintenance.Month.ToString()},{bs1.lastMaintenance.Day.ToString()},{bs1.id},{(bs1.fuel).ToString()},{(bs1.distance).ToString()},{(bs1.dangerous).ToString()},{(bs1.totalDistance).ToString()},{bs1.status.ToString()}");//add timer storage?
+                output.Add($"{bs1.registrationDate.Year.ToString()},{bs1.registrationDate.Month.ToString()},{bs1.registrationDate.Day.ToString()},{bs1.lastMaintenance.Year.ToString()},{bs1.lastMaintenance.Month.ToString()},{bs1.lastMaintenance.Day.ToString()},{bs1.id},{(bs1.fuel).ToString()},{(bs1.distance).ToString()},{(bs1.dangerous).ToString()},{(bs1.totalDistance).ToString()},{bs1.status.ToString()},{bs1.iconPath}");//add timer storage?
             }
             try
             {
@@ -339,7 +331,7 @@ namespace dotNet5781_03B_3169_8515
                     Int32.TryParse(entries[8], out distance);
                     bool.TryParse(entries[9], out danger);
                     Int32.TryParse(entries[10], out total);
-                    ls1.Add(new buses(d1, d2, Brushes.LawnGreen, entries[6], fuel, distance, danger, total,entries[11]));//maybe add timer?
+                    ls1.Add(new buses(d1, d2,  entries[6], fuel, distance, danger, total,entries[11],entries[12]));//maybe add timer?
                 }
                 if (show)
                    MessageBox.Show($"data successfully fetched from files. {ls1.Count} entries were retrieved.");

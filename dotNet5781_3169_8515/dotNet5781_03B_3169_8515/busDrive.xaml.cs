@@ -75,7 +75,7 @@ namespace dotNet5781_03B_3169_8515
                 if (tim != null)
                 {
                     lineData.Status="mid-ride";
-                    lineData.Color = Brushes.Orange;
+                    lineData.IconPath = "/Resources/waitIcon.png";
                     tim(counter);
                     mainWindow1.bsDisplay.Items.Refresh();
                 }
