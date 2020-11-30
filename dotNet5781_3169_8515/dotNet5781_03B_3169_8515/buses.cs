@@ -10,6 +10,7 @@ using System.Windows;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
+using System.Windows.Media;
 using dotNet5781_03B_3169_8515.utility;
 
 namespace dotNet5781_03B_3169_8515
@@ -24,6 +25,7 @@ namespace dotNet5781_03B_3169_8515
         bool dangerous; //is this bus dangerous
         DateTime registrationDate, lastMaintenance;
         Timerclass timer;
+        SolidColorBrush color;
         internal const short FULL_TANK = 1200;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -51,6 +53,7 @@ namespace dotNet5781_03B_3169_8515
             dangerous = false;
             registrationDate = new DateTime(0,0,0);
             lastMaintenance = new DateTime(0, 0, 0);
+            color = Brushes.LawnGreen;
 
         }
         internal buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
@@ -62,8 +65,9 @@ namespace dotNet5781_03B_3169_8515
             this.registrationDate = date;
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
+            color = Brushes.LawnGreen;
         }
-        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready")//cotr
+        internal buses(DateTime date, DateTime lm, SolidColorBrush color1,string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready")//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -73,8 +77,11 @@ namespace dotNet5781_03B_3169_8515
             this.lastMaintenance = lm;
             this.totalDistance = totalDistance;
             this.status = _status;
+            color = color1;
+            if (color == null)
+                color = Brushes.LawnGreen;
         }
-        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null)//cotr
+        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null, SolidColorBrush color1=null)//cotr
         {
             this.id = id;
             this.fuel = fuel;
@@ -86,35 +93,10 @@ namespace dotNet5781_03B_3169_8515
             this.status = _status;
             this.timer = new Timerclass(0);
             this.timer= _timer;
-            
-        }
-        internal buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",string _timer="")//cotr
-        {
-            this.id = id;
-            this.fuel = fuel;
-            this.distance = distance;
-            this.dangerous = dangerous;
-            this.registrationDate = date;
-            this.lastMaintenance = lm;
-            this.totalDistance = totalDistance;
-            this.status = _status;
-            if (_timer != "")
-                this.timer = new Timerclass(double.Parse(_timer));
-            else
-                this.timer = null;
-        }
+            color = Brushes.LawnGreen;
 
-
-        private void setAll(DateTime date, DateTime lm, string id, int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//set all mebmers at once
-        {
-            this.id = id;
-            this.fuel = fuel;
-            this.distance = distance;
-            this.dangerous = dangerous;
-            this.registrationDate = date;
-            this.lastMaintenance = lm;
-            this.totalDistance = totalDistance;
         }
+     
         //accessors
    
 
@@ -167,6 +149,15 @@ namespace dotNet5781_03B_3169_8515
                     this.NotifyPropertyChanged("Status");
                 }
             
+            }
+        }
+        internal SolidColorBrush Color
+        {
+            get { return color; }
+            set 
+            {
+                this.color = value;
+                this.NotifyPropertyChanged("Color");
             }
         }
        
@@ -330,7 +321,7 @@ namespace dotNet5781_03B_3169_8515
                     Int32.TryParse(entries[8], out distance);
                     bool.TryParse(entries[9], out danger);
                     Int32.TryParse(entries[10], out total);
-                    ls1.Add(new buses(d1, d2, entries[6], fuel, distance, danger, total,entries[11]));//maybe add timer?
+                    ls1.Add(new buses(d1, d2, Brushes.LawnGreen, entries[6], fuel, distance, danger, total,entries[11]));//maybe add timer?
                 }
                 if (show)
                    MessageBox.Show($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
