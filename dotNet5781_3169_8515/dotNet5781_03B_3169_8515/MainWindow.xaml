@@ -107,6 +107,12 @@
                         <Button x:Name="btnSave" Click="btnSave_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Content="save data" ToolTip="save your data to the files" Margin="10,34,33,72"  />
                         <Button x:Name="btnLaod" Click="btnLaod_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Content="load data" ToolTip="load your data from the file" Margin="10,56,33,48"  />
                     </Grid>
+                    <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="341,99,0,0" VerticalAlignment="Top" Width="97" SelectionChanged="comboBox_SelectionChanged">
+                        <ComboBoxItem Content="chose sort"/>
+                        <ComboBoxItem Content="ID"/>
+                        <ComboBoxItem x:Name="sortbox" Content="Status"/>
+                        <ComboBoxItem Content="Time"/>
+                    </ComboBox>
                 </Grid>
             </TabItem>
 
