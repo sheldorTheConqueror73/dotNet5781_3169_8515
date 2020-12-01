@@ -263,7 +263,9 @@ namespace dotNet5781_03B_3169_8515
                     bs.LastMaintenance = DateTime.Now;
                     bs.Distance = 0;
                     bs.Status = "ready";
-                    bs.IconPath = "/src/pics/okIcon.png";                  
+                    bs.IconPath = "/src/pics/okIcon.png";
+                    if (bs.Dangerous == true)
+                        bs.Dangerous = false;
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
