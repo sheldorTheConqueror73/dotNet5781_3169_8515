@@ -456,7 +456,8 @@ namespace dotNet5781_03B_3169_8515
 
         private void btnads_Click(object sender, RoutedEventArgs e)
         {
-            File.Create($"{appPath}\\src\\storage\\DataFile.txt");
+            try {File.Create($"{appPath}\\src\\storage\\DataFile.txt");}
+            catch(Exception exc) { }
         }
     }
 
