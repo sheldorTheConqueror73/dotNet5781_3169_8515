@@ -177,5 +177,11 @@
   <ItemGroup>
     <Resource Include="src\pics\loadicon2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\pics\gasIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\pics\repairIcon2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

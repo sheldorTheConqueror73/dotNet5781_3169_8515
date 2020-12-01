@@ -6,12 +6,83 @@
         xmlns:local="clr-namespace:dotNet5781_03B_3169_8515"
         mc:Ignorable="d"
         Title="INJ bus stuidio 2020 v0.3B" Height="550" Width="450" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="ButtonFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#F3F3F3" Offset="0"/>
+            <GradientStop Color="#EBEBEB" Offset="0.5"/>
+            <GradientStop Color="#DDDDDD" Offset="0.5"/>
+            <GradientStop Color="#CDCDCD" Offset="1"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+        <Style x:Key="ToggleButtonStyle1" TargetType="{x:Type ToggleButton}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Border x:Name="on" Width="25" Height="25" Background="LightGray" CornerRadius="2,0,0,4" Margin="10,0,0,0">
+                                <TextBlock x:Name="onText" Text="On" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border x:Name="off" Width="25" Height="25" Background="LightGray" CornerRadius="0,2,4,0">
+                                <TextBlock x:Name="offText" Text="Off" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter TargetName="on" Property="Background" Value="LightBlue"/>
+                                <Setter TargetName="onText" Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="off" Property="Background" Value="LightBlue"/>
+                                <Setter TargetName="offText" Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="visaulButton" TargetType="{x:Type Button}">
+            <Setter Property="Control.Template" >
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border CornerRadius="3"  BorderThickness="2"   BorderBrush="Turquoise">
+                                <ContentPresenter Content="{TemplateBinding Button.Content}" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Background="Transparent" >
+        
 
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
         <TabControl  VerticalAlignment="Stretch" >
-            <TabItem Header="Bus List" Height="auto" Width="auto" Background="#1576bb"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Foreground="White" MouseDoubleClick="bsDisplay_MouseDoubleClick">
+            <TabItem Header="Bus List" Height="auto" Width="auto" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"  MouseDoubleClick="bsDisplay_MouseDoubleClick">
                 <Grid Name="mainGrid">
                     <Grid.Background>
                         <ImageBrush ImageSource="src/pics/spaceilluminati.jpg"/>
@@ -120,32 +191,24 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Settings Menu" Height="auto" Width="auto" Background="#1576bb" Foreground="White" >
-                <Grid Background="AliceBlue">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+            <TabItem Header="Settings Menu" Height="auto" Width="auto" HorizontalContentAlignment="Center" >
+                <Grid >
+                <ToggleButton x:Name="btnsound" Content="Enable Sound Effects     " HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}" IsChecked="True" Margin="0,-434,0,0"/>
+                    <ToggleButton Content="Enable Save/Load Alerts" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}" IsChecked="False" Margin="0,-364,0,0"/>
+                    <ToggleButton Content="Enable Auto Save           " HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}"  Margin="0,-294,0,0"/>
+                    <Button Content="Reset Saved Data" HorizontalContentAlignment="Center" Style="{StaticResource visaulButton}" HorizontalAlignment="Center" Margin="0,309,0,0" VerticalAlignment="Top" Width="97">
+                      
+                    </Button>
+                    <Button Content="   watch ads"  Style="{StaticResource visaulButton}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,259,0,0" VerticalAlignment="Top" Width="85" />
+
+
+
                 </Grid>
             </TabItem>
+            
+            
         </TabControl>
 
     </Grid>
+    
 </Window>
