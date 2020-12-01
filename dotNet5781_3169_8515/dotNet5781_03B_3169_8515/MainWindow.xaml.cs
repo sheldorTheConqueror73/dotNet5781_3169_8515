@@ -218,6 +218,7 @@ namespace dotNet5781_03B_3169_8515
                 return;
             }
 
+            
             if (lineData == null)
                 return;
             busDrive busDrive = new busDrive(ref fxElt,timer,sound);
@@ -229,7 +230,6 @@ namespace dotNet5781_03B_3169_8515
 
         private void Button_Delete(object sender, RoutedEventArgs e)
         {
-            ((Button)sender).IsEnabled = false;
             var fxElt = sender as FrameworkElement;
             buses lineData = fxElt.DataContext as buses;
             if(lineData.Status!="ready")
@@ -237,6 +237,9 @@ namespace dotNet5781_03B_3169_8515
                 MessageBox.Show("you cannot delete a bus unless its status is ready");
                 return;
             }
+            MessageBoxResult result = MessageBox.Show("are you sure?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+                return;
             busPool.RemoveAt(indexOf(lineData.Id));
             bsDisplay.Items.Refresh();
         }
@@ -244,7 +247,7 @@ namespace dotNet5781_03B_3169_8515
        
             private void refreshingProgram(Object ob,EventArgs e)
             {
-            //bsDisplay.Items.Refresh();
+          
                 bool flag = false;
             
                 foreach (buses bs in busPool)
