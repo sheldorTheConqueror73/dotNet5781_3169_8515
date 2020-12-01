@@ -214,11 +214,15 @@ namespace dotNet5781_03B_3169_8515
         public void refreshBusDetails(Object obj, EventArgs e)
         {
             
-            if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "ready")
+            if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "ready"|| (mainWindow1.bsDisplay.SelectedItem as buses).Status=="dangerous")
             {
                 btnMaintenance.IsEnabled = true;
                 btnRefuel.IsEnabled = true;
+                if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "ready")
                 labStatus.Content = "ready";
+                if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "dangerous")
+                    labStatus.Content = "dangerous";
+
                 (mainWindow1.bsDisplay.SelectedItem as buses).IconPath= "/src/pics/okIcon.png";
                 labStatus.Foreground = Brushes.LawnGreen;
                 if ((mainWindow1.bsDisplay.SelectedItem as buses).Fuel == 1200)
