@@ -70,9 +70,7 @@ namespace dotNet5781_03B_3169_8515
         private void timer_Tick(Object obj, EventArgs e)
         {
             if (counter > 0)
-            {
-                //TimeSpan ts = TimeSpan.FromSeconds(counter);
-               // this.st = ts.ToString(@"hh\:mm\:ss");
+            {                
                   st = (mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow;               
                 setTextToLabTimer(st);               
                 counter--;               
@@ -158,11 +156,18 @@ namespace dotNet5781_03B_3169_8515
             btnRefuel.Content = "send to refuel";
             btnRefuel.IsEnabled = true;
             btnMaintenance.IsEnabled = true;
-            labStatus.Content = "ready";
+            if (labDangerous.Content.ToString() == "Yes") 
+            {
+                labStatus.Content = "dangerous";
+            }
+            else
+            {
+                labStatus.Foreground = Brushes.LawnGreen;
+                labStatus.Content = "ready";
+            }
             if (fuel1 != null)
                 fuel1(1200);
-            labfuel.Content = "1200";
-                labStatus.Foreground = Brushes.LawnGreen;
+            labfuel.Content = "1200";            
             mainWindow1.bsDisplay.Items.Refresh();
         }
 
@@ -219,12 +224,19 @@ namespace dotNet5781_03B_3169_8515
                 btnMaintenance.IsEnabled = true;
                 btnRefuel.IsEnabled = true;
                 if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "ready")
-                labStatus.Content = "ready";
-                if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "dangerous")
+                {
+                    labStatus.Content = "ready";
+                    (mainWindow1.bsDisplay.SelectedItem as buses).IconPath = "/src/pics/okIcon.png";
+                    labStatus.Foreground = Brushes.LawnGreen;
+                }            
+                if ((mainWindow1.bsDisplay.SelectedItem as buses).Dangerous == true)
+                {
                     labStatus.Content = "dangerous";
-
-                (mainWindow1.bsDisplay.SelectedItem as buses).IconPath= "/src/pics/okIcon.png";
-                labStatus.Foreground = Brushes.LawnGreen;
+                    (mainWindow1.bsDisplay.SelectedItem as buses).IconPath = "/src/pics/warningIcon.png";
+                    labStatus.Foreground = Brushes.Red;
+                }
+                   
+               
                 if ((mainWindow1.bsDisplay.SelectedItem as buses).Fuel == 1200)
                     labfuel.Content = "1200";
                 if ((mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.Day == (DateTime.Now.Day))

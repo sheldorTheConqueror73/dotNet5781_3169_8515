@@ -246,8 +246,7 @@ namespace dotNet5781_03B_3169_8515
 
        
             private void refreshingProgram(Object ob,EventArgs e)
-            {
-          
+            {          
                 bool flag = false;
             
                 foreach (buses bs in busPool)
@@ -256,9 +255,17 @@ namespace dotNet5781_03B_3169_8515
                  if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
                 {
                     flag = true;
-                    bs.Fuel = 1200;                    
-                    bs.Status = "ready";
-                    bs.IconPath = "/src/pics/okIcon.png";                                     
+                    bs.Fuel = 1200;
+                    if (bs.Dangerous == true)
+                    {
+                        bs.Status = "dangerous";
+                        bs.IconPath = "/src/pics/warningIcon.png";
+                    }
+                    else
+                    {
+                        bs.Status = "ready";
+                        bs.IconPath = "/src/pics/okIcon.png";
+                    }
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
@@ -278,9 +285,9 @@ namespace dotNet5781_03B_3169_8515
                 }
                 if (bs.Status == "mid-ride" && bs.Timer.TimeNow == "00:00:00")
                 {
-                    flag = true;
+                    flag = true;                   
                     bs.Status = "ready";
-                    bs.IconPath = "/src/pics/okIcon.png";                    
+                    bs.IconPath = "/src/pics/okIcon.png";
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
@@ -379,9 +386,7 @@ namespace dotNet5781_03B_3169_8515
                 busPool.Sort((x, y) => x.Id.CompareTo(y.Id));
                 return;
             }
-            //compare1 compTime = new compare1(buses.sortTime);
-            //compare1 compStatus = new compare1(buses.sortStatus);
-            //compare1 comp = new compare1(buses.sortTime);
+            
             int mode = 0;
             if (value == "Time")
                 mode = 1;              
