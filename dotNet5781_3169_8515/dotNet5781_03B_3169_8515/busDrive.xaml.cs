@@ -50,7 +50,7 @@ namespace dotNet5781_03B_3169_8515
             }
 
             lineData = fx.DataContext as buses;
-            labId.Content = "Bus Id: "+lineData.Id;
+            labId.Content = "Bus Id: "+lineData.IdFormat;
             
         }
 
