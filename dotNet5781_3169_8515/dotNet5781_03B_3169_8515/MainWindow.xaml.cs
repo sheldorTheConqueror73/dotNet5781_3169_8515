@@ -242,37 +242,48 @@ namespace dotNet5781_03B_3169_8515
             private void refreshingProgram(Object ob,EventArgs e)
             {
             //bsDisplay.Items.Refresh();
-                     
+                bool flag = false;
+            
                 foreach (buses bs in busPool)
                 {
                 
                  if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
                 {
+                    flag = true;
                     bs.Fuel = 1200;                    
                     bs.Status = "ready";
-                    bs.IconPath = "/src/pics/okIcon.png";
+                    bs.IconPath = "/src/pics/okIcon.png";                                     
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
                 }
                 if (bs.Status == "maintenance" && bs.Timer.TimeNow == "00:00:00")
                 {
+                    flag = true;
                     bs.LastMaintenance = DateTime.Now;
                     bs.Distance = 0;
                     bs.Status = "ready";
-                    bs.IconPath = "/src/pics/okIcon.png";
+                    bs.IconPath = "/src/pics/okIcon.png";                  
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
                 }
                 if (bs.Status == "mid-ride" && bs.Timer.TimeNow == "00:00:00")
-                {                    
+                {
+                    flag = true;
                     bs.Status = "ready";
-                    bs.IconPath = "/src/pics/okIcon.png";
+                    bs.IconPath = "/src/pics/okIcon.png";                    
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
                 }
+               
+            }
+            if (flag)
+            {
+                busSort();
+                flag = false;
+                bsDisplay.Items.Refresh();
             }
         }
         internal void windowClose()
@@ -316,7 +327,7 @@ namespace dotNet5781_03B_3169_8515
         {
             ComboBoxItem typeItem = (ComboBoxItem)cbSort.SelectedItem;
             string value = typeItem.Content.ToString();
-            if (value != "chose sort")
+            if (value != "select sort")
             {
                 busSort();
                 bsDisplay.Items.Refresh();
@@ -335,9 +346,9 @@ namespace dotNet5781_03B_3169_8515
                 busPool.Sort((x, y) => x.Id.CompareTo(y.Id));
                 return;
             }
-            //compare1 compTime = new compare1(sortTime);
-            //compare1 compStatus = new compare1(sortStatus);
-            //compare1 comp = new compare1(sortTime);
+            //compare1 compTime = new compare1(buses.sortTime);
+            //compare1 compStatus = new compare1(buses.sortStatus);
+            //compare1 comp = new compare1(buses.sortTime);
             int mode = 0;
             if (value == "Time")
                 mode = 1;              
