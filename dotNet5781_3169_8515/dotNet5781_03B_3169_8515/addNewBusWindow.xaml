@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_3169_8515"
         mc:Ignorable="d"
-        Title="Add a New Bus" Height="450" Width="400">
+        Title="Add a New Bus" Height="450" Width="400" Icon="src/pics/appIcon.png">
     <Grid x:Name="MainGrid">
         <Grid.Background>
             <ImageBrush ImageSource="/src/pics/illuminati3.jpg"/>
