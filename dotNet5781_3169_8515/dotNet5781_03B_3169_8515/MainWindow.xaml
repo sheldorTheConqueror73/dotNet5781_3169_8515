@@ -17,7 +17,7 @@
                         <ImageBrush ImageSource="src/pics/spaceilluminati.jpg"/>
                     </Grid.Background>
                     <Grid  x:Name="busesgrid" Margin="0,0,2,0" >
-                        <ListView x:Name="bsDisplay"  ItemsSource="{Binding BusPool}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337">
+                        <ListView x:Name="bsDisplay"  ItemsSource="{Binding BusPool}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" >
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Style.Resources>
