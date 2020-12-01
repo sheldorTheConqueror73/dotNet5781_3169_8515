@@ -111,6 +111,12 @@
                             <Image Source="src/pics/loadicon2.png"/>
                         </Button>
                     </Grid>
+                    <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="341,99,0,0" VerticalAlignment="Top" Width="97" SelectionChanged="comboBox_SelectionChanged">
+                        <ComboBoxItem Content="select sort"/>
+                        <ComboBoxItem Content="ID"/>
+                        <ComboBoxItem x:Name="sortbox" Content="Status"/>
+                        <ComboBoxItem Content="Time"/>
+                    </ComboBox>
                 </Grid>
             </TabItem>
 

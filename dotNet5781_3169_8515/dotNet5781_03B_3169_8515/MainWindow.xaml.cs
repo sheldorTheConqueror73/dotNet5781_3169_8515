@@ -46,7 +46,8 @@ namespace dotNet5781_03B_3169_8515
                 buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt");
             else
                 initBus();
-            bsDisplay.ItemsSource = busPool;           
+            bsDisplay.ItemsSource = busPool;
+            cbSort.SelectedIndex = 0;
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(refreshingProgram);
             timer.Interval = new TimeSpan(0, 0, 1);
@@ -84,7 +85,9 @@ namespace dotNet5781_03B_3169_8515
             }
             //set 3 buses to match requirments
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
+            busPool[0].Status = "dangerous";
             BusPool[0].Dangerous = true;
+            busPool[0].IconPath = "/src/pics/warningIcon.png";
             busPool[1].Distance=19999;
             busPool[2].Fuel = 0;
 
@@ -239,37 +242,48 @@ namespace dotNet5781_03B_3169_8515
             private void refreshingProgram(Object ob,EventArgs e)
             {
             //bsDisplay.Items.Refresh();
-           
+                bool flag = false;
+            
                 foreach (buses bs in busPool)
                 {
                 
                  if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
                 {
-                    bs.Fuel = 1200;
+                    flag = true;
+                    bs.Fuel = 1200;                    
                     bs.Status = "ready";
-                    bs.IconPath = "/src/pics/okIcon.png";
+                    bs.IconPath = "/src/pics/okIcon.png";                                     
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
                 }
                 if (bs.Status == "maintenance" && bs.Timer.TimeNow == "00:00:00")
                 {
+                    flag = true;
                     bs.LastMaintenance = DateTime.Now;
                     bs.Distance = 0;
                     bs.Status = "ready";
-                    bs.IconPath = "/src/pics/okIcon.png";
+                    bs.IconPath = "/src/pics/okIcon.png";                  
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
                 }
                 if (bs.Status == "mid-ride" && bs.Timer.TimeNow == "00:00:00")
-                {                    
+                {
+                    flag = true;
                     bs.Status = "ready";
-                    bs.IconPath = "/src/pics/okIcon.png";
+                    bs.IconPath = "/src/pics/okIcon.png";                    
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
                 }
+               
+            }
+            if (flag)
+            {
+                busSort();
+                flag = false;
+                bsDisplay.Items.Refresh();
             }
         }
         internal void windowClose()
@@ -308,6 +322,64 @@ namespace dotNet5781_03B_3169_8515
             bsDisplay.Items.Refresh();
           
         }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem typeItem = (ComboBoxItem)cbSort.SelectedItem;
+            string value = typeItem.Content.ToString();
+            if (value != "select sort")
+            {
+                busSort();
+                bsDisplay.Items.Refresh();
+            }
+        }
+
+        private delegate bool compare1(string x, string y);
+       
+
+        public void busSort()
+        {            
+            ComboBoxItem typeItem = (ComboBoxItem)cbSort.SelectedItem;
+            string value = typeItem.Content.ToString();
+            if (value == "ID")
+            {
+                busPool.Sort((x, y) => x.Id.CompareTo(y.Id));
+                return;
+            }
+            //compare1 compTime = new compare1(buses.sortTime);
+            //compare1 compStatus = new compare1(buses.sortStatus);
+            //compare1 comp = new compare1(buses.sortTime);
+            int mode = 0;
+            if (value == "Time")
+                mode = 1;              
+            if (value == "Status")
+                mode = 2;
+                
+            for (int i = 0; i < busPool.Count(); i++)
+            {
+                for (int j = 0; j < busPool.Count() - 1; j++)
+                {
+                    if (mode == 1)
+                        if (buses.sortTime(busPool[j].Timer.TimeNow, busPool[j+1].Timer.TimeNow))
+                         {
+                             buses tmp = busPool[j];
+                             busPool[j] = busPool[j + 1];
+                             busPool[j + 1] = tmp;
+                        } 
+                    if(mode==2)
+                        if (buses.sortStatus(busPool[j].Status, busPool[j + 1].Status))
+                        {
+                            buses tmp = busPool[j];
+                            busPool[j] = busPool[j + 1];
+                            busPool[j + 1] = tmp;
+                        }
+                }
+            }           
+                // busPool.Sort((x, y) => y.Timer.TimeNow.CompareTo(x.Timer.TimeNow));
+                
+
+        }
+
     }
 
 }

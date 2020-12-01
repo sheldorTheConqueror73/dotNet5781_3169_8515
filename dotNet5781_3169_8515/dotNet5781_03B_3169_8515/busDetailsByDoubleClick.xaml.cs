@@ -141,6 +141,7 @@ namespace dotNet5781_03B_3169_8515
             if (tim != null)
             {
                 tim(counter);
+                mainWindow1.busSort();
                 mainWindow1.bsDisplay.Items.Refresh();
             }
             if (status1 != null)
@@ -170,6 +171,9 @@ namespace dotNet5781_03B_3169_8515
             btnRefuel.IsEnabled = true;
             btnMaintenance.IsEnabled = true;
             labStatus.Content = "ready";
+            (mainWindow1.bsDisplay.SelectedItem as buses).Dangerous = false ;
+            labDangerous.Content = "No";
+            labDangerous.Foreground = Brushes.LawnGreen;
             DateTime date = DateTime.Now;
             if (lmaintenance != null)
                 lmaintenance(date);
@@ -193,6 +197,7 @@ namespace dotNet5781_03B_3169_8515
             if (tim != null)
             {
                 tim(counter);
+                mainWindow1.busSort();
                 mainWindow1.bsDisplay.Items.Refresh();
             }
             if (status1 != null)

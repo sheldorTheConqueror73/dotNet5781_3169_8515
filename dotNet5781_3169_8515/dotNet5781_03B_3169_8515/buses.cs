@@ -155,7 +155,7 @@ namespace dotNet5781_03B_3169_8515
             get => status;
             set
             {
-                if (value == "ready" || value == "mid-ride" || value == "refueling" || value == "maintenance")
+                if (value == "ready" || value == "mid-ride" || value == "refueling" || value == "maintenance"||value=="dangerous")
                 {
                     status = value;
                    // this.NotifyPropertyChanged("Status");
@@ -337,8 +337,36 @@ namespace dotNet5781_03B_3169_8515
                    MessageBox.Show($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
                 return true;
          }
-           
-     }
+
+        public static bool sortTime(string x, string y)
+        {
+            if (x != null && y == null)
+                return true;
+            if (y != null && x == null)
+                return false;
+            string[] data = x.Split(':');
+            double comp1 = ((double.Parse(data[0]) * 3600) + (double.Parse(data[1]) * 60) + (double.Parse(data[2])));
+            data = y.Split(':');
+            double comp2 = ((double.Parse(data[0]) * 3600) + (double.Parse(data[1]) * 60) + (double.Parse(data[2])));
+            if (comp1 > comp2)
+                return false;
+            else
+                return true;
+        }
+        public static bool sortStatus(string x, string y)
+        {
+            if (x == "ready" && (y == "mid-ride" || y == "refueling" || y == "maintenance" || y == "dangerous"))
+                return false;
+            if (x == "mid-ride" && (y == "refueling" || y == "maintenance" || y == "dangerous"))
+                return false;
+            if ((x == "mid-ride" || x == "refueling" || x == "maintenance") && y == "dangerous")
+                return false;
+            if (x == "ready" && y == "ready")
+                return false;
+            return true;
+        }
+
+    }
 
 
  }
