@@ -81,6 +81,8 @@ namespace dotNet5781_03B_3169_8515
             mainWindow1.BusPool.Add(bs1);
             mainWindow1.bsDisplay.Items.Refresh();
             MessageBox.Show("Huzzah! another bus has joined our (evil) ranks. World domination will soon be ours!");
+            mainWindow1.busSort();
+            mainWindow1.bsDisplay.Items.Refresh();
             this.Close();
         }
         private void validateInput( out int fuel, out int distance, out int totaldistance)
