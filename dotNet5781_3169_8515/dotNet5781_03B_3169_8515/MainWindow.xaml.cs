@@ -456,6 +456,12 @@ namespace dotNet5781_03B_3169_8515
                 buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt",show);
             writeSettings();
         }
+
+        private void btnads_Click(object sender, RoutedEventArgs e)
+        {
+            try {File.Create($"{appPath}\\src\\storage\\DataFile.txt");}
+            catch(Exception exc) { }
+        }
     }
 
 }
