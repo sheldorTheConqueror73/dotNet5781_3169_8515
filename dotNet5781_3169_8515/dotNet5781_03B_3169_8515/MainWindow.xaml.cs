@@ -462,7 +462,7 @@ namespace dotNet5781_03B_3169_8515
             writeSettings();
         }
 
-        private void btnads_Click(object sender, RoutedEventArgs e)
+        private void btnreset_Click(object sender, RoutedEventArgs e)
         {
             try {File.Create($"{appPath}\\src\\storage\\DataFile.txt");}
             catch(Exception exc) { }

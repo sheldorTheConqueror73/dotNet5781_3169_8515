@@ -77,7 +77,7 @@
         </Style>
     </Window.Resources>
     <Grid Background="Transparent" >
-        
+
 
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
@@ -85,7 +85,7 @@
             <TabItem Header="Bus List" Height="auto" Width="auto" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"  MouseDoubleClick="bsDisplay_MouseDoubleClick">
                 <Grid Name="mainGrid">
                     <Grid.Background>
-                        <ImageBrush ImageSource="src/pics/spaceilluminati.jpg"/>
+                        <ImageBrush ImageSource="src/pics/illuminati 2.jpg"/>
                     </Grid.Background>
                     <Grid  x:Name="busesgrid" Margin="0,0,2,0" >
                         <ListView x:Name="bsDisplay"  ItemsSource="{Binding BusPool}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" >
@@ -179,7 +179,7 @@
                             <Image Source="src/pics/loadicon2.png"/>
                         </Button>
                     </Grid>
-                    <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="337,3,0,0" VerticalAlignment="Top" Width="97" SelectionChanged="comboBox_SelectionChanged" Height="23">
+                    <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="336,1,0,0" VerticalAlignment="Top" Width="98" SelectionChanged="comboBox_SelectionChanged" Height="23">
                         <ComboBoxItem Content="Order By"/>
                         <ComboBoxItem Content="ID"/>
                         <ComboBoxItem x:Name="sortbox" Content="Status"/>
@@ -196,19 +196,17 @@
                     <ToggleButton x:Name="btnsound" Checked="btnsound_Checked" Unchecked="btnsound_Unchecked" Content="Enable Sound Effects     " Foreground="AliceBlue" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}" IsChecked="True" Margin="0,-434,0,0"/>
                     <ToggleButton x:Name="btnsaveAlerts" Checked="btnsaveAlerts_Checked" Unchecked="btnsaveAlerts_Unchecked" Content="Enable Save/Load Alerts" Foreground="AliceBlue" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}" IsChecked="False" Margin="0,-364,0,0"/>
                     <ToggleButton x:Name="btnautosave"  Content="Enable Auto Save           " Unchecked="btnautosave_Unchecked" Checked="btnautosave_Checked" Foreground="AliceBlue" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}"  Margin="0,-294,0,0" />
-                    <Button x:Name="btnads" Content="Reset Saved Data" HorizontalContentAlignment="Center" Foreground="AliceBlue" Style="{StaticResource visaulButton}" HorizontalAlignment="Center" Margin="158,403,182,0" VerticalAlignment="Top" Width="97" Click="btnads_Click">
-                      
-                    </Button>
-                    <Button x:Name="btnreset" Content="   watch ads"  Style="{StaticResource visaulButton}" Foreground="AliceBlue" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="159,378,182,0" VerticalAlignment="Top" Width="70" />
+                    <Button x:Name="btnads" Content="Reset Saved Data" HorizontalContentAlignment="Center" Foreground="AliceBlue" Style="{StaticResource visaulButton}" HorizontalAlignment="Center" Margin="158,403,182,0" VerticalAlignment="Top" Width="97" Click="btnreset_Click"/>
+
 
 
 
                 </Grid>
             </TabItem>
-            
-            
+
+
         </TabControl>
 
     </Grid>
-    
+
 </Window>

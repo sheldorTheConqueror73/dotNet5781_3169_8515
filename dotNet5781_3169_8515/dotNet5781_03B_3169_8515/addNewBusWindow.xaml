@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Add a New Bus" Height="450" Width="400">
     <Grid x:Name="MainGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="/src/pics/illuminati3.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -22,10 +25,14 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Border BorderThickness="0,0,3,0" Grid.RowSpan="6" Grid.Row="1" Grid.Column="0"  BorderBrush="SaddleBrown"/>
+        <Border BorderThickness="3,0,3,0" Grid.RowSpan="6" Grid.Row="1" Grid.Column="0"  BorderBrush="SaddleBrown"/>
         <Border BorderThickness="0,0,3,0" Grid.RowSpan="6" Grid.Row="1" Grid.Column="1"  BorderBrush="SaddleBrown"/>
         <Border BorderThickness="0,0,3,0" Grid.RowSpan="5" Grid.Row="2" Grid.Column="1"  BorderBrush="SaddleBrown"/>
-        <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="2" Grid.Row="0"  BorderBrush="SaddleBrown"/>
+        <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="2" Grid.Row="0"  BorderBrush="SaddleBrown">
+            <Label Foreground="Cyan"  FontSize="20" FontStyle="Oblique" Margin="86,0,91,0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <TextBlock Text="Enter New Bus Data" TextDecorations="Underline" />
+            </Label>
+        </Border>
         <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="1"  BorderBrush="SaddleBrown"/>
         <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="2"  BorderBrush="SaddleBrown"/>
         <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="3"  BorderBrush="SaddleBrown"/>
@@ -34,9 +41,9 @@
         <Border BorderThickness="0,0,0,3" Grid.ColumnSpan="3" Grid.Row="6"  BorderBrush="SaddleBrown"/>
 
 
-        <Label Content="Bus Id:" Grid.Row="1" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="txbid" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Text="" PreviewTextInput="NumberValidationTextBox" />
-        <TextBlock Grid.Row="1" Grid.Column="1" IsHitTestVisible="False" Text="enter Id here" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Foreground="DarkGray">
+        <Label Foreground="Cyan" Content="Bus Id:" Grid.Row="1" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBox  x:Name="txbid" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Text="" PreviewTextInput="NumberValidationTextBox" Margin="22,0,21,13" Height="18" VerticalAlignment="Bottom" />
+        <TextBlock  Grid.Row="1" Grid.Column="1" IsHitTestVisible="False" Text="enter Id here" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -49,7 +56,7 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <Label  Content="Registration Date:" Grid.Row="2" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+        <Label Foreground="Cyan" Content="Registration Date:" Grid.Row="2" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
         <DatePicker Name="dpRegiDate" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980">
             <DatePicker.Resources>
                 <Style TargetType="DatePickerTextBox">
@@ -58,8 +65,8 @@
             </DatePicker.Resources>
         </DatePicker>
 
-        <Label Content="last Maintenance:" Grid.Row="3" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  />
-        <DatePicker Name="dplmiDate" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayDateStart="1/1/1980" >
+        <Label Foreground="Cyan" Content="last Maintenance:" Grid.Row="3" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  />
+        <DatePicker  Name="dplmiDate" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayDateStart="1/1/1980" >
             <DatePicker.Resources>
                 <Style TargetType="DatePickerTextBox">
                     <Setter Property="IsReadOnly" Value="True"/>
@@ -67,9 +74,9 @@
             </DatePicker.Resources>
         </DatePicker>
 
-        <Label Content="Total Distance:" Grid.Row="4" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
-        <TextBox x:Name="txbTotalDistance" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="4" Text="" PreviewTextInput="NumberValidationTextBox"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" IsHitTestVisible="False" Text="Enter Distance Here" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Foreground="DarkGray">
+        <Label Foreground="Cyan" Content="Total Distance:" Grid.Row="4" Grid.Column="0" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+        <TextBox   x:Name="txbTotalDistance" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="4" Text="" PreviewTextInput="NumberValidationTextBox" Margin="22,13,21,13"/>
+        <TextBlock Grid.Row="4" Background="White" Grid.Column="1" IsHitTestVisible="False" Text="Enter Distance Here" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -82,8 +89,8 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <Label Content="Distance from last Maintenance:" Grid.Row="5" Grid.Column="0" FontSize="12" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
-        <TextBox x:Name="txbDistance" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="5" Text="" PreviewTextInput="NumberValidationTextBox" />
+        <Label Foreground="Cyan" Content="Distance from last Maintenance:" Grid.Row="5" Grid.Column="0" FontSize="12" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+        <TextBox x:Name="txbDistance" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="5" Text="" PreviewTextInput="NumberValidationTextBox" Margin="19,13,9,12" />
         <TextBlock Grid.Row="5" Grid.Column="1" IsHitTestVisible="False" Text="distance since last maintenance" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -98,8 +105,8 @@
         </TextBlock>
 
 
-        <Label Content="Fuel:" Grid.Row="6" Grid.Column="0" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
-        <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="txbFuel" Grid.Column="1" Grid.Row="6" Text="" PreviewTextInput="NumberValidationTextBox"/>
+        <Label Foreground="Cyan" Content="Fuel Level(km):" Grid.Row="6" Grid.Column="0" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+        <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="txbFuel" Grid.Column="1" Grid.Row="6" Text="" PreviewTextInput="NumberValidationTextBox" Margin="22,13,21,13"/>
         <TextBlock Grid.Row="6" Grid.Column="1" IsHitTestVisible="False" Text="enter fuel" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
