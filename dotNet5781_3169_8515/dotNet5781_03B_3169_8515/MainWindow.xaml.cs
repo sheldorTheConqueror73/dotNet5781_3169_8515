@@ -314,7 +314,7 @@ namespace dotNet5781_03B_3169_8515
             flag = bool.TryParse(settings[1].Split('=')[1], out effects);
             if (!flag)
                 return;
-            flag = bool.TryParse(settings[1].Split('=')[1], out alert);
+            flag = bool.TryParse(settings[2].Split('=')[1], out alert);
             if (!flag)
                 return;
             autosave = save;
@@ -414,37 +414,37 @@ namespace dotNet5781_03B_3169_8515
         private void btnautosave_Checked(object sender, RoutedEventArgs e)
         {
             autosave = true;
-            writeSettings();
+           
         }
 
         private void btnsaveAlerts_Checked(object sender, RoutedEventArgs e)
         {
             show = true;
-            writeSettings();
+           
         }
 
         private void btnsound_Checked(object sender, RoutedEventArgs e)
         {
             sound = true;
-            writeSettings();
+          
         }
 
         private void btnsound_Unchecked(object sender, RoutedEventArgs e)
         {
             sound = false;
-            writeSettings();
+            
         }
 
         private void btnsaveAlerts_Unchecked(object sender, RoutedEventArgs e)
         {
             show = false;
-            writeSettings();
+           
         }
 
         private void btnautosave_Unchecked(object sender, RoutedEventArgs e)
         {
             autosave = false;
-            writeSettings();
+           
         }
 
         private void Window_Closed(object sender, EventArgs e)
