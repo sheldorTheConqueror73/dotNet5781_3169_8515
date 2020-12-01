@@ -58,7 +58,7 @@ namespace dotNet5781_03B_3169_8515
             
          
         }
-   
+  
         public void initBus()
         {
             for (int i = 0; i < 13; i++)
@@ -94,7 +94,7 @@ namespace dotNet5781_03B_3169_8515
 
         }
 
-    
+  
         private DateTime randomDate(int mode = 0)
         {
             int month, day, year;

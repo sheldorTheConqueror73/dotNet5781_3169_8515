@@ -59,7 +59,7 @@ namespace dotNet5781_03B_3169_8515
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-
+        
         private void TextBox_sendDrive(Object sender,KeyEventArgs e)
         {
             if (e.Key == Key.Enter && tBoxDistance.Text.ToString() != "") 
