@@ -173,6 +173,7 @@ namespace dotNet5781_03B_3169_8515
 
         private void maintenanceEvent()
         {
+            
             btnMaintenance.Content = "send to maintenance";
             btnRefuel.IsEnabled = true;
             btnMaintenance.IsEnabled = true;
@@ -199,7 +200,7 @@ namespace dotNet5781_03B_3169_8515
             mode = 2;
             MessageBox.Show("sending to maintenance...");
             labStatus.Foreground = Brushes.Red;
-            counter = 144;
+            counter = 14;
             if (tim != null)
             {
                 tim(counter);
@@ -239,7 +240,7 @@ namespace dotNet5781_03B_3169_8515
                
                 if ((mainWindow1.bsDisplay.SelectedItem as buses).Fuel == 1200)
                     labfuel.Content = "1200";
-                if ((mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.Day == (DateTime.Now.Day))
+                if ((mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.Day == (DateTime.Now.Day)&& labStatus.Content.ToString() != "dangerous")
                 {
                     labLMaintenance.Content = (mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.ToString().Split(' ')[0];
                     labDistance.Content = "0";
