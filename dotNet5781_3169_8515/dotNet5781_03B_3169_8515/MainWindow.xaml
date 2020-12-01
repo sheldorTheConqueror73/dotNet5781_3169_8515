@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_3169_8515"
         mc:Ignorable="d"
-        Title="INJ bus stuidio 2020 v0.3B" Height="550" Width="450" ResizeMode="NoResize">
+        Title="INJ bus stuidio 2020 v0.3B" Height="550" Width="450" ResizeMode="NoResize" Icon="src/pics/appIcon.jpg" Closed="Window_Closed">
 
     <Window.Resources>
         <Style x:Key="ButtonFocusVisual">
@@ -188,15 +188,18 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Settings Menu" Height="auto" Width="auto" HorizontalContentAlignment="Center" >
-                <Grid >
-                <ToggleButton x:Name="btnsound" Content="Enable Sound Effects     " HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}" IsChecked="True" Margin="0,-434,0,0"/>
-                    <ToggleButton Content="Enable Save/Load Alerts" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}" IsChecked="False" Margin="0,-364,0,0"/>
-                    <ToggleButton Content="Enable Auto Save           " HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}"  Margin="0,-294,0,0"/>
-                    <Button Content="Reset Saved Data" HorizontalContentAlignment="Center" Style="{StaticResource visaulButton}" HorizontalAlignment="Center" Margin="0,309,0,0" VerticalAlignment="Top" Width="97">
+            <TabItem Header="Settings Menu" Height="auto" Width="auto" HorizontalContentAlignment="Center"  >
+                <Grid Width="437" >
+                    <Grid.Background>
+                        <ImageBrush ImageSource="src/pics/illuminati 2.jpg"/>
+                    </Grid.Background>
+                    <ToggleButton x:Name="btnsound" Checked="btnsound_Checked" Unchecked="btnsound_Unchecked" Content="Enable Sound Effects     " Foreground="AliceBlue" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}" IsChecked="True" Margin="0,-434,0,0"/>
+                    <ToggleButton x:Name="btnsaveAlerts" Checked="btnsaveAlerts_Checked" Unchecked="btnsaveAlerts_Unchecked" Content="Enable Save/Load Alerts" Foreground="AliceBlue" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}" IsChecked="False" Margin="0,-364,0,0"/>
+                    <ToggleButton x:Name="btnautosave"  Content="Enable Auto Save           " Unchecked="btnautosave_Unchecked" Checked="btnautosave_Checked" Foreground="AliceBlue" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}"  Margin="0,-294,0,0" />
+                    <Button x:Name="btnads" Content="Reset Saved Data" HorizontalContentAlignment="Center" Foreground="AliceBlue" Style="{StaticResource visaulButton}" HorizontalAlignment="Center" Margin="158,403,182,0" VerticalAlignment="Top" Width="97">
                       
                     </Button>
-                    <Button Content="   watch ads"  Style="{StaticResource visaulButton}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,259,0,0" VerticalAlignment="Top" Width="85" />
+                    <Button x:Name="btnreset" Content="   watch ads"  Style="{StaticResource visaulButton}" Foreground="AliceBlue" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="170,378,182,0" VerticalAlignment="Top" Width="85" />
 
 
 

@@ -200,16 +200,16 @@ namespace dotNet5781_03B_3169_8515
     }
     partial class buses
     {
-        public bool CanMakeDrive(int km)//return true if sleceted bus can drive that far.
+        public bool CanMakeDrive(int km,bool sound)//return true if sleceted bus can drive that far.
         {
            
             UpdateDangerous();
             if (dangerous)
-                throw new CannotDriveExecption("selected bus is unable to drive: bus is dangerous", Properties.Resources.Sad_Trombon);
+                throw new CannotDriveExecption("selected bus is unable to drive: bus is dangerous", Properties.Resources.Sad_Trombon,sound);
             if (fuel < km)
-                throw new CannotDriveExecption("selected bus is unable to drive: not enough fuel", Properties.Resources.Sad_Trombon);
+                throw new CannotDriveExecption("selected bus is unable to drive: not enough fuel", Properties.Resources.Sad_Trombon, sound);
             if ((distance + km) >= 20000)
-                throw new CannotDriveExecption("selected bus is unable to drive: distance after drive exceeds maintnace limit", Properties.Resources.Sad_Trombon);
+                throw new CannotDriveExecption("selected bus is unable to drive: distance after drive exceeds maintnace limit", Properties.Resources.Sad_Trombon, sound);
             return true;
 
         }

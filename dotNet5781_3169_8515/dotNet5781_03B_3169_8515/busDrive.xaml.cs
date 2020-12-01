@@ -23,8 +23,11 @@ namespace dotNet5781_03B_3169_8515
     /// <summary>
     /// Interaction logic for busDrive.xaml
     /// </summary>
+    ///
+   
     public partial class busDrive : Window
     {
+        bool sound;
         public event Action<double> tim;
         MainWindow mainWindow1;
         buses lineData;
@@ -32,8 +35,9 @@ namespace dotNet5781_03B_3169_8515
         private int counter = 0;
         Random r = new Random();
         
-        public busDrive(ref FrameworkElement fx,DispatcherTimer _dt)
+        public busDrive(ref FrameworkElement fx,DispatcherTimer _dt,bool sound)
         {
+            this.sound = sound;
             timer = _dt;
             InitializeComponent();
 
@@ -60,7 +64,7 @@ namespace dotNet5781_03B_3169_8515
         {
             if (e.Key == Key.Enter && tBoxDistance.Text.ToString() != "") 
             {
-                try { lineData.CanMakeDrive(int.Parse(tBoxDistance.Text.ToString())); }
+                try { lineData.CanMakeDrive(int.Parse(tBoxDistance.Text.ToString()),sound); }
 
                     catch (Exception exc)
                 {

@@ -1,1 +1,3 @@
-﻿
+autosave=False
+soundEffects=True
+showAlerts=True

@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using System.Diagnostics;
 using System.Threading;
 using System.Collections.ObjectModel;
+using System.IO;
 using dotNet5781_03B_3169_8515.utility;
 
 
@@ -27,7 +28,9 @@ namespace dotNet5781_03B_3169_8515
     /// </summary>
     public partial class MainWindow : Window
     {
-
+       public static bool sound = true;
+        public static bool show = false;
+        public static bool autosave = false;
         private static List<buses> busPool=new List<buses>();
         public  List<buses> BusPool
         {
@@ -37,15 +40,15 @@ namespace dotNet5781_03B_3169_8515
         Random r = new Random();
         readonly string appPath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\";
         DispatcherTimer timer;
-        bool autosave = false;
         internal static System.Media.SoundPlayer player;
         public MainWindow()//add mini payer to menu
         {
             InitializeComponent();
             if(autosave)
-                buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt");
+                buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt",show);
             else
                 initBus();
+            readSettings();
             bsDisplay.ItemsSource = busPool;
             cbSort.SelectedIndex = 0;
             timer = new DispatcherTimer();
@@ -200,7 +203,7 @@ namespace dotNet5781_03B_3169_8515
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            addBusWindow adbw = new addBusWindow();
+            addBusWindow adbw = new addBusWindow(sound);
             adbw.ShowDialog();
         }
 
@@ -217,7 +220,7 @@ namespace dotNet5781_03B_3169_8515
 
             if (lineData == null)
                 return;
-            busDrive busDrive = new busDrive(ref fxElt,timer);
+            busDrive busDrive = new busDrive(ref fxElt,timer,sound);
             busDrive.tim += value => lineData.Timer = new Timerclass(value);
            
             busDrive.ShowDialog();
@@ -286,11 +289,7 @@ namespace dotNet5781_03B_3169_8515
                 bsDisplay.Items.Refresh();
             }
         }
-        internal void windowClose()
-        {
-            if(autosave)
-                buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt");
-        }
+       
 
         private bool NoOperationExist()
         {
@@ -303,21 +302,50 @@ namespace dotNet5781_03B_3169_8515
         }
         private void readSettings()
         {
-
+            bool flag,save,alert,effects;
+            string[] settings;
+            try { settings = File.ReadAllLines($"{appPath}\\src\\storage\\settings.txt"); }
+            catch (Exception e) { return; }
+            flag = bool.TryParse(settings[0].Split('=')[1], out save);
+            if (!flag)
+                return;
+            flag = bool.TryParse(settings[1].Split('=')[1], out effects);
+            if (!flag)
+                return;
+            flag = bool.TryParse(settings[1].Split('=')[1], out alert);
+            if (!flag)
+                return;
+            autosave = save;
+            sound = effects;
+            show= alert;
+            if (save)
+                btnautosave.IsChecked = true;
+            else
+                btnautosave.IsChecked = false;
+            if (effects)
+                btnsound.IsChecked = true;
+            else
+                btnsound.IsChecked = false;
+            if (alert)
+                btnsaveAlerts.IsChecked = true;
+            else
+                btnsaveAlerts.IsChecked = false;
         }
         private void writeSettings()
         {
-
+            string[] settings = new string[3] { $"autosave={autosave}", $"soundEffects={sound}", $"showAlerts={show}" };
+            try { File.WriteAllLines($"{appPath}\\src\\storage\\settings.txt", settings); }
+            catch(Exception e) {  }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt");
+            buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt", show);
         }
 
         private void btnLaod_Click(object sender, RoutedEventArgs e)
         {
-            buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt");
+            buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt",show);
             bsDisplay.ItemsSource = busPool;
             bsDisplay.Items.Refresh();
           
@@ -380,6 +408,49 @@ namespace dotNet5781_03B_3169_8515
 
         }
 
+
+        private void btnautosave_Checked(object sender, RoutedEventArgs e)
+        {
+            autosave = true;
+            writeSettings();
+        }
+
+        private void btnsaveAlerts_Checked(object sender, RoutedEventArgs e)
+        {
+            show = true;
+            writeSettings();
+        }
+
+        private void btnsound_Checked(object sender, RoutedEventArgs e)
+        {
+            sound = true;
+            writeSettings();
+        }
+
+        private void btnsound_Unchecked(object sender, RoutedEventArgs e)
+        {
+            sound = false;
+            writeSettings();
+        }
+
+        private void btnsaveAlerts_Unchecked(object sender, RoutedEventArgs e)
+        {
+            show = false;
+            writeSettings();
+        }
+
+        private void btnautosave_Unchecked(object sender, RoutedEventArgs e)
+        {
+            autosave = false;
+            writeSettings();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if(autosave)
+                buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt",show);
+            writeSettings();
+        }
     }
 
 }

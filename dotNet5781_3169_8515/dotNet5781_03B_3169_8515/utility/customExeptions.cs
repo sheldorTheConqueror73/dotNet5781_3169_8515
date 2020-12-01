@@ -39,14 +39,17 @@ namespace dotNet5781_03B_3169_8515.utility
     {
         internal CannotDriveExecption() { }
         internal CannotDriveExecption(string msg) :base(msg){ }
-        internal CannotDriveExecption(string msg, System.IO.UnmanagedMemoryStream effect) : base(msg)
+        internal CannotDriveExecption(string msg, System.IO.UnmanagedMemoryStream effect,bool play) : base(msg)
         {
+            if(play)
+            { 
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(effect);
             try
             {
                 player.Play();
             }
             catch (Exception e) { System.Windows.MessageBox.Show(e.Message); }
+            }
         }
         internal CannotDriveExecption(string msg, Exception inner):base(msg,inner) { }
     }
@@ -54,8 +57,10 @@ namespace dotNet5781_03B_3169_8515.utility
     {
         internal InvalidUserInputExecption() { }
         internal InvalidUserInputExecption(string msg) :base(msg){ }
-        internal InvalidUserInputExecption(string msg, System.IO.UnmanagedMemoryStream effect) : base(msg) 
+        internal InvalidUserInputExecption(string msg, System.IO.UnmanagedMemoryStream effect,bool play) : base(msg) 
         {
+            if(play)
+            { 
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(effect);
             try 
             {
@@ -63,6 +68,7 @@ namespace dotNet5781_03B_3169_8515.utility
             }
             catch (Exception e) { System.Windows.MessageBox.Show(e.Message); } 
         }
+         }
         internal InvalidUserInputExecption(string msg, Exception inner):base(msg,inner) { }
     }
 
