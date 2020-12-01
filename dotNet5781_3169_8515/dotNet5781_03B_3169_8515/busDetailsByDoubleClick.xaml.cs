@@ -141,6 +141,7 @@ namespace dotNet5781_03B_3169_8515
             if (tim != null)
             {
                 tim(counter);
+                mainWindow1.busSort();
                 mainWindow1.bsDisplay.Items.Refresh();
             }
             if (status1 != null)
@@ -196,6 +197,7 @@ namespace dotNet5781_03B_3169_8515
             if (tim != null)
             {
                 tim(counter);
+                mainWindow1.busSort();
                 mainWindow1.bsDisplay.Items.Refresh();
             }
             if (status1 != null)
