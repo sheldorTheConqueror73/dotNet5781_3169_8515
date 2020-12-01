@@ -180,7 +180,7 @@
                         </Button>
                     </Grid>
                     <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="337,3,0,0" VerticalAlignment="Top" Width="97" SelectionChanged="comboBox_SelectionChanged" Height="23">
-                        <ComboBoxItem Content="select sort"/>
+                        <ComboBoxItem Content="Order By"/>
                         <ComboBoxItem Content="ID"/>
                         <ComboBoxItem x:Name="sortbox" Content="Status"/>
                         <ComboBoxItem Content="Time"/>
