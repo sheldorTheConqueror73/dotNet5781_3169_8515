@@ -165,6 +165,7 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).Distance.ToString();
             bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).TotalDistance.ToString(); 
             bDLClk.labRegistration.Content= (bsDisplay.SelectedItem as buses).RegistrationDate.ToString().Split(' ')[0];
+           
             if ((bsDisplay.SelectedItem as buses).Dangerous)
             {
                 bDLClk.labDangerous.Content = "Yes";
@@ -175,10 +176,9 @@ namespace dotNet5781_03B_3169_8515
             {
                 bDLClk.labDangerous.Content = "No";
                 bDLClk.labDangerous.Foreground = Brushes.LawnGreen;
-            }
-         
-            
-             bDLClk.labLMaintenance.Content = lmaintenance.ToString().Split(' ')[0];
+            }        
+
+            bDLClk.labLMaintenance.Content = lmaintenance.ToString().Split(' ')[0];
 
             
             bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=value;
