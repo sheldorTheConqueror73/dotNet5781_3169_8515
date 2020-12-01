@@ -192,5 +192,8 @@
   <ItemGroup>
     <Resource Include="src\pics\illuminati3.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\pics\illuminati4.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

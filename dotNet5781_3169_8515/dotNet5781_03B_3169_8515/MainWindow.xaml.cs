@@ -140,7 +140,7 @@ namespace dotNet5781_03B_3169_8515
             if ((bsDisplay.SelectedItem as buses) == null)
                 return;
             busDetailsByDoubleClick bDLClk = new busDetailsByDoubleClick(timer);
-            string st= (bsDisplay.SelectedItem as buses).Id;
+            string st= (bsDisplay.SelectedItem as buses).IdFormat;
             int fuel = (bsDisplay.SelectedItem as buses).Fuel;
             DateTime lmaintenance = (bsDisplay.SelectedItem as buses).LastMaintenance;
 
