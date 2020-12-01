@@ -196,10 +196,8 @@
                     <ToggleButton x:Name="btnsound" Checked="btnsound_Checked" Unchecked="btnsound_Unchecked" Content="Enable Sound Effects     " Foreground="AliceBlue" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}" IsChecked="True" Margin="0,-434,0,0"/>
                     <ToggleButton x:Name="btnsaveAlerts" Checked="btnsaveAlerts_Checked" Unchecked="btnsaveAlerts_Unchecked" Content="Enable Save/Load Alerts" Foreground="AliceBlue" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}" IsChecked="False" Margin="0,-364,0,0"/>
                     <ToggleButton x:Name="btnautosave"  Content="Enable Auto Save           " Unchecked="btnautosave_Unchecked" Checked="btnautosave_Checked" Foreground="AliceBlue" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonStyle1}"  Margin="0,-294,0,0" />
-                    <Button x:Name="btnads" Content="Reset Saved Data" HorizontalContentAlignment="Center" Foreground="AliceBlue" Style="{StaticResource visaulButton}" HorizontalAlignment="Center" Margin="158,403,182,0" VerticalAlignment="Top" Width="97" Click="btnads_Click">
+                    <Button x:Name="btnads" Content="Reset Saved Data" HorizontalContentAlignment="Center" Foreground="AliceBlue" Style="{StaticResource visaulButton}" HorizontalAlignment="Center" Margin="158,403,182,0" VerticalAlignment="Top" Width="97" Click="btnreset_Click"/>
                       
-                    </Button>
-                    <Button x:Name="btnreset" Content="   watch ads"  Style="{StaticResource visaulButton}" Foreground="AliceBlue" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="159,378,182,0" VerticalAlignment="Top" Width="70" />
 
 
 
