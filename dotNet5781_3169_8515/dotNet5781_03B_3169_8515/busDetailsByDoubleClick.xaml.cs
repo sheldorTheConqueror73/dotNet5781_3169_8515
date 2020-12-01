@@ -129,7 +129,7 @@ namespace dotNet5781_03B_3169_8515
                 return;
             }
             dt.Start();
-            (mainWindow1.bsDisplay.SelectedItem as buses).IconPath = "/src/pics/warningIcon.png";
+            (mainWindow1.bsDisplay.SelectedItem as buses).IconPath = "/src/pics/gasIcon2.png";
             btnRefuel.Content = "Refueling...";
             btnRefuel.IsEnabled = false;
             btnMaintenance.IsEnabled = false;
@@ -190,7 +190,7 @@ namespace dotNet5781_03B_3169_8515
             btnMaintenance.Content = "Maintenance...";
             btnRefuel.IsEnabled = false;
             btnMaintenance.IsEnabled = false;
-            (mainWindow1.bsDisplay.SelectedItem as buses).IconPath= "/src/pics/warningIcon.png";
+            (mainWindow1.bsDisplay.SelectedItem as buses).IconPath= "/src/pics/repairIcon2.png";
             mode = 2;
             MessageBox.Show("sending to maintenance...");
             labStatus.Foreground = Brushes.Red;
