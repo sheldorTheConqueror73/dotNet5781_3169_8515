@@ -54,10 +54,8 @@ namespace dotNet5781_03B_3169_8515
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(refreshingProgram);
             timer.Interval = new TimeSpan(0, 0, 1);
-            player = new System.Media.SoundPlayer(Properties.Resources.shadilay);
-            try { //player.Play();
-                int a=1; }
-            catch(Exception e) { }
+            
+            
          
         }
    
@@ -225,7 +223,7 @@ namespace dotNet5781_03B_3169_8515
             busDrive.tim += value => lineData.Timer = new Timerclass(value);
            
             busDrive.ShowDialog();
-            //MessageBox.Show(lineData.Id);
+           
         }
 
         private void Button_Delete(object sender, RoutedEventArgs e)
@@ -237,7 +235,7 @@ namespace dotNet5781_03B_3169_8515
                 MessageBox.Show("you cannot delete a bus unless its status is ready");
                 return;
             }
-            MessageBoxResult result = MessageBox.Show("are you sure?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("are you sure?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.No)
                 return;
             busPool.RemoveAt(indexOf(lineData.Id));
