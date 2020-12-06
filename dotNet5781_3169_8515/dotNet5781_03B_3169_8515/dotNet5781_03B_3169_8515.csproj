@@ -60,7 +60,6 @@
       <DependentUpon>busDrive.xaml</DependentUpon>
     </Compile>
     <Compile Include="utility\customExeptions.cs" />
-    <Compile Include="utility\ObservableCollectionPropertyNotify.cs" />
     <Compile Include="utility\Timerclass.cs" />
     <Compile Include="addNewBusWindow.xaml.cs">
       <DependentUpon>addNewBusWindow.xaml</DependentUpon>
