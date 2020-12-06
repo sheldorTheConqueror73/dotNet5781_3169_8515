@@ -10,8 +10,15 @@ using System.Windows;
 
 namespace dotNet5781_03B_3169_8515.utility
 {
+    /// <summary>
+    /// timer class that have string property that show the timer in the form HH:MM:SS.
+    /// </summary>
     public class Timerclass : INotifyPropertyChanged
     {
+        /// <summary>
+        /// the sync event whrn TimerNow is changing.
+        /// </summary>
+        /// <param name="name">the current time</param>
         public void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -20,7 +27,10 @@ namespace dotNet5781_03B_3169_8515.utility
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
-
+        /// <summary>
+        /// ctor that get numer of seconds and start the timer Thread accoring to it.
+        /// </summary>
+        /// <param name="mincount">number of seconsds</param>
         public Timerclass(double mincount)
         {
             DispatcherTimer _timer = new DispatcherTimer();
@@ -34,7 +44,7 @@ namespace dotNet5781_03B_3169_8515.utility
             }, Application.Current.Dispatcher);
             _timer.Start();
         }
-
+        
         private string _TimeNow;
         public string TimeNow
         {
@@ -48,6 +58,11 @@ namespace dotNet5781_03B_3169_8515.utility
                 OnPropertyChanged("TimeNow");
             }
         }
+        /// <summary>
+        /// get time in form of HH:MM:SS and return in seconds double.
+        /// </summary>
+        /// <param name="time">the current time</param>
+        /// <returns>the time in seconds</returns>
         public static double convert(string time)
         {
             string[] data = time.Split(':');

@@ -22,22 +22,30 @@ namespace dotNet5781_03B_3169_8515
 {
     /// <summary>
     /// Interaction logic for busDetailsByDoubleClick.xaml
+    /// show details of bus and bring  the option: send to refueal/maintenance.
     /// </summary>
     public partial class busDetailsByDoubleClick : Window
     {
+        /// <summary>
+        /// event for sync property of bus between this window and the main window
+        /// </summary>
         public event Action<int> fuel1;
         public event Action<DateTime> lmaintenance;
         public event Action<string> status1;
         public event Action<double> tim;
 
         private string st = "";
-        private int counter = 0;
-        DispatcherTimer timer;
+        private int counter = 0;//conter of the timer
+        DispatcherTimer timer;//timer that responsibility for show timer when the bus send to action in this window.
         private int mode = 0;
         MainWindow mainWindow1;
-        DispatcherTimer refresh;
-        DispatcherTimer dt;
-
+        DispatcherTimer refresh;//timer of refreshing data of bus when this window is reopening.  
+        DispatcherTimer dt;//property of timer that continue timer when this window opening when the bus is mid-action.
+        
+       /// <summary>
+       /// ctor of the class get time in case of the bus in action. 
+       /// </summary>
+       
         public busDetailsByDoubleClick(DispatcherTimer _dt)
         {
             dt = _dt;
@@ -66,7 +74,10 @@ namespace dotNet5781_03B_3169_8515
                 refresh.Start();
             }
         }
-
+        /// <summary>
+        /// the timer function, counting the time to zero.
+        /// </summary>
+        
         private void timer_Tick(Object obj, EventArgs e)
         {
             if (counter > 0)
@@ -87,7 +98,10 @@ namespace dotNet5781_03B_3169_8515
             }
 
         }
-
+        /// <summary>
+        /// send to the label of the timer the time that left in string.
+        /// </summary>
+        /// <param name="text">the time the left</param>
         void setTextToLabTimer(string text)
         {
             if (!CheckAccess())
@@ -101,14 +115,9 @@ namespace dotNet5781_03B_3169_8515
             }
         }
 
-
-        public void DataWindow_Closing(object sender, CancelEventArgs e)
-        {
-
-            // e.Cancel = true;
-             //this.Visibility = Visibility.Hidden;
-        }
-
+       /// <summary>
+       /// initialize the timer and starting it.
+       /// </summary>
         private void timerFunc()
         {
             
@@ -118,7 +127,10 @@ namespace dotNet5781_03B_3169_8515
             timer.Start();
             labTimer.Visibility = Visibility.Visible;
         }
-
+        /// <summary>
+        /// send the bus to refuel and start the timer according to time of refueling.
+        /// </summary>
+        
         private void refuel_Button_Click(object sender, RoutedEventArgs e)
         {
             if (labfuel.Content.ToString() == "1200")
@@ -150,7 +162,9 @@ namespace dotNet5781_03B_3169_8515
             }           
             timerFunc();
         }
-
+        /// <summary>
+        /// update the property and arguments of the bus after refueling.
+        /// </summary>
         private void fuelEvent()
         {
             btnRefuel.Content = "send to refuel";
@@ -170,7 +184,9 @@ namespace dotNet5781_03B_3169_8515
             labfuel.Content = "1200";            
             mainWindow1.bsDisplay.Items.Refresh();
         }
-
+        /// <summary>
+        /// update the property and arguments of the bus after maintenance.
+        /// </summary>
         private void maintenanceEvent()
         {
             
@@ -189,6 +205,9 @@ namespace dotNet5781_03B_3169_8515
                 mainWindow1.bsDisplay.Items.Refresh();
            
         }
+        /// <summary>
+        ///  send the bus to maintenance and start the timer according to time of maintenance.
+        /// </summary>
 
         private void maintenance_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -217,6 +236,10 @@ namespace dotNet5781_03B_3169_8515
         }
 
         private bool flag = true;
+        /// <summary>
+        /// function of the timer that responsible for update property and arguments of bus  when thiw window is reopening .
+        /// </summary>
+
         public void refreshBusDetails(Object obj, EventArgs e)
         {
             

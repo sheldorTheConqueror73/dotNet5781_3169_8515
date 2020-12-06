@@ -21,6 +21,7 @@ using dotNet5781_03B_3169_8515.utility;
 namespace dotNet5781_03B_3169_8515
 {
     /// <summary>
+    /// get number of kilometer from the user and send the bus to drive.
     /// Interaction logic for busDrive.xaml
     /// </summary>
     ///
@@ -28,13 +29,19 @@ namespace dotNet5781_03B_3169_8515
     public partial class busDrive : Window
     {
         bool sound;
-        public event Action<double> tim;
+        public event Action<double> tim;//property of timer to sync the time with the main window.
         MainWindow mainWindow1;
-        buses lineData;
-        DispatcherTimer timer;
-        private int counter = 0;
+        buses lineData; 
+        DispatcherTimer timer;//the timer Thread.
+        private int counter = 0;//the timer number in seconds.
         Random r = new Random();
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fx">getting the framworkelement of the clicked Button of specific bus</param>
+        /// <param name="_dt">reference of timer in the main window to start the time when the bus sending to drive </param>
+        /// <param name="sound"> bool arguments if to play to the user sound of driding bus or not</param>
         public busDrive(ref FrameworkElement fx,DispatcherTimer _dt,bool sound)
         {
             this.sound = sound;
@@ -53,13 +60,19 @@ namespace dotNet5781_03B_3169_8515
             labId.Content = "Bus Id: "+lineData.IdFormat;
             
         }
-
+        /// <summary>
+        /// allows the user to enter only digits to the textbox.
+        /// </summary>      
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
         
+        /// <summary>
+        /// send the bus to drive , update status and starting the timer.
+        /// </summary>
+       
         private void TextBox_sendDrive(Object sender,KeyEventArgs e)
         {
             if (e.Key == Key.Enter && tBoxDistance.Text.ToString() != "") 
