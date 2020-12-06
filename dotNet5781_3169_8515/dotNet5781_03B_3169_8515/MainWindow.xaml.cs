@@ -58,7 +58,10 @@ namespace dotNet5781_03B_3169_8515
             
          
         }
-  
+
+        /// <summary>
+        /// used to initialize 13 random buses
+        /// </summary>
         public void initBus()
         {
             for (int i = 0; i < 13; i++)
@@ -80,11 +83,9 @@ namespace dotNet5781_03B_3169_8515
                             break;
                         }
                 }
-                //updatedanr
                 DateTime lastM = randomDate(1);              
                 busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),"ready",new Timerclass(0) { TimeNow="00:00:00"}, "/src/pics/okIcon.png"));
             }
-            //set 3 buses to match requirments
             busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             busPool[0].Status = "dangerous";
             BusPool[0].Dangerous = true;
@@ -94,7 +95,11 @@ namespace dotNet5781_03B_3169_8515
 
         }
 
-  
+       /// <summary>
+      ///  returns a random date from current date to 1/1/1980
+      /// </summary>
+      /// <param name="mode">if mode is set 1 it will return a random date but in same year</param>
+     /// <returns></returns>
         private DateTime randomDate(int mode = 0)
         {
             int month, day, year;
@@ -122,19 +127,9 @@ namespace dotNet5781_03B_3169_8515
                 return randomDate(mode);
             }
         }
-       
-        private int find(string id)
-        {
-            int i = 0;
-            foreach (var bus in busPool)
-            {
-                if (bus.Id == id)
-                    return i;
-                i++;
-            }
-            throw new Exception("no Match");//change
-        }
-
+        /// <summary>
+        /// opens teh buss action menu
+        /// </summary>
         private void bsDisplay_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if ((bsDisplay.SelectedItem as buses) == null)
@@ -186,7 +181,11 @@ namespace dotNet5781_03B_3169_8515
             bDLClk.tim += value => (bsDisplay.SelectedItem as buses).Timer = new Timerclass(value);
             bDLClk.ShowDialog();
         }
-
+        /// <summary>
+        /// returns the index of the given id string, or -1 
+        /// </summary>
+        /// <param name="id">id of bus to find</param>
+        /// <returns></returns>
         public int indexOf(string id)
         {
             int i = 0;
@@ -198,13 +197,17 @@ namespace dotNet5781_03B_3169_8515
             }
             return -1;
         }
-
+        /// <summary>
+        /// button to add new bus
+        /// </summary>
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
             addBusWindow adbw = new addBusWindow(sound);
             adbw.ShowDialog();
         }
-
+        /// <summary>
+        /// sends bus to a drive
+        /// </summary>
         private void Button_SendDrive(object sender, RoutedEventArgs e)
         {
            
@@ -225,7 +228,9 @@ namespace dotNet5781_03B_3169_8515
             busDrive.ShowDialog();
            
         }
-
+        /// <summary>
+        /// deketes bus from list
+        /// </summary>
         private void Button_Delete(object sender, RoutedEventArgs e)
         {
             var fxElt = sender as FrameworkElement;
@@ -242,7 +247,9 @@ namespace dotNet5781_03B_3169_8515
             bsDisplay.Items.Refresh();
         }
 
-       
+       /// <summary>
+       /// syncs buslist to viewlist
+       /// </summary>
             private void refreshingProgram(Object ob,EventArgs e)
             {          
                 bool flag = false;
@@ -300,7 +307,10 @@ namespace dotNet5781_03B_3169_8515
             }
         }
        
-
+        /// <summary>
+        /// checks if there is a bus which is not ready
+        /// </summary>
+        /// <returns>true if there is a bus whos not ready, or false if not</returns>
         private bool NoOperationExist()
         {
             foreach(buses bs in busPool)
@@ -310,6 +320,9 @@ namespace dotNet5781_03B_3169_8515
             }
             return true;
         }
+        /// <summary>
+        /// reads settings from file
+        /// </summary>
         private void readSettings()
         {
             bool flag,save,alert,effects;
@@ -341,17 +354,25 @@ namespace dotNet5781_03B_3169_8515
             else
                 btnsaveAlerts.IsChecked = false;
         }
+        /// <summary>
+        /// writes settings to file
+        /// </summary>
         private void writeSettings()
         {
             string[] settings = new string[3] { $"autosave={autosave}", $"soundEffects={sound}", $"showAlerts={show}" };
             try { File.WriteAllLines($"{appPath}\\src\\storage\\settings.txt", settings); }
             catch(Exception e) {  }
         }
-
+        /// <summary>
+        /// button used to save data to file
+        /// </summary>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt", show);
         }
+        /// <summary>
+        /// button used to load data from file
+        /// </summary>
 
         private void btnLaod_Click(object sender, RoutedEventArgs e)
         {
@@ -360,7 +381,9 @@ namespace dotNet5781_03B_3169_8515
             bsDisplay.Items.Refresh();
           
         }
-
+        /// <summary>
+        /// select sort button
+        /// </summary>
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem typeItem = (ComboBoxItem)cbSort.SelectedItem;
@@ -374,7 +397,9 @@ namespace dotNet5781_03B_3169_8515
 
         private delegate bool compare1(string x, string y);
        
-
+        /// <summary>
+        /// sorts bus list by paramter taken from combobox
+        /// </summary>
         public void busSort()
         {            
             ComboBoxItem typeItem = (ComboBoxItem)cbSort.SelectedItem;
@@ -411,55 +436,54 @@ namespace dotNet5781_03B_3169_8515
                         }
                 }
             }           
-                // busPool.Sort((x, y) => y.Timer.TimeNow.CompareTo(x.Timer.TimeNow));
-                
-
         }
 
-
+        /// <summary>
+        /// setting button save is checked
+        /// </summary>
         private void btnautosave_Checked(object sender, RoutedEventArgs e)
         {
             autosave = true;
            
         }
-
+        //setting button alert is checked
         private void btnsaveAlerts_Checked(object sender, RoutedEventArgs e)
         {
             show = true;
            
         }
-
+        //setting button sound effects is checked
         private void btnsound_Checked(object sender, RoutedEventArgs e)
         {
             sound = true;
           
         }
-
+        //setting button sound effects is unchecked
         private void btnsound_Unchecked(object sender, RoutedEventArgs e)
         {
             sound = false;
             
         }
-
+        //setting button alert is unchecked
         private void btnsaveAlerts_Unchecked(object sender, RoutedEventArgs e)
         {
             show = false;
            
         }
-
+        //setting button save is unchecked
         private void btnautosave_Unchecked(object sender, RoutedEventArgs e)
         {
             autosave = false;
            
         }
-
+        //save settings (and data if autosave is enabled) to file(s) when main window closes
         private void Window_Closed(object sender, EventArgs e)
         {
             if(autosave)
                 buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt",show);
             writeSettings();
         }
-
+        //deletes all data from file
         private void btnreset_Click(object sender, RoutedEventArgs e)
         {
             try {File.Create($"{appPath}\\src\\storage\\DataFile.txt");}

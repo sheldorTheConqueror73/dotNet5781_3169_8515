@@ -40,26 +40,14 @@ namespace dotNet5781_03B_3169_8515
             dpRegiDate.SelectedDate = DateTime.Now;
 
         }
+        //restricts user input to numbers only
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void readId(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void readRDate(object sender, KeyEventArgs e)
-        {
-
-        } 
-        private void readMDate(object sender, KeyEventArgs e)
-        {
-
-        }
-
+        //inserts new bus to bus list
         private void insert(object sender, RoutedEventArgs e)
         {
             int fuel, dist, totalDist;
@@ -85,6 +73,7 @@ namespace dotNet5781_03B_3169_8515
             mainWindow1.bsDisplay.Items.Refresh();
             this.Close();
         }
+        //user input check
         private void validateInput( out int fuel, out int distance, out int totaldistance)
         {
             bool flag;
