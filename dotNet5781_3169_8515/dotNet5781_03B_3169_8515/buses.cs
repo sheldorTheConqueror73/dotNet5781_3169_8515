@@ -50,31 +50,7 @@ namespace dotNet5781_03B_3169_8515
             idFormat = formatId(id);
 
         }
-        public buses(DateTime date, DateTime lm, string id="", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0)//cotr
-        {
-            this.id = id;
-            this.fuel = fuel;
-            this.distance = distance;
-            this.dangerous = dangerous;
-            this.registrationDate = date;
-            this.lastMaintenance = lm;
-            this.totalDistance = totalDistance;
-            iconPath = "/src/pics/okIcon.png";
-            idFormat = formatId(id);
-        }
-        public buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0,string _status="ready", string path = "/src/pics/okIcon.png")//cotr
-        {
-            this.id = id;
-            this.fuel = fuel;
-            this.distance = distance;
-            this.dangerous = dangerous;
-            this.registrationDate = date;
-            this.lastMaintenance = lm;
-            this.totalDistance = totalDistance;
-            this.status = _status;
-            iconPath = path;
-            idFormat = formatId(id);
-        }
+        //ctor
         public buses(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready",Timerclass _timer=null, string path = "/src/pics/okIcon.png")//cotr
         {
             this.id = id;
@@ -158,7 +134,6 @@ namespace dotNet5781_03B_3169_8515
                 if (value == "ready" || value == "mid-ride" || value == "refueling" || value == "maintenance"||value=="dangerous")
                 {
                     status = value;
-                   // this.NotifyPropertyChanged("Status");
                 }
             
             }
@@ -272,6 +247,7 @@ namespace dotNet5781_03B_3169_8515
             }
             return $"{id[0]}{id[1]}{id[2]}-{id[3]}{id[4]}-{id[5]}{id[6]}{id[7]}";
         }
+        //to string function
         public override string ToString()
         {
             string st = "";
@@ -285,10 +261,23 @@ namespace dotNet5781_03B_3169_8515
                 space = "  ";
             return $"Id: {this.id} {space}  Status: {this.status} {st}";
         }
-        public static bool save(List<buses> ls1, string path,bool show=false)//write buspool list to file 
+        /// <summary>
+        /// saves  alist of buses to file
+        /// </summary>
+        /// <param name="ls1">list of buses to save</param>
+        /// <param name="path">path of file</param>
+        /// <param name="show">if show is true function will push notifications to user</param>
+        /// <returns>true for sucess, false if failed</returns>
+        public static bool save(List<buses> ls1, string path,bool show=false) 
         {
             
             List<string> output = new List<string>();
+            if(ls1.Count==0)
+            { 
+                MessageBoxResult result = MessageBox.Show("the list you are attempting to save is empty, would you still like to save it?", "caution", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.No)
+                    return false;
+            }
             foreach (buses bs1 in ls1)
             {
                 output.Add($"{bs1.registrationDate.Year.ToString()},{bs1.registrationDate.Month.ToString()},{bs1.registrationDate.Day.ToString()},{bs1.lastMaintenance.Year.ToString()},{bs1.lastMaintenance.Month.ToString()},{bs1.lastMaintenance.Day.ToString()},{bs1.id},{(bs1.fuel).ToString()},{(bs1.distance).ToString()},{(bs1.dangerous).ToString()},{(bs1.totalDistance).ToString()},{bs1.status.ToString()},{bs1.timer.TimeNow},{bs1.iconPath}");//add timer storage?
@@ -305,7 +294,14 @@ namespace dotNet5781_03B_3169_8515
                 return false;
             }
         }
-        public static bool load(ref List<buses> ls1,string path, bool show=false)//overwrites busepool list and updates it from text file
+        /// <summary>
+        /// loads data from file to bus list
+        /// </summary>
+        /// <param name="ls1">list of buses to load</param>
+        /// <param name="path">path of file</param>
+        /// <param name="show">if show is true function will push notifications to user</param>
+        /// <returns>true for sucess, false if failed</returns>
+        public static bool load(ref List<buses> ls1,string path, bool show=false)
         {
             string[] arr;
             try
@@ -331,13 +327,18 @@ namespace dotNet5781_03B_3169_8515
                     Int32.TryParse(entries[8], out distance);
                     bool.TryParse(entries[9], out danger);
                     Int32.TryParse(entries[10], out total);
-                    ls1.Add(new buses(d1, d2,  entries[6], fuel, distance, danger, total,entries[11],new Timerclass(Timerclass.convert(entries[12])),entries[13]));//maybe add timer?
+                    ls1.Add(new buses(d1, d2,  entries[6], fuel, distance, danger, total,entries[11],new Timerclass(Timerclass.convert(entries[12])),entries[13]));
                 }
                 if (show)
                    MessageBox.Show($"data successfully fetched from files. {ls1.Count} entries were retrieved.");
                 return true;
          }
-
+        /// <summary>
+        /// sorts list by time left
+        /// </summary>
+        /// <param name="x">first timer string</param>
+        /// <param name="y">second timer string</param>
+        /// <returns>if x>y returns false, else returns ture</returns>
         public static bool sortTime(string x, string y)
         {
             if (x != null && y == null)
@@ -353,6 +354,8 @@ namespace dotNet5781_03B_3169_8515
             else
                 return true;
         }
+        /// <summary>
+        /// sorts list by status
         public static bool sortStatus(string x, string y)
         {
             if (x == "ready" && (y == "mid-ride" || y == "refueling" || y == "maintenance" || y == "dangerous"))
