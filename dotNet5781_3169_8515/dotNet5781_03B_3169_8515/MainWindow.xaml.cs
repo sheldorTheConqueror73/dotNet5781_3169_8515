@@ -235,18 +235,19 @@ namespace dotNet5781_03B_3169_8515
         {
             var fxElt = sender as FrameworkElement;
             buses lineData = fxElt.DataContext as buses;
-            if(lineData.Status!="ready")
+            if((lineData.Status!="ready")&&(lineData.Status != "dangerous"))
             {
                 MessageBox.Show("you cannot delete a bus unless its status is ready");
                 return;
             }
-            MessageBoxResult result = MessageBox.Show("are you sure?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("are you sure you want to delete this bus?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.No)
                 return;
             busPool.RemoveAt(indexOf(lineData.Id));
             bsDisplay.Items.Refresh();
         }
 
+       /// <summary>
        /// <summary>
        /// syncs buslist to viewlist
        /// </summary>
@@ -487,7 +488,8 @@ namespace dotNet5781_03B_3169_8515
         private void btnreset_Click(object sender, RoutedEventArgs e)
         {
             try {File.Create($"{appPath}\\src\\storage\\DataFile.txt");}
-            catch(Exception exc) { }
+            catch(Exception exc) { return; }
+            MessageBox.Show("data deleted, my lord");
         }
     }
 
