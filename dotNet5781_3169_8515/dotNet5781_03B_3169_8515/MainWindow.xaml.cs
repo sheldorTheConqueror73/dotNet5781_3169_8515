@@ -487,7 +487,11 @@ namespace dotNet5781_03B_3169_8515
         //deletes all data from file
         private void btnreset_Click(object sender, RoutedEventArgs e)
         {
-            try {File.Create($"{appPath}\\src\\storage\\DataFile.txt");}
+            try
+            {
+                var data=File.Create($"{appPath}\\src\\storage\\DataFile.txt"); 
+                data.Close(); 
+            }
             catch(Exception exc) { return; }
             MessageBox.Show("data deleted, my lord");
         }
