@@ -81,10 +81,13 @@ namespace dotNet5781_03B_3169_8515
         private void timer_Tick(Object obj, EventArgs e)
         {
             if (counter > 0)
-            {                
-                  st = (mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow;               
-                setTextToLabTimer(st);               
-                counter--;               
+            {        
+                if(mainWindow1.bsDisplay.SelectedItem!=null)
+                {  
+                    st = (mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow;               
+                    setTextToLabTimer(st);               
+                    counter--;               
+                }
             }
             else
             {
@@ -242,48 +245,49 @@ namespace dotNet5781_03B_3169_8515
 
         public void refreshBusDetails(Object obj, EventArgs e)
         {
-            
-            if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "ready"|| (mainWindow1.bsDisplay.SelectedItem as buses).Status=="dangerous")
+            if (mainWindow1.bsDisplay.SelectedItem != null)
             {
-                btnMaintenance.IsEnabled = true;
-                btnRefuel.IsEnabled = true;
-                if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "ready")
+                if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "ready" || (mainWindow1.bsDisplay.SelectedItem as buses).Status == "dangerous")
                 {
-                    labStatus.Content = "ready";
-                    (mainWindow1.bsDisplay.SelectedItem as buses).IconPath = "/src/pics/okIcon.png";
-                    labStatus.Foreground = Brushes.LawnGreen;
-                }            
-                if ((mainWindow1.bsDisplay.SelectedItem as buses).Dangerous == true)
-                {
-                    labStatus.Content = "dangerous";
-                    (mainWindow1.bsDisplay.SelectedItem as buses).IconPath = "/src/pics/warningIcon.png";
-                    labStatus.Foreground = Brushes.Red;
-                }
-                   
-               
-                if ((mainWindow1.bsDisplay.SelectedItem as buses).Fuel == 1200)
-                    labfuel.Content = "1200";
-                if ((mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.Day == (DateTime.Now.Day)&& labStatus.Content.ToString() != "dangerous")
-                {
-                    labLMaintenance.Content = (mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.ToString().Split(' ')[0];
-                    labDistance.Content = "0";
-                }
-                
+                    btnMaintenance.IsEnabled = true;
+                    btnRefuel.IsEnabled = true;
+                    if ((mainWindow1.bsDisplay.SelectedItem as buses).Status == "ready")
+                    {
+                        labStatus.Content = "ready";
+                        (mainWindow1.bsDisplay.SelectedItem as buses).IconPath = "/src/pics/okIcon.png";
+                        labStatus.Foreground = Brushes.LawnGreen;
+                    }
+                    if ((mainWindow1.bsDisplay.SelectedItem as buses).Dangerous == true)
+                    {
+                        labStatus.Content = "dangerous";
+                        (mainWindow1.bsDisplay.SelectedItem as buses).IconPath = "/src/pics/warningIcon.png";
+                        labStatus.Foreground = Brushes.Red;
+                    }
 
-                refresh.Stop();
-            }
-            else
-            {
-                if (flag)
+
+                    if ((mainWindow1.bsDisplay.SelectedItem as buses).Fuel == 1200)
+                        labfuel.Content = "1200";
+                    if ((mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.Day == (DateTime.Now.Day) && labStatus.Content.ToString() != "dangerous")
+                    {
+                        labLMaintenance.Content = (mainWindow1.bsDisplay.SelectedItem as buses).LastMaintenance.ToString().Split(' ')[0];
+                        labDistance.Content = "0";
+                    }
+
+
+                    refresh.Stop();
+                }
+                else
                 {
-                    counter = (int.Parse((((mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow.ToString().Split(':')[0]))) * 3600 + int.Parse((((mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow.ToString().Split(':')[1]))) * 60 + int.Parse((((mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow.ToString().Split(':')[2]))))-1;
-                    timerFunc();
-                    flag = false;
+                    if (flag)
+                    {
+                        counter = (int.Parse((((mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow.ToString().Split(':')[0]))) * 3600 + int.Parse((((mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow.ToString().Split(':')[1]))) * 60 + int.Parse((((mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow.ToString().Split(':')[2])))) - 1;
+                        timerFunc();
+                        flag = false;
+                    }
                 }
             }
+
         }
-       
-
     }
 }
 
