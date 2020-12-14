@@ -194,5 +194,8 @@
   <ItemGroup>
     <Resource Include="src\pics\appIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\pics\refuelbtnIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
