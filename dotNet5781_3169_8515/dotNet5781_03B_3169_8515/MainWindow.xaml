@@ -61,7 +61,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-       
+
     </Window.Resources>
     <Grid Background="Transparent" >
 
@@ -122,7 +122,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Time" Width="110"  DisplayMemberBinding="{Binding Timer.TimeNow}">
+                                    <GridViewColumn Header="Time" Width="97"  DisplayMemberBinding="{Binding Timer.TimeNow}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
@@ -139,6 +139,9 @@
                                                     <Button x:Name="Drive" ToolTip="send to drive" Background="Transparent"  Click="Button_SendDrive"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
                                                         <Image Source="src/pics/driveIcon.png" Stretch="Fill"/>
                                                     </Button>
+                                                    <Button x:Name="Refuel" ToolTip="send to refuel" Background="Transparent"  Click="Button_SendRefuel"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                        <Image Source="src/pics/refuelbtnIcon.png" Stretch="Fill"/>
+                                                    </Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -150,23 +153,24 @@
                     </Grid>
                     <Grid Name="functionGrid" Margin="341,0,0,0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="184*"/>
+                            <RowDefinition Height="98*"/>
+                            <RowDefinition Height="86*"/>
                             <RowDefinition Height="3*"/>
                             <RowDefinition Height="52*"/>
                             <RowDefinition Height="131*"/>
                             <RowDefinition Height="123*"/>
                         </Grid.RowDefinitions>
-                        <Button x:Name="addBtn" Background="Transparent" ToolTip="add bus" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="Transparent"  Click="addBtn_Click" Margin="15,84,37,53" Height="47" Width="45" RenderTransformOrigin="0.341,0.464">
+                        <Button x:Name="addBtn" Background="Transparent" ToolTip="add bus" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="Transparent"  Click="addBtn_Click" Margin="15,84,37,53" Height="47" Width="45" RenderTransformOrigin="0.341,0.464" Grid.RowSpan="2">
                             <Image Source="src/pics/add10.png"/>
                         </Button>
-                        <Button x:Name="btnSave" Click="btnSave_Click"  Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left"  ToolTip="save your data to the files" Margin="17,142,37,0" >
+                        <Button x:Name="btnSave" Click="btnSave_Click"  Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left"  ToolTip="save your data to the files" Margin="17,44,0,0" Grid.Row="1" >
                             <Image Source="src/pics/saveIcon2.png" Height="38" Width="42" />
                         </Button>
-                        <Button x:Name="btnLaod" Click="btnLaod_Click" VerticalAlignment="Center" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Center" ToolTip="load your data from the file" Margin="18,1,39,130"  Grid.Row="2" Height="52" Width="40" Grid.RowSpan="2">
+                        <Button x:Name="btnLaod" Click="btnLaod_Click" VerticalAlignment="Center" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Center" ToolTip="load your data from the file" Margin="18,1,39,130"  Grid.Row="3" Height="52" Width="40" Grid.RowSpan="2">
                             <Image Source="src/pics/loadicon2.png"/>
                         </Button>
                     </Grid>
-                    <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="336,1,0,0" VerticalAlignment="Top" Width="98" SelectionChanged="comboBox_SelectionChanged" Height="23">
+                    <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="340,1,0,0" VerticalAlignment="Top" Width="92" SelectionChanged="comboBox_SelectionChanged" Height="23">
                         <ComboBoxItem Content="Order By"/>
                         <ComboBoxItem Content="ID"/>
                         <ComboBoxItem x:Name="sortbox" Content="Status"/>
@@ -176,7 +180,7 @@
             </TabItem>
 
             <TabItem Header="Settings Menu" Height="auto" Width="auto" HorizontalContentAlignment="Center"  >
-                <Grid Width="437" >
+                <Grid Width="430" >
                     <Grid.Background>
                         <ImageBrush ImageSource="src/pics/illuminati 2.jpg"/>
                     </Grid.Background>

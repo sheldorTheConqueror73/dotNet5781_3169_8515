@@ -28,11 +28,11 @@ namespace dotNet5781_03B_3169_8515
     /// </summary>
     public partial class MainWindow : Window
     {
-       public static bool sound = true;
+        public static bool sound = true;
         public static bool show = false;
         public static bool autosave = false;
-        private static List<buses> busPool=new List<buses>();
-        public  List<buses> BusPool
+        private static List<buses> busPool = new List<buses>();
+        public List<buses> BusPool
         {
             get { return busPool; }
             set { busPool = value; }
@@ -44,8 +44,8 @@ namespace dotNet5781_03B_3169_8515
         public MainWindow()//add mini payer to menu
         {
             InitializeComponent();
-            if(autosave)
-                buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt",show);
+            if (autosave)
+                buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt", show);
             else
                 initBus();
             readSettings();
@@ -54,9 +54,9 @@ namespace dotNet5781_03B_3169_8515
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(refreshingProgram);
             timer.Interval = new TimeSpan(0, 0, 1);
-            
-            
-         
+
+
+
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace dotNet5781_03B_3169_8515
                 DateTime rd = randomDate();
                 while (flag)
                 {
-                    if(rd.Year<2018)
+                    if (rd.Year < 2018)
                         id = r.Next(1000000, 10000000).ToString();//make sure id format matches MD 
                     else
                         id = r.Next(10000000, 100000000).ToString();
@@ -83,23 +83,23 @@ namespace dotNet5781_03B_3169_8515
                             break;
                         }
                 }
-                DateTime lastM = randomDate(1);              
-                busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000),"ready",new Timerclass(0) { TimeNow="00:00:00"}, "/src/pics/okIcon.png"));
+                DateTime lastM = randomDate(1);
+                busPool.Add(new buses(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000), "ready", new Timerclass(0) { TimeNow = "00:00:00" }, "/src/pics/okIcon.png"));
             }
-            busPool[0].LastMaintenance=new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
+            busPool[0].LastMaintenance = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             busPool[0].Status = "dangerous";
             BusPool[0].Dangerous = true;
             busPool[0].IconPath = "/src/pics/warningIcon.png";
-            busPool[1].Distance=19999;
+            busPool[1].Distance = 19999;
             busPool[2].Fuel = 0;
 
         }
 
-       /// <summary>
-      ///  returns a random date from current date to 1/1/1980
-      /// </summary>
-      /// <param name="mode">if mode is set 1 it will return a random date but in same year</param>
-     /// <returns></returns>
+        /// <summary>
+        ///  returns a random date from current date to 1/1/1980
+        /// </summary>
+        /// <param name="mode">if mode is set 1 it will return a random date but in same year</param>
+        /// <returns></returns>
         private DateTime randomDate(int mode = 0)
         {
             int month, day, year;
@@ -119,10 +119,11 @@ namespace dotNet5781_03B_3169_8515
             }
             if (mode == 1)
                 year = DateTime.Now.Year;
-            try { 
-            return new DateTime(year, month, day);
+            try
+            {
+                return new DateTime(year, month, day);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return randomDate(mode);
             }
@@ -135,30 +136,30 @@ namespace dotNet5781_03B_3169_8515
             if ((bsDisplay.SelectedItem as buses) == null)
                 return;
             busDetailsByDoubleClick bDLClk = new busDetailsByDoubleClick(timer);
-            string st= (bsDisplay.SelectedItem as buses).IdFormat;
+            string st = (bsDisplay.SelectedItem as buses).IdFormat;
             int fuel = (bsDisplay.SelectedItem as buses).Fuel;
             DateTime lmaintenance = (bsDisplay.SelectedItem as buses).LastMaintenance;
 
 
             bDLClk.labStatus.Content = (bsDisplay.SelectedItem as buses).Status;
-            if ((bsDisplay.SelectedItem as buses).Status=="ready")
+            if ((bsDisplay.SelectedItem as buses).Status == "ready")
             {
                 bDLClk.labStatus.Foreground = Brushes.LawnGreen;
             }
-            else if ((bsDisplay.SelectedItem as buses).Status=="mid-ride")//need to chnage fater update
+            else if ((bsDisplay.SelectedItem as buses).Status == "mid-ride")//need to chnage fater update
             {
                 bDLClk.labStatus.Foreground = Brushes.Orange;
             }
-            else if ((bsDisplay.SelectedItem as buses).Status== "refueling"|| (bsDisplay.SelectedItem as buses).Status == "maintenance")
+            else if ((bsDisplay.SelectedItem as buses).Status == "refueling" || (bsDisplay.SelectedItem as buses).Status == "maintenance")
             {
                 bDLClk.labStatus.Foreground = Brushes.Red;
             }
             bDLClk.labNameBus.Content = "Bus Id: " + st;
             bDLClk.labfuel.Content = fuel.ToString();
             bDLClk.labDistance.Content = (bsDisplay.SelectedItem as buses).Distance.ToString();
-            bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).TotalDistance.ToString(); 
-            bDLClk.labRegistration.Content= (bsDisplay.SelectedItem as buses).RegistrationDate.ToString().Split(' ')[0];
-           
+            bDLClk.labtotalDist.Content = (bsDisplay.SelectedItem as buses).TotalDistance.ToString();
+            bDLClk.labRegistration.Content = (bsDisplay.SelectedItem as buses).RegistrationDate.ToString().Split(' ')[0];
+
             if ((bsDisplay.SelectedItem as buses).Dangerous)
             {
                 bDLClk.labDangerous.Content = "Yes";
@@ -169,14 +170,14 @@ namespace dotNet5781_03B_3169_8515
             {
                 bDLClk.labDangerous.Content = "No";
                 bDLClk.labDangerous.Foreground = Brushes.LawnGreen;
-            }        
+            }
 
             bDLClk.labLMaintenance.Content = lmaintenance.ToString().Split(' ')[0];
 
-            
-            bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel=value;
-            bDLClk.lmaintenance += value=> (bsDisplay.SelectedItem as buses).LastMaintenance=value;
-            bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance =0;
+
+            bDLClk.fuel1 += value => (bsDisplay.SelectedItem as buses).Fuel = value;
+            bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).LastMaintenance = value;
+            bDLClk.lmaintenance += value => (bsDisplay.SelectedItem as buses).Distance = 0;
             bDLClk.status1 += value => (bsDisplay.SelectedItem as buses).Status = value;
             bDLClk.tim += value => (bsDisplay.SelectedItem as buses).Timer = new Timerclass(value);
             bDLClk.ShowDialog();
@@ -189,7 +190,7 @@ namespace dotNet5781_03B_3169_8515
         public int indexOf(string id)
         {
             int i = 0;
-            foreach(buses bs in busPool)
+            foreach (buses bs in busPool)
             {
                 if (bs.Id == id)
                     return i;
@@ -210,7 +211,7 @@ namespace dotNet5781_03B_3169_8515
         /// </summary>
         private void Button_SendDrive(object sender, RoutedEventArgs e)
         {
-           
+
             var fxElt = sender as FrameworkElement;
             buses lineData = fxElt.DataContext as buses;
             if (lineData.Status != "ready")
@@ -219,14 +220,41 @@ namespace dotNet5781_03B_3169_8515
                 return;
             }
 
-            
+
             if (lineData == null)
                 return;
-            busDrive busDrive = new busDrive(ref fxElt,timer,sound);
+            busDrive busDrive = new busDrive(ref fxElt, timer, sound);
             busDrive.tim += value => lineData.Timer = new Timerclass(value);
-           
+
             busDrive.ShowDialog();
-           
+
+        }
+        /// <summary>
+        /// send to refueling
+        /// </summary>
+        private void Button_SendRefuel(object sender, RoutedEventArgs e)
+        {
+
+            var fxElt = sender as FrameworkElement;
+            buses lineData = fxElt.DataContext as buses;
+            if (lineData.Status != "ready")
+            {
+                MessageBox.Show("you cannot drive a bus unless its status is ready");
+                return;
+            }
+            if (lineData == null)
+                return;
+            if (lineData.Fuel == 1200)
+            {
+                MessageBox.Show("bus already refueled!");
+                return;
+            }
+            lineData.Status = "refueling";
+            lineData.IconPath = "/src/pics/gasIcon2.png";
+            lineData.Timer = new Timerclass(12);
+            timer.Start();
+            bsDisplay.Items.Refresh();
+
         }
         /// <summary>
         /// deketes bus from list
@@ -235,7 +263,7 @@ namespace dotNet5781_03B_3169_8515
         {
             var fxElt = sender as FrameworkElement;
             buses lineData = fxElt.DataContext as buses;
-            if((lineData.Status!="ready")&&(lineData.Status != "dangerous"))
+            if ((lineData.Status != "ready") && (lineData.Status != "dangerous"))
             {
                 MessageBox.Show("you cannot delete a bus unless its status is ready");
                 return;
@@ -247,18 +275,18 @@ namespace dotNet5781_03B_3169_8515
             bsDisplay.Items.Refresh();
         }
 
-       /// <summary>
-       /// <summary>
-       /// syncs buslist to viewlist
-       /// </summary>
-            private void refreshingProgram(Object ob,EventArgs e)
-            {          
-                bool flag = false;
-            
-                foreach (buses bs in busPool)
-                {
-                
-                 if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
+        /// <summary>
+        /// <summary>
+        /// syncs buslist to viewlist
+        /// </summary>
+        private void refreshingProgram(Object ob, EventArgs e)
+        {
+            bool flag = false;
+
+            foreach (buses bs in busPool)
+            {
+
+                if (bs.Status == "refueling" && bs.Timer.TimeNow == "00:00:00")
                 {
                     flag = true;
                     bs.Fuel = 1200;
@@ -281,6 +309,7 @@ namespace dotNet5781_03B_3169_8515
                     flag = true;
                     bs.LastMaintenance = DateTime.Now;
                     bs.Distance = 0;
+                    bs.Fuel = 1200;
                     bs.Status = "ready";
                     bs.IconPath = "/src/pics/okIcon.png";
                     if (bs.Dangerous == true)
@@ -291,14 +320,14 @@ namespace dotNet5781_03B_3169_8515
                 }
                 if (bs.Status == "mid-ride" && bs.Timer.TimeNow == "00:00:00")
                 {
-                    flag = true;                   
+                    flag = true;
                     bs.Status = "ready";
                     bs.IconPath = "/src/pics/okIcon.png";
                     bsDisplay.Items.Refresh();
                     if (NoOperationExist())
                         timer.Stop();
                 }
-               
+
             }
             if (flag)
             {
@@ -307,14 +336,14 @@ namespace dotNet5781_03B_3169_8515
                 bsDisplay.Items.Refresh();
             }
         }
-       
+
         /// <summary>
         /// checks if there is a bus which is not ready
         /// </summary>
         /// <returns>true if there is a bus whos not ready, or false if not</returns>
         private bool NoOperationExist()
         {
-            foreach(buses bs in busPool)
+            foreach (buses bs in busPool)
             {
                 if ((bs.Status == "refueling") || (bs.Status == "maintenance") || (bs.Status == "mid-ride"))
                     return false;
@@ -326,7 +355,7 @@ namespace dotNet5781_03B_3169_8515
         /// </summary>
         private void readSettings()
         {
-            bool flag,save,alert,effects;
+            bool flag, save, alert, effects;
             string[] settings;
             try { settings = File.ReadAllLines($"{appPath}\\src\\storage\\settings.txt"); }
             catch (Exception e) { return; }
@@ -341,7 +370,7 @@ namespace dotNet5781_03B_3169_8515
                 return;
             autosave = save;
             sound = effects;
-            show= alert;
+            show = alert;
             if (save)
                 btnautosave.IsChecked = true;
             else
@@ -362,7 +391,7 @@ namespace dotNet5781_03B_3169_8515
         {
             string[] settings = new string[3] { $"autosave={autosave}", $"soundEffects={sound}", $"showAlerts={show}" };
             try { File.WriteAllLines($"{appPath}\\src\\storage\\settings.txt", settings); }
-            catch(Exception e) {  }
+            catch (Exception e) { }
         }
         /// <summary>
         /// button used to save data to file
@@ -377,10 +406,10 @@ namespace dotNet5781_03B_3169_8515
 
         private void btnLaod_Click(object sender, RoutedEventArgs e)
         {
-            buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt",show);
+            buses.load(ref busPool, $"{appPath}\\src\\storage\\DataFile.txt", show);
             bsDisplay.ItemsSource = busPool;
             bsDisplay.Items.Refresh();
-          
+
         }
         /// <summary>
         /// select sort button
@@ -397,12 +426,12 @@ namespace dotNet5781_03B_3169_8515
         }
 
         private delegate bool compare1(string x, string y);
-       
+
         /// <summary>
         /// sorts bus list by paramter taken from combobox
         /// </summary>
         public void busSort()
-        {            
+        {
             ComboBoxItem typeItem = (ComboBoxItem)cbSort.SelectedItem;
             string value = typeItem.Content.ToString();
             if (value == "ID")
@@ -410,25 +439,25 @@ namespace dotNet5781_03B_3169_8515
                 busPool.Sort((x, y) => x.Id.CompareTo(y.Id));
                 return;
             }
-            
+
             int mode = 0;
             if (value == "Time")
-                mode = 1;              
+                mode = 1;
             if (value == "Status")
                 mode = 2;
-                
+
             for (int i = 0; i < busPool.Count(); i++)
             {
                 for (int j = 0; j < busPool.Count() - 1; j++)
                 {
                     if (mode == 1)
-                        if (buses.sortTime(busPool[j].Timer.TimeNow, busPool[j+1].Timer.TimeNow))
-                         {
-                             buses tmp = busPool[j];
-                             busPool[j] = busPool[j + 1];
-                             busPool[j + 1] = tmp;
-                        } 
-                    if(mode==2)
+                        if (buses.sortTime(busPool[j].Timer.TimeNow, busPool[j + 1].Timer.TimeNow))
+                        {
+                            buses tmp = busPool[j];
+                            busPool[j] = busPool[j + 1];
+                            busPool[j + 1] = tmp;
+                        }
+                    if (mode == 2)
                         if (buses.sortStatus(busPool[j].Status, busPool[j + 1].Status))
                         {
                             buses tmp = busPool[j];
@@ -436,7 +465,7 @@ namespace dotNet5781_03B_3169_8515
                             busPool[j + 1] = tmp;
                         }
                 }
-            }           
+            }
         }
 
         /// <summary>
@@ -445,43 +474,43 @@ namespace dotNet5781_03B_3169_8515
         private void btnautosave_Checked(object sender, RoutedEventArgs e)
         {
             autosave = true;
-           
+
         }
         //setting button alert is checked
         private void btnsaveAlerts_Checked(object sender, RoutedEventArgs e)
         {
             show = true;
-           
+
         }
         //setting button sound effects is checked
         private void btnsound_Checked(object sender, RoutedEventArgs e)
         {
             sound = true;
-          
+
         }
         //setting button sound effects is unchecked
         private void btnsound_Unchecked(object sender, RoutedEventArgs e)
         {
             sound = false;
-            
+
         }
         //setting button alert is unchecked
         private void btnsaveAlerts_Unchecked(object sender, RoutedEventArgs e)
         {
             show = false;
-           
+
         }
         //setting button save is unchecked
         private void btnautosave_Unchecked(object sender, RoutedEventArgs e)
         {
             autosave = false;
-           
+
         }
         //save settings (and data if autosave is enabled) to file(s) when main window closes
         private void Window_Closed(object sender, EventArgs e)
         {
-            if(autosave)
-                buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt",show);
+            if (autosave)
+                buses.save(busPool, $"{appPath}\\src\\storage\\DataFile.txt", show);
             writeSettings();
         }
         //deletes all data from file
@@ -489,10 +518,10 @@ namespace dotNet5781_03B_3169_8515
         {
             try
             {
-                var data=File.Create($"{appPath}\\src\\storage\\DataFile.txt"); 
-                data.Close(); 
+                var data = File.Create($"{appPath}\\src\\storage\\DataFile.txt");
+                data.Close();
             }
-            catch(Exception exc) { return; }
+            catch (Exception exc) { return; }
             MessageBox.Show("data deleted, my lord");
         }
     }

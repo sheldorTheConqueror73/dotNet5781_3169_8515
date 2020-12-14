@@ -41,11 +41,11 @@ namespace dotNet5781_03B_3169_8515
         MainWindow mainWindow1;
         DispatcherTimer refresh;//timer of refreshing data of bus when this window is reopening.  
         DispatcherTimer dt;//property of timer that continue timer when this window opening when the bus is mid-action.
-        
-       /// <summary>
-       /// ctor of the class get time in case of the bus in action. 
-       /// </summary>
-       
+
+        /// <summary>
+        /// ctor of the class get time in case of the bus in action. 
+        /// </summary>
+
         public busDetailsByDoubleClick(DispatcherTimer _dt)
         {
             dt = _dt;
@@ -57,7 +57,7 @@ namespace dotNet5781_03B_3169_8515
                     mainWindow1 = window as MainWindow;
                 }
             }
-           
+
             status1 += value => labStatus.Content = value;
             fuel1 += value => labfuel.Content = value;
             lmaintenance += value => labLMaintenance.Content = value;
@@ -65,7 +65,7 @@ namespace dotNet5781_03B_3169_8515
 
             refresh = new DispatcherTimer();
             refresh.Tick += new EventHandler(refreshBusDetails);
-        
+
 
             if ((mainWindow1.bsDisplay.SelectedItem as buses).Status != "ready")
             {
@@ -77,16 +77,16 @@ namespace dotNet5781_03B_3169_8515
         /// <summary>
         /// the timer function, counting the time to zero.
         /// </summary>
-        
+
         private void timer_Tick(Object obj, EventArgs e)
         {
             if (counter > 0)
-            {        
-                if(mainWindow1.bsDisplay.SelectedItem!=null)
-                {  
-                    st = (mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow;               
-                    setTextToLabTimer(st);               
-                    counter--;               
+            {
+                if (mainWindow1.bsDisplay.SelectedItem != null)
+                {
+                    st = (mainWindow1.bsDisplay.SelectedItem as buses).Timer.TimeNow;
+                    setTextToLabTimer(st);
+                    counter--;
                 }
             }
             else
@@ -118,22 +118,22 @@ namespace dotNet5781_03B_3169_8515
             }
         }
 
-       /// <summary>
-       /// initialize the timer and starting it.
-       /// </summary>
+        /// <summary>
+        /// initialize the timer and starting it.
+        /// </summary>
         private void timerFunc()
         {
-            
+
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 1);            
+            timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
             labTimer.Visibility = Visibility.Visible;
         }
         /// <summary>
         /// send the bus to refuel and start the timer according to time of refueling.
         /// </summary>
-        
+
         private void refuel_Button_Click(object sender, RoutedEventArgs e)
         {
             if (labfuel.Content.ToString() == "1200")
@@ -162,7 +162,7 @@ namespace dotNet5781_03B_3169_8515
                 status1("refueling");
                 mainWindow1.busSort();
                 mainWindow1.bsDisplay.Items.Refresh();
-            }           
+            }
             timerFunc();
         }
         /// <summary>
@@ -173,7 +173,7 @@ namespace dotNet5781_03B_3169_8515
             btnRefuel.Content = "send to refuel";
             btnRefuel.IsEnabled = true;
             btnMaintenance.IsEnabled = true;
-            if (labDangerous.Content.ToString() == "Yes") 
+            if (labDangerous.Content.ToString() == "Yes")
             {
                 labStatus.Content = "dangerous";
             }
@@ -184,7 +184,7 @@ namespace dotNet5781_03B_3169_8515
             }
             if (fuel1 != null)
                 fuel1(1200);
-            labfuel.Content = "1200";            
+            labfuel.Content = "1200";
             mainWindow1.bsDisplay.Items.Refresh();
         }
         /// <summary>
@@ -192,21 +192,25 @@ namespace dotNet5781_03B_3169_8515
         /// </summary>
         private void maintenanceEvent()
         {
-            
+
             btnMaintenance.Content = "send to maintenance";
             btnRefuel.IsEnabled = true;
             btnMaintenance.IsEnabled = true;
             labStatus.Content = "ready";
-            (mainWindow1.bsDisplay.SelectedItem as buses).Dangerous = false ;
+            labfuel.Content = "1200";
+            (mainWindow1.bsDisplay.SelectedItem as buses).Dangerous = false;
             labDangerous.Content = "No";
             labDangerous.Foreground = Brushes.LawnGreen;
             DateTime date = DateTime.Now;
             if (lmaintenance != null)
+            {
                 lmaintenance(date);
+                fuel1(1200);
+            }
             labLMaintenance.Content = date.ToString().Split(' ')[0];
-                labStatus.Foreground = Brushes.LawnGreen;
-                mainWindow1.bsDisplay.Items.Refresh();
-           
+            labStatus.Foreground = Brushes.LawnGreen;
+            mainWindow1.bsDisplay.Items.Refresh();
+
         }
         /// <summary>
         ///  send the bus to maintenance and start the timer according to time of maintenance.
@@ -218,7 +222,7 @@ namespace dotNet5781_03B_3169_8515
             btnMaintenance.Content = "Maintenance...";
             btnRefuel.IsEnabled = false;
             btnMaintenance.IsEnabled = false;
-            (mainWindow1.bsDisplay.SelectedItem as buses).IconPath= "/src/pics/repairIcon2.png";
+            (mainWindow1.bsDisplay.SelectedItem as buses).IconPath = "/src/pics/repairIcon2.png";
             mode = 2;
             MessageBox.Show("sending to maintenance...");
             labStatus.Foreground = Brushes.Red;
