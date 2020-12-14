@@ -8,7 +8,7 @@
         Title="INJ bus stuidio 2020 v0.3B" Height="550" Width="450" ResizeMode="NoResize" Icon="src/pics/appIcon.png"  Closed="Window_Closed">
     <Window.Resources>
         <Style x:Key="ButtonFocusVisual">
-            <Setter Property="Control.Template">
+            <Setter Property="Control.Template"> 
                 <Setter.Value>
                     <ControlTemplate>
                         <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
