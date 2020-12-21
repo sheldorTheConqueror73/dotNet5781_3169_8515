@@ -21,7 +21,7 @@ namespace DS
 
         private static void InitAllLists()
         {
-
+            Random r = new Random();
             for (int i = 0; i < 13; i++)
             {
                 bool flag = true;
@@ -42,19 +42,20 @@ namespace DS
                         }
                 }
                 DateTime lastM = randomDate(1);
-                buses.Add(new Bus(rd, lastM, id, r.Next(0, buses.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000), "ready", new Timerclass(0) { TimeNow = "00:00:00" }, "/src/pics/okIcon.png"));
+                buses.Add(new Bus(rd, lastM, id, r.Next(0, Bus.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000), "ready", new Bus.timerclass(), "/src/pics/okIcon.png"));
             }
-            buses[0].LastMaintenance = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
-            buses[0].Status = "dangerous";
-            buses[0].Dangerous = true;
-            buses[0].IconPath = "/src/pics/warningIcon.png";
-            buses[1].Distance = 19999;
-            buses[2].Fuel = 0;
+            buses[0].lastMaintenance = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
+            buses[0].status = "dangerous";
+            buses[0].dangerous = true;
+            buses[0].iconPath = "/src/pics/warningIcon.png";
+            buses[1].distance = 19999;
+            buses[2].fuel = 0;
 
         }
 
         private static DateTime randomDate(int mode = 0)
         {
+            Random r = new Random();
             int month, day, year;
             year = r.Next(1980, DateTime.Now.Year + 1);
             if (year == DateTime.Now.Year)
