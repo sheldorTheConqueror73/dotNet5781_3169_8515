@@ -7,6 +7,180 @@
         mc:Ignorable="d"
         Title="managerView" Height="450" Width="800">
     <Grid>
-        
+        <TabControl VerticalAlignment="Stretch">
+            <TabItem Header="Buses">
+                <Grid Name="mainGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid  x:Name="busesgrid" Margin="0,0,2,0" Grid.Column="0" >
+                        <ListView x:Name="bsDisplay"  ItemsSource="{Binding BusPool}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" >
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Style.Resources>
+                                        <SolidColorBrush x:Key="ListItemHoverFill" Color="LightBlue"/>
+                                    </Style.Resources>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                <Border CornerRadius="0" SnapsToDevicePixels="True"   BorderThickness="0,-1,0,1"    BorderBrush="Transparent"     Background="{TemplateBinding Background}">
+                                                    <Border Name="InnerBorder" CornerRadius="0" BorderThickness="0">
+                                                        <Grid>
+                                                            <Rectangle Name="UpperHighlight" Visibility="Collapsed" Fill="Transparent" />
+                                                            <GridViewRowPresenter Grid.RowSpan="0"     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                        </Grid>
+                                                    </Border>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="{StaticResource ListItemHoverFill}" />
+                                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                                        <Setter TargetName="UpperHighlight" Property="Visibility" Value="Visible" />
+                                                    </Trigger>
+
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding IdFormat}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Status" Width="54">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image x:Name="imageStatus" HorizontalAlignment="Center" Source="{Binding IconPath}" Width="18" Height="18">
+                                                </Image>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Time" Width="97"  DisplayMemberBinding="{Binding Timer.TimeNow}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Options">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal" >
+                                                    <Button x:Name="Delete" Content="del" ToolTip="delete a bus" Background="Transparent"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                        <!--  <Image Source="src/pics/deleteIcon.png" Stretch="Fill"/>-->
+                                                    </Button>
+                                                    <Button x:Name="Maintenance" Content="mainte" ToolTip="send to drive" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+
+                                                    </Button>
+                                                    <Button x:Name="Refuel" Content="refuel" ToolTip="send to refuel" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                        <!-- <Image Source="src/pics/refuelbtnIcon.png" Stretch="Fill"/> -->
+                                                    </Button>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="340,1,0,0" VerticalAlignment="Top" Width="92"  Height="23">
+                            <ComboBoxItem Content="Order By"/>
+                            <ComboBoxItem Content="ID"/>
+                            <ComboBoxItem x:Name="sortbox" Content="Status"/>
+                            <ComboBoxItem Content="Time"/>
+                        </ComboBox>
+                    </Grid>
+                    <Grid Grid.ColumnSpan="2" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="38"/>
+                            <RowDefinition Height="38"/>
+                            <RowDefinition Height="38"/>
+                            <RowDefinition Height="38"/>
+                            <RowDefinition Height="38"/>
+                            <RowDefinition Height="38"/>
+                            <RowDefinition Height="200*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1" Grid.Column="0" Foreground="Cyan" Content="Fuel:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+                        <Label Grid.Row="2" Grid.Column="0" Foreground="Cyan" Content="Distance:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+                        <Label Grid.Row="3" Grid.Column="0" Foreground="Cyan" Content="Total Distance:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                        <Label Grid.Row="4" Grid.Column="0"  Foreground="Cyan" Content="Dangerous:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+                        <Label Grid.Row="5" Grid.Column="0"  Foreground="Cyan" Content="Registration Date:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
+                        <Label Grid.Row="6" Grid.Column="0" Foreground="Cyan" Content="Last Maintenance:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
+
+
+                        <TextBox Grid.Row="1" Grid.Column="1" Foreground="Cyan" Name="tbfuel" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Foreground="Cyan" Name="tbDistance" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Foreground="Cyan" Name="tbtotalDist" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Foreground="Cyan" Name="tbDangerous" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" />
+                        <TextBox Grid.Row="5" Grid.Column="1" Foreground="Cyan" Name="tbRegistration" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="14" Width="150" Height="27" />
+                        <TextBox Grid.Row="6" Grid.Column="1" Foreground="Cyan" Name="tbLMaintenance" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="14" Width="150" Height="27" />
+
+
+                        <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
+                            <Button Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0"/>
+                            <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0"/>
+                            <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Lines">
+                <Grid Name="LinesGrid"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="38*"/>
+                        <RowDefinition Height="400*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110*"/>
+                            <ColumnDefinition Width="23*"/>
+                            <ColumnDefinition Width="132*"/>
+                            <ColumnDefinition Width="131*"/>
+                            <ColumnDefinition Width="131*"/>
+                            <ColumnDefinition Width="131*"/>
+                            <ColumnDefinition Width="131*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.ColumnSpan="2">
+                            <Label HorizontalAlignment="Center" Height="68" Content="Lines:" VerticalAlignment="Center" Width="132"  FontSize="15" VerticalContentAlignment="Center" Foreground="Black"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="2">
+                            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="scBusLines" VerticalContentAlignment="Center" HorizontalContentAlignment="left"   FontSize="15" Margin="26,16,53,13"  />
+                        </Viewbox>
+                        <Viewbox Grid.Column="3">
+                            <Label Grid.Column="2" HorizontalAlignment="Center" Height="68" Content="Area:" HorizontalContentAlignment="Center" Width="132" RenderTransformOrigin="0.479,0.636" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
+                        </Viewbox>
+                        <Viewbox Grid.Column="4">
+                            <Label Grid.Column="3" HorizontalAlignment="Center" Height="68" Content="{Binding Path=Area}" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tbArea" FontSize="15" Foreground="Black" />
+                        </Viewbox>
+                        <Viewbox Grid.Column="5">
+                            <Label Content="Total Time(HH:MM):" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Foreground="Black"  />
+                        </Viewbox>
+                        <Viewbox Grid.Column="6">
+                            <Label Name="lbl1"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Width="132" Height="68" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="PH" FontSize="15" Foreground="Black"/>
+                        </Viewbox>
+                    </Grid>
+                    <Viewbox  Grid.Row="1" HorizontalAlignment="Left">
+                        <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="1" VerticalAlignment="Top" Width="auto"  Name="lbBusLineStations" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="Transparent" Foreground="Black" />
+                    </Viewbox>
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="Stations">
+
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Window>
