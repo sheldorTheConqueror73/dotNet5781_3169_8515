@@ -45,6 +45,15 @@ namespace DalApi
         void updatebusLineStation(busLineStation line);
         #endregion
 
+        #region User
+        IEnumerable<User> GetAllbusUsers();
+        IEnumerable<User> GetAllbusUsersBY(Predicate<User> predicate);
+        User GetbusLineUser(string id);
+        void addLine(User line);
+        void removebusUser(string id);
+        void updatebusUser(User line);
+        #endregion
+
 
     }
 }

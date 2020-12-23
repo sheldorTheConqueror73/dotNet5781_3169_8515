@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class busLineStation : busStation, IComparable<busLineStation>
+    public class busLineStation : busStation
     {
         private int distance;
         private TimeSpan driveTime;
@@ -52,53 +52,6 @@ namespace DO
             this.distance = bs.Distance;
             this.driveTime = bs.DriveTime;
         }
-
-        public static int readDistance()//read the distance from the user.
-        {
-            int rdistance;
-            Console.WriteLine("enter distance from last station:");
-            bool sucsses = int.TryParse(Console.ReadLine(), out rdistance);
-            if (rdistance <= 0)
-                throw new ArgumentException("invalid input: distance must be a number greater than 0.");
-            return rdistance;
-        }
-
-        public static TimeSpan ReadTimeDrive()//read the time from the user.
-        {
-            Console.WriteLine(@"enter time travel from last station :");
-            Console.WriteLine("enter hours: ");
-            string inputHours = Console.ReadLine();
-            for (int i = 0; i < inputHours.Length; i++)
-                if (inputHours[i] > 57 || inputHours[i] < 48)
-                    throw new ArgumentException("invalid input: can only be an integer.");
-            if (int.Parse(inputHours) < 0)
-                throw new ArgumentException("invalid input: can only be an integer.");
-            Console.WriteLine("enter minutes: ");
-            string inputMinutes = Console.ReadLine();
-            for (int i = 0; i < inputMinutes.Length; i++)
-                if (inputMinutes[i] > 57 || inputMinutes[i] < 48)
-                    throw new ArgumentException("invalid input: can only be an integer .");
-            if (int.Parse(inputMinutes) > 59 || int.Parse(inputMinutes) < 0)
-                throw new ArgumentException("invalid input: can only be a between 1-59.");
-
-            TimeSpan ts = new TimeSpan(int.Parse(inputHours), int.Parse(inputMinutes), 0);
-            return ts;
-
-        }
-
-        public int CompareTo(busLineStation other)//compare between two objects of busLineStation by Id.
-        {
-            if (other == null)
-                return 1;
-            else
-                return this.id.CompareTo(other.Id);
-        }
-
-        public override string ToString()
-        {
-            return $"{base.ToString()} Time: {driveTime.ToString(@"hh\:mm")}";
-        }
-
 
     }
 

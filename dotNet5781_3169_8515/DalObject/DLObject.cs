@@ -1,12 +1,10 @@
 ﻿using DalApi;
-using DO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DS;
+using DO;
 
-namespace DalObject
+namespace DL
 {
     sealed class DLObject : IDal
     {
@@ -17,21 +15,13 @@ namespace DalObject
       public static DLObject Instance { get => instance; }
       #endregion
 
-     
-
-
-
-
-
-        #region implementation
-        public void add()
+        public void addBus(Bus b1)
         {
-            throw new NotImplementedException();
-        }
 
-        public void addBus(Bus bus)
-        {
-            throw new NotImplementedException();
+            var result = DataSource.buses.Find(b => b.id == b1.id);
+            if ((result != null) || (result.enabled == true))
+                throw new NoSuchEntryException($"ID number {b1.id} is already taken");
+            DataSource.buses.Add(b1.Clone());
         }
 
         public void addLine(busLine line)
@@ -49,7 +39,7 @@ namespace DalObject
             throw new NotImplementedException();
         }
 
-        public object find()
+        public void addLine(User line)
         {
             throw new NotImplementedException();
         }
@@ -94,6 +84,16 @@ namespace DalObject
             throw new NotImplementedException();
         }
 
+        public IEnumerable<User> GetAllbusUsers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<User> GetAllbusUsersBY(Predicate<User> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public Bus GetBus(string id)
         {
             throw new NotImplementedException();
@@ -109,12 +109,12 @@ namespace DalObject
             throw new NotImplementedException();
         }
 
-        public busStation GetbusStation(string id)
+        public User GetbusLineUser(string id)
         {
             throw new NotImplementedException();
         }
 
-        public void remove()
+        public busStation GetbusStation(string id)
         {
             throw new NotImplementedException();
         }
@@ -129,17 +129,17 @@ namespace DalObject
             throw new NotImplementedException();
         }
 
+        public void removebusUser(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void removeLine(string id)
         {
             throw new NotImplementedException();
         }
 
         public void removeStation(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void update()
         {
             throw new NotImplementedException();
         }
@@ -154,6 +154,11 @@ namespace DalObject
             throw new NotImplementedException();
         }
 
+        public void updatebusUser(User line)
+        {
+            throw new NotImplementedException();
+        }
+
         public void updateLine(busLine line)
         {
             throw new NotImplementedException();
@@ -163,6 +168,11 @@ namespace DalObject
         {
             throw new NotImplementedException();
         }
+        #endregion
+
+
+        #region implementation
+
         #endregion
     }
 }
