@@ -28,6 +28,13 @@ namespace DO
         public noMatchExeption(string msg, Exception inner) : base(msg, inner) { }
 
     }
+    public class itemAlreadyExistsException : Exception
+    {
+        public itemAlreadyExistsException() { }
+        public itemAlreadyExistsException(string msg) : base(msg) { }
+        public itemAlreadyExistsException(string msg, Exception inner) : base(msg, inner) { }
+
+    }
     
    
 

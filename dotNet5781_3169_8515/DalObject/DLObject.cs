@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using DS;
 using DO;
+using System.Linq;
 
 namespace DL
 {
@@ -13,166 +14,122 @@ namespace DL
       static DLObject() { }
       DLObject() { } 
       public static DLObject Instance { get => instance; }
-      #endregion
+        #endregion
 
+        #region implementation
+        #region bus
+        public IEnumerable<Bus> GetAllBuses()
+        {
+            return from bus in DataSource.buses
+                   select bus.Clone();
+        }
+        public Bus GetBus(string id)
+        {
+            var result = DataSource.buses.Find(b => b.id == id);
+            if (result == null)
+                throw new NoSuchEntryException($"No Bus Matches ID number {id}");
+            return result;
+            
+        }
         public void addBus(Bus b1)
         {
 
             var result = DataSource.buses.Find(b => b.id == b1.id);
             if ((result != null) || (result.enabled == true))
-                throw new NoSuchEntryException($"ID number {b1.id} is already taken");
+                throw new itemAlreadyExistsException($"ID number {b1.id} is already taken");
             DataSource.buses.Add(b1.Clone());
         }
-
-        public void addLine(busLine line)
+        void removeBus(string id)
         {
-            throw new NotImplementedException();
+            var result = DataSource.buses.Find(b => b.id == id);
+            if ((result == null) || (result.enabled == false))
+                throw new NoSuchEntryException($"No entry Matches ID number {id}");
+            result.enabled = false;
         }
-
-        public void addLine(busStation station)
+        void updateBus(Bus bus)
         {
-            throw new NotImplementedException();
+            var result = DataSource.buses.Find(b => b.id == bus.id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {bus.id}");
+            result = bus.Clone();
         }
+        #endregion
 
-        public void addLine(busLineStation line)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void addLine(User line)
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<Bus> GetAllBuses()
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
+        #region busLine
         public IEnumerable<busLine> GetAllbusLines()
         {
-            throw new NotImplementedException();
+            return from bus in DataSource.Lines
+                   select bus.Clone();
         }
-
-        public IEnumerable<busLine> GetAllbusLinesBy(Predicate<busLine> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<busLineStation> GetAllbusLineStation()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<busLineStation> GetAllbusLineStationBy(Predicate<busLineStation> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<busStation> GetAllbusStations()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<User> GetAllbusUsers()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<User> GetAllbusUsersBY(Predicate<User> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Bus GetBus(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         public busLine GetBusLine(string id)
         {
-            throw new NotImplementedException();
-        }
 
-        public busLineStation GetbusLineStation(string id)
+            var result = DataSource.Lines.Find(b => b.id == id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {id}");
+            return result;
+        }
+        public void addLine(busLine line)
         {
-            throw new NotImplementedException();
+            var result = DataSource.Lines.Find(b => b.id == line.id);
+            if ((result != null) || (result.enabled == true))
+                throw new itemAlreadyExistsException($"ID number {line.id} is already taken");
+            DataSource.Lines.Add(line.Clone());
         }
-
-        public User GetbusLineUser(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public busStation GetbusStation(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void removeBus(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void removebusLineStation(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void removebusUser(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void removeLine(string id)
         {
-            throw new NotImplementedException();
+            var result = DataSource.Lines.Find(b => b.id == id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {id}");
+            result.enabled = false;
         }
-
-        public void removeStation(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void updateBus(Bus bus)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void updatebusLineStation(busLineStation line)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void updatebusUser(User line)
-        {
-            throw new NotImplementedException();
-        }
-
         public void updateLine(busLine line)
         {
-            throw new NotImplementedException();
-        }
-
-        public void updateStation(busStation station)
-        {
-            throw new NotImplementedException();
+            var result = DataSource.Lines.Find(b => b.id == line.id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {line.id}");
+            result = line.Clone();
         }
         #endregion
 
+        #region Station
+        public IEnumerable<busStation> GetAllbusStations();
+        public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate);
+        public busStation GetbusStation(string id);
+        public void addLine(busStation station);
+        public void removeStation(string id);
+        public void updateStation(busStation station);
+        #endregion
 
-        #region implementation
+        #region LineStation
+        public IEnumerable<busLineStation> GetAllbusLineStation();
+        public IEnumerable<busLineStation> GetAllbusLineStationBy(Predicate<busLineStation> predicate);
+        public busLineStation GetbusLineStation(string id);
+        public  void addLine(busLineStation line);
+        public void removebusLineStation(string id);
+        public void updatebusLineStation(busLineStation line);
+        #endregion
+
+        #region User
+        IEnumerable<User> GetAllbusUsers();
+        IEnumerable<User> GetAllbusUsersBY(Predicate<User> predicate);
+        User GetbusLineUser(string id);
+        void addLine(User line);
+        void removebusUser(string id);
+        void updatebusUser(User line);
+        #endregion
 
         #endregion
+
+
+
+
+
+
+
+
     }
 }
