@@ -7,70 +7,36 @@ using System.Threading.Tasks;
 namespace DO
 {
 
-    class ListEmptyExeption : Exception
+    public class NoSuchEntryException : Exception
     {
-        internal ListEmptyExeption() { }
-        internal ListEmptyExeption(string msg) : base(msg) { }
-        internal ListEmptyExeption(string msg, Exception inner) : base(msg, inner) { }
+        public NoSuchEntryException() { }
+        public NoSuchEntryException(string msg) : base(msg) { }
+        public NoSuchEntryException(string msg, Exception inner) : base(msg, inner) { }
 
     }
-    class unexpectedException : Exception
+    public class unexpectedException : Exception
     {
-        internal unexpectedException() { }
-        internal unexpectedException(string msg) : base(msg) { }
-        internal unexpectedException(string msg, Exception inner) : base(msg, inner) { }
+        public unexpectedException() { }
+        public unexpectedException(string msg) : base(msg) { }
+        public unexpectedException(string msg, Exception inner) : base(msg, inner) { }
 
     }
-    class noMatchExeption : Exception
+    public class noMatchExeption : Exception
     {
-        internal noMatchExeption() { }
-        internal noMatchExeption(string msg) : base(msg) { }
-        internal noMatchExeption(string msg, Exception inner) : base(msg, inner) { }
+        public noMatchExeption() { }
+        public noMatchExeption(string msg) : base(msg) { }
+        public noMatchExeption(string msg, Exception inner) : base(msg, inner) { }
 
     }
-    class BusLimitExceededExecption : Exception
+    public class itemAlreadyExistsException : Exception
     {
-        internal BusLimitExceededExecption() { }
-        internal BusLimitExceededExecption(string msg) : base(msg) { }
-        internal BusLimitExceededExecption(string msg, Exception inner) : base(msg, inner) { }
+        public itemAlreadyExistsException() { }
+        public itemAlreadyExistsException(string msg) : base(msg) { }
+        public itemAlreadyExistsException(string msg, Exception inner) : base(msg, inner) { }
 
     }
-    class CannotDriveExecption : Exception
-    {
-        internal CannotDriveExecption() { }
-        internal CannotDriveExecption(string msg) : base(msg) { }
-        internal CannotDriveExecption(string msg, System.IO.UnmanagedMemoryStream effect, bool play) : base(msg)
-        {
-            if (play)
-            {
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(effect);
-                try
-                {
-                    player.Play();
-                }
-                catch (Exception e) {  }
-            }
-        }
-        internal CannotDriveExecption(string msg, Exception inner) : base(msg, inner) { }
-    }
-    class InvalidUserInputExecption : Exception
-    {
-        internal InvalidUserInputExecption() { }
-        internal InvalidUserInputExecption(string msg) : base(msg) { }
-        internal InvalidUserInputExecption(string msg, System.IO.UnmanagedMemoryStream effect, bool play) : base(msg)
-        {
-            if (play)
-            {
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(effect);
-                try
-                {
-                    player.Play();
-                }
-                catch (Exception e) {  }
-            }
-        }
-        internal InvalidUserInputExecption(string msg, Exception inner) : base(msg, inner) { }
-    }
+    
+   
 
 }
 

@@ -72,18 +72,7 @@ namespace DO
             this.latitude = bs.Latitude;
             this.longitude = bs.Longitude;
         }
-        public static string ReadId()//read id from the user and returns a string
-        {
-            Console.WriteLine("enter id: ");
-            string idst = Console.ReadLine();
-            for (int i = 0; i < idst.Length; i++)
-                if (idst[i] > 57 || idst[i] < 48)
-                    throw new ArgumentException("invalid input: id can only contain 1-6 digits");
-
-            if (idst.Length > 6 || idst.Length < 1)
-                throw new ArgumentException("invalid input: id can only contain 1-6 digits");
-            return idst;
-        }
+       
         public override string ToString()
         {
             string str = $"{this.Address}  ";
