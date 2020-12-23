@@ -116,12 +116,12 @@
                             <RowDefinition Height="38"/>
                             <RowDefinition Height="200*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="1" Grid.Column="0" Foreground="Cyan" Content="Fuel:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-                        <Label Grid.Row="2" Grid.Column="0" Foreground="Cyan" Content="Distance:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-                        <Label Grid.Row="3" Grid.Column="0" Foreground="Cyan" Content="Total Distance:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-                        <Label Grid.Row="4" Grid.Column="0"  Foreground="Cyan" Content="Dangerous:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-                        <Label Grid.Row="5" Grid.Column="0"  Foreground="Cyan" Content="Registration Date:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
-                        <Label Grid.Row="6" Grid.Column="0" Foreground="Cyan" Content="Last Maintenance:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
+                        <Label Grid.Row="1" Grid.Column="0"   Content="Fuel:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20"/>
+                        <Label Grid.Row="2" Grid.Column="0"  Content="Distance:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20"/>
+                        <Label Grid.Row="3" Grid.Column="0"  Content="Total Distance:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18"/>
+                        <Label Grid.Row="4" Grid.Column="0"   Content="Dangerous:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20"/>
+                        <Label Grid.Row="5" Grid.Column="0"   Content="Registration Date:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14"/>
+                        <Label Grid.Row="6" Grid.Column="0"  Content="Last Maintenance:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14"/>
 
 
                         <TextBox Grid.Row="1" Grid.Column="1" Foreground="Cyan" Name="tbfuel" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" />
@@ -173,7 +173,7 @@
                         <Viewbox Grid.Column="1">
                             <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="scBusLines" VerticalContentAlignment="Center" HorizontalContentAlignment="left"   FontSize="25" Margin="26,16,53,13" Width="190"  />
                         </Viewbox>
-                       
+
 
                     </Grid>
                     <Viewbox  Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="445">
@@ -251,23 +251,11 @@
                         <RowDefinition Height="400*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60"/>
-                        <ColumnDefinition Width="390"/>
+                        <ColumnDefinition Width="225"/>
+                        <ColumnDefinition Width="225"/>
                         <ColumnDefinition Width="300*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Name="StaUpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto" Grid.ColumnSpan="2"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="70"/>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="90"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="131*"/>
-                        </Grid.ColumnDefinitions>
-
-
-                    </Grid>
-                    <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="445" Grid.ColumnSpan="2">
+                    <Viewbox Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26">
                         <ListView>
                             <ListView.View>
                                 <GridView>
@@ -285,14 +273,15 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Latitude" Width="100">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn Header="Longtitude" Width="102">
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Margin="60,0,0,0" >
+                        <ListView>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Lines" Width="100">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>

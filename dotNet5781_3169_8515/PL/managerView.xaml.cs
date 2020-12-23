@@ -19,9 +19,11 @@ namespace PL
     /// </summary>
     public partial class managerView : Window
     {
+
         public managerView()
         {
             InitializeComponent();
+            
         }
     }
 }

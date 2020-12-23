@@ -44,6 +44,12 @@
     <Compile Include="BLApi\BLFactory.cs" />
     <Compile Include="BLApi\IBL.cs" />
     <Compile Include="BLImp.cs" />
+    <Compile Include="BO\bus.cs" />
+    <Compile Include="BO\busLine.cs" />
+    <Compile Include="BO\busLineStation.cs" />
+    <Compile Include="BO\busStation.cs" />
+    <Compile Include="BO\Enums.cs" />
+    <Compile Include="BO\exceptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,5 +58,6 @@
       <Name>DalApi</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
