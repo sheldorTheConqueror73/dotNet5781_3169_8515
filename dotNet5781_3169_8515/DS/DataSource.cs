@@ -13,6 +13,8 @@ namespace DS
         //public static List<busStation> stations;
         public static List<busLineStation> LineStations;
         public static List<busLine> Lines;
+        public static List<User> users;
+
         static DataSource()
         {
             InitAllLists();
@@ -24,7 +26,13 @@ namespace DS
 
             initStations();
             initBuses();
+            initUsers();
 
+        }
+
+        private static void initUsers()
+        {
+            users = new List<User> { new User { name = "Jack Smith" ,id="123456789", accessLevel=Clearance.Admin, password="aaa123"} };
         }
 
         private static void initBuses()
