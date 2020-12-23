@@ -46,5 +46,11 @@
     <Compile Include="BLImp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DalApi\DalApi.csproj">
+      <Project>{58B4069E-4D2E-4318-BC90-383C10468D72}</Project>
+      <Name>DalApi</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

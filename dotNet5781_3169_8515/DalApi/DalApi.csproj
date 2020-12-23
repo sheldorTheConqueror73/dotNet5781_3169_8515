@@ -49,6 +49,7 @@
     <Compile Include="DO\busStation.cs" />
     <Compile Include="DO\Enums.cs" />
     <Compile Include="DO\exceptions.cs" />
+    <Compile Include="DO\User.cs" />
     <Compile Include="IDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

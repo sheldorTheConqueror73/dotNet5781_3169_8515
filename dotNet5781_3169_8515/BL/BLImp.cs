@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DalApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace BL
    
     class BLImp : IBL
     {
-        IDL dl = DLFactory.GetDL();
+        IDal dl = DalFactory.getDal();
 
     }
 }
