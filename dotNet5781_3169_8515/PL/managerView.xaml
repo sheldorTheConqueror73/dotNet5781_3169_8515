@@ -15,7 +15,12 @@
                         <ColumnDefinition Width="350"/>
                     </Grid.ColumnDefinitions>
                     <Grid  x:Name="busesgrid" Margin="0,0,2,0" Grid.Column="0" >
-                        <ListView x:Name="bsDisplay"  ItemsSource="{Binding BusPool}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="62*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="365*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListView x:Name="bsDisplay"  ItemsSource="{Binding BusPool}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" >
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Style.Resources>
@@ -89,7 +94,7 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="340,1,0,0" VerticalAlignment="Top" Width="92"  Height="23">
+                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="269,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
                             <ComboBoxItem Content="Order By"/>
                             <ComboBoxItem Content="ID"/>
                             <ComboBoxItem x:Name="sortbox" Content="Status"/>
@@ -123,9 +128,20 @@
                         <TextBox Grid.Row="2" Grid.Column="1" Foreground="Cyan" Name="tbDistance" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" />
                         <TextBox Grid.Row="3" Grid.Column="1" Foreground="Cyan" Name="tbtotalDist" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" />
                         <TextBox Grid.Row="4" Grid.Column="1" Foreground="Cyan" Name="tbDangerous" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" />
-                        <TextBox Grid.Row="5" Grid.Column="1" Foreground="Cyan" Name="tbRegistration" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="14" Width="150" Height="27" />
-                        <TextBox Grid.Row="6" Grid.Column="1" Foreground="Cyan" Name="tbLMaintenance" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="14" Width="150" Height="27" />
-
+                        <DatePicker Name="dpRegiDate" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980">
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <Setter Property="IsReadOnly" Value="True"/>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+                        <DatePicker  Name="dplmiDate" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayDateStart="1/1/1980" >
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <Setter Property="IsReadOnly" Value="True"/>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
 
                         <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
                             <Button Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0"/>
@@ -148,30 +164,146 @@
                     <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="70"/>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="90"/>
-                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="131*"/>
                         </Grid.ColumnDefinitions>
                         <Viewbox Grid.Column="0">
                             <Label HorizontalAlignment="Center" Height="68" Content="Lines:" VerticalAlignment="Center" Width="132"  FontSize="15" VerticalContentAlignment="Center" Foreground="Black"/>
                         </Viewbox>
                         <Viewbox Grid.Column="1">
-                            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="scBusLines" VerticalContentAlignment="Center" HorizontalContentAlignment="left"   FontSize="15" Margin="26,16,53,13"  />
+                            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="scBusLines" VerticalContentAlignment="Center" HorizontalContentAlignment="left"   FontSize="25" Margin="26,16,53,13" Width="190"  />
                         </Viewbox>
-                        <Viewbox Grid.Column="2">
-                            <Label Grid.Column="2" HorizontalAlignment="Center" Height="68" Content="Area:" HorizontalContentAlignment="Center" Width="132" RenderTransformOrigin="0.479,0.636" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
-                        </Viewbox>
-                        <Viewbox Grid.Column="3">
-                            <Label Grid.Column="3" HorizontalAlignment="Center" Height="68" Content="{Binding Path=Area}" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tbArea" FontSize="15" Foreground="Black" />
-                        </Viewbox>
-                        
+                       
+
                     </Grid>
-                    <Viewbox  Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Left">
-                        <ListBox HorizontalAlignment="Left" Height="541" Grid.Row="1"  VerticalAlignment="Top" Width="auto"  Name="lbBusLineStations" ItemsSource="{Binding}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20" Background="Transparent" Foreground="Black" />
+                    <Viewbox  Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="445">
+                        <ListView>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Code" Width="100">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Address" Width="100">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Latitude" Width="100">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Longtitude" Width="102">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                     </Viewbox>
                     <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="90"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="100*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="ID:" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,7"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Area:" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Label Grid.Row="2" Grid.Column="0" Content="First Station:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Last Station:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        <TextBox Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Width="100" Height="30"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1" Width="100" Height="30"/>
+                        <ComboBox Grid.Row="3" Grid.Column="1" Width="100" Height="30"/>
+
+                        <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
+                            <Button Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0"/>
+                            <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0"/>
+                            <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="Stations">
+                <Grid Name="StationsGrid"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="400*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="390"/>
+                        <ColumnDefinition Width="300*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Name="StaUpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto" Grid.ColumnSpan="2"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="131*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                    </Grid>
+                    <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="445" Grid.ColumnSpan="2">
+                        <ListView>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Code" Width="100">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Address" Width="100">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Latitude" Width="100">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Longtitude" Width="102">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Viewbox>
+                    <Grid Grid.Column="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="90"/>
                             <RowDefinition Height="40"/>
@@ -201,11 +333,6 @@
                         </StackPanel>
                     </Grid>
                 </Grid>
-            </TabItem>
-
-
-            <TabItem Header="Stations">
-
             </TabItem>
 
         </TabControl>
