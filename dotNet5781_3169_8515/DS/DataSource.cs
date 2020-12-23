@@ -32,7 +32,7 @@ namespace DS
 
         private static void initUsers()
         {
-            users = new List<User> { new User { name = "Jack Smith" ,id="123456789", accessLevel=Clearance.Admin, password="aaa123"} };
+            users = new List<User> { new User { name = "Jack Smith" ,id="123456789", accessLevel=Clearance.Admin, password="aaa123"},new User { name = "Vladimir Putin", id = "123456788", accessLevel = Clearance.Operator, password = "polonium210" },new User { name = "C.M.O.T Dibbler", id = "123456787", accessLevel = Clearance.User, password = "bbb123" } };
         }
 
         private static void initBuses()
