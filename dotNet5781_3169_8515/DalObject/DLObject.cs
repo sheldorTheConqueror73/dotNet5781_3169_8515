@@ -39,14 +39,14 @@ namespace DL
                 throw new itemAlreadyExistsException($"ID number {b1.id} is already taken");
             DataSource.buses.Add(b1.Clone());
         }
-        void removeBus(string id)
+        public void removeBus(string id)
         {
             var result = DataSource.buses.Find(b => b.id == id);
             if ((result == null) || (result.enabled == false))
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.enabled = false;
         }
-        void updateBus(Bus bus)
+        public void updateBus(Bus bus)
         {
             var result = DataSource.buses.Find(b => b.id == bus.id);
             if (result == null)
