@@ -58,12 +58,11 @@ namespace DS
                         }
                 }
                 DateTime lastM = randomDate(1);
-                buses.Add(new Bus(rd, lastM, id, r.Next(0, Bus.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000), "ready", new Bus.timerclass(), "/src/pics/okIcon.png"));
+                buses.Add(new Bus(rd, lastM, id, r.Next(0, Bus.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000), "ready"));
             }
             buses[0].lastMaintenance = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             buses[0].status = "dangerous";
             buses[0].dangerous = true;
-            buses[0].iconPath = "/src/pics/warningIcon.png";
             buses[1].distance = 19999;
             buses[2].fuel = 0;
         }

@@ -95,31 +95,78 @@ namespace DL
         }
         #endregion
 
-        #region Station
-        public IEnumerable<busStation> GetAllbusStations();
-        public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate);
-        public busStation GetbusStation(string id);
-        public void addLine(busStation station);
-        public void removeStation(string id);
-        public void updateStation(busStation station);
-        #endregion
 
         #region LineStation
-        public IEnumerable<busLineStation> GetAllbusLineStation();
-        public IEnumerable<busLineStation> GetAllbusLineStationBy(Predicate<busLineStation> predicate);
-        public busLineStation GetbusLineStation(string id);
-        public  void addLine(busLineStation line);
-        public void removebusLineStation(string id);
-        public void updatebusLineStation(busLineStation line);
+        public IEnumerable<busLineStation> GetAllbusLineStation()
+        {
+            return from bus in DataSource.LineStations
+                   select bus.Clone();
+        }
+        public busLineStation GetbusLineStation(string id)
+        {
+            var result = DataSource.LineStations.Find(b => b.id == id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {id}");
+            return result;
+        }
+        public  void addLine(busLineStation line)
+        {
+            var result = DataSource.LineStations.Find(b => b.id == line.id);
+            if ((result != null) || (result.enabled == true))
+                throw new itemAlreadyExistsException($"ID number {line.id} is already taken");
+            DataSource.LineStations.Add(line.Clone());
+        }
+        public void removebusLineStation(string id)
+        {
+            var result = DataSource.LineStations.Find(b => b.id == id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {id}");
+            result.enabled = false;
+        }
+        public void updatebusLineStation(busLineStation line)
+        {
+            var result = DataSource.LineStations.Find(b => b.id == line.id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {line.id}");
+            result = line.Clone();
+        }
         #endregion
 
         #region User
-        IEnumerable<User> GetAllbusUsers();
-        IEnumerable<User> GetAllbusUsersBY(Predicate<User> predicate);
-        User GetbusLineUser(string id);
-        void addLine(User line);
-        void removebusUser(string id);
-        void updatebusUser(User line);
+        public IEnumerable<User> GetAllbusUsers()
+        {
+            return from bus in DataSource.users
+                   select bus.Clone();
+        }
+        public User GetbusLineUser(string id)
+        {
+            var result = DataSource.users.Find(b => b.id == id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {id}");
+            return result;
+        }
+        public void addLine(User user)
+        {
+            var result = DataSource.users.Find(b => b.id == user.id);
+            if ((result != null) || (result.enabled == true))
+                throw new itemAlreadyExistsException($"ID number {user.id} is already taken");
+            DataSource.users.Add(user.Clone());
+        }
+        public void removebusUser(string id)
+        {
+            var result = DataSource.users.Find(b => b.id == id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {id}");
+            result.enabled = false;
+        }
+        public void updatebusUser(User user)
+        {
+            var result = DataSource.users.Find(b => b.id == user.id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {user.id}");
+            result = user.Clone();
+        }
+
         #endregion
 
         #endregion

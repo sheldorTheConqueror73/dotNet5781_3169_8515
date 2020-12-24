@@ -9,14 +9,13 @@ namespace DO
     public class busStation
     {
         readonly static int NULL = -200;//not too sure about this - used to mark empty variable
-        protected readonly string id;
+        public  string id { get; set; }
         protected string address;
         protected float latitude, longitude;//set up accessors for these two
+        public bool enabled { get; set; }
+      
         //getters and setters:
-        public string Id
-        {
-            get => id;
-        }
+ 
         public float Latitude
         {
             get => latitude;
@@ -67,7 +66,7 @@ namespace DO
 
         public busStation(busStation bs)
         {
-            this.id = bs.Id;
+            this.id = bs.id;
             this.address = bs.Address;
             this.latitude = bs.Latitude;
             this.longitude = bs.Longitude;
@@ -80,7 +79,7 @@ namespace DO
                 str = "";
             string lat = (Latitude > 0) ? "N" : "S";
             string lon = (Longitude > 0) ? "E" : "W";
-            return $"{str} Bus Station Code: {Id}  {Latitude}°{lat}  {Longitude}°{lon}";
+            return $"{str} Bus Station Code: {id}  {Latitude}°{lat}  {Longitude}°{lon}";
         }
 
     }

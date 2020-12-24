@@ -25,14 +25,6 @@ namespace DalApi
         void updateLine(busLine line);
         #endregion
 
-        #region Station
-        IEnumerable<busStation> GetAllbusStations();
-        busStation GetbusStation(string id);
-        void addLine(busStation station);
-        void removeStation(string id);
-        void updateStation(busStation station);
-        #endregion
-
         #region LineStation
         IEnumerable<busLineStation> GetAllbusLineStation();
         busLineStation GetbusLineStation(string id);
@@ -45,8 +37,6 @@ namespace DalApi
         IEnumerable<User> GetAllbusUsers();
         User GetbusLineUser(string id);
         void addLine(User line);
-        void removebusUser(string id);
-        void updatebusUser(User line);
         #endregion
 
 
