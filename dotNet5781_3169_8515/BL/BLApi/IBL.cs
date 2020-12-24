@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using BO;
 
-namespace BL
+
+namespace BLAPI
 {
     public interface IBL
     {
+
         #region bus
         IEnumerable<Bus> GetAllBuses();
         IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate);
@@ -44,8 +46,6 @@ namespace BL
         void removebusLineStation(string id);
         void updatebusLineStation(busLineStation line);
         #endregion
-
-
 
     }
 }

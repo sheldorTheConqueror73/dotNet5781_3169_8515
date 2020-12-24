@@ -1,10 +1,10 @@
-﻿using DO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using DO;
 namespace DS
 {
     public static class DataSource
@@ -18,7 +18,7 @@ namespace DS
         static DataSource()
         {
             InitAllLists();
-            
+
         }
 
         private static void InitAllLists()
@@ -32,7 +32,7 @@ namespace DS
 
         private static void initUsers()
         {
-            users = new List<User> { new User { name = "Jack Smith" ,id="123456789", accessLevel=Clearance.Admin, password="aaa123"},new User { name = "Vladimir Putin", id = "123456788", accessLevel = Clearance.Operator, password = "polonium210" },new User { name = "C.M.O.T Dibbler", id = "123456787", accessLevel = Clearance.User, password = "bbb123" } };
+            users = new List<User> { new User { name = "Jack Smith", id = "123456789", accessLevel = Clearance.Admin, password = "aaa123" }, new User { name = "Vladimir Putin", id = "123456788", accessLevel = Clearance.Operator, password = "polonium210" }, new User { name = "C.M.O.T Dibbler", id = "123456787", accessLevel = Clearance.User, password = "bbb123" } };
         }
 
         private static void initBuses()
@@ -98,7 +98,7 @@ namespace DS
         }
         private static void initStations()
         {
-            LineStations=new List<busLineStation>{ new busLineStation("123456", (float)33.4563, (float)120.3454, "shadmot mechola"),new busLineStation("234567", (float)34.4653, (float)121.3344, "mechola"),new busLineStation("345678", (float)35.45453, (float)112.1894, "Argaman"),new busLineStation("456789", (float)53.353, (float)-32.1894, "Yericho"),
+            LineStations = new List<busLineStation>{ new busLineStation("123456", (float)33.4563, (float)120.3454, "shadmot mechola"),new busLineStation("234567", (float)34.4653, (float)121.3344, "mechola"),new busLineStation("345678", (float)35.45453, (float)112.1894, "Argaman"),new busLineStation("456789", (float)53.353, (float)-32.1894, "Yericho"),
         new busLineStation("567890", (float)12.353453, (float)02.5442, "Beit Shean"),new busLineStation("678901", (float)11.975, (float)43.245, "Meitar"),new busLineStation("789012", (float)89.34532, (float)-54.2345, "Mahale Adomim"),new busLineStation("890123", (float)54.64523, (float)12.3517, "Kdumim"),
         new busLineStation("901234", (float)54.5643, (float)-27.46743),new busLineStation("012345", (float)-78.4563, (float)31.363),new busLineStation("098765", (float)1.9776, (float)130.353),new busLineStation("876543", (float)77.232, (float)-66.346),
         new busLineStation("765432", (float)55.2223, (float)-26.363),new busLineStation("654321", (float)66.235, (float)-127.345),new busLineStation("543210", (float)63.76, (float)165.345),new busLineStation("432109", (float)34.543, (float)-43.65325),
@@ -115,3 +115,4 @@ namespace DS
 
     }
 }
+

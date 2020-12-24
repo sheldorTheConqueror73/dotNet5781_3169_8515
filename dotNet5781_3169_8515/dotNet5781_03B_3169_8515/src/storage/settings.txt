@@ -1,3 +1,0 @@
-autosave=False
-soundEffects=True
-showAlerts=False

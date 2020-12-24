@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{17D9C931-7BEA-455E-8FB1-646C6D62348C}</ProjectGuid>
+    <ProjectGuid>{0CC72C53-46EC-442D-80EB-89C7A36CD5B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DS</RootNamespace>
-    <AssemblyName>DS</AssemblyName>
+    <RootNamespace>DLObject</RootNamespace>
+    <AssemblyName>DLObject</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,13 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSource.cs" />
+    <Compile Include="Cloning.cs" />
+    <Compile Include="DLObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLAPI\DLAPI.csproj">
       <Project>{e8505a1c-4323-4085-8a7d-96c2e5c5d8cd}</Project>
       <Name>DLAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DS\DS.csproj">
+      <Project>{17d9c931-7bea-455e-8fb1-646c6d62348c}</Project>
+      <Name>DS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

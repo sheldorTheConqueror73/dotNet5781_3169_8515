@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+using BL;
+
+namespace BLAPI
 {
     public static class BLFactory
     {
         public static IBL GetBL()
         {
-            //throw new NotImplementedException();
-            return new BLImp();
+                return new BLImp();
+
         }
     }
 }

@@ -1,17 +1,17 @@
-﻿using BO;
-using DalApi;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DLAPI;
+using BLAPI;
+using System.Threading;
+using BO;
 
 namespace BL
 {
-   
+
     class BLImp : IBL
     {
-        IDal dl = DLFactory.GetDL();
+        IDL dl = DLFactory.GetDL();
 
         public void addBus(Bus bus)
         {
