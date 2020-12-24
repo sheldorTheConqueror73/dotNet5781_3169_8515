@@ -11,7 +11,7 @@ namespace BL
    
     class BLImp : IBL
     {
-        IDal dl = DalFactory.getDal();
+        IDal dl = DLFactory.GetDL();
 
         public void addBus(Bus bus)
         {
