@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,18 +15,18 @@ namespace ViewModel
     {
         IBL bl = BLFactory.GetBL();
 
-        static readonly DependencyProperty busProperty = DependencyProperty.Register("bus", typeof(PO.Bus), typeof(managerView));
-        public PO.Bus bus { get => (PO.Bus)GetValue(busProperty); set => SetValue(busProperty, value); }
+        static readonly DependencyProperty busLineProperty = DependencyProperty.Register("busLine", typeof(PO.busLine), typeof(managerView));
+        public PO.busLine busLine { get => (PO.busLine)GetValue(busLineProperty); set => SetValue(busLineProperty, value); }
 
-        public BO.busLine busBO
+        public BO.busLine busLineBO
         {
             set
             {
                 if (value == null)
-                    bus = new PO.Bus();
+                    busLine = new PO.busLine();
                 else
                 {
-                    value.DeepCopyTo(bus);
+                    value.DeepCopyTo(busLine);
                    
                 }
                 // update more properties in Student if needed... That is, properties that don't appear as is in studentBO...
@@ -33,10 +35,14 @@ namespace ViewModel
 
 
         public managerView() => Reset();
+        static readonly DependencyProperty listBusesProperty = DependencyProperty.Register("StudentIDs", typeof(ObservableCollection<PO.Bus>), typeof(managerView));
+
+        public ObservableCollection<PO.Bus> listBuses { get => (ObservableCollection<PO.Bus>)GetValue(listBusesProperty); set => SetValue(listBusesProperty, value); }
 
         internal void Reset()
-        {           
-            bus = new PO.Bus();
+        {                
+            busLine = new PO.busLine();           
         }
+       
     }
 }
