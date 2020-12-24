@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\DeepCopyU.cs" />
+    <Compile Include="ViewModel\managerView.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,6 +78,7 @@
     <Compile Include="managerView.xaml.cs">
       <DependentUpon>managerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PO\bus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

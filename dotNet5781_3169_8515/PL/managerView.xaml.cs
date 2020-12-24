@@ -19,10 +19,12 @@ namespace PL
     /// </summary>
     public partial class managerView : Window
     {
-
+        public ViewModel.managerView viewModel;
         public managerView()
         {
             InitializeComponent();
+            viewModel =new ViewModel.managerView();
+            DataContext = viewModel;
             
         }
     }

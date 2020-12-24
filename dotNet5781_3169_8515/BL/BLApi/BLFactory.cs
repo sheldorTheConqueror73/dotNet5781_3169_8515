@@ -10,7 +10,7 @@ namespace BL
     {
         public static IBL GetBL()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             return new BLImp();
         }
     }

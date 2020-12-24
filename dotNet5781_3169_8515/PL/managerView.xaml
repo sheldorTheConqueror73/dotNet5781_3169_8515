@@ -20,7 +20,7 @@
                             <ColumnDefinition Width="10*"/>
                             <ColumnDefinition Width="365*"/>
                         </Grid.ColumnDefinitions>
-                        <ListView x:Name="bsDisplay"  ItemsSource="{Binding BusPool}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" >
+                        <ListView x:Name="bsDisplay"  ItemsSource="{Binding buses}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" >
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Style.Resources>
@@ -52,10 +52,10 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding IdFormat}">
+                                    <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding id}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock  Text="{Binding id}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
