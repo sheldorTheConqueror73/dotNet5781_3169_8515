@@ -8,8 +8,8 @@
         Title="managerView" Height="450" Width="800">
     <Grid>
         <TabControl VerticalAlignment="Stretch">
-            <TabItem Header="Buses">
-                <Grid Name="mainGrid">
+            <TabItem Header="Buses" >
+                <Grid Name="mainGrid" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="350"/>
@@ -20,7 +20,7 @@
                             <ColumnDefinition Width="10*"/>
                             <ColumnDefinition Width="365*"/>
                         </Grid.ColumnDefinitions>
-                        <ListView x:Name="bsDisplay"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" >
+                        <ListView x:Name="busesView"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" >
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Style.Resources>
@@ -62,8 +62,7 @@
                                     <GridViewColumn Header="Status" Width="54">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Image x:Name="imageStatus" HorizontalAlignment="Center" Source="{Binding IconPath}" Width="18" Height="18">
-                                                </Image>
+                                                <TextBlock  Text="{Binding status}"  Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -101,7 +100,7 @@
                             <ComboBoxItem Content="Time"/>
                         </ComboBox>
                     </Grid>
-                    <Grid Grid.ColumnSpan="2" Grid.Column="1">
+                    <Grid Grid.ColumnSpan="2" Grid.Column="1" x:Name="gridBuses">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="120"/>
                             <ColumnDefinition Width="*"/>
@@ -123,19 +122,19 @@
                         <Label Grid.Row="5" Grid.Column="0"   Content="Registration Date:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14"/>
                         <Label Grid.Row="6" Grid.Column="0"  Content="Last Maintenance:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14"/>
 
-
-                        <TextBox Grid.Row="1" Grid.Column="1" Foreground="Cyan" Name="tbfuel" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" />
-                        <TextBox Grid.Row="2" Grid.Column="1" Foreground="Cyan" Name="tbDistance" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" />
-                        <TextBox Grid.Row="3" Grid.Column="1" Foreground="Cyan" Name="tbtotalDist" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" />
-                        <TextBox Grid.Row="4" Grid.Column="1" Foreground="Cyan" Name="tbDangerous" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" />
-                        <DatePicker Name="dpRegiDate" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980">
+                        
+                        <TextBox Grid.Row="1" Grid.Column="1" Foreground="Cyan" Name="tbfuel" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Foreground="Cyan" Name="tbDistance" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding distance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Foreground="Cyan" Name="tbtotalDist" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" Text="{Binding totalDistance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Foreground="Cyan" Name="tbDangerous" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding dangerous, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <DatePicker Name="dpRegiDate" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980" SelectedDate="{Binding registrationDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
                                 </Style>
                             </DatePicker.Resources>
                         </DatePicker>
-                        <DatePicker  Name="dplmiDate" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayDateStart="1/1/1980" >
+                        <DatePicker  Name="dplmiDate" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayDateStart="1/1/1980" SelectedDate="{Binding lastMaintenance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
@@ -183,7 +182,7 @@
                                     <GridViewColumn Header="Code" Width="100">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock  Text="{Binding id}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

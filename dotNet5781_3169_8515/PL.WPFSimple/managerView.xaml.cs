@@ -35,9 +35,11 @@ namespace PL
             var buses = bl.GetAllBuses();
            
             InitializeComponent();
-            linesView.ItemsSource = buses;
+            busesView.ItemsSource = buses;
+            gridBuses.DataContext = buses;
 
-            
+
+
         }
     }
 }

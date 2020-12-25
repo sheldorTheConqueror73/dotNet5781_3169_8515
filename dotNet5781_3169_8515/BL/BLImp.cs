@@ -13,6 +13,27 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();
 
+        BO.Bus studentDoBoAdapter(DO.Bus busDO)
+        {
+            BO. Bus studentBO = new BO.Bus();
+            DO.Bus personDO;
+            string id = busDO.id;
+            try
+            {
+                personDO = dl.GetBus(id);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Student ID is illegal", ex);
+            }
+            personDO.DeepCopyTo(studentBO);
+           
+
+            busDO.DeepCopyTo(studentBO);         
+            
+            return studentBO;
+        }
+
         public void addBus(Bus bus)
         {
             //do input checks
@@ -39,9 +60,11 @@ namespace BL
             var result = dl.GetAllBuses();
             if (result != null)
                 return (from item in result
-                       where item != null && item.enabled == true
-                       select DOBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
+                        where item != null && item.enabled == true
+                        select studentDoBoAdapter(item)).ToList();
             return default;
+
+            //DOBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
         }
 
         public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
