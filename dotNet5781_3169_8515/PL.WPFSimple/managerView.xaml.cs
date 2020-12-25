@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PL
 {
@@ -19,12 +20,23 @@ namespace PL
     /// </summary>
     public partial class managerView : Window
     {
+        
         public ViewModel.managerView viewModel;
+       
         public managerView()
         {
+            BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
+            //foreach (var window in System.Windows.Application.Current.Windows)
+            //{
+            //    if (window.GetType() == typeof(MainWindow))
+            //        main = window as MainWindow;
+            //}
+            List<BO.Bus> lsit1= bl.GetAllBuses();
+            var buses = bl.GetAllBuses();
+           
             InitializeComponent();
-            viewModel =new ViewModel.managerView();
-            DataContext = viewModel;
+            linesView.ItemsSource = buses;
+
             
         }
     }

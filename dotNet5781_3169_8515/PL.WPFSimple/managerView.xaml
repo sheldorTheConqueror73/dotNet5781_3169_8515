@@ -177,7 +177,7 @@
 
                     </Grid>
                     <Viewbox  Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="445">
-                        <ListView ItemsSource="{Binding ListOfStations}">
+                        <ListView x:Name="linesView" ItemsSource="{Binding}">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Code" Width="100">
@@ -187,10 +187,11 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
+                                    
                                     <GridViewColumn Header="Address" Width="100">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/> 
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

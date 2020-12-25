@@ -37,6 +37,7 @@ namespace DS
 
         private static void initBuses()
         {
+            buses = new List<Bus>();
             Random r = new Random();
             for (int i = 0; i < 20; i++)
             {

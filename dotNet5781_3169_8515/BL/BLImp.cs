@@ -15,7 +15,8 @@ namespace BL
 
         public void addBus(Bus bus)
         {
-            throw new NotImplementedException();
+            //do input checks
+            dl.addBus(DOBOConvertor<DO.Bus, BO.Bus>(bus));
         }
 
         public void addLine(busLine line)
@@ -33,9 +34,14 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Bus> GetAllBuses()
+        public List<Bus> GetAllBuses()
         {
-            throw new NotImplementedException();
+            var result = dl.GetAllBuses();
+            if (result != null)
+                return (from item in result
+                       where item != null && item.enabled == true
+                       select DOBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
+            return default;
         }
 
         public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
@@ -45,7 +51,13 @@ namespace BL
 
         public IEnumerable<busLine> GetAllbusLines()
         {
-            throw new NotImplementedException();
+            var result = dl.GetAllbusLines();
+                if(result!=null)
+                return from item in result 
+                       where item!=null && item.enabled == true
+                   select DOBOConvertor<BO.busLine,DO.busLine>(item);
+            return default;
+            
         }
 
         public IEnumerable<busLine> GetAllbusLinesBy(Predicate<busLine> predicate)
@@ -131,6 +143,13 @@ namespace BL
         public void updateStation(busStation station)
         {
             throw new NotImplementedException();
+        }
+        private T DOBOConvertor<T,S>(S line) where T: new ()
+        {
+            T output =new T();
+            output.DeepCopyTo(line);
+            return output;
+
         }
     }
 }

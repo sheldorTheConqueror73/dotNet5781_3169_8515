@@ -31,8 +31,8 @@ namespace DO
             distance = 0;
             totalDistance = 0;
             dangerous = false;
-            registrationDate = new DateTime(0, 0, 0);
-            lastMaintenance = new DateTime(0, 0, 0);
+            registrationDate = new DateTime();
+            lastMaintenance = new DateTime();
             enabled = false;
 
         }

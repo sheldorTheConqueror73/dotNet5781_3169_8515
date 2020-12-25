@@ -12,7 +12,7 @@ namespace BLAPI
     {
 
         #region bus
-        IEnumerable<Bus> GetAllBuses();
+        List<Bus> GetAllBuses();
         IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate);
         Bus GetBus(string id);
         void addBus(Bus bus);
