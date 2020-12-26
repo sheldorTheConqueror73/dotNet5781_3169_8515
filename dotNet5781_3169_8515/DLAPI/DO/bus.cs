@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class Bus 
+    public class Bus: DOobject
     {
         public static int FULL_TANK = 1200;
         public bool enabled { get; set; }
@@ -15,7 +15,7 @@ namespace DO
         public int distance { get; set; }
         public int totalDistance { get; set; }
         public bool dangerous { get; set; }
-        public string id { get; set; }
+        //public string id { get; set; }
         public DateTime registrationDate { get; set; }
         public DateTime lastMaintenance { get; set; }
         public string status { get; set; }

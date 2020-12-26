@@ -44,6 +44,7 @@
     <Compile Include="BLAPI\BLFactory.cs" />
     <Compile Include="BLImp.cs" />
     <Compile Include="BLAPI\IBL.cs" />
+    <Compile Include="BO\BOobject.cs" />
     <Compile Include="BO\bus.cs" />
     <Compile Include="BO\busLine.cs" />
     <Compile Include="BO\busLineStation.cs" />
