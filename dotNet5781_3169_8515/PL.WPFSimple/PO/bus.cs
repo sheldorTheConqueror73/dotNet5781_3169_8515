@@ -8,30 +8,49 @@ using System.Windows;
 
 namespace PO
 {
-    public class Bus : DependencyObject
+    public class Bus:POobject
     {
-        static readonly DependencyProperty idProperty = DependencyProperty.Register("id", typeof(string), typeof(Bus));
-        static readonly DependencyProperty fuelProperty = DependencyProperty.Register("fuel", typeof(int), typeof(Bus));
-        static readonly DependencyProperty distanceProperty = DependencyProperty.Register("distance", typeof(int), typeof(Bus));
-        static readonly DependencyProperty totalDistanceProperty = DependencyProperty.Register("totalDistance", typeof(int), typeof(Bus));
-        static readonly DependencyProperty dangerousProperty = DependencyProperty.Register("dangerous", typeof(bool), typeof(Bus));
-        static readonly DependencyProperty registrationDateProperty = DependencyProperty.Register("registrationDate", typeof(DateTime), typeof(Bus));
-        static readonly DependencyProperty lastMaintenanceProperty = DependencyProperty.Register("lastMaintenance", typeof(DateTime), typeof(Bus));
-        static readonly DependencyProperty statusProperty = DependencyProperty.Register("status", typeof(string), typeof(Bus));
-        static readonly DependencyProperty iconPathProperty = DependencyProperty.Register("iconPath", typeof(string), typeof(Bus));
-        static readonly DependencyProperty areaProperty = DependencyProperty.Register("area", typeof(BO.Area), typeof(Bus));
-
-        public string id { get => (string)GetValue(idProperty); set => SetValue(idProperty, value); }
-        public int fuel { get => (int)GetValue(fuelProperty); set => SetValue(fuelProperty, value); }
-        public int distance { get => (int)GetValue(distanceProperty); set => SetValue(distanceProperty, value); }
-        public int totalDistance { get => (int)GetValue(totalDistanceProperty); set => SetValue(totalDistanceProperty, value); }
-        public bool dangerous { get => (bool)GetValue(dangerousProperty); set => SetValue(dangerousProperty, value); }
-        public DateTime registrationDate { get => (DateTime)GetValue(registrationDateProperty); set => SetValue(registrationDateProperty, value); }
-        public DateTime lastMaintenance { get => (DateTime)GetValue(lastMaintenanceProperty); set => SetValue(lastMaintenanceProperty, value); }
-        public string status { get => (string)GetValue(statusProperty); set => SetValue(statusProperty, value); }
-        public string iconPath { get => (string)GetValue(iconPathProperty); set => SetValue(iconPathProperty, value); }
-        public BO.Area area { get => (BO.Area)GetValue(areaProperty); set => SetValue(areaProperty, value); }
+        public static int FULL_TANK = 1200;
+        public bool enabled { get; set; }
+        public int fuel { get; set; }
+        public int distance { get; set; }
+        public int totalDistance { get; set; }
+        public bool dangerous { get; set; }
+        //public string id { get; set; }
+        public DateTime registrationDate { get; set; }
+        public DateTime lastMaintenance { get; set; }
+        public string status { get; set; }
+        public Area area { get; set; }
 
 
+
+
+        public Bus()//ctor
+        {
+            id = "";
+            fuel = 0;
+            distance = 0;
+            totalDistance = 0;
+            dangerous = false;
+            registrationDate = new DateTime();
+            lastMaintenance = new DateTime();
+            enabled = false;
+
+        }
+        //ctor
+        public Bus(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready")//cotr
+        {
+            this.id = id;
+            this.fuel = fuel;
+            this.distance = distance;
+            this.dangerous = dangerous;
+            this.registrationDate = date;
+            this.lastMaintenance = lm;
+            this.totalDistance = totalDistance;
+            this.status = _status;
+            enabled = true;
+        }
     }
 }
+
+

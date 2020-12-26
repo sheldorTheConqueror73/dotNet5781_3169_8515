@@ -20,17 +20,71 @@ namespace PL
     /// </summary>
     public partial class managerView : Window
     {
-        
-      
+
+        BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         public managerView()
         {
-            BLAPI.IBL bl = BLAPI.BLFactory.GetBL();          
-            List<BO.Bus> lsit1= bl.GetAllBuses();
+                  
             var buses = bl.GetAllBuses();
             
             InitializeComponent();            
             tbiBuses.DataContext = buses;
+            busesView.SelectedIndex = 0;
 
+        }
+
+        private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            initTextBoxes(true,false);
+        }
+        
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (btnAddBus.Content.Equals("Add"))
+            {
+                btnAddBus.Content = "Submit";
+                initTextBoxes(true, true);
+            }
+            else
+            {
+                bl.addBus(PO.ConvertorUtility())
+                btnAddBus.Content = "Add";
+            }
+
+        }
+        private void initTextBoxes(bool flagEnabled, bool flagContent)
+        {
+            if (flagEnabled)
+            {
+                tbid.IsEnabled = true;
+                tbfuel.IsEnabled = true;
+                tbDistance.IsEnabled = true;
+                tbtotalDist.IsEnabled = true;
+                dpRegiDate.IsEnabled = true;
+                dplmiDate.IsEnabled = true;
+                tbDangerous.IsEnabled = true;
+            }
+            else
+            {
+                tbid.IsEnabled = false;
+                tbfuel.IsEnabled = false;
+                tbDistance.IsEnabled = false;
+                tbtotalDist.IsEnabled = false;
+                dpRegiDate.IsEnabled = false;
+                dplmiDate.IsEnabled = false;
+                tbDangerous.IsEnabled = false;
+            }
+            if (flagContent)
+            {
+                tbid.Text = "";
+                tbfuel.Text = "";
+                tbDistance.Text = "";
+                tbtotalDist.Text = "";
+                dpRegiDate.Text = DateTime.Now.ToString();
+                dplmiDate.Text = DateTime.Now.ToString();
+                tbDangerous.Text = "NO";
+            }
         }
     }
 }
