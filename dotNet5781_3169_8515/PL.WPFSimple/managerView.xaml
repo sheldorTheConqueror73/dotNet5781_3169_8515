@@ -112,7 +112,6 @@
                                 </Style>
                             </DatePicker.Resources>
                         </DatePicker>
-
                         <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
                             <Button Content="Add" HorizontalAlignment="Center" Width="100" Margin="125,30,125,0"/>
                         </StackPanel>

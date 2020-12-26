@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class Bus
+    public class Bus:BOobject
     {
         public class timerclass { };
         public static int FULL_TANK = 1200;
@@ -16,7 +16,7 @@ namespace BO
         public int distance { get; set; }
         public int totalDistance { get; set; }
         public bool dangerous { get; set; }
-        public string id { get; set; }
+       // public string id { get; set; }
         public DateTime registrationDate { get; set; }
         public DateTime lastMaintenance { get; set; }
         public string iconPath { get; set; }

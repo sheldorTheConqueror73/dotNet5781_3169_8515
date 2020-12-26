@@ -5,6 +5,7 @@ using DLAPI;
 using BLAPI;
 using System.Threading;
 using BO;
+using System.Reflection;
 
 namespace BL
 {
@@ -13,7 +14,7 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();
 
-        BO.Bus busDoBoAdapter(DO.Bus busDO)
+       /* BO.Bus busDoBoAdapter(DO.Bus busDO)
         {
             BO. Bus busBO = new BO.Bus();
             DO.Bus bus2DO;
@@ -52,12 +53,12 @@ namespace BL
             busBO.DeepCopyTo(busDO);
 
             return busDO;
-        }
+        }*/
 
         public void addBus(Bus bus)
         {
             //do input checks
-            dl.addBus(busDoBoAdapter(bus));
+            dl.addBus(BOtoDOConvertor<DO.Bus, BO.Bus >(bus));
         }
 
         public void addLine(busLine line)
@@ -81,7 +82,7 @@ namespace BL
             if (result != null)
                 return (from item in result
                         where item != null && item.enabled == true
-                        select busDoBoAdapter(item)).ToList();
+                        select DOtoBOConvertor<BO.Bus,DO.Bus>(item)).ToList();
             return default;
 
             //DOBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
@@ -94,11 +95,11 @@ namespace BL
 
         public IEnumerable<busLine> GetAllbusLines()
         {
-            var result = dl.GetAllbusLines();
+           /* var result = dl.GetAllbusLines();
                 if(result!=null)
                 return from item in result 
                        where item!=null && item.enabled == true
-                   select DOBOConvertor<BO.busLine,DO.busLine>(item);
+                   select DOtoBOConvertor<BO.busLine,DO.busLine>(item);*/
             return default;
             
         }
@@ -187,10 +188,31 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-        private T DOBOConvertor<T,S>(S line) where T: new ()
-        {
+        private T DOtoBOConvertor<T,S>(S line) where T  : BO.BOobject, new () where S : DO.DOobject, new()        {
             T output =new T();
-            output.DeepCopyTo(line);
+            output.id = line.id;
+            foreach (PropertyInfo propTo in output.GetType().GetProperties())
+            {
+                PropertyInfo propFrom = line.GetType().GetProperty(propTo.Name);
+                if (propFrom == null)
+                    continue;
+                propTo.SetValue(output,propFrom.GetValue(line,null));
+            }               
+                return output;
+
+        }
+
+        private T BOtoDOConvertor<T, S>(S line) where T : DO.DOobject, new() where S :  BO.BOobject, new()
+        {
+            T output = new T();
+            output.id = line.id;
+            foreach (PropertyInfo propTo in output.GetType().GetProperties())
+            {
+                PropertyInfo propFrom = line.GetType().GetProperty(propTo.Name);
+                if (propFrom == null)
+                    continue;
+                propTo.SetValue(output, propFrom.GetValue(line, null));
+            }
             return output;
 
         }
