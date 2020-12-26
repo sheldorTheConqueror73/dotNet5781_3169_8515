@@ -8,7 +8,7 @@
         Title="managerView" Height="450" Width="800">
     <Grid>
         <TabControl VerticalAlignment="Stretch">
-            <TabItem Header="Buses" >
+            <TabItem Header="Buses" x:Name="tbiBuses">
                 <Grid Name="mainGrid" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -21,35 +21,7 @@
                             <ColumnDefinition Width="365*"/>
                         </Grid.ColumnDefinitions>
                         <ListView x:Name="busesView"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" >
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="{x:Type ListViewItem}">
-                                    <Style.Resources>
-                                        <SolidColorBrush x:Key="ListItemHoverFill" Color="LightBlue"/>
-                                    </Style.Resources>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                <Border CornerRadius="0" SnapsToDevicePixels="True"   BorderThickness="0,-1,0,1"    BorderBrush="Transparent"     Background="{TemplateBinding Background}">
-                                                    <Border Name="InnerBorder" CornerRadius="0" BorderThickness="0">
-                                                        <Grid>
-                                                            <Rectangle Name="UpperHighlight" Visibility="Collapsed" Fill="Transparent" />
-                                                            <GridViewRowPresenter Grid.RowSpan="0"     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                                        </Grid>
-                                                    </Border>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource ListItemHoverFill}" />
-                                                        <Setter Property="BorderBrush" Value="Transparent" />
-                                                        <Setter TargetName="UpperHighlight" Property="Visibility" Value="Visible" />
-                                                    </Trigger>
-
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ListView.ItemContainerStyle>
+                          
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding id}">

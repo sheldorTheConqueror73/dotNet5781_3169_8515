@@ -34,9 +34,8 @@ namespace PL
             List<BO.Bus> lsit1= bl.GetAllBuses();
             var buses = bl.GetAllBuses();
            
-            InitializeComponent();
-            busesView.ItemsSource = buses;
-            gridBuses.DataContext = buses;
+            InitializeComponent();            
+            tbiBuses.DataContext = buses;
 
 
 
