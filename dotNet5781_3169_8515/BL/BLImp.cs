@@ -230,8 +230,6 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
-
         #endregion
         private T DOtoBOConvertor<T,S>(S line) where T  : BO.BOobject, new () where S : DO.DOobject, new()        {
             T output =new T();
