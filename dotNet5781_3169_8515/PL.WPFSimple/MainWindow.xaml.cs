@@ -23,6 +23,7 @@ namespace PL.SimpleWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         Clearance clearance = Clearance.None;
         string userName = "";
         string userId="";
@@ -34,7 +35,15 @@ namespace PL.SimpleWPF
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-
+            string username = txbusername.Text;
+            string password = txbupassword.Text;
+            if (username == "" || password == "")
+            {
+                MessageBox.Show("Please enter user name AND password");
+                return;
+            }
+            try { string str = bl.authenticate(username, password,out userId); }
+            catch (Exception exc) {; }
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class User
+    public class User :DOobject
     {
         public string id { get; set; }
         public string password { get; set; }

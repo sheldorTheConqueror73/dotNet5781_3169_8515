@@ -47,5 +47,13 @@ namespace BLAPI
         void updatebusLineStation(busLineStation line);
         #endregion
 
+        #region user
+        IEnumerable<BO.User> GetAllUsers();
+        BO.User GetUser(string id);
+        void addUser(BO.User line);
+        void removeUser(string id);
+         string authenticate(string username, string password, out string id);
+        #endregion
+
     }
 }

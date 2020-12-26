@@ -13,6 +13,13 @@ namespace BO
         internal ListEmptyExeption(string msg, Exception inner) : base(msg, inner) { }
 
     }
+    class credentialsIncorrectException : Exception
+    {
+        internal credentialsIncorrectException() { }
+        internal credentialsIncorrectException(string msg) : base(msg) { }
+        internal credentialsIncorrectException(string msg, Exception inner) : base(msg, inner) { }
+
+    }
     class unexpectedException : Exception
     {
         internal unexpectedException() { }

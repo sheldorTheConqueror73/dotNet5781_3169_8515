@@ -38,7 +38,7 @@ namespace DLAPI
 
         #region User
         IEnumerable<DO.User> GetAllbusUsers();
-        DO.User GetbusLineUser(string id);
+        DO.User GetUser(string id);
         void addLine(DO.User line);
         #endregion
     }
