@@ -21,23 +21,15 @@ namespace PL
     public partial class managerView : Window
     {
         
-        public ViewModel.managerView viewModel;
-       
+      
         public managerView()
         {
-            BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
-            //foreach (var window in System.Windows.Application.Current.Windows)
-            //{
-            //    if (window.GetType() == typeof(MainWindow))
-            //        main = window as MainWindow;
-            //}
+            BLAPI.IBL bl = BLAPI.BLFactory.GetBL();          
             List<BO.Bus> lsit1= bl.GetAllBuses();
             var buses = bl.GetAllBuses();
-           
+            
             InitializeComponent();            
             tbiBuses.DataContext = buses;
-
-
 
         }
     }

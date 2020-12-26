@@ -21,7 +21,6 @@
                             <ColumnDefinition Width="365*"/>
                         </Grid.ColumnDefinitions>
                         <ListView x:Name="busesView"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" >
-                          
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding id}">
@@ -94,19 +93,19 @@
                         <Label Grid.Row="5" Grid.Column="0"   Content="Registration Date:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14"/>
                         <Label Grid.Row="6" Grid.Column="0"  Content="Last Maintenance:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14"/>
 
-                        
-                        <TextBox Grid.Row="1" Grid.Column="1" Foreground="Cyan" Name="tbfuel" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Foreground="Cyan" Name="tbDistance" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding distance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Foreground="Cyan" Name="tbtotalDist" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" Text="{Binding totalDistance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" Foreground="Cyan" Name="tbDangerous" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding dangerous, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        <DatePicker Name="dpRegiDate" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980" SelectedDate="{Binding registrationDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
+
+                        <TextBox Grid.Row="1" Grid.Column="1" Foreground="Cyan" Name="tbfuel" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.fuel,ElementName=busesView, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Foreground="Cyan" Name="tbDistance" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.distance,ElementName=busesView, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Foreground="Cyan" Name="tbtotalDist" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" Text="{Binding SelectedItem.totalDistance,ElementName=busesView , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Foreground="Cyan" Name="tbDangerous" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.dangerous,ElementName=busesView , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <DatePicker Name="dpRegiDate" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980" SelectedDate="{Binding SelectedItem.registrationDate,ElementName=busesView , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
                                 </Style>
                             </DatePicker.Resources>
                         </DatePicker>
-                        <DatePicker  Name="dplmiDate" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayDateStart="1/1/1980" SelectedDate="{Binding lastMaintenance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
+                        <DatePicker  Name="dplmiDate" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayDateStart="1/1/1980" SelectedDate="{Binding SelectedItem.lastMaintenance,ElementName=busesView , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
@@ -115,9 +114,7 @@
                         </DatePicker>
 
                         <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
-                            <Button Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0"/>
-                            <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0"/>
-                            <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0"/>
+                            <Button Content="Add" HorizontalAlignment="Center" Width="100" Margin="125,30,125,0"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

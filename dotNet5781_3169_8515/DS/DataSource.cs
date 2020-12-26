@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using DO;
@@ -71,6 +72,7 @@ namespace DS
         private static DateTime randomDate(int mode = 0)
         {
             Random r = new Random();
+            Thread.Sleep(10);
             int month, day, year;
             year = r.Next(1980, DateTime.Now.Year + 1);
             if (year == DateTime.Now.Year)
@@ -96,6 +98,7 @@ namespace DS
             {
                 return randomDate(mode);
             }
+           
         }
         private static void initStations()
         {
