@@ -4,20 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BO
+namespace PL
 {
     class ListEmptyExeption : Exception
     {
         internal ListEmptyExeption() { }
         internal ListEmptyExeption(string msg) : base(msg) { }
         internal ListEmptyExeption(string msg, Exception inner) : base(msg, inner) { }
-
-    }
-    class credentialsIncorrectException : Exception
-    {
-        internal credentialsIncorrectException() { }
-        internal credentialsIncorrectException(string msg) : base(msg) { }
-        internal credentialsIncorrectException(string msg, Exception inner) : base(msg, inner) { }
 
     }
     class unexpectedException : Exception
@@ -27,6 +20,7 @@ namespace BO
         internal unexpectedException(string msg, Exception inner) : base(msg, inner) { }
 
     }
+   
     class noMatchExeption : Exception
     {
         internal noMatchExeption() { }

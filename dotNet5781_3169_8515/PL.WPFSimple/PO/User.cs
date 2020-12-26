@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
+namespace PL
 {
-    public class User :DOobject
+    public class User
     {
         public string id { get; set; }
         public string password { get; set; }

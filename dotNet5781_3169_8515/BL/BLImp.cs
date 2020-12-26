@@ -188,6 +188,51 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+        #region user
+        public IEnumerable<BO.User> GetAllUsers()
+        {
+            var result = dl.GetAllbusUsers();
+            if (result != null)
+                return (from item in result
+                        where item != null && item.enabled == true
+                        select DOtoBOConvertor<BO.User, DO.User>(item)).ToList();
+            return default;
+        }
+        public BO.User GetUser(string id)
+        {
+            try 
+            {
+                return DOtoBOConvertor<BO.User, DO.User>(dl.GetUser(id));            
+            }
+            catch (Exception e)
+            {
+                throw new noMatchExeption(e.Message);
+            }
+          
+        }
+        public string authenticate(string username, string password, out string id)
+        {
+
+            foreach (var user in this.GetAllUsers())
+                if (user.enabled == true && user.name == username && user.password == password)
+                {
+                    id = user.id;
+                    return user.accessLevel.ToString();
+                }
+            id = "";
+            throw new credentialsIncorrectException("Inncorrect Credentials. please try again");
+        }
+        public void addUser(BO.User user)
+        {
+            throw new NotImplementedException();
+        }
+        public void removeUser(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        #endregion
         private T DOtoBOConvertor<T,S>(S line) where T  : BO.BOobject, new () where S : DO.DOobject, new()        {
             T output =new T();
             output.id = line.id;

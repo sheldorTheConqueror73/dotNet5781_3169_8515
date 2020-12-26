@@ -141,10 +141,10 @@ namespace DL
         #region User
         public IEnumerable<User> GetAllbusUsers()
         {
-            return from bus in DataSource.users
-                   select bus.Clone();
+            return from user in DataSource.users
+                   select user.Clone();
         }
-        public User GetbusLineUser(string id)
+        public User GetUser(string id)
         {
             var result = DataSource.users.Find(b => b.id == id);
             if (result == null)
