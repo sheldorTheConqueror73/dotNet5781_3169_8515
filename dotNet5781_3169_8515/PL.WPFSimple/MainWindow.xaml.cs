@@ -23,11 +23,18 @@ namespace PL.SimpleWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        Clearance clearance = Clearance.None;
+        string userName = "";
+        string userId="";
         IBL bL = BLFactory.GetBL();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void login_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

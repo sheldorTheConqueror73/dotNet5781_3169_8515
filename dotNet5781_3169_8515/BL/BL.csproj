@@ -50,6 +50,7 @@
     <Compile Include="BO\busStation.cs" />
     <Compile Include="BO\Enums.cs" />
     <Compile Include="BO\exceptions.cs" />
+    <Compile Include="BO\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DeepCopyUtilities.cs" />
   </ItemGroup>

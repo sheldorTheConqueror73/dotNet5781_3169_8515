@@ -57,6 +57,7 @@
     <Compile Include="PO\bus.cs" />
     <Compile Include="PO\busLine.cs" />
     <Compile Include="PO\busLineStation.cs" />
+    <Compile Include="PO\exceptions.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,6 +79,8 @@
     <Compile Include="managerView.xaml.cs">
       <DependentUpon>managerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PO\Enums.cs" />
+    <Compile Include="PO\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
