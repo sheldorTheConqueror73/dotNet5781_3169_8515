@@ -25,7 +25,8 @@ namespace PL
         public managerView()
         { 
             InitializeComponent();
-            btnUpdate.Visibility = System.Windows.Visibility.Hidden;
+            dplmiDate.DisplayDateEnd = DateTime.Now;
+            dpRegiDate.DisplayDateEnd = DateTime.Now;
             tbiBuses.DataContext = bl.GetAllBuses();
             busesView.SelectedIndex = 0;
             cbStations.ItemsSource = bl.GetAllbusLineStation();
@@ -36,24 +37,32 @@ namespace PL
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             initTextBoxes(true,false);
-            btnAddBus.Visibility = System.Windows.Visibility.Hidden;
-            btnUpdate.Visibility = System.Windows.Visibility.Visible;
-
-
         }
         
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (btnAddBus.Content.Equals("Add"))
             {
                 btnAddBus.Content = "Submit";
                 initTextBoxes(true, true);
+                lbDanger.Visibility = System.Windows.Visibility.Hidden;
+                tbDangerous.Visibility= System.Windows.Visibility.Hidden;
             }
             else
             {
+                int fuel, dist, totalDIst;
+                
+                try { validateInput(out fuel, out dist, out totalDIst); }
+                catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                string id = tbid.Text;
+                DateTime rd = dpRegiDate.SelectedDate.Value;
+                DateTime lm = dplmiDate.SelectedDate.Value;
+
                 bl.addBus(new BO.Bus());
                 btnAddBus.Content = "Add";
+                lbDanger.Visibility = System.Windows.Visibility.Visible;
+                tbDangerous.Visibility = System.Windows.Visibility.Visible;
             }
 
         }
@@ -87,7 +96,7 @@ namespace PL
                 tbtotalDist.Text = "";
                 dpRegiDate.Text = DateTime.Now.ToString();
                 dplmiDate.Text = DateTime.Now.ToString();
-                tbDangerous.Text = "NO";
+                tbDangerous.Text = "";//----------------------------------------------------------------------------------------------fix denger bindning
             }
         }
 
@@ -103,6 +112,11 @@ namespace PL
                 tbDistance.IsEnabled = true;
                 tbtotalDist.IsEnabled = true;
                 busesView.Items.Refresh();
+            }
+            if(busesView.SelectedItem==null)
+            {
+                MessageBox.Show("You can not Update an empty list");
+                return;
             }
             try { 
             bl.updateBus(new BO.Bus(dpRegiDate.SelectedDate.Value, dplmiDate.SelectedDate.Value, tbid.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false,totalDIst,(busesView.SelectedItem as BO.Bus).status));
@@ -159,6 +173,7 @@ namespace PL
             bl.removeBus(id);
             tbiBuses.DataContext = bl.GetAllBuses();
             busesView.Items.Refresh();
+            initTextBoxes(false, true);
         }
     }
 }

@@ -240,9 +240,6 @@ namespace BL
 
         }
 
-        IEnumerable<busLineStation> IBL.GetAllbusLineStationBy(Predicate<busLineStation> predicate)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

@@ -41,11 +41,12 @@ namespace BLAPI
 
         #region LineStation
         IEnumerable<busLineStation> GetAllbusLineStation();
-        IEnumerable<busLineStation> GetAllbusLineStationBy(Predicate<busLineStation> predicate);
+  
         busLineStation GetbusLineStation(string id);
         void addLine(busLineStation line);
         void removebusLineStation(string id);
         void updatebusLineStation(busLineStation line);
+      
         #endregion
 
         #region user
