@@ -96,7 +96,10 @@ namespace PL
             int fuel, dist, totalDIst;
             try { validateInput(out fuel,out dist, out totalDIst); }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+            try { 
             bl.updateBus(new BO.Bus(dpRegiDate.SelectedDate.Value, dplmiDate.SelectedDate.Value, tbid.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false,totalDIst,(busesView.SelectedItem as BO.Bus).status));
+            }
+            catch (Exception ecx) { MessageBox.Show(ecx.Message); }
             tbid.IsEnabled = true;
             tbfuel.IsEnabled = true;
             tbDistance.IsEnabled = true;

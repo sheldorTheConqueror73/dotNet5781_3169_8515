@@ -34,6 +34,20 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+        #region bus
+        public void updateBus(Bus bus)
+        {
+            dl.updateBus(BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
+        }
+        public void removeBus(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Bus GetBus(string id)
+        {
+            throw new NotImplementedException();
+        }
 
         public List<Bus> GetAllBuses()
         {
@@ -51,6 +65,7 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+        #endregion
 
         public IEnumerable<busLine> GetAllbusLines()
         {
@@ -87,12 +102,7 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
-        public Bus GetBus(string id)
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public busLine GetBusLine(string id)
         {
             throw new NotImplementedException();
@@ -107,12 +117,7 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
-        public void removeBus(string id)
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public void removebusLineStation(string id)
         {
             throw new NotImplementedException();
@@ -128,10 +133,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public void updateBus(Bus bus)
-        {
-            dl.updateBus(BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
-        }
+       
 
         public void updatebusLineStation(busLineStation line)
         {
