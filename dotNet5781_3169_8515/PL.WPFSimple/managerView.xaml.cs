@@ -23,15 +23,10 @@ namespace PL
 
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         public managerView()
-        {
-
-            InitializeComponent();            
-            tbiBuses.DataContext = bl.GetAllBuses(); ;
-                  
-             buses = bl.GetAllBuses();
+        { 
             InitializeComponent();
             btnUpdate.Visibility = System.Windows.Visibility.Hidden;
-            tbiBuses.DataContext = buses;
+            tbiBuses.DataContext = bl.GetAllBuses();
             busesView.SelectedIndex = 0;
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.SelectedIndex = 0;
@@ -163,7 +158,7 @@ namespace PL
             var lineData = fxElt.DataContext as BO.Bus;
             string id = lineData.id;
             bl.removeBus(id);
-            buses= bl.GetAllBuses();
+            tbiBuses.DataContext = bl.GetAllBuses();
             busesView.Items.Refresh();
         }
     }
