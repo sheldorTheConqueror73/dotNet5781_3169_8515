@@ -44,8 +44,9 @@ namespace PL.SimpleWPF
                 return;
             }
             string str="";
-            try {str  = bl.authenticate(username, password,out userId); }
-            catch (Exception exc) {; }
+            try { str = bl.authenticate(username, password, out userId); }
+            catch (Exception exc) { MessageBox.Show(exc.Message); }
+         
             if (str == "Admin" || str == "Operator")
                 managerView.Show();
 
