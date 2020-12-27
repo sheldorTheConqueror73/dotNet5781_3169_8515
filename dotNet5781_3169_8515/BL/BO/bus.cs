@@ -74,15 +74,29 @@ namespace BO
                 space = "  ";
             return $"Id: {this.id} {space}  Status: {this.status} {st}";
         }
-        /// <summary>
-        /// saves  alist of buses to file
-        /// </summary>
-        /// <param name="ls1">list of buses to save</param>
-        /// <param name="path">path of file</param>
-        /// <param name="show">if show is true function will push notifications to user</param>
-        /// <returns>true for sucess, false if failed</returns>
 
- 
+        public bool passedYearNowAndThen()//return true if a year has passed since the last maintenance.
+        {
+            DateTime currentDate = DateTime.Now;
+            if ((currentDate.Year - this.lastMaintenance.Year) < 1)
+                return false;
+            if ((currentDate.Month - this.lastMaintenance.Month) < 0)
+                return false;
+            if ((currentDate.Day - this.lastMaintenance.Day) < 0)
+                return false;
+            return true;
+        }
+        public void UpdateDangerous()//updates dangerous status of selected bus
+        {
+            if ((distance >= 20000) || (this.passedYearNowAndThen() == true))
+            {
+                this.dangerous = true;
+                return;
+            }
+            this.dangerous = false;
+        }
+
+
 
     }
 

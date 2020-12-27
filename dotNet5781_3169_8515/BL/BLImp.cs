@@ -37,6 +37,7 @@ namespace BL
         #region bus
         public void updateBus(Bus bus)
         {
+            bus.UpdateDangerous();
             dl.updateBus(BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
         public void removeBus(string id)
