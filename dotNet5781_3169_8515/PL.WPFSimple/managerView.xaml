@@ -50,7 +50,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal" >
-                                                    <Button x:Name="Delete" Content="del" ToolTip="delete a bus" Background="Transparent"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                    <Button x:Name="Delete"  Click="Delete_Click" Content="del" ToolTip="delete a bus" Background="Transparent"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
                                                         <!--  <Image Source="src/pics/deleteIcon.png" Stretch="Fill"/>-->
                                                     </Button>
                                                     <Button x:Name="Maintenance" Content="mainte" ToolTip="send to drive" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">

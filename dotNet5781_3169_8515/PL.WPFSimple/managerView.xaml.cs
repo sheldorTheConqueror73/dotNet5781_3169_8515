@@ -20,12 +20,12 @@ namespace PL
     /// </summary>
     public partial class managerView : Window
     {
-
+        List<BO.Bus> buses;
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         public managerView()
         {
                   
-            var buses = bl.GetAllBuses();
+             buses = bl.GetAllBuses();
             InitializeComponent();
             btnUpdate.Visibility = System.Windows.Visibility.Hidden;
             tbiBuses.DataContext = buses;
@@ -149,6 +149,16 @@ namespace PL
                 throw new InvalidUserInputExecption("Invalid input: total distance must be an integer");
             if (totaldistance < 0)
                 throw new InvalidUserInputExecption("Invalid input: total distance must not be lesser than 0");
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var fxElt = sender as FrameworkElement;
+            var lineData = fxElt.DataContext as BO.Bus;
+            string id = lineData.id;
+            bl.removeBus(id);
+            buses= bl.GetAllBuses();
+            busesView.Items.Refresh();
         }
     }
 }
