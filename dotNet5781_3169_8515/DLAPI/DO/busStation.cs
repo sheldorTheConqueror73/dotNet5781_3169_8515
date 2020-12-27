@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class busStation
+    public class busStation:DOobject
     {
         readonly static int NULL = -200;//not too sure about this - used to mark empty variable
-        public  string id { get; set; }
+       // public  string id { get; set; }
         protected string address;
         protected float latitude, longitude;//set up accessors for these two
         public bool enabled { get; set; }
@@ -45,6 +45,7 @@ namespace DO
             address = "";
             latitude = NULL;
             longitude = NULL;
+            enabled = true;
         }
         public busStation(string _id)//ctor
         {
@@ -52,6 +53,7 @@ namespace DO
             address = "";
             latitude = NULL;
             longitude = NULL;
+            enabled = true;
         }
         public busStation(string id, float lat, float lon, string address = "")//ctor
         {
@@ -62,6 +64,7 @@ namespace DO
             this.address = address;
             this.latitude = lat;
             this.longitude = lon;
+            enabled = true;
         }
 
         public busStation(busStation bs)
@@ -70,6 +73,7 @@ namespace DO
             this.address = bs.Address;
             this.latitude = bs.Latitude;
             this.longitude = bs.Longitude;
+            this.enabled = bs.enabled;
         }
        
         public override string ToString()

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class busStation
+    public class busStation:BOobject
     {
         readonly static int NULL = -200;//not too sure about this - used to mark empty variable
-        protected readonly string id;
+       // protected readonly string id;
         protected string address;
         protected float latitude, longitude;//set up accessors for these two
+        public bool enabled { get; set; }
         //getters and setters:
         public string Id
         {
@@ -46,6 +47,7 @@ namespace BO
             address = "";
             latitude = NULL;
             longitude = NULL;
+            enabled = true;
         }
         public busStation(string _id)//ctor
         {
@@ -53,6 +55,7 @@ namespace BO
             address = "";
             latitude = NULL;
             longitude = NULL;
+            enabled = true;
         }
         public busStation(string id, float lat, float lon, string address = "")//ctor
         {
@@ -63,6 +66,7 @@ namespace BO
             this.address = address;
             this.latitude = lat;
             this.longitude = lon;
+            enabled = true;
         }
 
         public busStation(busStation bs)
@@ -71,6 +75,7 @@ namespace BO
             this.address = bs.Address;
             this.latitude = bs.Latitude;
             this.longitude = bs.Longitude;
+            enabled = true;
         }
         public static string ReadId()//read id from the user and returns a string
         {

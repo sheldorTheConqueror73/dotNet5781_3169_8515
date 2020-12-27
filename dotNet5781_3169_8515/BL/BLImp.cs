@@ -70,10 +70,15 @@ namespace BL
 
         public IEnumerable<busLineStation> GetAllbusLineStation()
         {
-            throw new NotImplementedException();
+            var result = dl.GetAllbusLineStation();
+            if (result != null)
+                return (from item in result
+                        where item != null && item.enabled == true
+                        select DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(item)).ToList();
+            return default;
         }
 
-        public IEnumerable<busLineStation> GetAllbusLineStationBy(Predicate<busLineStation> predicate)
+        public IEnumerable<busLine> GetAllbusLineStationBy(Predicate<busLineStation> predicate)
         {
             throw new NotImplementedException();
         }
@@ -81,9 +86,15 @@ namespace BL
         public IEnumerable<busStation> GetAllbusStations()
         {
             throw new NotImplementedException();
+
         }
 
         public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<busLine> GetAllLinesInStationBy(Predicate<busLineStation> predicate)
         {
             throw new NotImplementedException();
         }
@@ -217,6 +228,11 @@ namespace BL
             }
             return output;
 
+        }
+
+        IEnumerable<busLineStation> IBL.GetAllbusLineStationBy(Predicate<busLineStation> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

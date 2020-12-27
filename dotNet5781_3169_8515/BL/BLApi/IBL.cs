@@ -45,6 +45,7 @@ namespace BLAPI
         void addLine(busLineStation line);
         void removebusLineStation(string id);
         void updatebusLineStation(busLineStation line);
+        IEnumerable<busLine> GetAllLinesInStationBy(Predicate<busLineStation> predicate);
         #endregion
 
         #region user

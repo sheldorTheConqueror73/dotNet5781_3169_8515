@@ -24,13 +24,14 @@ namespace PL
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         public managerView()
         {
-                  
-            var buses = bl.GetAllBuses();
-            
-            InitializeComponent();            
-            tbiBuses.DataContext = buses;
-            busesView.SelectedIndex = 0;
 
+            InitializeComponent();            
+            tbiBuses.DataContext = bl.GetAllBuses(); ;
+            busesView.SelectedIndex = 0;
+            cbStations.ItemsSource = bl.GetAllbusLineStation();
+            cbStations.SelectedIndex = 0;
+           // List<BO.busLine> listOfLineInStation = bl.GetAllbusLines().Where(c1 => .ListOfCourses.All(c2 => c2.ID != c1.ID)).ToList();
+           // lvLinesInStation.ItemsSource = listOfLineInStation;
         }
 
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
