@@ -105,6 +105,11 @@ namespace PL
                 tbtotalDist.IsEnabled = true;
                 busesView.Items.Refresh();
             }
+            if(busesView.SelectedItem==null)
+            {
+                MessageBox.Show("You can not Update an empty list");
+                return;
+            }
             try { 
             bl.updateBus(new BO.Bus(dpRegiDate.SelectedDate.Value, dplmiDate.SelectedDate.Value, tbid.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false,totalDIst,(busesView.SelectedItem as BO.Bus).status));
             }
@@ -160,6 +165,7 @@ namespace PL
             bl.removeBus(id);
             tbiBuses.DataContext = bl.GetAllBuses();
             busesView.Items.Refresh();
+            initTextBoxes(false, true);
         }
     }
 }
