@@ -20,17 +20,23 @@ namespace PL
     /// </summary>
     public partial class managerView : Window
     {
-        List<BO.Bus> buses;
+
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         public managerView()
         {
+
+            InitializeComponent();            
+            tbiBuses.DataContext = bl.GetAllBuses(); ;
                   
              buses = bl.GetAllBuses();
             InitializeComponent();
             btnUpdate.Visibility = System.Windows.Visibility.Hidden;
             tbiBuses.DataContext = buses;
             busesView.SelectedIndex = 0;
-
+            cbStations.ItemsSource = bl.GetAllbusLineStation();
+            cbStations.SelectedIndex = 0;
+           // List<BO.busLine> listOfLineInStation = bl.GetAllbusLines().Where(c1 => .ListOfCourses.All(c2 => c2.ID != c1.ID)).ToList();
+           // lvLinesInStation.ItemsSource = listOfLineInStation;
         }
 
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)

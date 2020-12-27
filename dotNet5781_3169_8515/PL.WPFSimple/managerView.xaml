@@ -237,29 +237,23 @@
                         <RowDefinition Height="400*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="225"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="75"/>
                         <ColumnDefinition Width="225"/>
                         <ColumnDefinition Width="300*"/>
                     </Grid.ColumnDefinitions>
                     <Viewbox Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26">
-                        <ListView>
+                        <ListView >
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Code" Width="100">
+                                    <GridViewColumn Header="Code" Width="70" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock   Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Address" Width="100">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn Header="Lines" Width="100">
+                                    <GridViewColumn Header="Address" Width="70">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
@@ -270,8 +264,23 @@
                             </ListView.View>
                         </ListView>
                     </Viewbox>
-                    
-                    <Grid Grid.Column="2">
+                    <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26">
+                        <ListView Height="26"  x:Name="lvLinesInStation">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn x:Name="lineInStations" Header="Lines" Width="70" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ItemsControl  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Viewbox>
+                    <ComboBox x:Name="cbStations" Grid.Column="2" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Grid Grid.Column="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="90"/>
                             <RowDefinition Height="40"/>
@@ -287,12 +296,12 @@
                         <Label Grid.Row="0" Grid.Column="0" Content="Code:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         <Label Grid.Row="1" Grid.Column="0" Content="Address:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         <Label Grid.Row="2" Grid.Column="0" Content="Latitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                        <Label Grid.Row="3" Grid.Column="0" Content="Longtitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Longitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
-                        <TextBox Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Width="100" Height="30"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Width="100" Height="30"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Width="100" Height="30"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.id,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
 
                         <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
                             <Button Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0"/>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace BO
     {
         private int distance;
         private TimeSpan driveTime;
+        public ObservableCollection<busLine> ListOfLines { get; } = new ObservableCollection<busLine>();
+
         //getters and setters:
         public int Distance
         {
@@ -94,10 +97,14 @@ namespace BO
                 return this.id.CompareTo(other.Id);
         }
 
-        public override string ToString()
-        {
-            return $"{base.ToString()} Time: {driveTime.ToString(@"hh\:mm")}";
-        }
+        /* public override string ToString()
+         {
+             return $"{base.ToString()} Time: {driveTime.ToString(@"hh\:mm")}";
+         }*/
+         public override string ToString()
+         {
+             return $" {base.Id}, {base.Address}";
+         }
 
 
     }

@@ -9,7 +9,7 @@ namespace DO
     public class busLine
     {
         public string id { get; set; }
-        public int number { get; set; }
+        public string number { get; set; }
 
         public bool enabled { get; set; }
     }
