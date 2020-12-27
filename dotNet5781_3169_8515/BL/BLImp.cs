@@ -14,47 +14,6 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();
 
-       /* BO.Bus busDoBoAdapter(DO.Bus busDO)
-        {
-            BO. Bus busBO = new BO.Bus();
-            DO.Bus bus2DO;
-            string id = busDO.id;
-            try
-            {
-                bus2DO = dl.GetBus(id);
-            }
-            catch (Exception ex)
-            {
-                throw new ArgumentException("Student ID is illegal", ex);
-            }
-            bus2DO.DeepCopyTo(busBO);
-           
-
-            busDO.DeepCopyTo(busBO);         
-            
-            return busBO;
-        }
-        DO.Bus busDoBoAdapter(BO.Bus busBO)
-        {
-            DO.Bus busDO = new DO.Bus();
-            BO.Bus bus2BO;
-            string id = busBO.id;
-            try
-            {
-                bus2BO = GetBus(id);
-            }
-            catch (Exception ex)
-            {
-                throw new ArgumentException("Student ID is illegal", ex);
-            }
-            bus2BO.DeepCopyTo(busDO);
-
-
-            busBO.DeepCopyTo(busDO);
-
-            return busDO;
-        }*/
-
         public void addBus(Bus bus)
         {
             //do input checks
@@ -230,8 +189,6 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
-
         #endregion
         private T DOtoBOConvertor<T,S>(S line) where T  : BO.BOobject, new () where S : DO.DOobject, new()        {
             T output =new T();
