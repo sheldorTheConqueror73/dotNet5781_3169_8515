@@ -95,7 +95,7 @@
                         <Label Grid.Row="4" Grid.Column="0"  Content="Total Distance:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18"/>
                         <Label Grid.Row="5" Grid.Column="0"   Content="Registration Date:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14"/>
                         <Label Grid.Row="6" Grid.Column="0"  Content="Last Maintenance:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14"/>
-                        <Label Grid.Row="7" Grid.Column="0"   Content="Dangerous:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20"/>
+                        <Label x:Name="lbDanger" Grid.Row="7" Grid.Column="0"   Content="Dangerous:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20"/>
 
 
                         <TextBox Grid.Row="1" Grid.Column="1" Foreground="Cyan" Name="tbid" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.id,ElementName=busesView, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
@@ -130,7 +130,7 @@
                         </TextBox>
 
                         <StackPanel Grid.Row="8" Grid.ColumnSpan="3">
-                            <Button x:Name="btnAddBus" Content="Add" HorizontalAlignment="Center" Width="100" Margin="125,30,125,0" Click="Button_Click"/>
+                            <Button x:Name="btnAddBus" Content="Add" HorizontalAlignment="Center" Width="100" Margin="125,30,125,0" Click="btnAdd_Click"/>
                             <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Center" Width="100" Margin="125,0,125,0" Click="btnUpdate_Click"/>
                         </StackPanel>
                     </Grid>
