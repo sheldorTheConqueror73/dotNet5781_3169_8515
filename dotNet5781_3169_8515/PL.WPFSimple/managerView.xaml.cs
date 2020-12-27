@@ -48,7 +48,7 @@ namespace PL
             }
             else
             {
-               // bl.addBus(PO.ConvertorUtility())
+                bl.addBus(new BO.Bus());
                 btnAddBus.Content = "Add";
             }
 
