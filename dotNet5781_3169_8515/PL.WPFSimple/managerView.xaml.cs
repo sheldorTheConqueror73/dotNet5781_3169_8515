@@ -23,10 +23,10 @@ namespace PL
 
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         public managerView()
-        {
-
-            InitializeComponent();            
-            tbiBuses.DataContext = bl.GetAllBuses(); ;
+        { 
+            InitializeComponent();
+            btnUpdate.Visibility = System.Windows.Visibility.Hidden;
+            tbiBuses.DataContext = bl.GetAllBuses();
             busesView.SelectedIndex = 0;
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.SelectedIndex = 0;
@@ -97,14 +97,19 @@ namespace PL
             int fuel, dist, totalDIst;
             try { validateInput(out fuel,out dist, out totalDIst); }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+            finally
+            {
+                tbid.IsEnabled = true;
+                tbfuel.IsEnabled = true;
+                tbDistance.IsEnabled = true;
+                tbtotalDist.IsEnabled = true;
+                busesView.Items.Refresh();
+            }
             try { 
             bl.updateBus(new BO.Bus(dpRegiDate.SelectedDate.Value, dplmiDate.SelectedDate.Value, tbid.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false,totalDIst,(busesView.SelectedItem as BO.Bus).status));
             }
-            catch (Exception ecx) { MessageBox.Show(ecx.Message); }
-            tbid.IsEnabled = true;
-            tbfuel.IsEnabled = true;
-            tbDistance.IsEnabled = true;
-            tbtotalDist.IsEnabled = true;
+            catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
+            
         }
         private void validateInput (out int fuel, out int distance, out int totaldistance)
         {
@@ -117,7 +122,7 @@ namespace PL
             foreach (char latter in tbid.Text)
             {
                 if ((latter > '9') || (latter < '0'))
-                    throw new InvalidUserInputExecption("Invalid input: id must contain digits only");
+                    throw new InvalidUserInputExecption("Invalid input: id must be an integer");
             }
             if ((tbid.Text.Length == 8 && ((DateTime)dpRegiDate.SelectedDate).Year < 2018) || (tbid.Text.Length == 7 && ((DateTime)dpRegiDate.SelectedDate).Year >= 2018))
                 throw new InvalidUserInputExecption("Invalid input: id format doesn't match registration date");
@@ -126,7 +131,7 @@ namespace PL
                 throw new InvalidUserInputExecption("Invalid input: fuel field cannot be empty");
             flag = int.TryParse( tbfuel.Text, out fuel);
             if (!flag)
-                throw new InvalidUserInputExecption("Invalid input: fuel must contain digits only");
+                throw new InvalidUserInputExecption("Invalid input: fuel must be an integer");
             if ((fuel > 1200) || (fuel < 0))
                 throw new InvalidUserInputExecption("Invalid input: fuel must be within the range of 0 to 1200");
             tbDistance.IsEnabled = false;
@@ -134,17 +139,27 @@ namespace PL
                 throw new InvalidUserInputExecption("Invalid input: distance field cannot be empty");
             flag = int.TryParse(tbDistance.Text, out distance);
             if (!flag)
-                throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must contain digits only");
+                throw new InvalidUserInputExecption("Invalid input: distance since last maintenance must be an integer");
             if ((distance > 20000) || (distance < 0))
-                throw new InvalidUserInputExecption("Invalid input: distance since last masdinasd must be within the range of 0 to 20000");
+                throw new InvalidUserInputExecption("Invalid input: distance since last maintenance must be within the range of 0 to 20000");
             tbtotalDist.IsEnabled = false;
             if ((tbtotalDist.Text == null) || (tbtotalDist.Text == ""))
                 throw new InvalidUserInputExecption("Invalid input: total distance field cannot be empty");
             flag = int.TryParse(tbtotalDist.Text, out totaldistance);
             if (!flag)
-                throw new InvalidUserInputExecption("Invalid input: total distance must contain digits only");
+                throw new InvalidUserInputExecption("Invalid input: total distance must be an integer");
             if (totaldistance < 0)
                 throw new InvalidUserInputExecption("Invalid input: total distance must not be lesser than 0");
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var fxElt = sender as FrameworkElement;
+            var lineData = fxElt.DataContext as BO.Bus;
+            string id = lineData.id;
+            bl.removeBus(id);
+            tbiBuses.DataContext = bl.GetAllBuses();
+            busesView.Items.Refresh();
         }
     }
 }

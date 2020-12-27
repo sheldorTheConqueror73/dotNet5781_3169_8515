@@ -37,11 +37,12 @@ namespace BL
         #region bus
         public void updateBus(Bus bus)
         {
+            bus.UpdateDangerous();
             dl.updateBus(BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
         public void removeBus(string id)
         {
-            throw new NotImplementedException();
+            dl.removeBus(id);
         }
 
         public Bus GetBus(string id)
@@ -54,7 +55,7 @@ namespace BL
             var result = dl.GetAllBuses();
             if (result != null)
                 return (from item in result
-                        where item != null && item.enabled == true
+                        where (item != null && item.enabled == true)
                         select DOtoBOConvertor<BO.Bus,DO.Bus>(item)).ToList();
             return default;
 
