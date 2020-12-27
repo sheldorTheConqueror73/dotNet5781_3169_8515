@@ -39,9 +39,8 @@ namespace DL
         }
         public void addBus(Bus b1)
         {
-
             var result = DataSource.buses.Find(b => b.id == b1.id);
-            if ((result != null) || (result.enabled == true))
+            if ((result != null) && (result.enabled == true))
                 throw new itemAlreadyExistsException($"ID number {b1.id} is already taken");
             DataSource.buses.Add(b1.Clone());
         }
