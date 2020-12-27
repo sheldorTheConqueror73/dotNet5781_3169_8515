@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="managerView" Height="450" Width="800">
+        Title="managerView" Height="450" Width="800" >
     
     <Grid>
     
@@ -22,7 +22,7 @@
                             <ColumnDefinition Width="10*"/>
                             <ColumnDefinition Width="365*"/>
                         </Grid.ColumnDefinitions>
-                        <ListView x:Name="busesView"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick">
+                        <ListView x:Name="busesView"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding id}">
@@ -131,6 +131,7 @@
 
                         <StackPanel Grid.Row="8" Grid.ColumnSpan="3">
                             <Button x:Name="btnAddBus" Content="Add" HorizontalAlignment="Center" Width="100" Margin="125,30,125,0" Click="Button_Click"/>
+                            <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Center" Width="100" Margin="125,0,125,0" Click="btnUpdate_Click"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

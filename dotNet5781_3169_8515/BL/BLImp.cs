@@ -130,7 +130,7 @@ namespace BL
 
         public void updateBus(Bus bus)
         {
-            throw new NotImplementedException();
+            dl.updateBus(BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
 
         public void updatebusLineStation(busLineStation line)

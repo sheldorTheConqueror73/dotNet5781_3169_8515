@@ -48,8 +48,22 @@ namespace PL.SimpleWPF
             catch (Exception exc) { MessageBox.Show(exc.Message); }
          
             if (str == "Admin" || str == "Operator")
+            {
+                this.Hide();
                 managerView.Show();
+            }
+        }
 
+        private void newUser_click(object sender, RoutedEventArgs e)
+        {
+            addUser add = new addUser();
+            add.Show();
+        }
+
+        private void TextBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+              login_Click(this, new RoutedEventArgs());
         }
     }
 }
