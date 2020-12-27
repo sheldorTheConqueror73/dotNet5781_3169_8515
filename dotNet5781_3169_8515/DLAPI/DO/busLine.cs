@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class busLine
+    public class busLine:DOobject
     {
-        public string id { get; set; }
+     //   public string id { get; set; }
         public string number { get; set; }
-
+        public Area area { get; set; }
         public bool enabled { get; set; }
+      
     }
 }

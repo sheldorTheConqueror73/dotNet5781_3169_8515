@@ -30,8 +30,7 @@ namespace PL
             busesView.SelectedIndex = 0;
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.SelectedIndex = 0;
-           // List<BO.busLine> listOfLineInStation = bl.GetAllbusLines().Where(c1 => .ListOfCourses.All(c2 => c2.ID != c1.ID)).ToList();
-           // lvLinesInStation.ItemsSource = listOfLineInStation;
+            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation(tbStationId.Text.ToString());
         }
 
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)

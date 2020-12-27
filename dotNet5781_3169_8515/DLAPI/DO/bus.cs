@@ -19,7 +19,7 @@ namespace DO
         public DateTime registrationDate { get; set; }
         public DateTime lastMaintenance { get; set; }
         public string status { get; set; }
-        public  Area area { get; set; }
+       
 
 
 

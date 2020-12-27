@@ -15,6 +15,7 @@ namespace DS
         public static List<busLineStation> LineStations;
         public static List<busLine> Lines;
         public static List<User> users;
+        public static List<lineInStation> lineInStations;
 
         static DataSource()
         {
@@ -28,6 +29,7 @@ namespace DS
             initStations();
             initBuses();
             initUsers();
+            initLines();
 
         }
 
@@ -115,6 +117,64 @@ namespace DS
         new busLineStation("000007", (float)36.4763, (float)130.3454, "Narnia"),new busLineStation("000008", (float)34.4653, (float)121.3344, "Atlantis"),new busLineStation("000505", (float)54.355, (float)-30.4894, "New Ankh"),
         new busLineStation("333111", (float)32.00001, (float)-32.00007),new busLineStation("432888", (float)51.09874, (float)-52.09143),new busLineStation("999339", (float)22.33088, (float)-66.0083),new busLineStation("765765", (float)34.650652, (float)133.02074)};
 
+        }
+
+        private static void initLines()
+        {
+            lineInStations = new List<lineInStation>();
+            Lines = new List<busLine>();
+            for (int i = 0; i < 10; i++)
+            {
+                Random r = new Random();
+                Thread.Sleep(10);
+                string id = (r.Next(1, 1000)).ToString();
+                DO.Area a1 = (DO.Area)r.Next(0, 10);
+                int size = r.Next(10, 15);
+                busLineStation[] arr = new busLineStation[size];
+                arr = tandom(size,id);
+                try
+                {
+                    Lines.Add(new busLine() { enabled = true, number = id, area = a1 }); ;
+               
+                }
+                catch (Exception e) { Console.WriteLine(e.Message); i--; }// remove error print
+            }
+        }
+        private static busLineStation[] tandom(int size,string id)
+        {
+            busLineStation[] arr = new busLineStation[size];
+            Random r = new Random();
+            Thread.Sleep(10);
+            for (int i = 0; i < size; i++)
+            {
+                bool flag = false;
+                int num = r.Next(0, LineStations.Count);
+
+                for (int j = 0; j < i; j++)
+                {
+                    if (arr[j].id == LineStations[num].id)
+                    {
+                        i--;
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag)
+                    continue;
+                arr[i] = new busLineStation(LineStations[num]);
+                if (i != 0)
+                {
+                    arr[i].Distance = r.Next(5, 301);
+                    arr[i].DriveTime = new TimeSpan(0, r.Next(1, 60), 0);
+                }
+                else
+                {
+                    arr[i].Distance = 0;
+                    arr[i].DriveTime = new TimeSpan(0, 0, 0);
+                }
+                lineInStations.Add(new lineInStation() { LineNumber = id, stationId=arr[i].id });
+            }
+            return arr;
         }
 
     }

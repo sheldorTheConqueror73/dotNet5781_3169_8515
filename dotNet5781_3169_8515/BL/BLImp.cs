@@ -105,6 +105,18 @@ namespace BL
 
         }
 
+
+        public IEnumerable<busLine> GetAllLinesInStation(string id)
+        {
+            var result = dl.GetAllbusLines();
+            var resultStaInLine = dl.GetAllLineInStation();
+            if (result != null)
+                return (from item in result 
+                        from item2 in resultStaInLine
+                        where item != null && item.enabled == true && item.number==item2.LineNumber&&item2.stationId==id
+                        select DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
+            return default;
+        }
         public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate)
         {
             throw new NotImplementedException();

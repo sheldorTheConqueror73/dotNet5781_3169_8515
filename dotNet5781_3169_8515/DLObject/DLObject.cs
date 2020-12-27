@@ -172,8 +172,17 @@ namespace DL
             result = user.Clone();
         }
 
+
+
         #endregion
 
+        #region lineInStation
+        public IEnumerable<lineInStation> GetAllLineInStation()
+        {
+            return from bus in DataSource.lineInStations
+                   select bus.Clone();
+        }
+        #endregion
         #endregion
 
 

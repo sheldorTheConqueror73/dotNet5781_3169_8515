@@ -8,39 +8,17 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class busLine : IEnumerable<Bus>
-    {
-        public IEnumerable<Bus> lines;
-        public busLine()
-        {
-            this.id = "";
-            this.number = "";
-            this.enabled = true;
-        }
-        public busLine(string id, string number, bool enabled, IEnumerable<busLineStation> path)
-        {
-            this.id = id;
-            this.number = number;
-            this.enabled = enabled;
-            Path = path;
-        }
+    public class busLine : BOobject
+    {     
 
-        public IEnumerator<Bus> GetEnumerator()
-        {
-            return ((IEnumerable<Bus>)lines).GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable)lines).GetEnumerator();
-        }
-
-        public string id { get; set; }
+       // public string id { get; set; }
         public string number { get; set; }
 
         public bool enabled { get; set; }
-        
-        public IEnumerable<busLineStation> Path { get; set; }
+        public Area area { get; set; }
+        public busLineStation firstStation { get; set; }
+        public busLineStation lastStation { get; set; }
+        public IEnumerable<lineInStation> Path { get; set; }
 
 
 

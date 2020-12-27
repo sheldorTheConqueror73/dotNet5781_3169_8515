@@ -298,7 +298,7 @@
                         <Label Grid.Row="2" Grid.Column="0" Content="Latitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         <Label Grid.Row="3" Grid.Column="0" Content="Longitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
-                        <TextBox Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.id,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationId" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.id,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <TextBox Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <TextBox Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <TextBox Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>

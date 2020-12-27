@@ -34,12 +34,18 @@ namespace DLAPI
         void addLine(DO.busLineStation line);
         void removebusLineStation(string id);
         void updatebusLineStation(DO.busLineStation line);
+     
         #endregion
 
         #region User
         IEnumerable<DO.User> GetAllbusUsers();
         DO.User GetUser(string id);
         void addLine(DO.User line);
+        #endregion
+
+        #region lineInStation
+        IEnumerable<DO.lineInStation> GetAllLineInStation();
+
         #endregion
     }
 }
