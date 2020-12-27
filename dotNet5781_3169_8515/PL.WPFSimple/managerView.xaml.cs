@@ -88,7 +88,7 @@ namespace PL
                 tbtotalDist.Text = "";
                 dpRegiDate.Text = DateTime.Now.ToString();
                 dplmiDate.Text = DateTime.Now.ToString();
-                tbDangerous.Text = "";
+                tbDangerous.Text = "";//----------------------------------------------------------------------------------------------fix denger bindning
             }
         }
 
