@@ -258,14 +258,6 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Viewbox>
-                    <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Margin="60,0,0,0" >
-                        <ListView>
-                            <ListView.View>
-                                <GridView>
                                     <GridViewColumn Header="Lines" Width="100">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -277,6 +269,7 @@
                             </ListView.View>
                         </ListView>
                     </Viewbox>
+                    
                     <Grid Grid.Column="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="90"/>
