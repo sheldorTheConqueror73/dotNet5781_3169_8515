@@ -26,7 +26,7 @@ namespace PL.SimpleWPF
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
       //  Clearance clearance = Clearance.None;
         string userName = "";
-        string userId="";
+        int userId=-1;
         IBL bL = BLFactory.GetBL();
         public MainWindow()
         {

@@ -25,10 +25,10 @@
                         <ListView x:Name="busesView"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" >
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding id}">
+                                    <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding plateNumber}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock  Text="{Binding id}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock  Text="{Binding plateNumber}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -98,7 +98,7 @@
                         <Label x:Name="lbDanger" Grid.Row="7" Grid.Column="0"   Content="Dangerous:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20"/>
 
 
-                        <TextBox Grid.Row="1" Grid.Column="1" Foreground="Cyan" Name="tbid" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.id,ElementName=busesView, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Foreground="Cyan" Name="tbid" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.plateNumber,ElementName=busesView, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <TextBox Grid.Row="2" Grid.Column="1" Foreground="Cyan" Name="tbfuel" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.fuel,ElementName=busesView, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <TextBox Grid.Row="3" Grid.Column="1" Foreground="Cyan" Name="tbDistance" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.distance,ElementName=busesView, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                         <TextBox Grid.Row="4" Grid.Column="1" Foreground="Cyan" Name="tbtotalDist" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" Text="{Binding SelectedItem.totalDistance,ElementName=busesView , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>

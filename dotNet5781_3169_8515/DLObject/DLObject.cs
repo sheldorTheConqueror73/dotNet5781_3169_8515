@@ -29,7 +29,7 @@ namespace DL
             return from bus in DataSource.buses
                    select bus.Clone();
         }
-        public Bus GetBus(string id)
+        public Bus GetBus(int id)
         {
             var result = DataSource.buses.Find(b => b.id == id);
             if (result == null)
@@ -44,7 +44,7 @@ namespace DL
                 throw new itemAlreadyExistsException($"ID number {b1.id} is already taken");
             DataSource.buses.Add(b1.Clone());
         }
-        public void removeBus(string id)
+        public void removeBus(int id)
         {
             var result = DataSource.buses.Find(b => b.id == id);
             if ((result == null) || (result.enabled == false))
@@ -69,7 +69,7 @@ namespace DL
             return from bus in DataSource.Lines
                    select bus.Clone();
         }
-        public busLine GetBusLine(string id)
+        public busLine GetBusLine(int id)
         {
 
             var result = DataSource.Lines.Find(b => b.id == id);
@@ -84,7 +84,7 @@ namespace DL
                 throw new itemAlreadyExistsException($"ID number {line.id} is already taken");
             DataSource.Lines.Add(line.Clone());
         }
-        public void removeLine(string id)
+        public void removeLine(int id)
         {
             var result = DataSource.Lines.Find(b => b.id == id);
             if (result == null)
@@ -107,7 +107,7 @@ namespace DL
             return from bus in DataSource.LineStations
                    select bus.Clone();
         }
-        public busLineStation GetbusLineStation(string id)
+        public busLineStation GetbusLineStation(int id)
         {
             var result = DataSource.LineStations.Find(b => b.id == id);
             if (result == null)
@@ -121,7 +121,7 @@ namespace DL
                 throw new itemAlreadyExistsException($"ID number {line.id} is already taken");
             DataSource.LineStations.Add(line.Clone());
         }
-        public void removebusLineStation(string id)
+        public void removebusLineStation(int id)
         {
             var result = DataSource.LineStations.Find(b => b.id == id);
             if (result == null)
@@ -143,7 +143,7 @@ namespace DL
             return from user in DataSource.users
                    select user.Clone();
         }
-        public User GetUser(string id)
+        public User GetUser(int id)
         {
             var result = DataSource.users.Find(b => b.id == id);
             if (result == null)
@@ -157,7 +157,7 @@ namespace DL
                 throw new itemAlreadyExistsException($"ID number {user.id} is already taken");
             DataSource.users.Add(user.Clone());
         }
-        public void removebusUser(string id)
+        public void removebusUser(int id)
         {
             var result = DataSource.users.Find(b => b.id == id);
             if (result == null)
