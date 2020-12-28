@@ -127,20 +127,16 @@ namespace DS
             {
                 Random r = new Random();
                 Thread.Sleep(10);
-                string id = (r.Next(1, 1000)).ToString();
+                string Number = (r.Next(1, 1000)).ToString();
                 DO.Area a1 = (DO.Area)r.Next(0, 10);
                 int size = r.Next(10, 15);
                 busLineStation[] arr = new busLineStation[size];
-                arr = tandom(size,id);
-                try
-                {
-                    Lines.Add(new busLine() { enabled = true, number = id, area = a1 }); ;
-               
-                }
-                catch (Exception e) { Console.WriteLine(e.Message); i--; }// remove error print
+                Lines.Add(new busLine() { enabled = true, number = Number, area = a1 }); ;
+                arr = tandom(size, Number,Lines[Lines.Count()-1].id);              
+              
             }
         }
-        private static busLineStation[] tandom(int size,string id)
+        private static busLineStation[] tandom(int size,string Number,int id)
         {
             int cnt = 1;
             busLineStation[] arr = new busLineStation[size];
@@ -173,7 +169,8 @@ namespace DS
                     arr[i].Distance = 0;
                     arr[i].DriveTime = new TimeSpan(0, 0, 0);
                 }
-                lineInStations.Add(new lineInStation() { LineNumber = id, stationCode = arr[i].code,placeOrder=cnt++ });
+                lineInStations.Add(new lineInStation() { Lineid = id, stationid = arr[i].id, placeOrder = cnt++ });
+
             }
             return arr;
         }

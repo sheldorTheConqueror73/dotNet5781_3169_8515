@@ -103,7 +103,7 @@ namespace BO
          }*/
          public override string ToString()
          {
-             return $" {base.id}, {base.Address}";
+             return $" {base.code}, {base.Address}";
          }
 
 
