@@ -14,47 +14,47 @@ namespace BLAPI
         #region bus
         List<Bus> GetAllBuses();
         IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate);
-        Bus GetBus(string id);
+        Bus GetBus(int id);
         void addBus(Bus bus);
-        void removeBus(string id);
+        void removeBus(int id);
         void updateBus(Bus bus);
         #endregion
 
         #region busLine
         IEnumerable<busLine> GetAllbusLines();
         IEnumerable<busLine> GetAllbusLinesBy(Predicate<busLine> predicate);
-        busLine GetBusLine(string id);
+        busLine GetBusLine(int id);
         void addLine(busLine line);
-        void removeLine(string id);
+        void removeLine(int id);
         void updateLine(busLine line);
         #endregion
 
         #region Station
         IEnumerable<busStation> GetAllbusStations();
         IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate);
-        busStation GetbusStation(string id);
+        busStation GetbusStation(int id);
         void addLine(busStation station);
-        void removeStation(string id);
+        void removeStation(int id);
         void updateStation(busStation station);
-        IEnumerable<busLine> GetAllLinesInStation(string id);
+        IEnumerable<busLine> GetAllLinesInStation(int id);
         #endregion
 
         #region LineStation
         IEnumerable<busLineStation> GetAllbusLineStation();
   
-        busLineStation GetbusLineStation(string id);
+        busLineStation GetbusLineStation(int id);
         void addLine(busLineStation line);
-        void removebusLineStation(string id);
+        void removebusLineStation(int id);
         void updatebusLineStation(busLineStation line);
       
         #endregion
 
         #region user
         IEnumerable<BO.User> GetAllUsers();
-        BO.User GetUser(string id);
+        BO.User GetUser(int id);
         void addUser(BO.User line);
-        void removeUser(string id);
-         string authenticate(string username, string password, out string id);
+        void removeUser(int id);
+         string authenticate(string username, string password, out int id);
         #endregion
 
     }

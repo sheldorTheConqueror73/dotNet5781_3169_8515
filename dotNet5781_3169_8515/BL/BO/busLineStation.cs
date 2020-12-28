@@ -94,7 +94,7 @@ namespace BO
             if (other == null)
                 return 1;
             else
-                return this.id.CompareTo(other.Id);
+                return this.id.CompareTo(other.id);
         }
 
         /* public override string ToString()
@@ -103,7 +103,7 @@ namespace BO
          }*/
          public override string ToString()
          {
-             return $" {base.Id}, {base.Address}";
+             return $" {base.id}, {base.Address}";
          }
 
 

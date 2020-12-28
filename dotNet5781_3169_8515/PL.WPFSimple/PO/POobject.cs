@@ -8,8 +8,12 @@ namespace PO
 {
     public class POobject
     {
-        public string id { get; set; }
-
+        protected  static int idCounter  = 0;
+        public int id { get; set; }
+        public POobject()
+        {
+            this.id = idCounter++;
+        }
 
     }
 }

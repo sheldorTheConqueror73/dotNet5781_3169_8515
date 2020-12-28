@@ -40,12 +40,12 @@ namespace BL
             bus.UpdateDangerous();
             dl.updateBus(BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
-        public void removeBus(string id)
+        public void removeBus(int id)
         {
             dl.removeBus(id);
         }
 
-        public Bus GetBus(string id)
+        public Bus GetBus(int id)
         {
             throw new NotImplementedException();
         }
@@ -106,7 +106,7 @@ namespace BL
         }
 
 
-        public IEnumerable<busLine> GetAllLinesInStation(string id)
+        public IEnumerable<busLine> GetAllLinesInStation(int id)
         {
             var result = dl.GetAllbusLines();
             var resultStaInLine = dl.GetAllLineInStation();
@@ -122,32 +122,32 @@ namespace BL
             throw new NotImplementedException();
         }
        
-        public busLine GetBusLine(string id)
+        public busLine GetBusLine(int id)
         {
             throw new NotImplementedException();
         }
 
-        public busLineStation GetbusLineStation(string id)
+        public busLineStation GetbusLineStation(int id)
         {
             throw new NotImplementedException();
         }
 
-        public busStation GetbusStation(string id)
+        public busStation GetbusStation(int id)
         {
             throw new NotImplementedException();
         }
       
-        public void removebusLineStation(string id)
+        public void removebusLineStation(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void removeLine(string id)
+        public void removeLine(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void removeStation(string id)
+        public void removeStation(int id)
         {
             throw new NotImplementedException();
         }
@@ -178,7 +178,7 @@ namespace BL
                         select DOtoBOConvertor<BO.User, DO.User>(item)).ToList();
             return default;
         }
-        public BO.User GetUser(string id)
+        public BO.User GetUser(int id)
         {
             try 
             {
@@ -190,7 +190,7 @@ namespace BL
             }
           
         }
-        public string authenticate(string username, string password, out string id)
+        public string authenticate(string username, string password, out int id)
         {
 
             foreach (var user in this.GetAllUsers())
@@ -199,14 +199,14 @@ namespace BL
                     id = user.id;
                     return user.accessLevel.ToString();
                 }
-            id = "";
+            id =-1;
             throw new credentialsIncorrectException("Inncorrect Credentials. please try again");
         }
         public void addUser(BO.User user)
         {
             throw new NotImplementedException();
         }
-        public void removeUser(string id)
+        public void removeUser(int id)
         {
             throw new NotImplementedException();
         }

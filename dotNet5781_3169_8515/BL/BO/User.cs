@@ -15,15 +15,13 @@ namespace BO
 
         public User()
         {
-            id = "";
             password = "";
             name = "";
             accessLevel = Clearance.None;
             enabled = true;
         }
-        public User(string id,string password, string name, Clearance access)
+        public User(string password, string name, Clearance access)
         {
-            this.id = id;
             this.password = password;
             this.name = name;
             accessLevel = access;

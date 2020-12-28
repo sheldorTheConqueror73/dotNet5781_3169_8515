@@ -8,7 +8,11 @@ namespace DO
 {
     public class DOobject
     {
-        public string id { get; set; }
-
+        protected static int idCounter=0; 
+        public int id { get; set; }
+        public DOobject()
+        {
+            this.id = idCounter++;
+        }
     }
 }

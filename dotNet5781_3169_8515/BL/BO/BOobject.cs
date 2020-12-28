@@ -8,6 +8,11 @@ namespace BO
 {
     public class BOobject
     {
-        public string id { get; set; }
+        protected static int idCounter = 0;
+        public int id { get; set; }
+        public BOobject()
+        {
+            this.id = idCounter++;
+        }
     }
 }

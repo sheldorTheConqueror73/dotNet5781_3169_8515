@@ -12,12 +12,9 @@ namespace BO
        // protected readonly string id;
         protected string address;
         protected float latitude, longitude;//set up accessors for these two
+        public string code { get; set; }
         public bool enabled { get; set; }
         //getters and setters:
-        public string Id
-        {
-            get => id;
-        }
         public float Latitude
         {
             get => latitude;
@@ -43,23 +40,23 @@ namespace BO
         }
         public busStation() //ctor
         {
-            id = "";
+            code = "";
             address = "";
             latitude = NULL;
             longitude = NULL;
             enabled = true;
         }
-        public busStation(string _id)//ctor
+        public busStation(string code)//ctor
         {
-            this.id = _id;
+            this.code = code;
             address = "";
             latitude = NULL;
             longitude = NULL;
             enabled = true;
         }
-        public busStation(string id, float lat, float lon, string address = "")//ctor
+        public busStation(string code, float lat, float lon, string address = "")//ctor
         {
-            this.id = id;
+            this.code = code;
             if (address == "")
                 address = "Unnamed station";
 
@@ -71,7 +68,8 @@ namespace BO
 
         public busStation(busStation bs)
         {
-            this.id = bs.Id;
+            this.code = bs.code;
+            this.id = bs.id;
             this.address = bs.Address;
             this.latitude = bs.Latitude;
             this.longitude = bs.Longitude;
@@ -96,7 +94,7 @@ namespace BO
                 str = "";
             string lat = (Latitude > 0) ? "N" : "S";
             string lon = (Longitude > 0) ? "E" : "W";
-            return $"{str} Bus Station Code: {Id}  {Latitude}°{lat}  {Longitude}°{lon}";
+            return $"{str} Bus Station Code: {code}  {Latitude}°{lat}  {Longitude}°{lon}";
         }
 
     }

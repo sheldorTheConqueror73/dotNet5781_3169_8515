@@ -15,10 +15,10 @@ namespace DO
         public int distance { get; set; }
         public int totalDistance { get; set; }
         public bool dangerous { get; set; }
-        //public string id { get; set; }
         public DateTime registrationDate { get; set; }
         public DateTime lastMaintenance { get; set; }
         public string status { get; set; }
+        public string plateNumber { get; set; }
        
 
 
@@ -26,7 +26,7 @@ namespace DO
 
         public Bus()//ctor
         {
-            id = "";
+            plateNumber = "";
             fuel = 0;
             distance = 0;
             totalDistance = 0;
@@ -37,9 +37,9 @@ namespace DO
 
         }
         //ctor
-        public Bus(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready")//cotr
+        public Bus(DateTime date, DateTime lm, string plateNumber = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready")//cotr
         {
-            this.id = id;
+            this.plateNumber = plateNumber;
             this.fuel = fuel;
             this.distance = distance;
             this.dangerous = dangerous;

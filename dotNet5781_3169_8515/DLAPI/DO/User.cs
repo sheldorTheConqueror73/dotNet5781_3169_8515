@@ -8,14 +8,12 @@ namespace DO
 {
     public class User :DOobject
     {
-        public string id { get; set; }
         public string password { get; set; }
         public string name { get; set; }
         public Clearance accessLevel { get; set; }
         public bool enabled { get; set; }
         public User()
         {
-            id = "";
             password = "";
             name = "";
             accessLevel = Clearance.None;

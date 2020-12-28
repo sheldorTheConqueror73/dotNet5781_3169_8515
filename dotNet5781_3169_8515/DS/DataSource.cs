@@ -35,7 +35,7 @@ namespace DS
 
         private static void initUsers()
         {
-            users = new List<User> { new User { name = "Jack Smith", id = "123456789", accessLevel = Clearance.Admin, password = "aaa123", enabled=true }, new User { name = "Vladimir Putin", id = "123456788", accessLevel = Clearance.Operator, password = "polonium210", enabled = true }, new User { name = "C.M.O.T Dibbler", id = "123456787", accessLevel = Clearance.User, password = "bbb123", enabled = true } };
+            users = new List<User> { new User { name = "Jack Smith", accessLevel = Clearance.Admin, password = "aaa123", enabled=true }, new User { name = "Vladimir Putin", accessLevel = Clearance.Operator, password = "polonium210", enabled = true }, new User { name = "C.M.O.T Dibbler", accessLevel = Clearance.User, password = "bbb123", enabled = true } };
         }
 
         private static void initBuses()
@@ -45,24 +45,24 @@ namespace DS
             for (int i = 0; i < 20; i++)
             {
                 bool flag = true;
-                string id = "";
+                string plateNumber = "";
                 DateTime rd = randomDate();
                 while (flag)
                 {
                     if (rd.Year < 2018)
-                        id = r.Next(1000000, 10000000).ToString();//make sure id format matches MD 
+                        plateNumber = r.Next(1000000, 10000000).ToString();//make sure id format matches MD 
                     else
-                        id = r.Next(10000000, 100000000).ToString();
+                        plateNumber = r.Next(10000000, 100000000).ToString();
                     flag = false;
                     foreach (var bus in buses)
-                        if (id == bus.id)
+                        if (plateNumber == bus.plateNumber)
                         {
                             flag = true;
                             break;
                         }
                 }
                 DateTime lastM = randomDate(1);
-                buses.Add(new Bus(rd, lastM, id, r.Next(0, Bus.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000), "ready"));
+                buses.Add(new Bus(rd, lastM, plateNumber, r.Next(0, Bus.FULL_TANK), r.Next(0, 20001), false, r.Next(0, 120000), "ready"));
             }
             buses[0].lastMaintenance = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             buses[0].status = "dangerous";

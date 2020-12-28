@@ -16,7 +16,7 @@ namespace BO
         public int distance { get; set; }
         public int totalDistance { get; set; }
         public bool dangerous { get; set; }
-       // public string id { get; set; }
+        public string plateNumber { get; set; }
         public DateTime registrationDate { get; set; }
         public DateTime lastMaintenance { get; set; }
         public string iconPath { get; set; }
@@ -30,7 +30,7 @@ namespace BO
 
         public Bus()//ctor
         {
-            id = "";
+            plateNumber = "";
             fuel = 0;
             distance = 0;
             totalDistance = 0;
@@ -42,9 +42,9 @@ namespace BO
 
         }
         //ctor
-        public Bus(DateTime date, DateTime lm, string id = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready", timerclass _timer = null, string path = "/src/pics/okIcon.png")//cotr
+        public Bus(DateTime date, DateTime lm, string plateNumber = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready", timerclass _timer = null, string path = "/src/pics/okIcon.png")//cotr
         {
-            this.id = id;
+            this.plateNumber = plateNumber;
             this.fuel = fuel;
             this.distance = distance;
             this.dangerous = dangerous;
@@ -70,7 +70,7 @@ namespace BO
                 else
                     st = null;
             string space = "";
-            if (this.id.Length == 7)
+            if (this.plateNumber.Length == 7)
                 space = "  ";
             return $"Id: {this.id} {space}  Status: {this.status} {st}";
         }

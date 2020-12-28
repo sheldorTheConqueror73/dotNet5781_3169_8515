@@ -31,7 +31,7 @@ namespace PL
             busesView.SelectedIndex = 0;
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.SelectedIndex = 0;
-            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation(tbStationId.Text.ToString());
+            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
         }
 
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -169,7 +169,7 @@ namespace PL
         {
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;
-            string id = lineData.id;
+            int id = lineData.id;
             bl.removeBus(id);
             tbiBuses.DataContext = bl.GetAllBuses();
             busesView.Items.Refresh();

@@ -14,32 +14,32 @@ namespace DLAPI
     {
         #region bus
         IEnumerable<DO.Bus> GetAllBuses();
-        DO.Bus GetBus(string id);
+        DO.Bus GetBus(int id);
         void addBus(DO.Bus bus);
-        void removeBus(string id);
+        void removeBus(int id);
         void updateBus(DO.Bus bus);
         #endregion
 
         #region busLine
         IEnumerable<DO.busLine> GetAllbusLines();
-        DO.busLine GetBusLine(string id);
+        DO.busLine GetBusLine(int id);
         void addLine(DO.busLine line);
-        void removeLine(string id);
+        void removeLine(int id);
         void updateLine(DO.busLine line);
         #endregion
 
         #region LineStation
         IEnumerable<DO.busLineStation> GetAllbusLineStation();
-        DO.busLineStation GetbusLineStation(string id);
+        DO.busLineStation GetbusLineStation(int id);
         void addLine(DO.busLineStation line);
-        void removebusLineStation(string id);
+        void removebusLineStation(int id);
         void updatebusLineStation(DO.busLineStation line);
      
         #endregion
 
         #region User
         IEnumerable<DO.User> GetAllbusUsers();
-        DO.User GetUser(string id);
+        DO.User GetUser(int id);
         void addLine(DO.User line);
         #endregion
 

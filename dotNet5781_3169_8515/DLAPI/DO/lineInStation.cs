@@ -8,7 +8,7 @@ namespace DO
 {
     public class lineInStation
     {
-        public string stationId { get; set; }
+        public int stationId { get; set; }
         public string LineNumber { get; set; }
         public string Address { get; set; }
     }
