@@ -127,7 +127,7 @@ namespace BL
                 return (from item in stations
                         from item2 in lines
                         from item3 in lineInstation
-                        where item != null && item.enabled == true && item2.number == item3.LineNumber && item3.stationId == id&&
+                        //where item != null && item.enabled == true && item2.number == item3.LineNumber && item3.stationId == id&
                         select DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(item)).ToList();
             return default;
         }

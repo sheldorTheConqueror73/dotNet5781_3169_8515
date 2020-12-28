@@ -118,8 +118,10 @@ namespace PL
                 MessageBox.Show("You can not Update an empty list");
                 return;
             }
-            try { 
-            bl.updateBus(new BO.Bus(dpRegiDate.SelectedDate.Value, dplmiDate.SelectedDate.Value, tbid.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false,totalDIst,(busesView.SelectedItem as BO.Bus).status));
+            try {
+                var bus = new BO.Bus(dpRegiDate.SelectedDate.Value, dplmiDate.SelectedDate.Value, tbid.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false, totalDIst, (busesView.SelectedItem as BO.Bus).status);
+                bus.id = (busesView.SelectedItem as BO.Bus).id;
+            bl.updateBus(bus);
             }
             catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
             
@@ -178,7 +180,7 @@ namespace PL
 
         private void cbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation(tbStationId.Text.ToString());
+            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
         }
     }
 }
