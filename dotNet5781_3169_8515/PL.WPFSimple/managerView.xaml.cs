@@ -51,15 +51,17 @@ namespace PL
             }
             else
             {
+                //------------------------------------------------------------------------------------------fix insert
                 int fuel, dist, totalDIst;
-                
                 try { validateInput(out fuel, out dist, out totalDIst); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-                string id = tbid.Text;
+                string plateNumber = tbid.Text;
                 DateTime rd = dpRegiDate.SelectedDate.Value;
                 DateTime lm = dplmiDate.SelectedDate.Value;
-
-                bl.addBus(new BO.Bus());
+                try { bl.addBus(new BO.Bus(rd,lm, plateNumber,fuel,dist,false,totalDIst,"ready"));  }
+                catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                finally {      initTextBoxes(false, false);  }
+                busesView.Items.Refresh();
                 btnAddBus.Content = "Add";
                 lbDanger.Visibility = System.Windows.Visibility.Visible;
                 tbDangerous.Visibility = System.Windows.Visibility.Visible;

@@ -14,12 +14,7 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();
 
-        public void addBus(Bus bus)
-        {
-            //do input checks
-            dl.addBus(BOtoDOConvertor<DO.Bus, BO.Bus >(bus));
-        }
-
+       
         public void addLine(busLine line)
         {
             throw new NotImplementedException();
@@ -35,6 +30,12 @@ namespace BL
             throw new NotImplementedException();
         }
         #region bus
+        public void addBus(Bus bus)
+        {
+  
+            dl.addBus(BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
+        }
+
         public void updateBus(Bus bus)
         {
             bus.UpdateDangerous();
