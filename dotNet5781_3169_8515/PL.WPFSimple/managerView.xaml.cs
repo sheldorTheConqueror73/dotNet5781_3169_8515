@@ -32,6 +32,7 @@ namespace PL
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.SelectedIndex = 0;
             lvLinesInStation.ItemsSource = bl.GetAllLinesInStation(tbStationId.Text.ToString());
+            
         }
 
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -174,6 +175,11 @@ namespace PL
             tbiBuses.DataContext = bl.GetAllBuses();
             busesView.Items.Refresh();
             initTextBoxes(false, true);
+        }
+
+        private void cbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation(tbStationId.Text.ToString());
         }
     }
 }
