@@ -11,5 +11,6 @@ namespace BO
         public string stationId { get; set; }
         public string LineNumber { get; set; }
         public string Address { get; set; }
+        public int placeOrder { get; set; }
     }
 }

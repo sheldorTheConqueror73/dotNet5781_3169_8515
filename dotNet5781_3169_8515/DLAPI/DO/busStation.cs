@@ -11,6 +11,7 @@ namespace DO
         readonly static int NULL = -200;//not too sure about this - used to mark empty variable
        // public  string id { get; set; }
         protected string address;
+        public string Name { get; set; }
         protected float latitude, longitude;//set up accessors for these two
         public bool enabled { get; set; }
         public string code { get; set; }

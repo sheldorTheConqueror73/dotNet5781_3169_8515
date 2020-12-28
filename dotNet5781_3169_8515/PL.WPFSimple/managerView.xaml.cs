@@ -175,5 +175,10 @@ namespace PL
             busesView.Items.Refresh();
             initTextBoxes(false, true);
         }
+
+        private void cbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation(tbStationId.Text.ToString());
+        }
     }
 }

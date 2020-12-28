@@ -142,6 +142,7 @@ namespace DS
         }
         private static busLineStation[] tandom(int size,string id)
         {
+            int cnt = 1;
             busLineStation[] arr = new busLineStation[size];
             Random r = new Random();
             Thread.Sleep(10);
@@ -172,7 +173,7 @@ namespace DS
                     arr[i].Distance = 0;
                     arr[i].DriveTime = new TimeSpan(0, 0, 0);
                 }
-                lineInStations.Add(new lineInStation() { LineNumber = id, stationId=arr[i].id });
+                lineInStations.Add(new lineInStation() { LineNumber = id, stationId=arr[i].id,placeOrder=cnt++ });
             }
             return arr;
         }

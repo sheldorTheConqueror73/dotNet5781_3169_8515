@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="managerView" Height="450" Width="800" >
-    
+
     <Grid>
-    
+
         <TabControl VerticalAlignment="Stretch">
             <TabItem Header="Buses" x:Name="tbiBuses">
                 <Grid Name="mainGrid" >
@@ -172,11 +172,11 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    
+
                                     <GridViewColumn Header="Address" Width="100">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                            <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/> 
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -242,18 +242,18 @@
                         <ColumnDefinition Width="225"/>
                         <ColumnDefinition Width="300*"/>
                     </Grid.ColumnDefinitions>
-                    <Viewbox Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26">
-                        <ListView >
+                    <Grid Grid.Column="0">
+                        <ListView x:Name="lvFollowStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="150" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" >
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Code" Width="70" >
+                                    <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock   Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Address" Width="70">
+                                    <GridViewColumn Header="Address" Width="70"  DisplayMemberBinding="{Binding}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
@@ -263,23 +263,23 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                    </Viewbox>
-                    <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26">
-                        <ListView Height="26"  x:Name="lvLinesInStation">
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <ListView x:Name="lvLinesInStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="77" BorderThickness="0" MouseDoubleClick="busesView_MouseDoubleClick" >
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn x:Name="lineInStations" Header="Lines" Width="70" >
+                                    <GridViewColumn Header="Lines" Width="70"  DisplayMemberBinding="{Binding number}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <ItemsControl  Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock  Text="{Binding number}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                    </Viewbox>
-                    <ComboBox x:Name="cbStations" Grid.Column="2" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    </Grid>
+                    <ComboBox x:Name="cbStations" Grid.Column="2" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="cbStations_SelectionChanged"/>
                     <Grid Grid.Column="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="90"/>
