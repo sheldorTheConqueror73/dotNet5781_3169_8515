@@ -178,7 +178,7 @@ namespace PL
 
         private void cbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation(tbStationId.Text.ToString());
+            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
         }
     }
 }

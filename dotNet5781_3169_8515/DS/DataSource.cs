@@ -173,7 +173,7 @@ namespace DS
                     arr[i].Distance = 0;
                     arr[i].DriveTime = new TimeSpan(0, 0, 0);
                 }
-                lineInStations.Add(new lineInStation() { LineNumber = id, stationId=arr[i].id,placeOrder=cnt++ });
+                lineInStations.Add(new lineInStation() { LineNumber = id, stationCode = arr[i].code,placeOrder=cnt++ });
             }
             return arr;
         }

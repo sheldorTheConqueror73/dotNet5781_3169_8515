@@ -113,12 +113,12 @@ namespace BL
             if (result != null&& resultStaInLine!=null)
                 return (from item in result 
                         from item2 in resultStaInLine
-                        where item != null && item.enabled == true && item.number==item2.LineNumber&&item2.stationId==id
+                        where item != null && item.enabled == true && item.number==item2.LineNumber&&item2.id == id
                         select DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
             return default;
         }
 
-        public IEnumerable<busLineStation> GetAllFollowStations(string id)
+        public IEnumerable<busLineStation> GetAllFollowStations(int id)
         {
             var stations = dl.GetAllbusLineStation();
             var lines = dl.GetAllbusLines();
@@ -127,7 +127,7 @@ namespace BL
                 return (from item in stations
                         from item2 in lines
                         from item3 in lineInstation
-                        where item != null && item.enabled == true && item2.number == item3.LineNumber && item3.stationId == id&&
+                        where item != null && item.enabled == true && item2.number == item3.LineNumber && item3.id == id&&
                         select DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(item)).ToList();
             return default;
         }
