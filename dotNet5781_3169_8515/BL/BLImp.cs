@@ -110,11 +110,25 @@ namespace BL
         {
             var result = dl.GetAllbusLines();
             var resultStaInLine = dl.GetAllLineInStation();
-            if (result != null)
+            if (result != null&& resultStaInLine!=null)
                 return (from item in result 
                         from item2 in resultStaInLine
                         where item != null && item.enabled == true && item.number==item2.LineNumber&&item2.stationId==id
                         select DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
+            return default;
+        }
+
+        public IEnumerable<busLineStation> GetAllFollowStations(string id)
+        {
+            var stations = dl.GetAllbusLineStation();
+            var lines = dl.GetAllbusLines();
+            var lineInstation = dl.GetAllLineInStation();
+            if (stations!=null&& lines != null && lineInstation != null)
+                return (from item in stations
+                        from item2 in lines
+                        from item3 in lineInstation
+                        where item != null && item.enabled == true && item2.number == item3.LineNumber && item3.stationId == id&&
+                        select DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(item)).ToList();
             return default;
         }
         public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate)

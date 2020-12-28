@@ -37,6 +37,7 @@ namespace BLAPI
         void removeStation(string id);
         void updateStation(busStation station);
         IEnumerable<busLine> GetAllLinesInStation(string id);
+        IEnumerable<busLineStation> GetAllFollowStations(string id);
         #endregion
 
         #region LineStation
