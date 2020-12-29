@@ -8,7 +8,7 @@ namespace DO
 {
     public class DOobject
     {
-        protected static int idCounter=0; 
+        protected static int idCounter =0;
         public int id { get; set; }
         public DOobject()
         {

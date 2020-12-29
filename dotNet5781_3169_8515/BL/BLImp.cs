@@ -20,8 +20,27 @@ namespace BL
             dl.addBus(BOtoDOConvertor<DO.Bus, BO.Bus >(bus));
         }
 
-       
+        public void addLine(busLine line)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addLine(busStation station)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addLine(busLineStation line)
+        {
+            throw new NotImplementedException();
+        }
         #region bus
+        public void addBus(Bus bus)
+        {
+  
+            dl.addBus(BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
+        }
+
         public void updateBus(Bus bus)
         {
             bus.UpdateDangerous();
