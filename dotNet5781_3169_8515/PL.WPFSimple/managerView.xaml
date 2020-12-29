@@ -156,7 +156,7 @@
                             <Label HorizontalAlignment="Center" Height="68" Content="Lines:" VerticalAlignment="Center" Width="132"  FontSize="15" VerticalContentAlignment="Center" Foreground="Black"/>
                         </Viewbox>
                         <Viewbox Grid.Column="1">
-                            <ComboBox Grid.Column="1" ItemsSource="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="scBusLines" VerticalContentAlignment="Center" HorizontalContentAlignment="left"   FontSize="25" Margin="26,16,53,13" Width="190" SelectionChanged="scBusLines_SelectionChanged" />
+                            <ComboBox x:Name="cbBusLines" Grid.Column="1" ItemsSource="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  VerticalContentAlignment="Center" HorizontalContentAlignment="left"   FontSize="25" Margin="26,16,53,13" Width="190" SelectionChanged="cbBusLines_SelectionChanged" />
                         </Viewbox>
 
 
@@ -210,15 +210,15 @@
                             <ColumnDefinition Width="100*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="ID:" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,7"/>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Number:" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,7"/>
                         <Label Grid.Row="1" Grid.Column="0" Content="Area:" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <Label Grid.Row="2" Grid.Column="0" Content="First Station:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <Label Grid.Row="3" Grid.Column="0" Content="Last Station:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                        <TextBox Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Width="100" Height="30"/>
-                        <ComboBox Grid.Row="2" Grid.Column="1" Width="100" Height="30"/>
-                        <ComboBox Grid.Row="3" Grid.Column="1" Width="100" Height="30"/>
+                        <TextBox x:Name="tbLineNumber" IsEnabled="False" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbLineArea" IsEnabled="False" Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <ComboBox x:Name="cbLineFirstSta" IsEnabled="False" Grid.Row="2" Grid.Column="1" Width="100" Height="30"/>
+                        <ComboBox x:Name="cbLineLastSta" IsEnabled="False" Grid.Row="3" Grid.Column="1" Width="100" Height="30"/>
 
                         <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
                             <Button Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0"/>
@@ -297,10 +297,10 @@
                         <Label Grid.Row="2" Grid.Column="0" Content="Latitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         <Label Grid.Row="3" Grid.Column="0" Content="Longitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
-                        <TextBox x:Name="tbStationId" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.code,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationCode" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.code,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationAddress" Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationLat" Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationLong" Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
 
                         <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
                             <Button Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0"/>

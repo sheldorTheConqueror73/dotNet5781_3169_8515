@@ -38,13 +38,13 @@ namespace PL
             cbStations.SelectedIndex = 0;
             lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
             lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
-            scBusLines.ItemsSource = bl.GetAllbusLines();
-            scBusLines.SelectedIndex = 0;
-            lvStationOfLine.ItemsSource=bl.GetAllStationInLine((scBusLines.SelectedItem as BO.busLine).id);
+            cbBusLines.ItemsSource = bl.GetAllbusLines();
+            cbBusLines.SelectedIndex = 0;
+            lvStationOfLine.ItemsSource=bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
         }
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            initTextBoxes(true,false);
+            initTextBoxes(true,false,1);
         }
         
 
@@ -53,7 +53,7 @@ namespace PL
             if (btnAddBus.Content.Equals("Add"))
             {
                 btnAddBus.Content = "Submit";
-                initTextBoxes(true, true);
+                initTextBoxes(true, true,1);
                 lbDanger.Visibility = System.Windows.Visibility.Hidden;
                 tbDangerous.Visibility= System.Windows.Visibility.Hidden;
             }
@@ -68,7 +68,7 @@ namespace PL
                 DateTime lm = dplmiDate.SelectedDate.Value;
                 try { bl.addBus(new BO.Bus(rd,lm, plateNumber,fuel,dist,false,totalDIst,"ready"));  }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-                finally {      initTextBoxes(false, false);  }
+                finally {      initTextBoxes(false, false,1);  }
                 busesView.Items.Refresh();
                 btnAddBus.Content = "Add";
                 lbDanger.Visibility = System.Windows.Visibility.Visible;
@@ -76,39 +76,7 @@ namespace PL
             }
 
         }
-        private void initTextBoxes(bool flagEnabled, bool flagContent)
-        {
-            if (flagEnabled)
-            {
-                tbid.IsEnabled = true;
-                tbfuel.IsEnabled = true;
-                tbDistance.IsEnabled = true;
-                tbtotalDist.IsEnabled = true;
-                dpRegiDate.IsEnabled = true;
-                dplmiDate.IsEnabled = true;
-                tbDangerous.IsEnabled = false;
-            }
-            else
-            {
-                tbid.IsEnabled = false;
-                tbfuel.IsEnabled = false;
-                tbDistance.IsEnabled = false;
-                tbtotalDist.IsEnabled = false;
-                dpRegiDate.IsEnabled = false;
-                dplmiDate.IsEnabled = false;
-                tbDangerous.IsEnabled = false;
-            }
-            if (flagContent)
-            {
-                tbid.Text = "";
-                tbfuel.Text = "";
-                tbDistance.Text = "";
-                tbtotalDist.Text = "";
-                dpRegiDate.Text = DateTime.Now.ToString();
-                dplmiDate.Text = DateTime.Now.ToString();
-                tbDangerous.Text = "";//----------------------------------------------------------------------------------------------fix denger bindning
-            }
-        }
+       
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -185,7 +153,7 @@ namespace PL
             bl.removeBus(id);
             tbiBuses.DataContext = bl.GetAllBuses();
             busesView.Items.Refresh();
-            initTextBoxes(false, true);
+            initTextBoxes(false, true,1);
         }
 
         private void cbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -194,9 +162,96 @@ namespace PL
             lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
         }
 
-        private void scBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((scBusLines.SelectedItem as BO.busLine).id);
+            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
         }
+        #region utility
+        
+        private void initTextBoxes(bool flagEnabled, bool flagContent, int tabItem)
+        {
+            if (tabItem == 1)
+            {
+                if (flagEnabled)
+                {
+                    tbid.IsEnabled = true;
+                    tbfuel.IsEnabled = true;
+                    tbDistance.IsEnabled = true;
+                    tbtotalDist.IsEnabled = true;
+                    dpRegiDate.IsEnabled = true;
+                    dplmiDate.IsEnabled = true;
+                    tbDangerous.IsEnabled = false;
+                }
+                else
+                {
+                    tbid.IsEnabled = false;
+                    tbfuel.IsEnabled = false;
+                    tbDistance.IsEnabled = false;
+                    tbtotalDist.IsEnabled = false;
+                    dpRegiDate.IsEnabled = false;
+                    dplmiDate.IsEnabled = false;
+                    tbDangerous.IsEnabled = false;
+                }
+                if (flagContent)
+                {
+                    tbid.Text = "";
+                    tbfuel.Text = "";
+                    tbDistance.Text = "";
+                    tbtotalDist.Text = "";
+                    dpRegiDate.Text = DateTime.Now.ToString();
+                    dplmiDate.Text = DateTime.Now.ToString();
+                    tbDangerous.Text = "";//----------------------------------------------------------------------------------------------fix denger bindning
+                }
+            }
+            else if (tabItem == 2)
+            {
+                if (flagEnabled)
+                {
+                    tbLineNumber.IsEnabled = true;
+                    tbLineArea.IsEnabled = true;
+                    cbLineFirstSta.IsEnabled = true;
+                    cbLineLastSta.IsEnabled = true;
+                }
+                else
+                {
+                    tbLineNumber.IsEnabled = false;
+                    tbLineArea.IsEnabled = false;
+                    cbLineFirstSta.IsEnabled = false;
+                    cbLineLastSta.IsEnabled = false;
+                }
+                if (flagContent)
+                {
+                    tbLineNumber.Text = "";
+                    tbLineArea.Text = "";
+                    cbLineFirstSta.Text = "";
+                    cbLineLastSta.Text = "";
+                }
+            }
+            else
+            {
+                if (flagEnabled)
+                {
+                    tbStationCode.IsEnabled = true;
+                    tbStationAddress.IsEnabled = true;
+                    tbStationLat.IsEnabled = true;
+                    tbStationLong.IsEnabled = true;
+                }
+                else
+                {
+                    tbStationCode.IsEnabled = false;
+                    tbStationAddress.IsEnabled = false;
+                    tbStationLat.IsEnabled = false;
+                    tbStationLong.IsEnabled = false;
+                }
+                if (flagContent)
+                {
+                    tbStationCode.Text = "";
+                    tbStationAddress.Text = "";
+                    tbStationLat.Text = "";
+                    tbStationLong.Text = "";
+                }
+            }
+        }
+        #endregion
     }
 }
