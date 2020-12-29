@@ -17,13 +17,15 @@ namespace BL
         #region bus
         public void addBus(Bus bus)
         {
-  
+
+            bus.formatPlateNumber();
             dl.addBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
 
         public void updateBus(Bus bus)
         {
             bus.UpdateDangerous();
+            bus.formatPlateNumber();
             dl.updateBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
         public void removeBus(int id)
@@ -41,7 +43,7 @@ namespace BL
             var result = dl.GetAllBuses();
             if (result != null)
                 return (from item in result
-                        where (item != null && item.enabled == true)
+                        where (item != null && item.enabled == true )
                         orderby item.plateNumber ascending
                         select Utility.DOtoBOConvertor<BO.Bus,DO.Bus>(item)).ToList();
             return default;
