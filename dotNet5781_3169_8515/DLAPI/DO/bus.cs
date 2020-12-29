@@ -33,7 +33,7 @@ namespace DO
             dangerous = false;
             registrationDate = new DateTime();
             lastMaintenance = new DateTime();
-            enabled = false;
+            enabled = true;
 
         }
         //ctor

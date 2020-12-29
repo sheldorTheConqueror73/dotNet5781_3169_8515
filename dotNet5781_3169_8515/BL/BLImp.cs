@@ -6,7 +6,6 @@ using BLAPI;
 using System.Threading;
 using BO;
 using System.Reflection;
-
 namespace BL
 {
 
@@ -18,14 +17,16 @@ namespace BL
         #region bus
         public void addBus(Bus bus)
         {
-  
-            dl.addBus(BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
+
+            bus.formatPlateNumber();
+            dl.addBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
 
         public void updateBus(Bus bus)
         {
             bus.UpdateDangerous();
-            dl.updateBus(BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
+            bus.formatPlateNumber();
+            dl.updateBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
         public void removeBus(int id)
         {
@@ -42,9 +43,9 @@ namespace BL
             var result = dl.GetAllBuses();
             if (result != null)
                 return (from item in result
-                        where (item != null && item.enabled == true)
+                        where (item != null && item.enabled == true )
                         orderby item.plateNumber ascending
-                        select DOtoBOConvertor<BO.Bus,DO.Bus>(item)).ToList();
+                        select Utility.DOtoBOConvertor<BO.Bus,DO.Bus>(item)).ToList();
             return default;
 
             //DOBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
@@ -69,7 +70,7 @@ namespace BL
                  if(result!=null)
                  return from item in result 
                         where item!=null && item.enabled == true
-                    select DOtoBOConvertor<BO.busLine,DO.busLine>(item);
+                    select Utility.DOtoBOConvertor<BO.busLine,DO.busLine>(item);
             return default;
 
         }
@@ -116,7 +117,7 @@ namespace BL
                 return (from item in lines
                         from item2 in resultStaInLine
                         where item != null && item.enabled == true && item.id == item2.Lineid && item2.stationid == id
-                        select DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
+                        select Utility.DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
             return default;
         }
         #endregion
@@ -135,7 +136,7 @@ namespace BL
             if (result != null)
                 return (from item in result
                         where item != null && item.enabled == true
-                        select DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(item)).ToList();
+                        select Utility.DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(item)).ToList();
             return default;
         }
 
@@ -150,7 +151,7 @@ namespace BL
             return (from sta in dl.GetAllbusLineStation() where sta != null && sta.enabled == true 
                          from linInSta in dl.GetAllLineInStation() where linInSta != null && linInSta.Lineid == id && linInSta.stationid == sta.id
                          orderby linInSta.placeOrder ascending
-                        select DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta)).ToList();
+                        select Utility.DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta)).ToList();
             return default;
         }
         public IEnumerable<busStation> GetAllbusStations()
@@ -202,7 +203,7 @@ namespace BL
             if (folllowStation != null)
                 return (from folSta in folllowStation
                         where folSta != null && folSta.enabled == true && folSta.firstStationid==id
-                        select DOtoBOConvertor<BO.followStations, DO.followStations>(folSta)).ToList();
+                        select Utility.DOtoBOConvertor<BO.followStations, DO.followStations>(folSta)).ToList();
             return default;
         }
         public IEnumerable<busLineStation> GetAllFollowStationsAsStationsObj(int id)
@@ -226,14 +227,14 @@ namespace BL
             if (result != null)
                 return (from item in result
                         where item != null && item.enabled == true
-                        select DOtoBOConvertor<BO.User, DO.User>(item)).ToList();
+                        select Utility.DOtoBOConvertor<BO.User, DO.User>(item)).ToList();
             return default;
         }
         public BO.User GetUser(int id)
         {
             try 
             {
-                return DOtoBOConvertor<BO.User, DO.User>(dl.GetUser(id));            
+                return Utility.DOtoBOConvertor<BO.User, DO.User>(dl.GetUser(id));            
             }
             catch (Exception e)
             {
@@ -262,35 +263,6 @@ namespace BL
             throw new NotImplementedException();
         }
         #endregion
-        private T DOtoBOConvertor<T,S>(S line) where T  : BO.BOobject, new () where S : DO.DOobject, new()        {
-            T output =new T();
-            output.id = line.id;
-            foreach (PropertyInfo propTo in output.GetType().GetProperties())
-            {
-                PropertyInfo propFrom = line.GetType().GetProperty(propTo.Name);
-                if (propFrom == null)
-                    continue;
-                propTo.SetValue(output,propFrom.GetValue(line,null));
-            }               
-                return output;
-
-        }
-
-        private T BOtoDOConvertor<T, S>(S line) where T : DO.DOobject, new() where S :  BO.BOobject, new()
-        {
-            T output = new T();
-            output.id = line.id;
-            foreach (PropertyInfo propTo in output.GetType().GetProperties())
-            {
-                PropertyInfo propFrom = line.GetType().GetProperty(propTo.Name);
-                if (propFrom == null)
-                    continue;
-                propTo.SetValue(output, propFrom.GetValue(line, null));
-            }
-            return output;
-
-        }
-
-       
+        
     }
 }

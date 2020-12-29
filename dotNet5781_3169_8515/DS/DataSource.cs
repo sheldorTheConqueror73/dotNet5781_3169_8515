@@ -51,10 +51,15 @@ namespace DS
                 DateTime rd = randomDate();
                 while (flag)
                 {
+                   string temp;
                     if (rd.Year < 2018)
-                        plateNumber = r.Next(1000000, 10000000).ToString();//make sure id format matches MD 
+                        temp = r.Next(1000000, 10000000).ToString();//make sure id format matches MD 
                     else
-                        plateNumber = r.Next(10000000, 100000000).ToString();
+                        temp = r.Next(10000000, 100000000).ToString();
+                    if (temp.Length == 7)
+                        plateNumber = $"{temp[0]}{temp[1]}-{temp[2]}{temp[3]}{temp[4]}-{temp[5]}{temp[6]}";
+                    else
+                       plateNumber = $"{temp[0]}{temp[1]}{temp[2]}-{temp[3]}{temp[4]}-{temp[5]}{temp[6]}{temp[7]}";
                     flag = false;
                     foreach (var bus in buses)
                         if (plateNumber == bus.plateNumber)

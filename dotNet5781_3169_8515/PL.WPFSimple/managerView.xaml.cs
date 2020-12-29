@@ -69,6 +69,7 @@ namespace PL
                 try { bl.addBus(new BO.Bus(rd,lm, plateNumber,fuel,dist,false,totalDIst,"ready"));  }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
                 finally {      initTextBoxes(false, false,1);  }
+                tbiBuses.DataContext = bl.GetAllBuses();
                 busesView.Items.Refresh();
                 btnAddBus.Content = "Add";
                 lbDanger.Visibility = System.Windows.Visibility.Visible;
