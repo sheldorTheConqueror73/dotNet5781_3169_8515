@@ -191,6 +191,19 @@ namespace PL
         {
            
         }
+        private void lvFollowStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            tbStationDriveTm.IsEnabled = true;
+            tbStationDistance.IsEnabled = true;
+            initTextBoxes(false, false, 3);
+        }
+        private void lvFollowStation_PreviewMouseDown(object sender, MouseEventArgs e)
+        {
+            tbStationDriveTm.IsEnabled = false;
+            tbStationDistance.IsEnabled = false;
+            initTextBoxes(true, false, 3);
+        }
+
         #region utility
 
         private void initTextBoxes(bool flagEnabled, bool flagContent, int tabItem)
