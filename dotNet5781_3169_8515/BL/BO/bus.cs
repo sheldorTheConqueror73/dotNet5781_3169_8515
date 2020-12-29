@@ -24,6 +24,7 @@ namespace BO
         public string idFormat { get; set; }
         public string status { get; set; }
         public Area area;
+        public bool enabled { get; set; }
 
 
 
@@ -38,6 +39,7 @@ namespace BO
             registrationDate = new DateTime();
             lastMaintenance = new DateTime();
             iconPath = "/src/pics/okIcon.png";
+            enabled = true;
            // idFormat = formatId(id);
 
         }
@@ -55,6 +57,7 @@ namespace BO
             this.timer = new timerclass();
             this.timer = _timer;
             iconPath = path;
+            enabled = true;
             //idFormat = formatId(id);
 
         }
