@@ -18,6 +18,8 @@ namespace BLAPI
         void addBus(Bus bus);
         void removeBus(int id);
         void updateBus(Bus bus);
+        void refuel(int id);
+        void maintain(int id);
         #endregion
 
         #region busLine

@@ -35,7 +35,7 @@ namespace BL
 
         public Bus GetBus(int id)
         {
-            throw new NotImplementedException();
+            return Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(dl.GetBus(id));
         }
 
         public List<Bus> GetAllBuses()
@@ -54,6 +54,26 @@ namespace BL
         public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
         {
             throw new NotImplementedException();
+        }
+
+        public void refuel(int id)
+        {
+            var bus = this.GetBus(id);
+            if (bus.status != "ready" && bus.status != "dangerous")
+                throw new BusBusyException("Bus is currently Busy");
+            dl.refuel(id);
+        }
+        public void maintain(int id)
+        {
+            
+            var bus = this.GetBus(id);
+            if (bus.status != "ready" && bus.status != "dangerous")
+                throw new BusBusyException("Bus is currently Busy");
+            bus.lastMaintenance = DateTime.Now;
+            bus.UpdateDangerous();
+            if (bus.status == "ready")
+                ;//change icon to ready
+            dl.updateBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
         #endregion
 

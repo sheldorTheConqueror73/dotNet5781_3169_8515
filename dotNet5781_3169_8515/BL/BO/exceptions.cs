@@ -41,6 +41,13 @@ namespace BO
         internal BusLimitExceededExecption(string msg, Exception inner) : base(msg, inner) { }
 
     }
+    class BusBusyException : Exception
+    {
+        internal BusBusyException() { }
+        internal BusBusyException(string msg) : base(msg) { }
+        internal BusBusyException(string msg, Exception inner) : base(msg, inner) { }
+
+    }
     class CannotDriveExecption : Exception
     {
         internal CannotDriveExecption() { }

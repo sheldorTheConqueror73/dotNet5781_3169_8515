@@ -9,7 +9,7 @@ namespace BO
     public class Bus:BOobject
     {
         public class timerclass { };
-        public static int FULL_TANK = 1200;
+        public const int FULL_TANK = 1200;
 
         public timerclass timer { get; set; }
         public int fuel { get; set; }

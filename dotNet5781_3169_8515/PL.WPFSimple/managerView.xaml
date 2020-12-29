@@ -53,10 +53,10 @@
                                                     <Button x:Name="Delete"  Click="Delete_Click" Content="del" ToolTip="delete a bus" Background="Transparent"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
                                                         <!--  <Image Source="src/pics/deleteIcon.png" Stretch="Fill"/>-->
                                                     </Button>
-                                                    <Button x:Name="Maintenance" Content="mainte" ToolTip="send to drive" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                    <Button x:Name="Maintenance" Click="Maintenance_Click" Content="mainte" ToolTip="send to drive" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
 
                                                     </Button>
-                                                    <Button x:Name="Refuel" Content="refuel" ToolTip="send to refuel" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                    <Button x:Name="Refuel" Content="refuel" ToolTip="send to refuel" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" Click="Refuel_Click" HorizontalAlignment="Center">
                                                         <!-- <Image Source="src/pics/refuelbtnIcon.png" Stretch="Fill"/> -->
                                                     </Button>
                                                 </StackPanel>

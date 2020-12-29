@@ -58,6 +58,13 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {bus.id}");
             result = bus.Clone();
         }
+        public void refuel(int id)
+        {
+            var result = DataSource.buses.Find(b => b.id == id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {id}");
+            result.fuel = Bus.FULL_TANK;
+        }
         #endregion
 
 
