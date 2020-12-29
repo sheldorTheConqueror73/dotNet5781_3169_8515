@@ -6,49 +6,16 @@
         xmlns:local="clr-namespace:PL.SimpleWPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.SimpleWPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="White" ResizeMode="NoResize">
-    <Grid Background="Transparent">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="285*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="100*"/>
-        </Grid.RowDefinitions>
-        <TextBox x:Name="txbusername" Grid.ColumnSpan="2" Grid.Row="1" BorderThickness="1"  KeyDown="TextBlock_KeyDown" BorderBrush="Black" HorizontalAlignment="Center" Height="23"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120" Grid.Column="1"/>
-        <TextBlock IsHitTestVisible="False" Grid.ColumnSpan="2" Grid.Row="1" Text="enter user name"   VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="DarkGray"  Height="24" Width="113" Grid.Column="1">
-            <TextBlock.Style>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=txbusername}" Value="">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
-        <TextBox x:Name="txbupassword" Grid.ColumnSpan="2" Grid.Row="2" BorderThickness="1"  KeyDown="TextBlock_KeyDown" BorderBrush="Black" HorizontalAlignment="Center"  Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"  Grid.Column="1"/>
-        <TextBlock IsHitTestVisible="False" Grid.ColumnSpan="2" Grid.Row="2" Text="enter password"    VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="DarkGray"  Height="22" Width="110" Grid.Column="1" >
-            <TextBlock.Style>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=txbupassword}" Value="">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
-        <Button Content="Login" Grid.Row="3" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="90,0,0,0" Grid.Column="1" Click="login_Click" />
-        <Button Content="craete new user" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Top" Width="89" Click="newUser_click" />
-
+        Title="MainWindow"  Height="350" Width="525" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock Height="23" HorizontalAlignment="Center" Margin="10,10,0,0" Name="LoginHeading" Text="Login:" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed"/>
+        
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="56,120,0,0" Name="textBlock1" Text="User Name" VerticalAlignment="Top" Width="67" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,168,0,0" Name="textBlock2" Text="Password" VerticalAlignment="Top" Width="77" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="118,115,0,0" Name="txbusername" VerticalAlignment="Top" Width="247" />
+        <PasswordBox Height="23" HorizontalAlignment="Left" Margin="118,168,0,0" Name="txbupassword" VerticalAlignment="Top" Width="247" />
+        <Button Content="Login" Height="23" HorizontalAlignment="Left" Margin="118,211,0,0" Name="btnLogin" VerticalAlignment="Top" Width="104" Click="login_Click" />
+        <Button Content="Register" Height="23" HorizontalAlignment="Right" Margin="0,211,154,0" Name="btnRegister" VerticalAlignment="Top" Width="104" Click="newUser_click" />
+        <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247" Margin="118,253,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
     </Grid>
 </Window>

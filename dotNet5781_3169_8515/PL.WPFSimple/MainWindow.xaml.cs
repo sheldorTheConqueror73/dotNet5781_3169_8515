@@ -37,15 +37,15 @@ namespace PL.SimpleWPF
         {
             managerView managerView = new managerView();
             string username = txbusername.Text;
-            string password = txbupassword.Text;
+            string password = txbupassword.Password;
             if (username == "" || password == "")
             {
-                MessageBox.Show("Please enter user name AND password");
+                errormessage.Text="Please enter user name AND password";
                 return;
             }
             string str="";
             try { str = bl.authenticate(username, password, out userId); }
-            catch (Exception exc) { MessageBox.Show(exc.Message); }
+            catch (Exception exc) { errormessage.Text = exc.Message; }
          
             if (str == "Admin" || str == "Operator")
             {
