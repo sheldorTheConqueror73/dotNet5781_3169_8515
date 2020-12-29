@@ -242,7 +242,7 @@
                         <ColumnDefinition Width="300*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <ListView x:Name="lvFollowStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="370" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" >
+                        <ListView x:Name="lvFollowStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="370" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvFollowStation_MouseDoubleClick" PreviewMouseDown="lvFollowStation_PreviewMouseDown">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding code}">
@@ -317,10 +317,10 @@
                         <Label Grid.Row="5" Grid.Column="0" Content="Drive Time:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         <Label Grid.Row="6" Grid.Column="0" Content="Distance:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
-                        <TextBox x:Name="tbStationCode" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.code,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbStationAddress" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbStationLat" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbStationLong" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationCode" HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.code,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationAddress" HorizontalAlignment="Left"  Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationLat" HorizontalAlignment="Left"  Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationLong" HorizontalAlignment="Left"  Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <TextBox x:Name="tbStationDriveTm" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="5" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.DriveTime,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <TextBox x:Name="tbStationDistance" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="6" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Distance,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
 
