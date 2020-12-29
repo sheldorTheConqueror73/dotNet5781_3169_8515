@@ -183,7 +183,11 @@ namespace PL
             lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
             lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
         }
-
+        
+         private void Add_Station_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
         #region utility
 
         private void initTextBoxes(bool flagEnabled, bool flagContent, int tabItem)
