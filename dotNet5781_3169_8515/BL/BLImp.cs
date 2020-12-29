@@ -43,6 +43,7 @@ namespace BL
             if (result != null)
                 return (from item in result
                         where (item != null && item.enabled == true)
+                        orderby item.plateNumber ascending
                         select DOtoBOConvertor<BO.Bus,DO.Bus>(item)).ToList();
             return default;
 
