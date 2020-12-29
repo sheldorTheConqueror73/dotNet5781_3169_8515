@@ -216,7 +216,7 @@ namespace BL
                         where sta!=null&&sta.enabled==true && folSta.firstStationid == id &&folSta.secondStationid==sta.id
                         let x=sta.Distance=folSta.distance
                         let y=sta.DriveTime=folSta.driveTime
-                        select (DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta))).ToList();
+                        select (Utility.DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta))).ToList();
             return default;
         }
         #endregion
