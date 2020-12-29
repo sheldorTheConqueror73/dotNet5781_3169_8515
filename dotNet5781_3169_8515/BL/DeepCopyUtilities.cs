@@ -8,44 +8,37 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public static class DeepCopyUtilities
+    public static class Utility
     {
-        // It is not flat object - need recursion
-        public static void DeepCopyTo<S, T>(this S from, T to)
+        internal static T DOtoBOConvertor<T, S>(S line) where T : BO.BOobject, new() where S : DO.DOobject, new()
         {
-            var fromType = from.GetType();
-            foreach (PropertyInfo propTo in to.GetType().GetProperties())
+            T output = new T();
+            output.id = line.id;
+            foreach (PropertyInfo propTo in output.GetType().GetProperties())
             {
-                PropertyInfo propFrom = fromType.GetProperty(propTo.Name);
+                PropertyInfo propFrom = line.GetType().GetProperty(propTo.Name);
                 if (propFrom == null)
                     continue;
-                var value = propFrom.GetValue(from, null);
-                if (value is ValueType || value is string)
-                    propTo.SetValue(to, value);
-                else
-                {
-                    if (value == null)
-                        continue;
-                    var target = propTo.GetValue(to, null);
-                    //if (target == null)
-                    //    target = Activator.CreateInstance(propTo.PropertyType);
-
-                    // If the property is a collection...
-                    if (value is IEnumerable)
-                    {
-                        Type itemType = propTo.PropertyType.GetGenericArguments()[0];
-                        propTo.PropertyType.GetMethod("Clear").Invoke(target, null);
-                        foreach (var item in (value as IEnumerable))
-                        {
-                            var targetItem = Activator.CreateInstance(itemType);
-                            item.DeepCopyTo(targetItem);
-                            propTo.PropertyType.GetMethod("Add").Invoke(target, new object[] { targetItem });
-                        }
-                    }
-                    else
-                        value.DeepCopyTo(target);
-                }
+                propTo.SetValue(output, propFrom.GetValue(line, null));
             }
+            return output;
+
         }
+
+        internal static T BOtoDOConvertor<T, S>(S line) where T : DO.DOobject, new() where S : BO.BOobject, new()
+        {
+            T output = new T();
+            output.id = line.id;
+            foreach (PropertyInfo propTo in output.GetType().GetProperties())
+            {
+                PropertyInfo propFrom = line.GetType().GetProperty(propTo.Name);
+                if (propFrom == null)
+                    continue;
+                propTo.SetValue(output, propFrom.GetValue(line, null));
+            }
+            return output;
+
+        }
+
     }
 }
