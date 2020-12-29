@@ -279,7 +279,7 @@ namespace BL
         }
         public void addUser(BO.User user)
         {
-            throw new NotImplementedException();
+            dl.addUser(Utility.BOtoDOConvertor<DO.User,BO.User>(user));
         }
         public void removeUser(int id)
         {

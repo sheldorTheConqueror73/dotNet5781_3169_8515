@@ -167,7 +167,7 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             return result;
         }
-        public void addLine(User user)
+        public void addUser(User user)
         {
             var result = DataSource.users.Find(b => b.id == user.id);
             if ((result != null) || (result.enabled == true))

@@ -19,9 +19,29 @@ namespace PL.SimpleWPF
     /// </summary>
     public partial class addUser : Window
     {
+        BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         public addUser()
         {
             InitializeComponent();
         }
+
+        private void reset(object sender, RoutedEventArgs e)
+        {
+            txbFirstName.Clear();
+            txbLastName.Clear();
+            txbmail.Clear();
+            txbusername.Clear();
+            psbconfirm.Clear();
+            psbpassword.Clear();
+        }
+
+        private void Submit_Click(object sender, RoutedEventArgs e)
+        {
+            //add input check/regex
+
+            bl.addUser(new BO.User(psbpassword.Password,txbusername.Text,BO.Clearance.User,txbFirstName.Text+" "+txbLastName.Text,txbmail.Text));
+           
+        }
+        
     }
 }
