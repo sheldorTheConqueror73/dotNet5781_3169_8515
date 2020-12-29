@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="managerView" Height="450" Width="800" >
+        Title="managerView" Height="450" Width="900" >
 
     <Grid>
 
@@ -215,8 +215,8 @@
                         <Label Grid.Row="2" Grid.Column="0" Content="First Station:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <Label Grid.Row="3" Grid.Column="0" Content="Last Station:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                        <TextBox x:Name="tbLineNumber" IsEnabled="False" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbLineArea" IsEnabled="False" Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbLineNumber" IsEnabled="False" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbLineArea" IsEnabled="False" Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <ComboBox x:Name="cbLineFirstSta" IsEnabled="False" Grid.Row="2" Grid.Column="1" Width="100" Height="30"/>
                         <ComboBox x:Name="cbLineLastSta" IsEnabled="False" Grid.Row="3" Grid.Column="1" Width="100" Height="30"/>
 
@@ -236,13 +236,13 @@
                         <RowDefinition Height="400*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="300"/>
                         <ColumnDefinition Width="75"/>
-                        <ColumnDefinition Width="225"/>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="300*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <ListView x:Name="lvFollowStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="150" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" >
+                        <ListView x:Name="lvFollowStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="300" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding code}">
@@ -256,6 +256,20 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock  Text="{Binding Address}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Distance" Width="70"  DisplayMemberBinding="{Binding Distance}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding Distance}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Time" Width="70"  DisplayMemberBinding="{Binding DriveTime}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Text="{Binding DriveTime}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -297,10 +311,10 @@
                         <Label Grid.Row="2" Grid.Column="0" Content="Latitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         <Label Grid.Row="3" Grid.Column="0" Content="Longitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
-                        <TextBox x:Name="tbStationCode" IsEnabled="False" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.code,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbStationAddress" IsEnabled="False" Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbStationLat" IsEnabled="False" Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbStationLong" IsEnabled="False" Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationCode" IsEnabled="False" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.code,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationAddress" IsEnabled="False" Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationLat" IsEnabled="False" Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationLong" IsEnabled="False" Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
 
                         <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
                             <Button x:Name="addStation" Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" Click="Add_Station_Click"/>

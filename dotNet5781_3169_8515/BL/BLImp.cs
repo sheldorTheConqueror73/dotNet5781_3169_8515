@@ -213,7 +213,9 @@ namespace BL
                 return (from folSta in folllowStation where folSta != null && folSta.enabled == true
                         from sta in stations
                         where sta!=null&&sta.enabled==true && folSta.firstStationid == id &&folSta.secondStationid==sta.id
-                        select DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta)).ToList();
+                        let x=sta.Distance=folSta.distance
+                        let y=sta.DriveTime=folSta.driveTime
+                        select (DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta))).ToList();
             return default;
         }
         #endregion
