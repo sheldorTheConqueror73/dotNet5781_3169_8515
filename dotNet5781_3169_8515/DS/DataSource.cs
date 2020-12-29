@@ -16,6 +16,7 @@ namespace DS
         public static List<busLine> Lines;
         public static List<User> users;
         public static List<lineInStation> lineInStations;
+        public static List<followStations> followStation;
 
         static DataSource()
         {
@@ -122,6 +123,7 @@ namespace DS
         private static void initLines()
         {
             lineInStations = new List<lineInStation>();
+            followStation = new List<followStations>();
             Lines = new List<busLine>();
             for (int i = 0; i < 10; i++)
             {
@@ -132,13 +134,17 @@ namespace DS
                 int size = r.Next(10, 15);
                 busLineStation[] arr = new busLineStation[size];
                 Lines.Add(new busLine() { enabled = true, number = Number, area = a1 }); ;
-                arr = tandom(size, Number,Lines[Lines.Count()-1].id);              
+                arr = tandom(size, Number,Lines[Lines.Count()-1].id); 
+                for(int q=1;q<arr.Length;q++)
+                {
+                    followStation.Add(new followStations() {firstStationid= arr[q-1].id,secondStationid=arr[q].id,distance=arr[q].Distance,driveTime=arr[q].DriveTime,enabled=true});
+                }
               
             }
         }
         private static busLineStation[] tandom(int size,string Number,int id)
         {
-            int cnt = 1;
+            int cnt = 0;
             busLineStation[] arr = new busLineStation[size];
             Random r = new Random();
             Thread.Sleep(10);
@@ -169,8 +175,7 @@ namespace DS
                     arr[i].Distance = 0;
                     arr[i].DriveTime = new TimeSpan(0, 0, 0);
                 }
-                lineInStations.Add(new lineInStation() { Lineid = id, stationid = arr[i].id, placeOrder = cnt++ });
-
+                lineInStations.Add(new lineInStation() { Lineid = id, stationid = arr[i].id, placeOrder = cnt++ });             
             }
             return arr;
         }

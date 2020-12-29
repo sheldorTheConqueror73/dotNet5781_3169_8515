@@ -32,6 +32,7 @@ namespace PL
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.SelectedIndex = 0;
             lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
+            lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
         }
 
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -179,6 +180,7 @@ namespace PL
         private void cbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
+            lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
         }
     }
 }

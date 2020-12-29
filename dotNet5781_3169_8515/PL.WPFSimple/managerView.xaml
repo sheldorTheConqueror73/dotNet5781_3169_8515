@@ -246,17 +246,17 @@
                         <ListView x:Name="lvFollowStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Cyan" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="150" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" >
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding}">
+                                    <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding code}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock  Text="{Binding code}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Address" Width="70"  DisplayMemberBinding="{Binding}">
+                                    <GridViewColumn Header="Address" Width="70"  DisplayMemberBinding="{Binding Address}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock  Text="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock  Text="{Binding Address}"  Margin="1.5" HorizontalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

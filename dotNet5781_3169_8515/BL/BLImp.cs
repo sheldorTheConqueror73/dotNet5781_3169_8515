@@ -20,20 +20,7 @@ namespace BL
             dl.addBus(BOtoDOConvertor<DO.Bus, BO.Bus >(bus));
         }
 
-        public void addLine(busLine line)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void addLine(busStation station)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void addLine(busLineStation line)
-        {
-            throw new NotImplementedException();
-        }
+       
         #region bus
         public void updateBus(Bus bus)
         {
@@ -68,15 +55,34 @@ namespace BL
         }
         #endregion
 
+        #region lines
+        public busLine GetBusLine(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public void addLine(busLine line)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addLine(busStation station)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addLine(busLineStation line)
+        {
+            throw new NotImplementedException();
+        }
         public IEnumerable<busLine> GetAllbusLines()
         {
-           /* var result = dl.GetAllbusLines();
-                if(result!=null)
-                return from item in result 
-                       where item!=null && item.enabled == true
-                   select DOtoBOConvertor<BO.busLine,DO.busLine>(item);*/
+            /* var result = dl.GetAllbusLines();
+                 if(result!=null)
+                 return from item in result 
+                        where item!=null && item.enabled == true
+                    select DOtoBOConvertor<BO.busLine,DO.busLine>(item);*/
             return default;
-            
+
         }
 
         public IEnumerable<busLine> GetAllbusLinesBy(Predicate<busLine> predicate)
@@ -84,6 +90,43 @@ namespace BL
             throw new NotImplementedException();
         }
 
+        public void removeLine(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void updateLine(busLine line)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+
+
+        #region lineInStation
+        public IEnumerable<busLine> GetAllLinesInStation(int id)
+        {
+            var lines = dl.GetAllbusLines();
+            var resultStaInLine = dl.GetAllLineInStation();
+            if (lines != null && resultStaInLine != null)
+                return (from item in lines
+                        from item2 in resultStaInLine
+                        where item != null && item.enabled == true && item.id == item2.Lineid && item2.stationid == id
+                        select DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
+            return default;
+        }
+        #endregion
+
+
+
+        public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        #region station
         public IEnumerable<busLineStation> GetAllbusLineStation()
         {
             var result = dl.GetAllbusLineStation();
@@ -104,43 +147,6 @@ namespace BL
             throw new NotImplementedException();
 
         }
-
-
-        public IEnumerable<busLine> GetAllLinesInStation(int id)
-        {
-            var lines = dl.GetAllbusLines();
-            var resultStaInLine = dl.GetAllLineInStation();
-            if (lines != null&& resultStaInLine!=null)
-                return (from item in lines 
-                        from item2 in resultStaInLine
-                        where item != null && item.enabled == true && item.id==item2.Lineid &&item2.stationid == id
-                        select DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
-            return default;
-        }
-
-        public IEnumerable<busLineStation> GetAllFollowStations(int id)
-        {
-            var stations = dl.GetAllbusLineStation();
-            var lines = dl.GetAllbusLines();
-            var lineInstation = dl.GetAllLineInStation();
-            if (stations!=null&& lines != null && lineInstation != null)
-                return (from item in stations
-                        from item2 in lines
-                        from item3 in lineInstation
-                        //where item != null && item.enabled == true && item2.number == item3.LineNumber && item3.id == id&&
-                        select DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(item)).ToList();
-            return default;
-        }
-        public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate)
-        {
-            throw new NotImplementedException();
-        }
-       
-        public busLine GetBusLine(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public busLineStation GetbusLineStation(int id)
         {
             throw new NotImplementedException();
@@ -150,30 +156,19 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-      
+
         public void removebusLineStation(int id)
         {
             throw new NotImplementedException();
         }
-
-        public void removeLine(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void removeStation(int id)
         {
             throw new NotImplementedException();
         }
 
-       
+
 
         public void updatebusLineStation(busLineStation line)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void updateLine(busLine line)
         {
             throw new NotImplementedException();
         }
@@ -182,6 +177,35 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
+
+      
+       
+
+        #region followStations
+        private IEnumerable<followStations> GetAllFollowStations(int id)
+        {
+            var folllowStation = dl.GetAllFollowStation();
+            if (folllowStation != null)
+                return (from folSta in folllowStation
+                        where folSta != null && folSta.enabled == true && folSta.firstStationid==id
+                        select DOtoBOConvertor<BO.followStations, DO.followStations>(folSta)).ToList();
+            return default;
+        }
+        public IEnumerable<busLineStation> GetAllFollowStationsAsStationsObj(int id)
+        {
+            var folllowStation = GetAllFollowStations(id);
+            var stations = dl.GetAllbusLineStation();
+            if (folllowStation != null&& stations!=null)
+                return (from folSta in folllowStation where folSta != null && folSta.enabled == true
+                        from sta in stations
+                        where sta!=null&&sta.enabled==true && folSta.firstStationid == id &&folSta.secondStationid==sta.id
+                        select DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta)).ToList();
+            return default;
+        }
+        #endregion
         #region user
         public IEnumerable<BO.User> GetAllUsers()
         {

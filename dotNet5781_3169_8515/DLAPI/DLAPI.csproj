@@ -50,6 +50,7 @@
     <Compile Include="DO\DOobject.cs" />
     <Compile Include="DO\Enums.cs" />
     <Compile Include="DO\exceptions.cs" />
+    <Compile Include="DO\followStations.cs" />
     <Compile Include="DO\lineInStation.cs" />
     <Compile Include="DO\User.cs" />
     <Compile Include="IDL.cs" />

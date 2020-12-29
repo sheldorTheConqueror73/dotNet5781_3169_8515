@@ -56,6 +56,9 @@ namespace BLAPI
         void removeUser(int id);
          string authenticate(string username, string password, out int id);
         #endregion
+        #region followStations
+        IEnumerable<busLineStation> GetAllFollowStationsAsStationsObj(int id);
+        #endregion
 
     }
 }

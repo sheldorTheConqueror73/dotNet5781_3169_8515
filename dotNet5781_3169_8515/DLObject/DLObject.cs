@@ -183,6 +183,13 @@ namespace DL
                    select bus.Clone();
         }
         #endregion
+        #region followStations
+        public IEnumerable<followStations> GetAllFollowStation()
+        {
+            return from bus in DataSource.followStation
+                   select bus.Clone();
+        }
+        #endregion
         #endregion
 
 

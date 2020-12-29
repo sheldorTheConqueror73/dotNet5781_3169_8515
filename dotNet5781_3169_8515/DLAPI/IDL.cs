@@ -47,5 +47,9 @@ namespace DLAPI
         IEnumerable<DO.lineInStation> GetAllLineInStation();
 
         #endregion
+
+        #region followStations
+        IEnumerable<DO.followStations> GetAllFollowStation();
+        #endregion
     }
 }
