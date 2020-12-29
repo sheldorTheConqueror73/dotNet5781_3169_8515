@@ -12,28 +12,9 @@ namespace BL
 
     class BLImp : IBL
     {
-        IDL dl = DLFactory.GetDL();
+        IDL dl = DLFactory.GetDL();   
 
-        public void addBus(Bus bus)
-        {
-            //do input checks
-            dl.addBus(BOtoDOConvertor<DO.Bus, BO.Bus >(bus));
-        }
-
-        public void addLine(busLine line)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void addLine(busStation station)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void addLine(busLineStation line)
-        {
-            throw new NotImplementedException();
-        }
+       
         #region bus
         public void addBus(Bus bus)
         {
@@ -79,27 +60,15 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-        public void addLine(busLine line)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void addLine(busStation station)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void addLine(busLineStation line)
-        {
-            throw new NotImplementedException();
-        }
+        
+        
         public IEnumerable<busLine> GetAllbusLines()
         {
-            /* var result = dl.GetAllbusLines();
+             var result = dl.GetAllbusLines();
                  if(result!=null)
                  return from item in result 
                         where item!=null && item.enabled == true
-                    select DOtoBOConvertor<BO.busLine,DO.busLine>(item);*/
+                    select DOtoBOConvertor<BO.busLine,DO.busLine>(item);
             return default;
 
         }
@@ -119,7 +88,20 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+        public void addLine(busLine line)
+        {
+            throw new NotImplementedException();
+        }
 
+        public void addLine(busStation station)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addLine(busLineStation line)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
 
@@ -160,7 +142,16 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
+        public IEnumerable<busLineStation> GetAllStationInLine(int id)
+        {
+            //var line=DOtoBOConvertor<BO.busLine, DO.busLine>(dl.GetBusLine(id));
+            if(dl.GetAllbusLineStation()!=null&& dl.GetAllLineInStation()!=null)
+            return (from sta in dl.GetAllbusLineStation() where sta != null && sta.enabled == true 
+                         from linInSta in dl.GetAllLineInStation() where linInSta != null && linInSta.Lineid == id && linInSta.stationid == sta.id
+                         orderby linInSta.placeOrder ascending
+                        select DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta)).ToList();
+            return default;
+        }
         public IEnumerable<busStation> GetAllbusStations()
         {
             throw new NotImplementedException();

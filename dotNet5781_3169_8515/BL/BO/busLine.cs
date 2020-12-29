@@ -20,6 +20,11 @@ namespace BO
         public busLineStation lastStation { get; set; }
         public IEnumerable<lineInStation> Path { get; set; }
 
+        public override string ToString()
+        {
+            return $"{number}";
+        }
+
 
 
 

@@ -25,6 +25,11 @@ namespace PL
         public managerView()
         { 
             InitializeComponent();
+            initSource();
+            
+        }
+        private void initSource()
+        {
             dplmiDate.DisplayDateEnd = DateTime.Now;
             dpRegiDate.DisplayDateEnd = DateTime.Now;
             tbiBuses.DataContext = bl.GetAllBuses();
@@ -33,8 +38,10 @@ namespace PL
             cbStations.SelectedIndex = 0;
             lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
             lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
+            scBusLines.ItemsSource = bl.GetAllbusLines();
+            scBusLines.SelectedIndex = 0;
+            lvStationOfLine.ItemsSource=bl.GetAllStationInLine((scBusLines.SelectedItem as BO.busLine).id);
         }
-
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             initTextBoxes(true,false);
@@ -185,6 +192,11 @@ namespace PL
         {
             lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
             lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
+        }
+
+        private void scBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((scBusLines.SelectedItem as BO.busLine).id);
         }
     }
 }
