@@ -153,6 +153,10 @@ namespace BL
         }
 
         #region station
+        public void addStation(busLineStation station)
+        {            
+            dl.addStation(Utility.BOtoDOConvertor<DO.busLineStation, BO.busLineStation>(station));
+        }
         public IEnumerable<busLineStation> GetAllbusLineStation()
         {
             var result = dl.GetAllbusLineStation();
@@ -209,9 +213,9 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public void updateStation(busStation station)
+        public void updateStation(busLineStation station)
         {
-            throw new NotImplementedException();
+            dl.updatebusLineStation(Utility.BOtoDOConvertor<DO.busLineStation, BO.busLineStation>(station));
         }
 
         #endregion

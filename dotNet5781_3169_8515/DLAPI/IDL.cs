@@ -32,6 +32,7 @@ namespace DLAPI
         #endregion
 
         #region LineStation
+        void addStation(DO.busLineStation station);
         IEnumerable<DO.busLineStation> GetAllbusLineStation();
         DO.busLineStation GetbusLineStation(int id);
         void addLine(DO.busLineStation line);

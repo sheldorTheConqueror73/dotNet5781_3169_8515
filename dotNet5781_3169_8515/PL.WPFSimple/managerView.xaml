@@ -98,10 +98,10 @@
 
 
                         <TextBox Grid.Row="1" Grid.Column="1" Foreground="Black" Name="tbid" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.plateNumber,ElementName=busesView, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Foreground="Black" Name="tbfuel" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.fuel,ElementName=busesView, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Foreground="Black" Name="tbDistance" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.distance,ElementName=busesView, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" Foreground="Black" Name="tbtotalDist" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" Text="{Binding SelectedItem.totalDistance,ElementName=busesView , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        <DatePicker Name="dpRegiDate" Grid.Row="5" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980" SelectedDate="{Binding SelectedItem.registrationDate,ElementName=busesView , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
+                        <TextBox Grid.Row="2" Grid.Column="1" Foreground="Black" Name="tbfuel" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.fuel,ElementName=busesView, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Foreground="Black" Name="tbDistance" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.distance,ElementName=busesView, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Foreground="Black" Name="tbtotalDist" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" Text="{Binding SelectedItem.totalDistance,ElementName=busesView , Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <DatePicker Name="dpRegiDate" Grid.Row="5" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980" SelectedDate="{Binding SelectedItem.registrationDate,ElementName=busesView , Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
@@ -317,7 +317,7 @@
                         <Label Grid.Row="5" Grid.Column="0" Content="Drive Time:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         <Label Grid.Row="6" Grid.Column="0" Content="Distance:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
-                        <TextBox x:Name="tbStationCode" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" PreviewTextInput="tbStationCode_PreviewTextInput" Text="{Binding SelectedItem.code,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbStationCode" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" PreviewTextInput="tbStationCode_PreviewTextInput" Text="{Binding SelectedItem.code,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                         <TextBox x:Name="tbStationAddress" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <TextBox x:Name="tbStationLat" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <TextBox x:Name="tbStationLong" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
@@ -329,7 +329,7 @@
                             <Button x:Name="btnUpdateStation" Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="btnUpdateStation_Click"/>
                             <Button x:Name="btnDeleteStation" Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="DeleteStation_Click"/>
                         </StackPanel>
-                        <StackPanel Grid.Row="5" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="2">
+                        <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
                             <Button x:Name="btnUpdateTimOrDis" Visibility="Collapsed" Content="Submit" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" />
                         </StackPanel>
                     </Grid>

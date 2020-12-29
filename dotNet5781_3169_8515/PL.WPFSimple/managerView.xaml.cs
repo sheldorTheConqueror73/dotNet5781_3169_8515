@@ -43,7 +43,7 @@ namespace PL
             lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.SelectedIndex = 0;
-            lvStationOfLine.ItemsSource=bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
+            lvStationOfLine.ItemsSource=bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);         
         }
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -195,26 +195,28 @@ namespace PL
             {
                 btnAddStation.Content = "Submit";                
                 btnUpdateStation.Visibility = Visibility.Hidden;
-                btnDeleteStation.Visibility = Visibility.Hidden;
-                tbStationDriveTm.Visibility = Visibility.Hidden;
-                tbStationDistance.Visibility = Visibility.Hidden;
+                btnDeleteStation.Visibility = Visibility.Hidden;              
                 initTextBoxes(true, true, 3);
+                
             }
             else
             {
-                int fuel, dist, totalDIst;
-                try { validateInput(out fuel, out dist, out totalDIst); }
+                try { validStationInput(); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                finally
+                {
+                    init_lvFollowStation_PreviewMouseDown();
+                }
                 string code = tbStationCode.Text;
                 string address = tbStationAddress.Text;
                 float latitude = float.Parse(tbStationLat.Text.ToString());
                 float longitude = float.Parse(tbStationLong.Text.ToString());
-
-                //try { bl.addBus(new BO.Bus(rd, lm, plateNumber, fuel, dist, false, totalDIst, "ready")); }
-               // catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-               // finally { initTextBoxes(false, false, 1); }
-                tbiBuses.DataContext = bl.GetAllBuses();
-                busesView.Items.Refresh();
+                try { bl.addStation(new BO.busLineStation(code,latitude,longitude,address)); }
+                catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                finally { initTextBoxes(false, false, 1); }
+                cbStations.Items.Refresh();
+                cbStations.ItemsSource = bl.GetAllbusLineStation();
+                cbStations.SelectedIndex = 0;
                 btnAddBus.Content = "Add";
                 tbStationDriveTm.Visibility = Visibility.Visible;
                 tbStationDistance.Visibility = Visibility.Visible;
@@ -222,11 +224,35 @@ namespace PL
         }
         private void validStationInput() 
         {
-          
+            if ((tbStationCode.Text == null) || (tbStationCode.Text == ""))
+                throw new InvalidUserInputExecption("Invalid input: code field cannot be empty");           
+            if (tbStationCode.Text.Length >6)
+                throw new InvalidUserInputExecption("Invalid input: code must be up-to 6 digits");          
+            foreach (char latter in tbStationLat.Text)
+            {
+                if (((latter > '9') || (latter < '0')) && (latter != '-')&&(latter!='.'))
+                    throw new InvalidUserInputExecption("Invalid input: latitude must be an number");
+            }
+            int index = tbStationLat.Text.IndexOf('-');
+            if(index!=-1&&index!=0)
+                throw new InvalidUserInputExecption("Invalid input: latitude must be an number");
+            foreach (char latter in tbStationLong.Text)
+            {
+                if (((latter > '9') || (latter < '0')) && (latter != '-') && (latter != '.'))
+                    throw new InvalidUserInputExecption("Invalid input: longitude must be an number");
+            }
+            index = tbStationLat.Text.IndexOf('-');
+            if (index != -1 && index != 0)
+                throw new InvalidUserInputExecption("Invalid input: latitude must be an number");
+            if(float.Parse(tbStationLat.Text)>90|| float.Parse(tbStationLat.Text)<-90)
+                throw new InvalidUserInputExecption("Invalid input: latitude must be an number between -90 to 90");
+            if (float.Parse(tbStationLong.Text) > 90 || float.Parse(tbStationLong.Text) < -90)
+                throw new InvalidUserInputExecption("Invalid input: longitude must be an number between -180 to 180");
+
         }
         private void tbStationCode_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("^[0-9]+");
+            Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
         private void lvFollowStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -240,6 +266,10 @@ namespace PL
             initTextBoxes(false, false, 3);
         }
         private void lvFollowStation_PreviewMouseDown(object sender, MouseEventArgs e)
+        {
+            init_lvFollowStation_PreviewMouseDown();
+        }
+        private void init_lvFollowStation_PreviewMouseDown()
         {
             tbStationDriveTm.IsEnabled = false;
             tbStationDistance.IsEnabled = false;
@@ -262,7 +292,27 @@ namespace PL
             }
             else
             {
-
+                try { validStationInput(); }
+                catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                finally
+                {
+                    init_lvFollowStation_PreviewMouseDown();
+                }
+                if (cbStations.SelectedItem == null)
+                {
+                    MessageBox.Show("You can not Update an empty list");
+                    return;
+                }
+                try
+                {
+                    var station = new BO.busLineStation(tbStationCode.Text,float.Parse(tbStationLat.Text),float.Parse(tbStationLong.Text),tbStationAddress.Text);
+                    station.id = (cbStations.SelectedItem as BO.busLineStation).id;
+                    bl.updateStation(station);
+                    cbStations.Items.Refresh();
+                    cbStations.ItemsSource = bl.GetAllbusLineStation();
+                    cbStations.SelectedIndex = 0;
+                }
+                catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
             }
         }
 
@@ -294,13 +344,13 @@ namespace PL
                 }
                 if (flagContent)
                 {
-                    tbid.Text = "";
-                    tbfuel.Text = "";
-                    tbDistance.Text = "";
-                    tbtotalDist.Text = "";
+                    tbid.Clear();
+                    tbfuel.Clear();
+                    tbDistance.Clear();
+                    tbtotalDist.Clear();
                     dpRegiDate.Text = DateTime.Now.ToString();
                     dplmiDate.Text = DateTime.Now.ToString();
-                    tbDangerous.Text = "";//----------------------------------------------------------------------------------------------fix denger bindning
+                    tbDangerous.Clear();//----------------------------------------------------------------------------------------------fix denger bindning
                 }
             }
             else if (tabItem == 2)//lines
@@ -321,10 +371,10 @@ namespace PL
                 }
                 if (flagContent)
                 {
-                    tbLineNumber.Text = "";
-                    tbLineArea.Text = "";
-                    cbLineFirstSta.Text = "";
-                    cbLineLastSta.Text = "";
+                    tbLineNumber.Clear();
+                    tbLineArea.Clear();
+                    cbLineFirstSta.SelectedIndex=0;
+                    cbLineLastSta.SelectedIndex=0;
                 }
             }
             else//stations
@@ -345,10 +395,10 @@ namespace PL
                 }
                 if (flagContent)
                 {
-                    tbStationCode.Text = "";
-                    tbStationAddress.Text = "";
-                    tbStationLat.Text = "";
-                    tbStationLong.Text = "";
+                    tbStationCode.Clear();
+                    tbStationAddress.Clear();
+                    tbStationLat.Clear();
+                    tbStationLong.Clear();
                 }
             }
         }
