@@ -166,8 +166,21 @@ namespace PL
         {
             lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
         }
+        private void DeleteStation_Click(object sender, RoutedEventArgs e)
+        {                     
+            bl.removeStation((cbStations.SelectedItem as BO.busLineStation).id);
+            cbStations.ItemsSource = bl.GetAllbusLineStation();
+            cbStations.SelectedIndex = 0;
+            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
+            lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
+
+            //lvLinesInStation.Items.Refresh();
+            //lvFollowStation.Items.Refresh();
+            //initTextBoxes(false, true, 1);
+        }
+
         #region utility
-        
+
         private void initTextBoxes(bool flagEnabled, bool flagContent, int tabItem)
         {
             if (tabItem == 1)
@@ -253,5 +266,7 @@ namespace PL
             }
         }
         #endregion
+
+       
     }
 }

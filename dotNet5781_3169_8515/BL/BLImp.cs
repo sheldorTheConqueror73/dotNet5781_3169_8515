@@ -173,7 +173,7 @@ namespace BL
         }
         public void removeStation(int id)
         {
-            throw new NotImplementedException();
+            dl.removebusLineStation(id);
         }
 
 
