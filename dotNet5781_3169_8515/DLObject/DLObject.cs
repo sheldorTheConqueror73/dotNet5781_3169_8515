@@ -72,6 +72,7 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.lastMaintenance = DateTime.Now;
             result.status = "ready";
+            result.dangerous = false;
             result.distance = 0;
         }
         #endregion

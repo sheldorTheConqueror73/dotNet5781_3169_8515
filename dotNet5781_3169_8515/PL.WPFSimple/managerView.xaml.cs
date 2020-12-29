@@ -208,7 +208,7 @@ namespace PL
 
         private void initTextBoxes(bool flagEnabled, bool flagContent, int tabItem)
         {
-            if (tabItem == 1)
+            if (tabItem == 1)//buses
             {
                 if (flagEnabled)
                 {
@@ -241,7 +241,7 @@ namespace PL
                     tbDangerous.Text = "";//----------------------------------------------------------------------------------------------fix denger bindning
                 }
             }
-            else if (tabItem == 2)
+            else if (tabItem == 2)//lines
             {
                 if (flagEnabled)
                 {
@@ -265,7 +265,7 @@ namespace PL
                     cbLineLastSta.Text = "";
                 }
             }
-            else
+            else//stations
             {
                 if (flagEnabled)
                 {
@@ -299,8 +299,15 @@ namespace PL
             var lineData = fxElt.DataContext as BO.Bus;
             int id = lineData.id;
             bl.refuel(lineData.id);
+            int index = 0;
+            foreach(var item in busesView.Items)
+            {
+                if ((item as BO.Bus).id == id)
+                    break;
+                index++;
+            }
             refreshBuses();
-            busesView.SelectedIndex = 0;//need for speed
+            busesView.SelectedIndex = index;
         }
         private void refreshBuses()
         {
@@ -314,7 +321,21 @@ namespace PL
             var lineData = fxElt.DataContext as BO.Bus;
             int id = lineData.id;
             bl.maintain(lineData.id);
+            int index = 0;
+            foreach (var item in busesView.Items)
+            {
+                if ((item as BO.Bus).id == id)
+                    break;
+                index++;
+            }
             refreshBuses();
+            busesView.SelectedIndex = index;
+
+        }
+
+        private void busesView_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            initTextBoxes(false, false, 1);
         }
     }
 }
