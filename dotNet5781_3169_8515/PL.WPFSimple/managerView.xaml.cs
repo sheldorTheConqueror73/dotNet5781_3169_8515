@@ -22,8 +22,10 @@ namespace PL
     {
 
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
+        int busOrder;
         public managerView()
-        { 
+        {
+            busOrder = 0;
             InitializeComponent();
             initSource();
             
@@ -32,7 +34,7 @@ namespace PL
         {
             dplmiDate.DisplayDateEnd = DateTime.Now;
             dpRegiDate.DisplayDateEnd = DateTime.Now;
-            tbiBuses.DataContext = bl.GetAllBuses();
+            tbiBuses.DataContext = bl.GetAllBuses(busOrder);
             busesView.SelectedIndex = 0;
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.SelectedIndex = 0;
@@ -59,7 +61,6 @@ namespace PL
             }
             else
             {
-                //------------------------------------------------------------------------------------------fix insert
                 int fuel, dist, totalDIst;
                 try { validateInput(out fuel, out dist, out totalDIst); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
@@ -311,7 +312,7 @@ namespace PL
         }
         private void refreshBuses()
         {
-            tbiBuses.DataContext = bl.GetAllBuses();
+            tbiBuses.DataContext = bl.GetAllBuses(busOrder);
             busesView.Items.Refresh();
         }
 
@@ -336,6 +337,12 @@ namespace PL
         private void busesView_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             initTextBoxes(false, false, 1);
+        }
+
+        private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            busOrder = cbSort.SelectedIndex;
+            refreshBuses();
         }
     }
 }

@@ -25,7 +25,7 @@
                         <ListView x:Name="busesView"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding plateNumber}">
+                                    <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding plateNumber}"  >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock  Text="{Binding plateNumber}"  Margin="1.5" HorizontalAlignment="Center"/>
@@ -66,8 +66,7 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" Margin="269,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
-                            <ComboBoxItem Content="Order By"/>
+                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="269,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
                             <ComboBoxItem Content="ID"/>
                             <ComboBoxItem x:Name="sortbox" Content="Status"/>
                             <ComboBoxItem Content="Time"/>

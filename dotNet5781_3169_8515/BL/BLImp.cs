@@ -38,16 +38,23 @@ namespace BL
             return Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(dl.GetBus(id));
         }
 
-        public List<Bus> GetAllBuses()
+        public List<Bus> GetAllBuses(int order=0)
         {
             var result = dl.GetAllBuses();
             if (result != null)
+            {
+                if(order==0)
                 return (from item in result
-                        where (item != null && item.enabled == true )
+                        where (item != null && item.enabled == true)
                         orderby item.plateNumber ascending
-                        select Utility.DOtoBOConvertor<BO.Bus,DO.Bus>(item)).ToList();
+                        select Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
+                if (order == 1)
+                    return (from item in result
+                            where (item != null && item.enabled == true)
+                            orderby item.status ascending, item.plateNumber ascending
+                            select Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
+            }
             return default;
-
             //DOBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
         }
 
