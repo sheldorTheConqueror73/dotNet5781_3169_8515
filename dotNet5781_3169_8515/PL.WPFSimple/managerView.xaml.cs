@@ -23,8 +23,10 @@ namespace PL
     {
 
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
+        int busOrder;
         public managerView()
-        { 
+        {
+            busOrder = 0;
             InitializeComponent();
             initSource();
             
@@ -33,7 +35,7 @@ namespace PL
         {
             dplmiDate.DisplayDateEnd = DateTime.Now;
             dpRegiDate.DisplayDateEnd = DateTime.Now;
-            tbiBuses.DataContext = bl.GetAllBuses();
+            tbiBuses.DataContext = bl.GetAllBuses(busOrder);
             busesView.SelectedIndex = 0;
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.SelectedIndex = 0;
@@ -60,7 +62,6 @@ namespace PL
             }
             else
             {
-                //------------------------------------------------------------------------------------------fix insert
                 int fuel, dist, totalDIst;
                 try { validateInput(out fuel, out dist, out totalDIst); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
@@ -70,8 +71,7 @@ namespace PL
                 try { bl.addBus(new BO.Bus(rd,lm, plateNumber,fuel,dist,false,totalDIst,"ready"));  }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
                 finally {      initTextBoxes(false, false,1);  }
-                tbiBuses.DataContext = bl.GetAllBuses();
-                busesView.Items.Refresh();
+                refreshBuses();
                 btnAddBus.Content = "Add";
                 lbDanger.Visibility = System.Windows.Visibility.Visible;
                 tbDangerous.Visibility = System.Windows.Visibility.Visible;
@@ -112,11 +112,15 @@ namespace PL
             tbid.IsEnabled = false;
             if ((tbid.Text == null) || (tbid.Text == ""))
                 throw new InvalidUserInputExecption("Invalid input: Id field cannot be empty");
-            if ((tbid.Text.Length != 8) && (tbid.Text.Length != 7))
+            string temp = "";
+            foreach (char element in tbid.Text)
+                if (element != '-')
+                    temp += element;
+            if ((temp.Length != 8) && (temp.Length != 7))
                 throw new InvalidUserInputExecption("Invalid input: id must be 7 or 8 digits");
             foreach (char latter in tbid.Text)
             {
-                if ((latter > '9') || (latter < '0'))
+                if (((latter > '9') || (latter < '0'))&&(latter!='-'))
                     throw new InvalidUserInputExecption("Invalid input: id must be an integer");
             }
             if ((tbid.Text.Length == 8 && ((DateTime)dpRegiDate.SelectedDate).Year < 2018) || (tbid.Text.Length == 7 && ((DateTime)dpRegiDate.SelectedDate).Year >= 2018))
@@ -153,8 +157,7 @@ namespace PL
             var lineData = fxElt.DataContext as BO.Bus;
             int id = lineData.id;
             bl.removeBus(id);
-            tbiBuses.DataContext = bl.GetAllBuses();
-            busesView.Items.Refresh();
+            refreshBuses();
             initTextBoxes(false, true,1);
         }
 
@@ -267,7 +270,7 @@ namespace PL
 
         private void initTextBoxes(bool flagEnabled, bool flagContent, int tabItem)
         {
-            if (tabItem == 1)
+            if (tabItem == 1)//buses
             {
                 if (flagEnabled)
                 {
@@ -300,7 +303,7 @@ namespace PL
                     tbDangerous.Text = "";//----------------------------------------------------------------------------------------------fix denger bindning
                 }
             }
-            else if (tabItem == 2)
+            else if (tabItem == 2)//lines
             {
                 if (flagEnabled)
                 {
@@ -324,7 +327,7 @@ namespace PL
                     cbLineLastSta.Text = "";
                 }
             }
-            else
+            else//stations
             {
                 if (flagEnabled)
                 {
@@ -350,11 +353,57 @@ namespace PL
             }
         }
 
-
-
-
         #endregion
 
-       
+        private void Refuel_Click(object sender, RoutedEventArgs e)
+        {
+            var fxElt = sender as FrameworkElement;
+            var lineData = fxElt.DataContext as BO.Bus;
+            int id = lineData.id;
+            bl.refuel(lineData.id);
+            int index = 0;
+            foreach(var item in busesView.Items)
+            {
+                if ((item as BO.Bus).id == id)
+                    break;
+                index++;
+            }
+            refreshBuses();
+            busesView.SelectedIndex = index;
+        }
+        private void refreshBuses()
+        {
+            tbiBuses.DataContext = bl.GetAllBuses(busOrder);
+            busesView.Items.Refresh();
+        }
+
+        private void Maintenance_Click(object sender, RoutedEventArgs e)
+        {
+            var fxElt = sender as FrameworkElement;
+            var lineData = fxElt.DataContext as BO.Bus;
+            int id = lineData.id;
+            bl.maintain(lineData.id);
+            int index = 0;
+            foreach (var item in busesView.Items)
+            {
+                if ((item as BO.Bus).id == id)
+                    break;
+                index++;
+            }
+            refreshBuses();
+            busesView.SelectedIndex = index;
+
+        }
+
+        private void busesView_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            initTextBoxes(false, false, 1);
+        }
+
+        private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            busOrder = cbSort.SelectedIndex;
+            refreshBuses();
+        }
     }
 }

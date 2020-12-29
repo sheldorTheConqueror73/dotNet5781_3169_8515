@@ -35,25 +35,48 @@ namespace BL
 
         public Bus GetBus(int id)
         {
-            throw new NotImplementedException();
+            return Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(dl.GetBus(id));
         }
 
-        public List<Bus> GetAllBuses()
+        public List<Bus> GetAllBuses(int order=0)
         {
             var result = dl.GetAllBuses();
             if (result != null)
+            {
+                if(order==0)
                 return (from item in result
-                        where (item != null && item.enabled == true )
+                        where (item != null && item.enabled == true)
                         orderby item.plateNumber ascending
-                        select Utility.DOtoBOConvertor<BO.Bus,DO.Bus>(item)).ToList();
+                        select Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
+                if (order == 1)
+                    return (from item in result
+                            where (item != null && item.enabled == true)
+                            orderby item.status ascending, item.plateNumber ascending
+                            select Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
+            }
             return default;
-
             //DOBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
         }
 
         public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
         {
             throw new NotImplementedException();
+        }
+
+        public void refuel(int id)
+        {
+            var bus = this.GetBus(id);
+            if (bus.status != "ready" && bus.status != "dangerous")
+                throw new BusBusyException("Bus is currently Busy");
+            dl.refuel(id);
+        }
+        public void maintain(int id)
+        {
+            
+            var bus = this.GetBus(id);
+            if (bus.status != "ready" && bus.status != "dangerous")
+                throw new BusBusyException("Bus is currently Busy");
+            dl.maintain(id);
         }
         #endregion
 

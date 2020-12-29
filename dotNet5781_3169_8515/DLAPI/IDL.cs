@@ -18,6 +18,9 @@ namespace DLAPI
         void addBus(DO.Bus bus);
         void removeBus(int id);
         void updateBus(DO.Bus bus);
+        void refuel(int id);
+        void maintain(int id);
+        
         #endregion
 
         #region busLine
