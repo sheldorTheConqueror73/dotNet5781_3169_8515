@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -185,21 +186,81 @@ namespace PL
             lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
         }
         
-         private void Add_Station_Click(object sender, RoutedEventArgs e)
+        private void Add_Station_Click(object sender, RoutedEventArgs e)
         {
-           
+            if (btnAddStation.Content.Equals("Add"))
+            {
+                btnAddStation.Content = "Submit";                
+                btnUpdateStation.Visibility = Visibility.Hidden;
+                btnDeleteStation.Visibility = Visibility.Hidden;
+                tbStationDriveTm.Visibility = Visibility.Hidden;
+                tbStationDistance.Visibility = Visibility.Hidden;
+                initTextBoxes(true, true, 3);
+            }
+            else
+            {
+                int fuel, dist, totalDIst;
+                try { validateInput(out fuel, out dist, out totalDIst); }
+                catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                string code = tbStationCode.Text;
+                string address = tbStationAddress.Text;
+                float latitude = float.Parse(tbStationLat.Text.ToString());
+                float longitude = float.Parse(tbStationLong.Text.ToString());
+
+                //try { bl.addBus(new BO.Bus(rd, lm, plateNumber, fuel, dist, false, totalDIst, "ready")); }
+               // catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+               // finally { initTextBoxes(false, false, 1); }
+                tbiBuses.DataContext = bl.GetAllBuses();
+                busesView.Items.Refresh();
+                btnAddBus.Content = "Add";
+                tbStationDriveTm.Visibility = Visibility.Visible;
+                tbStationDistance.Visibility = Visibility.Visible;
+            }
+        }
+        private void validStationInput() 
+        {
+          
+        }
+        private void tbStationCode_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
         private void lvFollowStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             tbStationDriveTm.IsEnabled = true;
             tbStationDistance.IsEnabled = true;
+            btnUpdateTimOrDis.Visibility = Visibility.Visible;
+            btnAddStation.Visibility = Visibility.Collapsed;
+            btnUpdateStation.Visibility = Visibility.Collapsed;
+            btnDeleteStation.Visibility = Visibility.Collapsed;
             initTextBoxes(false, false, 3);
         }
         private void lvFollowStation_PreviewMouseDown(object sender, MouseEventArgs e)
         {
             tbStationDriveTm.IsEnabled = false;
             tbStationDistance.IsEnabled = false;
-            initTextBoxes(true, false, 3);
+            btnUpdateTimOrDis.Visibility = Visibility.Collapsed;
+            btnAddStation.Visibility = Visibility.Visible;
+            btnUpdateStation.Visibility = Visibility.Visible;
+            btnDeleteStation.Visibility = Visibility.Visible;
+            btnUpdateStation.Content = "Update";
+            btnAddStation.Content = "Add";
+            initTextBoxes(false, false, 3);
+        }
+        private void btnUpdateStation_Click(object sender, RoutedEventArgs e)
+        {
+            if (btnUpdateStation.Content.Equals("Update"))
+            {
+                btnAddStation.Visibility = Visibility.Hidden;
+                btnUpdateStation.Content = "Submit";
+                btnDeleteStation.Visibility = Visibility.Hidden;
+                initTextBoxes(true, false, 3);
+            }
+            else
+            {
+
+            }
         }
 
         #region utility
@@ -288,6 +349,8 @@ namespace PL
                 }
             }
         }
+
+
 
 
         #endregion

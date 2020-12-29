@@ -136,6 +136,7 @@ namespace BL
             if (result != null)
                 return (from item in result
                         where item != null && item.enabled == true
+                        orderby item.code ascending
                         select Utility.DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(item)).ToList();
             return default;
         }
