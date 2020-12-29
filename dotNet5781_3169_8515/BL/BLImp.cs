@@ -69,11 +69,7 @@ namespace BL
             var bus = this.GetBus(id);
             if (bus.status != "ready" && bus.status != "dangerous")
                 throw new BusBusyException("Bus is currently Busy");
-            bus.lastMaintenance = DateTime.Now;
-            bus.UpdateDangerous();
-            if (bus.status == "ready")
-                ;//change icon to ready
-            dl.updateBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
+            dl.maintain(id);
         }
         #endregion
 
