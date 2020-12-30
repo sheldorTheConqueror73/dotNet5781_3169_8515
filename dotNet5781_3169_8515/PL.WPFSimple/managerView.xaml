@@ -209,10 +209,10 @@
                             <ColumnDefinition Width="100*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="Number:" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,84,124"/>
-                        <Label Grid.Column="0" Content="Area:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,103,94" />
-                        <Label Grid.Column="0" Content="First Station:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,95,65,29"/>
-                        <Label Grid.Column="0" Content="Last Station:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,121,66,3"/>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Number:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                        <Label Grid.Column="0" Content="Area:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,30,0,0" />
+                        <Label Grid.Column="0" Content="First Station:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,95,0,0"/>
+                        <Label Grid.Column="0" Content="Last Station:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,121,0,0"/>
 
                         <TextBox x:Name="tbLineNumber" IsEnabled="False"  Grid.Column="1" Width="100" Height="30" VerticalAlignment="Top" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,0,0,0" HorizontalAlignment="Left"/>
                         <TextBox x:Name="tbLineArea"  IsEnabled="False" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
