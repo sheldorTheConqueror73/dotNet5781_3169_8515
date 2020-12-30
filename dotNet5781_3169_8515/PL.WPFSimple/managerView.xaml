@@ -69,7 +69,7 @@
                         <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="269,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
                             <ComboBoxItem Content="ID"/>
                             <ComboBoxItem x:Name="sortbox" Content="Status"/>
-                            <ComboBoxItem Content="Time"/>
+                            <!--<ComboBoxItem Content="Time" />-->
                         </ComboBox>
                     </Grid>
                     <Grid Grid.ColumnSpan="2" Grid.Column="1" x:Name="gridBuses">
@@ -209,13 +209,13 @@
                             <ColumnDefinition Width="100*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="Number:" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,7"/>
-                        <Label Grid.Row="1" Grid.Column="0" Content="Area:" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Label Grid.Row="0" Grid.Column="0" Content="Number:" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="40,0,44,40"/>
+                        <Label Grid.Column="0" Content="Area:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="53,64,50,0" />
                         <Label Grid.Row="2" Grid.Column="0" Content="First Station:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <Label Grid.Row="3" Grid.Column="0" Content="Last Station:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                        <TextBox x:Name="tbLineNumber" IsEnabled="False" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbLineArea" IsEnabled="False" Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox x:Name="tbLineNumber" IsEnabled="False" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="98,0,98,40"/>
+                        <TextBox x:Name="tbLineArea" IsEnabled="False" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="98,60,98,0"/>
                         <ComboBox x:Name="cbLineFirstSta" IsEnabled="False" Grid.Row="2" Grid.Column="1" Width="100" Height="30"/>
                         <ComboBox x:Name="cbLineLastSta" IsEnabled="False" Grid.Row="3" Grid.Column="1" Width="100" Height="30"/>
 
@@ -224,120 +224,122 @@
                             <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0"/>
                             <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0"/>
                         </StackPanel>
+                        <Label Content="Total Time:" HorizontalAlignment="Center" Margin="40,10,33,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="98,7,0,0" Grid.Row="1" TextWrapping="Wrap" IsEnabled="False" VerticalAlignment="Top" Width="100"/>
                     </Grid>
                 </Grid>
             </TabItem>
 
-            
+
             <TabItem Header="Stations">
                 <Viewbox VerticalAlignment="Top" Margin="0,0,0,-1">
-                <Grid Name="StationsGrid"  >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="400*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="375"/>
-                        <ColumnDefinition Width="75"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="300*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <ListView x:Name="lvFollowStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="370" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvFollowStation_MouseDoubleClick" PreviewMouseDown="lvFollowStation_PreviewMouseDown" >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding code}">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock  Text="{Binding code}"  Margin="1.5" HorizontalAlignment="Center"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn Header="Address" Width="140"  DisplayMemberBinding="{Binding Address}">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock  Text="{Binding Address}"  Margin="1.5" HorizontalAlignment="Center"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn Header="Distance" Width="70"  DisplayMemberBinding="{Binding Distance}">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock  Text="{Binding Distance}"  Margin="1.5" HorizontalAlignment="Center"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn Header="Time" Width="70"  DisplayMemberBinding="{Binding DriveTime}">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock  Text="{Binding DriveTime}"  Margin="1.5" HorizontalAlignment="Center"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <ListView x:Name="lvLinesInStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="77" BorderThickness="0" MouseDoubleClick="busesView_MouseDoubleClick" >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Lines" Width="70"  DisplayMemberBinding="{Binding number}">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock  Text="{Binding number}"  Margin="1.5" HorizontalAlignment="Center"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Grid>
-                    <ComboBox x:Name="cbStations" Grid.Column="2" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="cbStations_SelectionChanged"/>
-                    <Grid Grid.Column="3">
+                    <Grid Name="StationsGrid"  >
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="90"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40*"/>
+                            <RowDefinition Height="400*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="375"/>
+                            <ColumnDefinition Width="75"/>
                             <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="110"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="300*"/>
                         </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <ListView x:Name="lvFollowStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="370" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvFollowStation_MouseDoubleClick" PreviewMouseDown="lvFollowStation_PreviewMouseDown" >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding code}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock  Text="{Binding code}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Address" Width="140"  DisplayMemberBinding="{Binding Address}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock  Text="{Binding Address}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Distance" Width="70"  DisplayMemberBinding="{Binding Distance}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock  Text="{Binding Distance}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Time" Width="70"  DisplayMemberBinding="{Binding DriveTime}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock  Text="{Binding DriveTime}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ListView x:Name="lvLinesInStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="77" BorderThickness="0" MouseDoubleClick="busesView_MouseDoubleClick" >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Lines" Width="70"  DisplayMemberBinding="{Binding number}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock  Text="{Binding number}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                        <ComboBox x:Name="cbStations" Grid.Column="2" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="cbStations_SelectionChanged"/>
+                        <Grid Grid.Column="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="90"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="Code:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                        <Label Grid.Row="1" Grid.Column="0" Content="Address:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                        <Label Grid.Row="2" Grid.Column="0" Content="Latitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                        <Label Grid.Row="3" Grid.Column="0" Content="Longitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                        <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Text="Follow Station" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                        <Label Grid.Row="5" Grid.Column="0" Content="Drive Time:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                        <Label Grid.Row="6" Grid.Column="0" Content="Distance:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <Label Grid.Row="0" Grid.Column="0" Content="Code:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="Address:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <Label Grid.Row="2" Grid.Column="0" Content="Latitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <Label Grid.Row="3" Grid.Column="0" Content="Longitude:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Text="Follow Station" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <Label Grid.Row="5" Grid.Column="0" Content="Drive Time:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <Label Grid.Row="6" Grid.Column="0" Content="Distance:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
-                        <TextBox x:Name="tbStationCode" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" PreviewTextInput="tbStationCode_PreviewTextInput" Text="{Binding SelectedItem.code,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        <TextBox x:Name="tbStationAddress" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbStationLat" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbStationLong" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbStationDriveTm" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="5" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.DriveTime,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox x:Name="tbStationDistance" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="6" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Distance,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                            <TextBox x:Name="tbStationCode" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" PreviewTextInput="tbStationCode_PreviewTextInput" Text="{Binding SelectedItem.code,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            <TextBox x:Name="tbStationAddress" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="1" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Address,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                            <TextBox x:Name="tbStationLat" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="2" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Latitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                            <TextBox x:Name="tbStationLong" IsEnabled="False" HorizontalAlignment="Left"  Grid.Row="3" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Longitude,ElementName=cbStations, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                            <TextBox x:Name="tbStationDriveTm" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="5" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.DriveTime,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                            <TextBox x:Name="tbStationDistance" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="6" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Distance,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
 
-                        <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="2">
-                            <Button x:Name="btnAddStation" Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0" Click="Add_Station_Click"/>
-                            <Button x:Name="btnUpdateStation" Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="btnUpdateStation_Click"/>
-                            <Button x:Name="btnDeleteStation" Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="DeleteStation_Click"/>
-                        </StackPanel>
-                        <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
-                            <Button x:Name="btnUpdateTimOrDis" Visibility="Collapsed" Content="Submit" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" />
-                        </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="2">
+                                <Button x:Name="btnAddStation" Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0" Click="Add_Station_Click"/>
+                                <Button x:Name="btnUpdateStation" Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="btnUpdateStation_Click"/>
+                                <Button x:Name="btnDeleteStation" Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="DeleteStation_Click"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
+                                <Button x:Name="btnUpdateTimOrDis" Visibility="Collapsed" Content="Submit" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" />
+                            </StackPanel>
+                        </Grid>
                     </Grid>
-                </Grid>
                 </Viewbox>
             </TabItem>
-            
+
         </TabControl>
     </Grid>
 </Window>

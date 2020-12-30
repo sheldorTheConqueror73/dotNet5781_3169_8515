@@ -56,5 +56,9 @@ namespace BL
                     temp += element;
             str = temp;
         }
+        internal static string convertTime(this DO.busLine line)
+        {
+            return line.driveTime.ToString().Split(' ')[1];
+        }
     }
 }
