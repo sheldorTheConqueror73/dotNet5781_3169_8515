@@ -32,7 +32,7 @@ namespace DO
             set
             {
                 if (!((value < -180) || (value > 180)))
-                    latitude = value;
+                    longitude = value;
             }
         }
         public string Address
@@ -44,16 +44,16 @@ namespace DO
         {
             code = "";
             address = "";
-            latitude = NULL;
-            longitude = NULL;
+            //latitude =NULL ;
+            //longitude = NULL;
             enabled = true;
         }
         public busStation(string code)//ctor
         {
             this.code = code;
             address = "";
-            latitude = NULL;
-            longitude = NULL;
+            //latitude = NULL;
+           // longitude = NULL;
             enabled = true;
         }
         public busStation(string code, float lat, float lon, string address = "")//ctor

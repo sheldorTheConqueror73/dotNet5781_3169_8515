@@ -147,10 +147,7 @@ namespace BL
 
 
 
-        public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         #region station
         public void addStation(busLineStation station)
@@ -217,12 +214,15 @@ namespace BL
         {
             dl.updatebusLineStation(Utility.BOtoDOConvertor<DO.busLineStation, BO.busLineStation>(station));
         }
-
+        public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
 
-      
-       
+
+
 
         #region followStations
         private IEnumerable<followStations> GetAllFollowStations(int id)

@@ -216,8 +216,8 @@ namespace PL
                 float longitude = float.Parse(tbStationLong.Text.ToString());
                 try { bl.addStation(new BO.busLineStation(code, latitude, longitude, address)); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-                finally { initTextBoxes(false, false, 1); }
-                initTextBoxByCbInStations();
+                finally { initTextBoxes(false, false, 1); initTextBoxByCbInStations(); }
+                
                 btnAddBus.Content = "Add";
                 tbStationDriveTm.Visibility = Visibility.Visible;
                 tbStationDistance.Visibility = Visibility.Visible;
