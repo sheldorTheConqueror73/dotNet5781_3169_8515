@@ -331,7 +331,7 @@
                             <Button x:Name="btnDeleteStation" Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="DeleteStation_Click"/>
                         </StackPanel>
                         <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
-                            <Button x:Name="btnUpdateTimOrDis" Visibility="Collapsed" Content="Submit" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" />
+                            <Button x:Name="btnUpdateTimOrDis" Visibility="Collapsed" Content="Submit" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" Click="btnUpdateTimOrDis_Click"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

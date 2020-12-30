@@ -207,6 +207,14 @@ namespace DL
             return from bus in DataSource.followStation
                    select bus.Clone();
         }
+        public void updateFollowStation(DO.followStations folStation)
+        {
+            var result = DataSource.followStation.Find(b => b.id == folStation.id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {folStation.id}");
+            result = folStation.Clone();
+        }
+
         #endregion
         #endregion
 

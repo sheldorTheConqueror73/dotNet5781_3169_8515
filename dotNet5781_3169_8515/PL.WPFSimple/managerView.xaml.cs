@@ -24,6 +24,7 @@ namespace PL
 
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         int busOrder;
+        int folStatIdSelect = 0;
         public managerView()
         {
             busOrder = 0;
@@ -241,6 +242,7 @@ namespace PL
         }
         private void lvFollowStation_PreviewMouseDown(object sender, MouseEventArgs e)
         {
+            //folStatIdSelect = (lvFollowStation.SelectedItem as BO.followStations).id;
             init_lvFollowStation_PreviewMouseDown();
         }
         private void init_lvFollowStation_PreviewMouseDown()
@@ -289,9 +291,28 @@ namespace PL
                 catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
             }
         }
-        #endregion
-       
+
+        private void btnUpdateTimOrDis_Click(object sender, RoutedEventArgs e)
+        {
+            try { validINputDriveTimeOrDistance(); }
+            catch (Exception exc) { MessageBox.Show(exc.Message); return;  }
+            finally {
+                init_lvFollowStation_PreviewMouseDown();
+                initTextBoxByCbInStations();
+            }           
+            try
+            {               
+                var folStation = new BO.followStations((cbStations.SelectedItem as BO.busLineStation).id, (lvFollowStation.SelectedItem as BO.busLineStation).id,int.Parse(tbStationDistance.Text),TimeSpan.Parse(tbStationDriveTm.Text));
+               // folStation.id = (cbStations.SelectedItem as BO.followStations).id;
+                bl.updateFollowStation(folStation);
+                initTextBoxByCbInStations();
+            }
+            catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
+        }
         
+        #endregion
+
+
         #region utility
         private void initSource()
         {
@@ -478,9 +499,34 @@ namespace PL
                 throw new InvalidUserInputExecption("Invalid input: longitude must be an number between -180 to 180");
 
         }
+
+        private void validINputDriveTimeOrDistance()
+        {
+            string fl = tbStationDriveTm.Text;
+            string[] sd = fl.Split(':');
+            int index1 = fl.IndexOf(':');
+            fl = fl.Substring(index1 + 1);
+            int index2 = fl.IndexOf(':');
+            if (index1 != 2 || index2 != 2)
+                throw new InvalidUserInputExecption("Invalid input: time drive field need to be in format of: HH:MM:SS");
+            int val1 = 0, val2 = 0, val3 = 0;
+            // bool sucsses = int.TryParse(sd[0],out val);
+            if (!int.TryParse(sd[0], out val1) || !int.TryParse(sd[1], out val2) || !int.TryParse(sd[2], out val3))
+                throw new InvalidUserInputExecption("Invalid input: time drive field need to be in format of: HH:MM:SS");
+            if (val1 > 99 || val1 < 0)
+                throw new InvalidUserInputExecption("Invalid input: Hours field need to be 0-99");
+            if (val2 > 59 || val2 < 0)
+                throw new InvalidUserInputExecption("Invalid input: Minutes field need to be 0-59");
+            if (val3 > 59 || val3 < 0)
+                throw new InvalidUserInputExecption("Invalid input: Seconds field need to be 0-59");
+            if (!int.TryParse(tbStationDistance.Text, out val1))
+                throw new InvalidUserInputExecption("Invalid input: Distance field need to be an integer.");
+            if (val1 < 0)
+                throw new InvalidUserInputExecption("Invalid input: Distance field need to be a possitive integer.");
+
+        }
         #endregion
 
-       
-        
+
     }
 }

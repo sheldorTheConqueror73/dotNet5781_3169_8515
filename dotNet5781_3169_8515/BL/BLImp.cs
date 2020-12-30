@@ -247,6 +247,11 @@ namespace BL
                         select (Utility.DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta))).ToList();
             return default;
         }
+
+        public void updateFollowStation(followStations folStation)
+        {
+            dl.updateFollowStation(Utility.BOtoDOConvertor<DO.followStations, BO.followStations>(folStation));
+        }
         #endregion
         #region user
         public IEnumerable<BO.User> GetAllUsers()
