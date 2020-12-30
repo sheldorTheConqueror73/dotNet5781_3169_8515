@@ -56,7 +56,9 @@ namespace DL
             var result = DataSource.buses.Find(b => b.id == bus.id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {bus.id}");
-            result = bus.Clone();
+            DataSource.buses.Remove(result);
+            DataSource.buses.Add(bus.Clone());
+
         }
         public void refuel(int id)
         {
