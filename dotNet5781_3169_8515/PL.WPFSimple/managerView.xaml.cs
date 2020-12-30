@@ -38,6 +38,7 @@ namespace PL
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             initTextBoxes(true, false, 1);
+            btnUpdate.Visibility = System.Windows.Visibility.Visible;
         }
 
 
@@ -72,6 +73,7 @@ namespace PL
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            int id;
             int fuel, dist, totalDIst;
             try { validateInput(out fuel, out dist, out totalDIst); }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
@@ -93,9 +95,21 @@ namespace PL
                 var bus = new BO.Bus(dpRegiDate.SelectedDate.Value, dplmiDate.SelectedDate.Value, tbid.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false, totalDIst, (busesView.SelectedItem as BO.Bus).status);
                 bus.id = (busesView.SelectedItem as BO.Bus).id;
                 bl.updateBus(bus);
+                id = bus.id;
             }
             catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
-
+            refreshBuses();
+            int index = 0;
+            foreach (var item in busesView.Items)
+            {
+                if ((item as BO.Bus).id ==id)
+                    break;
+                index++;
+            }
+            refreshBuses();
+            busesView.SelectedIndex = index;
+            initTextBoxes(false, false, 1);
+            btnUpdate.Visibility = System.Windows.Visibility.Hidden;
         }
 
 
@@ -154,6 +168,7 @@ namespace PL
         private void busesView_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             initTextBoxes(false, false, 1);
+            btnUpdate.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -403,6 +418,7 @@ namespace PL
                 {
                     tbLineNumber.Clear();
                     tbLineArea.Clear();
+                    tbldriveTime.Clear();
                     cbLineFirstSta.SelectedIndex=0;
                     cbLineLastSta.SelectedIndex=0;
                 }
@@ -547,6 +563,34 @@ namespace PL
         }
         #endregion
 
+        #region lines
+        private void addLine_click(object sender, RoutedEventArgs e)
+        {
+            if (btnaddLine.Content.Equals("Add"))
+            {
+                btnaddLine.Content = "Submit";
+                initTextBoxes(true, true, 2);
+                tbldriveTime.Visibility = System.Windows.Visibility.Hidden;
+            }
+            else
+            {
+                btnaddLine.Content = "Add";
 
+                
+            }
+        }
+        private void lvStationOfLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void lvStationOfLine_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+
+        #endregion
+
+        
     }
 }

@@ -41,20 +41,20 @@ namespace BL
         }
         internal static void formatPlateNumber(this BO.Bus bus)
         {
-            bus.plateNumber.removeChar('-');
+            bus.plateNumber=removeChar(bus.plateNumber,'-');
             if (bus.plateNumber.Length == 7)
                 bus.plateNumber = $"{bus.plateNumber[0]}{bus.plateNumber[1]}-{bus.plateNumber[2]}{bus.plateNumber[3]}{bus.plateNumber[4]}-{bus.plateNumber[5]}{bus.plateNumber[6]}";
             else
                 bus.plateNumber = $"{bus.plateNumber[0]}{bus.plateNumber[1]}{bus.plateNumber[2]}-{bus.plateNumber[3]}{bus.plateNumber[4]}-{bus.plateNumber[5]}{bus.plateNumber[6]}{bus.plateNumber[7]}";
 
         }
-        internal static void removeChar(this string str,char ch)
+        internal static string removeChar( string str,char ch)
         {
             string temp = "";
             foreach (char element in str)
                 if (element != ch)
                     temp += element;
-            str = temp;
+            return temp;
         }
     }
 }
