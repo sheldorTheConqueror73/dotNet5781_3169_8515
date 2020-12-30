@@ -121,9 +121,9 @@ namespace DL
         #region LineStation
         public void addStation(DO.busLineStation station)
         {
-            var result = DataSource.LineStations.Find(b => b.id == station.id);
+            var result = DataSource.LineStations.Find(b => b.code == station.code);
             if ((result != null) && (result.enabled == true))
-                throw new itemAlreadyExistsException($"ID number {station.id} is already taken");
+                throw new itemAlreadyExistsException($"ID number {station.code} is already taken");
             DataSource.LineStations.Add(station.Clone());
         }
         public IEnumerable<busLineStation> GetAllbusLineStation()

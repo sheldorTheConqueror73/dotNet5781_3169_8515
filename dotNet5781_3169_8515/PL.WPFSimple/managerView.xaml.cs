@@ -297,6 +297,9 @@ namespace PL
                 finally
                 {
                     init_lvFollowStation_PreviewMouseDown();
+                    cbStations.Items.Refresh();
+                    cbStations.ItemsSource = bl.GetAllbusLineStation();
+                    cbStations.SelectedIndex = 0;
                 }
                 if (cbStations.SelectedItem == null)
                 {
