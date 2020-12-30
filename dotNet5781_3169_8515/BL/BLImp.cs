@@ -113,13 +113,17 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-        public void addLine(string number, int area, List<BO.busLineStation> path)
+        public void addLine(string number, int area, List<BO.busLineStation> path, int[] distance, TimeSpan[] time)
         {
             busLine line = new busLine() { number = number, area = (Area)area };
             dl.addLine(Utility.BOtoDOConvertor<DO.busLine, BO.busLine>(line));
-                for(int i=0;i<path.Count;i++)
+            for(int i=0;i<path.Count;i++)
             {
-                dl.addl
+                dl.addLineInStation(new DO.lineInStation() { stationid=path[i].id, Lineid=line.id,Address=path[i].Address, placeOrder=i+1 });
+                if(i!=path.Count-1)
+                {
+                    dl.addFollowStation(new DO.followStations() { firstStationid=path[i].id, enabled=true,distance=distance[i], driveTime=time[i] });
+                }
             }
         
         }

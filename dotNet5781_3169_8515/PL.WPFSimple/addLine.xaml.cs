@@ -82,7 +82,9 @@ namespace PL
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             validateInput();
-            bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, fList);
+            int[] distance= new int[tList.Count-1];
+            TimeSpan[] time = new TimeSpan[tList.Count - 1];
+            bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, fList,distance,time);
         }
     }
 }
