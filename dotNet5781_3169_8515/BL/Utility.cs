@@ -17,7 +17,7 @@ namespace BL
             foreach (PropertyInfo propTo in output.GetType().GetProperties())
             {
                 PropertyInfo propFrom = line.GetType().GetProperty(propTo.Name);
-                if (propFrom == null)
+                if (propFrom == null||propTo.PropertyType != propFrom.PropertyType)
                     continue;
                 propTo.SetValue(output, propFrom.GetValue(line, null));
             }
@@ -32,7 +32,7 @@ namespace BL
             foreach (PropertyInfo propTo in output.GetType().GetProperties())
             {
                 PropertyInfo propFrom = line.GetType().GetProperty(propTo.Name);
-                if (propFrom == null)
+                if (propFrom == null||propTo.PropertyType!=propFrom.PropertyType)
                     continue;
                 propTo.SetValue(output, propFrom.GetValue(line, null));
             }

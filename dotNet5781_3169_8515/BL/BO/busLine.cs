@@ -19,6 +19,7 @@ namespace BO
         public busLineStation firstStation { get; set; }
         public busLineStation lastStation { get; set; }
         public IEnumerable<lineInStation> Path { get; set; }
+        public string driveTime { get; set; }
 
         public override string ToString()
         {

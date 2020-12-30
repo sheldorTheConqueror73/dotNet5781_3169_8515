@@ -139,17 +139,24 @@ namespace DS
                 DO.Area a1 = (DO.Area)r.Next(0, 10);
                 int size = r.Next(10, 15);
                 busLineStation[] arr = new busLineStation[size];
-                Lines.Add(new busLine() { enabled = true, number = Number, area = a1 }); ;
-                arr = tandom(size, Number,Lines[Lines.Count()-1].id); 
-                for(int q=1;q<arr.Length;q++)
+                DateTime totalTime;
+                busLine line = new busLine();
+                arr = tandom(size, Number,line.id,out totalTime);
+                line.enabled = true;
+                line.number = Number;
+                line.area = a1;
+                line.driveTime = totalTime.ToString().Split(' ')[1];
+                Lines.Add(line);
+                for (int q=1;q<arr.Length;q++)
                 {
                     followStation.Add(new followStations() {firstStationid= arr[q-1].id,secondStationid=arr[q].id,distance=arr[q].Distance,driveTime=arr[q].DriveTime,enabled=true});
                 }
               
             }
         }
-        private static busLineStation[] tandom(int size,string Number,int id)
+        private static busLineStation[] tandom(int size,string Number,int id,out DateTime totalTime)
         {
+            totalTime = new DateTime();
             int cnt = 0;
             busLineStation[] arr = new busLineStation[size];
             Random r = new Random();
@@ -175,11 +182,13 @@ namespace DS
                 {
                     arr[i].Distance = r.Next(5, 301);
                     arr[i].DriveTime = new TimeSpan(0, r.Next(1, 60), 0);
+                    totalTime += arr[i].DriveTime;
                 }
                 else
                 {
                     arr[i].Distance = 0;
                     arr[i].DriveTime = new TimeSpan(0, 0, 0);
+                    totalTime += arr[i].DriveTime;
                 }
                 lineInStations.Add(new lineInStation() { Lineid = id, stationid = arr[i].id, placeOrder = cnt++ });             
             }

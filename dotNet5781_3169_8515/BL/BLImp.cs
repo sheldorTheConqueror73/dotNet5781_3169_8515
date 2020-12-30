@@ -93,7 +93,7 @@ namespace BL
                  if(result!=null)
                  return from item in result 
                         where item!=null && item.enabled == true
-                    select Utility.DOtoBOConvertor<BO.busLine,DO.busLine>(item);
+                    select (Utility.DOtoBOConvertor<BO.busLine,DO.busLine>(item));
             return default;
 
         }
