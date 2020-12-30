@@ -48,12 +48,15 @@ namespace DLAPI
 
         #region lineInStation
         IEnumerable<DO.lineInStation> GetAllLineInStation();
+        void addLineInStation(DO.lineInStation lis);
 
         #endregion
 
         #region followStations
         IEnumerable<DO.followStations> GetAllFollowStation();
         void updateFollowStation(DO.followStations folStation);
+        void addFollowStation(DO.followStations folStation);
+
         #endregion
     }
 }

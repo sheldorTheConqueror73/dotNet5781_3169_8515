@@ -113,9 +113,15 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-        public void addLine(busLine line)
+        public void addLine(string number, int area, List<BO.busLineStation> path)
         {
-            throw new NotImplementedException();
+            busLine line = new busLine() { number = number, area = (Area)area };
+            dl.addLine(Utility.BOtoDOConvertor<DO.busLine, BO.busLine>(line));
+                for(int i=0;i<path.Count;i++)
+            {
+                dl.addl
+            }
+        
         }
 
         public void addLine(busStation station)

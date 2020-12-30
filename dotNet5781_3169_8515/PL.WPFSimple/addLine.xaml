@@ -54,6 +54,20 @@
         <TextBlock  HorizontalAlignment="Left" Height="17" Margin="26,10,0,0" VerticalAlignment="Top" IsEnabled="False" Width="231">
             Double  click on a station to add it to path
         </TextBlock>
+        <TextBox x:Name="txbLineNumber" HorizontalAlignment="Left" Height="23" Margin="580,45,0,0" TextWrapping="Wrap" HorizontalContentAlignment="Left" Text="TextBox" VerticalAlignment="Top" Width="85"/>
+        <ComboBox x:Name="cmbarea" HorizontalAlignment="Left" Margin="580,73,0,0" VerticalAlignment="Top" Width="85">
+            <ComboBoxItem  Content="General" IsSelected="True"/>
+            <ComboBoxItem  Content="NewAnkh"/>
+            <ComboBoxItem  Content="Narnia"/>
+            <ComboBoxItem  Content="Alantis"/>
+            <ComboBoxItem  Content="Center"/>
+            <ComboBoxItem  Content="South"/>
+            <ComboBoxItem  Content="North"/>
+            <ComboBoxItem  Content="Jerusalem"/>
+            <ComboBoxItem  Content="JurdenVally"/>
+            <ComboBoxItem  Content="AnkhMorpork"/>
+        </ComboBox>
+        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="564,219,0,0" VerticalAlignment="Top" Width="75" Click="btnSubmit_Click"/>
 
     </Grid>
 </Window>

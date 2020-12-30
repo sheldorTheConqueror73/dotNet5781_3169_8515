@@ -75,5 +75,14 @@ namespace PL
             lvto.Items.Refresh();
             lvto.UnselectAll();
         }
+        private static void validateInput()
+        {
+            throw new NotImplementedException();
+        }
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            validateInput();
+            bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, fList);
+        }
     }
 }
