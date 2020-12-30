@@ -289,7 +289,7 @@ namespace PL
                 finally
                 {
                     init_lvFollowStation_PreviewMouseDown();
-                    initTextBoxByCbInStations();
+                    //initTextBoxByCbInStations();
                 }
                 if (cbStations.SelectedItem == null)
                 {
@@ -301,6 +301,7 @@ namespace PL
                     var station = new BO.busLineStation(tbStationCode.Text, float.Parse(tbStationLat.Text), float.Parse(tbStationLong.Text), tbStationAddress.Text);
                     station.id = (cbStations.SelectedItem as BO.busLineStation).id;
                     bl.updateStation(station);
+                    //init_lvFollowStation_PreviewMouseDown();
                     initTextBoxByCbInStations();
                 }
                 catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
@@ -340,6 +341,7 @@ namespace PL
                 var folStation = new BO.followStations((cbStations.SelectedItem as BO.busLineStation).id, idsta,idLine, Convert.ToInt32(tbStationDistance.Text),TimeSpan.Parse(tbStationDriveTm.Text));
                 folStation.id = bl.GetIdFollowStationBy((cbStations.SelectedItem as BO.busLineStation).id, idsta, idLine);
                 bl.updateFollowStation(folStation);
+                lvLinesInStation.ItemsSource= bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
                 initTextBoxByCbInStations();
             }
             catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
@@ -450,6 +452,7 @@ namespace PL
         }
         private void initTextBoxByCbInStations()
         {
+            
             int index = 0;
             foreach (var item in cbStations.Items)
             {

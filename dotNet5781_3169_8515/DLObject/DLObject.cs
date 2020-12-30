@@ -148,12 +148,13 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.enabled = false;
         }
-        public void updatebusLineStation(busLineStation line)
+        public void updatebusLineStation(busLineStation station)
         {
-            var result = DataSource.LineStations.Find(b => b.id == line.id);
+            var result = DataSource.LineStations.Find(b => b.id == station.id);
             if (result == null)
-                throw new NoSuchEntryException($"No entry Matches ID number {line.id}");
-            result = line.Clone();
+                throw new NoSuchEntryException($"No entry Matches ID number {station.id}");
+            DataSource.LineStations.Remove(result);
+            DataSource.LineStations.Add(station.Clone());
         }
         #endregion
 
@@ -213,8 +214,9 @@ namespace DL
         {
             var result = DataSource.followStation.Find(b => b.id == folStation.id);
             if (result == null)
-                throw new NoSuchEntryException($"No entry Matches ID number {folStation.id}");
-            result = folStation.Clone();
+                throw new NoSuchEntryException($"No entry Matches ID number {folStation.id}");        
+            int index= DataSource.followStation.IndexOf(result);
+            DataSource.followStation[index] = folStation.Clone();
         }
 
         #endregion
