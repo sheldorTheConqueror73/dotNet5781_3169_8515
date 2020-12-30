@@ -116,6 +116,7 @@ namespace BL
         public void addLine(string number, int area, List<BO.busLineStation> path, int[] distance, TimeSpan[] time)
         {
             busLine line = new busLine() { number = number, area = (Area)area };
+            
             dl.addLine(Utility.BOtoDOConvertor<DO.busLine, BO.busLine>(line));
             for(int i=0;i<path.Count;i++)
             {
@@ -127,7 +128,7 @@ namespace BL
             }
         
         }
-
+     
         public void addLine(busStation station)
         {
             throw new NotImplementedException();

@@ -29,6 +29,7 @@ namespace DLAPI
         void addLine(DO.busLine line);
         void removeLine(int id);
         void updateLine(DO.busLine line);
+        int countLines(string number);
         #endregion
 
         #region LineStation

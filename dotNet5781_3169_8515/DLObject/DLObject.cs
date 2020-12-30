@@ -117,6 +117,15 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {line.id}");
             result = line.Clone();
         }
+        public int countLines(string number)
+        {
+            int count = 0;
+            foreach (var line in DataSource.Lines)
+                if (line.number == number)
+                    count++;
+            return count;
+        }
+
         #endregion
 
 
