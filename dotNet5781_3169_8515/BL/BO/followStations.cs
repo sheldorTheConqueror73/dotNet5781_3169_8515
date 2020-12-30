@@ -8,6 +8,15 @@ namespace BO
 {
     public class followStations : BOobject
     {
+        public followStations(int firstStationid, int secondStationid,  int distance, TimeSpan driveTime)
+        {
+            this.firstStationid = firstStationid;
+            this.secondStationid = secondStationid;
+            this.enabled = true;
+            this.distance = distance;
+            this.driveTime = driveTime;
+        }
+        public followStations() { enabled = true; }
         public int firstStationid { get; set; }
         public int secondStationid { get; set; }
         public bool enabled { get; set; }

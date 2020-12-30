@@ -327,16 +327,16 @@
                             <TextBox x:Name="tbStationDriveTm" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="5" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.DriveTime,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                             <TextBox x:Name="tbStationDistance" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="6" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Distance,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
 
-                            <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="2">
-                                <Button x:Name="btnAddStation" Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0" Click="Add_Station_Click"/>
-                                <Button x:Name="btnUpdateStation" Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="btnUpdateStation_Click"/>
-                                <Button x:Name="btnDeleteStation" Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="DeleteStation_Click"/>
-                            </StackPanel>
-                            <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
-                                <Button x:Name="btnUpdateTimOrDis" Visibility="Collapsed" Content="Submit" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" />
-                            </StackPanel>
-                        </Grid>
+                        <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="2">
+                            <Button x:Name="btnAddStation" Content="Add" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0" Click="Add_Station_Click"/>
+                            <Button x:Name="btnUpdateStation" Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="btnUpdateStation_Click"/>
+                            <Button x:Name="btnDeleteStation" Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,0,0,0" Click="DeleteStation_Click"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
+                            <Button x:Name="btnUpdateTimOrDis" Visibility="Collapsed" Content="Submit" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" Click="btnUpdateTimOrDis_Click"/>
+                        </StackPanel>
                     </Grid>
+                </Grid>
                 </Viewbox>
             </TabItem>
 

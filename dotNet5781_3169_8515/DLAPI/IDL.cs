@@ -53,6 +53,7 @@ namespace DLAPI
 
         #region followStations
         IEnumerable<DO.followStations> GetAllFollowStation();
+        void updateFollowStation(DO.followStations folStation);
         #endregion
     }
 }
