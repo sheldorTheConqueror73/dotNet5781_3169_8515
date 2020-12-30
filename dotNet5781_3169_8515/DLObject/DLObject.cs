@@ -138,13 +138,7 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             return result;
         }
-        public void addLine(busLineStation line)
-        {
-            var result = DataSource.LineStations.Find(b => b.id == line.id);
-            if ((result != null) || (result.enabled == true))
-                throw new itemAlreadyExistsException($"ID number {line.id} is already taken");
-            DataSource.LineStations.Add(line.Clone());
-        }
+      
         public void removebusLineStation(int id)
         {
             var result = DataSource.LineStations.Find(b => b.id == id);

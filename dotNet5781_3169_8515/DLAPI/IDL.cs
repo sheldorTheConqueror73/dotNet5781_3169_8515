@@ -35,7 +35,6 @@ namespace DLAPI
         void addStation(DO.busLineStation station);
         IEnumerable<DO.busLineStation> GetAllbusLineStation();
         DO.busLineStation GetbusLineStation(int id);
-        void addLine(DO.busLineStation line);
         void removebusLineStation(int id);
         void updatebusLineStation(DO.busLineStation line);
      
