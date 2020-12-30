@@ -232,6 +232,7 @@ namespace PL
         }
         private void lvFollowStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            folStatIdSelect = (lvFollowStation.SelectedItem as BO.busLineStation).id;
             tbStationDriveTm.IsEnabled = true;
             tbStationDistance.IsEnabled = true;
             btnUpdateTimOrDis.Visibility = Visibility.Visible;
@@ -242,7 +243,6 @@ namespace PL
         }
         private void lvFollowStation_PreviewMouseDown(object sender, MouseEventArgs e)
         {
-            //folStatIdSelect = (lvFollowStation.SelectedItem as BO.followStations).id;
             init_lvFollowStation_PreviewMouseDown();
         }
         private void init_lvFollowStation_PreviewMouseDown()
@@ -298,12 +298,32 @@ namespace PL
             catch (Exception exc) { MessageBox.Show(exc.Message); return;  }
             finally {
                 init_lvFollowStation_PreviewMouseDown();
-                initTextBoxByCbInStations();
+                //initTextBoxByCbInStations();
             }           
             try
-            {               
-                var folStation = new BO.followStations((cbStations.SelectedItem as BO.busLineStation).id, (lvFollowStation.SelectedItem as BO.busLineStation).id,int.Parse(tbStationDistance.Text),TimeSpan.Parse(tbStationDriveTm.Text));
-               // folStation.id = (cbStations.SelectedItem as BO.followStations).id;
+            {
+                int idsta = 0,index=0;
+                foreach (var item in lvFollowStation.Items)
+                {
+                    if ((item as BO.busLineStation).id == folStatIdSelect)
+                    {
+                        idsta = (item as BO.busLineStation).id;                       
+                        break;
+                    }
+                    index++;
+                }
+                int idLine = 0, index2 = 0 ;
+                foreach (var item in lvLinesInStation.Items)
+                {
+                    if (index2 == index)
+                    {
+                        idLine = (item as BO.busLine).id;
+                        break;
+                    }
+                    index2++;
+                }
+                var folStation = new BO.followStations((cbStations.SelectedItem as BO.busLineStation).id, idsta,idLine, Convert.ToInt32(tbStationDistance.Text),TimeSpan.Parse(tbStationDriveTm.Text));
+                folStation.id = bl.GetIdFollowStationBy((cbStations.SelectedItem as BO.busLineStation).id, idsta, idLine);
                 bl.updateFollowStation(folStation);
                 initTextBoxByCbInStations();
             }
@@ -495,7 +515,7 @@ namespace PL
                 throw new InvalidUserInputExecption("Invalid input: latitude must be an number");
             if (float.Parse(tbStationLat.Text) > 90 || float.Parse(tbStationLat.Text) < -90)
                 throw new InvalidUserInputExecption("Invalid input: latitude must be an number between -90 to 90");
-            if (float.Parse(tbStationLong.Text) > 90 || float.Parse(tbStationLong.Text) < -90)
+            if (float.Parse(tbStationLong.Text) > 180 || float.Parse(tbStationLong.Text) < -180)
                 throw new InvalidUserInputExecption("Invalid input: longitude must be an number between -180 to 180");
 
         }

@@ -10,6 +10,7 @@ namespace DO
     {
         public int firstStationid { get; set; }
         public int secondStationid { get; set; }
+        public int lineId { get; set; }
         public bool enabled { get; set; }
         public int distance { get; set; }
         public TimeSpan  driveTime { get; set; }

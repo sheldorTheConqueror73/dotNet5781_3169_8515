@@ -16,9 +16,19 @@ namespace BO
             this.distance = distance;
             this.driveTime = driveTime;
         }
+        public followStations(int firstStationid, int secondStationid,int lineid, int distance, TimeSpan driveTime)
+        {
+            this.firstStationid = firstStationid;
+            this.secondStationid = secondStationid;
+            this.lineId = lineid;
+            this.enabled = true;
+            this.distance = distance;
+            this.driveTime = driveTime;
+        }
         public followStations() { enabled = true; }
         public int firstStationid { get; set; }
         public int secondStationid { get; set; }
+        public int lineId { get; set; }
         public bool enabled { get; set; }
         public int distance { get; set; }
         public TimeSpan driveTime { get; set; }

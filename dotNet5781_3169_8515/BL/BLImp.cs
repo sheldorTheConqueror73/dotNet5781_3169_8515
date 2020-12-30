@@ -252,6 +252,16 @@ namespace BL
         {
             dl.updateFollowStation(Utility.BOtoDOConvertor<DO.followStations, BO.followStations>(folStation));
         }
+
+        public int GetIdFollowStationBy(int idFirstSta, int idSecondSta,int idLine)
+        {
+            foreach(var folSta in dl.GetAllFollowStation())
+            {
+                if (folSta.firstStationid == idFirstSta && folSta.secondStationid == idSecondSta && folSta.lineId == idLine)
+                    return folSta.id;
+            }
+            return default;
+        }
         #endregion
         #region user
         public IEnumerable<BO.User> GetAllUsers()

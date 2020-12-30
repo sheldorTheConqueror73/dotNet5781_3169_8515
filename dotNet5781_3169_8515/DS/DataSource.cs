@@ -149,7 +149,7 @@ namespace DS
                 Lines.Add(line);
                 for (int q=1;q<arr.Length;q++)
                 {
-                    followStation.Add(new followStations() {firstStationid= arr[q-1].id,secondStationid=arr[q].id,distance=arr[q].Distance,driveTime=arr[q].DriveTime,enabled=true});
+                    followStation.Add(new followStations() {firstStationid= arr[q-1].id,secondStationid=arr[q].id,distance=arr[q].Distance,driveTime=arr[q].DriveTime,enabled=true,lineId=line.id});
                 }
               
             }

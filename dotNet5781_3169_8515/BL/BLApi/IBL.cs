@@ -63,6 +63,7 @@ namespace BLAPI
         #region followStations
         IEnumerable<busLineStation> GetAllFollowStationsAsStationsObj(int id);
         void updateFollowStation(followStations folStation);
+        int GetIdFollowStationBy(int idFirstSta, int idSecondSta, int idLine);
         #endregion
 
     }
