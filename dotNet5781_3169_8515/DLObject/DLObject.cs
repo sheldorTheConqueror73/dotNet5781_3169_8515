@@ -217,6 +217,14 @@ namespace DL
             return from bus in DataSource.lineInStations
                    select bus.Clone();
         }
+        public void addLineInStation(lineInStation lis)
+        {
+            var result = DataSource.lineInStations.Find(b => b.id == lis.id);
+            if (result != null)
+                throw new itemAlreadyExistsException($"ID number {lis.id} is already taken");
+            DataSource.lineInStations.Add(lis.Clone());
+        }
+
         #endregion
         #region followStations
         public IEnumerable<followStations> GetAllFollowStation()
@@ -235,14 +243,13 @@ namespace DL
 
         
 
-        public void addLineInStation(lineInStation lis)
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public void addFollowStation(followStations folStation)
         {
-            throw new NotImplementedException();
+            var result = DataSource.followStation.Find(b => b.id == folStation.id);
+            if (result != null)
+                throw new itemAlreadyExistsException($"ID number {folStation.id} is already taken");
+            DataSource.followStation.Add(folStation.Clone());
         }
 
         #endregion
