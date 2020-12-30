@@ -17,7 +17,7 @@ namespace BL
             foreach (PropertyInfo propTo in output.GetType().GetProperties())
             {
                 PropertyInfo propFrom = line.GetType().GetProperty(propTo.Name);
-                if (propFrom == null)
+                if (propFrom == null||propTo.PropertyType != propFrom.PropertyType)
                     continue;
                 propTo.SetValue(output, propFrom.GetValue(line, null));
             }
@@ -32,7 +32,7 @@ namespace BL
             foreach (PropertyInfo propTo in output.GetType().GetProperties())
             {
                 PropertyInfo propFrom = line.GetType().GetProperty(propTo.Name);
-                if (propFrom == null)
+                if (propFrom == null||propTo.PropertyType!=propFrom.PropertyType)
                     continue;
                 propTo.SetValue(output, propFrom.GetValue(line, null));
             }
@@ -55,10 +55,6 @@ namespace BL
                 if (element != ch)
                     temp += element;
             str = temp;
-        }
-        internal static string convertTime(this DO.busLine line)
-        {
-            return line.driveTime.ToString().Split(' ')[1];
         }
     }
 }

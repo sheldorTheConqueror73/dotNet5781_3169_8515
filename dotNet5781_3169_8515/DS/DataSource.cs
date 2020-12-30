@@ -140,8 +140,13 @@ namespace DS
                 int size = r.Next(10, 15);
                 busLineStation[] arr = new busLineStation[size];
                 DateTime totalTime;
-                arr = tandom(size, Number,Lines[Lines.Count()-1].id,out totalTime);
-                Lines.Add(new busLine() { enabled = true, number = Number, area = a1, driveTime = totalTime }) ;
+                busLine line = new busLine();
+                arr = tandom(size, Number,line.id,out totalTime);
+                line.enabled = true;
+                line.number = Number;
+                line.area = a1;
+                line.driveTime = totalTime.ToString().Split(' ')[1];
+                Lines.Add(line);
                 for (int q=1;q<arr.Length;q++)
                 {
                     followStation.Add(new followStations() {firstStationid= arr[q-1].id,secondStationid=arr[q].id,distance=arr[q].Distance,driveTime=arr[q].DriveTime,enabled=true});

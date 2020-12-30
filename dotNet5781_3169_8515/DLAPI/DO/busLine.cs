@@ -12,6 +12,6 @@ namespace DO
         public string number { get; set; }
         public Area area { get; set; }
         public bool enabled { get; set; }
-        public DateTime driveTime { get; set; }
+        public string driveTime { get; set; }
     }
 }
