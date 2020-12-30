@@ -214,10 +214,10 @@
                         <Label Grid.Column="0" Content="First Station:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,95,65,29"/>
                         <Label Grid.Column="0" Content="Last Station:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,121,66,3"/>
 
-                        <TextBox x:Name="tbLineNumber" IsEnabled="False" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,0,196,120"/>
-                        <TextBox x:Name="tbLineArea" IsEnabled="False" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,30,196,90"/>
-                        <ComboBox x:Name="cbLineFirstSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30" Margin="0,91,196,29"/>
-                        <ComboBox x:Name="cbLineLastSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30" Margin="0,121,196,39" Grid.RowSpan="3"/>
+                        <TextBox x:Name="tbLineNumber" IsEnabled="False"  Grid.Column="1" Width="100" Height="30" VerticalAlignment="Top" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,0,0,0" HorizontalAlignment="Left"/>
+                        <TextBox x:Name="tbLineArea"  IsEnabled="False" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="cbLineFirstSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30" Margin="0,91,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="cbLineLastSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30"  Margin="0,121,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                         <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
                             <Button Content="Add" Name="btnaddLine" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" Click="addLine_click"/>

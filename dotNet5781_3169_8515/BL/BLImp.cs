@@ -255,7 +255,7 @@ namespace BL
 
         public int GetIdFollowStationBy(int idFirstSta, int idSecondSta,int idLine)
         {
-            foreach(var folSta in dl.GetAllFollowStation())
+            foreach (var folSta in dl.GetAllFollowStation())
             {
                 if (folSta.firstStationid == idFirstSta && folSta.secondStationid == idSecondSta && folSta.lineId == idLine)
                     return folSta.id;

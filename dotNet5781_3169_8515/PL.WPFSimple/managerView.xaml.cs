@@ -186,7 +186,6 @@ namespace PL
             {
                 lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
                 lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
-                //init_lvFollowStation_PreviewMouseDown();
             }
 
         }
@@ -271,7 +270,6 @@ namespace PL
             btnUpdateStation.Content = "Update";
             btnAddStation.Content = "Add";
             initTextBoxes(false, false, 3);
-            //initTextBoxByCbInStations();
         }
         private void btnUpdateStation_Click(object sender, RoutedEventArgs e)
         {
@@ -289,7 +287,6 @@ namespace PL
                 finally
                 {
                     init_lvFollowStation_PreviewMouseDown();
-                    //initTextBoxByCbInStations();
                 }
                 if (cbStations.SelectedItem == null)
                 {
@@ -301,7 +298,6 @@ namespace PL
                     var station = new BO.busLineStation(tbStationCode.Text, float.Parse(tbStationLat.Text), float.Parse(tbStationLong.Text), tbStationAddress.Text);
                     station.id = (cbStations.SelectedItem as BO.busLineStation).id;
                     bl.updateStation(station);
-                    //init_lvFollowStation_PreviewMouseDown();
                     initTextBoxByCbInStations();
                 }
                 catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
@@ -314,7 +310,6 @@ namespace PL
             catch (Exception exc) { MessageBox.Show(exc.Message); return;  }
             finally {
                 init_lvFollowStation_PreviewMouseDown();
-                //initTextBoxByCbInStations();
             }           
             try
             {
