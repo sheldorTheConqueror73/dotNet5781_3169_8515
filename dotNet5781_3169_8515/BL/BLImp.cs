@@ -115,12 +115,24 @@ namespace BL
         }
         public void addLine(string number, int area, List<BO.busLineStation> path, int[] distance, TimeSpan[] time)
         {
-            busLine line = new busLine() { number = number, area = (Area)area };
-            
+            int count = dl.countLines(number);
+            if (count == 2)
+                throw new BusLimitExceededExecption("There are already two bus with that number");
+            if(count==1)
+            {
+                int id = dl.GetBusLineID(number);
+                var result = (from lis in dl.GetAllLineInStation()
+                             where lis.Lineid==id
+                             orderby lis.placeOrder ascending
+                             select lis).ToList();
+                if(result[0].id!=path[path.Count-1].id || result[result.Count-1].id!=path[0].id)
+                    throw new BusLimitExceededExecption($"The second {number} line bust be going in the oppesite diraction");
+            }
+            busLine line = new busLine() { number = number, area = (Area)area };   
             dl.addLine(Utility.BOtoDOConvertor<DO.busLine, BO.busLine>(line));
             for(int i=0;i<path.Count;i++)
             {
-                dl.addLineInStation(new DO.lineInStation() { stationid=path[i].id, Lineid=line.id,Address=path[i].Address, placeOrder=i+1 });
+                dl.addLineInStation(new DO.lineInStation() { stationid=path[i].id, Lineid=line.id,Address=path[i].Address, placeOrder=i });
                 if(i!=path.Count-1)
                 {
                     dl.addFollowStation(new DO.followStations() { firstStationid=path[i].id, enabled=true,distance=distance[i], driveTime=time[i] });
@@ -128,7 +140,7 @@ namespace BL
             }
         
         }
-     
+
         public void addLine(busStation station)
         {
             throw new NotImplementedException();

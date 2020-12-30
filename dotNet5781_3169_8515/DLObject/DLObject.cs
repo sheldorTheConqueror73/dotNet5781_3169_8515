@@ -119,11 +119,10 @@ namespace DL
         }
         public int countLines(string number)
         {
-            int count = 0;
-            foreach (var line in DataSource.Lines)
-                if (line.number == number)
-                    count++;
-            return count;
+            var result = from line in DataSource.Lines
+                         where line != null && line.enabled == true && line.number == number
+                         select line;
+            return result.Count();
         }
 
         #endregion
@@ -226,6 +225,21 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {folStation.id}");        
             int index= DataSource.followStation.IndexOf(result);
             DataSource.followStation[index] = folStation.Clone();
+        }
+
+        public int GetBusLineID(string number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addLineInStation(lineInStation lis)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addFollowStation(followStations folStation)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

@@ -26,6 +26,7 @@ namespace DLAPI
         #region busLine
         IEnumerable<DO.busLine> GetAllbusLines();
         DO.busLine GetBusLine(int id);
+        int GetBusLineID(string number);
         void addLine(DO.busLine line);
         void removeLine(int id);
         void updateLine(DO.busLine line);
