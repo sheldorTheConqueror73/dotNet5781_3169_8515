@@ -164,6 +164,12 @@ namespace DL
             DataSource.LineStations.Remove(result);
             DataSource.LineStations.Add(station.Clone());
         }
+        public int GetBusLineID(string number)
+        {
+            return (from line in DataSource.Lines
+                    where line != null && line.enabled == true && line.number == number
+                    select line.id).First();
+        }
         #endregion
 
         #region User
@@ -227,10 +233,7 @@ namespace DL
             DataSource.followStation[index] = folStation.Clone();
         }
 
-        public int GetBusLineID(string number)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public void addLineInStation(lineInStation lis)
         {
