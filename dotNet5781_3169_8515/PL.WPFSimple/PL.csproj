@@ -57,6 +57,12 @@
     <Compile Include="addUser.xaml.cs">
       <DependentUpon>addUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="addLine.xaml.cs">
+      <DependentUpon>addLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PO\addLineUserPromt.xaml.cs">
+      <DependentUpon>addLineUserPromt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PO\bus.cs" />
     <Compile Include="PO\busLine.cs" />
     <Compile Include="PO\busLineStation.cs" />
@@ -80,6 +86,14 @@
     <Page Include="managerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="addLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PO\addLineUserPromt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

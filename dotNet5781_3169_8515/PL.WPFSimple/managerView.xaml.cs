@@ -564,18 +564,9 @@ namespace PL
         #region lines
         private void addLine_click(object sender, RoutedEventArgs e)
         {
-            if (btnaddLine.Content.Equals("Add"))
-            {
-                btnaddLine.Content = "Submit";
-                initTextBoxes(true, true, 2);
-                tbldriveTime.Visibility = System.Windows.Visibility.Hidden;
-            }
-            else
-            {
-                btnaddLine.Content = "Add";
-
-                
-            }
+           addLine addWindow = new addLine(this);
+            this.Hide();
+            addWindow.Show();
         }
         private void lvStationOfLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
