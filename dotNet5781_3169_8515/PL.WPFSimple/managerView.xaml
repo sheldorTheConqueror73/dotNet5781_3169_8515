@@ -228,8 +228,9 @@
                 </Grid>
             </TabItem>
 
-
+            
             <TabItem Header="Stations">
+                <Viewbox VerticalAlignment="Top" Margin="0,0,0,-1">
                 <Grid Name="StationsGrid"  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="400*"/>
@@ -241,7 +242,7 @@
                         <ColumnDefinition Width="300*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <ListView x:Name="lvFollowStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="370" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvFollowStation_MouseDoubleClick" PreviewMouseDown="lvFollowStation_PreviewMouseDown">
+                        <ListView x:Name="lvFollowStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="370" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvFollowStation_MouseDoubleClick" PreviewMouseDown="lvFollowStation_PreviewMouseDown" >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding code}">
@@ -334,8 +335,9 @@
                         </StackPanel>
                     </Grid>
                 </Grid>
+                </Viewbox>
             </TabItem>
-
+            
         </TabControl>
     </Grid>
 </Window>
