@@ -352,7 +352,7 @@ namespace PL
 
         #region utility
         private void initSource()
-        {
+        { 
             dplmiDate.DisplayDateEnd = DateTime.Now;
             dpRegiDate.DisplayDateEnd = DateTime.Now;
             tbiBuses.DataContext = bl.GetAllBuses(busOrder);
