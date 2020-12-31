@@ -68,6 +68,7 @@
             <ComboBoxItem  Content="AnkhMorpork"/>
         </ComboBox>
         <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="564,219,0,0" VerticalAlignment="Top" Width="75" Click="btnSubmit_Click"/>
+        <Label x:Name="lblError" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Foreground="Red" Margin="445,348,0,0" VerticalAlignment="Top" Width="337" Height="61"/>
 
     </Grid>
 </Window>

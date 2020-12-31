@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class busLineStation : busStation, IComparable<busLineStation>
+    public class busLineStation : BusStation, IComparable<busLineStation>
     {
         private int distance;
         private TimeSpan driveTime;

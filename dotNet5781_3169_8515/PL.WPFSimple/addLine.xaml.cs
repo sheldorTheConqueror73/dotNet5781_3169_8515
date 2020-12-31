@@ -24,6 +24,8 @@ namespace PL
         managerView manager;
         List<BO.busLineStation> fList;
         List<BO.busLineStation> tList;
+        List<TimeSpan> time=new List<TimeSpan>();
+        List<int> distance=new List<int>();
         public addLine(managerView managerWindow)
         {
              manager = managerWindow;
@@ -51,6 +53,9 @@ namespace PL
                     fList.Remove(station);
                     break;
                 }
+            addLineUserPromt promt = new addLineUserPromt(distance,time);
+            if(tList.Count!=1)
+                promt.ShowDialog();
             refresh();
         }
 
@@ -59,6 +64,7 @@ namespace PL
             if (lvto.SelectedItem == null)
                 return;
             int id = (lvto.SelectedItem as BO.busLineStation).id;
+            int index = lvto.SelectedIndex;
             foreach (var station in tList)
                 if (station.id == id)
                 {
@@ -66,6 +72,10 @@ namespace PL
                     tList.Remove(station);
                     break;
                 }
+            var temp1 = time[index-1];
+            time.Remove(temp1);
+            var temp2 = distance[index-1];
+            distance.Remove(temp2);
             refresh();
         }
         private  void refresh()
@@ -75,15 +85,18 @@ namespace PL
             lvto.Items.Refresh();
             lvto.UnselectAll();
         }
-        private static void validateInput()
+        private  void validateInput()
         {
-            throw new NotImplementedException();
+            foreach (var chr in txbLineNumber.Text)
+                if (chr < '0' || chr > '9')
+                    throw new InvalidUserInputExecption("Line number must be an integer");
+            if(txbLineNumber.Text.Length>3)
+                throw new InvalidUserInputExecption("Line number cannot be more than 3 digits longs");
         }
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            validateInput();
-            int[] distance= new int[tList.Count-1];
-            TimeSpan[] time = new TimeSpan[tList.Count - 1];
+            try { validateInput(); }
+            catch (Exception exc) { lblError.Content = exc.Message; return; }
             bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, fList,distance,time);
         }
     }

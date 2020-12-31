@@ -113,7 +113,7 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-        public void addLine(string number, int area, List<BO.busLineStation> path, int[] distance, TimeSpan[] time)
+        public void addLine(string number, int area, List<BO.busLineStation> path, List<int> distance, List<TimeSpan> time)
         {
             int count = dl.countLines(number);
             if (count == 2)
@@ -141,7 +141,7 @@ namespace BL
         
         }
 
-        public void addLine(busStation station)
+        public void addLine(BusStation station)
         {
             throw new NotImplementedException();
         }
@@ -202,7 +202,7 @@ namespace BL
                         select Utility.DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta)).ToList();
             return default;
         }
-        public IEnumerable<busStation> GetAllbusStations()
+        public IEnumerable<BusStation> GetAllbusStations()
         {
             throw new NotImplementedException();
 
@@ -212,7 +212,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public busStation GetbusStation(int id)
+        public BusStation GetbusStation(int id)
         {
             throw new NotImplementedException();
         }
@@ -237,7 +237,7 @@ namespace BL
         {
             dl.updatebusLineStation(Utility.BOtoDOConvertor<DO.busLineStation, BO.busLineStation>(station));
         }
-        public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate)
+        public IEnumerable<BusStation> GetAllbusStationsBy(Predicate<BusStation> predicate)
         {
             throw new NotImplementedException();
         }

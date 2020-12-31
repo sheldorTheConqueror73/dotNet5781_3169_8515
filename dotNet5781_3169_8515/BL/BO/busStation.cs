@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class busStation:BOobject
+    public class BusStation:BOobject
     {
         readonly static int NULL = -200;//not too sure about this - used to mark empty variable
        // protected readonly string id;
@@ -38,7 +38,7 @@ namespace BO
             get => address;
             set { address = value; }
         }
-        public busStation() //ctor
+        public BusStation() //ctor
         {
             code = "";
             address = "";
@@ -46,7 +46,7 @@ namespace BO
            // longitude = NULL;
             enabled = true;
         }
-        public busStation(string code)//ctor
+        public BusStation(string code)//ctor
         {
             this.code = code;
             address = "";
@@ -54,7 +54,7 @@ namespace BO
            // longitude = NULL;
             enabled = true;
         }
-        public busStation(string code, float lat, float lon, string address = "")//ctor
+        public BusStation(string code, float lat, float lon, string address = "")//ctor
         {
             this.code = code;
             if (address == "")
@@ -66,7 +66,7 @@ namespace BO
             enabled = true;
         }
 
-        public busStation(busStation bs)
+        public BusStation(BusStation bs)
         {
             this.code = bs.code;
             this.id = bs.id;

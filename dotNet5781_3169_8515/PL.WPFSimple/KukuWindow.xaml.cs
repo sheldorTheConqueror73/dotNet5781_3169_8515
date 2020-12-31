@@ -11,17 +11,25 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BL;
 
-namespace PL.SimpleWPF.PO
+namespace PL
 {
     /// <summary>
-    /// Interaction logic for addLineUserPromt.xaml
+    /// Interaction logic for KukuWindow.xaml
     /// </summary>
-    public partial class addLineUserPromt : Window
+    public partial class KukuWindow : Window
     {
-        public addLineUserPromt()
+        KukuViewModel viewModel = new KukuViewModel();
+        public KukuWindow()
         {
             InitializeComponent();
+            this.DataContext = viewModel;
+        }
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            BLAPI.BLFactory.GetBL().addStation(viewModel.BusStationModel as BO.busLineStation);
         }
     }
 }
