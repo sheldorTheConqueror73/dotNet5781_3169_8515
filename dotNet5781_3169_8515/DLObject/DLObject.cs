@@ -99,7 +99,7 @@ namespace DL
         public void addLine(busLine line)
         {
             var result = DataSource.Lines.Find(b => b.id == line.id);
-            if ((result != null) || (result.enabled == true))
+            if ((result != null) && (result.enabled == true))
                 throw new itemAlreadyExistsException($"ID number {line.id} is already taken");
             DataSource.Lines.Add(line.Clone());
         }

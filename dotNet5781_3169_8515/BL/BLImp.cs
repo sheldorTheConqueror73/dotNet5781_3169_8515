@@ -128,14 +128,14 @@ namespace BL
                 if(result[0].id!=path[path.Count-1].id || result[result.Count-1].id!=path[0].id)
                     throw new BusLimitExceededExecption($"The second {number} line bust be going in the oppesite diraction");
             }
-            busLine line = new busLine() { number = number, area = (Area)area };   
+            busLine line = new busLine() { number = number, area = (Area)area, enabled=true };   
             dl.addLine(Utility.BOtoDOConvertor<DO.busLine, BO.busLine>(line));
             for(int i=0;i<path.Count;i++)
             {
                 dl.addLineInStation(new DO.lineInStation() { stationid=path[i].id, Lineid=line.id,Address=path[i].Address, placeOrder=i });
                 if(i!=path.Count-1)
                 {
-                    dl.addFollowStation(new DO.followStations() { firstStationid=path[i].id, enabled=true,distance=distance[i], driveTime=time[i] });
+                    dl.addFollowStation(new DO.followStations() { firstStationid=path[i].id, enabled=true,distance=distance[i], driveTime=time[i],lineId=line.id,secondStationid=path[i+1].id });
                 }
             }
         

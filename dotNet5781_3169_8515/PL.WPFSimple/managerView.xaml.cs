@@ -190,10 +190,7 @@ namespace PL
 
         }
 
-        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
-        }
+       
         private void DeleteStation_Click(object sender, RoutedEventArgs e)
         {
             int id = (cbStations.SelectedItem as BO.busLineStation).id;
@@ -565,8 +562,16 @@ namespace PL
         private void addLine_click(object sender, RoutedEventArgs e)
         {
            addLine addWindow = new addLine(this);
-            this.Hide();
-            addWindow.Show();
+            addWindow.ShowDialog();
+            cbBusLines.ItemsSource = bl.GetAllbusLines();
+            cbBusLines.Items.Refresh();
+            cbBusLines.SelectedIndex = 0;
+         
+        }
+        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cbBusLines.SelectedItem!=null)
+            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
         }
         private void lvStationOfLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

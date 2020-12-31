@@ -26,17 +26,17 @@ namespace BLAPI
         IEnumerable<busLine> GetAllbusLines();
         IEnumerable<busLine> GetAllbusLinesBy(Predicate<busLine> predicate);
         busLine GetBusLine(int id);
-        void addLine(string number, int area,List<BO.busLineStation> path,int[] distance, TimeSpan[] time);
+        void addLine(string number, int area,List<BO.busLineStation> path, List<int> distance, List<TimeSpan> time);
         void removeLine(int id);
         void updateLine(busLine line);
         #endregion
 
         #region Station
         void addStation(busLineStation station);
-        IEnumerable<busStation> GetAllbusStations();
-        IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate);
-        busStation GetbusStation(int id);
-        void addLine(busStation station);
+        IEnumerable<BusStation> GetAllbusStations();
+        IEnumerable<BusStation> GetAllbusStationsBy(Predicate<BusStation> predicate);
+        BusStation GetbusStation(int id);
+        void addLine(BusStation station);
         void removeStation(int id);
         void updateStation(busLineStation station);
         IEnumerable<busLine> GetAllLinesInStation(int id);

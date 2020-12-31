@@ -97,7 +97,10 @@ namespace PL
         {
             try { validateInput(); }
             catch (Exception exc) { lblError.Content = exc.Message; return; }
-            bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, fList,distance,time);
+            try {  bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, tList,distance,time);}
+            catch (Exception exc) { lblError.Content = exc.Message; return; }
+           
+            this.Close();
         }
     }
 }
