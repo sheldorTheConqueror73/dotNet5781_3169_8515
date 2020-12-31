@@ -54,7 +54,6 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Compile Include="BindableBase.cs" />
     <Compile Include="addUser.xaml.cs">
       <DependentUpon>addUser.xaml</DependentUpon>
     </Compile>
@@ -64,19 +63,11 @@
     <Compile Include="addLineUserPromt.xaml.cs">
       <DependentUpon>addLineUserPromt.xaml</DependentUpon>
     </Compile>
-    <Compile Include="KukuViewModel.cs" />
-    <Compile Include="KukuWindow.xaml.cs">
-      <DependentUpon>KukuWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PO\bus.cs" />
     <Compile Include="PO\busLine.cs" />
     <Compile Include="PO\busLineStation.cs" />
     <Compile Include="PO\exceptions.cs" />
     <Page Include="addUser.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="KukuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

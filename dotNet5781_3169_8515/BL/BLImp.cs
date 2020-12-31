@@ -105,7 +105,17 @@ namespace BL
 
         public void removeLine(int id)
         {
-            throw new NotImplementedException();
+            var result = from fls in dl.GetAllFollowStation()
+                         where fls != null && fls.enabled == true && fls.lineId == id
+                         select fls;
+            foreach (var element in result)
+               
+            var result2 = from lis in dl.GetAllLineInStation()
+                          where lis != null  && lis.Lineid == id
+                          select lis;
+            foreach(var element in result2)
+                    dl.remo
+
         }
 
 

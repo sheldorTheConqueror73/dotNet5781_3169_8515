@@ -51,13 +51,14 @@ namespace DLAPI
         #region lineInStation
         IEnumerable<DO.lineInStation> GetAllLineInStation();
         void addLineInStation(DO.lineInStation lis);
-
+        void removeLineInStation(int lineId);
         #endregion
 
         #region followStations
         IEnumerable<DO.followStations> GetAllFollowStation();
         void updateFollowStation(DO.followStations folStation);
         void addFollowStation(DO.followStations folStation);
+        void removeFollowStation(int LineId);
 
         #endregion
     }

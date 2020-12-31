@@ -224,8 +224,12 @@ namespace DL
                 throw new itemAlreadyExistsException($"ID number {lis.id} is already taken");
             DataSource.lineInStations.Add(lis.Clone());
         }
-
+        public void removeLineInStation(int lineId)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
+
         #region followStations
         public IEnumerable<followStations> GetAllFollowStation()
         {
@@ -250,6 +254,13 @@ namespace DL
             if (result != null)
                 throw new itemAlreadyExistsException($"ID number {folStation.id} is already taken");
             DataSource.followStation.Add(folStation.Clone());
+        }
+
+      
+
+        public void removeFollowStation(int LineId)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
