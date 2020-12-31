@@ -29,8 +29,7 @@ namespace PL
         {
             busOrder = 0;
             InitializeComponent();
-            initSource();
-            
+            initSource();      
         }
         
 
@@ -196,19 +195,42 @@ namespace PL
         }
         private void DeleteStation_Click(object sender, RoutedEventArgs e)
         {
-            int id = (cbStations.SelectedItem as BO.busLineStation).id;
-            if (id == 0)
-                cbStations.SelectedIndex = 1;
+            if (cbStations.SelectedItem == null)
+                return;
+            int id = 0;
+            if (cbStations.Items.Count > 1)
+            {
+                id = (cbStations.SelectedItem as BO.busLineStation).id;
+                if (cbStations.SelectedIndex == 0)
+                    cbStations.SelectedIndex = 1;
+                else
+                {
+                    cbStations.SelectedIndex = cbStations.SelectedIndex-1;
+                }
+            }
             else
-                cbStations.SelectedIndex = id - 1;
+            {
+                id = (cbStations.SelectedItem as BO.busLineStation).id;
+            }             
             bl.removeStation(id);
             initTextBoxByCbInStations();
-            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
-            lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
+            if (cbStations.SelectedItem!=null)
+            {
+                lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
+                lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
+                lvStationOfLine.Items.Refresh();
+                lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
+            }
+            else
+            {
+                lvFollowStation.ItemsSource=null;
+                lvLinesInStation.ItemsSource=null;
+            }
         }
 
         private void Add_Station_Click(object sender, RoutedEventArgs e)
         {
+            tblError.Text = "";
             if (btnAddStation.Content.Equals("Add"))
             {
                 btnAddStation.Content = "Submit";
@@ -220,7 +242,7 @@ namespace PL
             else
             {
                 try { validStationInput(); }
-                catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                catch (Exception exc) {tblError.Text= exc.Message; return; }
                 finally
                 {
                     init_lvFollowStation_PreviewMouseDown();
@@ -230,7 +252,7 @@ namespace PL
                 float latitude = float.Parse(tbStationLat.Text.ToString());
                 float longitude = float.Parse(tbStationLong.Text.ToString());
                 try { bl.addStation(new BO.busLineStation(code, latitude, longitude, address)); }
-                catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                catch (Exception exc) { tblError.Text = exc.Message; return; }
                 finally { initTextBoxes(false, false, 1); initTextBoxByCbInStations(); }
                 
                 btnAddBus.Content = "Add";
@@ -246,6 +268,8 @@ namespace PL
         }
         private void lvFollowStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (lvFollowStation.Items.Count == 0)
+                return;
             folStatIdSelect = (lvFollowStation.SelectedItem as BO.busLineStation).id;
             tbStationDriveTm.IsEnabled = true;
             tbStationDistance.IsEnabled = true;
@@ -257,6 +281,7 @@ namespace PL
         }
         private void lvFollowStation_PreviewMouseDown(object sender, MouseEventArgs e)
         {
+            tblError.Text = "";
             init_lvFollowStation_PreviewMouseDown();
         }
         private void init_lvFollowStation_PreviewMouseDown()
@@ -283,7 +308,7 @@ namespace PL
             else
             {
                 try { validStationInput(); }
-                catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                catch (Exception exc) { tblError.Text = exc.Message; return; }
                 finally
                 {
                     init_lvFollowStation_PreviewMouseDown();
@@ -300,14 +325,14 @@ namespace PL
                     bl.updateStation(station);
                     initTextBoxByCbInStations();
                 }
-                catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
+                catch (Exception exc) { tblError.Text = exc.Message; return; }
             }
         }
 
         private void btnUpdateTimOrDis_Click(object sender, RoutedEventArgs e)
         {
             try { validINputDriveTimeOrDistance(); }
-            catch (Exception exc) { MessageBox.Show(exc.Message); return;  }
+            catch (Exception exc) { tblError.Text = exc.Message; return;  }
             finally {
                 init_lvFollowStation_PreviewMouseDown();
             }           
@@ -339,7 +364,7 @@ namespace PL
                 lvLinesInStation.ItemsSource= bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
                 initTextBoxByCbInStations();
             }
-            catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
+            catch (Exception exc) { tblError.Text = exc.Message; return; }
         }
         
         #endregion

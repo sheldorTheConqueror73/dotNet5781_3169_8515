@@ -141,7 +141,7 @@ namespace DS
                 busLineStation[] arr = new busLineStation[size];
                 DateTime totalTime;
                 busLine line = new busLine();
-                arr = tandom(size, Number,line.id,out totalTime);
+                arr = tandom(size,line.id,out totalTime);
                 line.enabled = true;
                 line.number = Number;
                 line.area = a1;
@@ -154,7 +154,7 @@ namespace DS
               
             }
         }
-        private static busLineStation[] tandom(int size,string Number,int id,out DateTime totalTime)
+        private static busLineStation[] tandom(int size,int id,out DateTime totalTime)
         {
             totalTime = new DateTime();
             int cnt = 0;

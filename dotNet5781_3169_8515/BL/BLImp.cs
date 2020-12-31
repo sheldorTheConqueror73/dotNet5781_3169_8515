@@ -93,6 +93,7 @@ namespace BL
                  if(result!=null)
                  return from item in result 
                         where item!=null && item.enabled == true
+                        orderby int .Parse(item.number) ascending
                     select (Utility.DOtoBOConvertor<BO.busLine,DO.busLine>(item));
             return default;
 
@@ -130,7 +131,6 @@ namespace BL
         #endregion
 
 
-
         #region lineInStation
         public IEnumerable<busLine> GetAllLinesInStation(int id)
         {
@@ -144,10 +144,6 @@ namespace BL
             return default;
         }
         #endregion
-
-
-
-        
 
         #region station
         public void addStation(busLineStation station)
@@ -200,7 +196,42 @@ namespace BL
         }
         public void removeStation(int id)
         {
+            var v1=from fl in dl.GetAllFollowStation()
+                   where fl.firstStationid==id
+                   select fl.lineId;
+            int idsta1 = 0,idsta2=0,idfol=0,dist=0;
+            bool flagFirst = false, flagSecond=false;
+            TimeSpan ts=new TimeSpan();
+            if(v1.Count()!=0)
+            foreach(var lin in dl.GetAllbusLines())
+            {
+                if (v1.Any(b => b == lin.id))
+                {
+                     flagFirst = false; flagSecond = false;
+                    foreach (var folsta in dl.GetAllFollowStation())
+                    {
+                        if (folsta.secondStationid == id && folsta.lineId == lin.id)
+                        {
+                            idsta1 = folsta.firstStationid;
+                            idfol = folsta.id;
+                            dist += folsta.distance;
+                            ts += folsta.driveTime;
+                                flagFirst = true;
+                        }
+                        if (folsta.firstStationid == id && folsta.lineId == lin.id)
+                        {
+                            idsta2 = folsta.secondStationid;
+                            dist += folsta.distance;
+                            ts += folsta.driveTime;
+                                flagSecond = true;
+                        }
+                    }
+                    if(flagFirst&&flagSecond)
+                    dl.updateFollowStation(new DO.followStations() { id = idfol, firstStationid = idsta1, secondStationid = idsta2, lineId = lin.id ,distance=dist,driveTime=ts,enabled=true});
+                }
+            }
             dl.removebusLineStation(id);
+
         }
 
 
@@ -219,9 +250,6 @@ namespace BL
             throw new NotImplementedException();
         }
         #endregion
-
-
-
 
 
         #region followStations
