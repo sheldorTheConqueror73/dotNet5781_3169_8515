@@ -189,10 +189,7 @@ namespace PL
 
         }
 
-        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
-        }
+       
         private void DeleteStation_Click(object sender, RoutedEventArgs e)
         {
             if (cbStations.SelectedItem == null)
@@ -589,18 +586,17 @@ namespace PL
         #region lines
         private void addLine_click(object sender, RoutedEventArgs e)
         {
-            if (btnaddLine.Content.Equals("Add"))
-            {
-                btnaddLine.Content = "Submit";
-                initTextBoxes(true, true, 2);
-                tbldriveTime.Visibility = System.Windows.Visibility.Hidden;
-            }
-            else
-            {
-                btnaddLine.Content = "Add";
-
-                
-            }
+           addLine addWindow = new addLine(this);
+            addWindow.ShowDialog();
+            cbBusLines.ItemsSource = bl.GetAllbusLines();
+            cbBusLines.Items.Refresh();
+            cbBusLines.SelectedIndex = 0;
+         
+        }
+        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cbBusLines.SelectedItem!=null)
+            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
         }
         private void lvStationOfLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

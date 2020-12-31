@@ -106,7 +106,9 @@ namespace BL
 
         public void removeLine(int id)
         {
-            throw new NotImplementedException();
+            dl.removeFollowStation(id);
+            dl.removeLineInStation(id);
+            dl.removeLine(id);
         }
 
 
@@ -114,12 +116,35 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-        public void addLine(busLine line)
+        public void addLine(string number, int area, List<BO.busLineStation> path, List<int> distance, List<TimeSpan> time)
         {
-            throw new NotImplementedException();
+            int count = dl.countLines(number);
+            if (count == 2)
+                throw new BusLimitExceededExecption("There are already two bus with that number");
+            if(count==1)
+            {
+                int id = dl.GetBusLineID(number);
+                var result = (from lis in dl.GetAllLineInStation()
+                             where lis.Lineid==id
+                             orderby lis.placeOrder ascending
+                             select lis).ToList();
+                if(result[0].id!=path[path.Count-1].id || result[result.Count-1].id!=path[0].id)
+                    throw new BusLimitExceededExecption($"The second {number} line bust be going in the oppesite diraction");
+            }
+            busLine line = new busLine() { number = number, area = (Area)area, enabled=true };   
+            dl.addLine(Utility.BOtoDOConvertor<DO.busLine, BO.busLine>(line));
+            for(int i=0;i<path.Count;i++)
+            {
+                dl.addLineInStation(new DO.lineInStation() { stationid=path[i].id, Lineid=line.id,Address=path[i].Address, placeOrder=i });
+                if(i!=path.Count-1)
+                {
+                    dl.addFollowStation(new DO.followStations() { firstStationid=path[i].id, enabled=true,distance=distance[i], driveTime=time[i],lineId=line.id,secondStationid=path[i+1].id });
+                }
+            }
+        
         }
 
-        public void addLine(busStation station)
+        public void addLine(BusStation station)
         {
             throw new NotImplementedException();
         }
@@ -175,7 +200,7 @@ namespace BL
                         select Utility.DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta)).ToList();
             return default;
         }
-        public IEnumerable<busStation> GetAllbusStations()
+        public IEnumerable<BusStation> GetAllbusStations()
         {
             throw new NotImplementedException();
 
@@ -185,7 +210,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public busStation GetbusStation(int id)
+        public BusStation GetbusStation(int id)
         {
             throw new NotImplementedException();
         }
@@ -245,7 +270,7 @@ namespace BL
         {
             dl.updatebusLineStation(Utility.BOtoDOConvertor<DO.busLineStation, BO.busLineStation>(station));
         }
-        public IEnumerable<busStation> GetAllbusStationsBy(Predicate<busStation> predicate)
+        public IEnumerable<BusStation> GetAllbusStationsBy(Predicate<BusStation> predicate)
         {
             throw new NotImplementedException();
         }

@@ -26,9 +26,11 @@ namespace DLAPI
         #region busLine
         IEnumerable<DO.busLine> GetAllbusLines();
         DO.busLine GetBusLine(int id);
+        int GetBusLineID(string number);
         void addLine(DO.busLine line);
         void removeLine(int id);
         void updateLine(DO.busLine line);
+        int countLines(string number);
         #endregion
 
         #region LineStation
@@ -48,12 +50,16 @@ namespace DLAPI
 
         #region lineInStation
         IEnumerable<DO.lineInStation> GetAllLineInStation();
-
+        void addLineInStation(DO.lineInStation lis);
+        void removeLineInStation(int lineId);
         #endregion
 
         #region followStations
         IEnumerable<DO.followStations> GetAllFollowStation();
         void updateFollowStation(DO.followStations folStation);
+        void addFollowStation(DO.followStations folStation);
+        void removeFollowStation(int LineId);
+
         #endregion
     }
 }

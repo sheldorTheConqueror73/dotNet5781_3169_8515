@@ -99,7 +99,7 @@ namespace DL
         public void addLine(busLine line)
         {
             var result = DataSource.Lines.Find(b => b.id == line.id);
-            if ((result != null) || (result.enabled == true))
+            if ((result != null) && (result.enabled == true))
                 throw new itemAlreadyExistsException($"ID number {line.id} is already taken");
             DataSource.Lines.Add(line.Clone());
         }
@@ -117,6 +117,14 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {line.id}");
             result = line.Clone();
         }
+        public int countLines(string number)
+        {
+            var result = from line in DataSource.Lines
+                         where line != null && line.enabled == true && line.number == number
+                         select line;
+            return result.Count();
+        }
+
         #endregion
 
 
@@ -155,6 +163,12 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {station.id}");
             DataSource.LineStations.Remove(result);
             DataSource.LineStations.Add(station.Clone());
+        }
+        public int GetBusLineID(string number)
+        {
+            return (from line in DataSource.Lines
+                    where line != null && line.enabled == true && line.number == number
+                    select line.id).First();
         }
         #endregion
 
@@ -203,7 +217,19 @@ namespace DL
             return from bus in DataSource.lineInStations
                    select bus.Clone();
         }
+        public void addLineInStation(lineInStation lis)
+        {
+            var result = DataSource.lineInStations.Find(b => b.id == lis.id);
+            if (result != null)
+                throw new itemAlreadyExistsException($"ID number {lis.id} is already taken");
+            DataSource.lineInStations.Add(lis.Clone());
+        }
+        public void removeLineInStation(int lineId)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
+
         #region followStations
         public IEnumerable<followStations> GetAllFollowStation()
         {
@@ -217,6 +243,24 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {folStation.id}");        
             int index= DataSource.followStation.IndexOf(result);
             DataSource.followStation[index] = folStation.Clone();
+        }
+
+        
+
+       
+        public void addFollowStation(followStations folStation)
+        {
+            var result = DataSource.followStation.Find(b => b.id == folStation.id);
+            if (result != null)
+                throw new itemAlreadyExistsException($"ID number {folStation.id} is already taken");
+            DataSource.followStation.Add(folStation.Clone());
+        }
+
+      
+
+        public void removeFollowStation(int LineId)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
