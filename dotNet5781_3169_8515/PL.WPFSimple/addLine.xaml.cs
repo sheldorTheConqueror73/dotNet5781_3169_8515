@@ -21,17 +21,27 @@ namespace PL
     public partial class addLine : Window
     {
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
-        int mode;
+        int mode,lineId;
         List<BO.busLineStation> fList;
         List<BO.busLineStation> tList;
         List<TimeSpan> time=new List<TimeSpan>();
         List<int> distance=new List<int>();
-        public addLine(int mode=0)
+        public addLine(int mode=0,int lineId=-1)
         {
             this.mode = mode;
+            this.lineId = lineId;
             InitializeComponent();
-            fList = bl.GetAllbusLineStation().ToList();
-            tList = new List<BO.busLineStation>();
+            if(mode==0)
+            {
+                fList = bl.GetAllbusLineStation().ToList();
+                tList = new List<BO.busLineStation>();
+            }
+            else
+            {
+                tList = bl.GetAllStationInLine(lineId).ToList();
+                fList = bl.GetAllStationNotInLine(lineId).ToList();
+
+            }
             lvfrom.ItemsSource = fList;
             lvto.ItemsSource = tList;
         }

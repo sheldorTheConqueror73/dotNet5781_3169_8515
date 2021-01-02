@@ -168,6 +168,32 @@ namespace BL
                         select Utility.DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
             return default;
         }
+       public void reconstructTimeAndDistance(int lineID, out List<int> distance, out List<TimeSpan> time)
+        {
+            distance = new List<int>();
+            time = new List<TimeSpan>();
+            var result = from station in dl.GetAllLineInStation()
+                         where station != null && station.Lineid == lineID
+                         orderby station.placeOrder ascending
+                         select station;
+            var result2 = from item in dl.GetAllFollowStation()
+                          where item != null && item.enabled == true && item.lineId == lineID
+                          select item;
+            for(int i=1;i<result.Count();i++)
+            {
+                foreach (var element2 in result2)
+                {
+                    if(result.ToList()[i].stationid==element2.secondStationid)
+                    {
+                        time.Add(element2.driveTime);
+                        distance.Add(element2.distance);
+                        break;
+                    }
+                }
+            }
+
+
+        }
         #endregion
 
         #region station
@@ -273,6 +299,17 @@ namespace BL
         public IEnumerable<BusStation> GetAllbusStationsBy(Predicate<BusStation> predicate)
         {
             throw new NotImplementedException();
+        }
+        public IEnumerable<busLineStation> GetAllStationNotInLine(int id)
+        {
+            if(dl.GetAllbusLineStation() != null && dl.GetAllLineInStation() != null)
+            return (from sta in dl.GetAllbusLineStation()
+                    where sta != null && sta.enabled == true
+                    from linInSta in dl.GetAllLineInStation()
+                    where linInSta != null && linInSta.Lineid != id && linInSta.stationid == sta.id
+                    orderby linInSta.placeOrder ascending
+                    select Utility.DOtoBOConvertor<BO.busLineStation, DO.busLineStation>(sta)).ToList();
+            return default;
         }
         #endregion
 
