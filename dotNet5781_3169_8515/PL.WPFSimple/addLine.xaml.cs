@@ -21,24 +21,19 @@ namespace PL
     public partial class addLine : Window
     {
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
-        managerView manager;
+        int mode;
         List<BO.busLineStation> fList;
         List<BO.busLineStation> tList;
         List<TimeSpan> time=new List<TimeSpan>();
         List<int> distance=new List<int>();
-        public addLine(managerView managerWindow)
+        public addLine(int mode=0)
         {
-             manager = managerWindow;
-            Closing += windowClose;
+            this.mode = mode;
             InitializeComponent();
             fList = bl.GetAllbusLineStation().ToList();
             tList = new List<BO.busLineStation>();
             lvfrom.ItemsSource = fList;
             lvto.ItemsSource = tList;
-        }
-        public  void windowClose(object sender, CancelEventArgs e)
-        {
-            manager.Show();
         }
 
         private void lvfrom_MouseClick(object sender, SelectionChangedEventArgs e)
@@ -95,12 +90,23 @@ namespace PL
         }
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            try { validateInput(); }
-            catch (Exception exc) { lblError.Content = exc.Message; return; }
-            try {  bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, tList,distance,time);}
-            catch (Exception exc) { lblError.Content = exc.Message; return; }
-           
-            this.Close();
+            if(mode==0)
+            { 
+              try { validateInput(); }
+               catch (Exception exc) { lblError.Content = exc.Message; return; }
+               try {  bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, tList,distance,time);}
+               catch (Exception exc) { lblError.Content = exc.Message; return; }
+                tList.Clear();
+                fList.Clear();
+                time.Clear();
+                distance.Clear();
+               this.Close();
+            }
+            else
+            {
+
+
+            }
         }
     }
 }
