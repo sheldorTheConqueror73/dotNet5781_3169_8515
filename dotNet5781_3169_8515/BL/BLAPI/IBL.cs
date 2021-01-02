@@ -28,7 +28,7 @@ namespace BLAPI
         busLine GetBusLine(int id);
         void addLine(string number, int area,List<BO.busLineStation> path, List<int> distance, List<TimeSpan> time);
         void removeLine(int id);
-        void updateLine(busLine line);
+        void updateLine(int id, string number, int area, List<BO.busLineStation> path, List<int> distance, List<TimeSpan> time);
         #endregion
 
         #region Station
@@ -67,5 +67,6 @@ namespace BLAPI
         int GetIdFollowStationBy(int idFirstSta, int idSecondSta, int idLine);
         #endregion
 
+        void listToText();
     }
 }

@@ -258,7 +258,11 @@ namespace DL
             DataSource.followStation.Add(folStation.Clone());
         }
 
-      
+        public void removeFollowStationByIdOfFol(int Id)
+        {
+            var folSta = DataSource.followStation.Find(x => x.id == Id);
+            DataSource.followStation.Remove(folSta);
+        }
 
         public void removeFollowStation(int LineId)
         {

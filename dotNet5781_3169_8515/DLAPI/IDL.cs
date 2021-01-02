@@ -59,6 +59,7 @@ namespace DLAPI
         void updateFollowStation(DO.followStations folStation);
         void addFollowStation(DO.followStations folStation);
         void removeFollowStation(int LineId);
+        void removeFollowStationByIdOfFol(int Id);
 
         #endregion
     }
