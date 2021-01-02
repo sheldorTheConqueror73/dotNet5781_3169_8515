@@ -21,24 +21,32 @@ namespace PL
     public partial class addLine : Window
     {
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
-        managerView manager;
+        int mode,lineId;
         List<BO.busLineStation> fList;
         List<BO.busLineStation> tList;
         List<TimeSpan> time=new List<TimeSpan>();
         List<int> distance=new List<int>();
-        public addLine(managerView managerWindow)
+        public addLine(int mode=0,int lineId=-1)
         {
-             manager = managerWindow;
-            Closing += windowClose;
+            this.mode = mode;
+            this.lineId = lineId;
             InitializeComponent();
-            fList = bl.GetAllbusLineStation().ToList();
-            tList = new List<BO.busLineStation>();
+            if(mode==0)
+            {
+                fList = bl.GetAllbusLineStation().ToList();
+                tList = new List<BO.busLineStation>();
+            }
+            else
+            {
+                tList = bl.GetAllStationInLine(lineId).ToList();
+                fList = bl.GetAllStationNotInLine(lineId).ToList();
+                bl.reconstructTimeAndDistance(lineId,out distance,out time);
+                txbLineNumber.Text = lineId.ToString();
+                txbLineNumber.IsEnabled = false;
+
+            }
             lvfrom.ItemsSource = fList;
             lvto.ItemsSource = tList;
-        }
-        public  void windowClose(object sender, CancelEventArgs e)
-        {
-            manager.Show();
         }
 
         private void lvfrom_MouseClick(object sender, SelectionChangedEventArgs e)
@@ -97,9 +105,22 @@ namespace PL
         {
             try { validateInput(); }
             catch (Exception exc) { lblError.Content = exc.Message; return; }
-            try {  bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, tList,distance,time);}
-            catch (Exception exc) { lblError.Content = exc.Message; return; }
-           
+            if (mode==0)
+            { 
+               try {  bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, tList,distance,time);}
+               catch (Exception exc) { lblError.Content = exc.Message; return; }
+             
+            }
+            else
+            {
+                try { bl.updateLine(lineId,txbLineNumber.Text, cmbarea.SelectedIndex, tList, distance, time); }
+                catch (Exception exc) { lblError.Content = exc.Message; return; }
+
+            }
+            tList.Clear();
+            fList.Clear();
+            time.Clear();
+            distance.Clear();
             this.Close();
         }
     }

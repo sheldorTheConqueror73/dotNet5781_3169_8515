@@ -41,6 +41,7 @@ namespace BLAPI
         void updateStation(busLineStation station);
         IEnumerable<busLine> GetAllLinesInStation(int id);
         IEnumerable<busLineStation> GetAllStationInLine(int id);
+        IEnumerable<busLineStation> GetAllStationNotInLine(int id);
         #endregion
 
         #region LineStation
@@ -50,7 +51,7 @@ namespace BLAPI
         void addLine(busLineStation line);
         void removebusLineStation(int id);
         void updatebusLineStation(busLineStation line);
-      
+        void reconstructTimeAndDistance(int lineID, out List<int> distance, out List<TimeSpan> time);
         #endregion
 
         #region user
