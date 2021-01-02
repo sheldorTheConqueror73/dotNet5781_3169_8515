@@ -40,6 +40,9 @@ namespace PL
             {
                 tList = bl.GetAllStationInLine(lineId).ToList();
                 fList = bl.GetAllStationNotInLine(lineId).ToList();
+                bl.reconstructTimeAndDistance(lineId,out distance,out time);
+                txbLineNumber.Text = lineId.ToString();
+                txbLineNumber.IsEnabled = false;
 
             }
             lvfrom.ItemsSource = fList;
@@ -100,23 +103,25 @@ namespace PL
         }
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if(mode==0)
+            try { validateInput(); }
+            catch (Exception exc) { lblError.Content = exc.Message; return; }
+            if (mode==0)
             { 
-              try { validateInput(); }
-               catch (Exception exc) { lblError.Content = exc.Message; return; }
                try {  bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, tList,distance,time);}
                catch (Exception exc) { lblError.Content = exc.Message; return; }
-                tList.Clear();
-                fList.Clear();
-                time.Clear();
-                distance.Clear();
-               this.Close();
+             
             }
             else
             {
-
+                try { bl.updateLine(lineId,txbLineNumber.Text, cmbarea.SelectedIndex, tList, distance, time); }
+                catch (Exception exc) { lblError.Content = exc.Message; return; }
 
             }
+            tList.Clear();
+            fList.Clear();
+            time.Clear();
+            distance.Clear();
+            this.Close();
         }
     }
 }

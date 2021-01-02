@@ -628,7 +628,13 @@ namespace PL
 
         private void UpdateLine_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (cbBusLines.SelectedItem == null)
+                return;
+            addLine addWindow = new addLine(1,(cbBusLines.SelectedItem as BO.busLine).id);
+            addWindow.ShowDialog();
+            cbBusLines.ItemsSource = bl.GetAllbusLines();
+            cbBusLines.Items.Refresh();
+            cbBusLines.SelectedIndex = 0;
         }
     }
 }

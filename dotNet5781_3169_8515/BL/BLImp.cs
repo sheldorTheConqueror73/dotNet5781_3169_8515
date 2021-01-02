@@ -112,9 +112,10 @@ namespace BL
         }
 
 
-        public void updateLine(busLine line)
+        public void updateLine(int id,string number, int area, List<BO.busLineStation> path, List<int> distance, List<TimeSpan> time)
         {
-            throw new NotImplementedException();
+            this.removeLine(id);
+            this.addLine(number, area, path, distance, time);
         }
         public void addLine(string number, int area, List<BO.busLineStation> path, List<int> distance, List<TimeSpan> time)
         {
