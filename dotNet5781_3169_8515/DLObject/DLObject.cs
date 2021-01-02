@@ -155,6 +155,7 @@ namespace DL
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.enabled = false;
+            DataSource.lineInStations.RemoveAll(b => b.stationid == id);
         }
         public void updatebusLineStation(busLineStation station)
         {
@@ -225,9 +226,10 @@ namespace DL
             DataSource.lineInStations.Add(lis.Clone());
         }
         public void removeLineInStation(int lineId)
-        {
-            throw new NotImplementedException();
+        {    
+            DataSource.lineInStations.RemoveAll(b => b.Lineid == lineId);
         }
+       
         #endregion
 
         #region followStations
@@ -260,7 +262,10 @@ namespace DL
 
         public void removeFollowStation(int LineId)
         {
-            throw new NotImplementedException();
+            DataSource.followStation.All(b => { b.enabled = false; return b.lineId == LineId; }) ;
+           /* if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {LineId}");
+            result.ToList().ForEach(x => x.enabled = false);*/
         }
 
         #endregion

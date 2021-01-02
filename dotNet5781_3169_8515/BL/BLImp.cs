@@ -167,6 +167,18 @@ namespace BL
                         where item != null && item.enabled == true && item.id == item2.Lineid && item2.stationid == id
                         select Utility.DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
             return default;
+           /* var lines = dl.GetAllbusLines();
+           var resultStaInLine = dl.GetAllFollowStation();
+            if (lines != null && resultStaInLine != null)
+            {
+                var res= ((from item in lines
+                         from item2 in resultStaInLine
+                         where item != null && item.enabled == true && item.id == item2.lineId && (item2.firstStationid == id || item2.secondStationid == id)
+                         select Utility.DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList());
+                return res.GroupBy(x => x.id).Select(y => y.First());
+            }
+                return default;*/
+
         }
         #endregion
 
@@ -221,11 +233,12 @@ namespace BL
         }
         public void removeStation(int id)
         {
-            var v1=from fl in dl.GetAllFollowStation()
+            var v1=(from fl in dl.GetAllFollowStation()
                    where fl.firstStationid==id
-                   select fl.lineId;
+                   select fl.lineId);
             int idsta1 = 0,idsta2=0,idfol=0,dist=0;
             bool flagFirst = false, flagSecond=false;
+            int cnt1 = 0, cnt2 = 0;
             TimeSpan ts=new TimeSpan();
             if(v1.Count()!=0)
             foreach(var lin in dl.GetAllbusLines())
@@ -242,6 +255,7 @@ namespace BL
                             dist += folsta.distance;
                             ts += folsta.driveTime;
                                 flagFirst = true;
+                                cnt1++;
                         }
                         if (folsta.firstStationid == id && folsta.lineId == lin.id)
                         {
@@ -249,6 +263,7 @@ namespace BL
                             dist += folsta.distance;
                             ts += folsta.driveTime;
                                 flagSecond = true;
+                                cnt2++;
                         }
                     }
                     if(flagFirst&&flagSecond)
@@ -292,8 +307,8 @@ namespace BL
             var folllowStation = GetAllFollowStations(id);
             var stations = dl.GetAllbusLineStation();
             if (folllowStation != null&& stations!=null)
-                return (from folSta in folllowStation where folSta != null && folSta.enabled == true
-                        from sta in stations
+                return (from sta in stations
+                        from folSta in folllowStation where folSta != null && folSta.enabled == true                    
                         where sta!=null&&sta.enabled==true && folSta.firstStationid == id &&folSta.secondStationid==sta.id
                         let x=sta.Distance=folSta.distance
                         let y=sta.DriveTime=folSta.driveTime
