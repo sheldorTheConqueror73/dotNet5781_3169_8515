@@ -27,9 +27,11 @@ namespace PL
         int folStatIdSelect = 0;
         public managerView()
         {
+            //bl.listToText();
             busOrder = 0;
             InitializeComponent();
-            initSource();      
+            initSource();  
+            
         }
         
 

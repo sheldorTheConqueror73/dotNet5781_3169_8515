@@ -6,6 +6,8 @@ using BLAPI;
 using System.Threading;
 using BO;
 using System.Reflection;
+using System.IO;
+
 namespace BL
 {
 
@@ -168,6 +170,18 @@ namespace BL
                         where item != null && item.enabled == true && item.id == item2.Lineid && item2.stationid == id
                         select Utility.DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
             return default;
+           /* var lines = dl.GetAllbusLines();
+           var resultStaInLine = dl.GetAllFollowStation();
+            if (lines != null && resultStaInLine != null)
+            {
+                var res= ((from item in lines
+                         from item2 in resultStaInLine
+                         where item != null && item.enabled == true && item.id == item2.lineId && (item2.firstStationid == id || item2.secondStationid == id)
+                         select Utility.DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList());
+                return res.GroupBy(x => x.id).Select(y => y.First());
+            }
+                return default;*/
+
         }
        public void reconstructTimeAndDistance(int lineID, out List<int> distance, out List<TimeSpan> time)
         {
@@ -248,10 +262,10 @@ namespace BL
         }
         public void removeStation(int id)
         {
-            var v1=from fl in dl.GetAllFollowStation()
+            var v1=(from fl in dl.GetAllFollowStation()
                    where fl.firstStationid==id
-                   select fl.lineId;
-            int idsta1 = 0,idsta2=0,idfol=0,dist=0;
+                   select fl.lineId);
+            int idsta1 = 0,idsta2=0,idfol1=0,idfol2=0,dist=0;
             bool flagFirst = false, flagSecond=false;
             TimeSpan ts=new TimeSpan();
             if(v1.Count()!=0)
@@ -265,29 +279,71 @@ namespace BL
                         if (folsta.secondStationid == id && folsta.lineId == lin.id)
                         {
                             idsta1 = folsta.firstStationid;
-                            idfol = folsta.id;
+                            idfol1 = folsta.id;
                             dist += folsta.distance;
                             ts += folsta.driveTime;
-                                flagFirst = true;
+                            flagFirst = true;
                         }
                         if (folsta.firstStationid == id && folsta.lineId == lin.id)
                         {
-                            idsta2 = folsta.secondStationid;
-                            dist += folsta.distance;
-                            ts += folsta.driveTime;
-                                flagSecond = true;
+                             idsta2 = folsta.secondStationid;
+                             idfol2 = folsta.id;
+                             dist += folsta.distance;
+                             ts += folsta.driveTime;
+                             flagSecond = true;
                         }
                     }
-                    if(flagFirst&&flagSecond)
-                    dl.updateFollowStation(new DO.followStations() { id = idfol, firstStationid = idsta1, secondStationid = idsta2, lineId = lin.id ,distance=dist,driveTime=ts,enabled=true});
-                }
+                        if (flagFirst && flagSecond)
+                        {
+                            dl.updateFollowStation(new DO.followStations() { id = idfol1, firstStationid = idsta1, secondStationid = idsta2, lineId = lin.id, distance = dist, driveTime = ts, enabled = true });
+                            dl.removeFollowStationByIdOfFol(idfol2);
+
+                        }
+                    }
             }
             dl.removebusLineStation(id);
 
         }
 
 
+        public void listToText()
+        {
+            string LineInsta="", lin="", folSta = "";
+            lin = " Lines = new List<busLine>{";
+            int cnt = 0;
+            foreach (var v1 in dl.GetAllbusLines())
+            {
+                lin += "new busLine(){"+$"number=\"{v1.number}\",id={v1.id},area=Area.{v1.area},driveTime=\"{v1.driveTime}\",enabled=true"+"}";
+                if (cnt != dl.GetAllbusLines().Count()-1)
+                    lin += ",\n";
+                cnt++;
+            }
+            cnt = 0;
+            lin += "};\n\n\n";
+            lin += "####################################################################################\n\n";
+            LineInsta = "lineInStations = new List<lineInStation>{";
+            foreach (var v1 in dl.GetAllLineInStation())
+            {
+                LineInsta += "new lineInStation(){" + $"id={v1.id},Address=\"{v1.Address}\",stationid={v1.stationid},Lineid={v1.Lineid},placeOrder={v1.placeOrder}" + "}";
+                if (cnt != dl.GetAllLineInStation().Count() - 1)
+                    LineInsta += ",\n";
+                cnt++;
+            }
+            LineInsta += "};\n\n";
+            LineInsta += "####################################################################################\n\n";
 
+            cnt = 0;
+            folSta = "followStation = new List<followStations>{";
+            foreach (var v1 in dl.GetAllFollowStation())
+            {
+                folSta += "new followStations(){" + $"id={v1.id},lineId={v1.lineId},secondStationid={v1.secondStationid},firstStationid={v1.firstStationid},enabled=true,driveTime=TimeSpan.Parse(\"{v1.driveTime}\"),distance={v1.distance}" + "}";
+                if (cnt != dl.GetAllFollowStation().Count() - 1)
+                    folSta += ",\n";
+                cnt++;
+            }
+            folSta += "};";
+            File.WriteAllText( "C:\\Users\\LENOVO\\source\\repos\\sheldorTheConqueror73\\dotNet5781_3169_8515\\dotNet5781_3169_8515\\initList.txt",lin + LineInsta + folSta);
+        }
         public void updatebusLineStation(busLineStation line)
         {
             throw new NotImplementedException();
@@ -330,8 +386,8 @@ namespace BL
             var folllowStation = GetAllFollowStations(id);
             var stations = dl.GetAllbusLineStation();
             if (folllowStation != null&& stations!=null)
-                return (from folSta in folllowStation where folSta != null && folSta.enabled == true
-                        from sta in stations
+                return (from sta in stations
+                        from folSta in folllowStation where folSta != null && folSta.enabled == true                    
                         where sta!=null&&sta.enabled==true && folSta.firstStationid == id &&folSta.secondStationid==sta.id
                         let x=sta.Distance=folSta.distance
                         let y=sta.DriveTime=folSta.driveTime
