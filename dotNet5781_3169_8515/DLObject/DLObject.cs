@@ -27,12 +27,13 @@ namespace DL
         public IEnumerable<Bus> GetAllBuses()
         {
             return from bus in DataSource.buses
+                   where bus!=null 
                    select bus.Clone();
         }
         public Bus GetBus(int id)
         {
             var result = DataSource.buses.Find(b => b.id == id);
-            if (result == null)
+            if ((result == null)||(result.enabled==true))
                 throw new NoSuchEntryException($"No Bus Matches ID number {id}");
             return result;
 
