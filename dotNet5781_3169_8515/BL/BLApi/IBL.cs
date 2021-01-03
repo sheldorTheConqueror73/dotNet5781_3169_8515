@@ -67,5 +67,6 @@ namespace BLAPI
         int GetIdFollowStationBy(int idFirstSta, int idSecondSta, int idLine);
         #endregion
 
+        void listToText();
     }
 }

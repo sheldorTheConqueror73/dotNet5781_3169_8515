@@ -30,10 +30,10 @@ namespace DS
             initStations();
             initBuses();
             initUsers();
-            //initLines();
-            initStations1();
-            initLines1();
-           initFollowStations1();
+            initLines();
+          //  initStations1();
+          //  initLines1();
+          // initFollowStations1();
 
 
         }
