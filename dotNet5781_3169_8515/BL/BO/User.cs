@@ -10,7 +10,7 @@ namespace BO
     {
         public string password { get; set; }
         public string name { get; set; }
-        public Clearance accessLevel { get; set; }
+        public string accessLevel { get; set; }
         public bool enabled { get; set; }
 
         public string fullname { get; set; }
@@ -19,12 +19,12 @@ namespace BO
         {
             password = "";
             name = "";
-            accessLevel = Clearance.None;
+            accessLevel = "User";
             fullname = "";
             mail = "";
             enabled = true;
         }
-        public User(string password, string name, Clearance access,string fullName,String mail)
+        public User(string password, string name, string access,string fullName,String mail)
         {
             this.password = password;
             this.name = name;

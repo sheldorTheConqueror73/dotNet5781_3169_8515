@@ -38,7 +38,7 @@ namespace PL
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             //add input check/regex
-            try { bl.addUser(new BO.User(psbpassword.Password, txbusername.Text, BO.Clearance.User, txbFirstName.Text + " " + txbLastName.Text, txbmail.Text)); }
+            try { bl.addUser(new BO.User(psbpassword.Password, txbusername.Text,"User", txbFirstName.Text + " " + txbLastName.Text, txbmail.Text)); }
             catch (Exception ecx) { errormessage.Text = ecx.Message; return; }
             this.Close();
         }
