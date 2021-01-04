@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="addLineUserPromt" Height="250" Width="350" WindowStyle="None" Closing="onClose">
+        Title="addLineUserPromt" Height="250" WindowStartupLocation="CenterScreen" Width="350" WindowStyle="None" Closing="onClose">
     <Grid>
         <TextBox HorizontalAlignment="Left"  x:Name="txbDistance" Height="23" Margin="185,60,0,0" TextWrapping="Wrap" Text="enter text here" VerticalAlignment="Top" Width="71"/>
         <Label Content="Distance berween Stations: " HorizontalAlignment="Left" Margin="25,57,0,0" VerticalAlignment="Top" />

@@ -27,12 +27,13 @@ namespace DL
         public IEnumerable<Bus> GetAllBuses()
         {
             return from bus in DataSource.buses
+                   where bus!=null 
                    select bus.Clone();
         }
         public Bus GetBus(int id)
         {
             var result = DataSource.buses.Find(b => b.id == id);
-            if (result == null)
+            if ((result == null)||(result.enabled==true))
                 throw new NoSuchEntryException($"No Bus Matches ID number {id}");
             return result;
 
@@ -266,10 +267,10 @@ namespace DL
 
         public void removeFollowStation(int LineId)
         {
-            DataSource.followStation.All(b => { b.enabled = false; return b.lineId == LineId; }) ;
-           /* if (result == null)
-                throw new NoSuchEntryException($"No entry Matches ID number {LineId}");
-            result.ToList().ForEach(x => x.enabled = false);*/
+            var reslut = (from item in DataSource.followStation
+                         where item != null && item.enabled == true && item.lineId == LineId
+                         let x = item.enabled = false
+                         select item).ToList();
         }
 
         #endregion

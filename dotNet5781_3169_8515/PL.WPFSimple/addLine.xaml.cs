@@ -26,7 +26,7 @@ namespace PL
         List<BO.busLineStation> tList;
         List<TimeSpan> time=new List<TimeSpan>();
         List<int> distance=new List<int>();
-        public addLine(int mode=0,int lineId=-1)
+        public addLine(int mode=0,int lineId=-1,string number="")
         {
             this.mode = mode;
             this.lineId = lineId;
@@ -41,7 +41,7 @@ namespace PL
                 tList = bl.GetAllStationInLine(lineId).ToList();
                 fList = bl.GetAllStationNotInLine(lineId).ToList();
                 bl.reconstructTimeAndDistance(lineId,out distance,out time);
-                txbLineNumber.Text = lineId.ToString();
+                txbLineNumber.Text = number;
                 txbLineNumber.IsEnabled = false;
 
             }

@@ -632,7 +632,7 @@ namespace PL
         {
             if (cbBusLines.SelectedItem == null)
                 return;
-            addLine addWindow = new addLine(1,(cbBusLines.SelectedItem as BO.busLine).id);
+            addLine addWindow = new addLine(1,(cbBusLines.SelectedItem as BO.busLine).id, (cbBusLines.SelectedItem as BO.busLine).number);
             addWindow.ShowDialog();
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();

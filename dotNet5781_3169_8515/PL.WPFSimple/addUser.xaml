@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="addUser" Height="350" Width="525" ResizeMode="NoResize">
+        Title="addUser" Height="350" WindowStartupLocation="CenterScreen" Width="525" ResizeMode="NoResize">
     <Grid  Height="350" Width="525" Background="Bisque">
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,5,0,0" Name="textBlockHeading" Text="Registration:" VerticalAlignment="Top" Width="110"  FontSize="17" FontStretch="ExtraCondensed"/>
 
