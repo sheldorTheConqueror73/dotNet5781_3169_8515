@@ -189,9 +189,13 @@ namespace DL
         }
         public void addUser(User user)
         {
-            var result = DataSource.users.Find(b => b.id == user.id);
-            if ((result != null) || (result.enabled == true))
-                throw new itemAlreadyExistsException($"ID number {user.id} is already taken");
+            var result = DataSource.users.Find(b => (b.id == user.id||b.name==user.name));
+            if ((result != null) && (result.enabled == true))
+            {
+                if(result.id==user.id)
+                    throw new itemAlreadyExistsException($"ID number {user.id} is already taken");
+                throw new itemAlreadyExistsException($"User name {user.name} is already taken");
+            }
             DataSource.users.Add(user.Clone());
         }
         public void removebusUser(int id)

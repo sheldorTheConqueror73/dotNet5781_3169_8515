@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.SimpleWPF
+namespace PL
 {
     /// <summary>
     /// Interaction logic for addUser.xaml
@@ -38,9 +38,9 @@ namespace PL.SimpleWPF
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             //add input check/regex
-
-            bl.addUser(new BO.User(psbpassword.Password,txbusername.Text,BO.Clearance.User,txbFirstName.Text+" "+txbLastName.Text,txbmail.Text));
-           
+            try { bl.addUser(new BO.User(psbpassword.Password, txbusername.Text, BO.Clearance.User, txbFirstName.Text + " " + txbLastName.Text, txbmail.Text)); }
+            catch (Exception ecx) { errormessage.Text = ecx.Message; return; }
+            this.Close();
         }
         
     }
