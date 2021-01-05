@@ -595,6 +595,7 @@ namespace PL
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
+            initTextBoxByCbInStations();
 
          
         }
