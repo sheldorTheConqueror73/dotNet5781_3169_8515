@@ -455,6 +455,7 @@ namespace BL
         }
         public void addUser(BO.User user)
         {
+            user.accessLevel ="User";
             dl.addUser(Utility.BOtoDOConvertor<DO.User,BO.User>(user));
         }
         public void removeUser(int id)

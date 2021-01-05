@@ -292,7 +292,7 @@ new busLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled
 
         private static void initUsers()
         {
-            users = new List<User> { new User { name = "Jack Smith", accessLevel = Clearance.Admin, password = "aaa123", enabled=true }, new User { name = "Vladimir Putin", accessLevel = Clearance.Operator, password = "polonium210", enabled = true }, new User { name = "C.M.O.T Dibbler", accessLevel = Clearance.User, password = "bbb123", enabled = true } };
+            users = new List<User> { new User { name = "Jack Smith", accessLevel = "Admin", password = "aaa123", enabled=true }, new User { name = "Vladimir Putin", accessLevel = "Operator", password = "polonium210", enabled = true }, new User { name = "C.M.O.T Dibbler", accessLevel = "User", password = "bbb123", enabled = true } };
         }
 
         private static void initBuses()

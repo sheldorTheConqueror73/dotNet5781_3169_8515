@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 using BLAPI;
 
-namespace PL.SimpleWPF
+namespace PL
 {
     /// <summary>
     /// Interaction logic for managerView.xaml
@@ -52,12 +52,14 @@ namespace PL.SimpleWPF
                 this.Hide();
                 managerView.Show();
             }
+            if (str == "User")
+                errormessage.Text = "Welcom user";
         }
 
         private void newUser_click(object sender, RoutedEventArgs e)
         {
             addUser add = new addUser();
-            add.Show();
+            add.ShowDialog();
         }
 
         private void TextBlock_KeyDown(object sender, KeyEventArgs e)
