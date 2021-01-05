@@ -638,12 +638,8 @@ namespace PL
             cbBusLines.SelectedIndex = 0;
         }
 
-<<<<<<< HEAD:dotNet5781_3169_8515/PL/managerView.xaml.cs
-     
-=======
         #endregion
 
 
->>>>>>> 7fd1e0a18a6800e62f050eb8a2c3a2c9a21a036a:dotNet5781_3169_8515/PL.WPFSimple/managerView.xaml.cs
     }
 }
