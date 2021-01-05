@@ -316,10 +316,10 @@
                             <ListView x:Name="lvLinesInStation"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="77" BorderThickness="0" MouseDoubleClick="busesView_MouseDoubleClick" >
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Lines" Width="70"  DisplayMemberBinding="{Binding}">
+                                        <GridViewColumn Header="Lines" Width="70"  DisplayMemberBinding="{Binding number}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <ItemsControl ItemsSource="{Binding}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                                    <ItemsControl ItemsSource="{Binding number}"  Margin="1.5" HorizontalAlignment="Center"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>

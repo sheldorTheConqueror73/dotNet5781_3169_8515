@@ -160,36 +160,30 @@ namespace BL
 
 
         #region lineInStation
-        public IEnumerable<string> GetAllLinesInStation(int id)
-        {
-            int[] arr = new int[2000];
-            for (int i = 0; i < 2000; i++)
-                arr[i] = 0;
-            List<string> bla = new List<string>();
-            int g = 0,r=0;
-            var rt = GetAllFollowStationsAsStationsObj(id);
-            foreach (var st in rt)
-            {;
-                arr[int.Parse(st.code)]++;
-                foreach (var item in arr)
-                {
-                    if (item == 2)
-                        r = 9;
-                }
-                g++;
-            }
+        public IEnumerable<busLine> GetAllLinesInStation(int id)
+        { 
             List<string> linInSta = new List<string>();
+            var r = GetAllFollowStationsAsStationsObj(id);
             foreach (var sta in GetAllFollowStationsAsStationsObj(id))
                 foreach (var folSta in dl.GetAllFollowStation())
                     if (folSta != null && folSta.enabled == true && folSta.firstStationid == id && folSta.secondStationid == sta.id)
-                    {
                         linInSta.Add(folSta.lineNumber);
-                        break;
-                    }
+
             foreach (var linSta in dl.GetAllLineInStation())
                 if (!linInSta.Any(x => x == linSta.lineNumber)&&linSta.stationid==id)
                     linInSta.Add(linSta.lineNumber);
-            return linInSta.GroupBy(x => x).Select(y => y.First());
+            var res= linInSta.GroupBy(x => x).Select(y => y.First());
+            List<busLine> bs = new List<busLine>();
+            foreach(var v in res)
+            {
+                foreach(var v2 in dl.GetAllbusLines())
+                    if(v==v2.number)
+                    {
+                        bs.Add(Utility.DOtoBOConvertor<BO.busLine, DO.busLine>(v2));
+                        break;
+                    }
+            }
+            return bs;
         }
        public void reconstructTimeAndDistance(int lineID, out List<double> distance, out List<TimeSpan> time)
         {
