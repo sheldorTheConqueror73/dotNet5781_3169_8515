@@ -21,10 +21,10 @@ namespace PL
     /// </summary>
     public partial class addLineUserPromt : Window
     {
-        List<int> distance;
+        List<double> distance;
         List<TimeSpan> time;
         bool canExit;
-        public addLineUserPromt(List<int>dist, List<TimeSpan> t1)
+        public addLineUserPromt(List<double>dist, List<TimeSpan> t1)
         {
             canExit = false;
             InitializeComponent();

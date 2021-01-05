@@ -11,11 +11,11 @@ namespace BO
         readonly static int NULL = -200;//not too sure about this - used to mark empty variable
        // protected readonly string id;
         protected string address;
-        protected float latitude, longitude;//set up accessors for these two
+        protected double latitude, longitude;//set up accessors for these two
         public string code { get; set; }
         public bool enabled { get; set; }
         //getters and setters:
-        public float Latitude
+        public double Latitude
         {
             get => latitude;
             set
@@ -24,7 +24,7 @@ namespace BO
                     latitude = value;
             }
         }
-        public float Longitude
+        public double Longitude
         {
             get => longitude;
             set
@@ -54,7 +54,7 @@ namespace BO
            // longitude = NULL;
             enabled = true;
         }
-        public BusStation(string code, float lat, float lon, string address = "")//ctor
+        public BusStation(string code, double lat, double lon, string address = "")//ctor
         {
             this.code = code;
             if (address == "")

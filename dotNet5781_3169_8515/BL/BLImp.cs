@@ -114,12 +114,12 @@ namespace BL
         }
 
 
-        public void updateLine(int id,string number, int area, List<BO.busLineStation> path, List<int> distance, List<TimeSpan> time)
+        public void updateLine(int id,string number, int area, List<BO.busLineStation> path, List<double> distance, List<TimeSpan> time)
         {
             this.removeLine(id);
             this.addLine(number, area, path, distance, time);
         }
-        public void addLine(string number, int area, List<BO.busLineStation> path, List<int> distance, List<TimeSpan> time)
+        public void addLine(string number, int area, List<BO.busLineStation> path, List<double> distance, List<TimeSpan> time)
         {
             int count = dl.countLines(number);
             if (count == 2)
@@ -138,10 +138,10 @@ namespace BL
             dl.addLine(Utility.BOtoDOConvertor<DO.busLine, BO.busLine>(line));
             for(int i=0;i<path.Count;i++)
             {
-                dl.addLineInStation(new DO.lineInStation() { stationid=path[i].id, Lineid=line.id,Address=path[i].Address, placeOrder=i });
+                dl.addLineInStation(new DO.lineInStation() { stationid=path[i].id, Lineid=line.id, placeOrder=i,lineNumber=line.number });
                 if(i!=path.Count-1)
                 {
-                    dl.addFollowStation(new DO.followStations() { firstStationid=path[i].id, enabled=true,distance=distance[i], driveTime=time[i],lineId=line.id,secondStationid=path[i+1].id });
+                    dl.addFollowStation(new DO.followStations() { firstStationid=path[i].id, enabled=true,distance=distance[i], driveTime=time[i],lineId=line.id,secondStationid=path[i+1].id ,lineNumber=line.number});
                 }
             }
         
@@ -160,32 +160,40 @@ namespace BL
 
 
         #region lineInStation
-        public IEnumerable<busLine> GetAllLinesInStation(int id)
+        public IEnumerable<string> GetAllLinesInStation(int id)
         {
-            var lines = dl.GetAllbusLines();
-            var resultStaInLine = dl.GetAllLineInStation();
-            if (lines != null && resultStaInLine != null)
-                return (from item in lines
-                        from item2 in resultStaInLine
-                        where item != null && item.enabled == true && item.id == item2.Lineid && item2.stationid == id
-                        select Utility.DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList();
-            return default;
-           /* var lines = dl.GetAllbusLines();
-           var resultStaInLine = dl.GetAllFollowStation();
-            if (lines != null && resultStaInLine != null)
-            {
-                var res= ((from item in lines
-                         from item2 in resultStaInLine
-                         where item != null && item.enabled == true && item.id == item2.lineId && (item2.firstStationid == id || item2.secondStationid == id)
-                         select Utility.DOtoBOConvertor<BO.busLine, DO.busLine>(item)).ToList());
-                return res.GroupBy(x => x.id).Select(y => y.First());
+            int[] arr = new int[2000];
+            for (int i = 0; i < 2000; i++)
+                arr[i] = 0;
+            List<string> bla = new List<string>();
+            int g = 0,r=0;
+            var rt = GetAllFollowStationsAsStationsObj(id);
+            foreach (var st in rt)
+            {;
+                arr[int.Parse(st.code)]++;
+                foreach (var item in arr)
+                {
+                    if (item == 2)
+                        r = 9;
+                }
+                g++;
             }
-                return default;*/
-
+            List<string> linInSta = new List<string>();
+            foreach (var sta in GetAllFollowStationsAsStationsObj(id))
+                foreach (var folSta in dl.GetAllFollowStation())
+                    if (folSta != null && folSta.enabled == true && folSta.firstStationid == id && folSta.secondStationid == sta.id)
+                    {
+                        linInSta.Add(folSta.lineNumber);
+                        break;
+                    }
+            foreach (var linSta in dl.GetAllLineInStation())
+                if (!linInSta.Any(x => x == linSta.lineNumber)&&linSta.stationid==id)
+                    linInSta.Add(linSta.lineNumber);
+            return linInSta.GroupBy(x => x).Select(y => y.First());
         }
-       public void reconstructTimeAndDistance(int lineID, out List<int> distance, out List<TimeSpan> time)
+       public void reconstructTimeAndDistance(int lineID, out List<double> distance, out List<TimeSpan> time)
         {
-            distance = new List<int>();
+            distance = new List<double>();
             time = new List<TimeSpan>();
             var result = from station in dl.GetAllLineInStation()
                          where station != null && station.Lineid == lineID
@@ -265,7 +273,8 @@ namespace BL
             var v1=(from fl in dl.GetAllFollowStation()
                    where fl.firstStationid==id
                    select fl.lineId);
-            int idsta1 = 0,idsta2=0,idfol1=0,idfol2=0,dist=0;
+            int idsta1 = 0,idsta2=0,idfol1=0,idfol2=0;
+            double dist = 0;
             bool flagFirst = false, flagSecond=false;
             TimeSpan ts=new TimeSpan();
             if(v1.Count()!=0)
@@ -295,7 +304,7 @@ namespace BL
                     }
                         if (flagFirst && flagSecond)
                         {
-                            dl.updateFollowStation(new DO.followStations() { id = idfol1, firstStationid = idsta1, secondStationid = idsta2, lineId = lin.id, distance = dist, driveTime = ts, enabled = true });
+                            dl.updateFollowStation(new DO.followStations() { id = idfol1, firstStationid = idsta1, secondStationid = idsta2, lineId = lin.id, distance = dist, driveTime = ts, enabled = true,lineNumber=lin.number });
                             dl.removeFollowStationByIdOfFol(idfol2);
 
                         }
@@ -324,7 +333,7 @@ namespace BL
             LineInsta = "lineInStations = new List<lineInStation>{";
             foreach (var v1 in dl.GetAllLineInStation())
             {
-                LineInsta += "new lineInStation(){" + $"id={v1.id},Address=\"{v1.Address}\",stationid={v1.stationid},Lineid={v1.Lineid},placeOrder={v1.placeOrder}" + "}";
+                LineInsta += "new lineInStation(){" + $"id={v1.id},stationid={v1.stationid},Lineid={v1.Lineid},placeOrder={v1.placeOrder}" + "}";
                 if (cnt != dl.GetAllLineInStation().Count() - 1)
                     LineInsta += ",\n";
                 cnt++;
@@ -453,6 +462,6 @@ namespace BL
             throw new NotImplementedException();
         }
         #endregion
-        
+      
     }
 }

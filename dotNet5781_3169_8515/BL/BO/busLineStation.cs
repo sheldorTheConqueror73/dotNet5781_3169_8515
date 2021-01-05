@@ -9,12 +9,12 @@ namespace BO
 {
     public class busLineStation : BusStation, IComparable<busLineStation>
     {
-        private int distance;
+        private double distance;
         private TimeSpan driveTime;
         public ObservableCollection<busLine> ListOfLines { get; } = new ObservableCollection<busLine>();
 
         //getters and setters:
-        public int Distance
+        public double Distance
         {
             get => distance;
             set

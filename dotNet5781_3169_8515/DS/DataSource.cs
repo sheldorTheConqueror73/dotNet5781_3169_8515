@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -28,10 +29,11 @@ namespace DS
         {
 
             initStations();
+            //initStation1();
             initBuses();
             initUsers();
             initLines();
-          //  initStations1();
+          //  initLineInStations1();
           //  initLines1();
           // initFollowStations1();
 
@@ -149,128 +151,128 @@ new followStations(){id=423,lineId=390,secondStationid=37,firstStationid=38,enab
 new followStations(){id=424,lineId=390,secondStationid=6,firstStationid=37,enabled=true,driveTime=TimeSpan.Parse("00:05:00"),distance=132},
 new followStations(){id=425,lineId=390,secondStationid=9,firstStationid=6,enabled=true,driveTime=TimeSpan.Parse("00:01:00"),distance=299}};
         }
-        private static void initStations1()
+        private static void initLineInStations1()
         {
 
-            lineInStations = new List<lineInStation>{new lineInStation(){id=71,Address="",stationid=23,Lineid=69,placeOrder=0},
-new lineInStation(){id=73,Address="",stationid=31,Lineid=69,placeOrder=1},
-new lineInStation(){id=75,Address="",stationid=29,Lineid=69,placeOrder=2},
-new lineInStation(){id=77,Address="",stationid=12,Lineid=69,placeOrder=3},
-new lineInStation(){id=79,Address="",stationid=42,Lineid=69,placeOrder=4},
-new lineInStation(){id=81,Address="",stationid=32,Lineid=69,placeOrder=5},
-new lineInStation(){id=83,Address="",stationid=20,Lineid=69,placeOrder=6},
-new lineInStation(){id=85,Address="",stationid=16,Lineid=69,placeOrder=7},
-new lineInStation(){id=87,Address="",stationid=38,Lineid=69,placeOrder=8},
-new lineInStation(){id=89,Address="",stationid=6,Lineid=69,placeOrder=9},
-new lineInStation(){id=101,Address="",stationid=32,Lineid=99,placeOrder=0},
-new lineInStation(){id=103,Address="",stationid=35,Lineid=99,placeOrder=1},
-new lineInStation(){id=105,Address="",stationid=29,Lineid=99,placeOrder=2},
-new lineInStation(){id=107,Address="",stationid=38,Lineid=99,placeOrder=3},
-new lineInStation(){id=109,Address="",stationid=34,Lineid=99,placeOrder=4},
-new lineInStation(){id=111,Address="",stationid=37,Lineid=99,placeOrder=5},
-new lineInStation(){id=113,Address="",stationid=31,Lineid=99,placeOrder=6},
-new lineInStation(){id=115,Address="",stationid=17,Lineid=99,placeOrder=7},
-new lineInStation(){id=117,Address="",stationid=42,Lineid=99,placeOrder=8},
-new lineInStation(){id=119,Address="",stationid=23,Lineid=99,placeOrder=9},
-new lineInStation(){id=121,Address="",stationid=16,Lineid=99,placeOrder=10},
-new lineInStation(){id=123,Address="",stationid=5,Lineid=99,placeOrder=11},
-new lineInStation(){id=137,Address="",stationid=19,Lineid=135,placeOrder=0},
-new lineInStation(){id=139,Address="",stationid=7,Lineid=135,placeOrder=1},
-new lineInStation(){id=141,Address="",stationid=4,Lineid=135,placeOrder=2},
-new lineInStation(){id=143,Address="",stationid=40,Lineid=135,placeOrder=3},
-new lineInStation(){id=145,Address="",stationid=15,Lineid=135,placeOrder=4},
-new lineInStation(){id=147,Address="",stationid=21,Lineid=135,placeOrder=5},
-new lineInStation(){id=149,Address="",stationid=6,Lineid=135,placeOrder=6},
-new lineInStation(){id=151,Address="",stationid=35,Lineid=135,placeOrder=7},
-new lineInStation(){id=153,Address="",stationid=38,Lineid=135,placeOrder=8},
-new lineInStation(){id=155,Address="",stationid=14,Lineid=135,placeOrder=9},
-new lineInStation(){id=167,Address="",stationid=20,Lineid=165,placeOrder=0},
-new lineInStation(){id=169,Address="",stationid=30,Lineid=165,placeOrder=1},
-new lineInStation(){id=171,Address="",stationid=39,Lineid=165,placeOrder=2},
-new lineInStation(){id=173,Address="",stationid=44,Lineid=165,placeOrder=3},
-new lineInStation(){id=175,Address="",stationid=10,Lineid=165,placeOrder=4},
-new lineInStation(){id=177,Address="",stationid=18,Lineid=165,placeOrder=5},
-new lineInStation(){id=179,Address="",stationid=21,Lineid=165,placeOrder=6},
-new lineInStation(){id=181,Address="",stationid=26,Lineid=165,placeOrder=7},
-new lineInStation(){id=183,Address="",stationid=5,Lineid=165,placeOrder=8},
-new lineInStation(){id=185,Address="",stationid=41,Lineid=165,placeOrder=9},
-new lineInStation(){id=187,Address="",stationid=14,Lineid=165,placeOrder=10},
-new lineInStation(){id=189,Address="",stationid=23,Lineid=165,placeOrder=11},
-new lineInStation(){id=191,Address="",stationid=24,Lineid=165,placeOrder=12},
-new lineInStation(){id=206,Address="",stationid=16,Lineid=204,placeOrder=0},
-new lineInStation(){id=208,Address="",stationid=7,Lineid=204,placeOrder=1},
-new lineInStation(){id=210,Address="",stationid=13,Lineid=204,placeOrder=2},
-new lineInStation(){id=212,Address="",stationid=26,Lineid=204,placeOrder=3},
-new lineInStation(){id=214,Address="",stationid=29,Lineid=204,placeOrder=4},
-new lineInStation(){id=216,Address="",stationid=8,Lineid=204,placeOrder=5},
-new lineInStation(){id=218,Address="",stationid=43,Lineid=204,placeOrder=6},
-new lineInStation(){id=220,Address="",stationid=44,Lineid=204,placeOrder=7},
-new lineInStation(){id=222,Address="",stationid=35,Lineid=204,placeOrder=8},
-new lineInStation(){id=224,Address="",stationid=1,Lineid=204,placeOrder=9},
-new lineInStation(){id=226,Address="",stationid=41,Lineid=204,placeOrder=10},
-new lineInStation(){id=228,Address="",stationid=38,Lineid=204,placeOrder=11},
-new lineInStation(){id=230,Address="",stationid=45,Lineid=204,placeOrder=12},
-new lineInStation(){id=245,Address="",stationid=25,Lineid=243,placeOrder=0},
-new lineInStation(){id=247,Address="",stationid=11,Lineid=243,placeOrder=1},
-new lineInStation(){id=249,Address="",stationid=13,Lineid=243,placeOrder=2},
-new lineInStation(){id=251,Address="",stationid=5,Lineid=243,placeOrder=3},
-new lineInStation(){id=253,Address="",stationid=21,Lineid=243,placeOrder=4},
-new lineInStation(){id=255,Address="",stationid=14,Lineid=243,placeOrder=5},
-new lineInStation(){id=257,Address="",stationid=45,Lineid=243,placeOrder=6},
-new lineInStation(){id=259,Address="",stationid=44,Lineid=243,placeOrder=7},
-new lineInStation(){id=261,Address="",stationid=0,Lineid=243,placeOrder=8},
-new lineInStation(){id=263,Address="",stationid=6,Lineid=243,placeOrder=9},
-new lineInStation(){id=265,Address="",stationid=9,Lineid=243,placeOrder=10},
-new lineInStation(){id=267,Address="",stationid=3,Lineid=243,placeOrder=11},
-new lineInStation(){id=269,Address="",stationid=15,Lineid=243,placeOrder=12},
-new lineInStation(){id=284,Address="",stationid=42,Lineid=282,placeOrder=0},
-new lineInStation(){id=286,Address="",stationid=43,Lineid=282,placeOrder=1},
-new lineInStation(){id=288,Address="",stationid=24,Lineid=282,placeOrder=2},
-new lineInStation(){id=290,Address="",stationid=6,Lineid=282,placeOrder=3},
-new lineInStation(){id=292,Address="",stationid=12,Lineid=282,placeOrder=4},
-new lineInStation(){id=294,Address="",stationid=29,Lineid=282,placeOrder=5},
-new lineInStation(){id=296,Address="",stationid=32,Lineid=282,placeOrder=6},
-new lineInStation(){id=298,Address="",stationid=7,Lineid=282,placeOrder=7},
-new lineInStation(){id=300,Address="",stationid=15,Lineid=282,placeOrder=8},
-new lineInStation(){id=302,Address="",stationid=20,Lineid=282,placeOrder=9},
-new lineInStation(){id=304,Address="",stationid=35,Lineid=282,placeOrder=10},
-new lineInStation(){id=317,Address="",stationid=14,Lineid=315,placeOrder=0},
-new lineInStation(){id=319,Address="",stationid=6,Lineid=315,placeOrder=1},
-new lineInStation(){id=321,Address="",stationid=23,Lineid=315,placeOrder=2},
-new lineInStation(){id=323,Address="",stationid=11,Lineid=315,placeOrder=3},
-new lineInStation(){id=325,Address="",stationid=43,Lineid=315,placeOrder=4},
-new lineInStation(){id=327,Address="",stationid=40,Lineid=315,placeOrder=5},
-new lineInStation(){id=329,Address="",stationid=35,Lineid=315,placeOrder=6},
-new lineInStation(){id=331,Address="",stationid=7,Lineid=315,placeOrder=7},
-new lineInStation(){id=333,Address="",stationid=8,Lineid=315,placeOrder=8},
-new lineInStation(){id=335,Address="",stationid=13,Lineid=315,placeOrder=9},
-new lineInStation(){id=337,Address="",stationid=34,Lineid=315,placeOrder=10},
-new lineInStation(){id=350,Address="",stationid=1,Lineid=348,placeOrder=0},
-new lineInStation(){id=352,Address="",stationid=24,Lineid=348,placeOrder=1},
-new lineInStation(){id=354,Address="",stationid=44,Lineid=348,placeOrder=2},
-new lineInStation(){id=356,Address="",stationid=14,Lineid=348,placeOrder=3},
-new lineInStation(){id=358,Address="",stationid=23,Lineid=348,placeOrder=4},
-new lineInStation(){id=360,Address="",stationid=28,Lineid=348,placeOrder=5},
-new lineInStation(){id=362,Address="",stationid=32,Lineid=348,placeOrder=6},
-new lineInStation(){id=364,Address="",stationid=34,Lineid=348,placeOrder=7},
-new lineInStation(){id=366,Address="",stationid=10,Lineid=348,placeOrder=8},
-new lineInStation(){id=368,Address="",stationid=27,Lineid=348,placeOrder=9},
-new lineInStation(){id=370,Address="",stationid=2,Lineid=348,placeOrder=10},
-new lineInStation(){id=372,Address="",stationid=4,Lineid=348,placeOrder=11},
-new lineInStation(){id=374,Address="",stationid=19,Lineid=348,placeOrder=12},
-new lineInStation(){id=376,Address="",stationid=8,Lineid=348,placeOrder=13},
-new lineInStation(){id=392,Address="",stationid=10,Lineid=390,placeOrder=0},
-new lineInStation(){id=394,Address="",stationid=28,Lineid=390,placeOrder=1},
-new lineInStation(){id=396,Address="",stationid=44,Lineid=390,placeOrder=2},
-new lineInStation(){id=398,Address="",stationid=39,Lineid=390,placeOrder=3},
-new lineInStation(){id=400,Address="",stationid=16,Lineid=390,placeOrder=4},
-new lineInStation(){id=402,Address="",stationid=30,Lineid=390,placeOrder=5},
-new lineInStation(){id=404,Address="",stationid=11,Lineid=390,placeOrder=6},
-new lineInStation(){id=406,Address="",stationid=26,Lineid=390,placeOrder=7},
-new lineInStation(){id=408,Address="",stationid=38,Lineid=390,placeOrder=8},
-new lineInStation(){id=410,Address="",stationid=37,Lineid=390,placeOrder=9},
-new lineInStation(){id=412,Address="",stationid=6,Lineid=390,placeOrder=10},
-new lineInStation(){id=414,Address="",stationid=9,Lineid=390,placeOrder=11}};
+            lineInStations = new List<lineInStation>{new lineInStation(){id=71,stationid=23,Lineid=69,placeOrder=0},
+new lineInStation(){id=73,stationid=31,Lineid=69,placeOrder=1},
+new lineInStation(){id=75,stationid=29,Lineid=69,placeOrder=2},
+new lineInStation(){id=77,stationid=12,Lineid=69,placeOrder=3},
+new lineInStation(){id=79,stationid=42,Lineid=69,placeOrder=4},
+new lineInStation(){id=81,stationid=32,Lineid=69,placeOrder=5},
+new lineInStation(){id=83,stationid=20,Lineid=69,placeOrder=6},
+new lineInStation(){id=85,stationid=16,Lineid=69,placeOrder=7},
+new lineInStation(){id=87,stationid=38,Lineid=69,placeOrder=8},
+new lineInStation(){id=89,stationid=6,Lineid=69,placeOrder=9},
+new lineInStation(){id=101,stationid=32,Lineid=99,placeOrder=0},
+new lineInStation(){id=103,stationid=35,Lineid=99,placeOrder=1},
+new lineInStation(){id=105,stationid=29,Lineid=99,placeOrder=2},
+new lineInStation(){id=107,stationid=38,Lineid=99,placeOrder=3},
+new lineInStation(){id=109,stationid=34,Lineid=99,placeOrder=4},
+new lineInStation(){id=111,stationid=37,Lineid=99,placeOrder=5},
+new lineInStation(){id=113,stationid=31,Lineid=99,placeOrder=6},
+new lineInStation(){id=115,stationid=17,Lineid=99,placeOrder=7},
+new lineInStation(){id=117,stationid=42,Lineid=99,placeOrder=8},
+new lineInStation(){id=119,stationid=23,Lineid=99,placeOrder=9},
+new lineInStation(){id=121,stationid=16,Lineid=99,placeOrder=10},
+new lineInStation(){id=123,stationid=5,Lineid=99,placeOrder=11},
+new lineInStation(){id=137,stationid=19,Lineid=135,placeOrder=0},
+new lineInStation(){id=139,stationid=7,Lineid=135,placeOrder=1},
+new lineInStation(){id=141,stationid=4,Lineid=135,placeOrder=2},
+new lineInStation(){id=143,stationid=40,Lineid=135,placeOrder=3},
+new lineInStation(){id=145,stationid=15,Lineid=135,placeOrder=4},
+new lineInStation(){id=147,stationid=21,Lineid=135,placeOrder=5},
+new lineInStation(){id=149,stationid=6,Lineid=135,placeOrder=6},
+new lineInStation(){id=151,stationid=35,Lineid=135,placeOrder=7},
+new lineInStation(){id=153,stationid=38,Lineid=135,placeOrder=8},
+new lineInStation(){id=155,stationid=14,Lineid=135,placeOrder=9},
+new lineInStation(){id=167,stationid=20,Lineid=165,placeOrder=0},
+new lineInStation(){id=169,stationid=30,Lineid=165,placeOrder=1},
+new lineInStation(){id=171,stationid=39,Lineid=165,placeOrder=2},
+new lineInStation(){id=173,stationid=44,Lineid=165,placeOrder=3},
+new lineInStation(){id=175,stationid=10,Lineid=165,placeOrder=4},
+new lineInStation(){id=177,stationid=18,Lineid=165,placeOrder=5},
+new lineInStation(){id=179,stationid=21,Lineid=165,placeOrder=6},
+new lineInStation(){id=181,stationid=26,Lineid=165,placeOrder=7},
+new lineInStation(){id=183,stationid=5,Lineid=165,placeOrder=8},
+new lineInStation(){id=185,stationid=41,Lineid=165,placeOrder=9},
+new lineInStation(){id=187,stationid=14,Lineid=165,placeOrder=10},
+new lineInStation(){id=189,stationid=23,Lineid=165,placeOrder=11},
+new lineInStation(){id=191,stationid=24,Lineid=165,placeOrder=12},
+new lineInStation(){id=206,stationid=16,Lineid=204,placeOrder=0},
+new lineInStation(){id=208,stationid=7,Lineid=204,placeOrder=1},
+new lineInStation(){id=210,stationid=13,Lineid=204,placeOrder=2},
+new lineInStation(){id=212,stationid=26,Lineid=204,placeOrder=3},
+new lineInStation(){id=214,stationid=29,Lineid=204,placeOrder=4},
+new lineInStation(){id=216,stationid=8,Lineid=204,placeOrder=5},
+new lineInStation(){id=218,stationid=43,Lineid=204,placeOrder=6},
+new lineInStation(){id=220,stationid=44,Lineid=204,placeOrder=7},
+new lineInStation(){id=222,stationid=35,Lineid=204,placeOrder=8},
+new lineInStation(){id=224,stationid=1,Lineid=204,placeOrder=9},
+new lineInStation(){id=226,stationid=41,Lineid=204,placeOrder=10},
+new lineInStation(){id=228,stationid=38,Lineid=204,placeOrder=11},
+new lineInStation(){id=230,stationid=45,Lineid=204,placeOrder=12},
+new lineInStation(){id=245,stationid=25,Lineid=243,placeOrder=0},
+new lineInStation(){id=247,stationid=11,Lineid=243,placeOrder=1},
+new lineInStation(){id=249,stationid=13,Lineid=243,placeOrder=2},
+new lineInStation(){id=251,stationid=5,Lineid=243,placeOrder=3},
+new lineInStation(){id=253,stationid=21,Lineid=243,placeOrder=4},
+new lineInStation(){id=255,stationid=14,Lineid=243,placeOrder=5},
+new lineInStation(){id=257,stationid=45,Lineid=243,placeOrder=6},
+new lineInStation(){id=259,stationid=44,Lineid=243,placeOrder=7},
+new lineInStation(){id=261,stationid=0,Lineid=243,placeOrder=8},
+new lineInStation(){id=263,stationid=6,Lineid=243,placeOrder=9},
+new lineInStation(){id=265,stationid=9,Lineid=243,placeOrder=10},
+new lineInStation(){id=267,stationid=3,Lineid=243,placeOrder=11},
+new lineInStation(){id=269,stationid=15,Lineid=243,placeOrder=12},
+new lineInStation(){id=284,stationid=42,Lineid=282,placeOrder=0},
+new lineInStation(){id=286,stationid=43,Lineid=282,placeOrder=1},
+new lineInStation(){id=288,stationid=24,Lineid=282,placeOrder=2},
+new lineInStation(){id=290,stationid=6,Lineid=282,placeOrder=3},
+new lineInStation(){id=292,stationid=12,Lineid=282,placeOrder=4},
+new lineInStation(){id=294,stationid=29,Lineid=282,placeOrder=5},
+new lineInStation(){id=296,stationid=32,Lineid=282,placeOrder=6},
+new lineInStation(){id=298,stationid=7,Lineid=282,placeOrder=7},
+new lineInStation(){id=300,stationid=15,Lineid=282,placeOrder=8},
+new lineInStation(){id=302,stationid=20,Lineid=282,placeOrder=9},
+new lineInStation(){id=304,stationid=35,Lineid=282,placeOrder=10},
+new lineInStation(){id=317,stationid=14,Lineid=315,placeOrder=0},
+new lineInStation(){id=319,stationid=6,Lineid=315,placeOrder=1},
+new lineInStation(){id=321,stationid=23,Lineid=315,placeOrder=2},
+new lineInStation(){id=323,stationid=11,Lineid=315,placeOrder=3},
+new lineInStation(){id=325,stationid=43,Lineid=315,placeOrder=4},
+new lineInStation(){id=327,stationid=40,Lineid=315,placeOrder=5},
+new lineInStation(){id=329,stationid=35,Lineid=315,placeOrder=6},
+new lineInStation(){id=331,stationid=7,Lineid=315,placeOrder=7},
+new lineInStation(){id=333,stationid=8,Lineid=315,placeOrder=8},
+new lineInStation(){id=335,stationid=13,Lineid=315,placeOrder=9},
+new lineInStation(){id=337,stationid=34,Lineid=315,placeOrder=10},
+new lineInStation(){id=350,stationid=1,Lineid=348,placeOrder=0},
+new lineInStation(){id=352,stationid=24,Lineid=348,placeOrder=1},
+new lineInStation(){id=354,stationid=44,Lineid=348,placeOrder=2},
+new lineInStation(){id=356,stationid=14,Lineid=348,placeOrder=3},
+new lineInStation(){id=358,stationid=23,Lineid=348,placeOrder=4},
+new lineInStation(){id=360,stationid=28,Lineid=348,placeOrder=5},
+new lineInStation(){id=362,stationid=32,Lineid=348,placeOrder=6},
+new lineInStation(){id=364,stationid=34,Lineid=348,placeOrder=7},
+new lineInStation(){id=366,stationid=10,Lineid=348,placeOrder=8},
+new lineInStation(){id=368,stationid=27,Lineid=348,placeOrder=9},
+new lineInStation(){id=370,stationid=2,Lineid=348,placeOrder=10},
+new lineInStation(){id=372,stationid=4,Lineid=348,placeOrder=11},
+new lineInStation(){id=374,stationid=19,Lineid=348,placeOrder=12},
+new lineInStation(){id=376,stationid=8,Lineid=348,placeOrder=13},
+new lineInStation(){id=392,stationid=10,Lineid=390,placeOrder=0},
+new lineInStation(){id=394,stationid=28,Lineid=390,placeOrder=1},
+new lineInStation(){id=396,stationid=44,Lineid=390,placeOrder=2},
+new lineInStation(){id=398,stationid=39,Lineid=390,placeOrder=3},
+new lineInStation(){id=400,stationid=16,Lineid=390,placeOrder=4},
+new lineInStation(){id=402,stationid=30,Lineid=390,placeOrder=5},
+new lineInStation(){id=404,stationid=11,Lineid=390,placeOrder=6},
+new lineInStation(){id=406,stationid=26,Lineid=390,placeOrder=7},
+new lineInStation(){id=408,stationid=38,Lineid=390,placeOrder=8},
+new lineInStation(){id=410,stationid=37,Lineid=390,placeOrder=9},
+new lineInStation(){id=412,stationid=6,Lineid=390,placeOrder=10},
+new lineInStation(){id=414,stationid=9,Lineid=390,placeOrder=11}};
 
         }
         private static void initLines1()
@@ -365,20 +367,58 @@ new busLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled
         }
         private static void initStations()
         {
-            LineStations = new List<busLineStation>{ new busLineStation("123456", (float)33.4563, (float)120.3454, "shadmot mechola"),new busLineStation("234567", (float)34.4653, (float)121.3344, "mechola"),new busLineStation("345678", (float)35.45453, (float)112.1894, "Argaman"),new busLineStation("456789", (float)53.353, (float)-32.1894, "Yericho"),
-        new busLineStation("567890", (float)12.353453, (float)02.5442, "Beit Shean"),new busLineStation("678901", (float)11.975, (float)43.245, "Meitar"),new busLineStation("789012", (float)89.34532, (float)-54.2345, "Mahale Adomim"),new busLineStation("890123", (float)54.64523, (float)12.3517, "Kdumim"),
-        new busLineStation("901234", (float)54.5643, (float)-27.46743),new busLineStation("012345", (float)-78.4563, (float)31.363),new busLineStation("098765", (float)1.9776, (float)130.353),new busLineStation("876543", (float)77.232, (float)-66.346),
-        new busLineStation("765432", (float)55.2223, (float)-26.363),new busLineStation("654321", (float)66.235, (float)-127.345),new busLineStation("543210", (float)63.76, (float)165.345),new busLineStation("432109", (float)34.543, (float)-43.65325),
-        new busLineStation("321098", (float)35.876543, (float)-54.362236),new busLineStation("210987", (float)-65.574325, (float)153.3463),new busLineStation("109876", (float)73.463352, (float)99.457432),new busLineStation("987654", (float)35.84334, (float)-65.574532),
-        new busLineStation("123890", (float)11.5434, (float)-74.563234),new busLineStation("234901", (float)43.3643, (float)-65.35734),new busLineStation("345012", (float)-74.25223, (float)11.11111),new busLineStation("456123", (float)-22.223333, (float)22.333222),
-        new busLineStation("567234", (float)55.55553, (float)99.99911),new busLineStation("678345", (float)88.6765, (float)88.7654),new busLineStation("789456", (float)-88.8897, (float)111.13232),new busLineStation("890567", (float)-56.77744, (float)-112.776567),
-        new busLineStation("012890", (float)-44.554433, (float)-177.352232),new busLineStation("123123", (float)-76.661102, (float)10.35323),new busLineStation("345763", (float)70.09677, (float)102.2203),new busLineStation("876568", (float)40.03432, (float)-100.04332),
-        new busLineStation("111333", (float)30.7070, (float)30.3030),new busLineStation("555666", (float)10.10103, (float)-10.10105),new busLineStation("222999", (float)66.0096, (float)9.0909),new busLineStation("888333", (float)40.404032, (float)-90.10203),
-        new busLineStation("110545", (float)8.34532, (float)-5.2345, "Ankh-Morpork Central Station"),new busLineStation("110546", (float)8.74532, (float)-5.2325, "Unseen University Station"),new busLineStation("110547", (float)8.94532, (float)-4.2325, "City Watch Station"),
-        new busLineStation("000007", (float)36.4763, (float)130.3454, "Narnia"),new busLineStation("000008", (float)34.4653, (float)121.3344, "Atlantis"),new busLineStation("000505", (float)54.355, (float)-30.4894, "New Ankh"),
-        new busLineStation("333111", (float)32.00001, (float)-32.00007),new busLineStation("432888", (float)51.09874, (float)-52.09143),new busLineStation("999339", (float)22.33088, (float)-66.0083),new busLineStation("765765", (float)34.650652, (float)133.02074)};
-
+            LineStations = new List<busLineStation>{new busLineStation(){id=46,Address="רחוב:שדרות גולדה מאיר  עיר: ירושלים ",code="73",Latitude=31.825302,enabled=true,Longitude=35.188624,Name="שדרות גולדה מאיר/המשורר אצ''ג"},
+new busLineStation(){id=47,Address="רחוב:אל מדינה אל מונאוורה  עיר: ירושלים",code="76",Latitude=31.738425,enabled=true,Longitude=35.228765,Name="בית ספר צור באהר בנות/אלמדינה אלמונוורה"},
+new busLineStation(){id=48,Address="רחוב:אל מדינה אל מונאוורה  עיר: ירושלים ",code="77",Latitude=31.738676,enabled=true,Longitude=35.226704,Name="בית ספר אבן רשד/אלמדינה אלמונוורה"},
+new busLineStation(){id=49,Address="רחוב:שדרות שרי ישראל 15 עיר: ירושלים",code="78",Latitude=31.789128,enabled=true,Longitude=35.206146,Name="שרי ישראל/יפו"},
+new busLineStation(){id=50,Address="רחוב:בטן אל הווא  עיר: ירושלים",code="83",Latitude=31.766358,enabled=true,Longitude=35.240417,Name="בטן אלהווא/חוש אל מרג"},
+new busLineStation(){id=51,Address=" רחוב:מלכי ישראל 77 עיר: ירושלים ",code="84",Latitude=31.790758,enabled=true,Longitude=35.209791,Name="מלכי ישראל/הטורים"},
+new busLineStation(){id=52,Address="רחוב:אלמדארס  עיר: ירושלים",code="85",Latitude=31.768643,enabled=true,Longitude=35.238509,Name="בית ספר לבנים/אלמדארס"},
+new busLineStation(){id=53,Address="רחוב:אלמדארס  עיר: ירושלים",code="86",Latitude=31.769899,enabled=true,Longitude=35.23973,Name="מגרש כדורגל/אלמדארס"},
+new busLineStation(){id=54,Address=" רחוב:בטן אל הווא  עיר: ירושלים",code="88",Latitude=31.767064,enabled=true,Longitude=35.238443,Name="בית ספר לבנות/בטן אלהוא"},
+new busLineStation(){id=55,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים ",code="89",Latitude=31.765863,enabled=true,Longitude=35.247198,Name="דרך בית לחם הישה/ואדי קדום"},
+new busLineStation(){id=56,Address="רחוב:דרך בית לחם הישנה  עיר: ירושלים",code="90",Latitude=31.799804,enabled=true,Longitude=35.213021,Name="גולדה/הרטום"},
+new busLineStation(){id=57,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים ",code="91",Latitude=31.765717,enabled=true,Longitude=35.247102,Name="דרך בית לחם הישה/ואדי קדום"},
+new busLineStation(){id=58,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים",code="93",Latitude=31.767265,enabled=true,Longitude=35.246594,Name="חוש סלימה 1"},
+new busLineStation(){id=59,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים",code="94",Latitude=31.767084,enabled=true,Longitude=35.246655,Name="דרך בית לחם הישנה ב"},
+new busLineStation(){id=60,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים",code="95",Latitude=31.768759,enabled=true,Longitude=31.768759,Name="דרך בית לחם הישנה א"},
+new busLineStation(){id=61,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים",code="97",Latitude=31.77002,enabled=true,Longitude=35.24348,Name="שכונת בזבז 2"},
+new busLineStation(){id=62,Address=" רחוב:שדרות גולדה מאיר  עיר: ירושלים",code="102",Latitude=31.8003,enabled=true,Longitude=35.208257,Name="גולדה/שלמה הלוי"},
+new busLineStation(){id=63,Address=" רחוב:שדרות גולדה מאיר  עיר: ירושלים",code="103",Latitude=31.8,enabled=true,Longitude=35.214106,Name="גולדה/הרטום"},
+new busLineStation(){id=64,Address=" רחוב:גבעת משה 2 עיר: ירושלים",code="105",Latitude=31.797708,enabled=true,Longitude=35.217133,Name="גבעת משה"},
+new busLineStation(){id=65,Address=" רחוב:גבעת משה 3 עיר: ירושלים",code="106",Latitude=31.797535,enabled=true,Longitude=35.217057,Name="גבעת משה"},
+new busLineStation(){id=66,Address="  רחוב:עזרת תורה 25 עיר: ירושלים",code="108",Latitude=31.797535,enabled=true,Longitude=35.213728,Name="עזרת תורה/עלי הכהן"},
+new busLineStation(){id=67,Address="  רחוב:עזרת תורה 21 עיר: ירושלים ",code="109",Latitude=31.796818,enabled=true,Longitude=35.212936,Name="עזרת תורה/דורש טוב"},
+new busLineStation(){id=68,Address=" רחוב:עזרת תורה 12 עיר: ירושלים",code="110",Latitude=31.796129,enabled=true,Longitude=35.212698,Name="עזרת תורה/דורש טוב"},
+new busLineStation(){id=69,Address="  רחוב:יעקובזון 1 עיר: ירושלים",code="111",Latitude=31.794631,enabled=true,Longitude=35.21161,Name="יעקובזון/עזרת תורה"},
+new busLineStation(){id=70,Address=" רחוב:יעקובזון  עיר: ירושלים",code="112",Latitude=31.79508,enabled=true,Longitude=35.211684,Name="יעקובזון/עזרת תורה"},
+new busLineStation(){id=71,Address="  רחוב:זית רענן 1 עיר: ירושלים",code="113",Latitude=31.796255,enabled=true,Longitude=35.211065,Name="זית רענן/אוהל יהושע"},
+new busLineStation(){id=72,Address=" רחוב:זית רענן  עיר: ירושלים",code="115",Latitude=31.798423,enabled=true,Longitude=35.209575,Name="זית רענן/תורת חסד"},
+new busLineStation(){id=73,Address="  רחוב:הרב סורוצקין 48 עיר: ירושלים ",code="116",Latitude=31.798689,enabled=true,Longitude=35.208878,Name="זית רענן/תורת חסד"},
+new busLineStation(){id=74,Address="  רחוב:הרב סורוצקין  עיר: ירושלים",code="117",Latitude=31.799165,enabled=true,Longitude=35.206918,Name="קרית הילד/סורוצקין"},
+new busLineStation(){id=75,Address="  רחוב:הרב סורוצקין 31 עיר: ירושלים",code="119",Latitude=31.797829,enabled=true,Longitude=35.205601,Name="סורוצקין/שנירר"},
+new busLineStation(){id=76,Address="רחוב: שדרות נווה יעקוב  עיר:ירושלים ",code="1485",Latitude=31.840063,enabled=true,Longitude=35.240062,Name="שדרות נווה יעקוב/הרב פרדס "},
+new busLineStation(){id=77,Address="רחוב:שדרות נווה יעקוב ירושלים עיר:ירושלים ",code="1486",Latitude=31.838481,enabled=true,Longitude=35.23972,Name="מרכז קהילתי /שדרות נווה יעקוב"},
+new busLineStation(){id=78,Address="חוב:שדרות נווה יעקב 7 עיר: ירושלים  ",code="1487",Latitude=31.837748,enabled=true,Longitude=35.231598,Name=" מסוף 700 /שדרות נווה יעקוב "},
+new busLineStation(){id=79,Address="רחוב:מעגלות הרב פרדס  עיר: ירושלים רציף  ",code="1488",Latitude=31.840279,enabled=true,Longitude=35.246272,Name=" הרב פרדס/אסטורהב "},
+new busLineStation(){id=80,Address="רחוב:מעגלות הרב פרדס 24 עיר: ירושלים   ",code="1490",Latitude=31.843598,enabled=true,Longitude=35.243639,Name="הרב פרדס/צוקרמן "},
+new busLineStation(){id=81,Address="רחוב:ברזיל 14 עיר: ירושלים",code="1491",Latitude=31.766256,enabled=true,Longitude=35.173,Name="ברזיל "},
+new busLineStation(){id=82,Address="רחוב:בית וגן 61 עיר: ירושלים ",code="1492",Latitude=31.76736,enabled=true,Longitude=35.184771,Name="בית וגן/הרב שאג "},
+new busLineStation(){id=83,Address="רחוב:בית וגן 21 עיר: ירושלים    ",code="1493",Latitude=31.770543,enabled=true,Longitude=35.183999,Name="בית וגן/עוזיאל "},
+new busLineStation(){id=84,Address="רחוב:ארתור הנטקה  עיר: ירושלים    ",code="1494",Latitude=31.768465,enabled=true,Longitude=35.178701,Name=" קרית יובל/שמריהו לוין "},
+new busLineStation(){id=85,Address="רחוב:יאנוש קורצ'אק 7 עיר: ירושלים",code="1510",Latitude=31.759534,enabled=true,Longitude=35.173688,Name=" קורצ'אק / רינגלבלום "},
+new busLineStation(){id=86,Address="רחוב:יעקב טהון  עיר: ירושלים     ",code="1511",Latitude=31.761447,enabled=true,Longitude=35.175929,Name=" טהון/גולומב "},
+new busLineStation(){id=87,Address="רחוב:הרב הרצוג  עיר: ירושלים רציף",code="1512",Latitude=31.761447,enabled=true,Longitude=35.199936,Name="הרב הרצוג/שח''ל "},
+new busLineStation(){id=88,Address="רחוב:הרב הרצוג  עיר: ירושלים רציף",code="1514",Latitude=31.759186,enabled=true,Longitude=35.189336,Name="פרץ ברנשטיין/נזר דוד "},
+new busLineStation(){id=89,Address=" רחוב:פרץ ברנשטיין 56 עיר: ירושלים ",code="1518",Latitude=31.759121,enabled=true,Longitude=35.189178,Name="פרץ ברנשטיין/נזר דוד"},
+new busLineStation(){id=90,Address="  רחוב:דרך רופין  עיר: ירושלים ",code="1522",Latitude=31.774484,enabled=true,Longitude=35.204882,Name="מוזיאון ישראל/רופין"},
+new busLineStation(){id=91,Address="   רחוב:הרב הרצוג  עיר: ירושלים  ",code="1523",Latitude=31.769652,enabled=true,Longitude=35.208248,Name="הרצוג/טשרניחובסקי"},
+new busLineStation(){id=92,Address="    רחוב:הרב הרצוג  עיר: ירושלים   ",code="1524",Latitude=31.769652,enabled=true,Longitude=35.208248,Name="רופין/שד' הזז"},
+new busLineStation(){id=93,Address=" רחוב:הרב סורוצקין 13 עיר: ירושלים",code="121",Latitude=31.796033,enabled=true,Longitude=35.206094,Name="מרכז סולם/סורוצקין "},
+new busLineStation(){id=94,Address="  רחוב:הרב סורוצקין 9 עיר: ירושלים",code="123",Latitude=31.794958,enabled=true,Longitude=35.205216,Name="אוהל דוד/סורוצקין "},
+new busLineStation(){id=95,Address="  רחוב:הרב סורוצקין 28 עיר: ירושלים",code="122",Latitude=31.79617,enabled=true,Longitude=35.206158,Name="מרכז סולם/סורוצקין "}};
         }
+        
 
         private static void initLines()
         {
@@ -395,7 +435,7 @@ new busLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled
                 busLineStation[] arr = new busLineStation[size];
                 DateTime totalTime;
                 busLine line = new busLine();
-                arr = tandom(size,line.id,out totalTime);
+                arr = tandom(size,line.id,out totalTime,Number);
                 line.enabled = true;
                 line.number = Number;
                 line.area = a1;
@@ -403,12 +443,12 @@ new busLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled
                 Lines.Add(line);
                 for (int q=1;q<arr.Length;q++)
                 {
-                    followStation.Add(new followStations() {firstStationid= arr[q-1].id,secondStationid=arr[q].id,distance=arr[q].Distance,driveTime=arr[q].DriveTime,enabled=true,lineId=line.id});
+                    followStation.Add(new followStations() {firstStationid= arr[q-1].id,secondStationid=arr[q].id,distance=arr[q].Distance,driveTime=arr[q].DriveTime,enabled=true,lineId=line.id,lineNumber=Number});
                 }
               
             }
         }
-        private static busLineStation[] tandom(int size,int id,out DateTime totalTime)
+        private static busLineStation[] tandom(int size,int id,out DateTime totalTime,string number)
         {
             totalTime = new DateTime();
             int cnt = 0;
@@ -434,8 +474,10 @@ new busLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled
                 arr[i] = new busLineStation(LineStations[num]);
                 if (i != 0)
                 {
-                    arr[i].Distance = r.Next(5, 301);
-                    arr[i].DriveTime = new TimeSpan(0, r.Next(1, 60), 0);
+                   
+                    arr[i].Distance = r.Next(150, 6000);
+                    TimeSpan ts= TimeSpan.FromHours(((arr[i].Distance)*0.001) /r.Next(30,60));
+                    arr[i].DriveTime = new TimeSpan(ts.Hours, ts.Minutes, ts.Seconds);
                     totalTime += arr[i].DriveTime;
                 }
                 else
@@ -444,11 +486,15 @@ new busLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled
                     arr[i].DriveTime = new TimeSpan(0, 0, 0);
                     totalTime += arr[i].DriveTime;
                 }
-                lineInStations.Add(new lineInStation() { Lineid = id, stationid = arr[i].id, placeOrder = cnt++ });             
+                if (arr[i].Distance < 1000)
+                    arr[i].Distance = arr[i].Distance;
+                else
+                    arr[i].Distance = arr[i].Distance / 1000;
+                lineInStations.Add(new lineInStation() { Lineid = id, stationid = arr[i].id, placeOrder = cnt++,lineNumber=number });             
             }
             return arr;
         }
-
+     
     }
 }
 

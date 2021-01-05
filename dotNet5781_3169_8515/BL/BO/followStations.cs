@@ -8,7 +8,7 @@ namespace BO
 {
     public class followStations : BOobject
     {
-        public followStations(int firstStationid, int secondStationid,  int distance, TimeSpan driveTime)
+        public followStations(int firstStationid, int secondStationid,  double distance, TimeSpan driveTime)
         {
             this.firstStationid = firstStationid;
             this.secondStationid = secondStationid;
@@ -16,7 +16,7 @@ namespace BO
             this.distance = distance;
             this.driveTime = driveTime;
         }
-        public followStations(int firstStationid, int secondStationid,int lineid, int distance, TimeSpan driveTime)
+        public followStations(int firstStationid, int secondStationid,int lineid, double distance, TimeSpan driveTime)
         {
             this.firstStationid = firstStationid;
             this.secondStationid = secondStationid;
@@ -29,8 +29,9 @@ namespace BO
         public int firstStationid { get; set; }
         public int secondStationid { get; set; }
         public int lineId { get; set; }
+        public string lineNumber { get; set; }
         public bool enabled { get; set; }
-        public int distance { get; set; }
+        public double distance { get; set; }
         public TimeSpan driveTime { get; set; }
     }
 }

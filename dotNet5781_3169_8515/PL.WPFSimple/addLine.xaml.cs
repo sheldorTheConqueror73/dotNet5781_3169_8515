@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Device.Location;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace PL
         List<BO.busLineStation> fList;
         List<BO.busLineStation> tList;
         List<TimeSpan> time=new List<TimeSpan>();
-        List<int> distance=new List<int>();
+        List<double> distance=new List<double>();
         public addLine(int mode=0,int lineId=-1,string number="")
         {
             this.mode = mode;
@@ -61,9 +62,24 @@ namespace PL
                     fList.Remove(station);
                     break;
                 }
-            addLineUserPromt promt = new addLineUserPromt(distance,time);
-            if(tList.Count!=1)
-                promt.ShowDialog();
+            //addLineUserPromt promt = new addLineUserPromt(distance,time);
+            // if(tList.Count!=1)
+            //  promt.ShowDialog();
+            if (tList.Count == 1)
+            {
+                refresh();
+                return;
+            }
+            var sCoord = new GeoCoordinate(tList[tList.Count-2].Latitude, tList[tList.Count - 2].Longitude);
+            var eCoord = new GeoCoordinate((lvfrom.SelectedItem as BO.busLineStation).Latitude, (lvfrom.SelectedItem as BO.busLineStation).Longitude);
+            
+            if(sCoord.GetDistanceTo(eCoord)<1000)
+                distance.Add((int)sCoord.GetDistanceTo(eCoord));
+            else
+                distance.Add((float)(sCoord.GetDistanceTo(eCoord)/1000));
+            Random r =new Random();
+            TimeSpan ts = TimeSpan.FromHours((sCoord.GetDistanceTo(eCoord)/1000) / ((r.Next(30, 60))));
+            time.Add(new TimeSpan((int)ts.Hours,(int)ts.Minutes,(int)ts.Seconds));   
             refresh();
         }
 

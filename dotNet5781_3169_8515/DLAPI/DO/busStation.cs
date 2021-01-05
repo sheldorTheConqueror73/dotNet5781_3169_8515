@@ -12,12 +12,12 @@ namespace DO
        // public  string id { get; set; }
         protected string address;
         public string Name { get; set; }
-        protected float latitude, longitude;//set up accessors for these two
+        protected double latitude, longitude;//set up accessors for these two
         public bool enabled { get; set; }
         public string code { get; set; }
         //getters and setters:
  
-        public float Latitude
+        public double Latitude
         {
             get => latitude;
             set
@@ -26,7 +26,7 @@ namespace DO
                     latitude = value;
             }
         }
-        public float Longitude
+        public double Longitude
         {
             get => longitude;
             set
@@ -56,7 +56,7 @@ namespace DO
            // longitude = NULL;
             enabled = true;
         }
-        public busStation(string code, float lat, float lon, string address = "")//ctor
+        public busStation(string code, double lat, double lon, string address = "")//ctor
         {
             this.code = code;
             if (address == "")

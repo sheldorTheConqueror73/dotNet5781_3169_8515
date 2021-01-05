@@ -8,10 +8,10 @@ namespace DO
 {
     public class busLineStation : busStation
     {
-        private int distance;
+        private double distance;
         private TimeSpan driveTime;
         //getters and setters:
-        public int Distance
+        public double Distance
         {
             get => distance;
             set
