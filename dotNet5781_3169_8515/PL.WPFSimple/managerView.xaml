@@ -136,7 +136,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Lines">
-                <Grid Name="LinesGrid"  >
+                <Grid Name="LinesGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="38*"/>
                         <RowDefinition Height="400*"/>
@@ -219,13 +219,15 @@
                         <ComboBox x:Name="cbLineFirstSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30" Margin="0,91,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         <ComboBox x:Name="cbLineLastSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30"  Margin="0,121,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-                        <StackPanel Grid.Row="7" Grid.ColumnSpan="3">
-                            <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,10,198,0" Click="DeleteLine_Click"/>
-                        </StackPanel>
+
                         <Label Content="Total Time:" HorizontalAlignment="Center" Margin="0,64,73,0" VerticalAlignment="Top" RenderTransformOrigin="0.224,-0.987"/>
                         <TextBox Grid.Column="1" x:Name="tbldriveTime" HorizontalAlignment="Left" Height="30" Margin="0,60,0,0" TextWrapping="Wrap" IsEnabled="False" VerticalAlignment="Top" Width="100" Text="{Binding SelectedItem.driveTime,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"  />
-                        <Button Content="Add" x:Name="btnaddLine" HorizontalAlignment="Center" Width="100" Margin="70,25,266,35" Click="addLine_click" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/>
-                        <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="70,20,266,0" Grid.ColumnSpan="2" Grid.Row="3" Click="UpdateLine_Click"/>
+
+                        <StackPanel Grid.Row="2"  Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="0,0,150,63">
+                            <Button Content="Add" x:Name="btnaddLine" HorizontalAlignment="Center" Width="100" Margin="0,20,0,0" Click="addLine_click" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/>
+                            <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Grid.ColumnSpan="2" Grid.Row="3" Click="UpdateLine_Click"/>
+                            <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Click="DeleteLine_Click"/>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -341,7 +343,7 @@
                     </Grid>
                 </Viewbox>
             </TabItem>
-            
+
         </TabControl>
     </Grid>
 </Window>

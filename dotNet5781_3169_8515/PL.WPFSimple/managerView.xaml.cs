@@ -267,7 +267,7 @@ namespace PL
         }
         private void lvFollowStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (lvFollowStation.Items.Count == 0)
+            if (lvFollowStation.Items.Count == 0||lvFollowStation.SelectedItem==null)
                 return;
             folStatIdSelect = (lvFollowStation.SelectedItem as BO.busLineStation).id;
             tbStationDriveTm.IsEnabled = true;
