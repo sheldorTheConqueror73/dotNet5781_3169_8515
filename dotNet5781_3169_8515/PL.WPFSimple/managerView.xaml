@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="managerView" Height="450" Width="900" WindowStartupLocation="CenterScreen">
+        Title="managerView" Height="450" Width="900" WindowStartupLocation="CenterScreen" >
+    <Window.Background>
+        <ImageBrush ImageSource="/ProjName;component/Resources/bckg1.jpg" />
+    </Window.Background>
 
     <Grid>
 
