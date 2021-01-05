@@ -334,6 +334,7 @@ namespace PL
             catch (Exception exc) { tblError.Text = exc.Message; return;  }
             finally {
                 init_lvFollowStation_PreviewMouseDown();
+                initTextBoxByCbInStations();
             }           
             try
             {
@@ -568,6 +569,7 @@ namespace PL
             if (index1 != 2 || index2 != 2)
                 throw new InvalidUserInputExecption("Invalid input: time drive field need to be in format of: HH:MM:SS");
             int val1 = 0, val2 = 0, val3 = 0;
+            double dis = 0;
             // bool sucsses = int.TryParse(sd[0],out val);
             if (!int.TryParse(sd[0], out val1) || !int.TryParse(sd[1], out val2) || !int.TryParse(sd[2], out val3))
                 throw new InvalidUserInputExecption("Invalid input: time drive field need to be in format of: HH:MM:SS");
@@ -577,10 +579,10 @@ namespace PL
                 throw new InvalidUserInputExecption("Invalid input: Minutes field need to be 0-59");
             if (val3 > 59 || val3 < 0)
                 throw new InvalidUserInputExecption("Invalid input: Seconds field need to be 0-59");
-            if (!int.TryParse(tbStationDistance.Text, out val1))
-                throw new InvalidUserInputExecption("Invalid input: Distance field need to be an integer.");
-            if (val1 < 0)
-                throw new InvalidUserInputExecption("Invalid input: Distance field need to be a possitive integer.");
+            if (!double.TryParse(tbStationDistance.Text, out dis))
+                throw new InvalidUserInputExecption("Invalid input: Distance field need to be a number.");
+            if (dis < 0)
+                throw new InvalidUserInputExecption("Invalid input: Distance field need to be a possitive number.");
 
         }
         #endregion
@@ -610,10 +612,6 @@ namespace PL
 
         }
 
-
-
-        #endregion
-
         private void DeleteLine_Click(object sender, RoutedEventArgs e)
         {
             if (cbBusLines.SelectedItem == null)
@@ -625,18 +623,22 @@ namespace PL
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
 
-               
+
         }
 
         private void UpdateLine_Click(object sender, RoutedEventArgs e)
         {
             if (cbBusLines.SelectedItem == null)
                 return;
-            addLine addWindow = new addLine(1,(cbBusLines.SelectedItem as BO.busLine).id, (cbBusLines.SelectedItem as BO.busLine).number);
+            addLine addWindow = new addLine(1, (cbBusLines.SelectedItem as BO.busLine).id, (cbBusLines.SelectedItem as BO.busLine).number);
             addWindow.ShowDialog();
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
         }
+
+        #endregion
+
+
     }
 }
