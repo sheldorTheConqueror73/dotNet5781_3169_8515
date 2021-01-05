@@ -5,13 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="managerView" Height="450" Width="900" WindowStartupLocation="CenterScreen">
-
+        Title="managerView" Height="450" Width="900" WindowStartupLocation="CenterScreen" >
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/bckg1.jpg" />
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="TabItem" x:Key="customTab" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        
+                             <Grid Name="Panel">
+                                 
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Grid>
+                       
+                        <ControlTemplate.Triggers >
+                            <Trigger Property="IsSelected"  Value="True" >
+                                <Setter  TargetName="Panel"  Property="Background" Value="White"/>
+                                <Setter  TargetName="Panel"  Property="TextElement.Foreground" Value="#1575bf"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected"  Value="False">
+                                <Setter TargetName="Panel" Property="Background" Value="#1575bf"/>
+                                <Setter TargetName="Panel" Property="TextElement.Foreground" Value="White"/>
+                            </Trigger>
+                           
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
 
-        <TabControl VerticalAlignment="Stretch">
-            <TabItem Header="Buses" x:Name="tbiBuses">
-                <Grid Name="mainGrid" >
+        <TabControl VerticalAlignment="Stretch" x:Name="tabbi"  Background="Transparent" BorderThickness="0">
+            <TabItem Header="Buses" x:Name="tbiBuses" Style="{StaticResource customTab}" >
+                <Grid Name="mainGrid" Background="Transparent" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="350"/>
@@ -135,8 +168,8 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Lines">
-                <Grid Name="LinesGrid">
+            <TabItem Header="Lines" Style="{StaticResource customTab}">
+                <Grid Name="LinesGrid"  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="38*"/>
                         <RowDefinition Height="400*"/>
@@ -233,9 +266,9 @@
             </TabItem>
 
 
-            <TabItem Header="Stations" Height="22" VerticalAlignment="Top">
+            <TabItem Header="Stations" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}">
                 <Viewbox VerticalAlignment="Top" Margin="0,0,0,-1">
-                    <Grid Name="StationsGrid"  >
+                    <Grid Name="StationsGrid" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="400*"/>
                         </Grid.RowDefinitions>
