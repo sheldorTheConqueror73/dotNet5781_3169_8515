@@ -17,24 +17,38 @@ namespace BL
 
        
         #region bus
+        /// <summary>
+        /// add new bus to data
+        /// </summary>
+        /// <param name="bus">the new bus </param>
         public void addBus(Bus bus)
         {
 
             bus.formatPlateNumber();
             dl.addBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
-
+        /// <summary>
+        /// update specific bus
+        /// </summary>
+        /// <param name="bus">the updated bus</param>
         public void updateBus(Bus bus)
         {
             bus.UpdateDangerous();
             bus.formatPlateNumber();
             dl.updateBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
+        /// <summary>
+        /// remove specific bus
+        /// </summary>
+        /// <param name="id">id of the removing bus</param>
         public void removeBus(int id)
         {
             dl.removeBus(id);
         }
-
+        /// <summary>
+        /// return bus by id
+        /// </summary>
+        /// <param name="id">id of the requested bus</param>
         public Bus GetBus(int id)
         {
             return Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(dl.GetBus(id));
@@ -64,7 +78,10 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// send bus to refuel
+        /// </summary>
+        /// <param name="id">id of the bus that sending to refuel</param>
         public void refuel(int id)
         {
             var bus = this.GetBus(id);
@@ -72,6 +89,10 @@ namespace BL
                 throw new BusBusyException("Bus is currently Busy");
             dl.refuel(id);
         }
+        /// <summary>
+        /// send bus to maintenance
+        /// </summary>
+        /// <param name="id">id of the bus that sending to maintenance</param>
         public void maintain(int id)
         {
             
@@ -83,12 +104,18 @@ namespace BL
         #endregion
 
         #region lines
+        /// <summary>
+        /// return specific line
+        /// </summary>
+        /// <param name="id">id of the requested line</param>
         public BusLine GetBusLine(int id)
         {
            return Utility.DOtoBOConvertor<BO.BusLine, DO.BusLine>(dl.GetBusLine(id));
         }
         
-        
+        /// <summary>
+        /// return list of all the lines.
+        /// </summary>
         public IEnumerable<BusLine> GetAllbusLines()
         {
              var result = dl.GetAllbusLines();
@@ -105,7 +132,10 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// remove line
+        /// </summary>
+        /// <param name="id">id of the removing line</param>
         public void removeLine(int id)
         {
             dl.removeFollowStation(id);
@@ -113,12 +143,17 @@ namespace BL
             dl.removeLine(id);
         }
 
-
+        /// <summary>
+        /// get data of line and id of line and update it.
+        /// </summary>
         public void updateLine(int id,string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time)
         {
             this.removeLine(id);
             this.addLine(number, area, path, distance, time);
         }
+        /// <summary>
+        /// add line to the database.
+        /// </summary>
         public void addLine(string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time)
         {
             int count = dl.countLines(number);
@@ -160,6 +195,10 @@ namespace BL
 
 
         #region lineInStation
+        /// <summary>
+        ///  return all the lines in specific station
+        /// </summary>
+        /// <param name="id"> id of station</param>
         public IEnumerable<BusLine> GetAllLinesInStation(int id)
         { 
             List<string> linInSta = new List<string>();
@@ -185,6 +224,7 @@ namespace BL
             }
             return bs;
         }
+
        public void reconstructTimeAndDistance(int lineID, out List<double> distance, out List<TimeSpan> time)
         {
             distance = new List<double>();
@@ -214,10 +254,17 @@ namespace BL
         #endregion
 
         #region station
+        /// <summary>
+        /// get station and add it to the database
+        /// </summary>
+        /// <param name="station">the new station</param>
         public void addStation(BusLineStation station)
         {            
             dl.addStation(Utility.BOtoDOConvertor<DO.BusLineStation, BO.BusLineStation>(station));
         }
+        /// <summary>
+        /// return IEnumerable of all stations
+        /// </summary>
         public IEnumerable<BusLineStation> GetAllbusLineStation()
         {
             var result = dl.GetAllbusLineStation();
@@ -233,6 +280,10 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// return the path of specific line
+        /// </summary>
+        /// <param name="id">id of line</param>
         public IEnumerable<BusLineStation> GetAllStationInLine(int id)
         {
             //var line=DOtoBOConvertor<BO.busLine, DO.busLine>(dl.GetBusLine(id));
@@ -262,6 +313,10 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// remove station
+        /// </summary>
+        /// <param name="id">id of station</param>
         public void removeStation(int id)
         {
             var v1=(from fl in dl.GetAllFollowStation()
@@ -308,7 +363,9 @@ namespace BL
 
         }
 
-
+        /// <summary>
+        /// insert the data to file
+        /// </summary>
         public void listToText()
         {
             string LineInsta="", lin="", folSta = "";
@@ -351,7 +408,10 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// update specific station
+        /// </summary>
+        /// <param name="station">the updated station</param>
         public void updateStation(BusLineStation station)
         {
             dl.updatebusLineStation(Utility.BOtoDOConvertor<DO.BusLineStation, BO.BusLineStation>(station));
@@ -360,6 +420,10 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// return all the stations that not exist in path of line.
+        /// </summary>
+        /// <param name="id"></param>
         public IEnumerable<BusLineStation> GetAllStationNotInLine(int id)
         {
             if(dl.GetAllbusLineStation() != null && dl.GetAllLineInStation() != null)
@@ -375,6 +439,10 @@ namespace BL
 
 
         #region followStations
+        /// <summary>
+        /// return list of all followstations objects
+        /// </summary>
+        /// <param name="id"></param>
         private IEnumerable<FollowStations> GetAllFollowStations(int id)
         {
             var folllowStation = dl.GetAllFollowStation();
@@ -384,6 +452,10 @@ namespace BL
                         select Utility.DOtoBOConvertor<BO.FollowStations, DO.FollowStations>(folSta)).ToList();
             return default;
         }
+        /// <summary>
+        /// return the all the follow stations of specific one as station object
+        /// </summary>
+        /// <param name="id">id of station</param>
         public IEnumerable<BusLineStation> GetAllFollowStationsAsStationsObj(int id)
         {
             var folllowStation = GetAllFollowStations(id);
@@ -398,11 +470,17 @@ namespace BL
             return default;
         }
 
-        public void updateFollowStation(FollowStations folStation)
-        {
-            dl.updateFollowStation(Utility.BOtoDOConvertor<DO.FollowStations, BO.FollowStations>(folStation));
-            
-        }
+        //public void updateFollowStation(FollowStations folStation)
+        //{
+        //    dl.updateFollowStation(Utility.BOtoDOConvertor<DO.FollowStations, BO.FollowStations>(folStation));
+
+        //}
+
+        /// <summary>
+        /// update follow station and drive time of line.
+        /// </summary>
+        /// <param name="folStation">the updated follow station</param>
+        /// <param name="newDriveTime">drive time of line</param>
         public void updateFollowStation(FollowStations folStation, string newDriveTime)
         {
             dl.updateFollowStation(Utility.BOtoDOConvertor<DO.FollowStations, BO.FollowStations>(folStation));

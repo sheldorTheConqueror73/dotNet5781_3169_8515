@@ -204,7 +204,7 @@
 
                     </Grid>
                     <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-                        <ListView x:Name="lvStationOfLine"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="510" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvStationOfLine_MouseDoubleClick" SelectionChanged="lvStationOfLine_SelectionChanged" >
+                        <ListView x:Name="lvStationOfLine"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="540" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvStationOfLine_MouseDoubleClick" SelectionChanged="lvStationOfLine_SelectionChanged" >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Code" Width="100"  DisplayMemberBinding="{Binding code}">
@@ -250,24 +250,25 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="140"/>
                             <ColumnDefinition Width="100*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="Number:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
-                        <Label Grid.Column="0" Content="Area:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,30,0,0" />
-                        <Label Grid.Column="0" Content="First Station:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,95,0,0"/>
-                        <Label Grid.Column="0" Content="Last Station:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,121,0,0"/>
+                        <Label Grid.Row="0" Grid.Column="1" Content="Number:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                        <Label Grid.Column="1" Content="Area:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,30,0,0" />
+                        <Label Grid.Column="1" Content="First Station:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,95,0,0"/>
+                        <Label Grid.Column="1" Content="Last Station:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,121,0,0"/>
 
-                        <TextBox x:Name="tbLineNumber" IsEnabled="False"  Grid.Column="1" Width="100" Height="30" VerticalAlignment="Top" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,0,0,0" HorizontalAlignment="Left"/>
-                        <TextBox x:Name="tbLineArea"  IsEnabled="False" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbLineFirstSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30" Margin="0,91,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbLineLastSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30"  Margin="0,121,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbLineNumber" IsEnabled="False"  Grid.Column="2" Width="100" Height="30" VerticalAlignment="Top" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,0,0,0" HorizontalAlignment="Left"/>
+                        <TextBox x:Name="tbLineArea"  IsEnabled="False" Grid.Column="2" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbLineFirstSta" IsEnabled="False" Grid.Column="2" Width="100" Height="30" Margin="0,91,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbLineLastSta" IsEnabled="False" Grid.Column="2" Width="100" Height="30"  Margin="0,121,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
 
-                        <Label Content="Total Time:" HorizontalAlignment="Center" Margin="0,64,73,0" VerticalAlignment="Top" RenderTransformOrigin="0.224,-0.987"/>
-                        <TextBox Grid.Column="1" x:Name="tbldriveTime" HorizontalAlignment="Left" Height="30" Margin="0,60,0,0" TextWrapping="Wrap" IsEnabled="False" VerticalAlignment="Top" Width="100" Text="{Binding SelectedItem.driveTime,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"  />
+                        <Label Content="Total Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="0,64,73,0" VerticalAlignment="Top" />
+                        <TextBox Grid.Column="2" x:Name="tbldriveTime" HorizontalAlignment="Left" Height="30" Margin="0,60,0,0" TextWrapping="Wrap" IsEnabled="False" VerticalAlignment="Top" Width="100" Text="{Binding SelectedItem.driveTime,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"  />
 
-                        <StackPanel Grid.Row="2"  Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center" >
+                        <StackPanel Grid.Row="2"  Grid.ColumnSpan="3" Grid.RowSpan="3" HorizontalAlignment="Center" >
                             <Button Content="Add" x:Name="btnaddLine" HorizontalAlignment="Center" Width="100" Margin="0,20,0,0" Click="addLine_click" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/>
                             <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Grid.ColumnSpan="2" Grid.Row="3" Click="UpdateLine_Click"/>
                             <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Click="DeleteLine_Click"/>
