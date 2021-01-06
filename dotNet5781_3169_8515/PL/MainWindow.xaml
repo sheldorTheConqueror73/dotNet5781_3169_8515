@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" WindowStartupLocation="CenterScreen" Height="350" Width="525" ResizeMode="NoResize">
+        Title="MainWindow" WindowStartupLocation="CenterScreen" Height="350" Width="525" ResizeMode="NoResize" >
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/bckg1.jpg" />
+    </Window.Background>
     <Grid>
         <TextBlock Height="23" HorizontalAlignment="Center" Margin="10,10,0,0" Name="LoginHeading" Text="Login:" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed"/>
         

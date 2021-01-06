@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="managerView" Height="450" Width="900" WindowStartupLocation="CenterScreen" >
+        Title="managerView" Height="700" Width="1100" WindowStartupLocation="CenterScreen" >
     <Window.Background>
         <ImageBrush ImageSource="Resources/bckg1.jpg" />
     </Window.Background>
@@ -16,17 +16,18 @@
                     <ControlTemplate TargetType="TabItem">
                         
                              <Grid Name="Panel">
-                                 
-                                    <ContentPresenter x:Name="ContentSite"
+                            
+                            <ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         ContentSource="Header"
                                         Margin="10,2"/>
-                                </Grid>
+                           
+                        </Grid>
                        
                         <ControlTemplate.Triggers >
                             <Trigger Property="IsSelected"  Value="True" >
-                                <Setter  TargetName="Panel"  Property="Background" Value="White"/>
+                                <Setter  TargetName="Panel"  Property="Background" Value="#17FF96"/>
                                 <Setter  TargetName="Panel"  Property="TextElement.Foreground" Value="#1575bf"/>
                             </Trigger>
                             <Trigger Property="IsSelected"  Value="False">
@@ -41,9 +42,10 @@
         </Style>
     </Window.Resources>
     <Grid>
-
+        <Line Stroke="#17FF96" StrokeThickness="2" X1="0" X2="3000" Y1="25" Y2="25" />
         <TabControl VerticalAlignment="Stretch" x:Name="tabbi"  Background="Transparent" BorderThickness="0">
-            <TabItem Header="Buses" x:Name="tbiBuses" Style="{StaticResource customTab}" >
+         
+            <TabItem Header="Buses"  x:Name="tbiBuses" Style="{StaticResource customTab}" >
                 <Grid Name="mainGrid" Background="Transparent" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -83,14 +85,14 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal" >
-                                                    <Button x:Name="Delete"  Click="Delete_Click" Content="del" ToolTip="delete a bus" Background="Transparent"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
-                                                        <!--  <Image Source="src/pics/deleteIcon.png" Stretch="Fill"/>-->
+                                                    <Button x:Name="Delete"  Click="Delete_Click"  ToolTip="delete a bus" Background="Transparent"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                        <Image  Source="Resources/delete.png" Stretch="Fill"/>
                                                     </Button>
-                                                    <Button x:Name="Maintenance" Click="Maintenance_Click" Content="mainte" ToolTip="send to drive" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                    <Button x:Name="Maintenance" Click="Maintenance_Click"  ToolTip="send to repair" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
 
                                                     </Button>
-                                                    <Button x:Name="Refuel" Content="refuel" ToolTip="send to refuel" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" Click="Refuel_Click" HorizontalAlignment="Center">
-                                                        <!-- <Image Source="src/pics/refuelbtnIcon.png" Stretch="Fill"/> -->
+                                                    <Button x:Name="Refuel" ToolTip="send to refuel" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" Click="Refuel_Click" HorizontalAlignment="Center">
+                                                      
                                                     </Button>
                                                 </StackPanel>
                                             </DataTemplate>

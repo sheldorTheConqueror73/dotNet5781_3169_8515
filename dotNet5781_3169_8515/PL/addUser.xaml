@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="addUser" Height="350" WindowStartupLocation="CenterScreen" Width="525" ResizeMode="NoResize">
-    <Grid  Height="350" Width="525" Background="Bisque">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/bckg1.jpg" />
+    </Window.Background>
+    <Grid  Height="350" Width="525">
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,5,0,0" Name="textBlockHeading" Text="Registration:" VerticalAlignment="Top" Width="110"  FontSize="17" FontStretch="ExtraCondensed"/>
 
-        <Grid Margin="31,0,29,23" Background="White" Height="264" VerticalAlignment="Bottom">
+        <Grid Margin="31,0,29,23" Background="Transparent" Height="264" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="252*" />
             </Grid.RowDefinitions>
