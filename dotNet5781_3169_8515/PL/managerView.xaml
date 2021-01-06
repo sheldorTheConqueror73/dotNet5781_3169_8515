@@ -14,17 +14,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
-                        
-                             <Grid Name="Panel">
-                            
+                        <Grid Name="Panel">
                             <ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         ContentSource="Header"
                                         Margin="10,2"/>
-                           
                         </Grid>
-                       
                         <ControlTemplate.Triggers >
                             <Trigger Property="IsSelected"  Value="True" >
                                 <Setter  TargetName="Panel"  Property="Background" Value="#17FF96"/>
@@ -34,11 +30,17 @@
                                 <Setter TargetName="Panel" Property="Background" Value="#1575bf"/>
                                 <Setter TargetName="Panel" Property="TextElement.Foreground" Value="White"/>
                             </Trigger>
-
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+        <Style TargetType="ComboBoxItem" x:Key="defualtIndex">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
     <Grid>
@@ -105,8 +107,9 @@
                             </ListView.View>
                         </ListView>
                         <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="269,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
-                            <ComboBoxItem Content="ID"/>
-                            <ComboBoxItem x:Name="sortbox" Content="Status"/>
+                            <ComboBoxItem Content="Choose Order Method" TabIndex="0" Style="{StaticResource defualtIndex}" />
+                            <ComboBoxItem Content="Plate Number" TabIndex="1" />
+                            <ComboBoxItem x:Name="sortbox" TabIndex="2" Content="Status"/>
                             <!--<ComboBoxItem Content="Time" />-->
                         </ComboBox>
                     </Grid>
