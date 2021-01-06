@@ -92,10 +92,10 @@
                                                         <Image  Source="Resources/delete.png" Stretch="Fill"/>
                                                     </Button>
                                                     <Button x:Name="Maintenance" Click="Maintenance_Click"  ToolTip="send to repair" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
-
+                                                        <Image  Source="Resources/repairIcon.png" Stretch="Fill"/>
                                                     </Button>
                                                     <Button x:Name="Refuel" ToolTip="send to refuel" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" Click="Refuel_Click" HorizontalAlignment="Center">
-                                                      
+                                                        <Image  Source="Resources/gasIcon.png" Stretch="Fill"/> 
                                                     </Button>
                                                 </StackPanel>
                                             </DataTemplate>
