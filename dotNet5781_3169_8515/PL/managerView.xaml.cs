@@ -266,6 +266,7 @@ namespace PL
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+        TimeSpan fTs, eTs;
         private void lvFollowStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (lvFollowStation.Items.Count == 0||lvFollowStation.SelectedItem==null)
@@ -278,10 +279,33 @@ namespace PL
             btnUpdateStation.Visibility = Visibility.Collapsed;
             btnDeleteStation.Visibility = Visibility.Collapsed;
             initTextBoxes(false, false, 3);
+            int index = 0;
+            foreach (var item in lvFollowStation.Items)
+            {
+                if ((item as BO.BusLineStation).id == folStatIdSelect)
+                {
+                    break;
+                }
+
+                index++;
+            }
+            int idLine = 0, index2 = 0;
+            foreach (var item in lvLinesInStation.Items)
+            {
+                if (index2 == index)
+                {
+                    idLine = (item as BO.BusLine).id;
+                    break;
+                }
+                index2++;
+            }
+            fTs = TimeSpan.Parse(bl.GetBusLine(idLine).driveTime);
+            eTs = TimeSpan.Parse(tbStationDriveTm.Text);
         }
+        
         private void lvFollowStation_PreviewMouseDown(object sender, MouseEventArgs e)
         {
-            tblError.Text = "";
+            tblError.Text = "";        
             init_lvFollowStation_PreviewMouseDown();
         }
         private void init_lvFollowStation_PreviewMouseDown()
@@ -324,6 +348,9 @@ namespace PL
                     station.id = (cbStations.SelectedItem as BO.BusLineStation).id;
                     bl.updateStation(station);
                     initTextBoxByCbInStations();
+                    init_lvFollowStation_PreviewMouseDown();
+                    cbBusLines.ItemsSource = bl.GetAllbusLines();
+                    cbBusLines.SelectedIndex = 0;
                 }
                 catch (Exception exc) { tblError.Text = exc.Message; return; }
             }
@@ -332,14 +359,14 @@ namespace PL
         private void btnUpdateTimOrDis_Click(object sender, RoutedEventArgs e)
         {
             try { validINputDriveTimeOrDistance(); }
-            catch (Exception exc) { tblError.Text = exc.Message; return;  }
+            catch (Exception exc) { tblError.Text = exc.Message; initTextBoxByCbInStations(); return;  }
             finally {
-                init_lvFollowStation_PreviewMouseDown();
-                initTextBoxByCbInStations();
+                init_lvFollowStation_PreviewMouseDown();  
             }           
             try
             {
                 int idsta = 0,index=0;
+                string lineNum = "";
                 foreach (var item in lvFollowStation.Items)
                 {
                     if ((item as BO.BusLineStation).id == folStatIdSelect)
@@ -355,19 +382,25 @@ namespace PL
                     if (index2 == index)
                     {
                         idLine = (item as BO.BusLine).id;
+                        lineNum= (item as BO.BusLine).number;
                         break;
                     }
                     index2++;
                 }
-                var folStation = new BO.FollowStations((cbStations.SelectedItem as BO.BusLineStation).id, idsta,idLine, Convert.ToInt32(tbStationDistance.Text),TimeSpan.Parse(tbStationDriveTm.Text));
+                fTs -= eTs;
+                fTs += TimeSpan.Parse(tbStationDriveTm.Text);
+                double x = double.Parse(tbStationDistance.Text);
+                var folStation = new BO.FollowStations((cbStations.SelectedItem as BO.BusLineStation).id, idsta,idLine, double.Parse(tbStationDistance.Text), TimeSpan.Parse(tbStationDriveTm.Text),lineNum);
                 folStation.id = bl.GetIdFollowStationBy((cbStations.SelectedItem as BO.BusLineStation).id, idsta, idLine);
-                bl.updateFollowStation(folStation);
+                bl.updateFollowStation(folStation, fTs.ToString());
                 lvLinesInStation.ItemsSource= bl.GetAllLinesInStation((cbStations.SelectedItem as BO.BusLineStation).id);
                 initTextBoxByCbInStations();
+                cbBusLines.ItemsSource = bl.GetAllbusLines();
+                cbBusLines.SelectedIndex = 0;
             }
             catch (Exception exc) { tblError.Text = exc.Message; return; }
         }
-        
+              
         #endregion
 
 

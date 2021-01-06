@@ -85,7 +85,7 @@ namespace BL
         #region lines
         public BusLine GetBusLine(int id)
         {
-            throw new NotImplementedException();
+           return Utility.DOtoBOConvertor<BO.BusLine, DO.BusLine>(dl.GetBusLine(id));
         }
         
         
@@ -401,6 +401,14 @@ namespace BL
         public void updateFollowStation(FollowStations folStation)
         {
             dl.updateFollowStation(Utility.BOtoDOConvertor<DO.FollowStations, BO.FollowStations>(folStation));
+            
+        }
+        public void updateFollowStation(FollowStations folStation, string newDriveTime)
+        {
+            dl.updateFollowStation(Utility.BOtoDOConvertor<DO.FollowStations, BO.FollowStations>(folStation));
+            var line = GetBusLine(folStation.lineId);
+            line.driveTime = newDriveTime;
+            dl.updateLine(Utility.BOtoDOConvertor<DO.BusLine, BO.BusLine>(line));
         }
 
         public int GetIdFollowStationBy(int idFirstSta, int idSecondSta,int idLine)

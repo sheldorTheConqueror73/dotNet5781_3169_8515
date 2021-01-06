@@ -117,7 +117,8 @@ namespace DL
             var result = DataSource.Lines.Find(b => b.id == line.id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {line.id}");
-            result = line.Clone();
+            DataSource.Lines.Remove(result);
+            DataSource.Lines.Add(line.Clone());
         }
         public int countLines(string number)
         {
