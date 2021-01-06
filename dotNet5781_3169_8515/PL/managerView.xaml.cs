@@ -176,6 +176,7 @@ namespace PL
         {
             busOrder = cbSort.SelectedIndex;
             refreshBuses();
+            lvBuses.SelectedIndex = 0;
         }
         #endregion
 
@@ -427,23 +428,23 @@ namespace PL
                 {
                     tbLineNumber.IsEnabled = true;
                     tbLineArea.IsEnabled = true;
-                    cbLineFirstSta.IsEnabled = true;
-                    cbLineLastSta.IsEnabled = true;
+                    tbLineFirstSta.IsEnabled = true;
+                    tbLineLastSta.IsEnabled = true;
                 }
                 else
                 {
                     tbLineNumber.IsEnabled = false;
                     tbLineArea.IsEnabled = false;
-                    cbLineFirstSta.IsEnabled = false;
-                    cbLineLastSta.IsEnabled = false;
+                    tbLineFirstSta.IsEnabled = false;
+                    tbLineLastSta.IsEnabled = false;
                 }
                 if (flagContent)
                 {
                     tbLineNumber.Clear();
                     tbLineArea.Clear();
                     tbldriveTime.Clear();
-                    cbLineFirstSta.SelectedIndex=0;
-                    cbLineLastSta.SelectedIndex=0;
+                    tbLineFirstSta.Clear();
+                    tbLineLastSta.Clear();
                 }
             }
             else//stations
@@ -640,7 +641,6 @@ namespace PL
         }
 
         #endregion
-
 
     }
 }

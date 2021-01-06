@@ -382,24 +382,24 @@ new BusLineStation(){id=57,Address=" רחוב:דרך בית לחם הישנה  �
 new BusLineStation(){id=58,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים",code="93",Latitude=31.767265,enabled=true,Longitude=35.246594,Name="חוש סלימה 1"},
 new BusLineStation(){id=59,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים",code="94",Latitude=31.767084,enabled=true,Longitude=35.246655,Name="דרך בית לחם הישנה ב"},
 new BusLineStation(){id=60,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים",code="95",Latitude=31.768759,enabled=true,Longitude=31.768759,Name="דרך בית לחם הישנה א"},
-new BusLineStation(){id=61,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים",code="97",Latitude=31.77002,enabled=true,Longitude=35.24348,Name="שכונת בזבז 2"},
+new BusLineStation(){id=61,Address=" רחוב:דרך בית לחם הישנה  עיר: ירושלים",code="97",Latitude=31.77002,enabled=true,Longitude=35.24348,Name="שכונת בזבוז 2"},
 new BusLineStation(){id=62,Address=" רחוב:שדרות גולדה מאיר  עיר: ירושלים",code="102",Latitude=31.8003,enabled=true,Longitude=35.208257,Name="גולדה/שלמה הלוי"},
 new BusLineStation(){id=63,Address=" רחוב:שדרות גולדה מאיר  עיר: ירושלים",code="103",Latitude=31.8,enabled=true,Longitude=35.214106,Name="גולדה/הרטום"},
 new BusLineStation(){id=64,Address=" רחוב:גבעת משה 2 עיר: ירושלים",code="105",Latitude=31.797708,enabled=true,Longitude=35.217133,Name="גבעת משה"},
 new BusLineStation(){id=65,Address=" רחוב:גבעת משה 3 עיר: ירושלים",code="106",Latitude=31.797535,enabled=true,Longitude=35.217057,Name="גבעת משה"},
 new BusLineStation(){id=66,Address="  רחוב:עזרת תורה 25 עיר: ירושלים",code="108",Latitude=31.797535,enabled=true,Longitude=35.213728,Name="עזרת תורה/עלי הכהן"},
 new BusLineStation(){id=67,Address="  רחוב:עזרת תורה 21 עיר: ירושלים ",code="109",Latitude=31.796818,enabled=true,Longitude=35.212936,Name="עזרת תורה/דורש טוב"},
-new BusLineStation(){id=68,Address=" רחוב:עזרת תורה 12 עיר: ירושלים",code="110",Latitude=31.796129,enabled=true,Longitude=35.212698,Name="עזרת תורה/דורש טוב"},
+new BusLineStation(){id=68,Address=" רחוב:אביב צנזור 1 עיר: אנק מורפורק",code="110",Latitude=31.796129,enabled=true,Longitude=35.212698,Name="האוניברסיטה הנעלמת"},
 new BusLineStation(){id=69,Address="  רחוב:יעקובזון 1 עיר: ירושלים",code="111",Latitude=31.794631,enabled=true,Longitude=35.21161,Name="יעקובזון/עזרת תורה"},
 new BusLineStation(){id=70,Address=" רחוב:יעקובזון  עיר: ירושלים",code="112",Latitude=31.79508,enabled=true,Longitude=35.211684,Name="יעקובזון/עזרת תורה"},
-new BusLineStation(){id=71,Address="  רחוב:זית רענן 1 עיר: ירושלים",code="113",Latitude=31.796255,enabled=true,Longitude=35.211065,Name="זית רענן/אוהל יהושע"},
-new BusLineStation(){id=72,Address=" רחוב:זית רענן  עיר: ירושלים",code="115",Latitude=31.798423,enabled=true,Longitude=35.209575,Name="זית רענן/תורת חסד"},
+new BusLineStation(){id=71,Address="  רחוב: אביב צנזור 19 עיר: ניו אנק",code="113",Latitude=31.796255,enabled=true,Longitude=35.211065,Name="אנק החדשה"},
+new BusLineStation(){id=72,Address=" רחוב: אביב צנזור 23 עיר: קייר פאראוול",code="115",Latitude=31.798423,enabled=true,Longitude=35.209575,Name="נרניה"},
 new BusLineStation(){id=73,Address="  רחוב:הרב סורוצקין 48 עיר: ירושלים ",code="116",Latitude=31.798689,enabled=true,Longitude=35.208878,Name="זית רענן/תורת חסד"},
 new BusLineStation(){id=74,Address="  רחוב:הרב סורוצקין  עיר: ירושלים",code="117",Latitude=31.799165,enabled=true,Longitude=35.206918,Name="קרית הילד/סורוצקין"},
 new BusLineStation(){id=75,Address="  רחוב:הרב סורוצקין 31 עיר: ירושלים",code="119",Latitude=31.797829,enabled=true,Longitude=35.205601,Name="סורוצקין/שנירר"},
-new BusLineStation(){id=76,Address="רחוב: שדרות נווה יעקוב  עיר:ירושלים ",code="1485",Latitude=31.840063,enabled=true,Longitude=35.240062,Name="שדרות נווה יעקוב/הרב פרדס "},
+new BusLineStation(){id=76,Address="רחוב: שדרות נווה יעקוב  עיר:ירושלים ",code="1485",Latitude=31.840063,enabled=true,Longitude=35.240062,Name="מורפורקיה תחנה מרכזית"},
 new BusLineStation(){id=77,Address="רחוב:שדרות נווה יעקוב ירושלים עיר:ירושלים ",code="1486",Latitude=31.838481,enabled=true,Longitude=35.23972,Name="מרכז קהילתי /שדרות נווה יעקוב"},
-new BusLineStation(){id=78,Address="חוב:שדרות נווה יעקב 7 עיר: ירושלים  ",code="1487",Latitude=31.837748,enabled=true,Longitude=35.231598,Name=" מסוף 700 /שדרות נווה יעקוב "},
+new BusLineStation(){id=78,Address="רחוב:??????עיר:??????  ",code="1487",Latitude=31.837748,enabled=true,Longitude=35.231598,Name=" מסוף אטלנטיס "},
 new BusLineStation(){id=79,Address="רחוב:מעגלות הרב פרדס  עיר: ירושלים רציף  ",code="1488",Latitude=31.840279,enabled=true,Longitude=35.246272,Name=" הרב פרדס/אסטורהב "},
 new BusLineStation(){id=80,Address="רחוב:מעגלות הרב פרדס 24 עיר: ירושלים   ",code="1490",Latitude=31.843598,enabled=true,Longitude=35.243639,Name="הרב פרדס/צוקרמן "},
 new BusLineStation(){id=81,Address="רחוב:ברזיל 14 עיר: ירושלים",code="1491",Latitude=31.766256,enabled=true,Longitude=35.173,Name="ברזיל "},
@@ -411,7 +411,7 @@ new BusLineStation(){id=86,Address="רחוב:יעקב טהון  עיר: ירוש
 new BusLineStation(){id=87,Address="רחוב:הרב הרצוג  עיר: ירושלים רציף",code="1512",Latitude=31.761447,enabled=true,Longitude=35.199936,Name="הרב הרצוג/שח''ל "},
 new BusLineStation(){id=88,Address="רחוב:הרב הרצוג  עיר: ירושלים רציף",code="1514",Latitude=31.759186,enabled=true,Longitude=35.189336,Name="פרץ ברנשטיין/נזר דוד "},
 new BusLineStation(){id=89,Address=" רחוב:פרץ ברנשטיין 56 עיר: ירושלים ",code="1518",Latitude=31.759121,enabled=true,Longitude=35.189178,Name="פרץ ברנשטיין/נזר דוד"},
-new BusLineStation(){id=90,Address="  רחוב:דרך רופין  עיר: ירושלים ",code="1522",Latitude=31.774484,enabled=true,Longitude=35.204882,Name="מוזיאון ישראל/רופין"},
+new BusLineStation(){id=90,Address="  רחוב:דרך דיבלר 14  עיר: אנק מורפורק ",code="1522",Latitude=31.774484,enabled=true,Longitude=35.204882,Name="תחנת משמר העיר"},
 new BusLineStation(){id=91,Address="   רחוב:הרב הרצוג  עיר: ירושלים  ",code="1523",Latitude=31.769652,enabled=true,Longitude=35.208248,Name="הרצוג/טשרניחובסקי"},
 new BusLineStation(){id=92,Address="    רחוב:הרב הרצוג  עיר: ירושלים   ",code="1524",Latitude=31.769652,enabled=true,Longitude=35.208248,Name="רופין/שד' הזז"},
 new BusLineStation(){id=93,Address=" רחוב:הרב סורוצקין 13 עיר: ירושלים",code="121",Latitude=31.796033,enabled=true,Longitude=35.206094,Name="מרכז סולם/סורוצקין "},
@@ -420,12 +420,12 @@ new BusLineStation(){id=95,Address="  רחוב:הרב סורוצקין 28 עיר
         }
         
 
-        private static void initLines()
+        private static void initLines() 
         {
            lineInStations = new List<LineInStation>();
             followStation = new List<FollowStations>();
             Lines = new List<BusLine>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
                 Random r = new Random();
                 Thread.Sleep(10);
