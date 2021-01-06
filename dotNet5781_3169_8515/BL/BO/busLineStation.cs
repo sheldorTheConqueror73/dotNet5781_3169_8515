@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class busLineStation : BusStation, IComparable<busLineStation>
+    public class BusLineStation : BusStation, IComparable<BusLineStation>
     {
         private double distance;
         private TimeSpan driveTime;
-        public ObservableCollection<busLine> ListOfLines { get; } = new ObservableCollection<busLine>();
+        public ObservableCollection<BusLine> ListOfLines { get; } = new ObservableCollection<BusLine>();
 
         //getters and setters:
         public double Distance
@@ -29,28 +29,28 @@ namespace BO
             set { driveTime = value; }
         }
 
-        public busLineStation()//ctor
+        public BusLineStation()//ctor
         {
             distance = -1;
             driveTime = new TimeSpan();
         }
-        public busLineStation(string _id) : base(_id)//ctor
+        public BusLineStation(string _id) : base(_id)//ctor
         {
             distance = -1;
             driveTime = new TimeSpan();
         }
-        public busLineStation(string id, float lat, float lon, string address = "") : base(id, lat, lon, address)//ctor
+        public BusLineStation(string id, float lat, float lon, string address = "") : base(id, lat, lon, address)//ctor
         {
             this.distance = 0;
             this.driveTime = new TimeSpan();
         }
-        public busLineStation(string id, float lat, float lon, int distance, TimeSpan time, string address = "") : base(id, lat, lon, address)//ctor
+        public BusLineStation(string id, float lat, float lon, int distance, TimeSpan time, string address = "") : base(id, lat, lon, address)//ctor
         {
             this.distance = distance;
             this.driveTime = time;
         }
 
-        public busLineStation(busLineStation bs) : base(bs)
+        public BusLineStation(BusLineStation bs) : base(bs)
         {
             this.distance = bs.Distance;
             this.driveTime = bs.DriveTime;
@@ -89,7 +89,7 @@ namespace BO
 
         }
 
-        public int CompareTo(busLineStation other)//compare between two objects of busLineStation by Id.
+        public int CompareTo(BusLineStation other)//compare between two objects of busLineStation by Id.
         {
             if (other == null)
                 return 1;

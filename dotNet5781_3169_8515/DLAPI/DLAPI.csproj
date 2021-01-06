@@ -43,15 +43,15 @@
   <ItemGroup>
     <Compile Include="DLConfig.cs" />
     <Compile Include="DLFactory.cs" />
-    <Compile Include="DO\bus.cs" />
-    <Compile Include="DO\busLine.cs" />
-    <Compile Include="DO\busLineStation.cs" />
-    <Compile Include="DO\busStation.cs" />
+    <Compile Include="DO\Bus.cs" />
+    <Compile Include="DO\BusLine.cs" />
+    <Compile Include="DO\BusLineStation.cs" />
+    <Compile Include="DO\BusStation.cs" />
     <Compile Include="DO\DOobject.cs" />
     <Compile Include="DO\Enums.cs" />
     <Compile Include="DO\exceptions.cs" />
-    <Compile Include="DO\followStations.cs" />
-    <Compile Include="DO\lineInStation.cs" />
+    <Compile Include="DO\FollowStations.cs" />
+    <Compile Include="DO\LineInStation.cs" />
     <Compile Include="DO\User.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

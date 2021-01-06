@@ -12,8 +12,8 @@
         
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="56,120,0,0" Name="textBlock1" Text="User Name" VerticalAlignment="Top" Width="67" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,168,0,0" Name="textBlock2" Text="Password" VerticalAlignment="Top" Width="77" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="118,115,0,0" Name="txbusername" VerticalAlignment="Top" Width="247" />
-        <PasswordBox Height="23" HorizontalAlignment="Left" Margin="118,168,0,0" Name="txbupassword" VerticalAlignment="Top" Width="247" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="118,115,0,0" Name="txbUsername" VerticalAlignment="Top" Width="247" />
+        <PasswordBox Height="23" HorizontalAlignment="Left" Margin="118,168,0,0" Name="txbUPassword" VerticalAlignment="Top" Width="247" />
         <Button Content="Login" Height="23" HorizontalAlignment="Left" Margin="118,211,0,0" Name="btnLogin" VerticalAlignment="Top" Width="104" Click="login_Click" />
         <Button Content="Register" Height="23" HorizontalAlignment="Right" Margin="0,211,154,0" Name="btnRegister" VerticalAlignment="Top" Width="104" Click="newUser_click" />
         <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247" Margin="118,253,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />

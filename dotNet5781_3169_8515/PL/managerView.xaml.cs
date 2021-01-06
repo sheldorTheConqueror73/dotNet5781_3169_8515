@@ -57,9 +57,9 @@ namespace PL
                 int fuel, dist, totalDIst;
                 try { validateInput(out fuel, out dist, out totalDIst); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-                string plateNumber = tbid.Text;
+                string plateNumber = tbId.Text;
                 DateTime rd = dpRegiDate.SelectedDate.Value;
-                DateTime lm = dplmiDate.SelectedDate.Value;
+                DateTime lm = dpLastMaintenance.SelectedDate.Value;
                 try { bl.addBus(new BO.Bus(rd, lm, plateNumber, fuel, dist, false, totalDIst, "ready")); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
                 finally { initTextBoxes(false, false, 1); }
@@ -80,35 +80,35 @@ namespace PL
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             finally
             {
-                tbid.IsEnabled = true;
-                tbfuel.IsEnabled = true;
+                tbId.IsEnabled = true;
+                tbFuel.IsEnabled = true;
                 tbDistance.IsEnabled = true;
-                tbtotalDist.IsEnabled = true;
-                busesView.Items.Refresh();
+                tbTotalDist.IsEnabled = true;
+                lvBuses.Items.Refresh();
             }
-            if (busesView.SelectedItem == null)
+            if (lvBuses.SelectedItem == null)
             {
                 MessageBox.Show("You can not Update an empty list");
                 return;
             }
             try
             {
-                var bus = new BO.Bus(dpRegiDate.SelectedDate.Value, dplmiDate.SelectedDate.Value, tbid.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false, totalDIst, (busesView.SelectedItem as BO.Bus).status);
-                bus.id = (busesView.SelectedItem as BO.Bus).id;
+                var bus = new BO.Bus(dpRegiDate.SelectedDate.Value, dpLastMaintenance.SelectedDate.Value, tbId.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false, totalDIst, (lvBuses.SelectedItem as BO.Bus).status);
+                bus.id = (lvBuses.SelectedItem as BO.Bus).id;
                 bl.updateBus(bus);
                 id = bus.id;
             }
             catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
             refreshBuses();
             int index = 0;
-            foreach (var item in busesView.Items)
+            foreach (var item in lvBuses.Items)
             {
                 if ((item as BO.Bus).id ==id)
                     break;
                 index++;
             }
             refreshBuses();
-            busesView.SelectedIndex = index;
+            lvBuses.SelectedIndex = index;
             initTextBoxes(false, false, 1);
             btnUpdate.Visibility = System.Windows.Visibility.Hidden;
         }
@@ -132,19 +132,19 @@ namespace PL
             int id = lineData.id;
             bl.refuel(lineData.id);
             int index = 0;
-            foreach (var item in busesView.Items)
+            foreach (var item in lvBuses.Items)
             {
                 if ((item as BO.Bus).id == id)
                     break;
                 index++;
             }
             refreshBuses();
-            busesView.SelectedIndex = index;
+            lvBuses.SelectedIndex = index;
         }
         private void refreshBuses()
         {
             tbiBuses.DataContext = bl.GetAllBuses(busOrder);
-            busesView.Items.Refresh();
+            lvBuses.Items.Refresh();
         }
 
         private void Maintenance_Click(object sender, RoutedEventArgs e)
@@ -154,14 +154,14 @@ namespace PL
             int id = lineData.id;
             bl.maintain(lineData.id);
             int index = 0;
-            foreach (var item in busesView.Items)
+            foreach (var item in lvBuses.Items)
             {
                 if ((item as BO.Bus).id == id)
                     break;
                 index++;
             }
             refreshBuses();
-            busesView.SelectedIndex = index;
+            lvBuses.SelectedIndex = index;
 
         }
 
@@ -185,8 +185,8 @@ namespace PL
         {
             if (cbStations.SelectedItem != null && cbStations.SelectedItem != null)
             {
-                lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
-                lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
+                lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.BusLineStation).id);
+                lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.BusLineStation).id);
             }
 
         }
@@ -199,7 +199,7 @@ namespace PL
             int id = 0;
             if (cbStations.Items.Count > 1)
             {
-                id = (cbStations.SelectedItem as BO.busLineStation).id;
+                id = (cbStations.SelectedItem as BO.BusLineStation).id;
                 if (cbStations.SelectedIndex == 0)
                     cbStations.SelectedIndex = 1;
                 else
@@ -209,16 +209,16 @@ namespace PL
             }
             else
             {
-                id = (cbStations.SelectedItem as BO.busLineStation).id;
+                id = (cbStations.SelectedItem as BO.BusLineStation).id;
             }             
             bl.removeStation(id);
             initTextBoxByCbInStations();
             if (cbStations.SelectedItem!=null)
             {
-                lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
-                lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
+                lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.BusLineStation).id);
+                lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.BusLineStation).id);
                 lvStationOfLine.Items.Refresh();
-                lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
+                lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
             }
             else
             {
@@ -245,12 +245,13 @@ namespace PL
                 finally
                 {
                     init_lvFollowStation_PreviewMouseDown();
+                    initTextBoxByCbInStations();
                 }
                 string code = tbStationCode.Text;
                 string address = tbStationAddress.Text;
                 float latitude = float.Parse(tbStationLat.Text.ToString());
                 float longitude = float.Parse(tbStationLong.Text.ToString());
-                try { bl.addStation(new BO.busLineStation(code, latitude, longitude, address)); }
+                try { bl.addStation(new BO.BusLineStation(code, latitude, longitude, address)); }
                 catch (Exception exc) { tblError.Text = exc.Message; return; }
                 finally { initTextBoxes(false, false, 1); initTextBoxByCbInStations(); }
                 
@@ -269,7 +270,7 @@ namespace PL
         {
             if (lvFollowStation.Items.Count == 0||lvFollowStation.SelectedItem==null)
                 return;
-            folStatIdSelect = (lvFollowStation.SelectedItem as BO.busLineStation).id;
+            folStatIdSelect = (lvFollowStation.SelectedItem as BO.BusLineStation).id;
             tbStationDriveTm.IsEnabled = true;
             tbStationDistance.IsEnabled = true;
             btnUpdateTimOrDis.Visibility = Visibility.Visible;
@@ -319,8 +320,8 @@ namespace PL
                 }
                 try
                 {
-                    var station = new BO.busLineStation(tbStationCode.Text, float.Parse(tbStationLat.Text), float.Parse(tbStationLong.Text), tbStationAddress.Text);
-                    station.id = (cbStations.SelectedItem as BO.busLineStation).id;
+                    var station = new BO.BusLineStation(tbStationCode.Text, float.Parse(tbStationLat.Text), float.Parse(tbStationLong.Text), tbStationAddress.Text);
+                    station.id = (cbStations.SelectedItem as BO.BusLineStation).id;
                     bl.updateStation(station);
                     initTextBoxByCbInStations();
                 }
@@ -341,9 +342,9 @@ namespace PL
                 int idsta = 0,index=0;
                 foreach (var item in lvFollowStation.Items)
                 {
-                    if ((item as BO.busLineStation).id == folStatIdSelect)
+                    if ((item as BO.BusLineStation).id == folStatIdSelect)
                     {
-                        idsta = (item as BO.busLineStation).id;                       
+                        idsta = (item as BO.BusLineStation).id;                       
                         break;
                     }
                     index++;
@@ -353,15 +354,15 @@ namespace PL
                 {
                     if (index2 == index)
                     {
-                        idLine = (item as BO.busLine).id;
+                        idLine = (item as BO.BusLine).id;
                         break;
                     }
                     index2++;
                 }
-                var folStation = new BO.followStations((cbStations.SelectedItem as BO.busLineStation).id, idsta,idLine, Convert.ToInt32(tbStationDistance.Text),TimeSpan.Parse(tbStationDriveTm.Text));
-                folStation.id = bl.GetIdFollowStationBy((cbStations.SelectedItem as BO.busLineStation).id, idsta, idLine);
+                var folStation = new BO.FollowStations((cbStations.SelectedItem as BO.BusLineStation).id, idsta,idLine, Convert.ToInt32(tbStationDistance.Text),TimeSpan.Parse(tbStationDriveTm.Text));
+                folStation.id = bl.GetIdFollowStationBy((cbStations.SelectedItem as BO.BusLineStation).id, idsta, idLine);
                 bl.updateFollowStation(folStation);
-                lvLinesInStation.ItemsSource= bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
+                lvLinesInStation.ItemsSource= bl.GetAllLinesInStation((cbStations.SelectedItem as BO.BusLineStation).id);
                 initTextBoxByCbInStations();
             }
             catch (Exception exc) { tblError.Text = exc.Message; return; }
@@ -373,17 +374,17 @@ namespace PL
         #region utility
         private void initSource()
         { 
-            dplmiDate.DisplayDateEnd = DateTime.Now;
+            dpLastMaintenance.DisplayDateEnd = DateTime.Now;
             dpRegiDate.DisplayDateEnd = DateTime.Now;
             tbiBuses.DataContext = bl.GetAllBuses(busOrder);
-            busesView.SelectedIndex = 0;
+            lvBuses.SelectedIndex = 0;
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.SelectedIndex = 0;
-            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.busLineStation).id);
-            lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.busLineStation).id);
+            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.BusLineStation).id);
+            lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.BusLineStation).id);
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.SelectedIndex = 0;
-            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
+            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
         }
         private void initTextBoxes(bool flagEnabled, bool flagContent, int tabItem)
         {
@@ -391,32 +392,32 @@ namespace PL
             {
                 if (flagEnabled)
                 {
-                    tbid.IsEnabled = true;
-                    tbfuel.IsEnabled = true;
+                    tbId.IsEnabled = true;
+                    tbFuel.IsEnabled = true;
                     tbDistance.IsEnabled = true;
-                    tbtotalDist.IsEnabled = true;
+                    tbTotalDist.IsEnabled = true;
                     dpRegiDate.IsEnabled = true;
-                    dplmiDate.IsEnabled = true;
+                    dpLastMaintenance.IsEnabled = true;
                     tbDangerous.IsEnabled = false;
                 }
                 else
                 {
-                    tbid.IsEnabled = false;
-                    tbfuel.IsEnabled = false;
+                    tbId.IsEnabled = false;
+                    tbFuel.IsEnabled = false;
                     tbDistance.IsEnabled = false;
-                    tbtotalDist.IsEnabled = false;
+                    tbTotalDist.IsEnabled = false;
                     dpRegiDate.IsEnabled = false;
-                    dplmiDate.IsEnabled = false;
+                    dpLastMaintenance.IsEnabled = false;
                     tbDangerous.IsEnabled = false;
                 }
                 if (flagContent)
                 {
-                    tbid.Clear();
-                    tbfuel.Clear();
+                    tbId.Clear();
+                    tbFuel.Clear();
                     tbDistance.Clear();
-                    tbtotalDist.Clear();
+                    tbTotalDist.Clear();
                     dpRegiDate.Text = DateTime.Now.ToString();
-                    dplmiDate.Text = DateTime.Now.ToString();
+                    dpLastMaintenance.Text = DateTime.Now.ToString();
                     tbDangerous.Clear();//----------------------------------------------------------------------------------------------fix denger bindning
                 }
             }
@@ -476,7 +477,7 @@ namespace PL
             int index = 0;
             foreach (var item in cbStations.Items)
             {
-                if ((item as BO.busLineStation).id == (cbStations.SelectedItem as BO.busLineStation).id)
+                if ((item as BO.BusLineStation).id == (cbStations.SelectedItem as BO.BusLineStation).id)
                     break;
                 index++;
             }
@@ -487,26 +488,26 @@ namespace PL
         private void validateInput(out int fuel, out int distance, out int totaldistance)
         {
             bool flag;
-            tbid.IsEnabled = false;
-            if ((tbid.Text == null) || (tbid.Text == ""))
+            tbId.IsEnabled = false;
+            if ((tbId.Text == null) || (tbId.Text == ""))
                 throw new InvalidUserInputExecption("Invalid input: Id field cannot be empty");
             string temp = "";
-            foreach (char element in tbid.Text)
+            foreach (char element in tbId.Text)
                 if (element != '-')
                     temp += element;
             if ((temp.Length != 8) && (temp.Length != 7))
                 throw new InvalidUserInputExecption("Invalid input: id must be 7 or 8 digits");
-            foreach (char latter in tbid.Text)
+            foreach (char latter in tbId.Text)
             {
                 if (((latter > '9') || (latter < '0')) && (latter != '-'))
                     throw new InvalidUserInputExecption("Invalid input: id must be an integer");
             }
-            if ((tbid.Text.Length == 8 && ((DateTime)dpRegiDate.SelectedDate).Year < 2018) || (tbid.Text.Length == 7 && ((DateTime)dpRegiDate.SelectedDate).Year >= 2018))
+            if ((tbId.Text.Length == 8 && ((DateTime)dpRegiDate.SelectedDate).Year < 2018) || (tbId.Text.Length == 7 && ((DateTime)dpRegiDate.SelectedDate).Year >= 2018))
                 throw new InvalidUserInputExecption("Invalid input: id format doesn't match registration date");
-            tbfuel.IsEnabled = false;
-            if ((tbfuel.Text == null) || (tbfuel.Text == ""))
+            tbFuel.IsEnabled = false;
+            if ((tbFuel.Text == null) || (tbFuel.Text == ""))
                 throw new InvalidUserInputExecption("Invalid input: fuel field cannot be empty");
-            flag = int.TryParse(tbfuel.Text, out fuel);
+            flag = int.TryParse(tbFuel.Text, out fuel);
             if (!flag)
                 throw new InvalidUserInputExecption("Invalid input: fuel must be an integer");
             if ((fuel > 1200) || (fuel < 0))
@@ -519,10 +520,10 @@ namespace PL
                 throw new InvalidUserInputExecption("Invalid input: distance since last maintenance must be an integer");
             if ((distance > 20000) || (distance < 0))
                 throw new InvalidUserInputExecption("Invalid input: distance since last maintenance must be within the range of 0 to 20000");
-            tbtotalDist.IsEnabled = false;
-            if ((tbtotalDist.Text == null) || (tbtotalDist.Text == ""))
+            tbTotalDist.IsEnabled = false;
+            if ((tbTotalDist.Text == null) || (tbTotalDist.Text == ""))
                 throw new InvalidUserInputExecption("Invalid input: total distance field cannot be empty");
-            flag = int.TryParse(tbtotalDist.Text, out totaldistance);
+            flag = int.TryParse(tbTotalDist.Text, out totaldistance);
             if (!flag)
                 throw new InvalidUserInputExecption("Invalid input: total distance must be an integer");
             if (totaldistance < 0)
@@ -602,7 +603,7 @@ namespace PL
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(cbBusLines.SelectedItem!=null)
-            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.busLine).id);
+            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
         }
         private void lvStationOfLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -618,7 +619,7 @@ namespace PL
             if (cbBusLines.SelectedItem == null)
                 return;
 
-            try { bl.removeLine((cbBusLines.SelectedItem as BO.busLine).id); }
+            try { bl.removeLine((cbBusLines.SelectedItem as BO.BusLine).id); }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();
@@ -631,7 +632,7 @@ namespace PL
         {
             if (cbBusLines.SelectedItem == null)
                 return;
-            addLine addWindow = new addLine(1, (cbBusLines.SelectedItem as BO.busLine).id, (cbBusLines.SelectedItem as BO.busLine).number);
+            addLine addWindow = new addLine(1, (cbBusLines.SelectedItem as BO.BusLine).id, (cbBusLines.SelectedItem as BO.BusLine).number);
             addWindow.ShowDialog();
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();

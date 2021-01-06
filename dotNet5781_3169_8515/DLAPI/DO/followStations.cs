@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class followStations:DOobject
+    public class FollowStations:DOobject
     {
         public int firstStationid { get; set; }
         public int secondStationid { get; set; }

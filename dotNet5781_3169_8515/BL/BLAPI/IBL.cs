@@ -23,34 +23,34 @@ namespace BLAPI
         #endregion
 
         #region busLine
-        IEnumerable<busLine> GetAllbusLines();
-        IEnumerable<busLine> GetAllbusLinesBy(Predicate<busLine> predicate);
-        busLine GetBusLine(int id);
-        void addLine(string number, int area,List<BO.busLineStation> path, List<double> distance, List<TimeSpan> time);
+        IEnumerable<BusLine> GetAllbusLines();
+        IEnumerable<BusLine> GetAllbusLinesBy(Predicate<BusLine> predicate);
+        BusLine GetBusLine(int id);
+        void addLine(string number, int area,List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
         void removeLine(int id);
-        void updateLine(int id, string number, int area, List<BO.busLineStation> path, List<double> distance, List<TimeSpan> time);
+        void updateLine(int id, string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
         #endregion
 
         #region Station
-        void addStation(busLineStation station);
+        void addStation(BusLineStation station);
         IEnumerable<BusStation> GetAllbusStations();
         IEnumerable<BusStation> GetAllbusStationsBy(Predicate<BusStation> predicate);
         BusStation GetbusStation(int id);
         void addLine(BusStation station);
         void removeStation(int id);
-        void updateStation(busLineStation station);
-        IEnumerable<busLine> GetAllLinesInStation(int id);
-        IEnumerable<busLineStation> GetAllStationInLine(int id);
-        IEnumerable<busLineStation> GetAllStationNotInLine(int id);
+        void updateStation(BusLineStation station);
+        IEnumerable<BusLine> GetAllLinesInStation(int id);
+        IEnumerable<BusLineStation> GetAllStationInLine(int id);
+        IEnumerable<BusLineStation> GetAllStationNotInLine(int id);
         #endregion
 
         #region LineStation
-        IEnumerable<busLineStation> GetAllbusLineStation();
+        IEnumerable<BusLineStation> GetAllbusLineStation();
   
-        busLineStation GetbusLineStation(int id);
-        void addLine(busLineStation line);
+        BusLineStation GetbusLineStation(int id);
+        void addLine(BusLineStation line);
         void removebusLineStation(int id);
-        void updatebusLineStation(busLineStation line);
+        void updatebusLineStation(BusLineStation line);
         void reconstructTimeAndDistance(int lineID, out List<double> distance, out List<TimeSpan> time);
         #endregion
 
@@ -62,8 +62,8 @@ namespace BLAPI
          string authenticate(string username, string password, out int id);
         #endregion
         #region followStations
-        IEnumerable<busLineStation> GetAllFollowStationsAsStationsObj(int id);
-        void updateFollowStation(followStations folStation);
+        IEnumerable<BusLineStation> GetAllFollowStationsAsStationsObj(int id);
+        void updateFollowStation(FollowStations folStation);
         int GetIdFollowStationBy(int idFirstSta, int idSecondSta, int idLine);
         #endregion
 

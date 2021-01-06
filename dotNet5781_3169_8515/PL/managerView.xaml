@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="managerView" Height="450" Width="900" WindowStartupLocation="CenterScreen" >
+        Title="managerView" Height="550" Width="1100" WindowStartupLocation="CenterScreen" >
     <Window.Background>
         <ImageBrush ImageSource="Resources/bckg1.jpg" />
     </Window.Background>
@@ -14,16 +14,16 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
-                        
-                             <Grid Name="Panel">
-                                 
-                                    <ContentPresenter x:Name="ContentSite"
+
+                        <Grid Name="Panel">
+
+                            <ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         ContentSource="Header"
                                         Margin="10,2"/>
-                                </Grid>
-                       
+                        </Grid>
+
                         <ControlTemplate.Triggers >
                             <Trigger Property="IsSelected"  Value="True" >
                                 <Setter  TargetName="Panel"  Property="Background" Value="White"/>
@@ -33,7 +33,7 @@
                                 <Setter TargetName="Panel" Property="Background" Value="#1575bf"/>
                                 <Setter TargetName="Panel" Property="TextElement.Foreground" Value="White"/>
                             </Trigger>
-                           
+
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -46,16 +46,19 @@
             <TabItem Header="Buses" x:Name="tbiBuses" Style="{StaticResource customTab}" >
                 <Grid Name="mainGrid" Background="Transparent" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="110*"/>
+                        <ColumnDefinition Width="28*"/>
+                        <ColumnDefinition Width="233*"/>
+                        <ColumnDefinition Width="370*"/>
                         <ColumnDefinition Width="350"/>
                     </Grid.ColumnDefinitions>
-                    <Grid  x:Name="busesgrid" Margin="0,0,2,0" Grid.Column="0" >
+                    <Grid  x:Name="busesgrid" Margin="0,0,2,0" Grid.Column="0" Grid.ColumnSpan="4" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="62*"/>
                             <ColumnDefinition Width="10*"/>
                             <ColumnDefinition Width="365*"/>
                         </Grid.ColumnDefinitions>
-                        <ListView x:Name="busesView"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Width="337" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
+                        <ListView x:Name="lvBuses"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="337" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding plateNumber}"  >
@@ -105,7 +108,7 @@
                             <!--<ComboBoxItem Content="Time" />-->
                         </ComboBox>
                     </Grid>
-                    <Grid Grid.ColumnSpan="2" Grid.Column="1" x:Name="gridBuses">
+                    <Grid Grid.Column="4" x:Name="gridBuses">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="120"/>
                             <ColumnDefinition Width="*"/>
@@ -130,18 +133,18 @@
                         <Label x:Name="lbDanger" Grid.Row="7" Grid.Column="0"   Content="Dangerous:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20"/>
 
 
-                        <TextBox Grid.Row="1" Grid.Column="1" Foreground="Black" Name="tbid" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.plateNumber,ElementName=busesView, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Foreground="Black" Name="tbfuel" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.fuel,ElementName=busesView, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Foreground="Black" Name="tbDistance" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.distance,ElementName=busesView, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" Foreground="Black" Name="tbtotalDist" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" Text="{Binding SelectedItem.totalDistance,ElementName=busesView , Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        <DatePicker Name="dpRegiDate" Grid.Row="5" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980" SelectedDate="{Binding SelectedItem.registrationDate,ElementName=busesView , Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
+                        <TextBox Grid.Row="1" Grid.Column="1" Foreground="Black" Name="tbId" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.plateNumber,ElementName=lvBuses, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Foreground="Black" Name="tbFuel" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.fuel,ElementName=lvBuses, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Foreground="Black" Name="tbDistance" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="20" Width="150" Height="27" Text="{Binding SelectedItem.distance,ElementName=lvBuses, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Foreground="Black" Name="tbTotalDist" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,0,0,0" FontSize="18" Width="150" Height="27" Text="{Binding SelectedItem.totalDistance,ElementName=lvBuses , Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <DatePicker Name="dpRegiDate" Grid.Row="5" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateStart="1/1/1980" SelectedDate="{Binding SelectedItem.registrationDate,ElementName=lvBuses , Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
                                 </Style>
                             </DatePicker.Resources>
                         </DatePicker>
-                        <DatePicker  Name="dplmiDate" Grid.Row="6" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayDateStart="1/1/1980" SelectedDate="{Binding SelectedItem.lastMaintenance,ElementName=busesView , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
+                        <DatePicker  Name="dpLastMaintenance" Grid.Row="6" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayDateStart="1/1/1980" SelectedDate="{Binding SelectedItem.lastMaintenance,ElementName=lvBuses , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
                                     <Setter Property="IsReadOnly" Value="True"/>
@@ -153,7 +156,7 @@
                                 <Style TargetType="{x:Type TextBox}">
                                     <Setter Property="Text" Value="NO" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding SelectedItem.dangerous,ElementName=busesView , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Value="True">
+                                        <DataTrigger Binding="{Binding SelectedItem.dangerous,ElementName=lvBuses , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Value="True">
                                             <Setter Property="Text" Value="YES" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -169,16 +172,18 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Lines" Style="{StaticResource customTab}">
-                <Grid Name="LinesGrid"  >
+                <Grid Name="LinesGrid" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="38*"/>
                         <RowDefinition Height="400*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="524"/>
                         <ColumnDefinition Width="300*"/>
+                        <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto"  >
+                    <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto" Grid.ColumnSpan="2"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80"/>
                             <ColumnDefinition Width="200"/>
@@ -193,8 +198,8 @@
 
 
                     </Grid>
-                    <Grid Grid.Column="0" Grid.Row="1">
-                        <ListView x:Name="lvStationOfLine"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="400" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvStationOfLine_MouseDoubleClick" SelectionChanged="lvStationOfLine_SelectionChanged" >
+                    <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                        <ListView x:Name="lvStationOfLine"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="510" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvStationOfLine_MouseDoubleClick" SelectionChanged="lvStationOfLine_SelectionChanged" >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Code" Width="100"  DisplayMemberBinding="{Binding code}">
@@ -204,7 +209,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Address" Width="100"  DisplayMemberBinding="{Binding Address}">
+                                    <GridViewColumn Header="Address" Width="200"  DisplayMemberBinding="{Binding Address}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock  Text="{Binding Address}"  Margin="1.5" HorizontalAlignment="Center"/>
@@ -228,8 +233,9 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
+
                     </Grid>
-                    <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid Grid.Row="1" Grid.Column="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="150"/>
                             <RowDefinition Height="0"/>
@@ -256,7 +262,7 @@
                         <Label Content="Total Time:" HorizontalAlignment="Center" Margin="0,64,73,0" VerticalAlignment="Top" RenderTransformOrigin="0.224,-0.987"/>
                         <TextBox Grid.Column="1" x:Name="tbldriveTime" HorizontalAlignment="Left" Height="30" Margin="0,60,0,0" TextWrapping="Wrap" IsEnabled="False" VerticalAlignment="Top" Width="100" Text="{Binding SelectedItem.driveTime,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"  />
 
-                        <StackPanel Grid.Row="2"  Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="0,0,150,63">
+                        <StackPanel Grid.Row="2"  Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center" >
                             <Button Content="Add" x:Name="btnaddLine" HorizontalAlignment="Center" Width="100" Margin="0,20,0,0" Click="addLine_click" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/>
                             <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Grid.ColumnSpan="2" Grid.Row="3" Click="UpdateLine_Click"/>
                             <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Click="DeleteLine_Click"/>
@@ -267,19 +273,23 @@
 
 
             <TabItem Header="Stations" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}">
-                <Viewbox VerticalAlignment="Top" Margin="0,0,0,-1">
                     <Grid Name="StationsGrid" >
                         <Grid.RowDefinitions>
+
                             <RowDefinition Height="400*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="375"/>
+                            <ColumnDefinition Width="435"/>
                             <ColumnDefinition Width="75"/>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="300*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <ListView x:Name="lvFollowStation" ToolTip="double click to edit"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="370" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvFollowStation_MouseDoubleClick" PreviewMouseDown="lvFollowStation_PreviewMouseDown" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="26*"/>
+                                <ColumnDefinition Width="49*"/>
+                            </Grid.ColumnDefinitions>
+                            <ListView x:Name="lvFollowStation" ToolTip="double click to edit"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="470" BorderThickness="0" Grid.ColumnSpan="2" MouseDoubleClick="lvFollowStation_MouseDoubleClick" PreviewMouseDown="lvFollowStation_PreviewMouseDown" >
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding code}">
@@ -289,7 +299,7 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn Header="Address" Width="140"  DisplayMemberBinding="{Binding Address}">
+                                        <GridViewColumn Header="Address" Width="200"  DisplayMemberBinding="{Binding Address}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <TextBlock  Text="{Binding Address}"  Margin="1.5" HorizontalAlignment="Center"/>
@@ -303,7 +313,7 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn Header="Time" Width="70"  DisplayMemberBinding="{Binding DriveTime}">
+                                        <GridViewColumn Header="Time" Width="95"  DisplayMemberBinding="{Binding DriveTime}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <TextBlock  Text="{Binding DriveTime}"  Margin="1.5" HorizontalAlignment="Center"/>
@@ -329,7 +339,7 @@
                                 </ListView.View>
                             </ListView>
                         </Grid>
-                        <ComboBox x:Name="cbStations" Grid.Column="2" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="cbStations_SelectionChanged"/>
+                        <ComboBox x:Name="cbStations" Grid.Column="2" Width="100" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="cbStations_SelectionChanged"/>
                         <Grid Grid.Column="3">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="90"/>
@@ -374,7 +384,6 @@
                         <TextBlock x:Name="tblError" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="Red" Grid.ColumnSpan="4" Margin="199,310,258,-23"/>
 
                     </Grid>
-                </Viewbox>
             </TabItem>
 
         </TabControl>

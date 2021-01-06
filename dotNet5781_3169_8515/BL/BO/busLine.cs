@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class busLine : BOobject
+    public class BusLine : BOobject
     {     
 
        // public string id { get; set; }
@@ -16,9 +16,9 @@ namespace BO
 
         public bool enabled { get; set; }
         public Area area { get; set; }
-        public busLineStation firstStation { get; set; }
-        public busLineStation lastStation { get; set; }
-        public IEnumerable<lineInStation> Path { get; set; }
+        public BusLineStation firstStation { get; set; }
+        public BusLineStation lastStation { get; set; }
+        public IEnumerable<LineInStation> Path { get; set; }
         public string driveTime { get; set; }
 
         public override string ToString()

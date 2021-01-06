@@ -23,8 +23,8 @@ namespace PL
     {
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         int mode,lineId;
-        List<BO.busLineStation> fList;
-        List<BO.busLineStation> tList;
+        List<BO.BusLineStation> fList;
+        List<BO.BusLineStation> tList;
         List<TimeSpan> time=new List<TimeSpan>();
         List<double> distance=new List<double>();
         public addLine(int mode=0,int lineId=-1,string number="")
@@ -35,7 +35,7 @@ namespace PL
             if(mode==0)
             {
                 fList = bl.GetAllbusLineStation().ToList();
-                tList = new List<BO.busLineStation>();
+                tList = new List<BO.BusLineStation>();
             }
             else
             {
@@ -54,7 +54,7 @@ namespace PL
         {
             if (lvfrom.SelectedItem == null)
                 return;
-            int id = (lvfrom.SelectedItem as BO.busLineStation).id;
+            int id = (lvfrom.SelectedItem as BO.BusLineStation).id;
             foreach(var station in fList)
                 if(station.id==id)
                 {
@@ -71,7 +71,7 @@ namespace PL
                 return;
             }
             var sCoord = new GeoCoordinate(tList[tList.Count-2].Latitude, tList[tList.Count - 2].Longitude);
-            var eCoord = new GeoCoordinate((lvfrom.SelectedItem as BO.busLineStation).Latitude, (lvfrom.SelectedItem as BO.busLineStation).Longitude);
+            var eCoord = new GeoCoordinate((lvfrom.SelectedItem as BO.BusLineStation).Latitude, (lvfrom.SelectedItem as BO.BusLineStation).Longitude);
             
             if(sCoord.GetDistanceTo(eCoord)<1000)
                 distance.Add((int)sCoord.GetDistanceTo(eCoord));
@@ -87,7 +87,7 @@ namespace PL
         {
             if (lvto.SelectedItem == null)
                 return;
-            int id = (lvto.SelectedItem as BO.busLineStation).id;
+            int id = (lvto.SelectedItem as BO.BusLineStation).id;
             int index = lvto.SelectedIndex;
             foreach (var station in tList)
                 if (station.id == id)

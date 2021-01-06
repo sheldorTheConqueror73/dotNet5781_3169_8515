@@ -85,12 +85,12 @@ namespace DL
 
 
         #region busLine
-        public IEnumerable<busLine> GetAllbusLines()
+        public IEnumerable<BusLine> GetAllbusLines()
         {
             return from bus in DataSource.Lines
                    select bus.Clone();
         }
-        public busLine GetBusLine(int id)
+        public BusLine GetBusLine(int id)
         {
 
             var result = DataSource.Lines.Find(b => b.id == id);
@@ -98,7 +98,7 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             return result;
         }
-        public void addLine(busLine line)
+        public void addLine(BusLine line)
         {
             var result = DataSource.Lines.Find(b => b.id == line.id);
             if ((result != null) && (result.enabled == true))
@@ -112,7 +112,7 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.enabled = false;
         }
-        public void updateLine(busLine line)
+        public void updateLine(BusLine line)
         {
             var result = DataSource.Lines.Find(b => b.id == line.id);
             if (result == null)
@@ -131,19 +131,19 @@ namespace DL
 
 
         #region LineStation
-        public void addStation(DO.busLineStation station)
+        public void addStation(DO.BusLineStation station)
         {
             var result = DataSource.LineStations.Find(b => b.code == station.code);
             if ((result != null) && (result.enabled == true))
                 throw new itemAlreadyExistsException($"ID number {station.code} is already taken");
             DataSource.LineStations.Add(station.Clone());
         }
-        public IEnumerable<busLineStation> GetAllbusLineStation()
+        public IEnumerable<BusLineStation> GetAllbusLineStation()
         {
-            return from bus in DataSource.LineStations
-                   select bus.Clone();
+            return from station in DataSource.LineStations
+                   select station.Clone();
         }
-        public busLineStation GetbusLineStation(int id)
+        public BusLineStation GetbusLineStation(int id)
         {
             var result = DataSource.LineStations.Find(b => b.id == id);
             if (result == null)
@@ -159,7 +159,7 @@ namespace DL
             result.enabled = false;
             DataSource.lineInStations.RemoveAll(b => b.stationid == id);
         }
-        public void updatebusLineStation(busLineStation station)
+        public void updatebusLineStation(BusLineStation station)
         {
             var result = DataSource.LineStations.Find(b => b.id == station.id);
             if (result == null)
@@ -219,12 +219,12 @@ namespace DL
         #endregion
 
         #region lineInStation
-        public IEnumerable<lineInStation> GetAllLineInStation()
+        public IEnumerable<LineInStation> GetAllLineInStation()
         {
             return from bus in DataSource.lineInStations
                    select bus.Clone();
         }
-        public void addLineInStation(lineInStation lis)
+        public void addLineInStation(LineInStation lis)
         {
             var result = DataSource.lineInStations.Find(b => b.id == lis.id);
             if (result != null)
@@ -239,12 +239,12 @@ namespace DL
         #endregion
 
         #region followStations
-        public IEnumerable<followStations> GetAllFollowStation()
+        public IEnumerable<FollowStations> GetAllFollowStation()
         {
             return from bus in DataSource.followStation
                    select bus.Clone();
         }
-        public void updateFollowStation(DO.followStations folStation)
+        public void updateFollowStation(DO.FollowStations folStation)
         {
             var result = DataSource.followStation.Find(b => b.id == folStation.id);
             if (result == null)
@@ -256,7 +256,7 @@ namespace DL
         
 
        
-        public void addFollowStation(followStations folStation)
+        public void addFollowStation(FollowStations folStation)
         {
             var result = DataSource.followStation.Find(b => b.id == folStation.id);
             if (result != null)

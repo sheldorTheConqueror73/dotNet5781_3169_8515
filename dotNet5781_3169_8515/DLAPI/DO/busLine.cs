@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class busLine:DOobject
+    public class BusLine:DOobject
     {
      //   public string id { get; set; }
         public string number { get; set; }
