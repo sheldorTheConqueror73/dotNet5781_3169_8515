@@ -14,36 +14,40 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
-
                         <Grid Name="Panel">
-
                             <ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         ContentSource="Header"
                                         Margin="10,2"/>
                         </Grid>
-
                         <ControlTemplate.Triggers >
                             <Trigger Property="IsSelected"  Value="True" >
-                                <Setter  TargetName="Panel"  Property="Background" Value="White"/>
+                                <Setter  TargetName="Panel"  Property="Background" Value="#17FF96"/>
                                 <Setter  TargetName="Panel"  Property="TextElement.Foreground" Value="#1575bf"/>
                             </Trigger>
                             <Trigger Property="IsSelected"  Value="False">
                                 <Setter TargetName="Panel" Property="Background" Value="#1575bf"/>
                                 <Setter TargetName="Panel" Property="TextElement.Foreground" Value="White"/>
                             </Trigger>
-
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="ComboBoxItem" x:Key="defualtIndex">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Grid>
-
+        <Line Stroke="#17FF96" StrokeThickness="2" X1="0" X2="3000" Y1="25" Y2="25" />
         <TabControl VerticalAlignment="Stretch" x:Name="tabbi"  Background="Transparent" BorderThickness="0">
-            <TabItem Header="Buses" x:Name="tbiBuses" Style="{StaticResource customTab}" >
+         
+            <TabItem Header="Buses"  x:Name="tbiBuses" Style="{StaticResource customTab}" >
                 <Grid Name="mainGrid" Background="Transparent" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="110*"/>
@@ -86,14 +90,14 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal" >
-                                                    <Button x:Name="Delete"  Click="Delete_Click" Content="del" ToolTip="delete a bus" Background="Transparent"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
-                                                        <!--  <Image Source="src/pics/deleteIcon.png" Stretch="Fill"/>-->
+                                                    <Button x:Name="Delete"  Click="Delete_Click"  ToolTip="delete a bus" Background="Transparent"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                        <Image  Source="Resources/delete.png" Stretch="Fill"/>
                                                     </Button>
-                                                    <Button x:Name="Maintenance" Click="Maintenance_Click" Content="mainte" ToolTip="send to drive" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
-
+                                                    <Button x:Name="Maintenance" Click="Maintenance_Click"  ToolTip="send to repair" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                        <Image  Source="Resources/repairIcon.png" Stretch="Fill"/>
                                                     </Button>
-                                                    <Button x:Name="Refuel" Content="refuel" ToolTip="send to refuel" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" Click="Refuel_Click" HorizontalAlignment="Center">
-                                                        <!-- <Image Source="src/pics/refuelbtnIcon.png" Stretch="Fill"/> -->
+                                                    <Button x:Name="Refuel" ToolTip="send to refuel" Background="Transparent"    BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" Click="Refuel_Click" HorizontalAlignment="Center">
+                                                        <Image  Source="Resources/gasIcon.png" Stretch="Fill"/> 
                                                     </Button>
                                                 </StackPanel>
                                             </DataTemplate>
@@ -103,8 +107,9 @@
                             </ListView.View>
                         </ListView>
                         <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="269,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
-                            <ComboBoxItem Content="ID"/>
-                            <ComboBoxItem x:Name="sortbox" Content="Status"/>
+                            <ComboBoxItem Content="Choose Order Method" TabIndex="0" Style="{StaticResource defualtIndex}" />
+                            <ComboBoxItem Content="Plate Number" TabIndex="1" />
+                            <ComboBoxItem x:Name="sortbox" TabIndex="2" Content="Status"/>
                             <!--<ComboBoxItem Content="Time" />-->
                         </ComboBox>
                     </Grid>

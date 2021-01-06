@@ -34,7 +34,7 @@ namespace DL
         public Bus GetBus(int id)
         {
             var result = DataSource.buses.Find(b => b.id == id);
-            if ((result == null)||(result.enabled==true))
+            if ((result == null)||(result.enabled==false))
                 throw new NoSuchEntryException($"No Bus Matches ID number {id}");
             return result;
 

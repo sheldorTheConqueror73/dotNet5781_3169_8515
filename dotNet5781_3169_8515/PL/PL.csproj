@@ -142,5 +142,17 @@
   <ItemGroup>
     <Resource Include="Resources\bckg1.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\driveIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\repairIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\gasIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

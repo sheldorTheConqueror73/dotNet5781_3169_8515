@@ -40,17 +40,17 @@ namespace BL
             return Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(dl.GetBus(id));
         }
 
-        public List<Bus> GetAllBuses(int order=0)
+        public List<Bus> GetAllBuses(int order=1)
         {
             var result = dl.GetAllBuses();
             if (result != null)
             {
-                if(order==0)
+                if(order==1||order==0)
                 return (from item in result
                         where (item != null && item.enabled == true)
                         orderby item.plateNumber ascending
                         select Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
-                if (order == 1)
+                if (order == 2)
                     return (from item in result
                             where (item != null && item.enabled == true)
                             orderby item.status ascending, item.plateNumber ascending
