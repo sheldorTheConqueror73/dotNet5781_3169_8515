@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class followStations : BOobject
+    public class FollowStations : BOobject
     {
-        public followStations(int firstStationid, int secondStationid,  double distance, TimeSpan driveTime)
+        public FollowStations(int firstStationid, int secondStationid,  double distance, TimeSpan driveTime)
         {
             this.firstStationid = firstStationid;
             this.secondStationid = secondStationid;
@@ -16,7 +16,7 @@ namespace BO
             this.distance = distance;
             this.driveTime = driveTime;
         }
-        public followStations(int firstStationid, int secondStationid,int lineid, double distance, TimeSpan driveTime)
+        public FollowStations(int firstStationid, int secondStationid,int lineid, double distance, TimeSpan driveTime)
         {
             this.firstStationid = firstStationid;
             this.secondStationid = secondStationid;
@@ -25,7 +25,7 @@ namespace BO
             this.distance = distance;
             this.driveTime = driveTime;
         }
-        public followStations() { enabled = true; }
+        public FollowStations() { enabled = true; }
         public int firstStationid { get; set; }
         public int secondStationid { get; set; }
         public int lineId { get; set; }

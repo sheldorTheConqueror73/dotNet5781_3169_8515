@@ -24,21 +24,21 @@ namespace DLAPI
         #endregion
 
         #region busLine
-        IEnumerable<DO.busLine> GetAllbusLines();
-        DO.busLine GetBusLine(int id);
+        IEnumerable<DO.BusLine> GetAllbusLines();
+        DO.BusLine GetBusLine(int id);
         int GetBusLineID(string number);
-        void addLine(DO.busLine line);
+        void addLine(DO.BusLine line);
         void removeLine(int id);
-        void updateLine(DO.busLine line);
+        void updateLine(DO.BusLine line);
         int countLines(string number);
         #endregion
 
         #region LineStation
-        void addStation(DO.busLineStation station);
-        IEnumerable<DO.busLineStation> GetAllbusLineStation();
-        DO.busLineStation GetbusLineStation(int id);
+        void addStation(DO.BusLineStation station);
+        IEnumerable<DO.BusLineStation> GetAllbusLineStation();
+        DO.BusLineStation GetbusLineStation(int id);
         void removebusLineStation(int id);
-        void updatebusLineStation(DO.busLineStation line);
+        void updatebusLineStation(DO.BusLineStation line);
      
         #endregion
 
@@ -49,15 +49,15 @@ namespace DLAPI
         #endregion
 
         #region lineInStation
-        IEnumerable<DO.lineInStation> GetAllLineInStation();
-        void addLineInStation(DO.lineInStation lis);
+        IEnumerable<DO.LineInStation> GetAllLineInStation();
+        void addLineInStation(DO.LineInStation lis);
         void removeLineInStation(int lineId);
         #endregion
 
         #region followStations
-        IEnumerable<DO.followStations> GetAllFollowStation();
-        void updateFollowStation(DO.followStations folStation);
-        void addFollowStation(DO.followStations folStation);
+        IEnumerable<DO.FollowStations> GetAllFollowStation();
+        void updateFollowStation(DO.FollowStations folStation);
+        void addFollowStation(DO.FollowStations folStation);
         void removeFollowStation(int LineId);
         void removeFollowStationByIdOfFol(int Id);
 

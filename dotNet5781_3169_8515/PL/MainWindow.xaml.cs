@@ -36,8 +36,8 @@ namespace PL
         private void login_Click(object sender, RoutedEventArgs e)
         {
             managerView managerView = new managerView();
-            string username = txbusername.Text;
-            string password = txbupassword.Password;
+            string username = txbUsername.Text;
+            string password = txbUPassword.Password;
             if (username == "" || password == "")
             {
                 errormessage.Text="Please enter user name AND password";
