@@ -18,13 +18,14 @@ using BLAPI;
 
 namespace PL
 {
+    
     /// <summary>
     /// Interaction logic for managerView.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        MediaPlayer player= new MediaPlayer();
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
-      //  Clearance clearance = Clearance.None;
         string userName = "";
         int userId=-1;
         IBL bL = BLFactory.GetBL();
@@ -50,10 +51,19 @@ namespace PL
             if (str == "Admin" || str == "Operator")
             {
                 this.Hide();
-                managerView.Show();
+                player.Open(new Uri(@"C:\Users\Chuck\source\repos\dotNet5781_3169_8515\dotNet5781_3169_8515\PL\Resources\Startup.mp3"));
+                player.Play();
+                managerView.ShowDialog();
             }
             if (str == "User")
+            {
                 errormessage.Text = "Welcom user";
+            }
+            else
+            {
+                player.Open(new Uri(@"C:\Users\Chuck\source\repos\dotNet5781_3169_8515\dotNet5781_3169_8515\PL\Resources\AccessDenied.mp3"));
+                player.Play();
+            }
         }
 
         private void newUser_click(object sender, RoutedEventArgs e)

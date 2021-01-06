@@ -62,7 +62,7 @@
                             <ColumnDefinition Width="10*"/>
                             <ColumnDefinition Width="365*"/>
                         </Grid.ColumnDefinitions>
-                        <ListView x:Name="lvBuses"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="370" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
+                        <ListView x:Name="lvBuses"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding plateNumber}"  >
@@ -106,8 +106,8 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="269,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
-                            <ComboBoxItem Content="Choose Order Method" TabIndex="0" Style="{StaticResource defualtIndex}" />
+                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="264,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
+                            <ComboBoxItem Content="Order By" TabIndex="0" Style="{StaticResource defualtIndex}" />
                             <ComboBoxItem Content="Plate Number" TabIndex="1" />
                             <ComboBoxItem x:Name="sortbox" TabIndex="2" Content="Status"/>
                             <!--<ComboBoxItem Content="Time" />-->
@@ -214,10 +214,10 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Address" Width="200"  DisplayMemberBinding="{Binding Address}">
+                                    <GridViewColumn Header="Name" Width="240"   DisplayMemberBinding="{Binding Name}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock    Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock  Text="{Binding}" TextAlignment="Center" Margin="1.5" HorizontalAlignment="Right" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -260,8 +260,8 @@
 
                         <TextBox x:Name="tbLineNumber" IsEnabled="False"  Grid.Column="1" Width="100" Height="30" VerticalAlignment="Top" Text="{Binding SelectedItem.number,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,0,0,0" HorizontalAlignment="Left"/>
                         <TextBox x:Name="tbLineArea"  IsEnabled="False" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.area,ElementName=cbBusLines, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cbLineFirstSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30" Margin="0,91,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cbLineLastSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30"  Margin="0,121,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbLineFirstSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30" Margin="0,91,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbLineLastSta" IsEnabled="False" Grid.Column="1" Width="100" Height="30"  Margin="0,121,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
 
                         <Label Content="Total Time:" HorizontalAlignment="Center" Margin="0,64,73,0" VerticalAlignment="Top" RenderTransformOrigin="0.224,-0.987"/>

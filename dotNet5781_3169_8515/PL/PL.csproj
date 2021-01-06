@@ -154,5 +154,17 @@
   <ItemGroup>
     <Resource Include="Resources\gasIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AccessDenied.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\done.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SadTrombone.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Startup.mp3" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,6 +14,7 @@ namespace BO
         protected double latitude, longitude;//set up accessors for these two
         public string code { get; set; }
         public bool enabled { get; set; }
+        public string  Name { get; set; }
         //getters and setters:
         public double Latitude
         {
@@ -46,14 +47,7 @@ namespace BO
            // longitude = NULL;
             enabled = true;
         }
-        public BusStation(string code)//ctor
-        {
-            this.code = code;
-            address = "";
-          //  latitude = NULL;
-           // longitude = NULL;
-            enabled = true;
-        }
+      
         public BusStation(string code, double lat, double lon, string address = "")//ctor
         {
             this.code = code;
@@ -75,18 +69,7 @@ namespace BO
             this.longitude = bs.Longitude;
             enabled = true;
         }
-        public static string ReadId()//read id from the user and returns a string
-        {
-            Console.WriteLine("enter id: ");
-            string idst = Console.ReadLine();
-            for (int i = 0; i < idst.Length; i++)
-                if (idst[i] > 57 || idst[i] < 48)
-                    throw new ArgumentException("invalid input: id can only contain 1-6 digits");
 
-            if (idst.Length > 6 || idst.Length < 1)
-                throw new ArgumentException("invalid input: id can only contain 1-6 digits");
-            return idst;
-        }
         public override string ToString()
         {
             string str = $"{this.Address}  ";
