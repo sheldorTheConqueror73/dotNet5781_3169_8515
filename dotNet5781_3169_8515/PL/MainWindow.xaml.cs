@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -91,6 +92,13 @@ namespace PL
         {
             if (e.Key == Key.Enter)
               login_Click(this, new RoutedEventArgs());
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            SmtpClient mailMan = new SmtpClient("smtp.gmail.com");
+            mailMan.Port = 587;
+            mailMan.Credentials =new System.Net.NetworkCredential("username", "password");
         }
     }
 }

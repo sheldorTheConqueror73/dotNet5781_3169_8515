@@ -62,10 +62,10 @@
                             <ColumnDefinition Width="10*"/>
                             <ColumnDefinition Width="365*"/>
                         </Grid.ColumnDefinitions>
-                        <ListView x:Name="lvBuses"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
+                        <ListView x:Name="lvBuses" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="ID" Width="110"  DisplayMemberBinding="{Binding plateNumber}"  >
+                                    <GridViewColumn Header="Plate Number" Width="110"  DisplayMemberBinding="{Binding plateNumber}"  >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock    Margin="1.5" HorizontalAlignment="Center"/>
@@ -204,7 +204,7 @@
 
                     </Grid>
                     <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-                        <ListView x:Name="lvStationOfLine"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="540" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvStationOfLine_MouseDoubleClick" SelectionChanged="lvStationOfLine_SelectionChanged" >
+                        <ListView x:Name="lvStationOfLine" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="540" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvStationOfLine_MouseDoubleClick" SelectionChanged="lvStationOfLine_SelectionChanged" >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Code" Width="100"  DisplayMemberBinding="{Binding code}">
@@ -295,7 +295,7 @@
                                 <ColumnDefinition Width="26*"/>
                                 <ColumnDefinition Width="49*"/>
                             </Grid.ColumnDefinitions>
-                            <ListView x:Name="lvFollowStation" ToolTip="double click to edit"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="470" BorderThickness="0" Grid.ColumnSpan="2" MouseDoubleClick="lvFollowStation_MouseDoubleClick" PreviewMouseDown="lvFollowStation_PreviewMouseDown" >
+                        <ListView x:Name="lvFollowStation" SelectionMode="Single" ToolTip="double click to edit"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="470" BorderThickness="0" Grid.ColumnSpan="2" MouseDoubleClick="lvFollowStation_MouseDoubleClick" PreviewMouseDown="lvFollowStation_PreviewMouseDown" >
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding code}">
