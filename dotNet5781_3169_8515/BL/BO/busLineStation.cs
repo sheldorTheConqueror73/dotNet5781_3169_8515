@@ -31,7 +31,7 @@ namespace BO
 
         public BusLineStation()//ctor
         {
-            distance = -1;
+            distance = 0;
             driveTime = new TimeSpan();
         }
         public BusLineStation(string id, float lat, float lon, string address = "") : base(id, lat, lon, address)//ctor

@@ -249,10 +249,11 @@ namespace PL
                     initTextBoxByCbInStations();
                 }
                 string code = tbStationCode.Text;
+                string name = tbStationName.Text;
                 string address = tbStationAddress.Text;
                 float latitude = float.Parse(tbStationLat.Text.ToString());
                 float longitude = float.Parse(tbStationLong.Text.ToString());
-                try { bl.addStation(new BO.BusLineStation(code, latitude, longitude, address)); }
+                try { bl.addStation(new BO.BusLineStation() {code=code,Name=name,Address=address,Latitude=latitude,Longitude=longitude }); }
                 catch (Exception exc) { tblError.Text = exc.Message; return; }
                 finally { initTextBoxes(false, false, 1); initTextBoxByCbInStations(); }
                 
@@ -345,7 +346,7 @@ namespace PL
                 }
                 try
                 {
-                    var station = new BO.BusLineStation(tbStationCode.Text, float.Parse(tbStationLat.Text), float.Parse(tbStationLong.Text), tbStationAddress.Text);
+                    var station = new BO.BusLineStation() {code= tbStationCode.Text,Latitude= float.Parse(tbStationLat.Text),Longitude= float.Parse(tbStationLong.Text),Address= tbStationAddress.Text,Name=tbStationName.Text };
                     station.id = (cbStations.SelectedItem as BO.BusLineStation).id;
                     bl.updateStation(station);
                     initTextBoxByCbInStations();
@@ -401,9 +402,61 @@ namespace PL
             }
             catch (Exception exc) { tblError.Text = exc.Message; return; }
         }
-              
+
         #endregion
 
+        #region lines
+        private void addLine_click(object sender, RoutedEventArgs e)
+        {
+            addLine addWindow = new addLine();
+            addWindow.ShowDialog();
+            cbBusLines.ItemsSource = bl.GetAllbusLines();
+            cbBusLines.Items.Refresh();
+            cbBusLines.SelectedIndex = 0;
+            initTextBoxByCbInStations();
+
+
+        }
+        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbBusLines.SelectedItem != null)
+                lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
+        }
+        private void lvStationOfLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void lvStationOfLine_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DeleteLine_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbBusLines.SelectedItem == null)
+                return;
+
+            try { bl.removeLine((cbBusLines.SelectedItem as BO.BusLine).id); }
+            catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+            cbBusLines.ItemsSource = bl.GetAllbusLines();
+            cbBusLines.Items.Refresh();
+            cbBusLines.SelectedIndex = 0;
+
+
+        }
+
+        private void UpdateLine_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbBusLines.SelectedItem == null)
+                return;
+            addLine addWindow = new addLine(1, (cbBusLines.SelectedItem as BO.BusLine).id, (cbBusLines.SelectedItem as BO.BusLine).number);
+            addWindow.ShowDialog();
+            cbBusLines.ItemsSource = bl.GetAllbusLines();
+            cbBusLines.Items.Refresh();
+            cbBusLines.SelectedIndex = 0;
+        }
+
+        #endregion
 
         #region utility
         private void initSource()
@@ -485,6 +538,7 @@ namespace PL
                 if (flagEnabled)
                 {
                     tbStationCode.IsEnabled = true;
+                    tbStationName.IsEnabled = true;
                     tbStationAddress.IsEnabled = true;
                     tbStationLat.IsEnabled = true;
                     tbStationLong.IsEnabled = true;
@@ -492,6 +546,7 @@ namespace PL
                 else
                 {
                     tbStationCode.IsEnabled = false;
+                    tbStationName.IsEnabled = false;
                     tbStationAddress.IsEnabled = false;
                     tbStationLat.IsEnabled = false;
                     tbStationLong.IsEnabled = false;
@@ -499,6 +554,7 @@ namespace PL
                 if (flagContent)
                 {
                     tbStationCode.Clear();
+                    tbStationName.Clear();
                     tbStationAddress.Clear();
                     tbStationLat.Clear();
                     tbStationLong.Clear();
@@ -622,58 +678,7 @@ namespace PL
         }
         #endregion
 
-        #region lines
-        private void addLine_click(object sender, RoutedEventArgs e)
-        {
-           addLine addWindow = new addLine();
-            addWindow.ShowDialog();
-            cbBusLines.ItemsSource = bl.GetAllbusLines();
-            cbBusLines.Items.Refresh();
-            cbBusLines.SelectedIndex = 0;
-            initTextBoxByCbInStations();
-
-         
-        }
-        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(cbBusLines.SelectedItem!=null)
-            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
-        }
-        private void lvStationOfLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-        private void lvStationOfLine_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void DeleteLine_Click(object sender, RoutedEventArgs e)
-        {
-            if (cbBusLines.SelectedItem == null)
-                return;
-
-            try { bl.removeLine((cbBusLines.SelectedItem as BO.BusLine).id); }
-            catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-            cbBusLines.ItemsSource = bl.GetAllbusLines();
-            cbBusLines.Items.Refresh();
-            cbBusLines.SelectedIndex = 0;
-
-
-        }
-
-        private void UpdateLine_Click(object sender, RoutedEventArgs e)
-        {
-            if (cbBusLines.SelectedItem == null)
-                return;
-            addLine addWindow = new addLine(1, (cbBusLines.SelectedItem as BO.BusLine).id, (cbBusLines.SelectedItem as BO.BusLine).number);
-            addWindow.ShowDialog();
-            cbBusLines.ItemsSource = bl.GetAllbusLines();
-            cbBusLines.Items.Refresh();
-            cbBusLines.SelectedIndex = 0;
-        }
-
-        #endregion
+     
 
     }
 }

@@ -287,12 +287,29 @@ namespace BL
         public IEnumerable<BusLineStation> GetAllStationInLine(int id)
         {
             //var line=DOtoBOConvertor<BO.busLine, DO.busLine>(dl.GetBusLine(id));
-            if(dl.GetAllbusLineStation()!=null&& dl.GetAllLineInStation()!=null)
-            return (from sta in dl.GetAllbusLineStation() where sta != null && sta.enabled == true 
-                         from linInSta in dl.GetAllLineInStation() where linInSta != null && linInSta.Lineid == id && linInSta.stationid == sta.id
-                         orderby linInSta.placeOrder ascending
-                        select Utility.DOtoBOConvertor<BO.BusLineStation, DO.BusLineStation>(sta)).ToList();
-            return default;
+            if (dl.GetAllbusLineStation() != null && dl.GetAllLineInStation() != null)
+            {
+                var station = (from sta in dl.GetAllbusLineStation()
+                               where sta != null && sta.enabled == true
+                               from linInSta in dl.GetAllLineInStation()
+                               where linInSta != null && linInSta.Lineid == id && linInSta.stationid == sta.id
+                               orderby linInSta.placeOrder ascending
+                               select Utility.DOtoBOConvertor<BO.BusLineStation, DO.BusLineStation>(sta)).ToList();
+                bool flag = true;
+                if(dl.GetAllFollowStation()!=null)
+                    foreach(var sta in station)
+                    {
+                        if (flag)
+                        {
+                            flag = false;
+                            continue;
+                        }
+                        sta.Distance = dl.GetAllFollowStation().First(x => x.secondStationid == sta.id && x.lineId == id).distance;
+                        sta.DriveTime = dl.GetAllFollowStation().First(x => x.secondStationid == sta.id && x.lineId == id).driveTime;
+                    }
+                return station;
+            }           
+                return default;
         }
         public IEnumerable<BusStation> GetAllbusStations()
         {
