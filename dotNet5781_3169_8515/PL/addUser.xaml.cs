@@ -29,16 +29,16 @@ namespace PL
         {
             txbFirstName.Clear();
             txbLastName.Clear();
-            txbmail.Clear();
-            txbusername.Clear();
-            psbconfirm.Clear();
-            psbpassword.Clear();
+            txbMail.Clear();
+            txbUsername.Clear();
+            psbConfirm.Clear();
+            psbPassword.Clear();
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             //add input check/regex
-            try { bl.addUser(new BO.User() {password= psbpassword.Password,name= txbusername.Text,accessLevel= "User",fullname= txbFirstName.Text + " " + txbLastName.Text,mail= txbmail.Text,enabled=true}); }
+            try { bl.addUser(new BO.User() {password= psbPassword.Password,name= txbUsername.Text,accessLevel= "User",fullname= txbFirstName.Text + " " + txbLastName.Text,mail= txbMail.Text,enabled=true}); }
             catch (Exception ecx) { errormessage.Text = ecx.Message; return; }
             this.Close();
         }
