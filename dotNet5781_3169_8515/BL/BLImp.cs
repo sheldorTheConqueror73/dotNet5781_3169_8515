@@ -40,7 +40,7 @@ namespace BL
             return Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(dl.GetBus(id));
         }
 
-        public List<Bus> GetAllBuses(int order=1)
+        public IEnumerable<Bus> GetAllBuses(int order=1)
         {
             var result = dl.GetAllBuses();
             if (result != null)
