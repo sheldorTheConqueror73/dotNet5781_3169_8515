@@ -60,7 +60,7 @@ namespace PL
                 string plateNumber = tbId.Text;
                 DateTime rd = dpRegiDate.SelectedDate.Value;
                 DateTime lm = dpLastMaintenance.SelectedDate.Value;
-                try { bl.addBus(new BO.Bus(rd, lm, plateNumber, fuel, dist, false, totalDIst, "ready")); }
+                try { bl.addBus(new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready"}); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
                 finally { initTextBoxes(false, false, 1); }
                 refreshBuses();
@@ -93,7 +93,7 @@ namespace PL
             }
             try
             {
-                var bus = new BO.Bus(dpRegiDate.SelectedDate.Value, dpLastMaintenance.SelectedDate.Value, tbId.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false, totalDIst, (lvBuses.SelectedItem as BO.Bus).status);
+                var bus = new BO.Bus() {registrationDate= dpRegiDate.SelectedDate.Value,lastMaintenance= dpLastMaintenance.SelectedDate.Value,plateNumber= tbId.Text,fuel= fuel,distance= dist,dangerous= tbDangerous.Text == "YES" ? true : false,totalDistance= totalDIst,status= (lvBuses.SelectedItem as BO.Bus).status };
                 bus.id = (lvBuses.SelectedItem as BO.Bus).id;
                 bl.updateBus(bus);
                 id = bus.id;

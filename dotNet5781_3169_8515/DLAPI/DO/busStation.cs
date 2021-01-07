@@ -18,18 +18,65 @@ namespace DO
         //getters and setters:
  
         public double Latitude
-        { get; set; }
+        {
+            get => latitude;
+            set
+            {
+                if (!((value < -90) || (value > 90)))
+                    latitude = value;
+            }
+        }
         public double Longitude
-        { get; set; }
+        {
+            get => longitude;
+            set
+            {
+                if (!((value < -180) || (value > 180)))
+                    longitude = value;
+            }
+        }
         public string Address
-        { get; set; }
+        {
+            get => address;
+            set { address = value; }
+        }
         public BusStation() //ctor
         {
             code = "";
             address = "";
+            //latitude =NULL ;
+            //longitude = NULL;
             enabled = true;
         }
-        
+        public BusStation(string code)//ctor
+        {
+            this.code = code;
+            address = "";
+            //latitude = NULL;
+           // longitude = NULL;
+            enabled = true;
+        }
+        public BusStation(string code, double lat, double lon, string address = "")//ctor
+        {
+            this.code = code;
+            if (address == "")
+                address = "Unnamed station";
+
+            this.address = address;
+            this.latitude = lat;
+            this.longitude = lon;
+            enabled = true;
+        }
+
+        public BusStation(BusStation bs)
+        {
+            this.id = bs.id;
+            this.address = bs.Address;
+            this.latitude = bs.Latitude;
+            this.longitude = bs.Longitude;
+            this.enabled = bs.enabled;
+        }
+       
         public override string ToString()
         {
             string str = $"{this.Address}  ";
