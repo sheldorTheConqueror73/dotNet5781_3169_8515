@@ -24,15 +24,5 @@ namespace BO
             mail = "";
             enabled = true;
         }
-        public User(string password, string name, string access,string fullName,String mail)
-        {
-            this.password = password;
-            this.name = name;
-            accessLevel = access;
-            enabled = true;
-            this.fullname = fullName;
-            this.mail = mail;
-        }
-
     }
 }

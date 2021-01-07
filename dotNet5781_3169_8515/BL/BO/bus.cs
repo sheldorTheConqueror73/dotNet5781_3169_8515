@@ -44,24 +44,7 @@ namespace BO
 
         }
         //ctor
-        public Bus(DateTime date, DateTime lm, string plateNumber = "", int fuel = 0, int distance = 0, bool dangerous = false, int totalDistance = 0, string _status = "ready", timerclass _timer = null, string path = "/src/pics/okIcon.png")//cotr
-        {
-            this.plateNumber = plateNumber;
-            this.fuel = fuel;
-            this.distance = distance;
-            this.dangerous = dangerous;
-            this.registrationDate = date;
-            this.lastMaintenance = lm;
-            this.totalDistance = totalDistance;
-            this.status = _status;
-            this.timer = new timerclass();
-            this.timer = _timer;
-            iconPath = path;
-            enabled = true;
-            //idFormat = formatId(id);
-
-        }
-
+       
 
         //to string function
         public override string ToString()
