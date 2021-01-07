@@ -33,16 +33,26 @@ namespace PL
             initSource();  
             
         }
-        
+
 
         #region buses
+
+        /// <summary>
+        /// enables editing mode to update bus properties
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             initTextBoxes(true, false, 1);
             btnUpdate.Visibility = System.Windows.Visibility.Visible;
         }
 
-
+        /// <summary>
+        /// calls BL.addbus() to add new bus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (btnAddBus.Content.Equals("Add"))
@@ -60,9 +70,9 @@ namespace PL
                 string plateNumber = tbId.Text;
                 DateTime rd = dpRegiDate.SelectedDate.Value;
                 DateTime lm = dpLastMaintenance.SelectedDate.Value;
-                try { bl.addBus(new BO.Bus(rd, lm, plateNumber, fuel, dist, false, totalDIst, "ready")); }
+                try { bl.addBus(new BO.Bus(rd, lm, plateNumber, fuel, dist, false, totalDIst, "ready")); }// add new bus to data
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-                finally { initTextBoxes(false, false, 1); }
+                finally { initTextBoxes(false, false, 1); }// disable all textboces anyway
                 refreshBuses();
                 btnAddBus.Content = "Add";
                 lbDanger.Visibility = System.Windows.Visibility.Visible;
@@ -71,12 +81,16 @@ namespace PL
 
         }
 
-
+        /// <summary>
+        /// calls BL.updateBus() to update bus 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             int id;
             int fuel, dist, totalDIst;
-            try { validateInput(out fuel, out dist, out totalDIst); }
+            try { validateInput(out fuel, out dist, out totalDIst); }//validate user input
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             finally
             {
@@ -93,15 +107,16 @@ namespace PL
             }
             try
             {
-                var bus = new BO.Bus(dpRegiDate.SelectedDate.Value, dpLastMaintenance.SelectedDate.Value, tbId.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false, totalDIst, (lvBuses.SelectedItem as BO.Bus).status);
+                var bus = new BO.Bus(dpRegiDate.SelectedDate.Value, dpLastMaintenance.SelectedDate.Value, tbId.Text, fuel, dist, tbDangerous.Text == "YES" ? true : false, totalDIst, (lvBuses.SelectedItem as BO.Bus).status); //creates bus object to send to update function
                 bus.id = (lvBuses.SelectedItem as BO.Bus).id;
-                bl.updateBus(bus);
+                bl.updateBus(bus);//calls update function
+
                 id = bus.id;
             }
             catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
             refreshBuses();
             int index = 0;
-            foreach (var item in lvBuses.Items)
+            foreach (var item in lvBuses.Items)//finds which index the selected item is in the listView
             {
                 if ((item as BO.Bus).id ==id)
                     break;
@@ -114,17 +129,26 @@ namespace PL
         }
 
 
+        /// <summary>
+        /// calls the delete function
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             var fxElt = sender as FrameworkElement;
-            var lineData = fxElt.DataContext as BO.Bus;
+            var lineData = fxElt.DataContext as BO.Bus;//find the selced line in listView
             int id = lineData.id;
-            bl.removeBus(id);
+            bl.removeBus(id);//remove bus function
             refreshBuses();
             initTextBoxes(false, true, 1);
         }
 
-
+        /// <summary>
+        /// refules the bus the mouse is hovering over
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Refuel_Click(object sender, RoutedEventArgs e)
         {
             var fxElt = sender as FrameworkElement;
@@ -132,7 +156,7 @@ namespace PL
             int id = lineData.id;
             bl.refuel(lineData.id);
             int index = 0;
-            foreach (var item in lvBuses.Items)
+            foreach (var item in lvBuses.Items)// finds which index the selected item is in the listView
             {
                 if ((item as BO.Bus).id == id)
                     break;
@@ -141,12 +165,20 @@ namespace PL
             refreshBuses();
             lvBuses.SelectedIndex = index;
         }
+        /// <summary>
+        /// updates the listview display
+        /// </summary>
         private void refreshBuses()
         {
             tbiBuses.DataContext = bl.GetAllBuses(busOrder);
             lvBuses.Items.Refresh();
         }
 
+        /// <summary>
+        /// preforms Maintenance on the bus the mouse is hovering over
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Maintenance_Click(object sender, RoutedEventArgs e)
         {
             var fxElt = sender as FrameworkElement;
@@ -154,7 +186,7 @@ namespace PL
             int id = lineData.id;
             bl.maintain(lineData.id);
             int index = 0;
-            foreach (var item in lvBuses.Items)
+            foreach (var item in lvBuses.Items)// finds which index the selected item is in the listView
             {
                 if ((item as BO.Bus).id == id)
                     break;
@@ -165,13 +197,22 @@ namespace PL
 
         }
 
-
+        /// <summary>
+        /// when user clicks away from an an entry disable al textboxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void busesView_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             initTextBoxes(false, false, 1);
             btnUpdate.Visibility = System.Windows.Visibility.Hidden;
         }
 
+        /// <summary>
+        /// when user selects anthoer sorting method refresh listview 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             busOrder = cbSort.SelectedIndex;

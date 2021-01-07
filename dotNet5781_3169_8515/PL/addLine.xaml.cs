@@ -50,6 +50,12 @@ namespace PL
             lvto.ItemsSource = tList;
         }
 
+
+        /// <summary>
+        /// moves a station from the unselected to the selected list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lvfrom_MouseClick(object sender, SelectionChangedEventArgs e)
         {
             if (lvfrom.SelectedItem == null)
@@ -62,9 +68,6 @@ namespace PL
                     fList.Remove(station);
                     break;
                 }
-            //addLineUserPromt promt = new addLineUserPromt(distance,time);
-            // if(tList.Count!=1)
-            //  promt.ShowDialog();
             if (tList.Count == 1)
             {
                 refresh();
@@ -83,6 +86,11 @@ namespace PL
             refresh();
         }
 
+        /// <summary>
+        /// moves a station from the selected  to the unselectedlist
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lvto_MouseClick(object sender, SelectionChangedEventArgs e)
         {
             if (lvto.SelectedItem == null)
@@ -102,6 +110,9 @@ namespace PL
             distance.Remove(temp2);
             refresh();
         }
+        /// <summary>
+        /// refreshes selected and unselected stations list
+        /// </summary>
         private  void refresh()
         {
             lvfrom.Items.Refresh();
@@ -109,6 +120,9 @@ namespace PL
             lvto.Items.Refresh();
             lvto.UnselectAll();
         }
+        /// <summary>
+        /// validates user input, throws exeption if not vaild
+        /// </summary>
         private  void validateInput()
         {
             foreach (var chr in txbLineNumber.Text)
@@ -117,17 +131,22 @@ namespace PL
             if(txbLineNumber.Text.Length>3)
                 throw new InvalidUserInputExecption("Line number cannot be more than 3 digits longs");
         }
+        /// <summary>
+        /// call BL.add() and adds new line or updates existing line
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             try { validateInput(); }
             catch (Exception exc) { lblError.Content = exc.Message; return; }
-            if (mode==0)
+            if (mode==0)//add new line
             { 
                try {  bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, tList,distance,time);}
                catch (Exception exc) { lblError.Content = exc.Message; return; }
              
             }
-            else
+            else//update line
             {
                 try { bl.updateLine(lineId,txbLineNumber.Text, cmbarea.SelectedIndex, tList, distance, time); }
                 catch (Exception exc) { lblError.Content = exc.Message; return; }

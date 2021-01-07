@@ -25,6 +25,11 @@ namespace PL
             InitializeComponent();
         }
 
+        /// <summary>
+        /// clears wpf form textboxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void reset(object sender, RoutedEventArgs e)
         {
             txbFirstName.Clear();
@@ -35,6 +40,11 @@ namespace PL
             psbpassword.Clear();
         }
 
+        /// <summary>
+        /// calls BL.adduser() to create new user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             //add input check/regex

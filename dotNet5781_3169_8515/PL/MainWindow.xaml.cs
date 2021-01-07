@@ -34,6 +34,11 @@ namespace PL
             InitializeComponent();
         }
 
+        /// <summary>
+        /// calls BL.authenticate to check if user is registered and check user access level
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void login_Click(object sender, RoutedEventArgs e)
         {
             managerView managerView = new managerView();
@@ -44,35 +49,45 @@ namespace PL
                 errormessage.Text="Please enter user name AND password";
                 return;
             }
-            string str="";
-            try { str = bl.authenticate(username, password, out userId); }
+            string accessLevel="";
+            try { accessLevel = bl.authenticate(username, password, out userId); }//check if user exists and return user access level
             catch (Exception exc) { errormessage.Text = exc.Message; }
          
-            if (str == "Admin" || str == "Operator")
+            if (accessLevel == "Admin" || accessLevel == "Operator")//if user is admin or manager
             {
                 this.Hide();
                 player.Open(new Uri(@"C:\Users\Chuck\source\repos\dotNet5781_3169_8515\dotNet5781_3169_8515\PL\Resources\Startup.mp3"));
                 player.Play();
                 managerView.ShowDialog();
             }
-            if (str == "User")
+            if (accessLevel == "User")//if user is a regular user
             {
                 errormessage.Text = "Welcom user";
             }
-            else
+            else//if user is not registered
             {
                 player.Open(new Uri(@"C:\Users\Chuck\source\repos\dotNet5781_3169_8515\dotNet5781_3169_8515\PL\Resources\AccessDenied.mp3"));
                 player.Play();
             }
         }
 
+        /// <summary>
+        /// opens the user registrarion window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void newUser_click(object sender, RoutedEventArgs e)
         {
             addUser add = new addUser();
             add.ShowDialog();
         }
 
-        private void TextBlock_KeyDown(object sender, KeyEventArgs e)
+        /// <summary>
+        /// if user presses enter login
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Text_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
               login_Click(this, new RoutedEventArgs());
