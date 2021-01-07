@@ -50,7 +50,7 @@
     <Compile Include="BO\BusLineStation.cs" />
     <Compile Include="BO\BusStation.cs" />
     <Compile Include="BO\Enums.cs" />
-    <Compile Include="BO\exceptions.cs" />
+    <Compile Include="BO\Exceptions.cs" />
     <Compile Include="BO\FollowStations.cs" />
     <Compile Include="BO\LineInStation.cs" />
     <Compile Include="BO\User.cs" />

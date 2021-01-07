@@ -10,6 +10,13 @@ namespace BL
 {
     public static class Utility
     {
+        /// <summary>
+        /// convert a DO object to BO object
+        /// </summary>
+        /// <typeparam name="T">BO object</typeparam>
+        /// <typeparam name="S">DO object</typeparam>
+        /// <param name="line">the converting object</param>
+        /// <returns> return the object as BO object</returns>
         internal static T DOtoBOConvertor<T, S>(S line) where T : BO.BOobject, new() where S : DO.DOobject, new()
         {
             T output = new T();
@@ -24,7 +31,13 @@ namespace BL
             return output;
 
         }
-
+        /// <summary>
+        /// convert a BO object to DO object
+        /// </summary>
+        /// <typeparam name="T">DO object</typeparam>
+        /// <typeparam name="S">BO object</typeparam>
+        /// <param name="line">the converting object</param>
+        /// <returns> return the object as DO object</returns>
         internal static T BOtoDOConvertor<T, S>(S line) where T : DO.DOobject, new() where S : BO.BOobject, new()
         {
             T output = new T();
@@ -39,6 +52,10 @@ namespace BL
             return output;
 
         }
+        /// <summary>
+        /// get bus and change its number to format of $$-$$$-$$ or  $$$-$$-$$$
+        /// </summary>
+        /// <param name="bus">bus</param>
         internal static void formatPlateNumber(this BO.Bus bus)
         {
             bus.plateNumber=removeChar(bus.plateNumber,'-');

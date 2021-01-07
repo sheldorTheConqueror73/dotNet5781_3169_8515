@@ -49,7 +49,7 @@
     <Compile Include="DO\BusStation.cs" />
     <Compile Include="DO\DOobject.cs" />
     <Compile Include="DO\Enums.cs" />
-    <Compile Include="DO\exceptions.cs" />
+    <Compile Include="DO\Exceptions.cs" />
     <Compile Include="DO\FollowStations.cs" />
     <Compile Include="DO\LineInStation.cs" />
     <Compile Include="DO\User.cs" />
