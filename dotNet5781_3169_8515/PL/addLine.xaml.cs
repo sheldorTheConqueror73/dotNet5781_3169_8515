@@ -46,8 +46,8 @@ namespace PL
                 txbLineNumber.IsEnabled = false;
 
             }
-            lvfrom.ItemsSource = fList;
-            lvto.ItemsSource = tList;
+            lvFrom.ItemsSource = fList;
+            lvTo.ItemsSource = tList;
         }
 
 
@@ -58,9 +58,9 @@ namespace PL
         /// <param name="e"></param>
         private void lvfrom_MouseClick(object sender, SelectionChangedEventArgs e)
         {
-            if (lvfrom.SelectedItem == null)
+            if (lvFrom.SelectedItem == null)
                 return;
-            int id = (lvfrom.SelectedItem as BO.BusLineStation).id;
+            int id = (lvFrom.SelectedItem as BO.BusLineStation).id;
             foreach(var station in fList)
                 if(station.id==id)
                 {
@@ -74,7 +74,7 @@ namespace PL
                 return;
             }
             var sCoord = new GeoCoordinate(tList[tList.Count-2].Latitude, tList[tList.Count - 2].Longitude);
-            var eCoord = new GeoCoordinate((lvfrom.SelectedItem as BO.BusLineStation).Latitude, (lvfrom.SelectedItem as BO.BusLineStation).Longitude);
+            var eCoord = new GeoCoordinate((lvFrom.SelectedItem as BO.BusLineStation).Latitude, (lvFrom.SelectedItem as BO.BusLineStation).Longitude);
             
             if(sCoord.GetDistanceTo(eCoord)<1000)
                 distance.Add((int)sCoord.GetDistanceTo(eCoord));
@@ -93,10 +93,10 @@ namespace PL
         /// <param name="e"></param>
         private void lvto_MouseClick(object sender, SelectionChangedEventArgs e)
         {
-            if (lvto.SelectedItem == null)
+            if (lvTo.SelectedItem == null)
                 return;
-            int id = (lvto.SelectedItem as BO.BusLineStation).id;
-            int index = lvto.SelectedIndex;
+            int id = (lvTo.SelectedItem as BO.BusLineStation).id;
+            int index = lvTo.SelectedIndex;
             foreach (var station in tList)
                 if (station.id == id)
                 {
@@ -115,10 +115,10 @@ namespace PL
         /// </summary>
         private  void refresh()
         {
-            lvfrom.Items.Refresh();
-            lvfrom.UnselectAll();
-            lvto.Items.Refresh();
-            lvto.UnselectAll();
+            lvFrom.Items.Refresh();
+            lvFrom.UnselectAll();
+            lvTo.Items.Refresh();
+            lvTo.UnselectAll();
         }
         /// <summary>
         /// validates user input, throws exeption if not vaild
@@ -142,13 +142,13 @@ namespace PL
             catch (Exception exc) { lblError.Content = exc.Message; return; }
             if (mode==0)//add new line
             { 
-               try {  bl.addLine(txbLineNumber.Text, cmbarea.SelectedIndex, tList,distance,time);}
+               try {  bl.addLine(txbLineNumber.Text, cmbArea.SelectedIndex, tList,distance,time);}
                catch (Exception exc) { lblError.Content = exc.Message; return; }
              
             }
             else//update line
             {
-                try { bl.updateLine(lineId,txbLineNumber.Text, cmbarea.SelectedIndex, tList, distance, time); }
+                try { bl.updateLine(lineId,txbLineNumber.Text, cmbArea.SelectedIndex, tList, distance, time); }
                 catch (Exception exc) { lblError.Content = exc.Message; return; }
 
             }

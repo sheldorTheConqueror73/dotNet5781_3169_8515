@@ -15,40 +15,15 @@ namespace BO
 
         //getters and setters:
         public double Distance
-        {
-            get => distance;
-            set
-            {
-                if (value > 0)
-                    distance = value;
-            }
-        }
+        { get; set; }
         public TimeSpan DriveTime
-        {
-            get => driveTime;
-            set { driveTime = value; }
-        }
+        { get; set; }
 
-        public BusLineStation()//ctor
+        public BusLineStation():base()//ctor
         {
-            distance = -1;
+            distance = 0;
             driveTime = new TimeSpan();
         }
-        public BusLineStation(string id, float lat, float lon, string address = "") : base(id, lat, lon, address)//ctor
-        {
-            this.distance = 0;
-            this.driveTime = new TimeSpan();
-        }
-
-
-        public BusLineStation(BusLineStation bs) : base(bs)
-        {
-            this.distance = bs.Distance;
-            this.driveTime = bs.DriveTime;
-        }
-
-  
-
        
 
         public int CompareTo(BusLineStation other)//compare between two objects of busLineStation by Id.

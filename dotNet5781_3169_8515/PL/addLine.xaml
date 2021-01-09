@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="addLine" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/bckg1.jpg" />
+    </Window.Background>
     <Grid>
-        <ListView HorizontalAlignment="Left" Name="lvfrom" Height="377" Margin="0,42,0,0" VerticalAlignment="Top" Width="215" SelectionChanged="lvfrom_MouseClick">
+        <ListView HorizontalAlignment="Left" Name="lvFrom" Height="377" Margin="0,42,0,0" VerticalAlignment="Top" Width="215" SelectionChanged="lvfrom_MouseClick" Background="Transparent">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding code}">
@@ -27,7 +30,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView x:Name="lvto" HorizontalAlignment="Left" Height="377" Margin="215,42,0,0" VerticalAlignment="Top" Width="214" SelectionChanged="lvto_MouseClick">
+        <ListView x:Name="lvTo" HorizontalAlignment="Left" Height="377" Margin="215,42,0,0" VerticalAlignment="Top" Width="214" SelectionChanged="lvto_MouseClick" Background="Transparent">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Code" Width="70"  DisplayMemberBinding="{Binding code}">
@@ -54,8 +57,8 @@
         <TextBlock  HorizontalAlignment="Left" Height="17" Margin="26,10,0,0" VerticalAlignment="Top" IsEnabled="False" Width="231">
             Double  click on a station to add it to path
         </TextBlock>
-        <TextBox x:Name="txbLineNumber" HorizontalAlignment="Left" Height="23" Margin="580,45,0,0" TextWrapping="Wrap" HorizontalContentAlignment="Left" Text="TextBox" VerticalAlignment="Top" Width="85"/>
-        <ComboBox x:Name="cmbarea" HorizontalAlignment="Left" Margin="580,73,0,0" VerticalAlignment="Top" Width="85">
+        <TextBox x:Name="txbLineNumber" HorizontalAlignment="Left" Height="23" Margin="580,45,0,0" TextWrapping="Wrap" HorizontalContentAlignment="Left" Text="" VerticalAlignment="Top" Width="85"/>
+        <ComboBox x:Name="cmbArea" HorizontalAlignment="Left" Margin="580,73,0,0" VerticalAlignment="Top" Width="85">
             <ComboBoxItem  Content="General" IsSelected="True"/>
             <ComboBoxItem  Content="NewAnkh"/>
             <ComboBoxItem  Content="Narnia"/>

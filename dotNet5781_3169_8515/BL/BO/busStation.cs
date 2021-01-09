@@ -17,59 +17,20 @@ namespace BO
         public string  Name { get; set; }
         //getters and setters:
         public double Latitude
-        {
-            get => latitude;
-            set
-            {
-                if (!((value < -90) || (value > 90)))
-                    latitude = value;
-            }
-        }
+        { get; set; }
         public double Longitude
-        {
-            get => longitude;
-            set
-            {
-                if (!((value < -180) || (value > 180)))
-                    longitude = value;
-            }
-        }
+        { get; set; }
         public string Address
-        {
-            get => address;
-            set { address = value; }
-        }
+        { get; set; }
         public BusStation() //ctor
         {
             code = "";
             address = "";
-           // latitude = NULL;
-           // longitude = NULL;
+           
             enabled = true;
         }
       
-        public BusStation(string code, double lat, double lon, string address = "")//ctor
-        {
-            this.code = code;
-            if (address == "")
-                address = "Unnamed station";
-
-            this.address = address;
-            this.latitude = lat;
-            this.longitude = lon;
-            enabled = true;
-        }
-
-        public BusStation(BusStation bs)
-        {
-            this.code = bs.code;
-            this.id = bs.id;
-            this.address = bs.Address;
-            this.latitude = bs.Latitude;
-            this.longitude = bs.Longitude;
-            enabled = true;
-        }
-
+       
         public override string ToString()
         {
             string str = $"{this.Address}  ";

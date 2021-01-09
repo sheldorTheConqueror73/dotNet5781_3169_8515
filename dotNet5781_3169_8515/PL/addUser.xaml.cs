@@ -34,10 +34,10 @@ namespace PL
         {
             txbFirstName.Clear();
             txbLastName.Clear();
-            txbmail.Clear();
-            txbusername.Clear();
-            psbconfirm.Clear();
-            psbpassword.Clear();
+            txbMail.Clear();
+            txbUsername.Clear();
+            psbConfirm.Clear();
+            psbPassword.Clear();
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace PL
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             //add input check/regex
-            try { bl.addUser(new BO.User(psbpassword.Password, txbusername.Text,"User", txbFirstName.Text + " " + txbLastName.Text, txbmail.Text)); }
+            try { bl.addUser(new BO.User() {password= psbPassword.Password,name= txbUsername.Text,accessLevel= "User",fullname= txbFirstName.Text + " " + txbLastName.Text,mail= txbMail.Text,enabled=true}); }
             catch (Exception ecx) { errormessage.Text = ecx.Message; return; }
             this.Close();
         }

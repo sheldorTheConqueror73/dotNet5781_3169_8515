@@ -24,13 +24,13 @@
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,166,0,0"  Text="Email Address" VerticalAlignment="Top" Width="110" />
             <TextBox Height="23" HorizontalAlignment="Left" Margin="183,20,0,0" Name="txbFirstName" VerticalAlignment="Top" Width="222" />
             <TextBox Height="23" HorizontalAlignment="Left" Margin="183,50,0,0" Name="txbLastName" VerticalAlignment="Top" Width="222" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,80,0,0" Name="txbusername" VerticalAlignment="Top" Width="222" />
-            <PasswordBox Height="23" HorizontalAlignment="Left" Margin="183,107,0,0" Name="psbpassword" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,80,0,0" Name="txbUsername" VerticalAlignment="Top" Width="222" />
+            <PasswordBox Height="23" HorizontalAlignment="Left" Margin="183,107,0,0" Name="psbPassword" VerticalAlignment="Top" Width="222" />
             <!--For password-->
-            <PasswordBox Height="23" HorizontalAlignment="Left" Margin="183,136,0,0" Name="psbconfirm" VerticalAlignment="Top" Width="222" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,0,0,75" Name="txbmail" VerticalAlignment="Bottom" Width="222" />
-            <Button Content="Submit" Height="23" HorizontalAlignment="Left" Margin="183,204,0,0" Name="Submit" VerticalAlignment="Top" Width="70" Click="Submit_Click" />
-            <Button Content="Reset" Height="23" HorizontalAlignment="Left" Margin="335,204,0,0" Name="btnreset" VerticalAlignment="Top" Width="70" Click="reset"  />
+            <PasswordBox Height="23" HorizontalAlignment="Left" Margin="183,136,0,0" Name="psbConfirm" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,0,0,75" Name="txbMail" VerticalAlignment="Bottom" Width="222" />
+            <Button Content="btnSubmit" Height="23" HorizontalAlignment="Left" Margin="183,204,0,0" Name="Submit" VerticalAlignment="Top" Width="70" Click="Submit_Click" />
+            <Button Content="btnReset" Height="23" HorizontalAlignment="Left" Margin="335,204,0,0" Name="btnreset" VerticalAlignment="Top" Width="70" Click="reset"  />
         </Grid>
     </Grid>
 </Window>
