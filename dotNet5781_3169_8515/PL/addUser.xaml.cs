@@ -47,10 +47,40 @@ namespace PL
         /// <param name="e"></param>
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            //add input check/regex
+            try
+            {
+                validate();
+            }
+            catch (Exception exc)
+            {
+                txbErrorMessage.Text = exc.Message;
+            }
             try { bl.addUser(new BO.User() {password= psbPassword.Password,name= txbUsername.Text,accessLevel= "User",fullname= txbFirstName.Text + " " + txbLastName.Text,mail= txbMail.Text,enabled=true}); }
-            catch (Exception ecx) { errormessage.Text = ecx.Message; return; }
+            catch (Exception ecx) { txbErrorMessage.Text = ecx.Message; return; }
             this.Close();
+        }
+
+        /// <summary>
+        /// validates user input, throw exception in bnot vaild
+        /// </summary>
+        private void validate()
+        {
+            if (psbPassword.Password != psbConfirm.Password)
+                throw new InvalidUserInputExecption("Password does not match password confirm");
+            foreach (var chr in txbFirstName.Text)
+                if ((chr < 'a' && chr > 'z') || (chr < 'A' && chr > 'Z'))
+                    throw new InvalidUserInputExecption("First name may only contain latters");
+            foreach (var chr in txbLastName.Text)
+                if ((chr < 'a' && chr > 'z') || (chr < 'A' && chr > 'Z'))
+                    throw new InvalidUserInputExecption("Last name may only contain latters");
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(txbMail.Text);
+            }
+            catch
+            {
+                throw new InvalidUserInputExecption("Invalid mail address");
+            }
         }
         
     }
