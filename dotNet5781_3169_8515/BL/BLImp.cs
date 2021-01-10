@@ -122,7 +122,7 @@ namespace BL
                  if(result!=null)
                  return from item in result 
                         where item!=null && item.enabled == true
-                        orderby int .Parse(item.number) ascending
+                        orderby int.Parse(item.number) ascending
                     select (Utility.DOtoBOConvertor<BO.BusLine,DO.BusLine>(item));
             return default;
 
@@ -148,6 +148,13 @@ namespace BL
         /// </summary>
         public void updateLine(int id,string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time)
         {
+            TimeSpan drivetime = new TimeSpan();
+            foreach (var element in time)
+            {
+                drivetime += element;
+            }
+            if (drivetime.Days > 0)
+                throw new InvalidUserInputExecption("Bus line route must be less than a day");
             this.removeLine(id);
             this.addLine(number, area, path, distance, time);
         }
