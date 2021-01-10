@@ -61,7 +61,7 @@ namespace PL
         }
 
         /// <summary>
-        /// validates user input, throw exception in bnot vaild
+        /// validates user input, throw exception in bnot vaild    
         /// </summary>
         private void validate()
         {
