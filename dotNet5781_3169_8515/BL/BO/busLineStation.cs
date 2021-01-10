@@ -9,20 +9,16 @@ namespace BO
 {
     public class BusLineStation : BusStation, IComparable<BusLineStation>
     {
-        private double distance;
-        private TimeSpan driveTime;
-        public ObservableCollection<BusLine> ListOfLines { get; } = new ObservableCollection<BusLine>();
 
         //getters and setters:
         public double Distance
         { get; set; }
         public TimeSpan DriveTime
         { get; set; }
-
         public BusLineStation():base()//ctor
         {
-            distance = 0;
-            driveTime = new TimeSpan();
+            Distance = 0;
+            DriveTime = new TimeSpan();
         }
        
 

@@ -223,7 +223,9 @@ namespace PL
 
 
         #region stations
-
+        /// <summary>
+        /// when user selects station the list views of follow station and lines are updateing 
+        /// </summary>
         private void cbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbStations.SelectedItem != null && cbStations.SelectedItem != null)
@@ -234,7 +236,9 @@ namespace PL
 
         }
 
-       
+       /// <summary>
+       /// delete a station
+       /// </summary>
         private void DeleteStation_Click(object sender, RoutedEventArgs e)
         {
             if (cbStations.SelectedItem == null)
@@ -269,7 +273,9 @@ namespace PL
                 lvLinesInStation.ItemsSource=null;
             }
         }
-
+        /// <summary>
+        /// add station (clear the inputs fields)
+        /// </summary>
         private void Add_Station_Click(object sender, RoutedEventArgs e)
         {
             tblError.Text = "";
@@ -304,13 +310,18 @@ namespace PL
                 tbStationDistance.Visibility = Visibility.Visible;
             }
         }
-
+        /// <summary>
+        /// allow to user enter only digits to the code field
+        /// </summary>
         private void tbStationCode_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        TimeSpan fTs, eTs;
+        TimeSpan fTs, eTs;// timespan varibles to save the time drive between stations and the total drive time before changing
+        /// <summary>
+        /// 
+        /// </summary>
         private void lvFollowStation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (lvFollowStation.Items.Count == 0||lvFollowStation.SelectedItem==null)
@@ -346,12 +357,17 @@ namespace PL
             fTs = TimeSpan.Parse(bl.GetBusLine(idLine).driveTime);
             eTs = TimeSpan.Parse(tbStationDriveTm.Text);
         }
-        
+        /// <summary>
+        /// when user clicks away on follow station update the drive time and distance text boxes
+        /// </summary>
         private void lvFollowStation_PreviewMouseDown(object sender, MouseEventArgs e)
         {
             tblError.Text = "";        
             init_lvFollowStation_PreviewMouseDown();
         }
+        /// <summary>
+        /// visible the buttons of add/update and dissable follow station textboxes.
+        /// </summary>
         private void init_lvFollowStation_PreviewMouseDown()
         {
             tbStationDriveTm.IsEnabled = false;
@@ -364,6 +380,9 @@ namespace PL
             btnAddStation.Content = "Add";
             initTextBoxes(false, false, 3);
         }
+        /// <summary>
+        /// update station
+        /// </summary>
         private void btnUpdateStation_Click(object sender, RoutedEventArgs e)
         {
             if (btnUpdateStation.Content.Equals("Update"))
@@ -399,7 +418,9 @@ namespace PL
                 catch (Exception exc) { tblError.Text = exc.Message; return; }
             }
         }
-
+        /// <summary>
+        /// update the drive time or distance between the current station to the follow .
+        /// </summary>
         private void btnUpdateTimOrDis_Click(object sender, RoutedEventArgs e)
         {
             try { validINputDriveTimeOrDistance(); }
@@ -431,12 +452,10 @@ namespace PL
                     }
                     index2++;
                 }
-                fTs -= eTs;
-                fTs += TimeSpan.Parse(tbStationDriveTm.Text);
                 double x = double.Parse(tbStationDistance.Text);
                 var folStation = new BO.FollowStations((cbStations.SelectedItem as BO.BusLineStation).id, idsta,idLine, double.Parse(tbStationDistance.Text), TimeSpan.Parse(tbStationDriveTm.Text),lineNum);
                 folStation.id = bl.GetIdFollowStationBy((cbStations.SelectedItem as BO.BusLineStation).id, idsta, idLine);
-                bl.updateFollowStation(folStation, fTs.ToString());
+                bl.updateFollowStation(folStation,fTs,eTs, TimeSpan.Parse(tbStationDriveTm.Text));
                 lvLinesInStation.ItemsSource= bl.GetAllLinesInStation((cbStations.SelectedItem as BO.BusLineStation).id);
                 initTextBoxByCbInStations();
                 cbBusLines.ItemsSource = bl.GetAllbusLines();
@@ -632,6 +651,9 @@ namespace PL
                 }
             }
         }
+        /// <summary>
+        /// refresh any chosen station in combobox to the textboxes after changes.
+        /// </summary>
         private void initTextBoxByCbInStations()
         {
             
@@ -755,7 +777,6 @@ namespace PL
         }
         #endregion
 
-     
 
     }
 }

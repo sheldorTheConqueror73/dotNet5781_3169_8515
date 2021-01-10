@@ -487,25 +487,30 @@ namespace BL
             return default;
         }
 
-        //public void updateFollowStation(FollowStations folStation)
-        //{
-        //    dl.updateFollowStation(Utility.BOtoDOConvertor<DO.FollowStations, BO.FollowStations>(folStation));
-
-        //}
 
         /// <summary>
         /// update follow station and drive time of line.
         /// </summary>
         /// <param name="folStation">the updated follow station</param>
-        /// <param name="newDriveTime">drive time of line</param>
-        public void updateFollowStation(FollowStations folStation, string newDriveTime)
+        /// <param name="tTs">the total drive time</param>
+        /// <param name="bTs">the time before the changing</param>
+        /// <param name="aTs">the time after the changing</param>
+        public void updateFollowStation(FollowStations folStation,TimeSpan tTs,TimeSpan bTs,TimeSpan aTs)
         {
+            tTs -= bTs;
+            tTs += aTs;
             dl.updateFollowStation(Utility.BOtoDOConvertor<DO.FollowStations, BO.FollowStations>(folStation));
             var line = GetBusLine(folStation.lineId);
-            line.driveTime = newDriveTime;
+            line.driveTime = tTs.ToString();
             dl.updateLine(Utility.BOtoDOConvertor<DO.BusLine, BO.BusLine>(line));
         }
-
+        /// <summary>
+        /// return the id of follow station object by firest station+second station+line id
+        /// </summary>
+        /// <param name="idFirstSta">id of the first station in object follow station</param>
+        /// <param name="idSecondSta">id of the second station in object follow station</param>
+        /// <param name="idLine">id of the line in object follow station</param>
+        /// <returns></returns>
         public int GetIdFollowStationBy(int idFirstSta, int idSecondSta,int idLine)
         {
             foreach (var folSta in dl.GetAllFollowStation())

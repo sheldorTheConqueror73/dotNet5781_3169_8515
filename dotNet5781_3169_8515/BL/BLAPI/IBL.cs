@@ -8,6 +8,9 @@ using BO;
 
 namespace BLAPI
 {
+    /// <summary>
+    /// all comments appear in BLImp class
+    /// </summary>
     public interface IBL
     {
 
@@ -63,8 +66,7 @@ namespace BLAPI
         #endregion
         #region followStations
         IEnumerable<BusLineStation> GetAllFollowStationsAsStationsObj(int id);
-        //void updateFollowStation(FollowStations folStation);
-        void updateFollowStation(FollowStations folStation, string newDriveTime);
+        void updateFollowStation(FollowStations folStation, TimeSpan sTs, TimeSpan eTs, TimeSpan cTs);
         int GetIdFollowStationBy(int idFirstSta, int idSecondSta, int idLine);
         #endregion
 

@@ -25,12 +25,19 @@ namespace DL
 
         #region implementation
         #region bus
+        /// <summary>
+        /// retrun all buses
+        /// </summary>
         public IEnumerable<Bus> GetAllBuses()
         {
             return from bus in DataSource.buses
                    where bus!=null 
                    select bus.Clone();
         }
+        /// <summary>
+        /// retrun bus by id
+        /// </summary>
+        /// <param name="id">the id of the requested bus</param>
         public Bus GetBus(int id)
         {
             var result = DataSource.buses.Find(b => b.id == id);
@@ -39,6 +46,10 @@ namespace DL
             return result;
 
         }
+        /// <summary>
+        /// add bus
+        /// </summary>
+        /// <param name="b1">the new bus</param>
         public void addBus(Bus b1)
         {
             var result = DataSource.buses.Find(b => b.id == b1.id);
@@ -46,6 +57,10 @@ namespace DL
                 throw new itemAlreadyExistsException($"ID number {b1.id} is already taken");
             DataSource.buses.Add(b1.Clone());
         }
+        /// <summary>
+        /// remove bus
+        /// </summary>
+        /// <param name="id">the id of the requested bus to remove</param>
         public void removeBus(int id)
         {
             var result = DataSource.buses.Find(b => b.id == id);
@@ -53,6 +68,10 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.enabled = false;
         }
+        /// <summary>
+        /// update bus
+        /// </summary>
+        /// <param name="bus">the updated bus</param>
         public void updateBus(Bus bus)
         {
             var result = DataSource.buses.Find(b => b.id == bus.id);
@@ -62,6 +81,10 @@ namespace DL
             DataSource.buses.Add(bus.Clone());
 
         }
+        /// <summary>
+        /// refuel bus
+        /// </summary>
+        /// <param name="id">the id of the requested bus</param>
         public void refuel(int id)
         {
             var result = DataSource.buses.Find(b => b.id == id);
@@ -69,6 +92,10 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.fuel = Bus.FULL_TANK;
         }
+        /// <summary>
+        /// maintenance
+        /// </summary>
+        /// <param name="id">the id of the requested bus</param>
         public void maintain(int id)
         {
             var result = DataSource.buses.Find(b => b.id == id);
@@ -85,11 +112,18 @@ namespace DL
 
 
         #region busLine
+        /// <summary>
+        /// retrun all lines
+        /// </summary>
         public IEnumerable<BusLine> GetAllbusLines()
         {
             return from bus in DataSource.Lines
                    select bus.Clone();
         }
+        /// <summary>
+        /// return lines
+        /// </summary>
+        /// <param name="id">the id of the requested line</param>
         public BusLine GetBusLine(int id)
         {
 
@@ -98,6 +132,10 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             return result;
         }
+        /// <summary>
+        /// add line
+        /// </summary>
+        /// <param name="line">the new line</param>
         public void addLine(BusLine line)
         {
             var result = DataSource.Lines.Find(b => b.id == line.id);
@@ -105,6 +143,10 @@ namespace DL
                 throw new itemAlreadyExistsException($"ID number {line.id} is already taken");
             DataSource.Lines.Add(line.Clone());
         }
+        /// <summary>
+        /// remobe line
+        /// </summary>
+        /// <param name="id">the id of the requested line</param>
         public void removeLine(int id)
         {
             var result = DataSource.Lines.Find(b => b.id == id);
@@ -112,6 +154,10 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.enabled = false;
         }
+        /// <summary>
+        /// update line
+        /// </summary>
+        /// <param name="line">the updated line</param>
         public void updateLine(BusLine line)
         {
             var result = DataSource.Lines.Find(b => b.id == line.id);
@@ -120,6 +166,10 @@ namespace DL
             DataSource.Lines.Remove(result);
             DataSource.Lines.Add(line.Clone());
         }
+        /// <summary>
+        /// return how many lines exists with this number
+        /// </summary>
+        /// <param name="number">the number of the line</param>
         public int countLines(string number)
         {
             var result = from line in DataSource.Lines
@@ -127,47 +177,10 @@ namespace DL
                          select line;
             return result.Count();
         }
-
-        #endregion
-
-
-        #region LineStation
-        public void addStation(DO.BusLineStation station)
-        {
-            var result = DataSource.LineStations.Find(b => b.code == station.code);
-            if ((result != null) && (result.enabled == true))
-                throw new itemAlreadyExistsException($"ID number {station.code} is already taken");
-            DataSource.LineStations.Add(station.Clone());
-        }
-        public IEnumerable<BusLineStation> GetAllbusLineStation()
-        {
-            return from station in DataSource.LineStations
-                   select station.Clone();
-        }
-        public BusLineStation GetbusLineStation(int id)
-        {
-            var result = DataSource.LineStations.Find(b => b.id == id);
-            if (result == null)
-                throw new NoSuchEntryException($"No entry Matches ID number {id}");
-            return result;
-        }
-      
-        public void removebusLineStation(int id)
-        {
-            var result = DataSource.LineStations.Find(b => b.id == id);
-            if (result == null)
-                throw new NoSuchEntryException($"No entry Matches ID number {id}");
-            result.enabled = false;
-            DataSource.lineInStations.RemoveAll(b => b.stationid == id);
-        }
-        public void updatebusLineStation(BusLineStation station)
-        {
-            var result = DataSource.LineStations.Find(b => b.id == station.id);
-            if (result == null)
-                throw new NoSuchEntryException($"No entry Matches ID number {station.id}");
-            DataSource.LineStations.Remove(result);
-            DataSource.LineStations.Add(station.Clone());
-        }
+        /// <summary>
+        /// return line id by number
+        /// </summary>
+        /// <param name="number">number of the requested line</param>
         public int GetBusLineID(string number)
         {
             return (from line in DataSource.Lines
@@ -176,12 +189,78 @@ namespace DL
         }
         #endregion
 
+
+        #region LineStation
+        /// <summary>
+        /// add station
+        /// </summary>
+        /// <param name="station">the new station</param>
+        public void addStation(BusLineStation station)
+        {
+            var result = DataSource.LineStations.Find(b => b.code == station.code);
+            if ((result != null) && (result.enabled == true))
+                throw new itemAlreadyExistsException($"ID number {station.code} is already taken");
+            DataSource.LineStations.Add(station.Clone());
+        }
+        /// <summary>
+        /// return all stations
+        /// </summary>
+        public IEnumerable<BusLineStation> GetAllbusLineStation()
+        {
+            return from station in DataSource.LineStations
+                   select station.Clone();
+        }
+        /// <summary>
+        /// retrun specific station
+        /// </summary>
+        /// <param name="id">the id of the requested station</param>
+        public BusLineStation GetbusLineStation(int id)
+        {
+            var result = DataSource.LineStations.Find(b => b.id == id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {id}");
+            return result;
+        }
+        /// <summary>
+        /// remove station
+        /// </summary>
+        /// <param name="id">the id of the requested station</param>
+        public void removebusLineStation(int id)
+        {
+            var result = DataSource.LineStations.Find(b => b.id == id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {id}");
+            result.enabled = false;
+            DataSource.lineInStations.RemoveAll(b => b.stationid == id);
+        }
+        /// <summary>
+        /// update station
+        /// </summary>
+        /// <param name="station">the updated station</param>
+        public void updatebusLineStation(BusLineStation station)
+        {
+            var result = DataSource.LineStations.Find(b => b.id == station.id);
+            if (result == null)
+                throw new NoSuchEntryException($"No entry Matches ID number {station.id}");
+            DataSource.LineStations.Remove(result);
+            DataSource.LineStations.Add(station.Clone());
+        }
+       
+        #endregion
+
         #region User
+        /// <summary>
+        /// retrun all users
+        /// </summary>
         public IEnumerable<User> GetAllbusUsers()
         {
             return from user in DataSource.users
                    select user.Clone();
         }
+        /// <summary>
+        /// return user by id
+        /// </summary>
+        /// <param name="id">id of the requested user</param>
         public User GetUser(int id)
         {
             var result = DataSource.users.Find(b => b.id == id);
@@ -189,6 +268,10 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             return result;
         }
+        /// <summary>
+        /// add new user
+        /// </summary>
+        /// <param name="user">hte new user</param>
         public void addUser(User user)
         {
             var result = DataSource.users.Find(b => (b.id == user.id||b.name==user.name));
@@ -200,6 +283,10 @@ namespace DL
             }
             DataSource.users.Add(user.Clone());
         }
+        /// <summary>
+        /// remove user
+        /// </summary>
+        /// <param name="id">id of the requested user</param>
         public void removebusUser(int id)
         {
             var result = DataSource.users.Find(b => b.id == id);
@@ -207,6 +294,10 @@ namespace DL
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.enabled = false;
         }
+        /// <summary>
+        /// update user
+        /// </summary>
+        /// <param name="user">the updated user</param>
         public void updatebusUser(User user)
         {
             var result = DataSource.users.Find(b => b.id == user.id);
