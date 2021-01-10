@@ -4,11 +4,9 @@ using System.Collections.Generic;
 
 namespace DLAPI
 {
-    //CRUD Logic:
-    // Create - add new instance
-    // Request - ask for an instance or for a collection
-    // Update - update properties of an instance
-    // Delete - delete an instance
+    /// <summary>
+    /// all comments appear in DLObject class
+    /// </summary>
     public interface IDL
     {
         #region bus

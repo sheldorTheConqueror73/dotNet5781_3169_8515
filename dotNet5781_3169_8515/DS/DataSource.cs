@@ -11,19 +11,21 @@ namespace DS
 {
     public static class DataSource
     {
-        public static List<Bus> buses;
-        public static List<BusLineStation> LineStations;
-        public static List<BusLine> Lines;
-        public static List<User> users;
-        public static List<LineInStation> lineInStations;
-        public static List<FollowStations> followStation;
+        public static List<Bus> buses;//list of buses
+        public static List<BusLineStation> LineStations;//list of stations
+        public static List<BusLine> Lines;//list of lines
+        public static List<User> users;//list of users
+        public static List<LineInStation> lineInStations;//list of lines in stations
+        public static List<FollowStations> followStation;//list of follow station
 
-        static DataSource()
+        static DataSource()//ctor
         {
             InitAllLists();
 
         }
-
+        /// <summary>
+        /// initialize all lists
+        /// </summary>
         private static void InitAllLists()
         {
 
@@ -38,6 +40,9 @@ namespace DS
 
 
         }
+        /// <summary>
+        /// initialize all follow station objects
+        /// </summary>
         private static void initFollowStations1()
         {
             followStation = new List<FollowStations>{new FollowStations(){id=90,lineId=69,secondStationid=31,firstStationid=23,enabled=true,driveTime=TimeSpan.Parse("00:40:00"),distance=87},
@@ -150,6 +155,9 @@ new FollowStations(){id=423,lineId=390,secondStationid=37,firstStationid=38,enab
 new FollowStations(){id=424,lineId=390,secondStationid=6,firstStationid=37,enabled=true,driveTime=TimeSpan.Parse("00:05:00"),distance=132},
 new FollowStations(){id=425,lineId=390,secondStationid=9,firstStationid=6,enabled=true,driveTime=TimeSpan.Parse("00:01:00"),distance=299}};
         }
+        /// <summary>
+        /// initialize line in stations objects
+        /// </summary>
         private static void initLineInStations1()
         {
 
@@ -274,6 +282,9 @@ new LineInStation(){id=412,stationid=6,Lineid=390,placeOrder=10},
 new LineInStation(){id=414,stationid=9,Lineid=390,placeOrder=11}};
 
         }
+        /// <summary>
+        /// initialize lines
+        /// </summary>
         private static void initLines1()
         {
             Lines = new List<BusLine>{new BusLine(){number="149",id=69,area=Area.Alantis,driveTime="04:48:00",enabled=true},
@@ -288,12 +299,16 @@ new BusLine(){number="667",id=348,area=Area.AnkhMorpork,driveTime="05:13:00",ena
 new BusLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled=true}};
 
         }
-
+        /// <summary>
+        /// initialize users
+        /// </summary>
         private static void initUsers()
         {
             users = new List<User> { new User { name = "Jack Smith", accessLevel = "Admin", password = "aaa123", enabled=true }, new User { name = "Vladimir Putin", accessLevel = "Operator", password = "polonium210", enabled = true }, new User { name = "C.M.O.T Dibbler", accessLevel = "User", password = "bbb123", enabled = true } };
         }
-
+        /// <summary>
+        /// initialize all buses
+        /// </summary>
         private static void initBuses()
         {
 
@@ -332,7 +347,10 @@ new BusLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled
             buses[1].distance = 19999;
             buses[2].fuel = 0;
         }
-
+        /// <summary>
+        /// return random date
+        /// </summary>
+        /// <param name="mode">mode to return current year or not</param>
         private static DateTime randomDate(int mode = 0)
         {
             Random r = new Random();
@@ -364,6 +382,9 @@ new BusLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled
             }
            
         }
+        /// <summary>
+        /// initialize all stations
+        /// </summary>
         private static void initStations()
         {
             LineStations = new List<BusLineStation>{new BusLineStation(){id=46,Address="רחוב:שדרות גולדה מאיר  עיר: ירושלים ",code="73",Latitude=31.825302,enabled=true,Longitude=35.188624,Name="שדרות גולדה מאיר/המשורר אצ''ג"},
@@ -418,7 +439,9 @@ new BusLineStation(){id=94,Address="  רחוב:הרב סורוצקין 9 עיר:
 new BusLineStation(){id=95,Address="  רחוב:הרב סורוצקין 28 עיר: ירושלים",code="122",Latitude=31.79617,enabled=true,Longitude=35.206158,Name="מרכז סולם/סורוצקין "}};
         }
         
-
+        /// <summary>
+        /// initialize all lines (as random) 
+        /// </summary>
         private static void initLines() 
         {
            lineInStations = new List<LineInStation>();
@@ -447,6 +470,13 @@ new BusLineStation(){id=95,Address="  רחוב:הרב סורוצקין 28 עיר
               
             }
         }
+        /// <summary>
+        /// return array of station as path of line (as random)
+        /// </summary>
+        /// <param name="size">the size of the path</param>
+        /// <param name="id">id of the line</param>
+        /// <param name="totalTime">out parameter of total time</param>
+        /// <param name="number">number of the line</param>
         private static BusLineStation[] tandom(int size,int id,out DateTime totalTime,string number)
         {
             totalTime = new DateTime();

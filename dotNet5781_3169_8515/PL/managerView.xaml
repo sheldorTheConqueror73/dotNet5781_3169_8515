@@ -224,7 +224,9 @@
                                     <GridViewColumn Header="Distance" Width="100"  DisplayMemberBinding="{Binding Distance}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock    Margin="1.5" HorizontalAlignment="Center"/>
+                                                <TextBlock    Margin="1.5" HorizontalAlignment="Center">
+                                                  
+                                                </TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
