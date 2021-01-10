@@ -148,11 +148,7 @@ namespace BL
         /// </summary>
         public void updateLine(int id,string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time)
         {
-            TimeSpan drivetime = new TimeSpan();
-            foreach (var element in time)
-            {
-                drivetime += element;
-            }
+            TimeSpan drivetime = this.calcDriveTime(time);
             if (drivetime.Days > 0)
                 throw new InvalidUserInputExecption("Bus line route must be less than a day");
             this.removeLine(id);
@@ -164,7 +160,7 @@ namespace BL
         public void addLine(string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time)
         {
             int count = dl.countLines(number);
-            TimeSpan drivetime=new TimeSpan();
+            TimeSpan drivetime=this.calcDriveTime(time);
             if (count == 2)
                 throw new BusLimitExceededExecption("There are already two bus with that number");
             if(count==1)
@@ -177,11 +173,6 @@ namespace BL
                 if(result[0].id!=path[path.Count-1].id || result[result.Count-1].id!=path[0].id)
                     throw new BusLimitExceededExecption($"The second {number} line bust be going in the oppesite diraction");
             }
-
-            foreach(var element in time)
-            {
-                drivetime += element;
-            }
             BusLine line = new BusLine() { number = number, area = (Area)area, driveTime = drivetime.ToString(), enabled=true };   
             dl.addLine(Utility.BOtoDOConvertor<DO.BusLine, BO.BusLine>(line));
             for(int i=0;i<path.Count;i++)
@@ -193,6 +184,20 @@ namespace BL
                 }
             }
         
+        }
+        /// <summary>
+        /// calculates the sum of all timespans in time parameter
+        /// </summary>
+        /// <param name="time">list of time spans to add</param>
+        /// <returns>sum of all timespans</returns>
+        public TimeSpan calcDriveTime(List<TimeSpan> time)
+        {
+            TimeSpan drivetime = new TimeSpan();
+            foreach (var element in time)
+            {
+                drivetime += element;
+            }
+            return drivetime;
         }
 
         public void addLine(BusStation station)
