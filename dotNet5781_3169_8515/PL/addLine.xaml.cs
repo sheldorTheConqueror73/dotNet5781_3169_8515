@@ -48,6 +48,8 @@ namespace PL
             }
             lvFrom.ItemsSource = fList;
             lvTo.ItemsSource = tList;
+            txbDriveTime.Text = bl.calcDriveTime(time).ToString();
+
         }
 
 
@@ -81,7 +83,8 @@ namespace PL
                 distance.Add((float)(sCoord.GetDistanceTo(eCoord)/1000));
             Random r =new Random();
             TimeSpan ts = TimeSpan.FromHours((sCoord.GetDistanceTo(eCoord)/1000) / ((r.Next(30, 60))));
-            time.Add(new TimeSpan((int)ts.Hours,(int)ts.Minutes,(int)ts.Seconds));   
+            time.Add(new TimeSpan((int)ts.Hours,(int)ts.Minutes,(int)ts.Seconds));
+            txbDriveTime.Text = bl.calcDriveTime(time).ToString();
             refresh();
         }
 
@@ -115,6 +118,7 @@ namespace PL
                 distance.Remove(temp2);
 
             }
+            txbDriveTime.Text = bl.calcDriveTime(time).ToString();
             refresh();
         }
         /// <summary>
@@ -147,6 +151,11 @@ namespace PL
             if (txbLineNumber.Text == "")
             {
                 lblError.Content = "You must enter a line number";
+                return;
+            }
+            if(lvTo.Items.Count<2)
+            {
+                lblError.Content = "Line route must have more than one stations";
                 return;
             }
                 
