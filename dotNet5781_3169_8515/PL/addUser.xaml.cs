@@ -70,9 +70,14 @@ namespace PL
             foreach (var chr in txbFirstName.Text)
                 if ((chr < 'a' && chr > 'z') || (chr < 'A' && chr > 'Z'))
                     throw new InvalidUserInputExecption("First name may only contain latters");
-            foreach (var chr in txbLastName.Text)
+            foreach (var chr in txbFirstName.Text)
                 if ((chr < 'a' && chr > 'z') || (chr < 'A' && chr > 'Z'))
                     throw new InvalidUserInputExecption("Last name may only contain latters");
+            foreach (var chr in txbFirstName.Text)
+                if (chr == '!' || chr == '@'|| chr=='#'||chr=='$'||chr=='%'||chr=='^'||chr == '*' || chr == '&'|| chr=='('||chr==')'||chr==':'||chr==';')
+                    throw new InvalidUserInputExecption("User Name may not contain !@#$%^&*():;");
+            if(txbFirstName.Text=="" || txbFirstName.Text==""|| txbFirstName.Text==""|| psbPassword.Password==""|| txbMail.Text==""|| psbConfirm.Password=="")
+                throw new InvalidUserInputExecption("All Fileds must bne filled");
             try
             {
                 var addr = new System.Net.Mail.MailAddress(txbMail.Text);

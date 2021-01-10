@@ -15,7 +15,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="252*" />
             </Grid.RowDefinitions>
-            <TextBlock Height="20" HorizontalAlignment="Left" Margin="67,0,0,0" x:Name ="txbErrorMessage" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
+            <TextBlock Height="20" HorizontalAlignment="Left" Margin="177,0,0,0" x:Name ="txbErrorMessage" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,20,0,0"  Text="First Name:" VerticalAlignment="Top" Width="110" />
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,50,0,0"  Text="Last Name:" VerticalAlignment="Top" Width="110" />
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,80,0,0"  Text="User Name" VerticalAlignment="Top" Width="110" />
