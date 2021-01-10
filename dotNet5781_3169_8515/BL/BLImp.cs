@@ -157,6 +157,7 @@ namespace BL
         public void addLine(string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time)
         {
             int count = dl.countLines(number);
+            TimeSpan drivetime=new TimeSpan();
             if (count == 2)
                 throw new BusLimitExceededExecption("There are already two bus with that number");
             if(count==1)
@@ -169,7 +170,12 @@ namespace BL
                 if(result[0].id!=path[path.Count-1].id || result[result.Count-1].id!=path[0].id)
                     throw new BusLimitExceededExecption($"The second {number} line bust be going in the oppesite diraction");
             }
-            BusLine line = new BusLine() { number = number, area = (Area)area, enabled=true };   
+
+            foreach(var element in time)
+            {
+                drivetime += element;
+            }
+            BusLine line = new BusLine() { number = number, area = (Area)area, driveTime = drivetime.ToString(), enabled=true };   
             dl.addLine(Utility.BOtoDOConvertor<DO.BusLine, BO.BusLine>(line));
             for(int i=0;i<path.Count;i++)
             {

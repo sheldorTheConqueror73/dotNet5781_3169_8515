@@ -27,7 +27,6 @@ namespace PL
         int folStatIdSelect = 0;
         public managerView()
         {
-            //bl.listToText();
             busOrder = 0;
             InitializeComponent();
             initSource();  
@@ -461,9 +460,21 @@ namespace PL
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
             initTextBoxByCbInStations();
-
+            refreshLineTextboxes();
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void refreshLineTextboxes()
+        {
+            tbLineFirstSta.Text = (lvStationOfLine.Items[0] as BO.BusLineStation).Name;
+            tbLineLastSta.Text = (lvStationOfLine.Items[lvStationOfLine.Items.Count - 1] as BO.BusLineStation).Name;
+            if(cbBusLines.SelectedItem as BO.BusLine!=null)
+                 tbldriveTime.Text = (cbBusLines.SelectedItem as BO.BusLine).driveTime;
+        }
+
         /// <summary>
         /// when a different line is selcted display data about that line
         /// </summary>
@@ -473,6 +484,8 @@ namespace PL
         {
             if (cbBusLines.SelectedItem != null)
                 lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
+            refreshLineTextboxes();
+
         }
         private void lvStationOfLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -486,8 +499,7 @@ namespace PL
         /// <summary>
         /// deletes the line the mouse id hovering above
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+       
         private void DeleteLine_Click(object sender, RoutedEventArgs e)
         {
             if (cbBusLines.SelectedItem == null)
@@ -516,6 +528,7 @@ namespace PL
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
+            refreshLineTextboxes();
         }
 
         #endregion
@@ -537,6 +550,7 @@ namespace PL
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.SelectedIndex = 0;
             lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
+            refreshLineTextboxes();
         }
         /// <summary>
         /// intintailzes and.or clears textboxes text

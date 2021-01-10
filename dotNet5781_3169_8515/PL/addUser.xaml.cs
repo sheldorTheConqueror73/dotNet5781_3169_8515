@@ -53,7 +53,7 @@ namespace PL
             }
             catch (Exception exc)
             {
-                txbErrorMessage.Text = exc.Message;
+                txbErrorMessage.Text = exc.Message; return;
             }
             try { bl.addUser(new BO.User() {password= psbPassword.Password,name= txbUsername.Text,accessLevel= "User",fullname= txbFirstName.Text + " " + txbLastName.Text,mail= txbMail.Text,enabled=true}); }
             catch (Exception ecx) { txbErrorMessage.Text = ecx.Message; return; }
