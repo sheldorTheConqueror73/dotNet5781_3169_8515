@@ -311,11 +311,18 @@ namespace DL
         #endregion
 
         #region lineInStation
+        /// <summary>
+        /// return all line in station
+        /// </summary>
         public IEnumerable<LineInStation> GetAllLineInStation()
         {
             return from bus in DataSource.lineInStations
                    select bus.Clone();
         }
+        /// <summary>
+        /// add line in station object
+        /// </summary>
+        /// <param name="lis">the new object</param>
         public void addLineInStation(LineInStation lis)
         {
             var result = DataSource.lineInStations.Find(b => b.id == lis.id);
@@ -323,6 +330,10 @@ namespace DL
                 throw new itemAlreadyExistsException($"ID number {lis.id} is already taken");
             DataSource.lineInStations.Add(lis.Clone());
         }
+        /// <summary>
+        /// remove line in station object
+        /// </summary>
+        /// <param name="lineId">the removing object</param>
         public void removeLineInStation(int lineId)
         {    
             DataSource.lineInStations.RemoveAll(b => b.Lineid == lineId);
@@ -331,12 +342,19 @@ namespace DL
         #endregion
 
         #region followStations
+        /// <summary>
+        /// return all follow stations lists
+        /// </summary>
         public IEnumerable<FollowStations> GetAllFollowStation()
         {
             return from bus in DataSource.followStation
                    select bus.Clone();
         }
-        public void updateFollowStation(DO.FollowStations folStation)
+        /// <summary>
+        /// update follow station object
+        /// </summary>
+        /// <param name="folStation">the updated object</param>
+        public void updateFollowStation(FollowStations folStation)
         {
             var result = DataSource.followStation.Find(b => b.id == folStation.id);
             if (result == null)
@@ -347,7 +365,10 @@ namespace DL
 
         
 
-       
+       /// <summary>
+       /// add follow station
+       /// </summary>
+       /// <param name="folStation">the new follow statio object</param>
         public void addFollowStation(FollowStations folStation)
         {
             var result = DataSource.followStation.Find(b => b.id == folStation.id);
@@ -355,13 +376,19 @@ namespace DL
                 throw new itemAlreadyExistsException($"ID number {folStation.id} is already taken");
             DataSource.followStation.Add(folStation.Clone());
         }
-
+        /// <summary>
+        /// remove follow station object
+        /// </summary>
+        /// <param name="Id">id of the requested object</param>
         public void removeFollowStationByIdOfFol(int Id)
         {
             var folSta = DataSource.followStation.Find(x => x.id == Id);
             DataSource.followStation.Remove(folSta);
         }
-
+        /// <summary>
+        /// remove all follow station objects by line id
+        /// </summary>
+        /// <param name="LineId">id of line</param>
         public void removeFollowStation(int LineId)
         {
             var reslut = (from item in DataSource.followStation

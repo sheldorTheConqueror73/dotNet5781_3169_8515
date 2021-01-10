@@ -74,10 +74,7 @@ namespace BL
             //DOBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
         }
 
-        public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
-        {
-            throw new NotImplementedException();
-        }
+       
         /// <summary>
         /// send bus to refuel
         /// </summary>
@@ -128,10 +125,7 @@ namespace BL
 
         }
 
-        public IEnumerable<BusLine> GetAllbusLinesBy(Predicate<BusLine> predicate)
-        {
-            throw new NotImplementedException();
-        }
+       
         /// <summary>
         /// remove line
         /// </summary>
@@ -200,15 +194,7 @@ namespace BL
             return drivetime;
         }
 
-        public void addLine(BusStation station)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void addLine(BusLineStation line)
-        {
-            throw new NotImplementedException();
-        }
+       
         #endregion
 
 
@@ -294,10 +280,7 @@ namespace BL
             return default;
         }
 
-        public IEnumerable<BusLine> GetAllbusLineStationBy(Predicate<BusLineStation> predicate)
-        {
-            throw new NotImplementedException();
-        }
+        
         /// <summary>
         /// return the path of specific line
         /// </summary>
@@ -329,25 +312,7 @@ namespace BL
             }           
                 return default;
         }
-        public IEnumerable<BusStation> GetAllbusStations()
-        {
-            throw new NotImplementedException();
-
-        }
-        public BusLineStation GetbusLineStation(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BusStation GetbusStation(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void removebusLineStation(int id)
-        {
-            throw new NotImplementedException();
-        }
+        
         /// <summary>
         /// remove station
         /// </summary>
@@ -439,10 +404,7 @@ namespace BL
             folSta += "};";
             File.WriteAllText( "C:\\Users\\LENOVO\\source\\repos\\sheldorTheConqueror73\\dotNet5781_3169_8515\\dotNet5781_3169_8515\\initList.txt",lin + LineInsta + folSta);
         }
-        public void updatebusLineStation(BusLineStation line)
-        {
-            throw new NotImplementedException();
-        }
+        
         /// <summary>
         /// update specific station
         /// </summary>
@@ -451,10 +413,7 @@ namespace BL
         {
             dl.updatebusLineStation(Utility.BOtoDOConvertor<DO.BusLineStation, BO.BusLineStation>(station));
         }
-        public IEnumerable<BusStation> GetAllbusStationsBy(Predicate<BusStation> predicate)
-        {
-            throw new NotImplementedException();
-        }
+       
         /// <summary>
         /// return all the stations that not exist in path of line.
         /// </summary>
@@ -578,10 +537,7 @@ namespace BL
             user.accessLevel ="User";
             dl.addUser(Utility.BOtoDOConvertor<DO.User,BO.User>(user));
         }
-        public void removeUser(int id)
-        {
-            throw new NotImplementedException();
-        }
+       
         #endregion
       
     }
