@@ -223,6 +223,7 @@ namespace PL
 
 
         #region stations
+
         private void cbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbStations.SelectedItem != null && cbStations.SelectedItem != null)
@@ -447,6 +448,11 @@ namespace PL
         #endregion
 
         #region lines
+        /// <summary>
+        /// calls the add line window, which adds a new window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addLine_click(object sender, RoutedEventArgs e)
         {
             addLine addWindow = new addLine();
@@ -458,6 +464,11 @@ namespace PL
 
 
         }
+        /// <summary>
+        /// when a different line is selcted display data about that line
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbBusLines.SelectedItem != null)
@@ -472,6 +483,11 @@ namespace PL
 
         }
 
+        /// <summary>
+        /// deletes the line the mouse id hovering above
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteLine_Click(object sender, RoutedEventArgs e)
         {
             if (cbBusLines.SelectedItem == null)
@@ -486,6 +502,11 @@ namespace PL
 
         }
 
+        /// <summary>
+        /// calls the update function on selected line
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateLine_Click(object sender, RoutedEventArgs e)
         {
             if (cbBusLines.SelectedItem == null)
@@ -500,6 +521,9 @@ namespace PL
         #endregion
 
         #region utility
+        /// <summary>
+        /// initaizes list views and combo boxes
+        /// </summary>
         private void initSource()
         { 
             dpLastMaintenance.DisplayDateEnd = DateTime.Now;
@@ -514,6 +538,12 @@ namespace PL
             cbBusLines.SelectedIndex = 0;
             lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
         }
+        /// <summary>
+        /// intintailzes and.or clears textboxes text
+        /// </summary>
+        /// <param name="flasEnabled">true to enable textboxes, or false to disable textboxes </param>
+        /// <param name="flagContent">true to clear the textboxes or false not to</param>
+        /// <param name="tabItem">selects whose textboxes to intintailzes (lines=2,buese=1, else: stations) </param>
         private void initTextBoxes(bool flagEnabled, bool flagContent, int tabItem)
         {
             if (tabItem == 1)//buses
@@ -616,6 +646,12 @@ namespace PL
             cbStations.Items.Refresh();
             cbStations.SelectedIndex = index;
         }
+        /// <summary>
+        /// validates user input and assigns it to the out parameters, or throws exception in case of error
+        /// </summary>
+        /// <param name="fuel">amount of fuel</param>
+        /// <param name="distance">amount of distance since last maintenance</param>
+        /// <param name="totaldistance"> total milage in bus</param>
         private void validateInput(out int fuel, out int distance, out int totaldistance)
         {
             bool flag;
