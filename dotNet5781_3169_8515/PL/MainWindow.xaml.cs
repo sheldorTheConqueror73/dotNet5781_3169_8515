@@ -42,33 +42,28 @@ namespace PL
         /// <param name="e"></param>
         private void login_Click(object sender, RoutedEventArgs e)
         {
+            txbErrorMessage.Foreground = Brushes.Red;
             managerView managerView = new managerView();
             string username = txbUsername.Text;
             string password = txbUPassword.Password;
             if (username == "" || password == "")
             {
-                errormessage.Text="Please enter user name AND password";
+                txbErrorMessage.Text="Please enter user name AND password";
                 return;
             }
             string accessLevel="";
             try { accessLevel = bl.authenticate(username, password, out userId); }//check if user exists and return user access level
-            catch (Exception exc) { errormessage.Text = exc.Message; }
+            catch (Exception exc) { txbErrorMessage.Text = exc.Message; }
          
             if (accessLevel == "Admin" || accessLevel == "Operator")//if user is admin or manager
             {
                 this.Hide();
-                player.Open(new Uri(@"C:\Users\Chuck\source\repos\dotNet5781_3169_8515\dotNet5781_3169_8515\PL\Resources\Startup.mp3"));
-                player.Play();
                 managerView.ShowDialog();
             }
             if (accessLevel == "User")//if user is a regular user
             {
-                errormessage.Text = "Welcom user";
-            }
-            else//if user is not registered
-            {
-                player.Open(new Uri(@"C:\Users\Chuck\source\repos\dotNet5781_3169_8515\dotNet5781_3169_8515\PL\Resources\AccessDenied.mp3"));
-                player.Play();
+                txbErrorMessage.Foreground = Brushes.Green;
+                txbErrorMessage.Text = $"Welcome {userName}";
             }
         }
 
@@ -92,13 +87,6 @@ namespace PL
         {
             if (e.Key == Key.Enter)
               login_Click(this, new RoutedEventArgs());
-        }
-
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            SmtpClient mailMan = new SmtpClient("smtp.gmail.com");
-            mailMan.Port = 587;
-            mailMan.Credentials =new System.Net.NetworkCredential("username", "password");
         }
     }
 }

@@ -32,6 +32,7 @@ namespace BLAPI
         void addLine(string number, int area,List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
         void removeLine(int id);
         void updateLine(int id, string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
+        TimeSpan calcDriveTime(List<TimeSpan> time);
         #endregion
 
         #region Station

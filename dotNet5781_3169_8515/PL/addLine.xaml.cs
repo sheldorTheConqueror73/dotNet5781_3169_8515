@@ -54,8 +54,7 @@ namespace PL
         /// <summary>
         /// moves a station from the unselected to the selected list
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void lvfrom_MouseClick(object sender, SelectionChangedEventArgs e)
         {
             if (lvFrom.SelectedItem == null)
@@ -89,8 +88,7 @@ namespace PL
         /// <summary>
         /// moves a station from the selected  to the unselectedlist
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void lvto_MouseClick(object sender, SelectionChangedEventArgs e)
         {
             if (lvTo.SelectedItem == null)
@@ -104,10 +102,19 @@ namespace PL
                     tList.Remove(station);
                     break;
                 }
-            var temp1 = time[index-1];
-            time.Remove(temp1);
-            var temp2 = distance[index-1];
-            distance.Remove(temp2);
+            if (index == 0)
+                index = 1;
+            if(time.Count!=0)
+            {
+                var temp1 = time[index - 1];
+                time.Remove(temp1);
+            }
+            if(distance.Count!=0)
+            {
+                var temp2 = distance[index - 1];
+                distance.Remove(temp2);
+
+            }
             refresh();
         }
         /// <summary>
@@ -134,10 +141,15 @@ namespace PL
         /// <summary>
         /// call BL.add() and adds new line or updates existing line
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            if (txbLineNumber.Text == "")
+            {
+                lblError.Content = "You must enter a line number";
+                return;
+            }
+                
             try { validateInput(); }
             catch (Exception exc) { lblError.Content = exc.Message; return; }
             if (mode==0)//add new line
