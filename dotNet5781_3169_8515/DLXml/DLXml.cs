@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using DLAPI;
 using DO;
 namespace DL
 {
         sealed class DLXml : IDL
-    {
+         {
         #region singelton
         static readonly DLXml instance = new DLXml();
         static DLXml() { }
@@ -190,11 +191,17 @@ namespace DL
             throw new NotImplementedException();
         }
 
-        #endregion
 
 
         #endregion
 
         #endregion
+
+        #endregion
+
+        public void listsToXML()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

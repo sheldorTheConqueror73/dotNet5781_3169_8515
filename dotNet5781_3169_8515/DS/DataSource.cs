@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Xml.Linq;
 using DO;
 namespace DS
 {
@@ -34,10 +34,86 @@ namespace DS
             initBuses();
             initUsers();
             initLines();
-          //  initLineInStations1();
-          //  initLines1();
-          // initFollowStations1();
+            //  initLineInStations1();
+            //  initLines1();
+            // initFollowStations1();
+            Func12();
+        }  
+        private static XElement ToXml<T>(T data) where T : DOobject
+        {
 
+            XElement root = new XElement($"{data.GetType().ToString().Split('.')[1]}");
+            root.Add(from prop in data.GetType().GetProperties()
+                     select new XElement(prop.Name, prop.GetValue(data, null)));
+            return root;
+        }
+        private static void Func12()
+        {
+           //buses
+                XElement objRootBus;
+                string busPath = @"BusXml.xml";
+            objRootBus = new XElement("Buses");
+
+                foreach (var item in buses)
+                {
+                objRootBus.Add(ToXml<DO.Bus>(item));
+                }
+            objRootBus.Save(busPath);
+
+            //stations
+            XElement objRootStation;
+            string stationPath = @"StationXml.xml";
+            objRootStation = new XElement("Station");
+
+            foreach (var item in LineStations)
+            {
+                objRootStation.Add(ToXml<DO.BusLineStation>(item));
+            }
+            objRootStation.Save(stationPath);
+
+            //lines
+            XElement objRootLines;
+            string linePath = @"LineXml.xml";
+            objRootLines = new XElement("Lines");
+
+            foreach (var item in Lines)
+            {
+                objRootLines.Add(ToXml<DO.BusLine>(item));
+            }
+            objRootLines.Save(linePath);
+
+            //users
+            XElement objRootUser;
+            string userPath = @"UserXml.xml";
+            objRootUser = new XElement("Users");
+
+            foreach (var item in users)
+            {
+                objRootUser.Add(ToXml<DO.User>(item));
+            }
+            objRootUser.Save(userPath);
+
+            //lineInStations
+            XElement objRootlineInStations;
+            string lineInStationsPath = @"LineInStationsXml.xml";
+            objRootlineInStations = new XElement("LineInStations");
+
+            foreach (var item in lineInStations)
+            {
+                objRootlineInStations.Add(ToXml<DO.LineInStation>(item));
+            }
+            objRootlineInStations.Save(lineInStationsPath);
+
+            //followStation
+            XElement objRootFollowStation;
+            string followStationPath = @"FollowStationXml.xml";
+            objRootFollowStation = new XElement("FollowStations");
+
+            foreach (var item in followStation)
+            {
+                objRootFollowStation.Add(ToXml<DO.FollowStations>(item));
+            }
+            objRootFollowStation.Save(followStationPath);
 
         }
         /// <summary>
