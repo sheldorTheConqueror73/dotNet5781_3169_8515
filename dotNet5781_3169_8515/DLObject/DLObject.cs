@@ -338,7 +338,13 @@ namespace DL
         {    
             DataSource.lineInStations.RemoveAll(b => b.Lineid == lineId);
         }
-       
+        public LineInStation GetLineInStation(int lisId)
+        {
+            var result = DataSource.lineInStations.Find(b => b.id == lisId);
+            if (result == null)
+                throw new NoSuchEntryException($"No FollowStation Matches ID number {lisId}");
+            return result;
+        }
         #endregion
 
         #region followStations
@@ -397,10 +403,20 @@ namespace DL
                          select item).ToList();
         }
 
+        public FollowStations GetFollowStation(int id)
+        {
+            var result = DataSource.followStation.Find(b => b.id == id);
+            if ((result == null) || (result.enabled == false))
+                throw new NoSuchEntryException($"No FollowStation Matches ID number {id}");
+            return result;
+        }
+
+      
+
         #endregion
         #endregion
 
-      
+
 
     }
 }

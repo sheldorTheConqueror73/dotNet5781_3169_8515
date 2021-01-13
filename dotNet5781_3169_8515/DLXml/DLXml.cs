@@ -113,20 +113,30 @@ namespace DL
             throw new NotImplementedException();
         }
         #endregion
+
         #region LineInStation
         public void addLineInStation(LineInStation lis)
         {
-            throw new NotImplementedException();
+            var result = GetLineInStation(lis.id);
+            if (result != null)
+                throw new itemAlreadyExistsException($"ID number {lis.id} is already taken");
+            var root = Utility.load(typeof(LineInStation));
+            root.Add(lis.ToXml());
+            Utility.save(root, typeof(LineInStation));
+        }
+        public DO.LineInStation GetLineInStation(int lisId)
+        {
+            return (from element in Utility.load(typeof(LineInStation)).Elements()
+                    let obj = element.ToObject<LineInStation>()
+                    where element != null  && obj.id == lisId
+                    select obj).FirstOrDefault();
         }
         public IEnumerable<LineInStation> GetAllLineInStation()
         {
-            throw new NotImplementedException();
-        }
-
-
-        public BusLineStation GetbusLineStation(int id)
-        {
-            throw new NotImplementedException();
+            return from element in Utility.load(typeof(LineInStation)).Elements()
+                   let obj = element.ToObject<LineInStation>()
+                   where element != null // change elemnt to obj
+                   select obj;
         }
 
         public void removeLineInStation(int lineId)
@@ -136,10 +146,23 @@ namespace DL
 
 
         #endregion
-        #region station
+
+        #region station   
+        public BusLineStation GetbusLineStation(int id)
+        {
+            return (from element in Utility.load(typeof(BusLineStation)).Elements()
+                    let obj = element.ToObject<BusLineStation>()
+                    where element != null && obj.enabled == true && obj.id == id
+                    select obj).FirstOrDefault();
+        }
         public void addStation(BusLineStation station)
         {
-            throw new NotImplementedException();
+            var result = GetbusLineStation(station.id);
+            if(result!=null)
+                throw new itemAlreadyExistsException($"ID number {station.code} is already taken");
+            var root = Utility.load(typeof(BusLineStation));
+            root.Add(station.ToXml());
+            Utility.save(root, typeof(BusLineStation));
         }
 
 
@@ -147,33 +170,60 @@ namespace DL
 
         public IEnumerable<BusLineStation> GetAllbusLineStation()
         {
-            throw new NotImplementedException();
+            return from element in Utility.load(typeof(BusLineStation)).Elements()
+                   let obj = element.ToObject<BusLineStation>()
+                   where element != null && obj.enabled == true // change elemnt to obj
+                   select obj;
         }
 
 
-        public void updatebusLineStation(BusLineStation line)
+        public void updatebusLineStation(BusLineStation station)
         {
-            throw new NotImplementedException();
+            var res = from element in Utility.load(typeof(BusLineStation)).Elements()
+                      select element;
+            foreach(var sta in res)
+                if (sta.Attribute("id").Value == station.id.ToString())
+                    sta.ReplaceWith(station.ToXml());
+            
         }
 
         public void removebusLineStation(int id)
         {
-            throw new NotImplementedException();
+            var station = GetbusLineStation(id);
+            if (station == null)
+                throw new NoSuchEntryException($"No Station Mathces ID number {id}");
+            station.enabled = false;
+            updatebusLineStation(station);
         }
 
 
         #endregion
+
         #region FollowStation
         public void addFollowStation(FollowStations folStation)
         {
-            throw new NotImplementedException();
+            var result = GetFollowStation(folStation.id);
+            if (result != null)
+                throw new itemAlreadyExistsException($"ID number {folStation.id} is already taken");
+            var root = Utility.load(typeof(FollowStations));
+            root.Add(folStation.ToXml());
+            Utility.save(root, typeof(FollowStations));
         }
 
-
+        public FollowStations GetFollowStation(int id)
+        {
+            return (from element in Utility.load(typeof(FollowStations)).Elements()
+                    let obj = element.ToObject<FollowStations>()
+                    where element != null && obj.enabled == true && obj.id == id
+                    select obj).FirstOrDefault();
+        }
 
         public IEnumerable<FollowStations> GetAllFollowStation()
         {
-            throw new NotImplementedException();
+            return from element in Utility.load(typeof(FollowStations)).Elements()
+                   let obj = element.ToObject<FollowStations>()
+                   where element != null && obj.enabled == true // change elemnt to obj
+                   select obj;
         }
 
 
@@ -201,10 +251,6 @@ namespace DL
         #endregion
 
         #endregion
-
-        public void listsToXML()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

@@ -28,7 +28,6 @@ namespace DS
         /// </summary>
         private static void InitAllLists()
         {
-
             initStations();
             //initStation1();
             initBuses();
