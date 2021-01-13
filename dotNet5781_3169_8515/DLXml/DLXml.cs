@@ -27,13 +27,17 @@ namespace DL
         }
         public IEnumerable<Bus> GetAllBuses()
         {
-           
-            throw new NotImplementedException();
+            return   from element in Utility.load(typeof(Bus)).Elements()
+                         let obj = element.ToObject<Bus>()
+                         where element != null && obj.enabled == true // change elemnt to obj
+                         select obj;
         }
 
         public void addBus(Bus bus)
         {
-            throw new NotImplementedException();
+            var root = Utility.load(typeof(Bus));
+                root.Add(bus.ToXml());
+            Utility.save(root,typeof(Bus));
         }
 
         public Bus GetBus(int id)
@@ -194,7 +198,6 @@ namespace DL
 
 
         #endregion
-
         #endregion
     }
 }

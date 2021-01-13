@@ -6,51 +6,80 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using DO;
-namespace DLXml
+namespace DL
 {
 
-        class Utility
+    internal static class Utility
+    {
+        private static string dir = @"xml\";
+        private static string busPath = @"Buses.xml";
+        private static string linePath = @"Lines.xml";
+        private static string stationPath = @"Stations.xml";
+        private static string userPath = @"Users.xml";
+        private static string lineInStationPath = @"lineInStations.xml";
+        private static string followStationPath = @"FollowStations.xml";
+        private static string getPath(Type type)
         {
-            string dir = @"xml\";
-            string busPath = @"Buses.xml";
-            string linePath = @"Lines.xml";
-            string stationPath = @"Stations.xml";
-            string userPath = @"Users.xml";
-            string lineInStationPath = @"lineInStations.xml";
-            string followStationPath = @"FollowStations.xml";
-            private string getPath(Type type)
-            {
-                if (type == typeof(Bus))
-                    return busPath;
-                if (type == typeof(BusLine))
-                    return linePath;
-                if (type == typeof(BusLineStation))
-                    return stationPath;
-                if (type == typeof(User))
-                    return userPath;
-                if (type == typeof(LineInStation))
-                    return lineInStationPath;
-                if (type == typeof(FollowStations))
-                    return followStationPath;
-                throw new InvalidArgumentException("Invalid Argument");
+            if (type == typeof(Bus))
+                return busPath;
+            if (type == typeof(BusLine))
+                return linePath;
+            if (type == typeof(BusLineStation))
+                return stationPath;
+            if (type == typeof(User))
+                return userPath;
+            if (type == typeof(LineInStation))
+                return lineInStationPath;
+            if (type == typeof(FollowStations))
+                return followStationPath;
+            throw new InvalidArgumentException("Invalid Argument");
 
-            }
-            public XElement ToXml<T>(T data) where T : DOobject
-            {
+        }
+        public static XElement ToXml<T>(this T data) where T : DOobject
+        {
+            XElement root = new XElement($"{data.GetType().ToString().Split('.')[1]}es");
+            root.Add(from prop in data.GetType().GetProperties()
+                     select new XElement(prop.Name, prop.GetValue(data, null)));
+            return root;
+        }
 
-                XElement root = new XElement($"{data.GetType().ToString().Split('.')[1]}");
-                root.Add(from prop in data.GetType().GetProperties()
-                         select new XElement(prop.Name, prop.GetValue(data, null)));
-                return root;
-            }
-            public void save(XElement root, Type type)
+        public static T ToObject<T>(this XElement root) where T : DOobject, new()
+        {
+            T obj = new T();
+            foreach (var element in root.Elements())
             {
-                string path = this.getPath(type);
-                try { root.Save(dir + path); }
-                catch (Exception e) { throw new cannotFindXmlFileException(path, e, $"fail to save xml file: {path}"); }
+                foreach (var prop in typeof(T).GetProperties())
+                    if (prop.Name == element.Name)
+                    {
+                        prop.SetValue(element, element.Value);
+                    }
             }
-            public XElement load(string filePath)
+            return obj;
+        }
+
+        
+        public static void save(XElement root, Type type)
+        {
+            string path = getPath(type);
+            try 
             {
+                XDocument document = new XDocument(root);
+                document.Save(dir + path);
+            }
+            catch (Exception e) { throw new cannotFindXmlFileException(path, e, $"fail to save xml file: {path}"); }
+        }
+        public static void save(XDocument document, Type type)
+        {
+            string path = getPath(type);
+            try 
+            {
+                document.Save(dir + path);
+            }
+            catch (Exception e) { throw new cannotFindXmlFileException(path, e, $"fail to save xml file: {path}"); }
+        }
+        public static XElement load(Type type)
+        { 
+            string filePath = getPath(type);
                 try
                 {
                     if (File.Exists(dir + filePath))
@@ -59,8 +88,8 @@ namespace DLXml
                     }
                     else
                     {
-                        XElement rootElem = new XElement(dir + filePath);
-                        rootElem.Save(dir + filePath);
+                        XElement rootElem = new XElement(type.Name);
+                        save(rootElem,type);
                         return rootElem;
                     }
                 }
