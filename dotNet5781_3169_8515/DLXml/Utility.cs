@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 using DO;
 namespace DL
@@ -71,10 +72,31 @@ namespace DL
             foreach (var element in root.Elements())
             {
                 foreach (var prop in typeof(T).GetProperties())
+                {
                     if (prop.Name == element.Name)
                     {
-                        prop.SetValue(element, element.Value);
+                        if(prop.PropertyType==typeof(bool))
+                            prop.SetValue(obj,bool.Parse(element.Value));
+                        else if(prop.PropertyType == typeof(int))
+                            prop.SetValue(obj,int.Parse(element.Value));
+                        else if (prop.PropertyType == typeof(double))
+                            prop.SetValue(obj, double.Parse(element.Value));
+                        else if (prop.PropertyType == typeof(TimeSpan))
+                            prop.SetValue(obj, XmlConvert.ToTimeSpan(element.Value));
+                        else if (prop.PropertyType == typeof(DateTime))
+                            prop.SetValue(obj, DateTime.Parse(element.Value));
+                        else if (prop.PropertyType == typeof(DO.Area))
+                        {
+                            DO.Area a; ;
+                            Enum.TryParse<DO.Area>(element.Value,out a);
+                            prop.SetValue(obj,a);
+                        }
+                        else
+                            prop.SetValue(obj, element.Value);
+
                     }
+                }
+
             }
             return obj;
         }
