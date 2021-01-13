@@ -8,11 +8,18 @@ using BL;
 
 namespace BLAPI
 {
-    public static class BLFactory
+    public sealed class BLFactory
     {
+       static IBL instance = null;
+        private   BLFactory()
+        {
+
+        }
         public static IBL GetBL()
         {
-                return new BLImp();
+            if(instance==null)
+                instance= new BLImp();
+            return instance;new BLImp();
 
         }
     }
