@@ -19,7 +19,7 @@ namespace BLAPI
         {
             if(instance==null)
                 instance= new BLImp();
-            return instance;new BLImp();
+            return instance;
 
         }
     }
