@@ -37,9 +37,10 @@ namespace DL
         public IEnumerable<Bus> GetAllBuses()
         {
             return   from element in Utility.load(typeof(Bus)).Elements()
-                         let obj = element.ToObject<Bus>()
-                         where element != null && obj.enabled == true // change elemnt to obj
-                         select obj;
+                     where element != null
+                     let obj = element.ToObject<Bus>()
+                     where obj.enabled == true // change elemnt to obj
+                     select obj;
         }
 
         public void addBus(Bus bus)
@@ -55,9 +56,10 @@ namespace DL
         public Bus GetBus(int id)
         {
             return (from element in Utility.load(typeof(Bus)).Elements()
-                   let obj = element.ToObject<Bus>()
-                   where element != null && obj.enabled == true && obj.id==id // change elemnt to obj
-                   select obj).FirstOrDefault();
+                    where element != null
+                    let obj = element.ToObject<Bus>()
+                    where obj.enabled == true // change elemnt to obj
+                    select obj).FirstOrDefault();
         }
      
 
@@ -93,11 +95,20 @@ namespace DL
         #region User
         public void addUser(User user)
         {
-            throw new NotImplementedException();
+            var result = GetBus(user.id);
+            if (result != null)
+                throw new itemAlreadyExistsException($"ID number {user.id} is already taken");
+            var root = Utility.load(typeof(User));
+            root.Add(user.ToXml());
+            Utility.save(root, typeof(User));
         }
         public IEnumerable<User> GetAllbusUsers()
         {
-            throw new NotImplementedException();
+            return from element in Utility.load(typeof(User)).Elements()
+                   where element != null
+                   let obj = element.ToObject<User>()
+                   where obj.enabled == true // change elemnt to obj
+                   select obj;
         }
         public User GetUser(int id)
         {
