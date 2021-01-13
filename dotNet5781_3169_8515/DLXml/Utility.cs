@@ -18,6 +18,13 @@ namespace DL
         private static string userPath = @"Users.xml";
         private static string lineInStationPath = @"LineInStations.xml";
         private static string followStationPath = @"FollowStations.xml";
+       
+
+        /// <summary>
+        /// returns the path for the file where Type is stored
+        /// </summary>
+        /// <param name="type">type of class to choose</param>
+        /// <returns>string containing path to file </returns>
         private static string getPath(Type type)
         {
             if (type == typeof(Bus))
@@ -35,6 +42,13 @@ namespace DL
             throw new InvalidArgumentException("Invalid Argument");
 
         }
+
+        /// <summary>
+        /// casts an object to xml
+        /// </summary>
+        /// <typeparam name="T">class of object to cast</typeparam>
+        /// <param name="data">object to cast</param>
+        /// <returns>xml version of object</returns>
         public static XElement ToXml<T>(this T data) where T : DOobject
         {
             XElement root = new XElement($"{data.GetType().ToString().Split('.')[1]}es");
@@ -43,6 +57,14 @@ namespace DL
             return root;
         }
 
+
+        
+        /// <summary>
+        /// casts xml to currect class
+        /// </summary>
+        /// <typeparam name="T">type of class to cast to</typeparam>
+        /// <param name="root">root element of XDocument</param>
+        /// <returns>class version of xml element</returns>
         public static T ToObject<T>(this XElement root) where T : DOobject, new()
         {
             T obj = new T();
@@ -57,7 +79,11 @@ namespace DL
             return obj;
         }
 
-        
+        /// <summary>
+        /// saves data in xml file
+        /// </summary>
+        /// <param name="root">XElement to save</param>
+        /// <param name="type">Type of calss file</param>
         public static void save(XElement root, Type type)
         {
             string path = getPath(type);
@@ -68,15 +94,11 @@ namespace DL
             }
             catch (Exception e) { throw new cannotFindXmlFileException(path, e, $"fail to save xml file: {path}"); }
         }
-        public static void save(XDocument document, Type type)
-        {
-            string path = getPath(type);
-            try 
-            {
-                document.Save(dir + path);
-            }
-            catch (Exception e) { throw new cannotFindXmlFileException(path, e, $"fail to save xml file: {path}"); }
-        }
+        /// <summary>
+        /// loads data from file
+        /// </summary>
+        /// <param name="type">type of class file</param>
+        /// <returns>root XElement of file</returns>
         public static XElement load(Type type)
         { 
             string filePath = getPath(type);

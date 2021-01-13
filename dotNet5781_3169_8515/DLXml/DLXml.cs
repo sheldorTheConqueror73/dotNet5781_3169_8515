@@ -37,9 +37,10 @@ namespace DL
         public IEnumerable<Bus> GetAllBuses()
         {
             return   from element in Utility.load(typeof(Bus)).Elements()
-                         let obj = element.ToObject<Bus>()
-                         where element != null && obj.enabled == true // change elemnt to obj
-                         select obj;
+                     where element != null
+                     let obj = element.ToObject<Bus>()
+                     where obj.enabled == true // change elemnt to obj
+                     select obj;
         }
 
         public void addBus(Bus bus)
@@ -55,9 +56,10 @@ namespace DL
         public Bus GetBus(int id)
         {
             return (from element in Utility.load(typeof(Bus)).Elements()
-                   let obj = element.ToObject<Bus>()
-                   where element != null && obj.enabled == true && obj.id==id // change elemnt to obj
-                   select obj).FirstOrDefault();
+                    where element != null
+                    let obj = element.ToObject<Bus>()
+                    where obj.enabled == true // change elemnt to obj
+                    select obj).FirstOrDefault();
         }
      
 
@@ -93,11 +95,20 @@ namespace DL
         #region User
         public void addUser(User user)
         {
-            throw new NotImplementedException();
+            var result = GetBus(user.id);
+            if (result != null)
+                throw new itemAlreadyExistsException($"ID number {user.id} is already taken");
+            var root = Utility.load(typeof(User));
+            root.Add(user.ToXml());
+            Utility.save(root, typeof(User));
         }
         public IEnumerable<User> GetAllbusUsers()
         {
-            throw new NotImplementedException();
+            return from element in Utility.load(typeof(User)).Elements()
+                   where element != null
+                   let obj = element.ToObject<User>()
+                   where obj.enabled == true // change elemnt to obj
+                   select obj;
         }
         public User GetUser(int id)
         {
@@ -112,36 +123,67 @@ namespace DL
         #region Line
         public void addLine(BusLine line)
         {
-            throw new NotImplementedException();
+            var result = GetBus(line.id);
+            if (result != null)
+                throw new itemAlreadyExistsException($"ID number {line.id} is already taken");
+            var root = Utility.load(typeof(BusLine));
+            root.Add(line.ToXml());
+            Utility.save(root, typeof(BusLine));
         }
         public int countLines(string number)
         {
-            throw new NotImplementedException();
+            return GetAllbusLines().ToList().Count;
         }
 
         public IEnumerable<BusLine> GetAllbusLines()
         {
-            throw new NotImplementedException();
+            return from element in Utility.load(typeof(BusLine)).Elements()
+                   where element != null
+                   let obj = element.ToObject<BusLine>()
+                   where obj.enabled == true // change elemnt to obj
+                   select obj;
         }
 
         public BusLine GetBusLine(int id)
         {
-            throw new NotImplementedException();
+            return (from element in Utility.load(typeof(BusLine)).Elements()
+                    where element != null
+                    let obj = element.ToObject<BusLine>()
+                    where obj.enabled == true // change elemnt to obj
+                    select obj).FirstOrDefault();
         }
 
         public int GetBusLineID(string number)
         {
-            throw new NotImplementedException();
+            var result = (from line in GetAllbusLines()
+                          where line != null && line.number == number
+                          select line.id).ToList();
+            if (result.Count == 0)
+                throw new noMatchExeption($"No line matches number {number}");
+            return result[0];
+
         }
 
         public void removeLine(int id)
         {
-            throw new NotImplementedException();
+            var line = GetBusLine(id);
+            if (line == null)
+                throw new NoSuchEntryException($"No Line Matches ID number {id}");
+            line.enabled = false;
+            updateLine(line);
         }
 
         public void updateLine(BusLine line)
         {
-            throw new NotImplementedException();
+            var result = from b1 in Utility.load(typeof(BusLine)).Elements()
+                         select b1;
+            foreach (var element in result)
+                if (element.Attribute("id").Value == line.id.ToString())
+                    element.ReplaceWith(line.ToXml());
+            XElement root = new XElement("Lines");
+            foreach (var element in result)
+                root.Add(element);
+            Utility.save(root, typeof(BusLine));
         }
         #endregion
 
