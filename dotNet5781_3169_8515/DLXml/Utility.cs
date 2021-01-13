@@ -16,7 +16,7 @@ namespace DL
         private static string linePath = @"Lines.xml";
         private static string stationPath = @"Stations.xml";
         private static string userPath = @"Users.xml";
-        private static string lineInStationPath = @"lineInStations.xml";
+        private static string lineInStationPath = @"LineInStations.xml";
         private static string followStationPath = @"FollowStations.xml";
         private static string getPath(Type type)
         {

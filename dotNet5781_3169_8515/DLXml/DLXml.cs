@@ -158,21 +158,31 @@ namespace DL
         public DO.LineInStation GetLineInStation(int lisId)
         {
             return (from element in Utility.load(typeof(LineInStation)).Elements()
+                    where element != null
                     let obj = element.ToObject<LineInStation>()
-                    where element != null  && obj.id == lisId
+                    where obj.id == lisId
                     select obj).FirstOrDefault();
         }
         public IEnumerable<LineInStation> GetAllLineInStation()
         {
             return from element in Utility.load(typeof(LineInStation)).Elements()
+                   where element != null 
                    let obj = element.ToObject<LineInStation>()
-                   where element != null // change elemnt to obj
                    select obj;
         }
 
         public void removeLineInStation(int lineId)
         {
-            throw new NotImplementedException();
+            var res = (from element in Utility.load(typeof(LineInStation)).Elements()
+                      select element).ToList();
+            foreach (var linInSta in res)
+                if (linInSta.Attribute("id").Value == lineId.ToString())
+                    res.Remove(linInSta);
+            XElement root = new XElement("LineInStations");
+            foreach (var element in res)
+                root.Add(element);
+            Utility.save(root, typeof(LineInStation));
+
         }
 
 
@@ -182,8 +192,9 @@ namespace DL
         public BusLineStation GetbusLineStation(int id)
         {
             return (from element in Utility.load(typeof(BusLineStation)).Elements()
+                    where element != null
                     let obj = element.ToObject<BusLineStation>()
-                    where element != null && obj.enabled == true && obj.id == id
+                    where  obj.enabled == true && obj.id == id
                     select obj).FirstOrDefault();
         }
         public void addStation(BusLineStation station)
@@ -202,8 +213,9 @@ namespace DL
         public IEnumerable<BusLineStation> GetAllbusLineStation()
         {
             return from element in Utility.load(typeof(BusLineStation)).Elements()
+                   where element != null 
                    let obj = element.ToObject<BusLineStation>()
-                   where element != null && obj.enabled == true // change elemnt to obj
+                   where obj.enabled == true // change elemnt to obj
                    select obj;
         }
 
@@ -215,7 +227,10 @@ namespace DL
             foreach(var sta in res)
                 if (sta.Attribute("id").Value == station.id.ToString())
                     sta.ReplaceWith(station.ToXml());
-            
+            XElement root = new XElement("Station");
+            foreach (var element in res)
+                root.Add(element);
+            Utility.save(root, typeof(BusLineStation));
         }
 
         public void removebusLineStation(int id)
@@ -244,36 +259,61 @@ namespace DL
         public FollowStations GetFollowStation(int id)
         {
             return (from element in Utility.load(typeof(FollowStations)).Elements()
+                    where element != null
                     let obj = element.ToObject<FollowStations>()
-                    where element != null && obj.enabled == true && obj.id == id
+                    where obj.enabled == true && obj.id == id
                     select obj).FirstOrDefault();
         }
 
         public IEnumerable<FollowStations> GetAllFollowStation()
         {
             return from element in Utility.load(typeof(FollowStations)).Elements()
+                   where element != null
                    let obj = element.ToObject<FollowStations>()
-                   where element != null && obj.enabled == true // change elemnt to obj
+                   where obj.enabled == true // change elemnt to obj
                    select obj;
         }
 
 
 
         public void removeFollowStation(int LineId)
-        {
-            throw new NotImplementedException();
+        {    
+            var res = from element in Utility.load(typeof(FollowStations)).Elements()
+                      select element;
+            foreach (var folSta in res)
+                if (folSta.Attribute("lineId").Value == LineId.ToString())
+                {
+                    folSta.ToObject<FollowStations>().enabled = false;
+                    folSta.ReplaceWith(folSta);
+                }
+            XElement root = new XElement("FollowStations");
+            foreach (var element in res)
+                root.Add(element);
+            Utility.save(root, typeof(FollowStations));
         }
 
-        public void removeFollowStationByIdOfFol(int Id)
+            public void removeFollowStationByIdOfFol(int Id)
         {
-            throw new NotImplementedException();
+            var folSta = GetFollowStation(Id);
+            if (folSta == null)
+                throw new NoSuchEntryException($"No Station Mathces ID number {Id}");
+            folSta.enabled = false;
+            updateFollowStation(folSta);
         }
 
 
 
         public void updateFollowStation(FollowStations folStation)
         {
-            throw new NotImplementedException();
+            var res = from element in Utility.load(typeof(FollowStations)).Elements()
+                      select element;
+            foreach (var sta in res)
+                if (sta.Attribute("id").Value == folStation.id.ToString())
+                    sta.ReplaceWith(folStation.ToXml());
+            XElement root = new XElement("FollowStations");
+            foreach (var element in res)
+                root.Add(element);
+            Utility.save(root, typeof(FollowStations));
         }
 
 
