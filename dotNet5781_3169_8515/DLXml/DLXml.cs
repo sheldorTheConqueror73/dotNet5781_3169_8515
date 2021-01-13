@@ -101,7 +101,10 @@ namespace DL
         }
         public User GetUser(int id)
         {
-            throw new NotImplementedException();
+            return (from element in Utility.load(typeof(User)).Elements()
+                    let obj = element.ToObject<User>()
+                    where element != null && obj.enabled == true && obj.id == id // change elemnt to obj
+                    select obj).FirstOrDefault();
         }
 
         #endregion
