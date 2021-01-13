@@ -7,13 +7,13 @@ using DLAPI;
 using DO;
 namespace DL
 {
-        sealed class XmlDataSource : IDL
+        sealed class DLXml : IDL
     {
         #region singelton
-        static readonly XmlDataSource instance = new XmlDataSource();
-        static XmlDataSource() { }
-        XmlDataSource() { } 
-        public static XmlDataSource Instance { get => instance; }
+        static readonly DLXml instance = new DLXml();
+        static DLXml() { }
+        DLXml() { } 
+        public static DLXml Instance { get => instance; }
 
 
 
