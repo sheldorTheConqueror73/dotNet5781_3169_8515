@@ -24,7 +24,15 @@ namespace DL
 
         public void updateBus(Bus bus)
         {
-            throw new NotImplementedException();
+            var result = from b1 in Utility.load(typeof(Bus)).Elements()
+                         select b1;
+            foreach (var element in result)
+                if (element.Attribute("id").Value == bus.id.ToString())
+                    element.ReplaceWith(bus.ToXml());
+            XElement root = new XElement("Buses");
+            foreach (var element in result)
+                root.Add(element);
+            Utility.save(root, typeof(Bus));
         }
         public IEnumerable<Bus> GetAllBuses()
         {
@@ -36,6 +44,9 @@ namespace DL
 
         public void addBus(Bus bus)
         {
+            var result = GetBus(bus.id);
+            if(result!=null)
+                throw new itemAlreadyExistsException($"ID number {bus.id} is already taken");
             var root = Utility.load(typeof(Bus));
                 root.Add(bus.ToXml());
             Utility.save(root,typeof(Bus));
@@ -43,21 +54,38 @@ namespace DL
 
         public Bus GetBus(int id)
         {
-            throw new NotImplementedException();
+            return (from element in Utility.load(typeof(Bus)).Elements()
+                   let obj = element.ToObject<Bus>()
+                   where element != null && obj.enabled == true && obj.id==id // change elemnt to obj
+                   select obj).FirstOrDefault();
         }
+     
+
         public void removeBus(int id)
         {
-            throw new NotImplementedException();
+            var bus = GetBus(id);
+            if (bus == null)
+                throw new NoSuchEntryException($"No Bus Matches ID number {id}");
+            bus.enabled = false;
+            updateBus(bus);
         }
 
         public void maintain(int id)
         {
-            throw new NotImplementedException();
+            var bus = GetBus(id);
+            bus.lastMaintenance = DateTime.Now;
+            bus.status = "ready";
+            bus.dangerous = false;
+            bus.fuel = Bus.FULL_TANK;
+            bus.distance = 0;
+            updateBus(bus);
         }
 
         public void refuel(int id)
         {
-            throw new NotImplementedException();
+            var bus = GetBus(id);
+            bus.fuel = Bus.FULL_TANK;
+            updateBus(bus);
         }
 
         #endregion
@@ -73,7 +101,10 @@ namespace DL
         }
         public User GetUser(int id)
         {
-            throw new NotImplementedException();
+            return (from element in Utility.load(typeof(User)).Elements()
+                    let obj = element.ToObject<User>()
+                    where element != null && obj.enabled == true && obj.id == id // change elemnt to obj
+                    select obj).FirstOrDefault();
         }
 
         #endregion
