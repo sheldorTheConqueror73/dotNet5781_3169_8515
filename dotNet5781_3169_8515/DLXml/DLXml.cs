@@ -35,6 +35,9 @@ namespace DL
 
         public void addBus(Bus bus)
         {
+            var result = GetBus(bus.id);
+            if(result!=null)
+                throw new itemAlreadyExistsException($"ID number {bus.id} is already taken");
             var root = Utility.load(typeof(Bus));
                 root.Add(bus.ToXml());
             Utility.save(root,typeof(Bus));
@@ -42,11 +45,14 @@ namespace DL
 
         public Bus GetBus(int id)
         {
-            throw new NotImplementedException();
+            return (from element in Utility.load(typeof(Bus)).Elements()
+                   let obj = element.ToObject<Bus>()
+                   where element != null && obj.enabled == true && obj.id==id // change elemnt to obj
+                   select obj).FirstOrDefault();
         }
         public void removeBus(int id)
         {
-            throw new NotImplementedException();
+          
         }
 
         public void maintain(int id)
