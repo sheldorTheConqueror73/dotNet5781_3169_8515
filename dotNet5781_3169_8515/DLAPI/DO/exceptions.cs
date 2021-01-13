@@ -35,8 +35,25 @@ namespace DO
         public itemAlreadyExistsException(string msg, Exception inner) : base(msg, inner) { }
 
     }
-    
-   
+    public class InvalidArgumentException : Exception
+    {
+        public InvalidArgumentException() { }
+        public InvalidArgumentException(string msg) : base(msg) { }
+        public InvalidArgumentException(string msg, Exception inner) : base(msg, inner) { }
+
+    }
+    public class cannotFindXmlFileException : Exception
+    {
+        string path;
+        public cannotFindXmlFileException() { }
+        public cannotFindXmlFileException(string msg) : base(msg) { }
+        public cannotFindXmlFileException(string msg, Exception inner) : base(msg, inner) { }
+        public cannotFindXmlFileException(string path, Exception inner,string msg) : base(msg, inner) { this.path = path; }
+
+
+    }
+
+
 
 }
 
