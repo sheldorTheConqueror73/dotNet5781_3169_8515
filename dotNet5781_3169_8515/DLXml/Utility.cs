@@ -12,7 +12,7 @@ namespace DL
 
     internal static class Utility
     {
-        private static string dir = @"xml\";
+        private static string dir = @"..\xml\";
         private static string busPath = @"Buses.xml";
         private static string linePath = @"Lines.xml";
         private static string stationPath = @"Stations.xml";
