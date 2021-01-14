@@ -264,7 +264,12 @@ namespace BL
         /// </summary>
         /// <param name="station">the new station</param>
         public void addStation(BusLineStation station)
-        {            
+        {
+            var res = (from sta in dl.GetAllbusLineStation()
+                      where sta != null && sta.code == station.code
+                      select sta).FirstOrDefault();
+           if(res!=null&&res.enabled==true)
+                    throw new itemAlreadyExistsException($"Code number {station.code} is already taken");
             dl.addStation(Utility.BOtoDOConvertor<DO.BusLineStation, BO.BusLineStation>(station));
         }
         /// <summary>

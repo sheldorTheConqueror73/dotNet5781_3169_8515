@@ -290,11 +290,10 @@ namespace PL
             else
             {
                 try { validStationInput(); }
-                catch (Exception exc) {tblError.Text= exc.Message; return; }
+                catch (Exception exc) {tblError.Text= exc.Message; initTextBoxByCbInStations(); return; }
                 finally
                 {
-                    init_lvFollowStation_PreviewMouseDown();
-                    initTextBoxByCbInStations();
+                    init_lvFollowStation_PreviewMouseDown();  
                 }
                 string code = tbStationCode.Text;
                 string name = tbStationName.Text;
