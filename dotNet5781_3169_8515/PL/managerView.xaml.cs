@@ -72,7 +72,7 @@ namespace PL
                 DateTime lm = dpLastMaintenance.SelectedDate.Value;
                 try { bl.addBus(new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready"}); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-                finally { initTextBoxes(false, false, 1); }// disable all textboces anyway
+                finally { initTextBoxes(true, false, 1); }// disable all textboces anyway
                 refreshBuses();
                 btnAddBus.Content = "Add";
                 lbDanger.Visibility = System.Windows.Visibility.Visible;

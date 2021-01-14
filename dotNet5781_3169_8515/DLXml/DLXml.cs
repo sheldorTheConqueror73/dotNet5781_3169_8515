@@ -55,8 +55,8 @@ namespace DL
         public void addBus(Bus bus)
         {
             var result = GetBus(bus.id);
-            if(result!=null)
-                throw new itemAlreadyExistsException($"ID number {bus.id} is already taken");
+            if(result.plateNumber==bus.plateNumber)
+                throw new itemAlreadyExistsException($"Plate number {bus.plateNumber} is already taken");
             var root = Utility.load(typeof(Bus));
                 root.Add(bus.ToXml());
             Utility.save(root,typeof(Bus));

@@ -25,6 +25,7 @@ namespace BL
         {
 
             bus.formatPlateNumber();
+            bus.UpdateDangerous();
             dl.addBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
         /// <summary>
