@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Users>
+  <User>
+    <password>aaa123</password>
+    <name>Jack Smith</name>
+    <accessLevel>Admin</accessLevel>
+    <enabled>true</enabled>
+    <fullname></fullname>
+    <mail></mail>
+    <id>70</id>
+  </User>
+  <User>
+    <password>polonium210</password>
+    <name>Vladimir Putin</name>
+    <accessLevel>Operator</accessLevel>
+    <enabled>true</enabled>
+    <fullname></fullname>
+    <mail></mail>
+    <id>71</id>
+  </User>
+  <User>
+    <password>bbb123</password>
+    <name>C.M.O.T Dibbler</name>
+    <accessLevel>User</accessLevel>
+    <enabled>true</enabled>
+    <fullname></fullname>
+    <mail></mail>
+    <id>72</id>
+  </User>
+</Users>
