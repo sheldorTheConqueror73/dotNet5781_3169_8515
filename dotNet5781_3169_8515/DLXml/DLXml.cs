@@ -411,8 +411,9 @@ namespace DL
             foreach (var folSta in res)
                 if (folSta.Element("lineId").Value == LineId.ToString())
                 {
-                    folSta.ToObject<FollowStations>().enabled = false;
-                    folSta.ReplaceWith(folSta);
+                    var v= folSta.ToObject<FollowStations>();
+                    v.enabled = false;
+                    folSta.ReplaceWith(v.ToXml());
                 }
             XElement root = new XElement("FollowStations");
             foreach (var element in res)
