@@ -67,6 +67,7 @@ namespace PL
                 int fuel, dist, totalDIst;
                 try { validateInput(out fuel, out dist, out totalDIst); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                finally { initTextBoxes(true, false, 1); }
                 string plateNumber = tbId.Text;
                 DateTime rd = dpRegiDate.SelectedDate.Value;
                 DateTime lm = dpLastMaintenance.SelectedDate.Value;
@@ -99,6 +100,7 @@ namespace PL
                 tbDistance.IsEnabled = true;
                 tbTotalDist.IsEnabled = true;
                 lvBuses.Items.Refresh();
+                initTextBoxes(true, false, 1);
             }
             if (lvBuses.SelectedItem == null)
             {
