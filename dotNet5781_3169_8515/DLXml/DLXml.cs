@@ -58,7 +58,7 @@ namespace DL
             return (from element in Utility.load(typeof(Bus)).Elements()
                     where element != null
                     let obj = element.ToObject<Bus>()
-                    where obj.enabled == true // change elemnt to obj
+                    where obj.enabled == true &&obj.id==id // change elemnt to obj
                     select obj).FirstOrDefault();
         }
      
