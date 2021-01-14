@@ -191,7 +191,7 @@ namespace DL
             return (from element in Utility.load(typeof(BusLine)).Elements()
                     where element != null
                     let obj = element.ToObject<BusLine>()
-                    where obj.enabled == true // change elemnt to obj
+                    where obj.enabled == true &&obj.id==id// change elemnt to obj
                     select obj).FirstOrDefault();
         }
         /// <summary>
@@ -276,14 +276,11 @@ namespace DL
         {
             var res = from element in Utility.load(typeof(LineInStation)).Elements()
                       select element;
-            foreach (var linInSta in res)
-                if (linInSta.Element("id").Value == lineId.ToString())
-                    linInSta.Remove();
             XElement root = new XElement("LineInStations");
-            foreach (var element in res)
-                root.Add(element);
+            foreach (var linInSta in res)
+                if (linInSta.Element("Lineid").Value != lineId.ToString())
+                    root.Add(linInSta);
             Utility.save(root, typeof(LineInStation));
-
         }
 
 
