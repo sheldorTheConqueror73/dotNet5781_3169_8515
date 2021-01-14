@@ -338,6 +338,10 @@ namespace DL
         {    
             DataSource.lineInStations.RemoveAll(b => b.Lineid == lineId);
         }
+        /// <summary>
+        /// return specific line in station object by id
+        /// </summary>
+        /// <param name="lisId">id of the requested line in station object</param>
         public LineInStation GetLineInStation(int lisId)
         {
             var result = DataSource.lineInStations.Find(b => b.id == lisId);
@@ -402,7 +406,10 @@ namespace DL
                          let x = item.enabled = false
                          select item).ToList();
         }
-
+        /// <summary>
+        /// return specific follow station object by id
+        /// </summary>
+        /// <param name="id">id of the requested followstation object</param>
         public FollowStations GetFollowStation(int id)
         {
             var result = DataSource.followStation.Find(b => b.id == id);
