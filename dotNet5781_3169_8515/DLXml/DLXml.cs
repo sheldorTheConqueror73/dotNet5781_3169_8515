@@ -278,7 +278,7 @@ namespace DL
                       select element;
             foreach (var linInSta in res)
                 if (linInSta.Element("id").Value == lineId.ToString())
-                    res.Remove(linInSta);
+                    linInSta.Remove();
             XElement root = new XElement("LineInStations");
             foreach (var element in res)
                 root.Add(element);
