@@ -27,7 +27,7 @@ namespace DL
             var result = from b1 in Utility.load(typeof(Bus)).Elements()
                          select b1;
             foreach (var element in result)
-                if (element.Attribute("id").Value == bus.id.ToString())
+                if (element.Element("id").Value == bus.id.ToString())
                     element.ReplaceWith(bus.ToXml());
             XElement root = new XElement("Buses");
             foreach (var element in result)
@@ -178,7 +178,7 @@ namespace DL
             var result = from b1 in Utility.load(typeof(BusLine)).Elements()
                          select b1;
             foreach (var element in result)
-                if (element.Attribute("id").Value == line.id.ToString())
+                if (element.Element("id").Value == line.id.ToString())
                     element.ReplaceWith(line.ToXml());
             XElement root = new XElement("Lines");
             foreach (var element in result)
@@ -218,7 +218,7 @@ namespace DL
             var res = (from element in Utility.load(typeof(LineInStation)).Elements()
                       select element).ToList();
             foreach (var linInSta in res)
-                if (linInSta.Attribute("id").Value == lineId.ToString())
+                if (linInSta.Element("id").Value == lineId.ToString())
                     res.Remove(linInSta);
             XElement root = new XElement("LineInStations");
             foreach (var element in res)
@@ -267,7 +267,7 @@ namespace DL
             var res = from element in Utility.load(typeof(BusLineStation)).Elements()
                       select element;
             foreach(var sta in res)
-                if (sta.Attribute("id").Value == station.id.ToString())
+                if (sta.Element("id").Value == station.id.ToString())
                     sta.ReplaceWith(station.ToXml());
             XElement root = new XElement("Station");
             foreach (var element in res)
@@ -323,7 +323,7 @@ namespace DL
             var res = from element in Utility.load(typeof(FollowStations)).Elements()
                       select element;
             foreach (var folSta in res)
-                if (folSta.Attribute("lineId").Value == LineId.ToString())
+                if (folSta.Element("lineId").Value == LineId.ToString())
                 {
                     folSta.ToObject<FollowStations>().enabled = false;
                     folSta.ReplaceWith(folSta);
@@ -350,7 +350,7 @@ namespace DL
             var res = from element in Utility.load(typeof(FollowStations)).Elements()
                       select element;
             foreach (var sta in res)
-                if (sta.Attribute("id").Value == folStation.id.ToString())
+                if (sta.Element("id").Value == folStation.id.ToString())
                     sta.ReplaceWith(folStation.ToXml());
             XElement root = new XElement("FollowStations");
             foreach (var element in res)
