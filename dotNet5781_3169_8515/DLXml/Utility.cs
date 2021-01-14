@@ -43,6 +43,24 @@ namespace DL
             throw new InvalidArgumentException("Invalid Argument");
 
         }
+        private static string getName(Type type)
+        {
+            if (type == typeof(Bus))
+                return "Buses";
+            if (type == typeof(BusLine))
+                return "Lines";
+            if (type == typeof(BusLineStation))
+                return "Station";
+            if (type == typeof(User))
+                return "Users";
+            if (type == typeof(LineInStation))
+                return "LinesInStations";
+            if (type == typeof(FollowStations))
+                return "FollowStations";
+            throw new InvalidArgumentException("Invalid Argument");
+        }
+
+
 
         /// <summary>
         /// casts an object to xml
@@ -52,7 +70,7 @@ namespace DL
         /// <returns>xml version of object</returns>
         public static XElement ToXml<T>(this T data) where T : DOobject
         {
-            XElement root = new XElement($"{data.GetType().ToString().Split('.')[1]}es");
+            XElement root = new XElement(data.GetType().Name);
             root.Add(from prop in data.GetType().GetProperties()
                      select new XElement(prop.Name, prop.GetValue(data, null)));
             return root;
@@ -132,7 +150,7 @@ namespace DL
                     }
                     else
                     {
-                        XElement rootElem = new XElement(type.Name);
+                        XElement rootElem = new XElement(getName(type));
                         save(rootElem,type);
                         return rootElem;
                     }

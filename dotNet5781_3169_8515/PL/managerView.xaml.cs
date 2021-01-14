@@ -489,6 +489,8 @@ namespace PL
         /// </summary>
         private void refreshLineTextboxes()
         {
+            if (lvStationOfLine.Items.Count == 0)
+                return;
             tbLineFirstSta.Text = (lvStationOfLine.Items[0] as BO.BusLineStation).Name;
             tbLineLastSta.Text = (lvStationOfLine.Items[lvStationOfLine.Items.Count - 1] as BO.BusLineStation).Name;
             if(cbBusLines.SelectedItem as BO.BusLine!=null)
@@ -565,11 +567,15 @@ namespace PL
             lvBuses.SelectedIndex = 0;
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.SelectedIndex = 0;
-            lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.BusLineStation).id);
-            lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.BusLineStation).id);
+            if(cbStations.SelectedItem!=null)
+            { 
+                lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.BusLineStation).id);
+                lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.BusLineStation).id);
+            }
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.SelectedIndex = 0;
-            lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
+            if(cbBusLines.SelectedItem!=null)
+                  lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
             refreshLineTextboxes();
         }
         /// <summary>
