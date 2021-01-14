@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Station>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>שדרות גולדה מאיר/המשורר אצ''ג</Name>
+    <enabled>true</enabled>
+    <code>73</code>
+    <Latitude>31.825302</Latitude>
+    <Longitude>35.188624</Longitude>
+    <Address>רחוב:שדרות גולדה מאיר  עיר: ירושלים </Address>
+    <id>46</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>בית ספר צור באהר בנות/אלמדינה אלמונוורה</Name>
+    <enabled>true</enabled>
+    <code>76</code>
+    <Latitude>31.738425</Latitude>
+    <Longitude>35.228765</Longitude>
+    <Address>רחוב:אל מדינה אל מונאוורה  עיר: ירושלים</Address>
+    <id>47</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>בית ספר אבן רשד/אלמדינה אלמונוורה</Name>
+    <enabled>true</enabled>
+    <code>77</code>
+    <Latitude>31.738676</Latitude>
+    <Longitude>35.226704</Longitude>
+    <Address>רחוב:אל מדינה אל מונאוורה  עיר: ירושלים </Address>
+    <id>48</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>שרי ישראל/יפו</Name>
+    <enabled>true</enabled>
+    <code>78</code>
+    <Latitude>31.789128</Latitude>
+    <Longitude>35.206146</Longitude>
+    <Address>רחוב:שדרות שרי ישראל 15 עיר: ירושלים</Address>
+    <id>49</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>בטן אלהווא/חוש אל מרג</Name>
+    <enabled>true</enabled>
+    <code>83</code>
+    <Latitude>31.766358</Latitude>
+    <Longitude>35.240417</Longitude>
+    <Address>רחוב:בטן אל הווא  עיר: ירושלים</Address>
+    <id>50</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>מלכי ישראל/הטורים</Name>
+    <enabled>true</enabled>
+    <code>84</code>
+    <Latitude>31.790758</Latitude>
+    <Longitude>35.209791</Longitude>
+    <Address> רחוב:מלכי ישראל 77 עיר: ירושלים </Address>
+    <id>51</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>בית ספר לבנים/אלמדארס</Name>
+    <enabled>true</enabled>
+    <code>85</code>
+    <Latitude>31.768643</Latitude>
+    <Longitude>35.238509</Longitude>
+    <Address>רחוב:אלמדארס  עיר: ירושלים</Address>
+    <id>52</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>מגרש כדורגל/אלמדארס</Name>
+    <enabled>true</enabled>
+    <code>86</code>
+    <Latitude>31.769899</Latitude>
+    <Longitude>35.23973</Longitude>
+    <Address>רחוב:אלמדארס  עיר: ירושלים</Address>
+    <id>53</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>בית ספר לבנות/בטן אלהוא</Name>
+    <enabled>true</enabled>
+    <code>88</code>
+    <Latitude>31.767064</Latitude>
+    <Longitude>35.238443</Longitude>
+    <Address> רחוב:בטן אל הווא  עיר: ירושלים</Address>
+    <id>54</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>דרך בית לחם הישה/ואדי קדום</Name>
+    <enabled>true</enabled>
+    <code>89</code>
+    <Latitude>31.765863</Latitude>
+    <Longitude>35.247198</Longitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים </Address>
+    <id>55</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>גולדה/הרטום</Name>
+    <enabled>true</enabled>
+    <code>90</code>
+    <Latitude>31.799804</Latitude>
+    <Longitude>35.213021</Longitude>
+    <Address>רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <id>56</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>דרך בית לחם הישה/ואדי קדום</Name>
+    <enabled>true</enabled>
+    <code>91</code>
+    <Latitude>31.765717</Latitude>
+    <Longitude>35.247102</Longitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים </Address>
+    <id>57</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>חוש סלימה 1</Name>
+    <enabled>true</enabled>
+    <code>93</code>
+    <Latitude>31.767265</Latitude>
+    <Longitude>35.246594</Longitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <id>58</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>דרך בית לחם הישנה ב</Name>
+    <enabled>true</enabled>
+    <code>94</code>
+    <Latitude>31.767084</Latitude>
+    <Longitude>35.246655</Longitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <id>59</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>דרך בית לחם הישנה א</Name>
+    <enabled>true</enabled>
+    <code>95</code>
+    <Latitude>31.768759</Latitude>
+    <Longitude>31.768759</Longitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <id>60</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>שכונת בזבוז 2</Name>
+    <enabled>true</enabled>
+    <code>97</code>
+    <Latitude>31.77002</Latitude>
+    <Longitude>35.24348</Longitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <id>61</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>גולדה/שלמה הלוי</Name>
+    <enabled>true</enabled>
+    <code>102</code>
+    <Latitude>31.8003</Latitude>
+    <Longitude>35.208257</Longitude>
+    <Address> רחוב:שדרות גולדה מאיר  עיר: ירושלים</Address>
+    <id>62</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>גולדה/הרטום</Name>
+    <enabled>true</enabled>
+    <code>103</code>
+    <Latitude>31.8</Latitude>
+    <Longitude>35.214106</Longitude>
+    <Address> רחוב:שדרות גולדה מאיר  עיר: ירושלים</Address>
+    <id>63</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>גבעת משה</Name>
+    <enabled>true</enabled>
+    <code>105</code>
+    <Latitude>31.797708</Latitude>
+    <Longitude>35.217133</Longitude>
+    <Address> רחוב:גבעת משה 2 עיר: ירושלים</Address>
+    <id>64</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>גבעת משה</Name>
+    <enabled>true</enabled>
+    <code>106</code>
+    <Latitude>31.797535</Latitude>
+    <Longitude>35.217057</Longitude>
+    <Address> רחוב:גבעת משה 3 עיר: ירושלים</Address>
+    <id>65</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>עזרת תורה/עלי הכהן</Name>
+    <enabled>true</enabled>
+    <code>108</code>
+    <Latitude>31.797535</Latitude>
+    <Longitude>35.213728</Longitude>
+    <Address>  רחוב:עזרת תורה 25 עיר: ירושלים</Address>
+    <id>66</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>עזרת תורה/דורש טוב</Name>
+    <enabled>true</enabled>
+    <code>109</code>
+    <Latitude>31.796818</Latitude>
+    <Longitude>35.212936</Longitude>
+    <Address>  רחוב:עזרת תורה 21 עיר: ירושלים </Address>
+    <id>67</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>האוניברסיטה הנעלמת</Name>
+    <enabled>true</enabled>
+    <code>110</code>
+    <Latitude>31.796129</Latitude>
+    <Longitude>35.212698</Longitude>
+    <Address> רחוב:אביב צנזור 1 עיר: אנק מורפורק</Address>
+    <id>68</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>יעקובזון/עזרת תורה</Name>
+    <enabled>true</enabled>
+    <code>111</code>
+    <Latitude>31.794631</Latitude>
+    <Longitude>35.21161</Longitude>
+    <Address>  רחוב:יעקובזון 1 עיר: ירושלים</Address>
+    <id>69</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>יעקובזון/עזרת תורה</Name>
+    <enabled>true</enabled>
+    <code>112</code>
+    <Latitude>31.79508</Latitude>
+    <Longitude>35.211684</Longitude>
+    <Address> רחוב:יעקובזון  עיר: ירושלים</Address>
+    <id>70</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>אנק החדשה</Name>
+    <enabled>true</enabled>
+    <code>113</code>
+    <Latitude>31.796255</Latitude>
+    <Longitude>35.211065</Longitude>
+    <Address>  רחוב: אביב צנזור 19 עיר: ניו אנק</Address>
+    <id>71</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>נרניה</Name>
+    <enabled>true</enabled>
+    <code>115</code>
+    <Latitude>31.798423</Latitude>
+    <Longitude>35.209575</Longitude>
+    <Address> רחוב: אביב צנזור 23 עיר: קייר פאראוול</Address>
+    <id>72</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>זית רענן/תורת חסד</Name>
+    <enabled>true</enabled>
+    <code>116</code>
+    <Latitude>31.798689</Latitude>
+    <Longitude>35.208878</Longitude>
+    <Address>  רחוב:הרב סורוצקין 48 עיר: ירושלים </Address>
+    <id>73</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>קרית הילד/סורוצקין</Name>
+    <enabled>true</enabled>
+    <code>117</code>
+    <Latitude>31.799165</Latitude>
+    <Longitude>35.206918</Longitude>
+    <Address>  רחוב:הרב סורוצקין  עיר: ירושלים</Address>
+    <id>74</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>סורוצקין/שנירר</Name>
+    <enabled>true</enabled>
+    <code>119</code>
+    <Latitude>31.797829</Latitude>
+    <Longitude>35.205601</Longitude>
+    <Address>  רחוב:הרב סורוצקין 31 עיר: ירושלים</Address>
+    <id>75</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>מורפורקיה תחנה מרכזית</Name>
+    <enabled>true</enabled>
+    <code>1485</code>
+    <Latitude>31.840063</Latitude>
+    <Longitude>35.240062</Longitude>
+    <Address>רחוב: שדרות נווה יעקוב  עיר:ירושלים </Address>
+    <id>76</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>מרכז קהילתי /שדרות נווה יעקוב</Name>
+    <enabled>true</enabled>
+    <code>1486</code>
+    <Latitude>31.838481</Latitude>
+    <Longitude>35.23972</Longitude>
+    <Address>רחוב:שדרות נווה יעקוב ירושלים עיר:ירושלים </Address>
+    <id>77</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name> מסוף אטלנטיס </Name>
+    <enabled>true</enabled>
+    <code>1487</code>
+    <Latitude>31.837748</Latitude>
+    <Longitude>35.231598</Longitude>
+    <Address>רחוב:??????עיר:??????  </Address>
+    <id>78</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name> הרב פרדס/אסטורהב </Name>
+    <enabled>true</enabled>
+    <code>1488</code>
+    <Latitude>31.840279</Latitude>
+    <Longitude>35.246272</Longitude>
+    <Address>רחוב:מעגלות הרב פרדס  עיר: ירושלים רציף  </Address>
+    <id>79</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>הרב פרדס/צוקרמן </Name>
+    <enabled>true</enabled>
+    <code>1490</code>
+    <Latitude>31.843598</Latitude>
+    <Longitude>35.243639</Longitude>
+    <Address>רחוב:מעגלות הרב פרדס 24 עיר: ירושלים   </Address>
+    <id>80</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>ברזיל </Name>
+    <enabled>true</enabled>
+    <code>1491</code>
+    <Latitude>31.766256</Latitude>
+    <Longitude>35.173</Longitude>
+    <Address>רחוב:ברזיל 14 עיר: ירושלים</Address>
+    <id>81</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>בית וגן/הרב שאג </Name>
+    <enabled>true</enabled>
+    <code>1492</code>
+    <Latitude>31.76736</Latitude>
+    <Longitude>35.184771</Longitude>
+    <Address>רחוב:בית וגן 61 עיר: ירושלים </Address>
+    <id>82</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>בית וגן/עוזיאל </Name>
+    <enabled>true</enabled>
+    <code>1493</code>
+    <Latitude>31.770543</Latitude>
+    <Longitude>35.183999</Longitude>
+    <Address>רחוב:בית וגן 21 עיר: ירושלים    </Address>
+    <id>83</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name> קרית יובל/שמריהו לוין </Name>
+    <enabled>true</enabled>
+    <code>1494</code>
+    <Latitude>31.768465</Latitude>
+    <Longitude>35.178701</Longitude>
+    <Address>רחוב:ארתור הנטקה  עיר: ירושלים    </Address>
+    <id>84</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name> קורצ'אק / רינגלבלום </Name>
+    <enabled>true</enabled>
+    <code>1510</code>
+    <Latitude>31.759534</Latitude>
+    <Longitude>35.173688</Longitude>
+    <Address>רחוב:יאנוש קורצ'אק 7 עיר: ירושלים</Address>
+    <id>85</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name> טהון/גולומב </Name>
+    <enabled>true</enabled>
+    <code>1511</code>
+    <Latitude>31.761447</Latitude>
+    <Longitude>35.175929</Longitude>
+    <Address>רחוב:יעקב טהון  עיר: ירושלים     </Address>
+    <id>86</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>הרב הרצוג/שח''ל </Name>
+    <enabled>true</enabled>
+    <code>1512</code>
+    <Latitude>31.761447</Latitude>
+    <Longitude>35.199936</Longitude>
+    <Address>רחוב:הרב הרצוג  עיר: ירושלים רציף</Address>
+    <id>87</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>פרץ ברנשטיין/נזר דוד </Name>
+    <enabled>true</enabled>
+    <code>1514</code>
+    <Latitude>31.759186</Latitude>
+    <Longitude>35.189336</Longitude>
+    <Address>רחוב:הרב הרצוג  עיר: ירושלים רציף</Address>
+    <id>88</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>פרץ ברנשטיין/נזר דוד</Name>
+    <enabled>true</enabled>
+    <code>1518</code>
+    <Latitude>31.759121</Latitude>
+    <Longitude>35.189178</Longitude>
+    <Address> רחוב:פרץ ברנשטיין 56 עיר: ירושלים </Address>
+    <id>89</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>תחנת משמר העיר</Name>
+    <enabled>true</enabled>
+    <code>1522</code>
+    <Latitude>31.774484</Latitude>
+    <Longitude>35.204882</Longitude>
+    <Address>  רחוב:דרך דיבלר 14  עיר: אנק מורפורק </Address>
+    <id>90</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>הרצוג/טשרניחובסקי</Name>
+    <enabled>true</enabled>
+    <code>1523</code>
+    <Latitude>31.769652</Latitude>
+    <Longitude>35.208248</Longitude>
+    <Address>   רחוב:הרב הרצוג  עיר: ירושלים  </Address>
+    <id>91</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>רופין/שד' הזז</Name>
+    <enabled>true</enabled>
+    <code>1524</code>
+    <Latitude>31.769652</Latitude>
+    <Longitude>35.208248</Longitude>
+    <Address>    רחוב:הרב הרצוג  עיר: ירושלים   </Address>
+    <id>92</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>מרכז סולם/סורוצקין </Name>
+    <enabled>true</enabled>
+    <code>121</code>
+    <Latitude>31.796033</Latitude>
+    <Longitude>35.206094</Longitude>
+    <Address> רחוב:הרב סורוצקין 13 עיר: ירושלים</Address>
+    <id>93</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>אוהל דוד/סורוצקין </Name>
+    <enabled>true</enabled>
+    <code>123</code>
+    <Latitude>31.794958</Latitude>
+    <Longitude>35.205216</Longitude>
+    <Address>  רחוב:הרב סורוצקין 9 עיר: ירושלים</Address>
+    <id>94</id>
+  </BusLineStation>
+  <BusLineStation>
+    <Distance>0</Distance>
+    <DriveTime>PT0S</DriveTime>
+    <Name>מרכז סולם/סורוצקין </Name>
+    <enabled>true</enabled>
+    <code>122</code>
+    <Latitude>31.79617</Latitude>
+    <Longitude>35.206158</Longitude>
+    <Address>  רחוב:הרב סורוצקין 28 עיר: ירושלים</Address>
+    <id>95</id>
+  </BusLineStation>
+</Station>
