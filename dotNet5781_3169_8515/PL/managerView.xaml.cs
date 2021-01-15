@@ -771,6 +771,8 @@ namespace PL
 
         }
 
+       
+
         private void validINputDriveTimeOrDistance()
         {
             string fl = tbStationDriveTm.Text;
@@ -797,6 +799,17 @@ namespace PL
                 throw new InvalidUserInputExecption("Invalid input: Distance field need to be a possitive number.");
 
         }
+        #region convertExcel
+        private void btnConvert_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.ConvertToExcel("C:\\Users\\LENOVO\\source\\repos\\sheldorTheConqueror73\\dotNet5781_3169_8515\\dotNet5781_3169_8515\\xml\\Buses.xml", "busesExcel.xlsx");
+                MessageBox.Show("Conversion Completed!");
+            }
+            catch (Exception exc) { }
+        }
+        #endregion
         #endregion
 
 

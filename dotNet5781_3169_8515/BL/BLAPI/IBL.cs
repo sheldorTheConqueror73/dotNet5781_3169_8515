@@ -60,5 +60,6 @@ namespace BLAPI
         #endregion
 
         void listToText();
+        void ConvertToExcel(string fileXmlPath, string fileXlName);
     }
 }
