@@ -801,6 +801,9 @@ namespace PL
         }
         #region convertExcel
         string path="";
+        /// <summary>
+        /// let the user to chose the path of the saving file
+        /// </summary>
         public void SaveExcelWorkBook()
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -818,6 +821,10 @@ namespace PL
                 path = dlg.FileName;
             }
         }
+        /// <summary>
+        /// convert xml file of buses to excel
+        /// </summary>
+
         private void btnConvert_Click(object sender, RoutedEventArgs e)
         {
             SaveExcelWorkBook();
