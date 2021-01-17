@@ -36,11 +36,11 @@ namespace BL
                 TimerInstance = new Timer();
             Timer.add(bus);
         }
-        public void stopTimer(Bus bus)
+        public void stopTimer(int id)
         {
             if (TimerInstance == null)
                 return;
-            Timer.remove(bus);
+            Timer.remove(id);
 
         }
         public void Tick(int id)
@@ -48,7 +48,7 @@ namespace BL
             DO.Bus bus = dl.GetBus(id);
             if(bus.time==TimeSpan.Zero)
             {
-                stopTimer(Utility.DOtoBOConvertor<BO.Bus,DO.Bus>(bus));
+                stopTimer(bus.id);
             }
             else
                 bus.time += TimeSpan.FromSeconds(-1);

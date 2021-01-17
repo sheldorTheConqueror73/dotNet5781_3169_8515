@@ -35,7 +35,7 @@ namespace BLAPI
         void Tick(int id);
         ProgressChangedEventHandler passTimer(ProgressChangedEventHandler doWork, int mode);
         void startTimer(Bus bus);
-        void stopTimer(Bus bus);
+        void stopTimer(int id);
         #endregion
 
         #region Station
