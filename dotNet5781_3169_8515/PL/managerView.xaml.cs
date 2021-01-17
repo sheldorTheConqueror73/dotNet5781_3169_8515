@@ -89,11 +89,13 @@ namespace PL
                 DateTime lm = dpLastMaintenance.SelectedDate.Value;
                 try { bl.addBus(new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready"}); }
                 catch (Exception exc) { tbBusesError.Text= exc.Message; return; }
-                finally { initTextBoxes(true, false, 1); }// disable all textboces anyway
+                finally {
+                    btnAddBus.Content = "Add";
+                    lbDanger.Visibility = System.Windows.Visibility.Visible;
+                    tbDangerous.Visibility = System.Windows.Visibility.Visible;
+                    initTextBoxes(true, false, 1); }// disable all textboces anyway
                 refreshBuses(-1);
-                btnAddBus.Content = "Add";
-                lbDanger.Visibility = System.Windows.Visibility.Visible;
-                tbDangerous.Visibility = System.Windows.Visibility.Visible;
+                
             }
 
         }
