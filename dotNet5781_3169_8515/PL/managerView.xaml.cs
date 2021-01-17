@@ -143,9 +143,13 @@ namespace PL
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;//find the selced line in listView
             int id = lineData.id;
-            bl.removeBus(id);//remove bus function
-            refreshBuses(-1);
-            initTextBoxes(false, true, 1);
+            try
+            {
+                bl.removeBus(id);//remove bus function
+                refreshBuses(-1);
+                initTextBoxes(false, true, 1);
+            }
+            catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
         }
 
         /// <summary>
@@ -158,10 +162,14 @@ namespace PL
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;
             int id = lineData.id;
-            bl.passTimer(timer, 1);
-            bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling");
-            bl.refuel(lineData.id);
-            refreshBuses(id);
+            try
+            {
+                bl.passTimer(timer, 1);
+                bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling");
+                bl.refuel(lineData.id);
+                refreshBuses(id);
+            }
+            catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
 
         }
         /// <summary>
@@ -198,11 +206,14 @@ namespace PL
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;
             int id = lineData.id;
-            bl.passTimer(timer, 1);
-            bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance");
-            bl.maintain(lineData.id);
-            refreshBuses(id);
-
+            try
+            {
+                bl.passTimer(timer, 1);
+                bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance");
+                bl.maintain(lineData.id);
+                refreshBuses(id);
+            }
+            catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
         }
 
         /// <summary>
@@ -561,8 +572,12 @@ namespace PL
 
         private void start_Click(object sender, RoutedEventArgs e)
         {
-            bl.passTimer(timer,1);
-            bl.startTimer(lvBuses.SelectedItem as BO.Bus,new TimeSpan(0,0,10),"Busy");
+            try
+            {
+                bl.passTimer(timer, 1);
+                bl.startTimer(lvBuses.SelectedItem as BO.Bus, new TimeSpan(0, 0, 10), "Busy");
+            }
+            catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             return;
         }
 
@@ -817,6 +832,7 @@ namespace PL
         }
 
         #endregion
+
         #region convertExcel
         /// <summary>
         /// let the user to chose the path of the saving file
@@ -855,7 +871,8 @@ namespace PL
                 bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory+"Buses.xml", path);
                 MessageBox.Show("Conversion Completed!");
             }
-            catch (Exception exc) { }
+            catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+
         }
         /// <summary>
         /// convert xml file of lines to excel
@@ -871,7 +888,7 @@ namespace PL
                 bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory +"Lines.xml", path);
                 MessageBox.Show("Conversion Completed!");
             }
-            catch (Exception exc) { }
+            catch (Exception exc) { MessageBox.Show(exc.Message); return; }
         }
         /// <summary>
         /// convert xml file of stations to excel
@@ -887,7 +904,7 @@ namespace PL
                 bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory + "Stations.xml", path);
                 MessageBox.Show("Conversion Completed!");
             }
-            catch (Exception exc) { }
+            catch (Exception exc) { MessageBox.Show(exc.Message); return; }
         }
         #endregion
 
