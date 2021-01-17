@@ -20,10 +20,10 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Address" Width="140"  DisplayMemberBinding="{Binding Address}">
+                    <GridViewColumn Header="Name" Width="140"  DisplayMemberBinding="{Binding Name}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock  Text="{Binding Address}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                <TextBlock  Text="{Binding Name}"  Margin="1.5" HorizontalAlignment="Center"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -40,10 +40,10 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Address" Width="140"  DisplayMemberBinding="{Binding Address}">
+                    <GridViewColumn Header="Name" Width="140"  DisplayMemberBinding="{Binding Name}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock  Text="{Binding Address}"  Margin="1.5" HorizontalAlignment="Center"/>
+                                <TextBlock  Text="{Binding Name}"  Margin="1.5" HorizontalAlignment="Center"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
