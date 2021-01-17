@@ -24,21 +24,34 @@ namespace PL
     {
 
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
-        int busOrder;
+        int busOrder=0;
         int folStatIdSelect = 0;
         private TextBox focusedTextbox = null;
         TimeSpan fTs, eTs;// timespan varibles to save the time drive between stations and the total drive time before changing
         public managerView()
         {
-            busOrder = 0;
             InitializeComponent();
             initSource();
-
-
         }
 
 
         #region buses
+
+        private void resumeTimer(object sender, RoutedEventArgs e)
+        {
+            bl.passTimer(timer, 1);
+            foreach (var item in lvBuses.Items)
+            {
+                var bus = item as BO.Bus;
+                if (bus.time != TimeSpan.Zero)
+                    try
+                    {
+                        bl.startTimer(bus, bus.time, bus.status);
+                    }
+                    catch { }
+            }
+        }
+
 
         /// <summary>
         /// enables editing mode to update bus properties
@@ -180,6 +193,7 @@ namespace PL
         /// </summary>
         private void refreshBuses(int id)
         {
+            
             this.focusedTextbox = getFocused();
             int selectedStart=0, selcetedLength=0;
             string focusedText = "";

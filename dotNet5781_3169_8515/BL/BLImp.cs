@@ -32,16 +32,6 @@ namespace BL
         }
        public void startTimer(Bus bus,TimeSpan time, string status)
         {
-            if (status == "Busy")
-            {
-                if (bus.status != "ready")
-                    throw new BusBusyException("Error: can't send a bus that it's not ready!");
-            }
-            else
-            {
-                if(bus.status != "ready"&&bus.status!="dangerous")
-                    throw new BusBusyException("Error: can't send a bus that it's busy!");
-            }
             if (TimerInstance == null)
                 TimerInstance = new Timer();
             dl.updateTime(bus.id, time);

@@ -8,7 +8,6 @@ namespace BO
 {
     public class Bus:BOobject
     {
-        public class timerclass { };
         public const int FULL_TANK = 1200;
 
         public TimeSpan time { get; set; }
