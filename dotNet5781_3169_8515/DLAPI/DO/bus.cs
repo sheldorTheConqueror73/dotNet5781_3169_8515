@@ -34,7 +34,7 @@ namespace DO
             registrationDate = new DateTime();
             lastMaintenance = new DateTime();
             enabled = true;
-            time = new TimeSpan(0, 0, 20);
+            time = TimeSpan.Zero;
 
         } 
     }

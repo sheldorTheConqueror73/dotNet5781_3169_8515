@@ -125,8 +125,6 @@ namespace BL
         public void refuel(int id)
         {
             var bus = this.GetBus(id);
-            if (bus.status != "ready" && bus.status != "dangerous")
-                throw new BusBusyException("Bus is currently Busy");
             dl.refuel(id);
         }
         /// <summary>
@@ -135,13 +133,15 @@ namespace BL
         /// <param name="id">id of the bus that sending to maintenance</param>
         public void maintain(int id)
         {
-            
             var bus = this.GetBus(id);
-            if (bus.status != "ready" && bus.status != "dangerous")
-                throw new BusBusyException("Bus is currently Busy");
             dl.maintain(id);
         }
-
+        public void CheckStatus(int id)
+        {
+            var bus = this.GetBus(id);
+            if(bus.status != "ready" && bus.status != "dangerous")
+                throw new BusBusyException("Bus is currently Busy");
+        }
 
         #endregion
 
