@@ -7,6 +7,9 @@ using System.Threading;
 using BO;
 using System.Reflection;
 using System.IO;
+using Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
+using System.Data;
 using System.ComponentModel;
 
 namespace BL
@@ -581,8 +584,87 @@ namespace BL
             user.accessLevel ="User";
             dl.addUser(Utility.BOtoDOConvertor<DO.User,BO.User>(user));
         }
-       
+
         #endregion
-      
+
+        #region exportToExcel
+        public void ConvertToExcel(string fileXmlPath,string fileXlName)
+        {
+            if (fileXlName != "" && fileXmlPath != "") // using Custome Xml File Name  
+            {
+                if (File.Exists(fileXmlPath))
+                {
+                    string CustXmlFilePath = Path.Combine(new FileInfo(fileXmlPath).DirectoryName, fileXlName); // Ceating Path for Xml Files  
+                    System.Data.DataTable dt = CreateDataTableFromXml(fileXmlPath);
+                    ExportDataTableToExcel(dt, CustXmlFilePath);
+                }
+
+            }
+            else if ( fileXmlPath != "") // Using Default Xml File Name  
+            {
+                if (File.Exists(fileXmlPath))
+                {
+                    FileInfo fi = new FileInfo(fileXmlPath);
+                    string XlFile = fi.DirectoryName + "\\" + fi.Name.Replace(fi.Extension, ".xlsx");
+                    System.Data.DataTable dt = CreateDataTableFromXml(fileXmlPath);
+                    ExportDataTableToExcel(dt, XlFile);
+                }
+            }
+        }
+
+        private System.Data.DataTable CreateDataTableFromXml(string XmlFile)
+        {
+
+            System.Data.DataTable Dt = new System.Data.DataTable();
+            try
+            {
+                DataSet ds = new DataSet();
+                ds.ReadXml(XmlFile);
+                Dt.Load(ds.CreateDataReader());
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Dt;
+        }
+        private void ExportDataTableToExcel(System.Data.DataTable table, string Xlfile)
+        {
+
+            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Workbook book = excel.Application.Workbooks.Add(Type.Missing);
+            excel.Visible = false;
+            excel.DisplayAlerts = false;
+            Worksheet excelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
+            excelWorkSheet.Name = table.TableName;
+        
+            for (int i = 1; i < table.Columns.Count + 1; i++) // Creating Header Column In Excel  
+            {
+                excelWorkSheet.Cells[1, i] = table.Columns[i - 1].ColumnName;
+                
+            }
+   
+            for (int j = 0; j < table.Rows.Count; j++) // Exporting Rows in Excel  
+            {
+                for (int k = 0; k < table.Columns.Count; k++)
+                {
+                    excelWorkSheet.Cells[j + 2, k + 1] = table.Rows[j].ItemArray[k].ToString();
+                }
+     
+            }
+
+            book.SaveAs(Xlfile);
+            book.Close(true);
+            excel.Quit();
+
+            Marshal.ReleaseComObject(book);
+            Marshal.ReleaseComObject(book);
+            Marshal.ReleaseComObject(excel);
+
+        }
+ 
+        #endregion
+
     }
 }
