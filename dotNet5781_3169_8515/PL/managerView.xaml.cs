@@ -69,13 +69,13 @@ namespace PL
             {
                 int fuel, dist, totalDIst;
                 try { validateInput(out fuel, out dist, out totalDIst); }
-                catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                catch (Exception exc) { tbBusesError.Text = exc.Message; return; }
                 finally { initTextBoxes(true, false, 1); }
                 string plateNumber = tbId.Text;
                 DateTime rd = dpRegiDate.SelectedDate.Value;
                 DateTime lm = dpLastMaintenance.SelectedDate.Value;
                 try { bl.addBus(new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready"}); }
-                catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+                catch (Exception exc) { tbBusesError.Text= exc.Message; return; }
                 finally { initTextBoxes(true, false, 1); }// disable all textboces anyway
                 refreshBuses(-1);
                 btnAddBus.Content = "Add";
@@ -95,7 +95,7 @@ namespace PL
             int id;
             int fuel, dist, totalDIst;
             try { validateInput(out fuel, out dist, out totalDIst); }//validate user input
-            catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+            catch (Exception exc) { tbBusesError.Text = exc.Message; return; }
             finally
             {
                 tbId.IsEnabled = true;
@@ -118,7 +118,7 @@ namespace PL
 
                 id = bus.id;
             }
-            catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
+            catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
             refreshBuses(id);
             int index = 0;
             foreach (var item in lvBuses.Items)//finds which index the selected item is in the listView
@@ -150,7 +150,7 @@ namespace PL
                 refreshBuses(-1);
                 initTextBoxes(false, true, 1);
             }
-            catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
+            catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace PL
                 bl.refuel(lineData.id);
                 refreshBuses(id);
             }
-            catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
+            catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
 
         }
         /// <summary>
@@ -235,7 +235,7 @@ namespace PL
                 bl.maintain(lineData.id);
                 refreshBuses(id);
             }
-            catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
+            catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
         }
 
     
@@ -249,6 +249,7 @@ namespace PL
         {
             initTextBoxes(false, false, 1);
             btnUpdate.Visibility = System.Windows.Visibility.Hidden;
+            tbBusesError.Text = "";
         }
 
         /// <summary>

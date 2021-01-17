@@ -176,6 +176,7 @@
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
+                        <TextBlock x:Name="tbBusesError" HorizontalAlignment="Center" Margin="10,154,0,0" Grid.Row="8" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20"  Width="330"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -228,7 +229,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock    Margin="1.5" HorizontalAlignment="Center">
-                                                  
+
                                                 </TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
