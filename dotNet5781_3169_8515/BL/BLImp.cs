@@ -30,17 +30,19 @@ namespace BL
                 return handler;
             return null;
         }
-       public void startTimer(Bus bus)
+       public void startTimer(Bus bus,TimeSpan time, string status)
         {
             if (TimerInstance == null)
                 TimerInstance = new Timer();
-            Timer.add(bus);
+            dl.updateTime(bus.id, time);
+            dl.updateStatus(bus.id, status);
+            Timer.add(bus.id);
         }
-        public void stopTimer(Bus bus)
+        public void stopTimer(int id)
         {
             if (TimerInstance == null)
                 return;
-            Timer.remove(bus);
+            Timer.remove(id);
 
         }
         public void Tick(int id)
@@ -48,10 +50,11 @@ namespace BL
             DO.Bus bus = dl.GetBus(id);
             if(bus.time==TimeSpan.Zero)
             {
-                stopTimer(Utility.DOtoBOConvertor<BO.Bus,DO.Bus>(bus));
+                stopTimer(bus.id);
+                dl.updateStatus(id,"ready");
+                return;
             }
-            else
-                bus.time += TimeSpan.FromSeconds(-1);
+            bus.time += TimeSpan.FromSeconds(-1);
             dl.updateBus(bus);
         }
 
@@ -122,8 +125,6 @@ namespace BL
         public void refuel(int id)
         {
             var bus = this.GetBus(id);
-            if (bus.status != "ready" && bus.status != "dangerous")
-                throw new BusBusyException("Bus is currently Busy");
             dl.refuel(id);
         }
         /// <summary>
@@ -132,13 +133,15 @@ namespace BL
         /// <param name="id">id of the bus that sending to maintenance</param>
         public void maintain(int id)
         {
-            
             var bus = this.GetBus(id);
-            if (bus.status != "ready" && bus.status != "dangerous")
-                throw new BusBusyException("Bus is currently Busy");
             dl.maintain(id);
         }
-
+        public void CheckStatus(int id)
+        {
+            var bus = this.GetBus(id);
+            if(bus.status != "ready" && bus.status != "dangerous")
+                throw new BusBusyException("Bus is currently Busy");
+        }
 
         #endregion
 

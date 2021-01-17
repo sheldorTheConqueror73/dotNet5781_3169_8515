@@ -75,7 +75,7 @@ namespace PL
                 try { bl.addBus(new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready"}); }
                 catch (Exception exc) { MessageBox.Show(exc.Message); return; }
                 finally { initTextBoxes(true, false, 1); }// disable all textboces anyway
-                refreshBuses();
+                refreshBuses(-1);
                 btnAddBus.Content = "Add";
                 lbDanger.Visibility = System.Windows.Visibility.Visible;
                 tbDangerous.Visibility = System.Windows.Visibility.Visible;
@@ -117,7 +117,7 @@ namespace PL
                 id = bus.id;
             }
             catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
-            refreshBuses();
+            refreshBuses(id);
             int index = 0;
             foreach (var item in lvBuses.Items)//finds which index the selected item is in the listView
             {
@@ -125,7 +125,7 @@ namespace PL
                     break;
                 index++;
             }
-            refreshBuses();
+            refreshBuses(id);
             lvBuses.SelectedIndex = index;
             initTextBoxes(false, false, 1);
             btnUpdate.Visibility = System.Windows.Visibility.Hidden;
@@ -143,7 +143,7 @@ namespace PL
             var lineData = fxElt.DataContext as BO.Bus;//find the selced line in listView
             int id = lineData.id;
             bl.removeBus(id);//remove bus function
-            refreshBuses();
+            refreshBuses(-1);
             initTextBoxes(false, true, 1);
         }
 
@@ -157,24 +157,34 @@ namespace PL
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;
             int id = lineData.id;
+            bl.passTimer(timer, 1);
+            bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling");
             bl.refuel(lineData.id);
-            int index = 0;
-            foreach (var item in lvBuses.Items)// finds which index the selected item is in the listView
-            {
-                if ((item as BO.Bus).id == id)
-                    break;
-                index++;
-            }
-            refreshBuses();
-            lvBuses.SelectedIndex = index;
+            refreshBuses(id);
+
         }
         /// <summary>
         /// updates the listview display
         /// </summary>
-        private void refreshBuses()
+        private void refreshBuses(int id)
         {
+            int index = 0;
+            if (id != -1)
+            {
+                if(id==-2)
+                    id = (lvBuses.SelectedItem as BO.Bus).id;
+                
+                foreach (var item in lvBuses.Items)// finds which index the selected item is in the listView
+                {
+                    if ((item as BO.Bus).id == id)
+                        break;
+                    index++;
+                }
+
+            }
             tbiBuses.DataContext = bl.GetAllBuses(busOrder);
             lvBuses.Items.Refresh();
+            lvBuses.SelectedIndex = index;
         }
 
         /// <summary>
@@ -187,16 +197,10 @@ namespace PL
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;
             int id = lineData.id;
+            bl.passTimer(timer, 1);
+            bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance");
             bl.maintain(lineData.id);
-            int index = 0;
-            foreach (var item in lvBuses.Items)// finds which index the selected item is in the listView
-            {
-                if ((item as BO.Bus).id == id)
-                    break;
-                index++;
-            }
-            refreshBuses();
-            lvBuses.SelectedIndex = index;
+            refreshBuses(id);
 
         }
 
@@ -219,8 +223,7 @@ namespace PL
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             busOrder = cbSort.SelectedIndex;
-            refreshBuses();
-            lvBuses.SelectedIndex = 0;
+            refreshBuses(-1);
         }
         #endregion
 
@@ -558,13 +561,13 @@ namespace PL
         private void start_Click(object sender, RoutedEventArgs e)
         {
             bl.passTimer(timer,1);
-            bl.startTimer(lvBuses.SelectedItem as BO.Bus);
+            bl.startTimer(lvBuses.SelectedItem as BO.Bus,new TimeSpan(0,0,10),"Busy");
             return;
         }
 
         public void timer(object sender, ProgressChangedEventArgs e)
         {
-            refreshBuses();
+            refreshBuses(-2);
             refreshLineTextboxes();
         }
         #endregion

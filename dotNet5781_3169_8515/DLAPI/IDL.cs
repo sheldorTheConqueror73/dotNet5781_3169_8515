@@ -17,6 +17,9 @@ namespace DLAPI
         void updateBus(DO.Bus bus);
         void refuel(int id);
         void maintain(int id);
+        void updateTime(int id, TimeSpan time);
+        
+        void updateStatus(int id, string status);
         
         #endregion
 

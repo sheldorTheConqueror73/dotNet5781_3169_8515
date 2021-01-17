@@ -12,12 +12,12 @@ namespace BL
    public sealed class Timer
     {
         static BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
-        static List<BO.Bus> observers=null;
+        static List<int> observers=null;
         static BackgroundWorker worker = null;
         public Timer()
         {
             if (observers == null)
-                observers = new List<Bus>();
+                observers = new List<int>();
             if (worker == null)
             { 
                 worker = new BackgroundWorker();
@@ -28,27 +28,30 @@ namespace BL
               
             }
         }
-        public static void add(Bus observer)
+        public static void add(int observerID)
         {
-            observers.Add(observer);
+            Console.WriteLine($"Bus {observerID} has been added to observer list");
+            observers.Add(observerID);
             if (!worker.IsBusy)
                 worker.RunWorkerAsync();
         }
-        public static void remove(Bus observer)
+        public static void remove(int observerID)
         {
-            observers.Remove(observer);
+            Console.WriteLine ($"Bus {observerID} has been removed from observer list");
+            observers.Remove(observerID);
             if (observers.Count == 0 && worker.IsBusy)
                 worker.CancelAsync();
                
         }
         private static void startTimer(object sender, DoWorkEventArgs e)
         {
-            Console.WriteLine("Worker is starting");
+            Console.WriteLine("Worker has started");
+          
             while (!worker.CancellationPending)
             {
-                foreach (var bus in observers)
-                    bl.Tick(bus.id);
-                Thread.Sleep(1000);
+                foreach (var bus in observers.ToList())
+                    bl.Tick(bus);
+                 Thread.Sleep(1000);
                 worker.ReportProgress(1);
                 Console.WriteLine("Worker finihshed a loop");
             }
