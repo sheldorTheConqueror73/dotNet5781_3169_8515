@@ -62,6 +62,7 @@ namespace BO
             if ((distance >= 20000) || (this.passedYearNowAndThen() == true))
             {
                 this.dangerous = true;
+                status = "dangerous";
                 return;
             }
             this.dangerous = false;

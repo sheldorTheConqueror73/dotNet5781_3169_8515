@@ -51,7 +51,10 @@ namespace BL
             if(bus.time==TimeSpan.Zero)
             {
                 stopTimer(bus.id);
-                dl.updateStatus(id,"ready");
+                if(bus.dangerous==true&&bus.status== "refuling")
+                    dl.updateStatus(id, "dangerous");
+                else
+                     dl.updateStatus(id,"ready");
                 return;
             }
             bus.time += TimeSpan.FromSeconds(-1);
@@ -139,12 +142,7 @@ namespace BL
             var bus = this.GetBus(id);
             dl.maintain(id);
         }
-        public void CheckStatus(int id)
-        {
-            var bus = this.GetBus(id);
-            if(bus.status != "ready" && bus.status != "dangerous")
-                throw new BusBusyException("Bus is currently Busy");
-        }
+
 
         #endregion
 

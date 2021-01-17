@@ -105,8 +105,8 @@ namespace PL
         /// <param name="e"></param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if ((lvBuses.SelectedItem as BO.Bus).status != "ready" && (lvBuses.SelectedItem as BO.Bus).status != "dangerous")
-                MessageBox.Show("YOu cannot drive a bus while it is away");
+            if (!checkStatus(lvBuses.SelectedItem as BO.Bus))
+                return;
             int id;
             int fuel, dist, totalDIst;
             try { validateInput(out fuel, out dist, out totalDIst); }//validate user input
@@ -159,6 +159,9 @@ namespace PL
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;//find the selced line in listView
             int id = lineData.id;
+            if (!checkStatus(lineData))
+                return;
+           
             try
             {
                 bl.removeBus(id);//remove bus function
@@ -178,14 +181,17 @@ namespace PL
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;
             int id = lineData.id;
+            if (!checkStatus(lineData))
+                return;
             try
             {
-                bl.passTimer(timer, 1);
                 bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling");
-                bl.refuel(lineData.id);
-                refreshBuses(id);
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
+            bl.refuel(lineData.id);
+                refreshBuses(id);
+            
+         
 
         }
         /// <summary>
@@ -244,14 +250,17 @@ namespace PL
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;
             int id = lineData.id;
+            if (!checkStatus(lineData))
+                return;
+
             try
             {
-                bl.passTimer(timer, 1);
                 bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance");
-                bl.maintain(lineData.id);
-                refreshBuses(id);
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
+            bl.maintain(lineData.id);
+            refreshBuses(id);
+            
         }
 
     
@@ -631,10 +640,15 @@ namespace PL
 
         #region utility
 
-        private void checkStatus(BO.Bus bus)
+        private bool checkStatus(BO.Bus bus=null)
         {
             if (bus.status != "ready" && bus.status != "dangerous")
-                tbbuseserror;
+            {
+                tbBusesError.Text = "You cannot do this while bus is away";
+                return false;
+            }
+            return true;
+                
         }
         /// <summary>
         /// initaizes list views and combo boxes

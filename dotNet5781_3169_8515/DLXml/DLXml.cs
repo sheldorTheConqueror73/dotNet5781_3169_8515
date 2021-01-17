@@ -115,7 +115,6 @@ namespace DL
         {
             var bus = GetBus(id);
             bus.lastMaintenance = DateTime.Now;
-            bus.status = "ready";
             bus.dangerous = false;
             bus.fuel = Bus.FULL_TANK;
             bus.distance = 0;

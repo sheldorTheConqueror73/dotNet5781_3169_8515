@@ -36,7 +36,7 @@ namespace BLAPI
         ProgressChangedEventHandler passTimer(ProgressChangedEventHandler doWork, int mode);
         void startTimer(Bus bus, TimeSpan time, string status);
         void stopTimer(int id);
-        void CheckStatus(int id);
+
         #endregion
 
         #region Station
