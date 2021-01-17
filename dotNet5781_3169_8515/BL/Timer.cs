@@ -14,7 +14,6 @@ namespace BL
         static BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         static List<BO.Bus> observers=null;
         static BackgroundWorker worker = null;
-        static bool isRunning = false;
         public Timer()
         {
             if (observers == null)
@@ -32,20 +31,19 @@ namespace BL
         public static void add(Bus observer)
         {
             observers.Add(observer);
-            if (!isRunning)
+            if (!worker.IsBusy)
                 worker.RunWorkerAsync();
         }
         public static void remove(Bus observer)
         {
             observers.Remove(observer);
-            if (observers.Count == 0 && isRunning)
+            if (observers.Count == 0 && worker.IsBusy)
                 worker.CancelAsync();
                
         }
         private static void startTimer(object sender, DoWorkEventArgs e)
         {
             Console.WriteLine("Worker is starting");
-            isRunning = true;
             while (!worker.CancellationPending)
             {
                 foreach (var bus in observers)
@@ -55,7 +53,6 @@ namespace BL
                 Console.WriteLine("Worker finihshed a loop");
             }
             Console.WriteLine("Worker has stopped");
-            isRunning = false;
             e.Cancel = true;
             return;
         }
