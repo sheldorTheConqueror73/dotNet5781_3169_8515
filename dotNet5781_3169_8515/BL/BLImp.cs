@@ -32,6 +32,16 @@ namespace BL
         }
        public void startTimer(Bus bus,TimeSpan time, string status)
         {
+            if (status == "Busy")
+            {
+                if (bus.status != "ready")
+                    throw new BusBusyException("Error: can't send a bus that it's not ready!");
+            }
+            else
+            {
+                if(bus.status != "ready"&&bus.status!="dangerous")
+                    throw new BusBusyException("Error: can't send a bus that it's busy!");
+            }
             if (TimerInstance == null)
                 TimerInstance = new Timer();
             dl.updateTime(bus.id, time);
@@ -85,6 +95,9 @@ namespace BL
         /// <param name="id">id of the removing bus</param>
         public void removeBus(int id)
         {
+            var bs = GetBus(id);
+            if(bs.status!="ready"&& bs.status != "dangerous")
+                throw new BusBusyException("Error: can't delete a bus that it's busy!");
             dl.removeBus(id);
         }
         /// <summary>
