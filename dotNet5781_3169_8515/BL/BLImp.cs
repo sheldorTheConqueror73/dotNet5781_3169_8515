@@ -473,13 +473,28 @@ namespace BL
         /// <param name="id"></param>
         public IEnumerable<BusLineStation> GetAllStationNotInLine(int id)
         {
-            if(dl.GetAllbusLineStation() != null && dl.GetAllLineInStation() != null)
-            return (from sta in dl.GetAllbusLineStation()
-                    where sta != null && sta.enabled == true
-                    from linInSta in dl.GetAllLineInStation()
-                    where linInSta != null && linInSta.Lineid != id && linInSta.stationid == sta.id
-                    orderby linInSta.placeOrder ascending
-                    select Utility.DOtoBOConvertor<BO.BusLineStation, DO.BusLineStation>(sta)).ToList();
+            /* if (dl.GetAllbusLineStation() != null && dl.GetAllLineInStation() != null)
+             {
+                 return (from sta in dl.GetAllbusLineStation()
+                          where sta != null && sta.enabled == true
+                          from linInSta in dl.GetAllLineInStation()
+                          where linInSta != null && linInSta.Lineid != id && linInSta.stationid == sta.id
+                          orderby linInSta.placeOrder ascending
+                          select Utility.DOtoBOConvertor<BO.BusLineStation, DO.BusLineStation>(sta)).ToList().GroupBy(x => x.id).Select(y => y.FirstOrDefault());
+             }*/
+            List<BusLineStation> ls = new List<BusLineStation>();
+             if (dl.GetAllbusLineStation() != null && dl.GetAllLineInStation() != null)
+            {
+                var linSta = from linInSta in dl.GetAllLineInStation()
+                             where linInSta != null && linInSta.Lineid == id
+                             select linInSta;
+               foreach(var sta in dl.GetAllbusLineStation())
+                {
+                    if (!linSta.Any(x => x.stationid == sta.id))
+                        ls.Add(Utility.DOtoBOConvertor<BO.BusLineStation, DO.BusLineStation>(sta));
+                }
+                return ls;
+            }
             return default;
         }
         #endregion
