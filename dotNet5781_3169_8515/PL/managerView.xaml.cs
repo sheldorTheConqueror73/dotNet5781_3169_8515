@@ -629,6 +629,12 @@ namespace PL
         #endregion
 
         #region utility
+
+        private void checkStatus(BO.Bus bus)
+        {
+            if (bus.status != "ready" && bus.status != "dangerous")
+                tbbuseserror;
+        }
         /// <summary>
         /// initaizes list views and combo boxes
         /// </summary>
