@@ -191,8 +191,9 @@
     <dangerous>false</dangerous>
     <registrationDate>2021-01-05T00:00:00</registrationDate>
     <lastMaintenance>2021-10-16T00:00:00</lastMaintenance>
-    <status>ready</status>
+    <status>Busy</status>
     <plateNumber>234-66-619</plateNumber>
+    <time>PT0S</time>
     <id>65</id>
   </Bus>
   <Bus>

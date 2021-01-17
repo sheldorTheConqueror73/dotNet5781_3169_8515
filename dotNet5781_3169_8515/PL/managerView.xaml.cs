@@ -558,7 +558,7 @@ namespace PL
         private void start_Click(object sender, RoutedEventArgs e)
         {
             bl.passTimer(timer,1);
-            bl.startTimer(lvBuses.SelectedItem as BO.Bus);
+            bl.startTimer(lvBuses.SelectedItem as BO.Bus,new TimeSpan(0,0,10),"Busy");
             return;
         }
 

@@ -45,7 +45,7 @@ namespace BL
         }
         private static void startTimer(object sender, DoWorkEventArgs e)
         {
-            Console.WriteLine("Worker is starting");
+            Console.WriteLine("Worker has started");
           
             while (!worker.CancellationPending)
             {

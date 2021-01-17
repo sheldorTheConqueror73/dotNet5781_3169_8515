@@ -417,8 +417,18 @@ namespace DL
                 throw new NoSuchEntryException($"No FollowStation Matches ID number {id}");
             return result;
         }
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        public void updateTime(int id, TimeSpan time)
+        {
+            throw new NotImplementedException();
+        }
 
-      
+        public void updateStatus(int id, string status)
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         #endregion
         #endregion

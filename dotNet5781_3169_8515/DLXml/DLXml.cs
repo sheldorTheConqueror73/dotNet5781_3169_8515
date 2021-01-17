@@ -27,19 +27,31 @@ namespace DL
         /// <param name="bus">the updated bus</param>
         public void updateBus(Bus bus)
         {
-            var result = from b1 in Utility.load(typeof(Bus)).Elements()
-                         select b1;
-            foreach (var element in result)
-                if (element.Element("id").Value == bus.id.ToString())
-                    element.ReplaceWith(bus.ToXml());
-            XElement root = new XElement("Buses");
-            foreach (var element in result)
-                root.Add(element);
+            var root = Utility.load(typeof(Bus));
+               var result= (from b1 in root.Elements()
+                         where b1.Element("id").Value == bus.id.ToString()
+                         select b1).FirstOrDefault();
+            result.ReplaceWith(bus.ToXml());        
             Utility.save(root, typeof(Bus));
         }
         /// <summary>
         /// retrun all buses
         /// </summary>
+        /// 
+
+       public void updateTime(int id, TimeSpan time)
+        {
+            var bus = GetBus(id);
+            bus.time = time;
+            updateBus(bus);
+        }
+        public void updateStatus(int id, string status)
+        {
+            var bus = GetBus(id);
+            bus.status = status;
+            updateBus(bus);
+        }
+
         public IEnumerable<Bus> GetAllBuses()
         {
             return   from element in Utility.load(typeof(Bus)).Elements()

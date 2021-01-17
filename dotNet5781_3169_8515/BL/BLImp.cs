@@ -30,10 +30,12 @@ namespace BL
                 return handler;
             return null;
         }
-       public void startTimer(Bus bus)
+       public void startTimer(Bus bus,TimeSpan time, string status)
         {
             if (TimerInstance == null)
                 TimerInstance = new Timer();
+            dl.updateTime(bus.id, time);
+            dl.updateStatus(bus.id, status);
             Timer.add(bus.id);
         }
         public void stopTimer(int id)
@@ -49,9 +51,10 @@ namespace BL
             if(bus.time==TimeSpan.Zero)
             {
                 stopTimer(bus.id);
+                dl.updateStatus(id,"ready");
+                return;
             }
-            else
-                bus.time += TimeSpan.FromSeconds(-1);
+            bus.time += TimeSpan.FromSeconds(-1);
             dl.updateBus(bus);
         }
 
