@@ -26,6 +26,7 @@ namespace PL
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         int busOrder;
         int folStatIdSelect = 0;
+        private TextBox focusedTextbox = null;
         public managerView()
         {
             busOrder = 0;
@@ -168,9 +169,16 @@ namespace PL
         /// </summary>
         private void refreshBuses(int id)
         {
+            this.focusedTextbox = getFucused();
+            int selectedStart=0, selcetedLength=0;
             int index = 0;
             if (id != -1)
             {
+                if(this.focusedTextbox!=null)
+                {
+                    selcetedLength = focusedTextbox.SelectionLength;
+                    selectedStart = focusedTextbox.SelectionStart;
+                }
                 if(id==-2)
                     id = (lvBuses.SelectedItem as BO.Bus).id;
                 
@@ -182,9 +190,12 @@ namespace PL
                 }
 
             }
+           
             tbiBuses.DataContext = bl.GetAllBuses(busOrder);
             lvBuses.Items.Refresh();
             lvBuses.SelectedIndex = index;
+            if(focusedTextbox!=null)
+                this.focusedTextbox.Select(selectedStart, selcetedLength);
         }
 
         /// <summary>
@@ -705,6 +716,19 @@ namespace PL
             cbStations.ItemsSource = bl.GetAllbusLineStation();
             cbStations.Items.Refresh();
             cbStations.SelectedIndex = index;
+        }
+
+        private TextBox getFucused()
+        {
+            if (tbId!=null&&tbId.IsFocused)
+                return tbId;
+            if (tbDistance != null && tbDistance.IsFocused)
+                return tbDistance;
+            if (tbFuel != null && tbFuel.IsFocused)
+                return tbFuel;
+            if (tbTotalDist != null && tbTotalDist.IsFocused)
+                return tbTotalDist;
+            return null;
         }
         /// <summary>
         /// validates user input and assigns it to the out parameters, or throws exception in case of error
