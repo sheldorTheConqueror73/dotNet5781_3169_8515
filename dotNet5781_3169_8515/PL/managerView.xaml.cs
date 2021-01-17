@@ -92,6 +92,8 @@ namespace PL
         /// <param name="e"></param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            if ((lvBuses.SelectedItem as BO.Bus).status != "ready" && (lvBuses.SelectedItem as BO.Bus).status != "dangerous")
+                MessageBox.Show("YOu cannot drive a bus while it is away");
             int id;
             int fuel, dist, totalDIst;
             try { validateInput(out fuel, out dist, out totalDIst); }//validate user input
