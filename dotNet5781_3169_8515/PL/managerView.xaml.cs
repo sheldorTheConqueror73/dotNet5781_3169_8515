@@ -178,8 +178,9 @@ namespace PL
         /// </summary>
         private void refreshBuses(int id)
         {
-            this.focusedTextbox = getFucused();
+            this.focusedTextbox = getFocused();
             int selectedStart=0, selcetedLength=0;
+            string focusedText = "";
             int index = 0;
             if (id != -1)
             {
@@ -187,6 +188,7 @@ namespace PL
                 {
                     selcetedLength = focusedTextbox.SelectionLength;
                     selectedStart = focusedTextbox.SelectionStart;
+                    focusedText = focusedTextbox.Text;
                 }
                 if(id==-2)
                     id = (lvBuses.SelectedItem as BO.Bus).id;
@@ -204,7 +206,16 @@ namespace PL
             lvBuses.Items.Refresh();
             lvBuses.SelectedIndex = index;
             if(focusedTextbox!=null)
+            {
+                
+                focusedTextbox.Focus();
+                if (focusedText != "")
+                {
+                    focusedTextbox.Clear();
+                    focusedTextbox.AppendText(focusedText);
+                }
                 this.focusedTextbox.Select(selectedStart, selcetedLength);
+            }
         }
 
         /// <summary>
@@ -226,6 +237,8 @@ namespace PL
             }
             catch (Exception ecx) { MessageBox.Show(ecx.Message); return; }
         }
+
+    
 
         /// <summary>
         /// when user clicks away from an an entry disable al textboxes
@@ -734,7 +747,7 @@ namespace PL
             cbStations.SelectedIndex = index;
         }
 
-        private TextBox getFucused()
+        private TextBox getFocused()
         {
             if (tbId!=null&&tbId.IsFocused)
                 return tbId;
