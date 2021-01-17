@@ -27,6 +27,7 @@ namespace PL
         int busOrder;
         int folStatIdSelect = 0;
         private TextBox focusedTextbox = null;
+        TimeSpan fTs, eTs;// timespan varibles to save the time drive between stations and the total drive time before changing
         public managerView()
         {
             busOrder = 0;
@@ -334,7 +335,7 @@ namespace PL
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        TimeSpan fTs, eTs;// timespan varibles to save the time drive between stations and the total drive time before changing
+       
         /// <summary>
         /// 
         /// </summary>
@@ -863,10 +864,10 @@ namespace PL
             else
                 return "";
         }
+        
         /// <summary>
         /// convert xml file of buses to excel
         /// </summary>
-
         private void btnBusesConvert_Click(object sender, RoutedEventArgs e)
         {
             string path = "";
@@ -875,7 +876,39 @@ namespace PL
                 return;
             try
             {
-                bl.ConvertToExcel("C:\\Users\\LENOVO\\source\\repos\\sheldorTheConqueror73\\dotNet5781_3169_8515\\dotNet5781_3169_8515\\xml\\Buses.xml", path);
+                bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory+"Buses.xml", path);
+                MessageBox.Show("Conversion Completed!");
+            }
+            catch (Exception exc) { }
+        }
+        /// <summary>
+        /// convert xml file of lines to excel
+        /// </summary>
+        private void btnLinesConvert_Click(object sender, RoutedEventArgs e)
+        {
+            string path = "";
+            path = SaveExcelWorkBook();
+            if (path == "")
+                return;
+            try
+            {
+                bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory +"Lines.xml", path);
+                MessageBox.Show("Conversion Completed!");
+            }
+            catch (Exception exc) { }
+        }
+        /// <summary>
+        /// convert xml file of stations to excel
+        /// </summary>
+        private void btnStationsConvert_Click(object sender, RoutedEventArgs e)
+        {
+            string path = "";
+            path = SaveExcelWorkBook();
+            if (path == "")
+                return;
+            try
+            {
+                bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory + "Stations.xml", path);
                 MessageBox.Show("Conversion Completed!");
             }
             catch (Exception exc) { }

@@ -417,7 +417,7 @@ namespace DL
         {    
             var res = from element in Utility.load(typeof(FollowStations)).Elements()
                       select element;
-            foreach (var folSta in res)
+            foreach (var folSta in res.ToList())
                 if (folSta.Element("lineId").Value == LineId.ToString())
                 {
                     var v= folSta.ToObject<FollowStations>();
