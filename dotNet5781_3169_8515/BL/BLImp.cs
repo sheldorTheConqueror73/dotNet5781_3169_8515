@@ -34,7 +34,7 @@ namespace BL
         {
             if (TimerInstance == null)
                 TimerInstance = new Timer();
-            Timer.add(bus);
+            Timer.add(bus.id);
         }
         public void stopTimer(int id)
         {
