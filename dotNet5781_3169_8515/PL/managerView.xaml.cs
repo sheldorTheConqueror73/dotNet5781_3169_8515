@@ -814,12 +814,13 @@ namespace PL
                 throw new InvalidUserInputExecption("Invalid input: Distance field need to be a possitive number.");
 
         }
+
+        #endregion
         #region convertExcel
-        string path="";
         /// <summary>
         /// let the user to chose the path of the saving file
         /// </summary>
-        public void SaveExcelWorkBook()
+        public string SaveExcelWorkBook()
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
             dlg.FileName = "TasksExcel"; //default file name
@@ -833,16 +834,21 @@ namespace PL
             if (result == true)
             {
                 // Save document
-                path = dlg.FileName;
+                return dlg.FileName;
             }
+            else
+                return "";
         }
         /// <summary>
         /// convert xml file of buses to excel
         /// </summary>
 
-        private void btnConvert_Click(object sender, RoutedEventArgs e)
+        private void btnBusesConvert_Click(object sender, RoutedEventArgs e)
         {
-            SaveExcelWorkBook();
+            string path = "";
+            path = SaveExcelWorkBook();
+            if (path == "")
+                return;
             try
             {
                 bl.ConvertToExcel("C:\\Users\\LENOVO\\source\\repos\\sheldorTheConqueror73\\dotNet5781_3169_8515\\dotNet5781_3169_8515\\xml\\Buses.xml", path);
@@ -851,8 +857,6 @@ namespace PL
             catch (Exception exc) { }
         }
         #endregion
-        #endregion
-
 
     }
 }
