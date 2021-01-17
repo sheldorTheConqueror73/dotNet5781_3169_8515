@@ -12,6 +12,7 @@ namespace DLAPI
         #region bus
         IEnumerable<DO.Bus> GetAllBuses();
         DO.Bus GetBus(int id);
+        DO.Bus GetBusByPlateNumber(string plateNumber);
         void addBus(DO.Bus bus);
         void removeBus(int id);
         void updateBus(DO.Bus bus);

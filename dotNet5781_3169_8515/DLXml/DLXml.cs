@@ -66,7 +66,8 @@ namespace DL
         /// <param name="b1">the new bus</param>
         public void addBus(Bus bus)
         {
-            var result = GetBus(bus.id);
+            var result = GetBusByPlateNumber(bus.plateNumber);
+            if(result!=null)
             if(result.plateNumber==bus.plateNumber)
                 throw new itemAlreadyExistsException($"Plate number {bus.plateNumber} is already taken");
             var root = Utility.load(typeof(Bus));
@@ -83,6 +84,14 @@ namespace DL
                     where element != null
                     let obj = element.ToObject<Bus>()
                     where obj.enabled == true &&obj.id==id // change elemnt to obj
+                    select obj).FirstOrDefault();
+        }
+        public DO.Bus GetBusByPlateNumber(string plateNumber)
+        {
+            return (from element in Utility.load(typeof(Bus)).Elements()
+                    where element != null
+                    let obj = element.ToObject<Bus>()
+                    where obj.enabled == true && obj.plateNumber == plateNumber // change elemnt to obj
                     select obj).FirstOrDefault();
         }
 

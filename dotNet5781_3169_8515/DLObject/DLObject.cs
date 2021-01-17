@@ -34,6 +34,10 @@ namespace DL
                    where bus!=null 
                    select bus.Clone();
         }
+        public DO.Bus GetBusByPlateNumber(string plateNumber)
+        {
+            throw new NotImplementedException();
+        }
         /// <summary>
         /// retrun bus by id
         /// </summary>
