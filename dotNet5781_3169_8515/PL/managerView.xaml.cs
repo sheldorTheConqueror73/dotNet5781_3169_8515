@@ -213,7 +213,6 @@ namespace PL
                 {
                     focusedTextbox.Clear();
                     focusedTextbox.AppendText(focusedText);
-                    focusedTextbox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 }
                 this.focusedTextbox.Select(selectedStart, selcetedLength);
             }
