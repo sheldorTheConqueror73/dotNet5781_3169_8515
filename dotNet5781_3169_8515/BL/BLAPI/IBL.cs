@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 using BO;
 
 
@@ -31,6 +32,10 @@ namespace BLAPI
         void removeLine(int id);
         void updateLine(int id, string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
         TimeSpan calcDriveTime(List<TimeSpan> time);
+        void Tick(int id);
+        ProgressChangedEventHandler passTimer(ProgressChangedEventHandler doWork, int mode);
+        void startTimer(Bus bus);
+        void stopTimer(Bus bus);
         #endregion
 
         #region Station

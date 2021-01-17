@@ -7,16 +7,51 @@ using System.Threading;
 using BO;
 using System.Reflection;
 using System.IO;
+using System.ComponentModel;
 
 namespace BL
 {
 
     class BLImp : IBL
     {
-        IDL dl = DLFactory.GetDL();   
+        IDL dl = DLFactory.GetDL();
+        static Timer TimerInstance = null;
+        ProgressChangedEventHandler handler = null;
 
-       
-        #region bus
+        #region bus 
+        public ProgressChangedEventHandler passTimer( ProgressChangedEventHandler doWork, int mode)
+        {
+            if (mode == 1)
+                handler = doWork;
+            if(mode==0)
+                return handler;
+            return null;
+        }
+       public void startTimer(Bus bus)
+        {
+            if (TimerInstance == null)
+                TimerInstance = new Timer();
+            Timer.add(bus);
+        }
+        public void stopTimer(Bus bus)
+        {
+            if (TimerInstance == null)
+                return;
+            Timer.remove(bus);
+
+        }
+        public void Tick(int id)
+        {
+            DO.Bus bus = dl.GetBus(id);
+            if(bus.time==TimeSpan.Zero)
+            {
+                stopTimer(Utility.DOtoBOConvertor<BO.Bus,DO.Bus>(bus));
+            }
+            else
+                bus.time += TimeSpan.FromSeconds(-1);
+            dl.updateBus(bus);
+        }
+
         /// <summary>
         /// add new bus to data
         /// </summary>
@@ -55,6 +90,7 @@ namespace BL
             return Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(dl.GetBus(id));
         }
 
+        
         public IEnumerable<Bus> GetAllBuses(int order=1)
         {
             var result = dl.GetAllBuses();
@@ -99,6 +135,8 @@ namespace BL
                 throw new BusBusyException("Bus is currently Busy");
             dl.maintain(id);
         }
+
+
         #endregion
 
         #region lines

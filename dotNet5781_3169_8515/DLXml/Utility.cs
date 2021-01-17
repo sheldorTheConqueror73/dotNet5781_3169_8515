@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -132,7 +133,12 @@ namespace DL
                 XDocument document = new XDocument(root);
                 document.Save(dir + path);
             }
-            catch (Exception e) { throw new cannotFindXmlFileException(path, e, $"fail to save xml file: {path}"); }
+            catch (Exception e) 
+            {
+                Thread.Sleep(3);
+                save(root, type);
+            }
+           
         }
         /// <summary>
         /// loads data from file
@@ -157,7 +163,8 @@ namespace DL
                 }
                 catch (Exception ex)
                 {
-                    throw new cannotFindXmlFileException(filePath, ex, $"fail to load xml file: {filePath}");
+                    Thread.Sleep(3);
+                    return load(type);
 
                 }
             }

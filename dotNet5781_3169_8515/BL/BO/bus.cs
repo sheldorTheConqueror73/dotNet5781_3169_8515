@@ -11,7 +11,7 @@ namespace BO
         public class timerclass { };
         public const int FULL_TANK = 1200;
 
-        public timerclass timer { get; set; }
+        public TimeSpan time { get; set; }
         public int fuel { get; set; }
         public int distance { get; set; }
         public int totalDistance { get; set; }
@@ -46,20 +46,6 @@ namespace BO
         //ctor
        
 
-        //to string function
-        public override string ToString()
-        {
-            string st = "";
-            if (this.timer != null)
-                if (this.timer == null)//change back
-                    st = "";
-                else
-                    st = null;
-            string space = "";
-            if (this.plateNumber.Length == 7)
-                space = "  ";
-            return $"Id: {this.id} {space}  Status: {this.status} {st}";
-        }
 
         public bool passedYearNowAndThen()//return true if a year has passed since the last maintenance.
         {

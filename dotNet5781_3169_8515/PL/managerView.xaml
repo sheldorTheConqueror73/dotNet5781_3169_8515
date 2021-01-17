@@ -79,7 +79,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Time" Width="97"  DisplayMemberBinding="{Binding Timer.TimeNow}">
+                                    <GridViewColumn Header="Time" Width="97"  DisplayMemberBinding="{Binding time}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock   Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
@@ -274,6 +274,7 @@
                             <Button Content="Add" x:Name="btnaddLine" HorizontalAlignment="Center" Width="100" Margin="0,20,0,0" Click="addLine_click" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/>
                             <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Grid.ColumnSpan="2" Grid.Row="3" Click="UpdateLine_Click"/>
                             <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Click="DeleteLine_Click"/>
+                            <Button Content="start" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Click="start_Click"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

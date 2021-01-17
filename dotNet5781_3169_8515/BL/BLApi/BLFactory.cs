@@ -11,6 +11,7 @@ namespace BLAPI
     public sealed class BLFactory
     {
        static IBL instance = null;
+
         private   BLFactory()
         {
 
@@ -22,5 +23,6 @@ namespace BLAPI
             return instance;
 
         }
+       
     }
 }

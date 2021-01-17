@@ -19,7 +19,7 @@ namespace DO
         public DateTime lastMaintenance { get; set; }
         public string status { get; set; }
         public string plateNumber { get; set; }
-       
+        public TimeSpan time { get; set; }
 
 
 
@@ -34,6 +34,7 @@ namespace DO
             registrationDate = new DateTime();
             lastMaintenance = new DateTime();
             enabled = true;
+            time = new TimeSpan(0, 0, 20);
 
         } 
     }

@@ -10,6 +10,7 @@
     <lastMaintenance>2020-01-13T00:00:00</lastMaintenance>
     <status>dangerous</status>
     <plateNumber>70-059-66</plateNumber>
+    <time>PT0S</time>
     <id>50</id>
   </Bus>
   <Bus>
@@ -46,6 +47,7 @@
     <lastMaintenance>2021-08-19T00:00:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>139-76-854</plateNumber>
+    <time>PT19S</time>
     <id>53</id>
   </Bus>
   <Bus>
@@ -118,6 +120,7 @@
     <lastMaintenance>2021-01-15T00:00:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>22-534-14</plateNumber>
+    <time>PT0S</time>
     <id>59</id>
   </Bus>
   <Bus>

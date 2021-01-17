@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -554,6 +555,18 @@ namespace PL
             refreshLineTextboxes();
         }
 
+        private void start_Click(object sender, RoutedEventArgs e)
+        {
+            bl.passTimer(timer,1);
+            bl.startTimer(lvBuses.SelectedItem as BO.Bus);
+            return;
+        }
+
+        public void timer(object sender, ProgressChangedEventArgs e)
+        {
+            refreshBuses();
+            refreshLineTextboxes();
+        }
         #endregion
 
         #region utility
@@ -771,6 +784,7 @@ namespace PL
 
         }
 
+      
         private void validINputDriveTimeOrDistance()
         {
             string fl = tbStationDriveTm.Text;
