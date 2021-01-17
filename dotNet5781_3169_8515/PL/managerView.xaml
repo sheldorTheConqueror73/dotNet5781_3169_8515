@@ -278,6 +278,9 @@
                             <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Grid.ColumnSpan="2" Grid.Row="3" Click="UpdateLine_Click"/>
                             <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Click="DeleteLine_Click"/>
                             <Button Content="start" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Click="start_Click"/>
+                            <Button x:Name="btnLineConvert" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnLinesConvert_Click">
+                                <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
+                            </Button>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -395,6 +398,9 @@
                         <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
                             <Button x:Name="btnUpdateTimOrDis" Visibility="Collapsed" Content="Submit" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" Click="btnUpdateTimOrDis_Click"/>
                         </StackPanel>
+                        <Button x:Name="btnStationConvert" Grid.Row="8" Grid.ColumnSpan="3" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnStationsConvert_Click">
+                            <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
+                        </Button>
                     </Grid>
                     <TextBlock x:Name="tblError" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="Red" Grid.ColumnSpan="4" Margin="199,310,258,-23"/>
 
