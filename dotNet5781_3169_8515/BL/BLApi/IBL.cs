@@ -35,7 +35,7 @@ namespace BLAPI
         TimeSpan calcDriveTime(List<TimeSpan> time);
         void Tick(int id);
         ProgressChangedEventHandler passTimer(ProgressChangedEventHandler doWork, int mode);
-        void startTimer(Bus bus, TimeSpan time, string status);
+        void startTimer(Bus bus, TimeSpan time, string status, string iconPath);
         void stopTimer(int id);
 
         #endregion
