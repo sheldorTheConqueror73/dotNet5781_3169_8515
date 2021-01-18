@@ -20,7 +20,7 @@ namespace DLAPI
         void maintain(int id);
         void updateTime(int id, TimeSpan time);
         
-        void updateStatus(int id, string status);
+        void updateStatus(int id, string status, string iconPath);
         
         #endregion
 

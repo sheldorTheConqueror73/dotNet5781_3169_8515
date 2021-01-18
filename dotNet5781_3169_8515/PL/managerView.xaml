@@ -72,10 +72,11 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Status" Width="54"  DisplayMemberBinding="{Binding status}">
+                                    <GridViewColumn Header="Status" Width="54">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock   Margin="1.5" HorizontalAlignment="Center" Foreground="{Binding Color}"/>
+                                                <Image x:Name="imageStatus" HorizontalAlignment="Center" Source="{Binding iconPath}" Width="18" Height="18">
+                                                </Image>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -171,7 +172,9 @@
 
                         <StackPanel Grid.Row="8" Grid.ColumnSpan="3">
                             <Button x:Name="btnAddBus" Content="Add" HorizontalAlignment="Center" Width="100" Margin="125,30,125,0" Click="btnAdd_Click"/>
-                            <Button x:Name="btnUpdate" Content="Update" Visibility="Hidden" HorizontalAlignment="Center" Width="100" Margin="125,0,125,0" Click="btnUpdate_Click"/>
+                            <Button x:Name="btnUpdate" Visibility="Hidden" Background="Transparent" Width="45" Height="45" HorizontalAlignment="Center"  Margin="125,0,125,0" Click="btnUpdate_Click">
+                                <Image  Source="Resources/updateIcon.png" Stretch="Fill"/>
+                            </Button>
                             <Button x:Name="btnConvert" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnBusesConvert_Click">
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>

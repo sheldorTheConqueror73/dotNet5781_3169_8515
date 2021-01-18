@@ -18,6 +18,7 @@ namespace DO
         public DateTime registrationDate { get; set; }
         public DateTime lastMaintenance { get; set; }
         public string status { get; set; }
+        public string iconPath { get; set; }
         public string plateNumber { get; set; }
         public TimeSpan time { get; set; }
 

@@ -166,5 +166,19 @@
   <ItemGroup>
     <None Include="Resources\Startup.mp3" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Excel_Light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\okIcon.png" />
+    <Resource Include="Resources\waitIcon.png" />
+    <Resource Include="Resources\warningIcon .png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\updateIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\addIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
