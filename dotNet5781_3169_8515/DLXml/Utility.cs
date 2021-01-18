@@ -20,7 +20,13 @@ namespace DL
         private static string userPath = @"Users.xml";
         private static string lineInStationPath = @"LineInStations.xml";
         private static string followStationPath = @"FollowStations.xml";
-       
+        private static Mutex BusMutex = null;
+        private static Mutex LineMutex = null;
+        private static Mutex StationMutex = null;
+        private static Mutex UserMutex = null;
+        private static Mutex LISMutex = null;
+        private static Mutex FollowMutex = null;
+        private static int counter = 0;
 
         /// <summary>
         /// returns the path for the file where Type is stored
@@ -42,8 +48,51 @@ namespace DL
             if (type == typeof(FollowStations))
                 return followStationPath;
             throw new InvalidArgumentException("Invalid Argument");
-
         }
+        private static Mutex getMutex(Type type)
+        {
+            counter++;
+            if (type == typeof(Bus))
+            {
+                if (BusMutex == null)
+                    BusMutex = new Mutex(false, "BusesMutex");
+                return BusMutex;
+            }
+            if (type == typeof(BusLine))
+            {
+                if (LineMutex == null)
+                    LineMutex = new Mutex(false, "LinesMutex");
+                return LineMutex;
+            }
+
+            if (type == typeof(BusLineStation))
+            {
+                if (StationMutex == null)
+                    StationMutex = new Mutex(false, "StationssMutex");
+                return StationMutex;
+            }
+            if (type == typeof(User))
+            {
+                if (UserMutex == null)
+                    UserMutex = new Mutex(false, "UsersMutex");
+                return UserMutex;
+            }
+            if (type == typeof(LineInStation))
+            {
+                if (LISMutex == null)
+                    LISMutex = new Mutex(false, "UsersMutex");
+                return LISMutex;
+            }
+            if (type == typeof(FollowStations))
+            {
+                if (FollowMutex == null)
+                    FollowMutex = new Mutex(false, "FollowsMutex");
+                return FollowMutex;
+            }
+            throw new InvalidArgumentException("Invalid Argument");
+        }
+
+
         private static string getName(Type type)
         {
             if (type == typeof(Bus))
@@ -78,7 +127,7 @@ namespace DL
         }
 
 
-        
+
         /// <summary>
         /// casts xml to currect class
         /// </summary>
@@ -94,10 +143,10 @@ namespace DL
                 {
                     if (prop.Name == element.Name)
                     {
-                        if(prop.PropertyType==typeof(bool))
-                            prop.SetValue(obj,bool.Parse(element.Value));
-                        else if(prop.PropertyType == typeof(int))
-                            prop.SetValue(obj,int.Parse(element.Value));
+                        if (prop.PropertyType == typeof(bool))
+                            prop.SetValue(obj, bool.Parse(element.Value));
+                        else if (prop.PropertyType == typeof(int))
+                            prop.SetValue(obj, int.Parse(element.Value));
                         else if (prop.PropertyType == typeof(double))
                             prop.SetValue(obj, double.Parse(element.Value));
                         else if (prop.PropertyType == typeof(TimeSpan))
@@ -107,8 +156,8 @@ namespace DL
                         else if (prop.PropertyType == typeof(DO.Area))
                         {
                             DO.Area a; ;
-                            Enum.TryParse<DO.Area>(element.Value,out a);
-                            prop.SetValue(obj,a);
+                            Enum.TryParse<DO.Area>(element.Value, out a);
+                            prop.SetValue(obj, a);
                         }
                         else
                             prop.SetValue(obj, element.Value);
@@ -127,18 +176,21 @@ namespace DL
         /// <param name="type">Type of calss file</param>
         public static void save(XElement root, Type type)
         {
+            Mutex mutex = getMutex(type);
             string path = getPath(type);
-            try 
+            XDocument document = new XDocument(root);
+            if (mutex.WaitOne())
             {
-                XDocument document = new XDocument(root);
-                document.Save(dir + path);
+                try
+                {
+                    document.Save(dir + path);
+                }
+
+                catch (Exception e) { Console.WriteLine(e.Message); }
+                mutex.ReleaseMutex();
+                return;
             }
-            catch (Exception e) 
-            {
-                Thread.Sleep(3);
-                save(root, type);
-            }
-           
+            throw new unexpectedException("saving mutex has failed");
         }
         /// <summary>
         /// loads data from file
@@ -146,27 +198,37 @@ namespace DL
         /// <param name="type">type of class file</param>
         /// <returns>root XElement of file</returns>
         public static XElement load(Type type)
-        { 
+        {
+            Mutex mutex = getMutex(type);
             string filePath = getPath(type);
-                try
+            if(mutex==null)
+                Console.WriteLine(counter);
+            if (mutex.WaitOne())
+            {
+                try { 
+                if (File.Exists(dir + filePath))
                 {
-                    if (File.Exists(dir + filePath))
-                    {
-                        return XElement.Load(dir + filePath);
-                    }
-                    else
-                    {
-                        XElement rootElem = new XElement(getName(type));
-                        save(rootElem,type);
-                        return rootElem;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Thread.Sleep(3);
-                    return load(type);
 
+
+                    var root = XElement.Load(dir + filePath);
+                    mutex.ReleaseMutex();
+                        return root;
                 }
+                else
+                {
+                    XElement rootElem = new XElement(getName(type));
+                    save(rootElem, type);
+                       
+                        mutex.ReleaseMutex();
+                        return rootElem;
+                }
+                }
+                catch (Exception e) { Console.WriteLine(e.Message); }
             }
+            throw new unexpectedException("loading mutex has failed");
         }
     }
+}
+
+
+
