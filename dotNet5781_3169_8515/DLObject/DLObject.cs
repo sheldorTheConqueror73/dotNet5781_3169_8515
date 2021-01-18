@@ -427,7 +427,7 @@ namespace DL
             throw new NotImplementedException();
         }
 
-        public void updateStatus(int id, string status)
+        public void updateStatus(int id, string status,string iconPath)
         {
             throw new NotImplementedException();
         }

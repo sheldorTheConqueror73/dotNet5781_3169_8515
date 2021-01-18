@@ -19,10 +19,7 @@ namespace BO
         public DateTime registrationDate { get; set; }
         public DateTime lastMaintenance { get; set; }
         public string iconPath { get; set; }
-
-        public string idFormat { get; set; }
         public string status { get; set; }
-        public Area area;
         public bool enabled { get; set; }
 
 

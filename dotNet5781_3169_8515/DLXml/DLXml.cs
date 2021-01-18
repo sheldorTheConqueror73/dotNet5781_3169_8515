@@ -45,10 +45,11 @@ namespace DL
             bus.time = time;
             updateBus(bus);
         }
-        public void updateStatus(int id, string status)
+        public void updateStatus(int id, string status,string iconPath)
         {
             var bus = GetBus(id);
             bus.status = status;
+            bus.iconPath = iconPath;          
             updateBus(bus);
         }
 

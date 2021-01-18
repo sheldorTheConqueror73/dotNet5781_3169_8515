@@ -46,7 +46,7 @@ namespace PL
                 if (bus.time != TimeSpan.Zero)
                     try
                     {
-                        bl.startTimer(bus, bus.time, bus.status);
+                        bl.startTimer(bus, bus.time, bus.status,bus.iconPath);
                     }
                     catch { }
             }
@@ -187,7 +187,7 @@ namespace PL
                 return;
             try
             {
-                bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling");
+                bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling","Resources/waitIcon.png");
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
             bl.refuel(lineData.id);
@@ -257,7 +257,7 @@ namespace PL
 
             try
             {
-                bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance");
+                bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance", "Resources/waitIcon.png");
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
             bl.maintain(lineData.id);

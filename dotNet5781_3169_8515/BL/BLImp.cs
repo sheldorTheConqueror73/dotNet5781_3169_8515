@@ -30,12 +30,13 @@ namespace BL
                 return handler;
             return null;
         }
-       public void startTimer(Bus bus,TimeSpan time, string status)
+       public void startTimer(Bus bus,TimeSpan time, string status,string iconPath)
         {
             if (TimerInstance == null)
                 TimerInstance = new Timer();
             dl.updateTime(bus.id, time);
-            dl.updateStatus(bus.id, status);
+
+            dl.updateStatus(bus.id, status,iconPath);
             Timer.add(bus.id);
         }
         public void stopTimer(int id)
@@ -52,9 +53,9 @@ namespace BL
             {
                 stopTimer(bus.id);
                 if(bus.dangerous==true&&bus.status== "refuling")
-                    dl.updateStatus(id, "dangerous");
+                    dl.updateStatus(id, "dangerous","Resources/warningIcon .png");
                 else
-                     dl.updateStatus(id,"ready");
+                     dl.updateStatus(id,"ready","Resources/okIcon.png");
                 return;
             }
             bus.time += TimeSpan.FromSeconds(-1);
