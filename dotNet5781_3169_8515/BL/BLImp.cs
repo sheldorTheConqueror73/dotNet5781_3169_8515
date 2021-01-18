@@ -199,7 +199,7 @@ namespace BL
         /// </summary>
         public void addLine(string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time)
         {
-            int count = dl.countLines(number);
+            int count = countLines(number);
             TimeSpan drivetime=this.calcDriveTime(time);
             if (count == 2)
                 throw new BusLimitExceededExecption("There are already two bus with that number");
@@ -210,7 +210,7 @@ namespace BL
                              where lis.Lineid==id
                              orderby lis.placeOrder ascending
                              select lis).ToList();
-                if(result[0].id!=path[path.Count-1].id || result[result.Count-1].id!=path[0].id)
+                if(result[0].stationid!=path[path.Count-1].id || result[result.Count-1].stationid!=path[0].id)
                     throw new BusLimitExceededExecption($"The second {number} line bust be going in the oppesite diraction");
             }
             BusLine line = new BusLine() { number = number, area = (Area)area, driveTime = drivetime.ToString(), enabled=true };   
@@ -224,6 +224,18 @@ namespace BL
                 }
             }
         
+        }
+        /// <summary>
+        /// return how many lines exists with this number
+        /// </summary>
+        /// <param name="number">the number of the line</param>
+        public int countLines(string number)
+        {
+            if (dl.GetAllbusLines() != null)
+                return (from line in dl.GetAllbusLines()
+                        where line != null && line.enabled == true && line.number == number
+                        select line).ToList().Count;
+            return 0;
         }
         /// <summary>
         /// calculates the sum of all timespans in time parameter

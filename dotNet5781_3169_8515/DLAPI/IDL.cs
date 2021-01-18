@@ -31,7 +31,6 @@ namespace DLAPI
         void addLine(DO.BusLine line);
         void removeLine(int id);
         void updateLine(DO.BusLine line);
-        int countLines(string number);
         #endregion
 
         #region LineStation

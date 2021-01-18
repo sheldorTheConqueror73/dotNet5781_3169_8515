@@ -184,14 +184,6 @@ namespace DL
             Utility.save(root, typeof(BusLine));
         }
         /// <summary>
-        /// return how many lines exists with this number
-        /// </summary>
-        /// <param name="number">the number of the line</param>
-        public int countLines(string number)
-        {
-            return GetAllbusLines().ToList().Count;
-        }
-        /// <summary>
         /// retrun all lines
         /// </summary>
         public IEnumerable<BusLine> GetAllbusLines()
