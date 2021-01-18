@@ -2,13 +2,13 @@
 <Buses>
   <Bus>
     <enabled>true</enabled>
-    <fuel>333</fuel>
-    <distance>956</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>65751</totalDistance>
-    <dangerous>true</dangerous>
+    <dangerous>false</dangerous>
     <registrationDate>2008-04-02T00:00:00</registrationDate>
-    <lastMaintenance>2020-01-13T00:00:00</lastMaintenance>
-    <status>dangerous</status>
+    <lastMaintenance>2021-01-18T22:09:12.5400819+02:00</lastMaintenance>
+    <status>ready</status>
     <plateNumber>70-059-66</plateNumber>
     <time>PT0S</time>
     <id>50</id>
@@ -27,14 +27,15 @@
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>0</fuel>
-    <distance>2221</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>54397</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>1997-02-18T00:00:00</registrationDate>
-    <lastMaintenance>2021-04-08T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-18T22:09:10.5095162+02:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>62-893-92</plateNumber>
+    <time>PT0S</time>
     <id>52</id>
   </Bus>
   <Bus>
@@ -76,38 +77,41 @@
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>754</fuel>
-    <distance>15021</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>19820</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2016-12-17T00:00:00</registrationDate>
-    <lastMaintenance>2021-09-23T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-18T22:09:06.3370668+02:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>26-995-82</plateNumber>
+    <time>PT0S</time>
     <id>56</id>
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>707</fuel>
-    <distance>8389</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>50578</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2006-11-02T00:00:00</registrationDate>
-    <lastMaintenance>2021-01-04T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-18T22:09:11.0002038+02:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>64-983-81</plateNumber>
+    <time>PT0S</time>
     <id>57</id>
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>102</fuel>
-    <distance>110</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>37721</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2021-01-04T00:00:00</registrationDate>
-    <lastMaintenance>2021-05-04T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-18T22:09:06.742592+02:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>272-90-421</plateNumber>
+    <time>PT0S</time>
     <id>58</id>
   </Bus>
   <Bus>
@@ -125,14 +129,15 @@
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>510</fuel>
-    <distance>5987</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>36250</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2015-01-15T00:00:00</registrationDate>
-    <lastMaintenance>2021-06-30T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-18T22:09:08.7665091+02:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>39-253-28</plateNumber>
+    <time>PT0S</time>
     <id>60</id>
   </Bus>
   <Bus>
@@ -191,38 +196,40 @@
     <dangerous>false</dangerous>
     <registrationDate>2021-01-05T00:00:00</registrationDate>
     <lastMaintenance>2021-10-16T00:00:00</lastMaintenance>
-    <status>Busy</status>
+    <status>ready</status>
     <plateNumber>234-66-619</plateNumber>
     <time>PT0S</time>
     <id>65</id>
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>827</fuel>
-    <distance>5224</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>115040</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>1994-10-16T00:00:00</registrationDate>
-    <lastMaintenance>2021-07-22T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-18T22:09:07.1825463+02:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>34-727-27</plateNumber>
+    <time>PT0S</time>
     <id>66</id>
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>1181</fuel>
-    <distance>11184</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>84968</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2002-11-06T00:00:00</registrationDate>
-    <lastMaintenance>2021-11-06T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-18T22:09:09.2312656+02:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>45-473-08</plateNumber>
+    <time>PT0S</time>
     <id>67</id>
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>512</fuel>
+    <fuel>1200</fuel>
     <distance>8147</distance>
     <totalDistance>4213</totalDistance>
     <dangerous>false</dangerous>
@@ -230,18 +237,20 @@
     <lastMaintenance>2021-01-27T00:00:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>65-269-24</plateNumber>
+    <time>PT0S</time>
     <id>68</id>
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>266</fuel>
-    <distance>16635</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>106497</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2010-01-27T00:00:00</registrationDate>
-    <lastMaintenance>2021-09-02T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-18T22:09:39.2542144+02:00</lastMaintenance>
     <status>ready</status>
     <plateNumber>70-080-50</plateNumber>
+    <time>PT0S</time>
     <id>69</id>
   </Bus>
 </Buses>
