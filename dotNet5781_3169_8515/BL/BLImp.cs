@@ -71,6 +71,16 @@ namespace BL
         }
         #endregion
         #region bus 
+       public void canMakeDrive(Bus bus, double distance)
+        {
+            if (bus.dangerous)
+                throw new BusCanntoMakeDriveException("bus is dangerous");
+            if(bus.distance+distance>=20000)
+                throw new BusCanntoMakeDriveException("not eought distance untill maintenance");
+            if(bus.fuel-distance<0)
+                throw new BusCanntoMakeDriveException("not eought fuel");
+        }
+
         public IEnumerable<Bus> GetAllFreeBuses()
         {
            return from bus in dl.GetAllBuses()

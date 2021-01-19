@@ -18,4 +18,229 @@
     <description>Bus has been deleted</description>
     <id>969</id>
   </BusHistory>
+  <BusHistory>
+    <BusId>53</BusId>
+    <PlateNumber>139-76-854</PlateNumber>
+    <start>2021-01-19T21:08:52.5846335+02:00</start>
+    <end>2021-01-19T21:10:22.5846335+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>262</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>59</BusId>
+    <PlateNumber>22-534-14</PlateNumber>
+    <start>2021-01-19T21:08:53.0861735+02:00</start>
+    <end>2021-01-19T21:10:23.0861735+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>304</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>56</BusId>
+    <PlateNumber>26-995-82</PlateNumber>
+    <start>2021-01-19T21:08:53.4940836+02:00</start>
+    <end>2021-01-19T21:10:23.4940836+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>346</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>58</BusId>
+    <PlateNumber>272-90-421</PlateNumber>
+    <start>2021-01-19T21:08:53.8541211+02:00</start>
+    <end>2021-01-19T21:10:23.8541211+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>428</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>66</BusId>
+    <PlateNumber>34-727-27</PlateNumber>
+    <start>2021-01-19T21:08:54.1660679+02:00</start>
+    <end>2021-01-19T21:10:24.1660679+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>470</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>67</BusId>
+    <PlateNumber>45-473-08</PlateNumber>
+    <start>2021-01-19T21:08:55.1082351+02:00</start>
+    <end>2021-01-19T21:10:25.1082351+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>552</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>55</BusId>
+    <PlateNumber>51-478-61</PlateNumber>
+    <start>2021-01-19T21:08:57.1808511+02:00</start>
+    <end>2021-01-19T21:10:27.1808511+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>674</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>52</BusId>
+    <PlateNumber>62-893-92</PlateNumber>
+    <start>2021-01-19T21:08:57.5408101+02:00</start>
+    <end>2021-01-19T21:10:27.5408101+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>716</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>68</BusId>
+    <PlateNumber>65-269-24</PlateNumber>
+    <start>2021-01-19T21:08:58.292272+02:00</start>
+    <end>2021-01-19T21:10:28.292272+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>798</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>69</BusId>
+    <PlateNumber>70-080-50</PlateNumber>
+    <start>2021-01-19T21:08:59.3170644+02:00</start>
+    <end>2021-01-19T21:10:29.3170644+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>880</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>62</BusId>
+    <PlateNumber>71-512-09</PlateNumber>
+    <start>2021-01-19T21:08:59.6451602+02:00</start>
+    <end>2021-01-19T21:10:29.6451602+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>922</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>64</BusId>
+    <PlateNumber>77-821-14</PlateNumber>
+    <start>2021-01-19T21:09:00.5657729+02:00</start>
+    <end>2021-01-19T21:10:30.5657729+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>1004</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>51</BusId>
+    <PlateNumber>85-371-77</PlateNumber>
+    <start>2021-01-19T21:09:01.8999195+02:00</start>
+    <end>2021-01-19T21:10:31.8999195+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>1086</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>61</BusId>
+    <PlateNumber>88-414-82</PlateNumber>
+    <start>2021-01-19T21:09:02.6137059+02:00</start>
+    <end>2021-01-19T21:10:32.6137059+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>1168</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>54</BusId>
+    <PlateNumber>88-881-57</PlateNumber>
+    <start>2021-01-19T21:09:03.0216398+02:00</start>
+    <end>2021-01-19T21:10:33.0216398+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>1210</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>60</BusId>
+    <PlateNumber>39-253-28</PlateNumber>
+    <start>2021-01-19T21:09:06.7752077+02:00</start>
+    <end>2021-01-19T21:10:36.7752077+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>1412</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>57</BusId>
+    <PlateNumber>64-983-81</PlateNumber>
+    <start>2021-01-19T21:09:50.7423539+02:00</start>
+    <end>2021-01-19T21:09:50.7423539+02:00</end>
+    <duration>PT0S</duration>
+    <description>Bus has been updated</description>
+    <id>3174</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>53</BusId>
+    <PlateNumber>139-76-854</PlateNumber>
+    <start>2021-01-19T21:12:31.734195+02:00</start>
+    <end>2021-01-19T21:12:31.734195+02:00</end>
+    <duration>PT0S</duration>
+    <description>Bus has been updated</description>
+    <id>5540</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>53</BusId>
+    <PlateNumber>139-76-854</PlateNumber>
+    <start>2021-01-19T21:30:52.6078642+02:00</start>
+    <end>2021-01-19T21:31:22.6078642+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has been refueled</description>
+    <id>260</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>59</BusId>
+    <PlateNumber>22-534-14</PlateNumber>
+    <start>2021-01-19T21:30:53.5229712+02:00</start>
+    <end>2021-01-19T21:31:23.5229712+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has been refueled</description>
+    <id>319</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>56</BusId>
+    <PlateNumber>26-995-82</PlateNumber>
+    <start>2021-01-19T21:30:54.4285558+02:00</start>
+    <end>2021-01-19T21:31:24.4285558+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has been refueled</description>
+    <id>435</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>55</BusId>
+    <PlateNumber>51-478-61</PlateNumber>
+    <start>2021-01-19T21:31:00.0134691+02:00</start>
+    <end>2021-01-19T21:31:00.0134691+02:00</end>
+    <duration>PT0S</duration>
+    <description>Bus has been updated</description>
+    <id>836</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>53</BusId>
+    <PlateNumber>139-76-854</PlateNumber>
+    <start>2021-01-19T21:31:32.3968921+02:00</start>
+    <end>2021-01-19T21:32:02.3968921+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has been refueled</description>
+    <id>2499</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>53</BusId>
+    <PlateNumber>139-76-854</PlateNumber>
+    <start>2021-01-19T21:43:23.7326824+02:00</start>
+    <end>2021-01-19T21:43:53.731686+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has been refueled</description>
+    <id>260</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>53</BusId>
+    <PlateNumber>139-76-854</PlateNumber>
+    <start>2021-01-19T21:44:00.3088508+02:00</start>
+    <end>2021-01-19T21:44:30.3088508+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has been refueled</description>
+    <id>2216</id>
+  </BusHistory>
 </BusHistory>

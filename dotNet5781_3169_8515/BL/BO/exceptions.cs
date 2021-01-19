@@ -20,6 +20,13 @@ namespace BO
         internal credentialsIncorrectException(string msg, Exception inner) : base(msg, inner) { }
 
     }
+    class BusCanntoMakeDriveException : Exception
+    {
+        internal BusCanntoMakeDriveException() { }
+        internal BusCanntoMakeDriveException(string msg) : base(msg) { }
+        internal BusCanntoMakeDriveException(string msg, Exception inner) : base(msg, inner) { }
+
+    }
     class unexpectedException : Exception
     {
         internal unexpectedException() { }
