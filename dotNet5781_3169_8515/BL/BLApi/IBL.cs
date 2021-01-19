@@ -65,6 +65,7 @@ namespace BLAPI
         BO.User GetUser(int id);
         void addUser(BO.User line);
         void removeUser(int id);
+        void updateUser(User user);
         string authenticate(string username, string password, out int id);
         int indexOfCbByAccessLevel(int id);
         #endregion
