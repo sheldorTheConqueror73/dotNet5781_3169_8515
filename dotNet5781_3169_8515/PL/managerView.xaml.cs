@@ -592,15 +592,6 @@ namespace PL
             refreshLineTextboxes();
 
         }
-        private void lvStationOfLine_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-        private void lvStationOfLine_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// deletes the line the mouse id hovering above
         /// </summary>
@@ -615,7 +606,7 @@ namespace PL
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
-
+            initTextBoxByCbInStations();
 
         }
 

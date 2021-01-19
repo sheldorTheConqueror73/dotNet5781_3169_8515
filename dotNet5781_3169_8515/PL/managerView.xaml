@@ -101,6 +101,17 @@
                             <ColumnDefinition Width="503*"/>
                         </Grid.ColumnDefinitions>
                         <ListView x:Name="lvBuses" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="2" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
+                            <ListView.Resources>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding plateNumber}"
+                      Value="1">
+                                            <Setter Property="Background"
+                  Value="Red" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.Resources>
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Plate Number" Width="110"  DisplayMemberBinding="{Binding plateNumber}"  >
@@ -251,7 +262,7 @@
 
                     </Grid>
                     <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-                        <ListView x:Name="lvStationOfLine" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="540" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvStationOfLine_MouseDoubleClick" SelectionChanged="lvStationOfLine_SelectionChanged" >
+                        <ListView x:Name="lvStationOfLine" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="540" BorderThickness="0" Grid.ColumnSpan="3"  >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Code" Width="100"  DisplayMemberBinding="{Binding code}">

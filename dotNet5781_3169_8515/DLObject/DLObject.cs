@@ -110,6 +110,21 @@ namespace DL
             result.dangerous = false;
             result.distance = 0;
         }
+
+        public void updateTime(int id, TimeSpan time)
+        {
+            var bus = GetBus(id);
+            bus.time = time;
+            updateBus(bus);
+        }
+
+        public void updateStatus(int id, string status, string iconPath)
+        {
+            var bus = GetBus(id);
+            bus.status = status;
+            bus.iconPath = iconPath;
+            updateBus(bus);
+        }
         #endregion
 
 
@@ -422,15 +437,7 @@ namespace DL
             return result;
         }
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        public void updateTime(int id, TimeSpan time)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void updateStatus(int id, string status,string iconPath)
-        {
-            throw new NotImplementedException();
-        }
+       
 
 
 
