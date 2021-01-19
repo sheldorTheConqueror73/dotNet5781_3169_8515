@@ -331,24 +331,23 @@
                             <Button HorizontalAlignment="Center" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" Margin="0,15,0,0" Click="DeleteLine_Click">
                                 <Image x:Name="imDeleteLine"  Source="Resources/delete.png" Stretch="Fill"/>
                             </Button>
-                            <Button HorizontalAlignment="Center" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" Margin="0,15,0,0" Click="start_Click">
-                                <Image x:Name="imStartLine"  Source="Resources/startIcon.png" Stretch="Fill"/>
-                            </Button>
+
                             <Button x:Name="btnLineConvert" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnLinesConvert_Click">
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <Button HorizontalAlignment="Center" BorderBrush="#0000" Width="54" Height="45" Background="Transparent" Margin="70,25,16,10" Click="start_Click" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
-                            <Image x:Name="imStartLine"  Source="Resources/startIcon.png" Stretch="Fill"/>
+                        <Button HorizontalAlignment="Center"  BorderBrush="#0000" Width="54" Height="45" Background="Transparent" Margin="137,2,89,211" Click="start_Click" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" RenderTransformOrigin="0.769,1.722">
+                            <Image x:Name="imStartLine"  Source="Resources/startIcon.png" Stretch="Fill" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2"/>
                         </Button>
-                        <ComboBox x:Name="cbBusSelection" SelectedIndex="0"  ItemsSource="{Binding}" Grid.Column="2" HorizontalAlignment="Left" Margin="27,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="120"/>
-                        <Slider x:Name="slSpeedSelector" IsSnapToTickEnabled="True" TickFrequency="1" Grid.Column="2" Value="1" Minimum="1" ToolTip="Change simulation speed" Maximum="100" HorizontalAlignment="Left" Margin="82,4,0,0" Grid.Row="3" VerticalAlignment="Top" Width="124"/>
-                        <TextBox x:Name="tbSpeedSelector" Grid.Column="2" HorizontalAlignment="Left" PreviewTextInput="TextBox_KeyDown" Height="24" Margin="27,0,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding ElementName=slSpeedSelector, Path=Value, Mode=TwoWay}"  TextAlignment="Center" VerticalAlignment="Top" Width="41"/>
+                        <ComboBox x:Name="cbBusSelection" SelectedIndex="0"  ItemsSource="{Binding}" Grid.Column="2" HorizontalAlignment="Left" Margin="27,41,0,0" Grid.Row="4" VerticalAlignment="Top" Width="120"/>
+                        <Slider x:Name="slSpeedSelector" IsSnapToTickEnabled="True" TickFrequency="1" Grid.Column="2" Value="1" Minimum="1" ToolTip="Change simulation speed" Maximum="100" HorizontalAlignment="Left" Margin="83,18,0,0" Grid.Row="3" VerticalAlignment="Top" Width="124"/>
+                        <TextBox x:Name="tbSpeedSelector" Grid.Column="2" HorizontalAlignment="Left" PreviewTextInput="TextBox_KeyDown" Height="24" Margin="27,16,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding ElementName=slSpeedSelector, Path=Value, Mode=TwoWay}"  TextAlignment="Center" VerticalAlignment="Top" Width="41"/>
                         <TextBlock x:Name="tbLineError" TextAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="85,74,0,0" Grid.Row="4" TextWrapping="Wrap" FontSize="12" VerticalAlignment="Top" Width="195" Height="50" Grid.ColumnSpan="2"/>
-                        <Button Content="set speed" Grid.Column="1" HorizontalAlignment="Left" Margin="55,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-
+                        <Button Content="set speed" HorizontalAlignment="Left" Margin="126,41,0,0" Grid.Row="4" VerticalAlignment="Top" Width="74" Click="Button_Click" Grid.ColumnSpan="2"/>
+                        
                     </Grid>
-                    <TextBlock x:Name="tbSpeed" Grid.Column="2" IsEnabled="False"  TextAlignment="Right" HorizontalAlignment="Left" Height="22" Margin="412,167,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Speed" VerticalAlignment="Top" Width="72"/>
+                    <TextBlock x:Name="tbSpeed" Grid.Column="2" IsEnabled="False"  TextAlignment="Right" HorizontalAlignment="Left" Height="22" Margin="225,209,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Speed:" VerticalAlignment="Top" Width="72"/>
+                    <Label Content="Bus:" HorizontalContentAlignment="Right" Grid.Column="2" HorizontalAlignment="Left" Margin="266,268,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
 
@@ -458,7 +457,7 @@
 
                         <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="3" Grid.Column="2">
                             <Button x:Name="btnAddStation" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" ToolTip="add station" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center" Margin="7,10,-6,0" Click="Add_Station_Click">
-                                 <Image x:Name="imAddStation"  Source="Resources/addIcon.png" Stretch="Fill"/>
+                                <Image x:Name="imAddStation"  Source="Resources/addIcon.png" Stretch="Fill"/>
                             </Button>
                             <Button x:Name="btnUpdateStation" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" ToolTip="updtae station" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center"  Margin="7,7,-6,0" Click="btnUpdateStation_Click">
                                 <Image x:Name="imUpdatetation"  Source="Resources/updateIcon.png" Stretch="Fill"/>
@@ -469,7 +468,7 @@
                         </StackPanel>
                         <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
                             <Button x:Name="btnUpdateTimOrDis" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" ToolTip="submit" Visibility="Collapsed"  HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="0,30,0,0" Click="btnUpdateTimOrDis_Click">
-                                 <Image x:Name="imUpdateTimOrDis"  Source="Resources/submitIcon.png" Stretch="Fill"/>
+                                <Image x:Name="imUpdateTimOrDis"  Source="Resources/submitIcon.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
                         <Button x:Name="btnStationConvert" Grid.Row="8" Grid.ColumnSpan="3" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnStationsConvert_Click">
