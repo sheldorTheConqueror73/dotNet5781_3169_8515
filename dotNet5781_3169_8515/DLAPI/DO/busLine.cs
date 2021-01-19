@@ -8,7 +8,6 @@ namespace DO
 {
     public class BusLine:DOobject
     {
-     //   public string id { get; set; }
         public string number { get; set; }
         public Area area { get; set; }
         public bool enabled { get; set; }

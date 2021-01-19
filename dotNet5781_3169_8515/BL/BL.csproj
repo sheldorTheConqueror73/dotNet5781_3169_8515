@@ -46,12 +46,14 @@
     <Compile Include="BLAPI\IBL.cs" />
     <Compile Include="BO\BOobject.cs" />
     <Compile Include="BO\Bus.cs" />
+    <Compile Include="BO\BusHistory.cs" />
     <Compile Include="BO\BusLine.cs" />
     <Compile Include="BO\BusLineStation.cs" />
     <Compile Include="BO\BusStation.cs" />
     <Compile Include="BO\Enums.cs" />
     <Compile Include="BO\Exceptions.cs" />
     <Compile Include="BO\FollowStations.cs" />
+    <Compile Include="BO\LineHistory.cs" />
     <Compile Include="BO\LineInStation.cs" />
     <Compile Include="BO\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
