@@ -16,15 +16,16 @@
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>1080</fuel>
-    <distance>19999</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>22914</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>1989-01-28T00:00:00</registrationDate>
-    <lastMaintenance>2021-10-03T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:09:01.8939356+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>85-371-77</plateNumber>
+    <time>PT0S</time>
     <id>51</id>
   </Bus>
   <Bus>
@@ -34,7 +35,7 @@
     <totalDistance>54397</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>1997-02-18T00:00:00</registrationDate>
-    <lastMaintenance>2021-01-18T22:09:10.5095162+02:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:08:57.5358216+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>62-893-92</plateNumber>
@@ -44,11 +45,11 @@
   <Bus>
     <enabled>true</enabled>
     <fuel>1200</fuel>
-    <distance>5976</distance>
+    <distance>20000</distance>
     <totalDistance>83814</totalDistance>
-    <dangerous>false</dangerous>
+    <dangerous>true</dangerous>
     <registrationDate>2020-12-14T00:00:00</registrationDate>
-    <lastMaintenance>2021-08-19T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:08:52.5517218+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>139-76-854</plateNumber>
@@ -57,28 +58,30 @@
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>581</fuel>
-    <distance>19963</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>87886</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2017-06-15T00:00:00</registrationDate>
-    <lastMaintenance>2021-11-30T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:09:03.0146335+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>88-881-57</plateNumber>
+    <time>PT0S</time>
     <id>54</id>
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>1160</fuel>
-    <distance>10488</distance>
+    <fuel>1200</fuel>
+    <distance>20000</distance>
     <totalDistance>84359</totalDistance>
-    <dangerous>false</dangerous>
+    <dangerous>true</dangerous>
     <registrationDate>1983-07-04T00:00:00</registrationDate>
-    <lastMaintenance>2021-12-19T00:00:00</lastMaintenance>
-    <status>ready</status>
-    <iconPath>Resources/okIcon.png</iconPath>
+    <lastMaintenance>2021-01-19T21:08:57.174868+02:00</lastMaintenance>
+    <status>dangerous</status>
+    <iconPath>Resources/warningIcon.png</iconPath>
     <plateNumber>51-478-61</plateNumber>
+    <time>PT0S</time>
     <id>55</id>
   </Bus>
   <Bus>
@@ -88,7 +91,7 @@
     <totalDistance>19820</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2016-12-17T00:00:00</registrationDate>
-    <lastMaintenance>2021-01-18T22:09:06.3370668+02:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:08:53.4871019+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>26-995-82</plateNumber>
@@ -98,12 +101,12 @@
   <Bus>
     <enabled>true</enabled>
     <fuel>1200</fuel>
-    <distance>0</distance>
+    <distance>20000</distance>
     <totalDistance>50578</totalDistance>
-    <dangerous>false</dangerous>
+    <dangerous>true</dangerous>
     <registrationDate>2006-11-02T00:00:00</registrationDate>
     <lastMaintenance>2021-01-18T22:09:11.0002038+02:00</lastMaintenance>
-    <status>ready</status>
+    <status>dangerous</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>64-983-81</plateNumber>
     <time>PT0S</time>
@@ -116,7 +119,7 @@
     <totalDistance>37721</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2021-01-04T00:00:00</registrationDate>
-    <lastMaintenance>2021-01-18T22:09:06.742592+02:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:08:53.8471381+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>272-90-421</plateNumber>
@@ -125,12 +128,12 @@
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>202</fuel>
-    <distance>17406</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>68492</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2010-06-24T00:00:00</registrationDate>
-    <lastMaintenance>2021-01-15T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:08:53.0791921+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>22-534-14</plateNumber>
@@ -144,7 +147,7 @@
     <totalDistance>36250</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2015-01-15T00:00:00</registrationDate>
-    <lastMaintenance>2021-01-18T22:09:08.7665091+02:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:09:06.7692245+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>39-253-28</plateNumber>
@@ -153,28 +156,30 @@
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>361</fuel>
-    <distance>12048</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>44629</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>1981-02-05T00:00:00</registrationDate>
-    <lastMaintenance>2021-02-05T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:09:02.6077219+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>88-414-82</plateNumber>
+    <time>PT0S</time>
     <id>61</id>
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>80</fuel>
-    <distance>9432</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>21232</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2004-12-31T00:00:00</registrationDate>
-    <lastMaintenance>2021-12-31T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:08:59.6392005+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>71-512-09</plateNumber>
+    <time>PT0S</time>
     <id>62</id>
   </Bus>
   <Bus>
@@ -192,15 +197,16 @@
   </Bus>
   <Bus>
     <enabled>true</enabled>
-    <fuel>413</fuel>
-    <distance>7182</distance>
+    <fuel>1200</fuel>
+    <distance>0</distance>
     <totalDistance>25032</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>1986-09-27T00:00:00</registrationDate>
-    <lastMaintenance>2021-09-27T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:09:00.5587646+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>77-821-14</plateNumber>
+    <time>PT0S</time>
     <id>64</id>
   </Bus>
   <Bus>
@@ -218,41 +224,41 @@
     <id>65</id>
   </Bus>
   <Bus>
-    <enabled>true</enabled>
+    <time>PT0S</time>
     <fuel>1200</fuel>
     <distance>0</distance>
     <totalDistance>115040</totalDistance>
     <dangerous>false</dangerous>
-    <registrationDate>1994-10-16T00:00:00</registrationDate>
-    <lastMaintenance>2021-01-18T22:09:07.1825463+02:00</lastMaintenance>
-    <status>ready</status>
-    <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>34-727-27</plateNumber>
-    <time>PT0S</time>
+    <registrationDate>1994-10-16T00:00:00</registrationDate>
+    <lastMaintenance>2021-01-19T21:08:54.1601102+02:00</lastMaintenance>
+    <iconPath>Resources/okIcon.png</iconPath>
+    <status>ready</status>
+    <enabled>true</enabled>
     <id>66</id>
   </Bus>
   <Bus>
-    <enabled>true</enabled>
+    <time>PT0S</time>
     <fuel>1200</fuel>
     <distance>0</distance>
     <totalDistance>84968</totalDistance>
     <dangerous>false</dangerous>
-    <registrationDate>2002-11-06T00:00:00</registrationDate>
-    <lastMaintenance>2021-01-18T22:09:09.2312656+02:00</lastMaintenance>
-    <status>ready</status>
-    <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>45-473-08</plateNumber>
-    <time>PT0S</time>
+    <registrationDate>2002-11-06T00:00:00</registrationDate>
+    <lastMaintenance>2021-01-19T21:08:55.1022762+02:00</lastMaintenance>
+    <iconPath>Resources/okIcon.png</iconPath>
+    <status>ready</status>
+    <enabled>true</enabled>
     <id>67</id>
   </Bus>
   <Bus>
     <enabled>true</enabled>
     <fuel>1200</fuel>
-    <distance>8147</distance>
+    <distance>0</distance>
     <totalDistance>4213</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2017-08-12T00:00:00</registrationDate>
-    <lastMaintenance>2021-01-27T00:00:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:08:58.2862874+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>65-269-24</plateNumber>
@@ -266,7 +272,7 @@
     <totalDistance>106497</totalDistance>
     <dangerous>false</dangerous>
     <registrationDate>2010-01-27T00:00:00</registrationDate>
-    <lastMaintenance>2021-01-18T22:09:39.2542144+02:00</lastMaintenance>
+    <lastMaintenance>2021-01-19T21:08:59.3110791+02:00</lastMaintenance>
     <status>ready</status>
     <iconPath>Resources/okIcon.png</iconPath>
     <plateNumber>70-080-50</plateNumber>

@@ -166,7 +166,7 @@
   <ItemGroup>
     <Resource Include="Resources\okIcon.png" />
     <Resource Include="Resources\waitIcon.png" />
-    <Resource Include="Resources\warningIcon .png" />
+    <Resource Include="Resources\warningIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\updateIcon.png" />

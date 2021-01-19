@@ -60,6 +60,7 @@ namespace BO
             {
                 this.dangerous = true;
                 status = "dangerous";
+                iconPath = "Resources/warningIcon.png";
                 return;
             }
             this.dangerous = false;
