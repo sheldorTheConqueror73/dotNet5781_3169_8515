@@ -67,6 +67,7 @@ namespace BLAPI
         void removeUser(int id);
         string authenticate(string username, string password, out int id);
         int indexOfCbByAccessLevel(int id);
+        void updateUser(User user);
         #endregion
 
         #region followStations

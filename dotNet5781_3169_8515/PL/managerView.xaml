@@ -640,15 +640,16 @@
                     <Button x:Name="btnDeleteUser" HorizontalAlignment="Left" Margin="679,116,0,0" VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Style="{DynamicResource RoundCorner}" Click="btnDeleteUser_Click">
                         <Image x:Name="imDeleteUser"  Source="Resources/delete.png" Stretch="Fill"/>
                     </Button>
-                    <Button x:Name="btnUpdateUser" HorizontalAlignment="Left" Margin="679,191,0,0" VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Style="{DynamicResource RoundCorner}">
+                    <Button x:Name="btnUpdateUser" HorizontalAlignment="Left" Margin="679,191,0,0" VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Style="{DynamicResource RoundCorner}" Click="btnUpdateUser_Click">
                         <Image x:Name="imUpdateAccessLUser"  Source="Resources/updateIcon.png" Stretch="Fill"/>
                     </Button>
-                    <ComboBox x:Name="cbAccessLevel" HorizontalAlignment="Left" Margin="642,256,0,0" VerticalAlignment="Top" Width="120" >
+                    <ComboBox x:Name="cbAccessLevel" HorizontalAlignment="Left" Visibility="Hidden" Margin="644,314,0,0" VerticalAlignment="Top" Width="120" >
                         <ComboBoxItem Content="Admin"/>
                         <ComboBoxItem Content="Operator"/>
                         <ComboBoxItem Content="User"/>
                         <ComboBoxItem Content="None"/>
                     </ComboBox>
+                    <Label x:Name="lbIdUser" Visibility="Hidden" HorizontalContentAlignment="Left" FontSize="17" FontWeight="Bold" HorizontalAlignment="Left" Margin="644,263,0,0"  VerticalAlignment="Top" Height="30" Width="120"/>
                 </Grid>
             </TabItem>
 

@@ -1103,12 +1103,43 @@ namespace PL
             lvUsers.ItemsSource = bl.GetAllUsers();
         }
 
-       
+        private void btnUpdateUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (imUpdateAccessLUser.Source.ToString() == "pack://application:,,,/PL;component/Resources/updateIcon.png")
+            {
+                if (lvUsers.Items.Count == 0)
+                    return;
+                if (lvUsers.SelectedItem == null)
+                    lvUsers.SelectedIndex = 0;
+                cbAccessLevel.Visibility = Visibility.Visible;
+                lbIdUser.Visibility = Visibility.Visible;
+                imUpdateAccessLUser.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/submitIcon.png"));
+            }
+            else
+            {
+                try
+                {
+                    var user = bl.GetUser((lvUsers.SelectedItem as BO.User).id);
+                    user.accessLevel = cbAccessLevel.Text.ToString();
+                    bl.updateUser(user);
+                }
+                catch (Exception exc){MessageBox.Show(exc.Message);return;}
+                finally
+                {
+                    lvUsers.ItemsSource = bl.GetAllUsers();
+                    cbAccessLevel.Visibility = Visibility.Hidden;
+                    lbIdUser.Visibility = Visibility.Hidden;
+                    imUpdateAccessLUser.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/updateIcon.png"));
+                }
+            }
+        }
+
         private void lvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvUsers.Items.Count == 0 || lvUsers.SelectedItem == null)
                 return;
             cbAccessLevel.SelectedIndex = bl.indexOfCbByAccessLevel((lvUsers.SelectedItem as BO.User).id);
+            lbIdUser.Content= (lvUsers.SelectedItem as BO.User).id;
         }
         #endregion
 

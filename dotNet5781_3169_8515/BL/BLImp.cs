@@ -681,6 +681,11 @@ namespace BL
                 return 2;
             return 3;
         }
+
+        public void updateUser(User user)
+        {
+            dl.updateUser(Utility.BOtoDOConvertor<DO.User, BO.User>(user));
+        }
         #endregion
 
         #region exportToExcel
