@@ -31,12 +31,13 @@ namespace BLAPI
         void updateBus(Bus bus);
         void refuel(int id);
         void maintain(int id);
+        void canMakeDrive(Bus bus, double distance);
         #endregion
 
         #region busLine
         IEnumerable<BusLine> GetAllbusLines();
         BusLine GetBusLine(int id);
-        void addLine(string number, int area,List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
+        void addLine(string number, int area,List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time, out int id);
         int countLines(string number);
         void removeLine(int id);
         void updateLine(int id, string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
@@ -64,6 +65,7 @@ namespace BLAPI
         BO.User GetUser(int id);
         void addUser(BO.User line);
          string authenticate(string username, string password, out int id);
+        void sendMail(int id, string subject, string text);
         #endregion
         #region followStations
         IEnumerable<BusLineStation> GetAllFollowStationsAsStationsObj(int id);
