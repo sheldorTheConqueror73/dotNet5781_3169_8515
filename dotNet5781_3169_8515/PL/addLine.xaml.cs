@@ -27,6 +27,7 @@ namespace PL
         List<BO.BusLineStation> tList;
         List<TimeSpan> time=new List<TimeSpan>();
         List<double> distance=new List<double>();
+        DateTime start=DateTime.Now;
         public addLine(int mode=0,int lineId=-1,string number="")
         {
             this.mode = mode;
@@ -164,10 +165,15 @@ namespace PL
             try { validateInput(); }
             catch (Exception exc) { lblError.Content = exc.Message; return; }
             if (mode==0)//add new line
-            { 
-               try {  bl.addLine(txbLineNumber.Text, cmbArea.SelectedIndex, tList,distance,time);}
+            {
+                int id;
+               try {  bl.addLine(txbLineNumber.Text, cmbArea.SelectedIndex, tList,distance,time,out id);}
                catch (Exception exc) { lblError.Content = exc.Message; return; }
-             
+                var end = DateTime.Now;
+                bl.addLineHistory(new BO.LineHistory() { LineId=id, LineNumber= txbLineNumber.Text, start=start, end=end, duration=end-start,description="Line has been created" });
+
+
+
             }
             else//update line
             {

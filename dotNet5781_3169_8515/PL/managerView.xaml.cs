@@ -634,11 +634,13 @@ namespace PL
        
         private void DeleteLine_Click(object sender, RoutedEventArgs e)
         {
-            if (cbBusLines.SelectedItem == null)
+            var line = cbBusLines.SelectedItem as BO.BusLine;
+            if (line == null)
                 return;
 
-            try { bl.removeLine((cbBusLines.SelectedItem as BO.BusLine).id); }
+            try { bl.removeLine(line.id); }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+            bl.addLineHistory(new BO.LineHistory() { LineId = line.id, LineNumber = line.number, end = DateTime.Now, start = DateTime.Now, duration = TimeSpan.Zero, description = "Line has been deleted" });
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
@@ -653,10 +655,15 @@ namespace PL
         /// <param name="e"></param>
         private void UpdateLine_Click(object sender, RoutedEventArgs e)
         {
-            if (cbBusLines.SelectedItem == null)
+           var line= cbBusLines.SelectedItem as BO.BusLine;
+            if (line == null)
                 return;
-            addLine addWindow = new addLine(1, (cbBusLines.SelectedItem as BO.BusLine).id, (cbBusLines.SelectedItem as BO.BusLine).number);
+            addLine addWindow = new addLine(1, (line).id, (line).number);
+            DateTime start = DateTime.Now;
             addWindow.ShowDialog();
+            DateTime end = DateTime.Now;
+            TimeSpan dur = (end - start);
+            bl.addLineHistory(new BO.LineHistory() { LineId = line.id, LineNumber = line.number, end = DateTime.Now, start=start,  duration=dur, description="Line has been updated"});
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;

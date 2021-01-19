@@ -233,7 +233,7 @@ namespace BL
         /// <summary>
         /// add line to the database.
         /// </summary>
-        public void addLine(string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time)
+        public void addLine(string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time, out int id)
         {
             int count = countLines(number);
             TimeSpan drivetime=this.calcDriveTime(time);
@@ -249,7 +249,8 @@ namespace BL
                 if(result[0].stationid!=path[path.Count-1].id || result[result.Count-1].stationid!=path[0].id)
                     throw new BusLimitExceededExecption($"The second {number} line bust be going in the oppesite diraction");
             }
-            BusLine line = new BusLine() { number = number, area = (Area)area, driveTime = drivetime.ToString(), enabled=true };   
+            BusLine line = new BusLine() { number = number, area = (Area)area, driveTime = drivetime.ToString(), enabled=true };
+            id = line.id;
             dl.addLine(Utility.BOtoDOConvertor<DO.BusLine, BO.BusLine>(line));
             for(int i=0;i<path.Count;i++)
             {
