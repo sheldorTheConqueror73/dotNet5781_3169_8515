@@ -171,7 +171,9 @@
                         </TextBox>
 
                         <StackPanel Grid.Row="8" Grid.ColumnSpan="3">
-                            <Button x:Name="btnAddBus" Content="Add" HorizontalAlignment="Center" Width="100" Margin="125,30,125,0" Click="btnAdd_Click"/>
+                            <Button x:Name="btnAddBus" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center" Margin="125,30,125,0" Click="btnAdd_Click">
+                                <Image x:Name="imAddBus"  Source="Resources/addIcon.png" Stretch="Fill"/>
+                            </Button>
                             <Button x:Name="btnUpdate" Visibility="Hidden" Background="Transparent" Width="45" Height="45" HorizontalAlignment="Center"  Margin="125,0,125,0" Click="btnUpdate_Click">
                                 <Image  Source="Resources/updateIcon.png" Stretch="Fill"/>
                             </Button>
@@ -394,13 +396,21 @@
                         <TextBox x:Name="tbStationDriveTm" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="6" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.DriveTime,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
                         <TextBox x:Name="tbStationDistance" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="7" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Distance,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
 
-                        <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="2">
-                            <Button x:Name="btnAddStation" Content="Add" HorizontalAlignment="Center" Width="100" Margin="7,10,-6,0" Click="Add_Station_Click"/>
-                            <Button x:Name="btnUpdateStation" Content="Update" HorizontalAlignment="Center" Width="100" Margin="7,7,-6,0" Click="btnUpdateStation_Click"/>
-                            <Button x:Name="btnDeleteStation" Content="Delete" HorizontalAlignment="Center" Width="100" Margin="7,7,-6,0" Click="DeleteStation_Click"/>
+                        <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="3" Grid.Column="2">
+                            <Button x:Name="btnAddStation" ToolTip="add station" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center" Margin="7,10,-6,0" Click="Add_Station_Click">
+                                 <Image x:Name="imAddStation"  Source="Resources/addIcon.png" Stretch="Fill"/>
+                            </Button>
+                            <Button x:Name="btnUpdateStation" ToolTip="updtae station" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center"  Margin="7,7,-6,0" Click="btnUpdateStation_Click">
+                                <Image x:Name="imUpdatetation"  Source="Resources/updateIcon.png" Stretch="Fill"/>
+                            </Button>
+                            <Button x:Name="btnDeleteStation" ToolTip="delete station" HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="7,7,-6,0" Click="DeleteStation_Click">
+                                <Image x:Name="imDeleteStation"  Source="Resources/delete.png" Stretch="Fill"/>
+                            </Button>
                         </StackPanel>
                         <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
-                            <Button x:Name="btnUpdateTimOrDis" Visibility="Collapsed" Content="Submit" HorizontalAlignment="Center" Width="100" Margin="0,30,0,0" Click="btnUpdateTimOrDis_Click"/>
+                            <Button x:Name="btnUpdateTimOrDis" ToolTip="submit" Visibility="Collapsed"  HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="0,30,0,0" Click="btnUpdateTimOrDis_Click">
+                                 <Image x:Name="imUpdateTimOrDis"  Source="Resources/submitIcon.png" Stretch="Fill"/>
+                            </Button>
                         </StackPanel>
                         <Button x:Name="btnStationConvert" Grid.Row="8" Grid.ColumnSpan="3" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnStationsConvert_Click">
                             <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>

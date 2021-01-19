@@ -71,9 +71,9 @@ namespace PL
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (btnAddBus.Content.Equals("Add"))
+            if (imAddBus.Source.ToString()== "pack://application:,,,/PL;component/Resources/addIcon.png")
             {
-                btnAddBus.Content = "Submit";
+                imAddBus.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/submitIcon.png"));
                 initTextBoxes(true, true, 1);
                 lbDanger.Visibility = System.Windows.Visibility.Hidden;
                 tbDangerous.Visibility = System.Windows.Visibility.Hidden;
@@ -90,7 +90,7 @@ namespace PL
                 try { bl.addBus(new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready"}); }
                 catch (Exception exc) { tbBusesError.Text= exc.Message; return; }
                 finally {
-                    btnAddBus.Content = "Add";
+                    imAddBus.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/addIcon.png"));
                     lbDanger.Visibility = System.Windows.Visibility.Visible;
                     tbDangerous.Visibility = System.Windows.Visibility.Visible;
                     initTextBoxes(true, false, 1); }// disable all textboces anyway
@@ -349,9 +349,9 @@ namespace PL
         private void Add_Station_Click(object sender, RoutedEventArgs e)
         {
             tblError.Text = "";
-            if (btnAddStation.Content.Equals("Add"))
+            if (imAddStation.Source.ToString() == "pack://application:,,,/PL;component/Resources/addIcon.png")
             {
-                btnAddStation.Content = "Submit";
+                imAddStation.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/submitIcon.png"));
                 btnUpdateStation.Visibility = Visibility.Hidden;
                 btnDeleteStation.Visibility = Visibility.Hidden;
                 initTextBoxes(true, true, 3);
@@ -373,8 +373,8 @@ namespace PL
                 try { bl.addStation(new BO.BusLineStation() {code=code,Name=name,Address=address,Latitude=latitude,Longitude=longitude }); }
                 catch (Exception exc) { tblError.Text = exc.Message; return; }
                 finally { initTextBoxes(false, false, 1); initTextBoxByCbInStations(); }
-                
-                btnAddBus.Content = "Add";
+
+                imAddStation.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/addIcon.png"));
                 tbStationDriveTm.Visibility = Visibility.Visible;
                 tbStationDistance.Visibility = Visibility.Visible;
             }
@@ -445,8 +445,8 @@ namespace PL
             btnAddStation.Visibility = Visibility.Visible;
             btnUpdateStation.Visibility = Visibility.Visible;
             btnDeleteStation.Visibility = Visibility.Visible;
-            btnUpdateStation.Content = "Update";
-            btnAddStation.Content = "Add";
+            imUpdatetation.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/updateIcon.png"));
+            imAddStation.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/addIcon.png"));
             initTextBoxes(false, false, 3);
         }
         /// <summary>
@@ -454,10 +454,10 @@ namespace PL
         /// </summary>
         private void btnUpdateStation_Click(object sender, RoutedEventArgs e)
         {
-            if (btnUpdateStation.Content.Equals("Update"))
+            if (imUpdatetation.Source.ToString() == "pack://application:,,,/PL;component/Resources/updateIcon.png")
             {
                 btnAddStation.Visibility = Visibility.Hidden;
-                btnUpdateStation.Content = "Submit";
+                imUpdatetation.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/submitIcon.png"));
                 btnDeleteStation.Visibility = Visibility.Hidden;
                 initTextBoxes(true, false, 3);
             }
