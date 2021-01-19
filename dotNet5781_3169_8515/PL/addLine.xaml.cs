@@ -74,6 +74,7 @@ namespace PL
                 refresh();
                 return;
             }
+            #region time.Add(tim); distance.Add(dis)
             var sCoord = new GeoCoordinate(tList[tList.Count-2].Latitude, tList[tList.Count - 2].Longitude);
             var eCoord = new GeoCoordinate((lvFrom.SelectedItem as BO.BusLineStation).Latitude, (lvFrom.SelectedItem as BO.BusLineStation).Longitude);
             
@@ -85,6 +86,7 @@ namespace PL
             TimeSpan ts = TimeSpan.FromHours((sCoord.GetDistanceTo(eCoord)/1000) / ((r.Next(30, 60))));
             time.Add(new TimeSpan((int)ts.Hours,(int)ts.Minutes,(int)ts.Seconds));
             txbDriveTime.Text = bl.calcDriveTime(time).ToString();
+            #endregion
             refresh();
         }
 

@@ -92,19 +92,26 @@
             <TabItem Header="Buses"  x:Name="tbiBuses" Style="{StaticResource customTab}" >
                 <Grid Name="mainGrid" Background="Transparent" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="110*"/>
-                        <ColumnDefinition Width="28*"/>
-                        <ColumnDefinition Width="233*"/>
-                        <ColumnDefinition Width="370*"/>
+                        <ColumnDefinition Width="550"/>
                         <ColumnDefinition Width="350"/>
                     </Grid.ColumnDefinitions>
-                    <Grid  x:Name="busesgrid" Margin="0,0,2,0" Grid.Column="0" Grid.ColumnSpan="4" >
+                    <Grid  x:Name="busesgrid" Margin="0,0,2,0" Grid.Column="0" Grid.ColumnSpan="5" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="62*"/>
-                            <ColumnDefinition Width="10*"/>
-                            <ColumnDefinition Width="365*"/>
+                            <ColumnDefinition Width="158*"/>
+                            <ColumnDefinition Width="503*"/>
                         </Grid.ColumnDefinitions>
-                        <ListView x:Name="lvBuses" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
+                        <ListView x:Name="lvBuses" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="2" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
+                            <ListView.Resources>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding plateNumber}"
+                      Value="1">
+                                            <Setter Property="Background"
+                  Value="Red" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.Resources>
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Plate Number" Width="110"  DisplayMemberBinding="{Binding plateNumber}"  >
@@ -149,14 +156,14 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="264,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
+                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="206,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="1">
                             <ComboBoxItem Content="Order By" TabIndex="0" Style="{StaticResource defualtIndex}" />
                             <ComboBoxItem Content="Plate Number" TabIndex="1" />
                             <ComboBoxItem x:Name="sortbox" TabIndex="2" Content="Status"/>
                             <!--<ComboBoxItem Content="Time" />-->
                         </ComboBox>
                     </Grid>
-                    <Grid Grid.Column="4" x:Name="gridBuses">
+                    <Grid Grid.Column="5" x:Name="gridBuses">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="120"/>
                             <ColumnDefinition Width="*"/>
@@ -204,7 +211,7 @@
                                 <Style TargetType="{x:Type TextBox}">
                                     <Setter Property="Text" Value="NO" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding SelectedItem.dangerous,ElementName=lvBuses , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Value="True">
+                                        <DataTrigger Binding="{Binding SelectedItem.dangerous,ElementName=lvBuses , Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Value="True">
                                             <Setter Property="Text" Value="YES" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -213,17 +220,17 @@
                         </TextBox>
 
                         <StackPanel Grid.Row="8" Grid.ColumnSpan="3">
-                            <Button x:Name="btnAddBus" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center" Margin="125,30,125,0" Click="btnAdd_Click">
+                            <Button x:Name="btnAddBus" ToolTip="add bus" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center" Margin="125,30,125,0" Click="btnAdd_Click">
                                 <Image x:Name="imAddBus"  Source="Resources/addIcon.png" Stretch="Fill"/>
                             </Button>
-                            <Button x:Name="btnUpdate" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Visibility="Hidden" Background="Transparent" Width="45" Height="45" HorizontalAlignment="Center"  Margin="125,0,125,0" Click="btnUpdate_Click">
+                            <Button x:Name="btnUpdate" ToolTip="update bus" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Visibility="Hidden" Background="Transparent" Width="45" Height="45" HorizontalAlignment="Center"  Margin="125,10,125,0" Click="btnUpdate_Click">
                                 <Image  Source="Resources/updateIcon.png" Stretch="Fill"/>
                             </Button>
                             <Button x:Name="btnConvert" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnBusesConvert_Click">
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <TextBlock x:Name="tbBusesError" HorizontalAlignment="Center" Margin="10,154,0,0" Grid.Row="8" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20"  Width="330"/>
+                        <TextBlock x:Name="tbBusesError" FontSize="15" HorizontalAlignment="Center" Margin="10,187,10,0" Grid.Row="8" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20"  Width="330"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -255,7 +262,7 @@
 
                     </Grid>
                     <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-                        <ListView x:Name="lvStationOfLine" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="540" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="lvStationOfLine_MouseDoubleClick" SelectionChanged="lvStationOfLine_SelectionChanged" >
+                        <ListView x:Name="lvStationOfLine" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="540" BorderThickness="0" Grid.ColumnSpan="3"  >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Code" Width="100"  DisplayMemberBinding="{Binding code}">
@@ -321,14 +328,14 @@
                         <Label Content="Total Time:" Grid.Column="1" HorizontalAlignment="Left" Margin="0,64,73,0" VerticalAlignment="Top" />
                         <TextBox Grid.Column="2" x:Name="tbldriveTime" HorizontalAlignment="Left" Height="30" Margin="0,60,0,0" TextWrapping="Wrap" IsEnabled="False" VerticalAlignment="Top" Width="100" Text="{Binding SelectedItem.driveTime,ElementName=cbBusLines, NotifyOnValidationError=true, ValidatesOnExceptions=true }"  />
 
-                        <StackPanel Grid.RowSpan="5" HorizontalAlignment="Center" Margin="10,0" Width="120" >
+                        <StackPanel Grid.RowSpan="5" HorizontalAlignment="Center" ToolTip="add line" Margin="10,0" Width="120" >
                             <Button x:Name="btnaddLine" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="0,20,0,0" Click="addLine_click" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2">
                                 <Image x:Name="imAddLine" Source="Resources/addIcon.png" Stretch="Fill"/>
                             </Button>
-                            <Button HorizontalAlignment="Center" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" Margin="0,15,0,0" Grid.ColumnSpan="2" Grid.Row="3" Click="UpdateLine_Click">
+                            <Button HorizontalAlignment="Center" ToolTip="update line" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" Margin="0,15,0,0" Grid.ColumnSpan="2" Grid.Row="3" Click="UpdateLine_Click">
                                 <Image x:Name="imUpdateLine"  Source="Resources/updateIcon.png" Stretch="Fill"/>
                             </Button>
-                            <Button HorizontalAlignment="Center" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" Margin="0,15,0,0" Click="DeleteLine_Click">
+                            <Button HorizontalAlignment="Center" ToolTip="delete line" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" Margin="0,15,0,0" Click="DeleteLine_Click">
                                 <Image x:Name="imDeleteLine"  Source="Resources/delete.png" Stretch="Fill"/>
                             </Button>
 
@@ -466,12 +473,12 @@
                                 <Image x:Name="imDeleteStation"  Source="Resources/delete.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
+                        <StackPanel Grid.Row="5" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="2">
                             <Button x:Name="btnUpdateTimOrDis" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" ToolTip="submit" Visibility="Collapsed"  HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="0,30,0,0" Click="btnUpdateTimOrDis_Click">
                                 <Image x:Name="imUpdateTimOrDis"  Source="Resources/submitIcon.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <Button x:Name="btnStationConvert" Grid.Row="8" Grid.ColumnSpan="3" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnStationsConvert_Click">
+                        <Button x:Name="btnStationConvert" Style="{DynamicResource RoundCorner}" Grid.Row="8" Grid.ColumnSpan="3" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnStationsConvert_Click">
                             <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                         </Button>
                     </Grid>
