@@ -694,8 +694,9 @@ namespace PL
              bl.startTimer(cbBusSelection.SelectedItem as BO.Bus, driveTime , "on-drive", "Resources/waitIcon.png",(int)slSpeedSelector.Value);
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-            bus.fuel -=(int)( distance*1000);
-            bus.distance +=(int)( distance*1000);
+            bus.fuel -=distance;
+            bus.distance += distance;
+            bus.totalDistance += distance;
             bl.updateBus(bus);
             return;
         }

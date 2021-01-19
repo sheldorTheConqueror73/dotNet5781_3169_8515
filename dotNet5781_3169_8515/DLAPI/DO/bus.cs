@@ -11,9 +11,9 @@ namespace DO
     {
         public static int FULL_TANK = 1200;
         public bool enabled { get; set; }
-        public int fuel { get; set; }
-        public int distance { get; set; }
-        public int totalDistance { get; set; }
+        public double fuel { get; set; }
+        public double distance { get; set; }
+        public double totalDistance { get; set; }
         public bool dangerous { get; set; }
         public DateTime registrationDate { get; set; }
         public DateTime lastMaintenance { get; set; }

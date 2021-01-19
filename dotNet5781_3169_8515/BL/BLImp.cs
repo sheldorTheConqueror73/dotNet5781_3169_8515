@@ -70,6 +70,7 @@ namespace BL
             dl.updateBus(bus);
         }
         #endregion
+
         #region bus 
        public void canMakeDrive(Bus bus, double distance)
         {
