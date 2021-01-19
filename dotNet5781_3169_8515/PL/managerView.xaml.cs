@@ -1070,6 +1070,7 @@ namespace PL
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
         }
+   
         #endregion
 
         #region history
@@ -1080,7 +1081,20 @@ namespace PL
 
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-         
+            if (lvUsers.Items.Count == 0||lvUsers.SelectedItem==null)
+                return;
+
+            try { bl.removeUser((lvUsers.SelectedItem as BO.User).id); }
+            catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+            lvUsers.ItemsSource = bl.GetAllUsers();
+        }
+
+       
+        private void lvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvUsers.Items.Count == 0 || lvUsers.SelectedItem == null)
+                return;
+            cbAccessLevel.SelectedIndex = bl.indexOfCbByAccessLevel((lvUsers.SelectedItem as BO.User).id);
         }
         #endregion
 

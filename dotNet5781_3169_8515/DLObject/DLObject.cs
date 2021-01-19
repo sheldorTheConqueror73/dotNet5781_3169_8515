@@ -36,7 +36,9 @@ namespace DL
         }
         public DO.Bus GetBusByPlateNumber(string plateNumber)
         {
-            throw new NotImplementedException();
+            return (from bus in DataSource.buses
+                   where bus != null&&bus.enabled==true&&bus.plateNumber==plateNumber
+                   select bus.Clone()).FirstOrDefault();
         }
         /// <summary>
         /// retrun bus by id
@@ -306,7 +308,7 @@ namespace DL
         /// remove user
         /// </summary>
         /// <param name="id">id of the requested user</param>
-        public void removebusUser(int id)
+        public void removeUser(int id)
         {
             var result = DataSource.users.Find(b => b.id == id);
             if (result == null)
@@ -317,7 +319,7 @@ namespace DL
         /// update user
         /// </summary>
         /// <param name="user">the updated user</param>
-        public void updatebusUser(User user)
+        public void updateUser(User user)
         {
             var result = DataSource.users.Find(b => b.id == user.id);
             if (result == null)

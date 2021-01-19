@@ -45,7 +45,9 @@ namespace DLAPI
         #region User
         IEnumerable<DO.User> GetAllbusUsers();
         DO.User GetUser(int id);
+        void removeUser(int id);
         void addUser(DO.User user);
+        void updateUser(DO.User user);
         #endregion
 
         #region lineInStation

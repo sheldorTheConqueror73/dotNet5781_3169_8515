@@ -599,7 +599,7 @@
             </TabItem>
             <TabItem Header="Users" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
                 <Grid Margin="30,0,0,0">
-                    <ListView x:Name="lvUsers"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="540" BorderThickness="0"  Height="681" Grid.RowSpan="2">
+                    <ListView x:Name="lvUsers"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="540" BorderThickness="0"  Height="681" Grid.RowSpan="2" SelectionChanged="lvUser_SelectionChanged">
                         <ListView.View>
                             <GridView >
                                 <GridViewColumn Header="ID" Width="40"  DisplayMemberBinding="{Binding id}">
@@ -643,8 +643,11 @@
                     <Button x:Name="btnUpdateUser" HorizontalAlignment="Left" Margin="679,191,0,0" VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Style="{DynamicResource RoundCorner}">
                         <Image x:Name="imUpdateAccessLUser"  Source="Resources/updateIcon.png" Stretch="Fill"/>
                     </Button>
-                    <ComboBox x:Name="cbAccessLevel" HorizontalAlignment="Left" Margin="642,256,0,0" VerticalAlignment="Top" Width="120">
-                        
+                    <ComboBox x:Name="cbAccessLevel" HorizontalAlignment="Left" Margin="642,256,0,0" VerticalAlignment="Top" Width="120" >
+                        <ComboBoxItem Content="Admin"/>
+                        <ComboBoxItem Content="Operator"/>
+                        <ComboBoxItem Content="User"/>
+                        <ComboBoxItem Content="None"/>
                     </ComboBox>
                 </Grid>
             </TabItem>

@@ -84,7 +84,7 @@ namespace DL
             return (from element in Utility.load(typeof(Bus)).Elements()
                     where element != null
                     let obj = element.ToObject<Bus>()
-                    where obj.enabled == true &&obj.id==id // change elemnt to obj
+                    where obj.enabled == true &&obj.id==id 
                     select obj).FirstOrDefault();
         }
         public DO.Bus GetBusByPlateNumber(string plateNumber)
@@ -92,7 +92,7 @@ namespace DL
             return (from element in Utility.load(typeof(Bus)).Elements()
                     where element != null
                     let obj = element.ToObject<Bus>()
-                    where obj.enabled == true && obj.plateNumber == plateNumber // change elemnt to obj
+                    where obj.enabled == true && obj.plateNumber == plateNumber
                     select obj).FirstOrDefault();
         }
 
@@ -168,6 +168,24 @@ namespace DL
                     select obj).FirstOrDefault();
         }
 
+        public void removeUser(int id)
+        {
+            var user = GetUser(id);
+            if (user == null)
+                throw new NoSuchEntryException($"No iser Matches ID number {id}");
+            user.enabled = false;
+            updateUser(user);
+        }
+
+        public void updateUser(DO.User user)
+        {
+            var root = Utility.load(typeof(User));
+            var result = (from us in root.Elements()
+                          where us.Element("id").Value == user.id.ToString()
+                          select us).FirstOrDefault();
+            result.ReplaceWith(user.ToXml());
+            Utility.save(root, typeof(User));
+        }
         #endregion
 
         #region Line
