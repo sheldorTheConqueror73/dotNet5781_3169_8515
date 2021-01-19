@@ -9,6 +9,50 @@
     <Window.Background>
         <ImageBrush ImageSource="Resources/bckg1.jpg" />
     </Window.Background>
+    <Window.Resources>
+        <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" CornerRadius="8" BorderBrush="Black" BorderThickness="2">
+                                <Border.Background>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" 
+                                                        ScaleX="1.5" ScaleY="1.5"/>
+                                                <TranslateTransform X="0.02" Y="0.3"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Offset="1" Color="#00000000"/>
+                                        <GradientStop Offset="0.3" Color="#FFFFFFFF"/>
+                                    </RadialGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          TextElement.FontWeight="Bold">
+                                </ContentPresenter>
+                            </Border>
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF33962B"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <ListView HorizontalAlignment="Left" Name="lvFrom" Height="377" Margin="0,42,0,0" VerticalAlignment="Top" Width="215" SelectionChanged="lvfrom_MouseClick" Background="Transparent">
             <ListView.View>
@@ -70,7 +114,7 @@
             <ComboBoxItem  Content="JurdenVally"/>
             <ComboBoxItem  Content="AnkhMorpork"/>
         </ComboBox>
-        <Button x:Name="btnSubmit" HorizontalAlignment="Left" Margin="564,219,0,0" VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Click="btnSubmit_Click">
+        <Button x:Name="btnSubmit" Style="{DynamicResource RoundCorner}" HorizontalAlignment="Left" Margin="564,219,0,0" VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Click="btnSubmit_Click">
             <Image x:Name="imSubmitLine" Source="Resources/submitIcon.png" Stretch="Fill"/>
         </Button>
         <Label x:Name="lblError" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Foreground="Red" Margin="445,348,0,0" VerticalAlignment="Top" Width="337" Height="61"/>
