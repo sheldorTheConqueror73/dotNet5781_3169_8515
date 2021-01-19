@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
+namespace BO
 {
-    public class LineHistory: DOobject
+    public class LineHistory: BOobject
     {
         public int LineId { get; set; }
         public string LineNumber { get; set; }

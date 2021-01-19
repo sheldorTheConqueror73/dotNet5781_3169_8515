@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
+namespace BO
 {
-    public class BusHistory : DOobject
+    public class BusHistory : BOobject
     {
         public int BusId { get; set; }
         public string PlateNumber { get; set; }

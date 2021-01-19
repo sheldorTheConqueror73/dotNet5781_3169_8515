@@ -713,7 +713,23 @@ namespace BL
             Marshal.ReleaseComObject(excel);
 
         }
- 
+
+        #endregion
+
+        #region History
+       public IEnumerable<BO.LineHistory> GetLineHistory()
+        {
+            return from line in dl.GetLineHistory()
+                   where line != null
+                   select Utility.DOtoBOConvertor<BO.LineHistory, DO.LineHistory>(line);
+        }
+
+       public IEnumerable<BO.BusHistory> getBusHistory()
+        {
+            return from bus in dl.getBusHistory()
+                   where bus != null
+                   select Utility.DOtoBOConvertor<BO.BusHistory, DO.BusHistory>(bus);
+        }
         #endregion
 
     }
