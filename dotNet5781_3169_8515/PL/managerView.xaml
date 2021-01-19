@@ -550,8 +550,8 @@
                 </Grid>
             </TabItem>
             <TabItem Header="History Bus" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
-                <Grid Margin="-30,0,0,0">        
-                <ListView x:Name="lvBusHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="678" BorderThickness="0"  Height="681" Grid.RowSpan="2">
+                <Grid Margin="-30,0,0,0">
+                    <ListView x:Name="lvBusHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="678" BorderThickness="0"  Height="681" Grid.RowSpan="2">
                         <ListView.View>
                             <GridView >
 
@@ -606,8 +606,9 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-
                 </Grid>
+            </TabItem>
+            <TabItem Header="Users" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
             </TabItem>
 
         </TabControl>
