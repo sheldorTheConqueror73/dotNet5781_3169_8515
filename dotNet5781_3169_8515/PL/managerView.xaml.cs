@@ -31,7 +31,7 @@ namespace PL
         public managerView(string accessLevel)
         {
             InitializeComponent();
-            initSource();
+            initSource(accessLevel);
         }    
 
         #region buses
@@ -735,7 +735,7 @@ namespace PL
         /// <summary>
         /// initaizes list views and combo boxes
         /// </summary>
-        private void initSource()
+        private void initSource(string accessLevel)
         { 
             dpLastMaintenance.DisplayDateEnd = DateTime.Now;
             dpRegiDate.DisplayDateEnd = DateTime.Now;
@@ -756,6 +756,12 @@ namespace PL
             refreshLineTextboxes();
             lvLineHistory.ItemsSource = bl.GetLineHistory();
             lvUsers.ItemsSource = bl.GetAllUsers();
+            if(accessLevel!="Admin")
+            {
+                tabItemHistoryBus.Visibility = Visibility.Collapsed;
+                tabItemHistoryLine.Visibility = Visibility.Collapsed;
+                tabItemUser.Visibility = Visibility.Collapsed;
+            }
         }
         /// <summary>
         /// intintailzes and.or clears textboxes text
