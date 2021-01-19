@@ -229,7 +229,8 @@ namespace BL
             if (drivetime.Days > 0)
                 throw new InvalidUserInputExecption("Bus line route must be less than a day");
             this.removeLine(id);
-            this.addLine(number, area, path, distance, time);
+            int id2;
+            this.addLine(number, area, path, distance, time,out id2);
         }
         /// <summary>
         /// add line to the database.
@@ -242,10 +243,10 @@ namespace BL
                 throw new BusLimitExceededExecption("There are already two bus with that number");
             if(count==1)
             {
-                int id = dl.GetBusLineID(number);
+                int lineID = dl.GetBusLineID(number);
                 var result = (from lis in dl.GetAllLineInStation()
-                             where lis.Lineid==id
-                             orderby lis.placeOrder ascending
+                             where lis.Lineid== lineID
+                              orderby lis.placeOrder ascending
                              select lis).ToList();
                 if(result[0].stationid!=path[path.Count-1].id || result[result.Count-1].stationid!=path[0].id)
                     throw new BusLimitExceededExecption($"The second {number} line bust be going in the oppesite diraction");
