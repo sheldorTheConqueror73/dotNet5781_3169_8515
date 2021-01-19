@@ -11,6 +11,8 @@ using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.Data;
 using System.ComponentModel;
+using System.Net.Mail;
+using System.Net;
 
 namespace BL
 {
@@ -227,12 +229,13 @@ namespace BL
             if (drivetime.Days > 0)
                 throw new InvalidUserInputExecption("Bus line route must be less than a day");
             this.removeLine(id);
-            this.addLine(number, area, path, distance, time);
+            int id2;
+            this.addLine(number, area, path, distance, time,out id2);
         }
         /// <summary>
         /// add line to the database.
         /// </summary>
-        public void addLine(string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time)
+        public void addLine(string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time, out int id)
         {
             int count = countLines(number);
             TimeSpan drivetime=this.calcDriveTime(time);
@@ -240,15 +243,16 @@ namespace BL
                 throw new BusLimitExceededExecption("There are already two bus with that number");
             if(count==1)
             {
-                int id = dl.GetBusLineID(number);
+                int lineID = dl.GetBusLineID(number);
                 var result = (from lis in dl.GetAllLineInStation()
-                             where lis.Lineid==id
-                             orderby lis.placeOrder ascending
+                             where lis.Lineid== lineID
+                              orderby lis.placeOrder ascending
                              select lis).ToList();
                 if(result[0].stationid!=path[path.Count-1].id || result[result.Count-1].stationid!=path[0].id)
                     throw new BusLimitExceededExecption($"The second {number} line bust be going in the oppesite diraction");
             }
-            BusLine line = new BusLine() { number = number, area = (Area)area, driveTime = drivetime.ToString(), enabled=true };   
+            BusLine line = new BusLine() { number = number, area = (Area)area, driveTime = drivetime.ToString(), enabled=true };
+            id = line.id;
             dl.addLine(Utility.BOtoDOConvertor<DO.BusLine, BO.BusLine>(line));
             for(int i=0;i<path.Count;i++)
             {
@@ -626,6 +630,32 @@ namespace BL
         #endregion
 
         #region user
+        public void sendMail(int id, string subject,string text)
+        {
+            User user = Utility.DOtoBOConvertor<BO.User,DO.User>( dl.GetUser(id));
+            string adrr = user.mail;
+            using(SmtpClient mail = new SmtpClient())
+            {
+                mail.DeliveryMethod = SmtpDeliveryMethod.Network;
+                mail.UseDefaultCredentials = true;
+                mail.EnableSsl = true;
+                mail.Host = "smtp.gmail.com";
+                mail.Port = 587;
+                mail.Credentials = new NetworkCredential("kukuforevermore@gmail.com", "Gr3DfR6vVnMWjiq");
+                mail.Timeout = 20000;
+                MailMessage msg = new MailMessage("kukuforevermore@gmail.com",adrr);
+                msg.Subject =subject;
+                msg.Body = text;
+                try { 
+                mail.Send(msg);
+                }
+                catch(Exception e)
+                {
+
+                }
+
+            }
+        }
         public IEnumerable<BO.User> GetAllUsers()
         {
             var result = dl.GetAllbusUsers();

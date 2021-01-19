@@ -97,10 +97,11 @@
                     </Grid.ColumnDefinitions>
                     <Grid  x:Name="busesgrid" Margin="0,0,2,0" Grid.Column="0" Grid.ColumnSpan="5" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="158*"/>
-                            <ColumnDefinition Width="503*"/>
+                            <ColumnDefinition Width="215*"/>
+                            <ColumnDefinition Width="51*"/>
+                            <ColumnDefinition Width="634*"/>
                         </Grid.ColumnDefinitions>
-                        <ListView x:Name="lvBuses" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="2" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
+                        <ListView x:Name="lvBuses" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Plate Number" Width="110"  DisplayMemberBinding="{Binding plateNumber}"  >
@@ -145,7 +146,7 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="206,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="1">
+                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="155,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
                             <ComboBoxItem Content="Order By" TabIndex="0" Style="{StaticResource defualtIndex}" />
                             <ComboBoxItem Content="Plate Number" TabIndex="1" />
                             <ComboBoxItem x:Name="sortbox" TabIndex="2" Content="Status"/>
