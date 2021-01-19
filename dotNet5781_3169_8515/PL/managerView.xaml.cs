@@ -39,14 +39,14 @@ namespace PL
 
         private void resumeTimer(object sender, RoutedEventArgs e)
         {
-            bl.passTimer(timer, 1);
+            bl.setTimer(timerUpdateDisplay);
             foreach (var item in lvBuses.Items)
             {
                 var bus = item as BO.Bus;
                 if (bus.time != TimeSpan.Zero)
                     try
                     {
-                        bl.startTimer(bus, bus.time, bus.status,bus.iconPath);
+                        bl.startTimer(bus, bus.time, bus.status,bus.iconPath,1);
                     }
                     catch { }
             }
@@ -189,7 +189,7 @@ namespace PL
                 return;
             try
             {
-                bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling","Resources/waitIcon.png");
+                bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling","Resources/waitIcon.png",(int) slSpeedSelector.Value);
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
             bl.refuel(lineData.id);
@@ -227,7 +227,7 @@ namespace PL
                 }
 
             }
-           
+
             tbiBuses.DataContext = bl.GetAllBuses(busOrder);
             lvBuses.Items.Refresh();
             lvBuses.SelectedIndex = index;
@@ -242,6 +242,12 @@ namespace PL
                 }
                 this.focusedTextbox.Select(selectedStart, selcetedLength);
             }
+            if(cbBusSelection!=null)
+            {
+                cbBusSelection.ItemsSource = bl.GetAllFreeBuses();
+                cbBusSelection.SelectedIndex = 0;
+            }
+                 
         }
 
         /// <summary>
@@ -259,7 +265,7 @@ namespace PL
 
             try
             {
-                bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance", "Resources/waitIcon.png");
+                bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance", "Resources/waitIcon.png", (int)slSpeedSelector.Value);
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
             bl.maintain(lineData.id);
@@ -632,16 +638,27 @@ namespace PL
 
         private void start_Click(object sender, RoutedEventArgs e)
         {
+            if (cbBusSelection.SelectedItem as BO.Bus == null)
+            { 
+                tbLineError.Text = "No Bus is availble";
+                return;
+            }
+            if (cbBusLines.SelectedItem as BO.BusLine==null)
+            { 
+                tbLineError.Text = "No line selected";
+                return;
+            }
+            TimeSpan driveTime = TimeSpan.Parse((cbBusLines.SelectedItem as BO.BusLine).driveTime);
             try
             {
                 
-               // bl.startTimer(lvBuses.SelectedItem as BO.Bus, new TimeSpan(0, 0, 10), "Busy");
+             bl.startTimer(cbBusSelection.SelectedItem as BO.Bus, driveTime , "on-drive", "Resources/waitIcon.png",(int)slSpeedSelector.Value);
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             return;
         }
 
-        public void timer(object sender, ProgressChangedEventArgs e)
+        public void timerUpdateDisplay(object sender, ProgressChangedEventArgs e)
         {
             refreshBuses(-2);
             refreshLineTextboxes();
@@ -680,6 +697,7 @@ namespace PL
             cbBusLines.SelectedIndex = 0;
             if(cbBusLines.SelectedItem!=null)
                   lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
+            cbBusSelection.ItemsSource =bl.GetAllFreeBuses();
             refreshLineTextboxes();
         }
         /// <summary>
@@ -992,6 +1010,11 @@ namespace PL
             catch { return; }
             if (num > 100 || num < 1|| tbSpeedSelector.Text.Length > 3)
                 e.Handled = true;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            bl.setTimeAcceleration((int)slSpeedSelector.Value);
         }
 
         /// <summary>

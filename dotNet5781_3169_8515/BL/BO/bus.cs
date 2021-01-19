@@ -22,7 +22,7 @@ namespace BO
         public string status { get; set; }
         public bool enabled { get; set; }
 
-
+        
 
 
         public Bus()//ctor
@@ -65,6 +65,10 @@ namespace BO
             this.dangerous = false;
         }
 
+        public override string ToString()
+        {
+            return this.plateNumber;
+        }
 
 
     }

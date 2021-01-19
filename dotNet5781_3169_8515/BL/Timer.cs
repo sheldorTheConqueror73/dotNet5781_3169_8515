@@ -22,7 +22,7 @@ namespace BL
             { 
                 worker = new BackgroundWorker();
                 worker.DoWork += startTimer;
-                worker.ProgressChanged += bl.passTimer(null,0);
+                worker.ProgressChanged += bl.getTimer();
                 worker.WorkerSupportsCancellation = true;
                 worker.WorkerReportsProgress = true;
               
