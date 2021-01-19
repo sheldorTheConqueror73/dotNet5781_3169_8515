@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="managerView" Height="750" Width="1100" WindowStartupLocation="CenterScreen" Loaded="resumeTimer" >
+        Title="managerView" Height="750" Width="1100" WindowStartupLocation="CenterScreen" Loaded="resumeTimer" Closed="Window_Closed" >
     <Window.Background>
         <ImageBrush ImageSource="Resources/bckg1.jpg" />
     </Window.Background>
@@ -149,7 +149,7 @@
                             <ComboBoxItem Content="Order By" TabIndex="0" Style="{StaticResource defualtIndex}" />
                             <ComboBoxItem Content="Plate Number" TabIndex="1" />
                             <ComboBoxItem x:Name="sortbox" TabIndex="2" Content="Status"/>
-                            <!--<ComboBoxItem Content="Time" />-->
+                            <ComboBoxItem Content="Time" TabIndex="3" />
                         </ComboBox>
                     </Grid>
                     <Grid Grid.Column="5" x:Name="gridBuses">

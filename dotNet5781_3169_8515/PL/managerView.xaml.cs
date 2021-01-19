@@ -249,7 +249,7 @@ namespace PL
                     selectedStart = focusedTextbox.SelectionStart;
                     focusedText = focusedTextbox.Text;
                 }
-                if(id==-2)
+                if((id == -2) && (lvBuses.SelectedItem as BO.Bus != null))
                     id = (lvBuses.SelectedItem as BO.Bus).id;
                 
                 foreach (var item in lvBuses.Items)// finds which index the selected item is in the listView
@@ -1048,9 +1048,9 @@ namespace PL
             bl.setTimeAcceleration((int)slSpeedSelector.Value);
         }
 
-        private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
+        private void Window_Closed(object sender, EventArgs e)
         {
-
+            Environment.Exit(0);
         }
 
         /// <summary>

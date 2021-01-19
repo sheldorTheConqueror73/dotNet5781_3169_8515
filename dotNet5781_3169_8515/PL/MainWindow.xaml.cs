@@ -88,5 +88,12 @@ namespace PL
             if (e.Key == Key.Enter)
               login_Click(this, new RoutedEventArgs());
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            managerView managerView= new managerView("Admin");
+            this.Hide();
+            managerView.ShowDialog();
+        }
     }
 }
