@@ -1047,6 +1047,11 @@ namespace PL
             bl.setTimeAcceleration((int)slSpeedSelector.Value);
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
         /// <summary>
         /// convert xml file of stations to excel
         /// </summary>

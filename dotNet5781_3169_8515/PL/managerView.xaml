@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="managerView" Height="750" Width="1100" WindowStartupLocation="CenterScreen" Loaded="resumeTimer" >
+        Title="managerView" Height="750" Width="1100" WindowStartupLocation="CenterScreen" Loaded="resumeTimer" Closed="Window_Closed" >
     <Window.Background>
         <ImageBrush ImageSource="Resources/bckg1.jpg" />
     </Window.Background>
