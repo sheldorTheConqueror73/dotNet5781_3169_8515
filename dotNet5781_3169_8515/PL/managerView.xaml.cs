@@ -382,7 +382,7 @@ namespace PL
         /// <summary>
         /// allow to user enter only digits to the code field
         /// </summary>
-        private void tbStationCode_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void tbNumbersOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
