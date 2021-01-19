@@ -41,6 +41,7 @@ namespace BLAPI
         void removeLine(int id);
         void updateLine(int id, string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
         TimeSpan calcDriveTime(List<TimeSpan> time);
+        double GetTotalDistanceLine(int id);
 
         #endregion
 
@@ -62,8 +63,11 @@ namespace BLAPI
         IEnumerable<BO.User> GetAllUsers();
         BO.User GetUser(int id);
         void addUser(BO.User line);
-         string authenticate(string username, string password, out int id);
+        void removeUser(int id);
+        string authenticate(string username, string password, out int id);
+        int indexOfCbByAccessLevel(int id);
         #endregion
+
         #region followStations
         IEnumerable<BusLineStation> GetAllFollowStationsAsStationsObj(int id);
         void updateFollowStation(FollowStations folStation, TimeSpan sTs, TimeSpan eTs, TimeSpan cTs);
