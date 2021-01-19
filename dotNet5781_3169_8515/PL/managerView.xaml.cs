@@ -561,8 +561,7 @@ namespace PL
             addWindow.ShowDialog();
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();
-            cbBusLines.SelectedIndex = 0;
-            initTextBoxByCbInStations();
+            cbBusLines.SelectedIndex = 0;            
             initTextBoxByCbInStations();
             refreshLineTextboxes();
 
@@ -634,6 +633,7 @@ namespace PL
             cbBusLines.ItemsSource = bl.GetAllbusLines();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
+            initTextBoxByCbInStations();
             refreshLineTextboxes();
         }
 

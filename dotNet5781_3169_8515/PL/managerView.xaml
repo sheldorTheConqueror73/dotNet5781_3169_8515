@@ -92,19 +92,15 @@
             <TabItem Header="Buses"  x:Name="tbiBuses" Style="{StaticResource customTab}" >
                 <Grid Name="mainGrid" Background="Transparent" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="110*"/>
-                        <ColumnDefinition Width="28*"/>
-                        <ColumnDefinition Width="233*"/>
-                        <ColumnDefinition Width="370*"/>
+                        <ColumnDefinition Width="550"/>
                         <ColumnDefinition Width="350"/>
                     </Grid.ColumnDefinitions>
-                    <Grid  x:Name="busesgrid" Margin="0,0,2,0" Grid.Column="0" Grid.ColumnSpan="4" >
+                    <Grid  x:Name="busesgrid" Margin="0,0,2,0" Grid.Column="0" Grid.ColumnSpan="5" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="62*"/>
-                            <ColumnDefinition Width="10*"/>
-                            <ColumnDefinition Width="365*"/>
+                            <ColumnDefinition Width="158*"/>
+                            <ColumnDefinition Width="503*"/>
                         </Grid.ColumnDefinitions>
-                        <ListView x:Name="lvBuses" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="3" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
+                        <ListView x:Name="lvBuses" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="2" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Plate Number" Width="110"  DisplayMemberBinding="{Binding plateNumber}"  >
@@ -149,14 +145,14 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="264,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="2">
+                        <ComboBox x:Name="cbSort" HorizontalAlignment="Left" SelectionChanged="cbSort_SelectionChanged"  SelectedIndex="0" Margin="206,1,0,0" VerticalAlignment="Top" Width="92"  Height="23" Grid.Column="1">
                             <ComboBoxItem Content="Order By" TabIndex="0" Style="{StaticResource defualtIndex}" />
                             <ComboBoxItem Content="Plate Number" TabIndex="1" />
                             <ComboBoxItem x:Name="sortbox" TabIndex="2" Content="Status"/>
                             <!--<ComboBoxItem Content="Time" />-->
                         </ComboBox>
                     </Grid>
-                    <Grid Grid.Column="4" x:Name="gridBuses">
+                    <Grid Grid.Column="5" x:Name="gridBuses">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="120"/>
                             <ColumnDefinition Width="*"/>
@@ -344,7 +340,7 @@
                         <TextBox x:Name="tbSpeedSelector" Grid.Column="2" HorizontalAlignment="Left" PreviewTextInput="TextBox_KeyDown" Height="24" Margin="27,16,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding ElementName=slSpeedSelector, Path=Value, Mode=TwoWay}"  TextAlignment="Center" VerticalAlignment="Top" Width="41"/>
                         <TextBlock x:Name="tbLineError" TextAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="85,74,0,0" Grid.Row="4" TextWrapping="Wrap" FontSize="12" VerticalAlignment="Top" Width="195" Height="50" Grid.ColumnSpan="2"/>
                         <Button Content="set speed" HorizontalAlignment="Left" Margin="126,41,0,0" Grid.Row="4" VerticalAlignment="Top" Width="74" Click="Button_Click" Grid.ColumnSpan="2"/>
-                        
+
                     </Grid>
                     <TextBlock x:Name="tbSpeed" Grid.Column="2" IsEnabled="False"  TextAlignment="Right" HorizontalAlignment="Left" Height="22" Margin="225,209,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Speed:" VerticalAlignment="Top" Width="72"/>
                     <Label Content="Bus:" HorizontalContentAlignment="Right" Grid.Column="2" HorizontalAlignment="Left" Margin="266,268,0,0" Grid.Row="1" VerticalAlignment="Top"/>
