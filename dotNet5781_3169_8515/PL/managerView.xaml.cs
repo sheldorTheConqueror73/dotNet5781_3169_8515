@@ -563,6 +563,7 @@ namespace PL
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
             initTextBoxByCbInStations();
+            initTextBoxByCbInStations();
             refreshLineTextboxes();
 
         }
