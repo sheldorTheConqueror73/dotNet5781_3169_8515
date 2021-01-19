@@ -12,5 +12,6 @@ namespace DO
         public Area area { get; set; }
         public bool enabled { get; set; }
         public string driveTime { get; set; }
+        public double distance { get; set; }
     }
 }

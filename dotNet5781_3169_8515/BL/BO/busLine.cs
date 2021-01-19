@@ -21,6 +21,7 @@ namespace BO
         public IEnumerable<LineInStation> Path { get; set; }
         public string driveTime { get; set; }
 
+        public double distance { get; set; }
         public override string ToString()
         {
             return $"{number}";

@@ -276,7 +276,20 @@ namespace BL
             return drivetime;
         }
 
-       
+        public double GetTotalDistanceLine(int id)
+        {
+            var pathLine = GetAllStationInLine(id);
+            double sumDis = 0;
+            foreach(var sta in pathLine)
+            {
+                if (sta.Distance.ToString().IndexOf('.') != -1)
+                    sumDis += sta.Distance;
+                else
+                    sumDis += (sta.Distance / 1000);
+            }
+            return sumDis;
+        }
+
         #endregion
 
 
