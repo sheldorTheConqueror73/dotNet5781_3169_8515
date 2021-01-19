@@ -486,7 +486,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="History" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
+            <TabItem Header="History Line" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
                 <Grid Margin="-30,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="34*"/>
@@ -547,8 +547,11 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-
-                    <ListView x:Name="lvBusHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="678" BorderThickness="0" Margin="640,0,0,0" Height="681" Grid.RowSpan="2">
+                </Grid>
+            </TabItem>
+            <TabItem Header="History Bus" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
+                <Grid Margin="-30,0,0,0">        
+                <ListView x:Name="lvBusHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="678" BorderThickness="0"  Height="681" Grid.RowSpan="2">
                         <ListView.View>
                             <GridView >
 
