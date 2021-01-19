@@ -28,7 +28,7 @@ namespace PL
         int folStatIdSelect = 0;
         private TextBox focusedTextbox = null;
         TimeSpan fTs, eTs;// timespan varibles to save the time drive between stations and the total drive time before changing
-        public managerView()
+        public managerView(string accessLevel)
         {
             InitializeComponent();
             initSource();
