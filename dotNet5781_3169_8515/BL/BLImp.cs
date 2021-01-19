@@ -21,22 +21,22 @@ namespace BL
         static Timer TimerInstance = null;
         ProgressChangedEventHandler handler = null;
 
-        #region bus 
-        public ProgressChangedEventHandler passTimer( ProgressChangedEventHandler doWork, int mode)
+        #region Timer
+        public void setTimer(ProgressChangedEventHandler doWork)
         {
-            if (mode == 1)
-                handler = doWork;
-            if(mode==0)
-                return handler;
-            return null;
+            handler = doWork;
         }
-       public void startTimer(Bus bus,TimeSpan time, string status,string iconPath)
+        public ProgressChangedEventHandler getTimer()
+        {
+            return handler;
+        }
+        public void startTimer(Bus bus, TimeSpan time, string status, string iconPath)
         {
             if (TimerInstance == null)
                 TimerInstance = new Timer();
             dl.updateTime(bus.id, time);
 
-            dl.updateStatus(bus.id, status,iconPath);
+            dl.updateStatus(bus.id, status, iconPath);
             Timer.add(bus.id);
         }
         public void stopTimer(int id)
@@ -49,18 +49,28 @@ namespace BL
         public void Tick(int id)
         {
             DO.Bus bus = dl.GetBus(id);
-            if(bus.time==TimeSpan.Zero)
+            if (bus.time == TimeSpan.Zero)
             {
                 stopTimer(bus.id);
-                if(bus.dangerous==true&&bus.status== "refuling")
-                    dl.updateStatus(id, "dangerous","Resources/warningIcon .png");
+                if (bus.dangerous == true && bus.status == "refuling")
+                    dl.updateStatus(id, "dangerous", "Resources/warningIcon .png");
                 else
-                     dl.updateStatus(id,"ready","Resources/okIcon.png");
+                    dl.updateStatus(id, "ready", "Resources/okIcon.png");
                 return;
             }
             bus.time += TimeSpan.FromSeconds(-1);
             dl.updateBus(bus);
         }
+        #endregion
+        #region bus 
+        public IEnumerable<Bus> GetAllFreeBuses()
+        {
+           return from bus in dl.GetAllBuses()
+            where bus != null && bus.enabled && bus.status == "ready" && bus.time == TimeSpan.Zero
+            orderby bus.plateNumber
+            select Utility.DOtoBOConvertor<BO.Bus,DO.Bus>(bus);
+        }
+        
 
         /// <summary>
         /// add new bus to data

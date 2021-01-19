@@ -16,7 +16,8 @@ namespace BLAPI
     {
 
         #region bus
-        IEnumerable<Bus> GetAllBuses(int order=0);    
+        IEnumerable<Bus> GetAllBuses(int order=0);
+        IEnumerable<Bus> GetAllFreeBuses();
         Bus GetBus(int id);
         void addBus(Bus bus);
         void removeBus(int id);
@@ -34,9 +35,12 @@ namespace BLAPI
         void updateLine(int id, string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
         TimeSpan calcDriveTime(List<TimeSpan> time);
         void Tick(int id);
-        ProgressChangedEventHandler passTimer(ProgressChangedEventHandler doWork, int mode);
+        void setTimer(ProgressChangedEventHandler doWork);
+        ProgressChangedEventHandler getTimer();
         void startTimer(Bus bus, TimeSpan time, string status, string iconPath);
         void stopTimer(int id);
+
+        
 
         #endregion
 

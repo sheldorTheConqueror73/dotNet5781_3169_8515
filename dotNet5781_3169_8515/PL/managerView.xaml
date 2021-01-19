@@ -87,7 +87,7 @@
     </Window.Resources>
     <Grid>
         <Line Stroke="#17FF96" StrokeThickness="2" X1="0" X2="3000" Y1="25" Y2="25" />
-        <TabControl VerticalAlignment="Stretch" x:Name="tabbi"  Background="Transparent" BorderThickness="0">
+        <TabControl VerticalAlignment="Stretch" x:Name="tabbi"  Background="Transparent" BorderThickness="0" Margin="31,0,-31,0">
 
             <TabItem Header="Buses"  x:Name="tbiBuses" Style="{StaticResource customTab}" >
                 <Grid Name="mainGrid" Background="Transparent" >
@@ -338,7 +338,7 @@
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <ComboBox x:Name="cbBusSelection"  Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="28,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120"/>
+                        <ComboBox x:Name="cbBusSelection" ItemsSource="{Binding}" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="28,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120"/>
                         <Slider x:Name="slSpeedSelector" IsSnapToTickEnabled="True" TickFrequency="1" Grid.Column="2" Value="1" Minimum="1" ToolTip="Change simulation speed" Maximum="100" HorizontalAlignment="Left" Margin="124,3,0,0" Grid.Row="3" VerticalAlignment="Top" Width="124"/>
                         <TextBox x:Name="tbSpeedSelector" Grid.Column="2" HorizontalAlignment="Left" PreviewTextInput="TextBox_KeyDown" Height="24" Margin="70,0,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding ElementName=slSpeedSelector, Path=Value, Mode=OneWay}"  TextAlignment="Center" VerticalAlignment="Top" Width="41"/>
 

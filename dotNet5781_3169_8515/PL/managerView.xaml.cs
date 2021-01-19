@@ -39,7 +39,7 @@ namespace PL
 
         private void resumeTimer(object sender, RoutedEventArgs e)
         {
-            bl.passTimer(timer, 1);
+            bl.setTimer(timerUpdateDisplay);
             foreach (var item in lvBuses.Items)
             {
                 var bus = item as BO.Bus;
@@ -225,7 +225,7 @@ namespace PL
                 }
 
             }
-           
+
             tbiBuses.DataContext = bl.GetAllBuses(busOrder);
             lvBuses.Items.Refresh();
             lvBuses.SelectedIndex = index;
@@ -240,6 +240,12 @@ namespace PL
                 }
                 this.focusedTextbox.Select(selectedStart, selcetedLength);
             }
+            if(cbBusSelection!=null)
+            {
+                cbBusSelection.ItemsSource = bl.GetAllFreeBuses();
+                cbBusSelection.SelectedIndex = 0;
+            }
+                 
         }
 
         /// <summary>
@@ -633,7 +639,7 @@ namespace PL
             return;
         }
 
-        public void timer(object sender, ProgressChangedEventArgs e)
+        public void timerUpdateDisplay(object sender, ProgressChangedEventArgs e)
         {
             refreshBuses(-2);
             refreshLineTextboxes();
@@ -672,6 +678,7 @@ namespace PL
             cbBusLines.SelectedIndex = 0;
             if(cbBusLines.SelectedItem!=null)
                   lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
+            cbBusSelection.ItemsSource =bl.GetAllFreeBuses();
             refreshLineTextboxes();
         }
         /// <summary>
