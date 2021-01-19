@@ -43,7 +43,7 @@ namespace PL
         private void login_Click(object sender, RoutedEventArgs e)
         {
             txbErrorMessage.Foreground = Brushes.Red;
-            managerView managerView = new managerView();
+            managerView managerView;
             string username = txbUsername.Text;
             string password = txbUPassword.Password;
             if (username == "" || password == "")
@@ -54,7 +54,7 @@ namespace PL
             string accessLevel="";
             try { accessLevel = bl.authenticate(username, password, out userId); }//check if user exists and return user access level
             catch (Exception exc) { txbErrorMessage.Text = exc.Message; }
-         
+            managerView = new managerView(accessLevel);
             if (accessLevel == "Admin" || accessLevel == "Operator")//if user is admin or manager
             {
                 this.Hide();
