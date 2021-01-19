@@ -20,8 +20,14 @@ namespace BL
         IDL dl = DLFactory.GetDL();
         static Timer TimerInstance = null;
         ProgressChangedEventHandler handler = null;
+        int timeAcceleration = 1;
 
         #region Timer
+       public void setTimeAcceleration(int timeAcceleration)
+        {
+            this.timeAcceleration = timeAcceleration;
+        }
+
         public void setTimer(ProgressChangedEventHandler doWork)
         {
             handler = doWork;
@@ -30,12 +36,12 @@ namespace BL
         {
             return handler;
         }
-        public void startTimer(Bus bus, TimeSpan time, string status, string iconPath)
+        public void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration=1)
         {
+            this.timeAcceleration = timeAcceleration;
             if (TimerInstance == null)
                 TimerInstance = new Timer();
             dl.updateTime(bus.id, time);
-
             dl.updateStatus(bus.id, status, iconPath);
             Timer.add(bus.id);
         }
@@ -58,7 +64,9 @@ namespace BL
                     dl.updateStatus(id, "ready", "Resources/okIcon.png");
                 return;
             }
-            bus.time += TimeSpan.FromSeconds(-1);
+            bus.time += TimeSpan.FromSeconds(-1*timeAcceleration);
+            if (bus.time < TimeSpan.Zero)
+                bus.time = TimeSpan.Zero;
             dl.updateBus(bus);
         }
         #endregion

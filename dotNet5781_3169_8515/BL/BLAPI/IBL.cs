@@ -14,7 +14,14 @@ namespace BLAPI
     /// </summary>
     public interface IBL
     {
-
+        #region Timer
+        void Tick(int id);
+        void setTimer(ProgressChangedEventHandler doWork);
+        ProgressChangedEventHandler getTimer();
+        void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration);
+        void stopTimer(int id);
+        void setTimeAcceleration(int timeAcceleration);
+        #endregion
         #region bus
         IEnumerable<Bus> GetAllBuses(int order=0);
         IEnumerable<Bus> GetAllFreeBuses();
@@ -34,13 +41,6 @@ namespace BLAPI
         void removeLine(int id);
         void updateLine(int id, string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
         TimeSpan calcDriveTime(List<TimeSpan> time);
-        void Tick(int id);
-        void setTimer(ProgressChangedEventHandler doWork);
-        ProgressChangedEventHandler getTimer();
-        void startTimer(Bus bus, TimeSpan time, string status, string iconPath);
-        void stopTimer(int id);
-
-        
 
         #endregion
 

@@ -46,7 +46,7 @@ namespace PL
                 if (bus.time != TimeSpan.Zero)
                     try
                     {
-                        bl.startTimer(bus, bus.time, bus.status,bus.iconPath);
+                        bl.startTimer(bus, bus.time, bus.status,bus.iconPath,1);
                     }
                     catch { }
             }
@@ -187,7 +187,7 @@ namespace PL
                 return;
             try
             {
-                bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling","Resources/waitIcon.png");
+                bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling","Resources/waitIcon.png",(int) slSpeedSelector.Value);
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
             bl.refuel(lineData.id);
@@ -263,7 +263,7 @@ namespace PL
 
             try
             {
-                bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance", "Resources/waitIcon.png");
+                bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance", "Resources/waitIcon.png", (int)slSpeedSelector.Value);
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
             bl.maintain(lineData.id);
@@ -630,10 +630,21 @@ namespace PL
 
         private void start_Click(object sender, RoutedEventArgs e)
         {
+            if (cbBusSelection.SelectedItem as BO.Bus == null)
+            { 
+                tbLineError.Text = "No Bus is availble";
+                return;
+            }
+            if (cbBusLines.SelectedItem as BO.BusLine==null)
+            { 
+                tbLineError.Text = "No line selected";
+                return;
+            }
+            TimeSpan driveTime = TimeSpan.Parse((cbBusLines.SelectedItem as BO.BusLine).driveTime);
             try
             {
                 
-               // bl.startTimer(lvBuses.SelectedItem as BO.Bus, new TimeSpan(0, 0, 10), "Busy");
+             bl.startTimer(cbBusSelection.SelectedItem as BO.Bus, driveTime , "on-drive", "Resources/waitIcon.png",(int)slSpeedSelector.Value);
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             return;
@@ -991,6 +1002,11 @@ namespace PL
             catch { return; }
             if (num > 100 || num < 1|| tbSpeedSelector.Text.Length > 3)
                 e.Handled = true;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            bl.setTimeAcceleration((int)slSpeedSelector.Value);
         }
 
         /// <summary>
