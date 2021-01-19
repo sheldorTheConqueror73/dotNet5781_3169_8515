@@ -160,7 +160,7 @@
                             <ComboBoxItem Content="Order By" TabIndex="0" Style="{StaticResource defualtIndex}" />
                             <ComboBoxItem Content="Plate Number" TabIndex="1" />
                             <ComboBoxItem x:Name="sortbox" TabIndex="2" Content="Status"/>
-                            <!--<ComboBoxItem Content="Time" />-->
+                            <ComboBoxItem Content="Time" TabIndex="3" />
                         </ComboBox>
                     </Grid>
                     <Grid Grid.Column="5" x:Name="gridBuses">

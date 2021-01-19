@@ -135,7 +135,12 @@ namespace BL
                 if (order == 2)
                     return (from item in result
                             where (item != null && item.enabled == true)
-                            orderby item.status ascending, item.plateNumber ascending
+                            orderby item.iconPath ascending, item.plateNumber ascending
+                            select Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
+                if(order==3)
+                    return (from item in result
+                            where (item != null && item.enabled == true)
+                            orderby item.time.TotalSeconds descending, item.plateNumber ascending
                             select Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(item)).ToList();
             }
             return default;
