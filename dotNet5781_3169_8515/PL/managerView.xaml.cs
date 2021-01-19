@@ -666,7 +666,8 @@ namespace PL
 
         private void start_Click(object sender, RoutedEventArgs e)
         {
-            if (cbBusSelection.SelectedItem as BO.Bus == null)
+            BO.Bus bus =cbBusSelection.SelectedItem as BO.Bus;
+            if (bus == null)
             { 
                 tbLineError.Text = "No Bus is availble";
                 return;
@@ -680,10 +681,22 @@ namespace PL
             double distance = bl.GetTotalDistanceLine((cbBusLines.SelectedItem as BO.BusLine).id);
             try
             {
+                bl.canMakeDrive(bus, distance);
+            }
+            catch( Exception exc) 
+            {
+                tbLineError.Text = "Selected bus cannot make drive " + exc.Message;
+                return;
+            }
+            try
+            {
                 
              bl.startTimer(cbBusSelection.SelectedItem as BO.Bus, driveTime , "on-drive", "Resources/waitIcon.png",(int)slSpeedSelector.Value);
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
+            bus.fuel -=(int)( distance*1000);
+            bus.distance +=(int)( distance*1000);
+            bl.updateBus(bus);
             return;
         }
 

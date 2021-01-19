@@ -31,6 +31,7 @@ namespace BLAPI
         void updateBus(Bus bus);
         void refuel(int id);
         void maintain(int id);
+        void canMakeDrive(Bus bus, double distance);
         #endregion
 
         #region busLine
