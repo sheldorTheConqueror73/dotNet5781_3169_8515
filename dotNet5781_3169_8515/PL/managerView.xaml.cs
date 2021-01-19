@@ -28,12 +28,11 @@ namespace PL
         int folStatIdSelect = 0;
         private TextBox focusedTextbox = null;
         TimeSpan fTs, eTs;// timespan varibles to save the time drive between stations and the total drive time before changing   
-        public managerView()
+        public managerView(string accessLevel)
         {
             InitializeComponent();
             initSource();
-        }
-
+        }    
 
         #region buses
 
@@ -678,6 +677,7 @@ namespace PL
                 return;
             }
             TimeSpan driveTime = TimeSpan.Parse((cbBusLines.SelectedItem as BO.BusLine).driveTime);
+            double distance = bl.GetTotalDistanceLine((cbBusLines.SelectedItem as BO.BusLine).id);
             try
             {
                 
@@ -1053,6 +1053,7 @@ namespace PL
             Environment.Exit(0);
         }
 
+
         /// <summary>
         /// convert xml file of stations to excel
         /// </summary>
@@ -1077,7 +1078,10 @@ namespace PL
 
         #region users
 
-
+        private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+         
+        }
         #endregion
 
     }
