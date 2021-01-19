@@ -101,17 +101,6 @@
                             <ColumnDefinition Width="503*"/>
                         </Grid.ColumnDefinitions>
                         <ListView x:Name="lvBuses" SelectionMode="Single"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,1,0,0" Height="auto" Width="385" BorderThickness="0" Grid.ColumnSpan="2" MouseDoubleClick="busesView_MouseDoubleClick" PreviewMouseDown="busesView_PreviewMouseDown">
-                            <ListView.Resources>
-                                <Style TargetType="{x:Type ListViewItem}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding plateNumber}"
-                      Value="1">
-                                            <Setter Property="Background"
-                  Value="Red" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </ListView.Resources>
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Plate Number" Width="110"  DisplayMemberBinding="{Binding plateNumber}"  >
@@ -550,7 +539,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="History Bus" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
-                <Grid Margin="-30,0,0,0">
+                <Grid Margin="0,0,0,0">
                     <ListView x:Name="lvBusHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="678" BorderThickness="0"  Height="681" Grid.RowSpan="2">
                         <ListView.View>
                             <GridView >
@@ -609,6 +598,55 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Users" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
+                <Grid Margin="30,0,0,0">
+                    <ListView x:Name="lvUsers"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="540" BorderThickness="0"  Height="681" Grid.RowSpan="2">
+                        <ListView.View>
+                            <GridView >
+                                <GridViewColumn Header="ID" Width="40"  DisplayMemberBinding="{Binding id}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Name" Width="130"  DisplayMemberBinding="{Binding name}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Access Level" Width="135"  DisplayMemberBinding="{Binding accessLevel}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Mail" Width="220"  DisplayMemberBinding="{Binding mail}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="btnDeleteUser" HorizontalAlignment="Left" Margin="679,116,0,0" VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Style="{DynamicResource RoundCorner}" Click="btnDeleteUser_Click">
+                        <Image x:Name="imDeleteUser"  Source="Resources/delete.png" Stretch="Fill"/>
+                    </Button>
+                    <Button x:Name="btnUpdateUser" HorizontalAlignment="Left" Margin="679,191,0,0" VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Style="{DynamicResource RoundCorner}">
+                        <Image x:Name="imUpdateAccessLUser"  Source="Resources/updateIcon.png" Stretch="Fill"/>
+                    </Button>
+                    <ComboBox x:Name="cbAccessLevel" HorizontalAlignment="Left" Margin="642,256,0,0" VerticalAlignment="Top" Width="120">
+                        
+                    </ComboBox>
+                </Grid>
             </TabItem>
 
         </TabControl>
