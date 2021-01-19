@@ -61,6 +61,7 @@ namespace PL
         private void busesView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             initTextBoxes(true, false, 1);
+            btnAddBus.Visibility = Visibility.Hidden;
             btnUpdate.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -118,7 +119,7 @@ namespace PL
                 tbId.IsEnabled = true;
                 tbFuel.IsEnabled = true;
                 tbDistance.IsEnabled = true;
-                tbTotalDist.IsEnabled = true;
+                tbTotalDist.IsEnabled = true; 
                 lvBuses.Items.Refresh();
                 initTextBoxes(true, false, 1);
             }
@@ -129,7 +130,8 @@ namespace PL
             }
             try
             {
-                var bus = new BO.Bus() {registrationDate= dpRegiDate.SelectedDate.Value,lastMaintenance= dpLastMaintenance.SelectedDate.Value,plateNumber= tbId.Text,fuel= fuel,distance= dist,dangerous= tbDangerous.Text == "YES" ? true : false,totalDistance= totalDIst,status= (lvBuses.SelectedItem as BO.Bus).status };
+                btnAddBus.Visibility = Visibility.Visible;
+                var bus = new BO.Bus() {registrationDate= dpRegiDate.SelectedDate.Value,lastMaintenance= dpLastMaintenance.SelectedDate.Value,plateNumber= tbId.Text,fuel= fuel,distance= dist,dangerous= tbDangerous.Text == "YES" ? true : false,totalDistance= totalDIst,status= (lvBuses.SelectedItem as BO.Bus).status,iconPath= (lvBuses.SelectedItem as BO.Bus).iconPath };
                 bus.id = (lvBuses.SelectedItem as BO.Bus).id;
                 bl.updateBus(bus);//calls update function
 
@@ -276,6 +278,12 @@ namespace PL
         {
             initTextBoxes(false, false, 1);
             btnUpdate.Visibility = System.Windows.Visibility.Hidden;
+            imAddBus.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/addIcon.png"));
+            tbDangerous.Visibility = Visibility.Visible;
+            lbDanger.Visibility = Visibility.Visible;
+            btnAddBus.Visibility = Visibility.Visible;
+            if (lvBuses.Items.Count > 0)
+                lvBuses.SelectedIndex = 0;
             tbBusesError.Text = "";
         }
 
@@ -712,7 +720,7 @@ namespace PL
                     tbTotalDist.Clear();
                     dpRegiDate.Text = DateTime.Now.ToString();
                     dpLastMaintenance.Text = DateTime.Now.ToString();
-                    tbDangerous.Clear();//----------------------------------------------------------------------------------------------fix denger bindning
+                  
                 }
             }
             else if (tabItem == 2)//lines
@@ -944,7 +952,7 @@ namespace PL
                 return;
             try
             {
-                bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory+"Buses.xml", path);
+                bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory+ "..\\xml\\Buses.xml", path);
                 MessageBox.Show("Conversion Completed!");
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
@@ -961,7 +969,7 @@ namespace PL
                 return;
             try
             {
-                bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory +"Lines.xml", path);
+                bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory + "..\\xml\\Lines.xml", path);
                 MessageBox.Show("Conversion Completed!");
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
@@ -997,7 +1005,7 @@ namespace PL
                 return;
             try
             {
-                bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory + "Stations.xml", path);
+                bl.ConvertToExcel(AppDomain.CurrentDomain.BaseDirectory + "..\\xml\\Stations.xml", path);
                 MessageBox.Show("Conversion Completed!");
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }

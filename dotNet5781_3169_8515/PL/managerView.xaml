@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="managerView" Height="550" Width="1100" WindowStartupLocation="CenterScreen" Loaded="resumeTimer" >
+        Title="managerView" Height="560" Width="1100" WindowStartupLocation="CenterScreen" Loaded="resumeTimer" >
     <Window.Background>
         <ImageBrush ImageSource="Resources/bckg1.jpg" />
     </Window.Background>
@@ -204,7 +204,7 @@
                                 <Style TargetType="{x:Type TextBox}">
                                     <Setter Property="Text" Value="NO" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding SelectedItem.dangerous,ElementName=lvBuses , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Value="True">
+                                        <DataTrigger Binding="{Binding SelectedItem.dangerous,ElementName=lvBuses , Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Value="True">
                                             <Setter Property="Text" Value="YES" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -216,14 +216,14 @@
                             <Button x:Name="btnAddBus" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center" Margin="125,30,125,0" Click="btnAdd_Click">
                                 <Image x:Name="imAddBus"  Source="Resources/addIcon.png" Stretch="Fill"/>
                             </Button>
-                            <Button x:Name="btnUpdate" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Visibility="Hidden" Background="Transparent" Width="45" Height="45" HorizontalAlignment="Center"  Margin="125,0,125,0" Click="btnUpdate_Click">
+                            <Button x:Name="btnUpdate" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Visibility="Hidden" Background="Transparent" Width="45" Height="45" HorizontalAlignment="Center"  Margin="125,10,125,0" Click="btnUpdate_Click">
                                 <Image  Source="Resources/updateIcon.png" Stretch="Fill"/>
                             </Button>
                             <Button x:Name="btnConvert" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnBusesConvert_Click">
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <TextBlock x:Name="tbBusesError" HorizontalAlignment="Center" Margin="10,154,0,0" Grid.Row="8" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20"  Width="330"/>
+                        <TextBlock x:Name="tbBusesError" FontSize="15" HorizontalAlignment="Center" Margin="10,187,10,0" Grid.Row="8" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20"  Width="330"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -462,12 +462,12 @@
                                 <Image x:Name="imDeleteStation"  Source="Resources/delete.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
+                        <StackPanel Grid.Row="5" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="2">
                             <Button x:Name="btnUpdateTimOrDis" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" ToolTip="submit" Visibility="Collapsed"  HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="0,30,0,0" Click="btnUpdateTimOrDis_Click">
                                  <Image x:Name="imUpdateTimOrDis"  Source="Resources/submitIcon.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <Button x:Name="btnStationConvert" Grid.Row="8" Grid.ColumnSpan="3" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnStationsConvert_Click">
+                        <Button x:Name="btnStationConvert" Style="{DynamicResource RoundCorner}" Grid.Row="8" Grid.ColumnSpan="3" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnStationsConvert_Click">
                             <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                         </Button>
                     </Grid>
