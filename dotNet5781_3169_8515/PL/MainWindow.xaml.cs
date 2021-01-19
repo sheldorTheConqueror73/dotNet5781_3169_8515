@@ -54,7 +54,7 @@ namespace PL
             string accessLevel="";
             try { accessLevel = bl.authenticate(username, password, out userId); }//check if user exists and return user access level
             catch (Exception exc) { txbErrorMessage.Text = exc.Message; }
-            managerView = new managerView(accessLevel);
+            managerView = new managerView();
             if (accessLevel == "Admin" || accessLevel == "Operator")//if user is admin or manager
             {
                 this.Hide();

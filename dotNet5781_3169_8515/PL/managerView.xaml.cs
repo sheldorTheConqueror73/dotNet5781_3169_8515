@@ -27,8 +27,8 @@ namespace PL
         int busOrder=0;
         int folStatIdSelect = 0;
         private TextBox focusedTextbox = null;
-        TimeSpan fTs, eTs;// timespan varibles to save the time drive between stations and the total drive time before changing
-        public managerView(string accessLevel)
+        TimeSpan fTs, eTs;// timespan varibles to save the time drive between stations and the total drive time before changing   
+        public managerView()
         {
             InitializeComponent();
             initSource();
@@ -729,6 +729,7 @@ namespace PL
             cbBusSelection.ItemsSource =bl.GetAllFreeBuses();
             refreshLineTextboxes();
             lvLineHistory.ItemsSource = bl.GetLineHistory();
+            lvUsers.ItemsSource = bl.GetAllUsers();
         }
         /// <summary>
         /// intintailzes and.or clears textboxes text
@@ -1047,6 +1048,11 @@ namespace PL
             bl.setTimeAcceleration((int)slSpeedSelector.Value);
         }
 
+        private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// convert xml file of stations to excel
         /// </summary>
@@ -1066,6 +1072,11 @@ namespace PL
         #endregion
 
         #region history
+
+        #endregion
+
+        #region users
+
 
         #endregion
 
