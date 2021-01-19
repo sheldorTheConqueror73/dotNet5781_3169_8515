@@ -72,6 +72,7 @@ namespace BL
             dl.updateBus(bus);
         }
         #endregion
+
         #region bus 
        public void canMakeDrive(Bus bus, double distance)
         {
@@ -626,6 +627,7 @@ namespace BL
             return default;
         }
         #endregion
+
         #region user
         public void sendMail(int id, string subject,string text)
         {
@@ -692,6 +694,27 @@ namespace BL
             dl.addUser(Utility.BOtoDOConvertor<DO.User,BO.User>(user));
         }
 
+        public void removeUser(int id)
+        {
+            dl.removeUser(id);
+        }
+
+        public int indexOfCbByAccessLevel(int id)
+        {
+            var user = GetUser(id);
+            if (user.accessLevel == "Admin")
+                return 0;
+            if (user.accessLevel == "Operator")
+                return 1;
+            if (user.accessLevel == "User")
+                return 2;
+            return 3;
+        }
+
+        public void updateUser(User user)
+        {
+            dl.updateUser(Utility.BOtoDOConvertor<DO.User, BO.User>(user));
+        }
         #endregion
 
         #region exportToExcel

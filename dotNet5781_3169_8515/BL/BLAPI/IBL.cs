@@ -64,9 +64,12 @@ namespace BLAPI
         IEnumerable<BO.User> GetAllUsers();
         BO.User GetUser(int id);
         void addUser(BO.User line);
-         string authenticate(string username, string password, out int id);
-        void sendMail(int id, string subject, string text);
+        void removeUser(int id);
+        string authenticate(string username, string password, out int id);
+        int indexOfCbByAccessLevel(int id);
+        void updateUser(User user);
         #endregion
+
         #region followStations
         IEnumerable<BusLineStation> GetAllFollowStationsAsStationsObj(int id);
         void updateFollowStation(FollowStations folStation, TimeSpan sTs, TimeSpan eTs, TimeSpan cTs);
