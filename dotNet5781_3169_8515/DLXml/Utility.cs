@@ -20,12 +20,16 @@ namespace DL
         private static string userPath = @"Users.xml";
         private static string lineInStationPath = @"LineInStations.xml";
         private static string followStationPath = @"FollowStations.xml";
+        private static string LineHistoryPath = @"LineHistory.xml";
+        private static string BusHistoryPath = @"BusHistory.xml";
         private static Mutex BusMutex = null;
         private static Mutex LineMutex = null;
         private static Mutex StationMutex = null;
         private static Mutex UserMutex = null;
         private static Mutex LISMutex = null;
         private static Mutex FollowMutex = null;
+        private static Mutex LineHistoryMutex = null;
+        private static Mutex BusHistoryMutex = null;
         private static int counter = 0;
 
         /// <summary>
@@ -47,6 +51,10 @@ namespace DL
                 return lineInStationPath;
             if (type == typeof(FollowStations))
                 return followStationPath;
+            if (type == typeof(BusHistory))
+                return BusHistoryPath;
+            if (type == typeof(LineHistory))
+                return LineHistoryPath;
             throw new InvalidArgumentException("Invalid Argument");
         }
         private static Mutex getMutex(Type type)
@@ -89,6 +97,18 @@ namespace DL
                     FollowMutex = new Mutex(false, "FollowsMutex");
                 return FollowMutex;
             }
+            if (type == typeof(BusHistory))
+            {
+                if (BusHistoryMutex == null)
+                    BusHistoryMutex = new Mutex(false, "BusHMutex");
+                return BusHistoryMutex;
+            }
+            if (type == typeof(LineHistory))
+            {
+                if (LineHistoryMutex == null)
+                    LineHistoryMutex = new Mutex(false, "LineHMutex");
+                return LineHistoryMutex;
+            }
             throw new InvalidArgumentException("Invalid Argument");
         }
 
@@ -107,6 +127,10 @@ namespace DL
                 return "LinesInStations";
             if (type == typeof(FollowStations))
                 return "FollowStations";
+            if (type == typeof(LineHistory))
+                return "LineHistory";
+            if (type == typeof(BusHistory))
+                return "BusHistory";
             throw new InvalidArgumentException("Invalid Argument");
         }
 

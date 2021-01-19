@@ -464,9 +464,29 @@ namespace DL
 
 
         #endregion
+        
+        #region History
+        public IEnumerable<DO.LineHistory> GetLineHistory()
+        {
+            return from element in Utility.load(typeof(LineHistory)).Elements()
+                   where element != null
+                   let obj = element.ToObject<LineHistory>()
+                   select obj;
+        }
+
+        public IEnumerable<DO.BusHistory> getBusHistory()
+        {
+            return from element in Utility.load(typeof(BusHistory)).Elements()
+                   where element != null
+                   let obj = element.ToObject<BusHistory>()
+                   select obj;
+        }
+        #endregion
+
+
         #endregion
 
         #endregion
-       
+
     }
 }

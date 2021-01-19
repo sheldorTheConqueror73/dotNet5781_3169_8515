@@ -66,5 +66,11 @@ namespace DLAPI
 
         #endregion
 
+        #region History
+        IEnumerable<DO.LineHistory> GetLineHistory();
+
+        IEnumerable<DO.BusHistory> getBusHistory();
+        #endregion
+
     }
 }
