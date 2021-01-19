@@ -432,6 +432,26 @@ namespace DL
             throw new NotImplementedException();
         }
 
+        public IEnumerable<LineHistory> GetLineHistory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<BusHistory> getBusHistory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addLineHistory(LineHistory history)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addBusHistory(BusHistory history)
+        {
+            throw new NotImplementedException();
+        }
+
 
 
         #endregion

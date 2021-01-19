@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BusHistory>
+  <BusHistory>
+    <BusId>53</BusId>
+    <PlateNumber>139-76-854</PlateNumber>
+    <start>2021-01-19T14:09:33.9642768+02:00</start>
+    <end>2021-01-19T14:10:03.9642768+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has been refueled</description>
+    <id>265</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>65</BusId>
+    <PlateNumber>234-66-619</PlateNumber>
+    <start>2021-01-19T14:09:51.408607+02:00</start>
+    <end>2021-01-19T14:09:51.408607+02:00</end>
+    <duration>PT0S</duration>
+    <description>Bus has been deleted</description>
+    <id>969</id>
+  </BusHistory>
+</BusHistory>

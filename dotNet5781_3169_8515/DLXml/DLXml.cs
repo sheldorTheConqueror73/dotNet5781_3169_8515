@@ -481,6 +481,21 @@ namespace DL
                    let obj = element.ToObject<BusHistory>()
                    select obj;
         }
+
+
+        public void addLineHistory(DO.LineHistory history)
+        {
+          
+            var root = Utility.load(typeof(LineHistory));
+            root.Add(history.ToXml());
+            Utility.save(root, typeof(LineHistory));
+        }
+        public void addBusHistory(DO.BusHistory history)
+        {
+            var root = Utility.load(typeof(BusHistory));
+            root.Add(history.ToXml());
+            Utility.save(root, typeof(BusHistory));
+        }
         #endregion
 
 

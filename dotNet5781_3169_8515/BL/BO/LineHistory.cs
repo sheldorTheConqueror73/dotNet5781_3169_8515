@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class LineHistory: BOobject
+    public class LineHistory : BOobject
     {
         public int LineId { get; set; }
         public string LineNumber { get; set; }

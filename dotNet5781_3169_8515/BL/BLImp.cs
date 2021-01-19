@@ -730,6 +730,15 @@ namespace BL
                    where bus != null
                    select Utility.DOtoBOConvertor<BO.BusHistory, DO.BusHistory>(bus);
         }
+
+        public void addLineHistory(BO.LineHistory history)
+        {
+            dl.addLineHistory(Utility.BOtoDOConvertor<DO.LineHistory, BO.LineHistory>(history));
+        }
+        public void addBusHistory(BO.BusHistory history)
+        {
+            dl.addBusHistory(Utility.BOtoDOConvertor<DO.BusHistory, BO.BusHistory>(history));
+        }
         #endregion
 
     }

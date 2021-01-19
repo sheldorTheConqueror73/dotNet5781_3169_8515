@@ -80,6 +80,7 @@ namespace PL
             }
             else
             {
+                bool success = true;
                 int fuel, dist, totalDIst;
                 try { validateInput(out fuel, out dist, out totalDIst); }
                 catch (Exception exc) { tbBusesError.Text = exc.Message; return; }
@@ -87,16 +88,35 @@ namespace PL
                 string plateNumber = tbId.Text;
                 DateTime rd = dpRegiDate.SelectedDate.Value;
                 DateTime lm = dpLastMaintenance.SelectedDate.Value;
-                try { bl.addBus(new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready"}); }
-                catch (Exception exc) { tbBusesError.Text= exc.Message; return; }
+                BO.Bus bus;
+                try 
+                {
+                     bus = new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready" };
+                    bl.addBus(bus);
+                }
+               
+                catch (Exception exc) 
+                { 
+                    tbBusesError.Text= exc.Message;
+                    success = false;
+                    return;
+                }
+
                 finally {
                     imAddBus.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/addIcon.png"));
                     lbDanger.Visibility = System.Windows.Visibility.Visible;
                     tbDangerous.Visibility = System.Windows.Visibility.Visible;
-                    initTextBoxes(true, false, 1); }// disable all textboces anyway
+                    initTextBoxes(true, false, 1); 
+                }// disable all textboces anyway
+               
+                if(success)
+                    bl.addBusHistory(new BO.BusHistory() { BusId =bus.id, PlateNumber =plateNumber, start = DateTime.Now, duration = TimeSpan.Zero, end = DateTime.Now, description = "Bus has been created" });
                 refreshBuses(-1);
+
                 
             }
+
+            
 
         }
 
@@ -133,6 +153,8 @@ namespace PL
                 bus.id = (lvBuses.SelectedItem as BO.Bus).id;
                 bl.updateBus(bus);//calls update function
 
+                bl.addBusHistory(new BO.BusHistory() { BusId = bus.id, PlateNumber = bus.plateNumber, start = DateTime.Now, duration = TimeSpan.Zero, end = DateTime.Now, description = "Bus has been updated" });
+
                 id = bus.id;
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
@@ -161,16 +183,25 @@ namespace PL
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;//find the selced line in listView
             int id = lineData.id;
+            bool sucsess = true;
             if (!checkStatus(lineData))
                 return;
            
             try
             {
                 bl.removeBus(id);//remove bus function
-                refreshBuses(-1);
-                initTextBoxes(false, true, 1);
             }
-            catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
+            catch (Exception ecx)
+            { 
+                tbBusesError.Text = ecx.Message;
+                sucsess = false;
+                return;
+            }
+            if(sucsess)
+                bl.addBusHistory(new BO.BusHistory() { BusId = id, PlateNumber = lineData.plateNumber, start = DateTime.Now, duration = TimeSpan.Zero, end = DateTime.Now, description = "Bus has been deleted" });
+           
+            refreshBuses(-1);
+            initTextBoxes(false, true, 1);
         }
 
         /// <summary>
@@ -191,7 +222,9 @@ namespace PL
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
             bl.refuel(lineData.id);
-                refreshBuses(id);
+            DateTime endt = (DateTime.Now).AddSeconds(30);
+            bl.addBusHistory(new BO.BusHistory() { BusId = id, PlateNumber = lineData.plateNumber, start = DateTime.Now, duration = new TimeSpan(0, 0, 30), end = endt,description= "Bus has been refueled" });
+            refreshBuses(id);
             
          
 
@@ -267,6 +300,8 @@ namespace PL
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
             bl.maintain(lineData.id);
+            DateTime endt = (DateTime.Now).AddSeconds(90);
+            bl.addBusHistory(new BO.BusHistory() { BusId = id, PlateNumber = lineData.plateNumber, start = DateTime.Now, duration = new TimeSpan(0, 0, 30), end = endt,description= "Bus has endergone maintenance" });
             refreshBuses(id);
             
         }
@@ -691,6 +726,7 @@ namespace PL
                   lvStationOfLine.ItemsSource = bl.GetAllStationInLine((cbBusLines.SelectedItem as BO.BusLine).id);
             cbBusSelection.ItemsSource =bl.GetAllFreeBuses();
             refreshLineTextboxes();
+            lvLineHistory.ItemsSource = bl.GetLineHistory();
         }
         /// <summary>
         /// intintailzes and.or clears textboxes text
@@ -1025,6 +1061,10 @@ namespace PL
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
         }
+        #endregion
+
+        #region history
+
         #endregion
 
     }

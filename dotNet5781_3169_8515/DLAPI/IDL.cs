@@ -70,6 +70,10 @@ namespace DLAPI
         IEnumerable<DO.LineHistory> GetLineHistory();
 
         IEnumerable<DO.BusHistory> getBusHistory();
+
+        void addLineHistory(DO.LineHistory history);
+        void addBusHistory(DO.BusHistory history);
+
         #endregion
 
     }
