@@ -92,7 +92,7 @@ namespace PL
                 BO.Bus bus;
                 try 
                 {
-                     bus = new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready" };
+                     bus = new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready",iconPath = "pack://application:,,,/PL;component/Resources/okIcon.png" };
                     bl.addBus(bus);
                 }
                
