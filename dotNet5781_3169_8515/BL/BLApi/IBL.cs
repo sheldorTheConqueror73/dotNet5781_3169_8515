@@ -70,6 +70,11 @@ namespace BLAPI
         int GetIdFollowStationBy(int idFirstSta, int idSecondSta, int idLine);
         #endregion
 
+        #region History
+        IEnumerable<BO.LineHistory> GetLineHistory();
+
+        IEnumerable<BO.BusHistory> getBusHistory();
+        #endregion
         void listToText();
         void ConvertToExcel(string fileXmlPath, string fileXlName);
     }
