@@ -65,9 +65,6 @@
     <Compile Include="addLineUserPromt.xaml.cs">
       <DependentUpon>addLineUserPromt.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PO\bus.cs" />
-    <Compile Include="PO\busLine.cs" />
-    <Compile Include="PO\busLineStation.cs" />
     <Compile Include="PO\exceptions.cs" />
     <Page Include="addUser.xaml">
       <SubType>Designer</SubType>
@@ -102,9 +99,6 @@
     <Compile Include="managerView.xaml.cs">
       <DependentUpon>managerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PO\ConvertorUtility.cs" />
-    <Compile Include="PO\Enums.cs" />
-    <Compile Include="PO\POobject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
