@@ -626,8 +626,8 @@ namespace PL
         {
             try
             {
-                bl.passTimer(timer, 1);
-                bl.startTimer(lvBuses.SelectedItem as BO.Bus, new TimeSpan(0, 0, 10), "Busy","Resources/waitIcon.png");
+                
+               // bl.startTimer(lvBuses.SelectedItem as BO.Bus, new TimeSpan(0, 0, 10), "Busy");
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             return;
@@ -966,6 +966,26 @@ namespace PL
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
         }
+
+        private void TextBox_KeyDown(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            bool flag = regex.IsMatch(e.Text);
+            if(flag)
+            {
+                e.Handled = true;
+                return;
+            }
+            int num = 0;
+            try
+            {
+                 num = int.Parse(tbSpeedSelector.Text);
+            }
+            catch { return; }
+            if (num > 100 || num < 1|| tbSpeedSelector.Text.Length > 3)
+                e.Handled = true;
+        }
+
         /// <summary>
         /// convert xml file of stations to excel
         /// </summary>
