@@ -278,6 +278,8 @@ namespace PL
                 cbBusSelection.ItemsSource = bl.GetAllFreeBuses();
                 cbBusSelection.SelectedIndex = 0;
             }
+            if(lvBusHistory!=null)
+                lvBusHistory.ItemsSource = bl.getBusHistory();
                  
         }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="managerView" Height="550" Width="1100" WindowStartupLocation="CenterScreen" Loaded="resumeTimer" >
+        Title="managerView" Height="750" Width="1300" WindowStartupLocation="CenterScreen" Loaded="resumeTimer" >
     <Window.Background>
         <ImageBrush ImageSource="Resources/bckg1.jpg" />
     </Window.Background>
@@ -87,7 +87,7 @@
     </Window.Resources>
     <Grid>
         <Line Stroke="#17FF96" StrokeThickness="2" X1="0" X2="3000" Y1="25" Y2="25" />
-        <TabControl VerticalAlignment="Stretch" x:Name="tabbi"  Background="Transparent" BorderThickness="0" Margin="31,0,-31,0">
+        <TabControl VerticalAlignment="Stretch" x:Name="tabbi"  Background="Transparent" BorderThickness="0">
 
             <TabItem Header="Buses"  x:Name="tbiBuses" Style="{StaticResource customTab}" >
                 <Grid Name="mainGrid" Background="Transparent" >
@@ -344,7 +344,7 @@
                         <TextBox x:Name="tbSpeedSelector" Grid.Column="2" HorizontalAlignment="Left" PreviewTextInput="TextBox_KeyDown" Height="24" Margin="27,16,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding ElementName=slSpeedSelector, Path=Value, Mode=TwoWay}"  TextAlignment="Center" VerticalAlignment="Top" Width="41"/>
                         <TextBlock x:Name="tbLineError" TextAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="85,74,0,0" Grid.Row="4" TextWrapping="Wrap" FontSize="12" VerticalAlignment="Top" Width="195" Height="50" Grid.ColumnSpan="2"/>
                         <Button Content="set speed" HorizontalAlignment="Left" Margin="126,41,0,0" Grid.Row="4" VerticalAlignment="Top" Width="74" Click="Button_Click" Grid.ColumnSpan="2"/>
-                        
+
                     </Grid>
                     <TextBlock x:Name="tbSpeed" Grid.Column="2" IsEnabled="False"  TextAlignment="Right" HorizontalAlignment="Left" Height="22" Margin="225,209,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Speed:" VerticalAlignment="Top" Width="72"/>
                     <Label Content="Bus:" HorizontalContentAlignment="Right" Grid.Column="2" HorizontalAlignment="Left" Margin="266,268,0,0" Grid.Row="1" VerticalAlignment="Top"/>
@@ -480,12 +480,16 @@
                 </Grid>
             </TabItem>
             <TabItem Header="History" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
-                <Grid>
-                    <ListView x:Name="lvLineHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="490" BorderThickness="0">
-                    <ListView.View>
-                        <GridView>
-                            
-                                <GridViewColumn Header="ID" Width="70"  DisplayMemberBinding="{Binding LineId}">
+                <Grid Margin="-30,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="34*"/>
+                        <RowDefinition Height="457*"/>
+                    </Grid.RowDefinitions>
+                    <ListView x:Name="lvLineHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="610" BorderThickness="0" Margin="30,0,0,0" Height="691" Grid.RowSpan="2">
+                        <ListView.View>
+                            <GridView>
+
+                                <GridViewColumn Header="ID" Width="30"  DisplayMemberBinding="{Binding LineId}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
@@ -493,29 +497,29 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Line" Width="70"  DisplayMemberBinding="{Binding LineNumber}">
+                                <GridViewColumn Header="Line" Width="40"  DisplayMemberBinding="{Binding LineNumber}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                            
-                                <GridViewColumn Header="Start Date" Width="70"  DisplayMemberBinding="{Binding start}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            
-                            <GridViewColumn Header="end Date" Width="70"  DisplayMemberBinding="{Binding end}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+
+                                <GridViewColumn Header="Start Date" Width="140"  DisplayMemberBinding="{Binding start}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="End Date" Width="140"  DisplayMemberBinding="{Binding end}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
                                 <GridViewColumn Header="Duration" Width="70"  DisplayMemberBinding="{Binding duration}">
                                     <GridViewColumn.CellTemplate>
@@ -525,17 +529,74 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Description" Width="70"  DisplayMemberBinding="{Binding description}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            
-                        </GridView>
-                    </ListView.View>
+                                <GridViewColumn Header="Description" Width="180"  DisplayMemberBinding="{Binding description}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
                     </ListView>
+
+                    <ListView x:Name="lvBusHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="678" BorderThickness="0" Margin="640,0,0,0" Height="681" Grid.RowSpan="2">
+                        <ListView.View>
+                            <GridView >
+
+                                <GridViewColumn Header="ID" Width="30"  DisplayMemberBinding="{Binding BusId}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Bus" Width="70"  DisplayMemberBinding="{Binding plateNumber}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Start Date" Width="135"  DisplayMemberBinding="{Binding start}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="End Date" Width="135"  DisplayMemberBinding="{Binding end}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Duration" Width="70"  DisplayMemberBinding="{Binding duration}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Description" Width="180"  DisplayMemberBinding="{Binding description}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
                 </Grid>
             </TabItem>
 

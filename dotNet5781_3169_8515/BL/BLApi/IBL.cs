@@ -74,6 +74,9 @@ namespace BLAPI
         IEnumerable<BO.LineHistory> GetLineHistory();
 
         IEnumerable<BO.BusHistory> getBusHistory();
+        void addLineHistory(BO.LineHistory history);
+        void addBusHistory(BO.BusHistory history);
+
         #endregion
         void listToText();
         void ConvertToExcel(string fileXmlPath, string fileXlName);
