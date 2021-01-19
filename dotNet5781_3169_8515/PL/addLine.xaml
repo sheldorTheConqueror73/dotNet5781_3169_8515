@@ -70,7 +70,9 @@
             <ComboBoxItem  Content="JurdenVally"/>
             <ComboBoxItem  Content="AnkhMorpork"/>
         </ComboBox>
-        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="564,219,0,0" VerticalAlignment="Top" Width="75" Click="btnSubmit_Click"/>
+        <Button x:Name="btnSubmit" HorizontalAlignment="Left" Margin="564,219,0,0" VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Click="btnSubmit_Click">
+            <Image x:Name="imSubmitLine" Source="Resources/submitIcon.png" Stretch="Fill"/>
+        </Button>
         <Label x:Name="lblError" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Foreground="Red" Margin="445,348,0,0" VerticalAlignment="Top" Width="337" Height="61"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="580,102,0,0" TextWrapping="Wrap" x:Name="txbDriveTime" IsEnabled="False" VerticalAlignment="Top" Width="85" RenderTransformOrigin="-0.066,0.554"/>
 

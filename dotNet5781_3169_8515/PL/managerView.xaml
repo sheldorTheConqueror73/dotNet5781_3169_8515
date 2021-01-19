@@ -42,6 +42,48 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" CornerRadius="8" BorderBrush="Black" BorderThickness="2">
+                                <Border.Background>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" 
+                                                        ScaleX="1.5" ScaleY="1.5"/>
+                                                <TranslateTransform X="0.02" Y="0.3"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Offset="1" Color="#00000000"/>
+                                        <GradientStop Offset="0.3" Color="#FFFFFFFF"/>
+                                    </RadialGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          TextElement.FontWeight="Bold">
+                                </ContentPresenter>
+                            </Border>
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF33962B"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Line Stroke="#17FF96" StrokeThickness="2" X1="0" X2="3000" Y1="25" Y2="25" />
@@ -171,13 +213,13 @@
                         </TextBox>
 
                         <StackPanel Grid.Row="8" Grid.ColumnSpan="3">
-                            <Button x:Name="btnAddBus" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center" Margin="125,30,125,0" Click="btnAdd_Click">
+                            <Button x:Name="btnAddBus" Style="{DynamicResource RoundCorner}" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center" Margin="125,30,125,0" Click="btnAdd_Click">
                                 <Image x:Name="imAddBus"  Source="Resources/addIcon.png" Stretch="Fill"/>
                             </Button>
-                            <Button x:Name="btnUpdate" Visibility="Hidden" Background="Transparent" Width="45" Height="45" HorizontalAlignment="Center"  Margin="125,0,125,0" Click="btnUpdate_Click">
+                            <Button x:Name="btnUpdate" BorderBrush="#0000" Visibility="Hidden" Background="Transparent" Width="45" Height="45" HorizontalAlignment="Center"  Margin="125,0,125,0" Click="btnUpdate_Click">
                                 <Image  Source="Resources/updateIcon.png" Stretch="Fill"/>
                             </Button>
-                            <Button x:Name="btnConvert" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnBusesConvert_Click">
+                            <Button x:Name="btnConvert" BorderBrush="#0000" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnBusesConvert_Click">
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
@@ -280,11 +322,19 @@
                         <TextBox Grid.Column="2" x:Name="tbldriveTime" HorizontalAlignment="Left" Height="30" Margin="0,60,0,0" TextWrapping="Wrap" IsEnabled="False" VerticalAlignment="Top" Width="100" Text="{Binding SelectedItem.driveTime,ElementName=cbBusLines, NotifyOnValidationError=true, ValidatesOnExceptions=true }"  />
 
                         <StackPanel Grid.RowSpan="5" HorizontalAlignment="Center" Margin="10,0" Width="120" >
-                            <Button Content="Add" x:Name="btnaddLine" HorizontalAlignment="Center" Width="100" Margin="0,20,0,0" Click="addLine_click" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/>
-                            <Button Content="Update" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Grid.ColumnSpan="2" Grid.Row="3" Click="UpdateLine_Click"/>
-                            <Button Content="Delete" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Click="DeleteLine_Click"/>
-                            <Button Content="start" HorizontalAlignment="Center" Width="100" Margin="0,15,0,0" Click="start_Click"/>
-                            <Button x:Name="btnLineConvert" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnLinesConvert_Click">
+                            <Button x:Name="btnaddLine" BorderBrush="#0000" HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="0,20,0,0" Click="addLine_click" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2">
+                                <Image x:Name="imAddLine" Source="Resources/addIcon.png" Stretch="Fill"/>
+                            </Button>
+                            <Button HorizontalAlignment="Center" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" Margin="0,15,0,0" Grid.ColumnSpan="2" Grid.Row="3" Click="UpdateLine_Click">
+                                <Image x:Name="imUpdateLine"  Source="Resources/updateIcon.png" Stretch="Fill"/>
+                            </Button>
+                            <Button HorizontalAlignment="Center" BorderBrush="#0000" Width="45" Height="45" Background="Transparent" Margin="0,15,0,0" Click="DeleteLine_Click">
+                                <Image x:Name="imDeleteLine"  Source="Resources/delete.png" Stretch="Fill"/>
+                            </Button>
+                            <Button HorizontalAlignment="Center" BorderBrush="#0000" Width="55" Height="45" Background="Transparent" Margin="0,15,0,0" Click="start_Click">
+                                <Image x:Name="imStartLine"  Source="Resources/startIcon.png" Stretch="Fill"/>
+                            </Button>
+                            <Button x:Name="btnLineConvert" BorderBrush="#0000" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnLinesConvert_Click">
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
@@ -402,18 +452,18 @@
                         <TextBox x:Name="tbStationDistance" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="7" Grid.Column="1" Width="100" Height="30" Text="{Binding SelectedItem.Distance,ElementName=lvFollowStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }"/>
 
                         <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="3" Grid.Column="2">
-                            <Button x:Name="btnAddStation" ToolTip="add station" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center" Margin="7,10,-6,0" Click="Add_Station_Click">
+                            <Button x:Name="btnAddStation" BorderBrush="#0000" ToolTip="add station" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center" Margin="7,10,-6,0" Click="Add_Station_Click">
                                  <Image x:Name="imAddStation"  Source="Resources/addIcon.png" Stretch="Fill"/>
                             </Button>
-                            <Button x:Name="btnUpdateStation" ToolTip="updtae station" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center"  Margin="7,7,-6,0" Click="btnUpdateStation_Click">
+                            <Button x:Name="btnUpdateStation" BorderBrush="#0000" ToolTip="updtae station" Width="45" Height="45" Background="Transparent" HorizontalAlignment="Center"  Margin="7,7,-6,0" Click="btnUpdateStation_Click">
                                 <Image x:Name="imUpdatetation"  Source="Resources/updateIcon.png" Stretch="Fill"/>
                             </Button>
-                            <Button x:Name="btnDeleteStation" ToolTip="delete station" HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="7,7,-6,0" Click="DeleteStation_Click">
+                            <Button x:Name="btnDeleteStation" BorderBrush="#0000" ToolTip="delete station" HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="7,7,-6,0" Click="DeleteStation_Click">
                                 <Image x:Name="imDeleteStation"  Source="Resources/delete.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
                         <StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2">
-                            <Button x:Name="btnUpdateTimOrDis" ToolTip="submit" Visibility="Collapsed"  HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="0,30,0,0" Click="btnUpdateTimOrDis_Click">
+                            <Button x:Name="btnUpdateTimOrDis" BorderBrush="#0000" ToolTip="submit" Visibility="Collapsed"  HorizontalAlignment="Center" Width="45" Height="45" Background="Transparent" Margin="0,30,0,0" Click="btnUpdateTimOrDis_Click">
                                  <Image x:Name="imUpdateTimOrDis"  Source="Resources/submitIcon.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
