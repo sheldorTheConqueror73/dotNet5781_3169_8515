@@ -11,6 +11,8 @@ using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.Data;
 using System.ComponentModel;
+using System.Net.Mail;
+using System.Net;
 
 namespace BL
 {
@@ -624,6 +626,32 @@ namespace BL
         }
         #endregion
         #region user
+        public void sendMail(int id, string subject,string text)
+        {
+            User user = Utility.DOtoBOConvertor<BO.User,DO.User>( dl.GetUser(id));
+            string adrr = user.mail;
+            using(SmtpClient mail = new SmtpClient())
+            {
+                mail.DeliveryMethod = SmtpDeliveryMethod.Network;
+                mail.UseDefaultCredentials = true;
+                mail.EnableSsl = true;
+                mail.Host = "smtp.gmail.com";
+                mail.Port = 587;
+                mail.Credentials = new NetworkCredential("kukuforevermore@gmail.com", "Gr3DfR6vVnMWjiq");
+                mail.Timeout = 20000;
+                MailMessage msg = new MailMessage("kukuforevermore@gmail.com",adrr);
+                msg.Subject =subject;
+                msg.Body = text;
+                try { 
+                mail.Send(msg);
+                }
+                catch(Exception e)
+                {
+
+                }
+
+            }
+        }
         public IEnumerable<BO.User> GetAllUsers()
         {
             var result = dl.GetAllbusUsers();

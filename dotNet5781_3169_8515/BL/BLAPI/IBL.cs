@@ -65,6 +65,7 @@ namespace BLAPI
         BO.User GetUser(int id);
         void addUser(BO.User line);
          string authenticate(string username, string password, out int id);
+        void sendMail(int id, string subject, string text);
         #endregion
         #region followStations
         IEnumerable<BusLineStation> GetAllFollowStationsAsStationsObj(int id);
