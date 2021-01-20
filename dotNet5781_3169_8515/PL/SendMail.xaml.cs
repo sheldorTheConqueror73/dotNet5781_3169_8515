@@ -50,5 +50,6 @@ namespace PL
             MessageBox.Show("send successfully!");
             this.Close();
         }
+
     }
 }
