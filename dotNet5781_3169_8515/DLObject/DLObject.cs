@@ -113,6 +113,11 @@ namespace DL
             result.distance = 0;
         }
 
+        /// <summary>
+        /// updates time field fo bus
+        /// </summary>
+        /// <param name="id">bus id</param>
+        /// <param name="time">new time to set</param>
         public void updateTime(int id, TimeSpan time)
         {
             var bus = GetBus(id);
@@ -120,6 +125,12 @@ namespace DL
             updateBus(bus);
         }
 
+        /// <summary>
+        /// updates bus status
+        /// </summary>
+        /// <param name="id">id of bus to update</param>
+        /// <param name="status">new status</param>
+        /// <param name="iconPath">new icon path</param>
         public void updateStatus(int id, string status, string iconPath)
         {
             var bus = GetBus(id);
@@ -128,8 +139,6 @@ namespace DL
             updateBus(bus);
         }
         #endregion
-
-
 
 
         #region busLine
@@ -266,10 +275,24 @@ namespace DL
             DataSource.LineStations.Remove(result);
             DataSource.LineStations.Add(station.Clone());
         }
-       
+
         #endregion
 
         #region User
+        /// <summary>
+        /// finds all the users whose  mail address and user name match those given
+        /// </summary>
+        /// <param name="Username">user name</param>
+        /// <param name="Mail">maill address</param>
+        /// <returns>IEnumerable of users</returns>
+        public IEnumerable<User> findUser(string Username, string Mail)
+        {
+            return from user in DataSource.users
+                   where user != null && user.enabled == true && user.name == Username && user.mail == Mail
+                   select user.Clone();
+        }
+
+
         /// <summary>
         /// retrun all users
         /// </summary>
@@ -438,37 +461,53 @@ namespace DL
                 throw new NoSuchEntryException($"No FollowStation Matches ID number {id}");
             return result;
         }
-        //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       
-
-        public IEnumerable<LineHistory> GetLineHistory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<BusHistory> getBusHistory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void addLineHistory(LineHistory history)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void addBusHistory(BusHistory history)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<User> findUser(string Username, string Mail)
-        {
-            throw new NotImplementedException();
-        }
-
-
+      
 
         #endregion
+
+        #region history
+
+        /// <summary>
+        /// gets all line logs
+        /// </summary>
+        /// <returns>IEnumerable of line history</returns>
+        public IEnumerable<LineHistory> GetLineHistory()
+        {
+            return from log in DataSource.lineLogs
+            where log != null
+            select log;        
+        }
+
+        /// <summary>
+        /// gets all bus logs
+        /// </summary>
+        /// <returns>IEnumerable of bus history</returns>
+        public IEnumerable<BusHistory> getBusHistory()
+        {
+            return from log in DataSource.busLogs
+                   where log != null
+                   select log;
+        }
+        /// <summary>
+        /// add a new log to line logpool
+        /// </summary>
+        /// <param name="history">entry to add</param>
+        public void addLineHistory(LineHistory history)
+        {
+            DataSource.lineLogs.Add(history.Clone());
+        }
+        /// <summary>
+        /// add a new log to bus logpool
+        /// </summary>
+        /// <param name="history">entry to add</param>
+        public void addBusHistory(BusHistory history)
+        {
+            DataSource.busLogs.Add(history.Clone());
+        }
+
+        #endregion
+
+
         #endregion
 
 

@@ -17,6 +17,8 @@ namespace DS
         public static List<User> users;//list of users
         public static List<LineInStation> lineInStations;//list of lines in stations
         public static List<FollowStations> followStation;//list of follow station
+        public static List<BusHistory> busLogs;//list of  bus log entries
+        public static List<LineHistory> lineLogs;//list of  line log entries
 
         static DataSource()//ctor
         {
@@ -33,6 +35,7 @@ namespace DS
             initBuses();
             initUsers();
             initLines();
+            initLogs();
             //  initLineInStations1();
             //  initLines1();
             // initFollowStations1();
@@ -514,6 +517,11 @@ new BusLineStation(){id=94,Address="  רחוב:הרב סורוצקין 9 עיר:
 new BusLineStation(){id=95,Address="  רחוב:הרב סורוצקין 28 עיר: ירושלים",code="122",Latitude=31.79617,enabled=true,Longitude=35.206158,Name="מרכז סולם/סורוצקין "}};
         }
         
+        private static void initLogs()
+        {
+            lineLogs = new List<LineHistory>();
+            busLogs = new List<BusHistory>();
+        }
         /// <summary>
         /// initialize all lines (as random) 
         /// </summary>
