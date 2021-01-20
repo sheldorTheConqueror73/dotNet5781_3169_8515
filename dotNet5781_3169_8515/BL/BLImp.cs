@@ -58,13 +58,18 @@ namespace BL
         /// <param name="status">new bus status</param>
         /// <param name="iconPath">new icon path</param>
         /// <param name="timeAcceleration">new time acceleration</param>
-        public void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration=1)
+        public void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration=1,double distance=0)
         {
             this.timeAcceleration = timeAcceleration;
             if (TimerInstance == null)
                 TimerInstance = new Timer();
-            dl.updateTime(bus.id, time);
-            dl.updateStatus(bus.id, status, iconPath);
+            bus.time = time;
+            bus.status = status;
+            bus.iconPath = iconPath;
+            bus.fuel -= distance;
+            bus.distance += distance;
+            bus.totalDistance += distance;
+            updateBus(bus);
             Timer.add(bus.id);
         }
         /// <summary>

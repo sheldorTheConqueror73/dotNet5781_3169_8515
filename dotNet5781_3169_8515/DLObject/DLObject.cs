@@ -350,8 +350,7 @@ namespace DL
             result = user.Clone();
         }
 
-
-
+       
         #endregion
 
         #region lineInStation

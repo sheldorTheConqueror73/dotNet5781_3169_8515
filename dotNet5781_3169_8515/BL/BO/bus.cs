@@ -43,29 +43,6 @@ namespace BO
        
 
 
-        public bool passedYearNowAndThen()//return true if a year has passed since the last maintenance.
-        {
-            DateTime currentDate = DateTime.Now;
-            if ((currentDate.Year - this.lastMaintenance.Year) < 1)
-                return false;
-            if ((currentDate.Month - this.lastMaintenance.Month) < 0)
-                return false;
-            if ((currentDate.Day - this.lastMaintenance.Day) < 0)
-                return false;
-            return true;
-        }
-        public void UpdateDangerous()//updates dangerous status of selected bus
-        {
-            if ((distance >= 20000) || (this.passedYearNowAndThen() == true))
-            {
-                this.dangerous = true;
-                status = "dangerous";
-                iconPath = "Resources/warningIcon.png";
-                return;
-            }
-            this.dangerous = false;
-        }
-
         public override string ToString()
         {
             return this.plateNumber;

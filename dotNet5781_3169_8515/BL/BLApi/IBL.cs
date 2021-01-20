@@ -18,10 +18,11 @@ namespace BLAPI
         void Tick(int id);
         void setTimer(ProgressChangedEventHandler doWork);
         ProgressChangedEventHandler getTimer();
-        void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration);
+        void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration,double distance=0);
         void stopTimer(int id);
         void setTimeAcceleration(int timeAcceleration);
         #endregion
+
         #region bus
         IEnumerable<Bus> GetAllBuses(int order=0);
         IEnumerable<Bus> GetAllFreeBuses();
@@ -69,7 +70,7 @@ namespace BLAPI
         int indexOfCbByAccessLevel(int id);
         void sendMail(int id, string subject, string text);
         User checkMail(string userName, string mailAddress);
-
+        void updateUser(User user);
         string resetPassword(User user);
 
         #endregion
