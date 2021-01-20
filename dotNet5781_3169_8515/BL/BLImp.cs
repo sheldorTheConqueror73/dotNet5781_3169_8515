@@ -25,19 +25,39 @@ namespace BL
         int timeAcceleration = 1;
 
         #region Timer
-       public void setTimeAcceleration(int timeAcceleration)
+
+        /// <summary>
+        /// sets time acceleration for simulator
+        /// </summary>
+        /// <param name="timeAcceleration">time acceleration</param>
+        public void setTimeAcceleration(int timeAcceleration)
         {
             this.timeAcceleration = timeAcceleration;
         }
-
+        /// <summary>
+        /// sets time progress changed handler to pass to timer later
+        /// </summary>
+        /// <param name="doWork">progress changed event handler </param>
         public void setTimer(ProgressChangedEventHandler doWork)
         {
             handler = doWork;
         }
+        /// <summary>
+        /// gets time progress changed handler to pass to timer later
+        /// </summary>
+        /// <returns>progress changed event handle</returns>
         public ProgressChangedEventHandler getTimer()
         {
             return handler;
         }
+        /// <summary>
+        /// adds bus to timer obserbers list
+        /// </summary>
+        /// <param name="bus">bus to add</param>
+        /// <param name="time">duration</param>
+        /// <param name="status">new bus status</param>
+        /// <param name="iconPath">new icon path</param>
+        /// <param name="timeAcceleration">new time acceleration</param>
         public void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration=1)
         {
             this.timeAcceleration = timeAcceleration;
@@ -47,6 +67,10 @@ namespace BL
             dl.updateStatus(bus.id, status, iconPath);
             Timer.add(bus.id);
         }
+        /// <summary>
+        /// removes bus from timer obserbers list
+        /// </summary>
+        /// <param name="id">id of bus to remove</param>
         public void stopTimer(int id)
         {
             if (TimerInstance == null)
@@ -54,6 +78,10 @@ namespace BL
             Timer.remove(id);
 
         }
+        /// <summary>
+        /// reduces time field by 1
+        /// </summary>
+        /// <param name="id">bus id</param>
         public void Tick(int id)
         {
             DO.Bus bus = dl.GetBus(id);
@@ -74,6 +102,11 @@ namespace BL
         #endregion
 
         #region bus 
+        /// <summary>
+        /// throws execption if a bus cant drive that far
+        /// </summary>
+        /// <param name="bus">bus</param>
+        /// <param name="distance">distance to check</param>
        public void canMakeDrive(Bus bus, double distance)
         {
             if (bus.dangerous)
@@ -83,7 +116,10 @@ namespace BL
             if(bus.fuel-distance<0)
                 throw new BusCanntoMakeDriveException("not eought fuel");
         }
-
+        /// <summary>
+        /// gets all buses who are not busy
+        /// </summary>
+        /// <returns> IEnumerable bus</returns>
         public IEnumerable<Bus> GetAllFreeBuses()
         {
            return from bus in dl.GetAllBuses()
@@ -134,7 +170,11 @@ namespace BL
             return Utility.DOtoBOConvertor<BO.Bus, DO.Bus>(dl.GetBus(id));
         }
 
-        
+        /// <summary>
+        /// gets a list of all buses
+        /// </summary>
+        /// <param name="order">orderby parameter</param>
+        /// <returns>IEnumerable Bus </returns>
         public IEnumerable<Bus> GetAllBuses(int order=1)
         {
             var result = dl.GetAllBuses();
@@ -291,6 +331,11 @@ namespace BL
             return drivetime;
         }
 
+        /// <summary>
+        /// calculates the total distance of a line
+        /// </summary>
+        /// <param name="id">id of line</param>
+        /// <returns>total distance</returns>
         public double GetTotalDistanceLine(int id)
         {
             var pathLine = GetAllStationInLine(id);
@@ -338,8 +383,13 @@ namespace BL
             }
             return bs;
         }
-
-       public void reconstructTimeAndDistance(int lineID, out List<double> distance, out List<TimeSpan> time)
+        /// <summary>
+        /// reconstructs list of time and distance and sets it to out
+        /// </summary>
+        /// <param name="lineID">linr id</param>
+        /// <param name="distance">out list of distance between line stations</param>
+        /// <param name="time">out list of time between line stations</param>
+        public void reconstructTimeAndDistance(int lineID, out List<double> distance, out List<TimeSpan> time)
         {
             distance = new List<double>();
             time = new List<TimeSpan>();
@@ -630,6 +680,12 @@ namespace BL
         #endregion
 
         #region user
+        
+        /// <summary>
+        /// generates a new password for user
+        /// </summary>
+        /// <param name="user">user</param>
+        /// <returns>new password</returns>
        public string resetPassword(User user)
         {
             Random r = new Random();
@@ -642,6 +698,12 @@ namespace BL
             return newPassword;
         }
 
+        /// <summary>
+        /// checks if user with given mail address and user name exisits
+        /// </summary>
+        /// <param name="userName">user name</param>
+        /// <param name="mailAddress">mail address</param>
+        /// <returns>list of users matching the arguments</returns>
         public User checkMail(string userName, string mailAddress)
         {
             var result = dl.findUser(userName, mailAddress).ToList();
@@ -649,6 +711,13 @@ namespace BL
                 return Utility.DOtoBOConvertor<BO.User,DO.User>( result.First());
             return null;
         }
+
+        /// <summary>
+        ///  sends email to user
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <param name="subject">subject of email</param>
+        /// <param name="text">body of email</param>
         public void sendMail(int id, string subject,string text)
         {
             User user = Utility.DOtoBOConvertor<BO.User,DO.User>( dl.GetUser(id));
@@ -675,6 +744,11 @@ namespace BL
 
             }
         }
+
+        /// <summary>
+        /// gets all users
+        /// </summary>
+        /// <returns>IEnumerable of line</returns>
         public IEnumerable<BO.User> GetAllUsers()
         {
             var result = dl.GetAllbusUsers();
@@ -684,6 +758,11 @@ namespace BL
                         select Utility.DOtoBOConvertor<BO.User, DO.User>(item)).ToList();
             return default;
         }
+        /// <summary>
+        /// gets a user
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <returns>user</returns>
         public BO.User GetUser(int id)
         {
             try 
@@ -696,6 +775,13 @@ namespace BL
             }
           
         }
+        /// <summary>
+        /// checks if a user with these credintails exists
+        /// </summary>
+        /// <param name="username">user name</param>
+        /// <param name="password">password</param>
+        /// <param name="id">user id</param>
+        /// <returns>user access level</returns>
         public string authenticate(string username, string password, out int id)
         {
 
@@ -708,17 +794,26 @@ namespace BL
             id =-1;
             throw new credentialsIncorrectException("Inncorrect Credentials. please try again");
         }
+        /// <summary>
+        /// adds new user 
+        /// </summary>
+        /// <param name="user">user to add</param>
         public void addUser(BO.User user)
         {
             user.accessLevel ="User";
             dl.addUser(Utility.BOtoDOConvertor<DO.User,BO.User>(user));
         }
 
+        /// <summary>
+        /// removes a user
+        /// </summary>
+        /// <param name="id">user id</param>
         public void removeUser(int id)
         {
             dl.removeUser(id);
         }
 
+        
         public int indexOfCbByAccessLevel(int id)
         {
             var user = GetUser(id);
@@ -731,6 +826,11 @@ namespace BL
             return 3;
         }
 
+
+        /// <summary>
+        /// updates user
+        /// </summary>
+        /// <param name="user">user to update</param>
         public void updateUser(User user)
         {
             dl.updateUser(Utility.BOtoDOConvertor<DO.User, BO.User>(user));
@@ -817,24 +917,39 @@ namespace BL
         #endregion
 
         #region History
-       public IEnumerable<BO.LineHistory> GetLineHistory()
+        /// <summary>
+        /// gets all line logs
+        /// </summary>
+        /// <returns>IEnumerable of line history</returns>
+        public IEnumerable<BO.LineHistory> GetLineHistory()
         {
             return from line in dl.GetLineHistory().ToList()
                    where line != null
                    select Utility.DOtoBOConvertor<BO.LineHistory, DO.LineHistory>(line);
         }
-
-       public IEnumerable<BO.BusHistory> getBusHistory()
+        /// <summary>
+        /// gets all bus logs
+        /// </summary>
+        /// <returns>IEnumerable of bus history</returns>
+        public IEnumerable<BO.BusHistory> getBusHistory()
         {
             return from bus in dl.getBusHistory()
                    where bus != null
                    select Utility.DOtoBOConvertor<BO.BusHistory, DO.BusHistory>(bus);
         }
 
+        /// <summary>
+        /// add a new log to line logpool
+        /// </summary>
+        /// <param name="history">entry to add</param>
         public void addLineHistory(BO.LineHistory history)
         {
             dl.addLineHistory(Utility.BOtoDOConvertor<DO.LineHistory, BO.LineHistory>(history));
         }
+        /// <summary>
+        /// add a new log to bus logpool
+        /// </summary>
+        /// <param name="history">entry to add</param>
         public void addBusHistory(BO.BusHistory history)
         {
             dl.addBusHistory(Utility.BOtoDOConvertor<DO.BusHistory, BO.BusHistory>(history));

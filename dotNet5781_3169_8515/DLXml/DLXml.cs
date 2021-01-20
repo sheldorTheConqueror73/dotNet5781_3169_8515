@@ -64,6 +64,10 @@ namespace DL
             updateBus(bus);
         }
 
+        /// <summary>
+        /// gets all buses
+        /// </summary>
+        /// <returns>IEnumerable bus</returns>
         public IEnumerable<Bus> GetAllBuses()
         {
             return   from element in Utility.load(typeof(Bus)).Elements()
