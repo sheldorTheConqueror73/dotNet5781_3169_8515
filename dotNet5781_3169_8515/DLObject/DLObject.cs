@@ -350,11 +350,7 @@ namespace DL
             result = user.Clone();
         }
 
-
-        public IEnumerable<User> findUser(string Username, string Mail)
-        {
-            throw new NotImplementedException();
-        }
+       
         #endregion
 
         #region lineInStation

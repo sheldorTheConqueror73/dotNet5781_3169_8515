@@ -701,13 +701,12 @@ namespace PL
             try
             {
                 
-             bl.startTimer(cbBusSelection.SelectedItem as BO.Bus, driveTime , "on-drive", "Resources/waitIcon.png",(int)slSpeedSelector.Value);
+             bl.startTimer(cbBusSelection.SelectedItem as BO.Bus, driveTime , "on-drive", "Resources/waitIcon.png",(int)slSpeedSelector.Value,distance);
+
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-            bus.fuel -=distance;
-            bus.distance += distance;
-            bus.totalDistance += distance;
-            bl.updateBus(bus);
+            MessageBox.Show("Line has departed succesfully!");
+           
             var line=bl.GetBusLine((cbBusLines.SelectedItem as BO.BusLine).id);
             bl.addLineHistory(new BO.LineHistory() { LineId = line.id, LineNumber = line.number, end = DateTime.Now+driveTime, start=DateTime.Now,  duration=driveTime, description="Line has departed"});
             bl.addBusHistory(new BO.BusHistory() {BusId=bus.id,PlateNumber=bus.plateNumber, end = DateTime.Now + driveTime, start = DateTime.Now, duration = driveTime, description = "Bus has departed to line "+line.number});
