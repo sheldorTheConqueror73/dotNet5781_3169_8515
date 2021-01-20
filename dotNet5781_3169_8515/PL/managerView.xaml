@@ -638,7 +638,7 @@
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" >
                                                 <Button x:Name="btnSednMail"  Click="btnSednMail_Click"  ToolTip="send an email" Background="Transparent"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
-                                                    <Image  Source="Resources/delete.png" Stretch="Fill"/>
+                                                    <Image  Source="Resources/emailIcon.png" Stretch="Fill"/>
                                                 </Button>
                                             </StackPanel>
                                         </DataTemplate>

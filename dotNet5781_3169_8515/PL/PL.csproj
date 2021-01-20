@@ -176,5 +176,8 @@
   <ItemGroup>
     <Resource Include="Resources\startIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\emailIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
