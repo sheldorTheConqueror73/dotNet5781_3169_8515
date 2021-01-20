@@ -1158,9 +1158,12 @@ namespace PL
         {
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.User;
-            string subject = "testc";
-            string tesxt = "testing tresgtning";
-            bl.sendMail(lineData.id, subject, tesxt);
+            try
+            {
+                SendMail sendMail = new SendMail(lineData.id);
+                sendMail.ShowDialog();
+            }
+            catch (Exception exc) { MessageBox.Show(exc.Message);return; }
         }
 
         private void lvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
