@@ -605,7 +605,7 @@ namespace PL
         }
 
         /// <summary>
-        /// 
+        /// refresh textbuxes in line tab item
         /// </summary>
         private void refreshLineTextboxes()
         {
@@ -615,6 +615,7 @@ namespace PL
             tbLineLastSta.Text = (lvStationOfLine.Items[lvStationOfLine.Items.Count - 1] as BO.BusLineStation).Name;
             if(cbBusLines.SelectedItem as BO.BusLine!=null)
                  tbldriveTime.Text = (cbBusLines.SelectedItem as BO.BusLine).driveTime;
+            tbLineError.Text = "";
         }
 
         /// <summary>
@@ -638,7 +639,11 @@ namespace PL
             var line = cbBusLines.SelectedItem as BO.BusLine;
             if (line == null)
                 return;
-
+            if (bl.LineInBusAtDrive(line.id))
+            {
+                tbLineError.Text = "You cannot delete line in drive";
+                return;
+            }
             try { bl.removeLine(line.id); }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             bl.addLineHistory(new BO.LineHistory() { LineId = line.id, LineNumber = line.number, end = DateTime.Now, start = DateTime.Now, duration = TimeSpan.Zero, description = "Line has been deleted" });
@@ -673,7 +678,9 @@ namespace PL
             initTextBoxByCbInStations();
             refreshLineTextboxes();
         }
-
+        /// <summary>
+        /// start the path of specific line
+        /// </summary>
         private void start_Click(object sender, RoutedEventArgs e)
         {
             BO.Bus bus =cbBusSelection.SelectedItem as BO.Bus;
@@ -701,8 +708,7 @@ namespace PL
             try
             {
                 
-             bl.startTimer(cbBusSelection.SelectedItem as BO.Bus, driveTime , "on-drive", "Resources/waitIcon.png",(int)slSpeedSelector.Value,distance);
-
+             bl.startTimer(cbBusSelection.SelectedItem as BO.Bus, driveTime , "on-drive", "Resources/waitIcon.png",(int)slSpeedSelector.Value,distance, (cbBusLines.SelectedItem as BO.BusLine).id);
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             MessageBox.Show("Line has departed succesfully!");
@@ -714,7 +720,6 @@ namespace PL
             lvBusHistory.ItemsSource = bl.getBusHistory();
             return;
         }
-
         public void timerUpdateDisplay(object sender, ProgressChangedEventArgs e)
         {
             refreshBuses(-2);
@@ -1105,14 +1110,12 @@ namespace PL
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
         }
    
-        #endregion
-
-        #region history
-
-        #endregion
+        #endregion  
 
         #region users
-
+        /// <summary>
+        /// delete user
+        /// </summary>
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
             if (lvUsers.Items.Count == 0||lvUsers.SelectedItem==null)
@@ -1122,7 +1125,9 @@ namespace PL
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             lvUsers.ItemsSource = bl.GetAllUsers();
         }
-
+        /// <summary>
+        /// update user
+        /// </summary>
         private void btnUpdateUser_Click(object sender, RoutedEventArgs e)
         {
             if (imUpdateAccessLUser.Source.ToString() == "pack://application:,,,/PL;component/Resources/updateIcon.png")
@@ -1153,7 +1158,9 @@ namespace PL
                 }
             }
         }
-
+        /// <summary>
+        /// send mail to specific user
+        /// </summary>
         private void btnSednMail_Click(object sender, RoutedEventArgs e)
         {
             var fxElt = sender as FrameworkElement;
@@ -1165,7 +1172,9 @@ namespace PL
             }
             catch (Exception exc) { MessageBox.Show(exc.Message);return; }
         }
-
+        /// <summary>
+        /// update the textbox access level and id user by the selected row.
+        /// </summary>
         private void lvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvUsers.Items.Count == 0 || lvUsers.SelectedItem == null)
