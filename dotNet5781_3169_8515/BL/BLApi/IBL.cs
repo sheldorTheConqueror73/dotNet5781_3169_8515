@@ -63,11 +63,15 @@ namespace BLAPI
         #region user
         IEnumerable<BO.User> GetAllUsers();
         BO.User GetUser(int id);
-        void addUser(BO.User line);
+        void addUser(BO.User user);
         void removeUser(int id);
         string authenticate(string username, string password, out int id);
         int indexOfCbByAccessLevel(int id);
-        void updateUser(User user);
+        void sendMail(int id, string subject, string text);
+        User checkMail(string userName, string mailAddress);
+
+        string resetPassword(User user);
+
         #endregion
 
         #region followStations

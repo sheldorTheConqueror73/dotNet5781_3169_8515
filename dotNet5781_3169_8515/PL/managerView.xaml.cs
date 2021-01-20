@@ -596,6 +596,7 @@ namespace PL
             addLine addWindow = new addLine();
             addWindow.ShowDialog();
             cbBusLines.ItemsSource = bl.GetAllbusLines();
+            lvLineHistory.DataContext = bl.GetLineHistory();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;            
             initTextBoxByCbInStations();
@@ -642,6 +643,7 @@ namespace PL
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
             bl.addLineHistory(new BO.LineHistory() { LineId = line.id, LineNumber = line.number, end = DateTime.Now, start = DateTime.Now, duration = TimeSpan.Zero, description = "Line has been deleted" });
             cbBusLines.ItemsSource = bl.GetAllbusLines();
+            lvLineHistory.DataContext = bl.GetLineHistory();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
             initTextBoxByCbInStations();
@@ -665,6 +667,7 @@ namespace PL
             TimeSpan dur = (end - start);
             bl.addLineHistory(new BO.LineHistory() { LineId = line.id, LineNumber = line.number, end = DateTime.Now, start=start,  duration=dur, description="Line has been updated"});
             cbBusLines.ItemsSource = bl.GetAllbusLines();
+            lvLineHistory.DataContext = bl.GetLineHistory();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
             initTextBoxByCbInStations();
@@ -705,6 +708,8 @@ namespace PL
             bus.distance += distance;
             bus.totalDistance += distance;
             bl.updateBus(bus);
+            ///-add line and bus hisroty
+            lvLineHistory.DataContext = bl.GetLineHistory();
             return;
         }
 
@@ -1145,6 +1150,13 @@ namespace PL
                     imUpdateAccessLUser.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/updateIcon.png"));
                 }
             }
+        }
+
+        private void btnSednMail_Click(object sender, RoutedEventArgs e)
+        {
+            string subject = "testc";
+            string tesxt = "testing tresgtning";
+            bl.sendMail(70, subject, tesxt);
         }
 
         private void lvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)

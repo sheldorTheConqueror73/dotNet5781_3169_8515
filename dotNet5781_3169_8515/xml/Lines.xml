@@ -31,8 +31,9 @@
   <BusLine>
     <number>37</number>
     <area>NewAnkh</area>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <driveTime>00:57:52</driveTime>
+    <distance>0</distance>
     <id>223</id>
   </BusLine>
   <BusLine>
@@ -139,5 +140,13 @@
     <enabled>true</enabled>
     <driveTime>00:55:05</driveTime>
     <id>763</id>
+  </BusLine>
+  <BusLine>
+    <number>37</number>
+    <area>General</area>
+    <enabled>true</enabled>
+    <driveTime>00:57:52</driveTime>
+    <distance>0</distance>
+    <id>902</id>
   </BusLine>
 </Lines>

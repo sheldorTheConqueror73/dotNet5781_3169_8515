@@ -465,7 +465,7 @@
     <secondStationid>64</secondStationid>
     <lineId>223</lineId>
     <lineNumber>37</lineNumber>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <distance>2.544</distance>
     <driveTime>PT3M3S</driveTime>
     <id>246</id>
@@ -475,7 +475,7 @@
     <secondStationid>83</secondStationid>
     <lineId>223</lineId>
     <lineNumber>37</lineNumber>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <distance>358</distance>
     <driveTime>PT41S</driveTime>
     <id>247</id>
@@ -485,7 +485,7 @@
     <secondStationid>75</secondStationid>
     <lineId>223</lineId>
     <lineNumber>37</lineNumber>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <distance>4.648</distance>
     <driveTime>PT6M3S</driveTime>
     <id>248</id>
@@ -495,7 +495,7 @@
     <secondStationid>92</secondStationid>
     <lineId>223</lineId>
     <lineNumber>37</lineNumber>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <distance>4.578</distance>
     <driveTime>PT6M32S</driveTime>
     <id>249</id>
@@ -505,7 +505,7 @@
     <secondStationid>80</secondStationid>
     <lineId>223</lineId>
     <lineNumber>37</lineNumber>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <distance>4.637</distance>
     <driveTime>PT7M19S</driveTime>
     <id>250</id>
@@ -515,7 +515,7 @@
     <secondStationid>85</secondStationid>
     <lineId>223</lineId>
     <lineNumber>37</lineNumber>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <distance>5.904</distance>
     <driveTime>PT8M14S</driveTime>
     <id>251</id>
@@ -525,7 +525,7 @@
     <secondStationid>62</secondStationid>
     <lineId>223</lineId>
     <lineNumber>37</lineNumber>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <distance>5.65</distance>
     <driveTime>PT5M44S</driveTime>
     <id>252</id>
@@ -535,7 +535,7 @@
     <secondStationid>78</secondStationid>
     <lineId>223</lineId>
     <lineNumber>37</lineNumber>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <distance>4.345</distance>
     <driveTime>PT6M3S</driveTime>
     <id>253</id>
@@ -545,7 +545,7 @@
     <secondStationid>56</secondStationid>
     <lineId>223</lineId>
     <lineNumber>37</lineNumber>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <distance>5.921</distance>
     <driveTime>PT9M52S</driveTime>
     <id>254</id>
@@ -555,7 +555,7 @@
     <secondStationid>63</secondStationid>
     <lineId>223</lineId>
     <lineNumber>37</lineNumber>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <distance>3.771</distance>
     <driveTime>PT4M21S</driveTime>
     <id>255</id>
@@ -2229,5 +2229,105 @@
     <distance>1.814</distance>
     <driveTime>PT2M8S</driveTime>
     <id>801</id>
+  </FollowStations>
+  <FollowStations>
+    <firstStationid>65</firstStationid>
+    <secondStationid>64</secondStationid>
+    <lineId>902</lineId>
+    <lineNumber>37</lineNumber>
+    <enabled>true</enabled>
+    <distance>2.544</distance>
+    <driveTime>PT3M3S</driveTime>
+    <id>73442</id>
+  </FollowStations>
+  <FollowStations>
+    <firstStationid>64</firstStationid>
+    <secondStationid>83</secondStationid>
+    <lineId>902</lineId>
+    <lineNumber>37</lineNumber>
+    <enabled>true</enabled>
+    <distance>358</distance>
+    <driveTime>PT41S</driveTime>
+    <id>73900</id>
+  </FollowStations>
+  <FollowStations>
+    <firstStationid>83</firstStationid>
+    <secondStationid>75</secondStationid>
+    <lineId>902</lineId>
+    <lineNumber>37</lineNumber>
+    <enabled>true</enabled>
+    <distance>4.648</distance>
+    <driveTime>PT6M3S</driveTime>
+    <id>74360</id>
+  </FollowStations>
+  <FollowStations>
+    <firstStationid>75</firstStationid>
+    <secondStationid>92</secondStationid>
+    <lineId>902</lineId>
+    <lineNumber>37</lineNumber>
+    <enabled>true</enabled>
+    <distance>4.578</distance>
+    <driveTime>PT6M32S</driveTime>
+    <id>74822</id>
+  </FollowStations>
+  <FollowStations>
+    <firstStationid>92</firstStationid>
+    <secondStationid>80</secondStationid>
+    <lineId>902</lineId>
+    <lineNumber>37</lineNumber>
+    <enabled>true</enabled>
+    <distance>4.637</distance>
+    <driveTime>PT7M19S</driveTime>
+    <id>75286</id>
+  </FollowStations>
+  <FollowStations>
+    <firstStationid>80</firstStationid>
+    <secondStationid>85</secondStationid>
+    <lineId>902</lineId>
+    <lineNumber>37</lineNumber>
+    <enabled>true</enabled>
+    <distance>5.904</distance>
+    <driveTime>PT8M14S</driveTime>
+    <id>75752</id>
+  </FollowStations>
+  <FollowStations>
+    <firstStationid>85</firstStationid>
+    <secondStationid>62</secondStationid>
+    <lineId>902</lineId>
+    <lineNumber>37</lineNumber>
+    <enabled>true</enabled>
+    <distance>5.65</distance>
+    <driveTime>PT5M44S</driveTime>
+    <id>76220</id>
+  </FollowStations>
+  <FollowStations>
+    <firstStationid>62</firstStationid>
+    <secondStationid>78</secondStationid>
+    <lineId>902</lineId>
+    <lineNumber>37</lineNumber>
+    <enabled>true</enabled>
+    <distance>4.345</distance>
+    <driveTime>PT6M3S</driveTime>
+    <id>76690</id>
+  </FollowStations>
+  <FollowStations>
+    <firstStationid>78</firstStationid>
+    <secondStationid>56</secondStationid>
+    <lineId>902</lineId>
+    <lineNumber>37</lineNumber>
+    <enabled>true</enabled>
+    <distance>5.921</distance>
+    <driveTime>PT9M52S</driveTime>
+    <id>77162</id>
+  </FollowStations>
+  <FollowStations>
+    <firstStationid>56</firstStationid>
+    <secondStationid>63</secondStationid>
+    <lineId>902</lineId>
+    <lineNumber>37</lineNumber>
+    <enabled>true</enabled>
+    <distance>3.771</distance>
+    <driveTime>PT4M21S</driveTime>
+    <id>77636</id>
   </FollowStations>
 </FollowStations>

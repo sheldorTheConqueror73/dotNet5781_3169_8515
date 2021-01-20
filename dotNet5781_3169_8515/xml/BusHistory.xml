@@ -243,4 +243,40 @@
     <description>Bus has been refueled</description>
     <id>2216</id>
   </BusHistory>
+  <BusHistory>
+    <BusId>57</BusId>
+    <PlateNumber>64-983-81</PlateNumber>
+    <start>2021-01-20T09:38:57.7050738+02:00</start>
+    <end>2021-01-20T09:40:27.7050738+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has endergone maintenance</description>
+    <id>262</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>52</BusId>
+    <PlateNumber>62-893-92</PlateNumber>
+    <start>2021-01-20T09:39:02.1960944+02:00</start>
+    <end>2021-01-20T09:39:02.1960944+02:00</end>
+    <duration>PT0S</duration>
+    <description>Bus has been updated</description>
+    <id>579</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>52</BusId>
+    <PlateNumber>62-893-92</PlateNumber>
+    <start>2021-01-20T09:39:20.6976007+02:00</start>
+    <end>2021-01-20T09:39:20.6976007+02:00</end>
+    <duration>PT0S</duration>
+    <description>Bus has been updated</description>
+    <id>1862</id>
+  </BusHistory>
+  <BusHistory>
+    <BusId>52</BusId>
+    <PlateNumber>62-893-92</PlateNumber>
+    <start>2021-01-20T09:39:31.7799541+02:00</start>
+    <end>2021-01-20T09:40:01.7799541+02:00</end>
+    <duration>PT30S</duration>
+    <description>Bus has been refueled</description>
+    <id>2696</id>
+  </BusHistory>
 </BusHistory>

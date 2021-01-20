@@ -48,6 +48,8 @@ namespace DLAPI
         void removeUser(int id);
         void addUser(DO.User user);
         void updateUser(DO.User user);
+
+        IEnumerable<DO.User> findUser(string Username,string Mail);
         #endregion
 
         #region lineInStation

@@ -6,7 +6,7 @@
     <accessLevel>Admin</accessLevel>
     <enabled>true</enabled>
     <fullname></fullname>
-    <mail></mail>
+    <mail>mrbutlerbot@gmail.com</mail>
     <id>70</id>
   </User>
   <User>
@@ -15,16 +15,16 @@
     <accessLevel>Operator</accessLevel>
     <enabled>true</enabled>
     <fullname></fullname>
-    <mail></mail>
+    <mail>mrbutlerbot@gmail.com</mail>
     <id>71</id>
   </User>
   <User>
-    <password>bbb123</password>
+    <password>]&gt;.&gt;snR-Ga</password>
     <name>C.M.O.T Dibbler</name>
     <accessLevel>User</accessLevel>
     <enabled>true</enabled>
     <fullname></fullname>
-    <mail></mail>
+    <mail>mrbutlerbot@gmail.com</mail>
     <id>72</id>
   </User>
 </Users>
