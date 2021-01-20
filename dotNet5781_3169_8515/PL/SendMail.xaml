@@ -22,10 +22,13 @@
         <TextBox HorizontalAlignment="Left" x:Name="txtSubject"  Height="23" Margin="67.579,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="350" Grid.Column="1"/>
         <Label Content="Content" HorizontalAlignment="Left" Margin="30,124,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.ColumnSpan="2"/>
         <TextBox HorizontalAlignment="Left" x:Name="txtContent"  Height="124" Margin="67.579,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="350" Grid.Column="1"/>
+        
         <Button HorizontalAlignment="Left" Style="{StaticResource RoundCorner}"  Margin="126,276,0,0" VerticalAlignment="Top" Width="45" Name="btnSend" Click="btnSend_Click" Grid.Column="1">
             <Image Source="Resources/send.png"/>
         </Button>
-        <Button Content="Reset" HorizontalAlignment="Left" Margin="278,276,0,0" VerticalAlignment="Top" Width="75" Name="btnReset" Click="btnReset_Click" Grid.Column="1"/>
+        <Button HorizontalAlignment="Left" Style="{StaticResource RoundCorner}" Margin="278,276,0,0" VerticalAlignment="Top" Width="45" Name="btnReset" Click="btnReset_Click" Grid.Column="1">
+            <Image Source="Resources/delete.png"/>
+        </Button>
 
     </Grid>
 </Window>
