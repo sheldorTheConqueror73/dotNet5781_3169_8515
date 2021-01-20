@@ -291,18 +291,19 @@
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <Button HorizontalAlignment="Center"  BorderBrush="#0000" Width="54" Height="45" Background="Transparent" Margin="137,9,89,190" Click="start_Click" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" Style="{DynamicResource RoundCorner}" RenderTransformOrigin="0.769,1.722">
+                        <Button HorizontalAlignment="Center"  BorderBrush="#0000" Width="54" Height="45" Background="Transparent" Margin="20,211,66,145" Click="start_Click" Grid.Row="4" Style="{DynamicResource RoundCorner}" RenderTransformOrigin="0.769,1.722" Grid.Column="1">
                             <Image x:Name="imStartLine"  Source="Resources/startIcon.png" Stretch="Fill" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2"/>
                         </Button>
-                        <ComboBox x:Name="cbBusSelection" SelectedIndex="0"  ItemsSource="{Binding}" Grid.Column="2" HorizontalAlignment="Left" Margin="27,41,0,0" Grid.Row="4" VerticalAlignment="Top" Width="120"/>
-                        <Slider x:Name="slSpeedSelector" IsSnapToTickEnabled="True" TickFrequency="1" Grid.Column="2" Value="1" Minimum="1" ToolTip="Change simulation speed" Maximum="100" HorizontalAlignment="Left" Margin="83,18,0,0" Grid.Row="3" VerticalAlignment="Top" Width="124"/>
-                        <TextBox x:Name="tbSpeedSelector" Grid.Column="2" HorizontalAlignment="Left" PreviewTextInput="TextBox_KeyDown" Height="24" Margin="27,16,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding ElementName=slSpeedSelector, Path=Value, Mode=TwoWay}"  TextAlignment="Center" VerticalAlignment="Top" Width="41"/>
-                        <TextBlock x:Name="tbLineError" TextAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="85,116,0,0" Grid.Row="4" TextWrapping="Wrap" FontSize="12" VerticalAlignment="Top" Width="195" Height="50" Grid.ColumnSpan="2"/>
-                        <Button Content="set speed" HorizontalAlignment="Left" Margin="126,41,0,0" Grid.Row="4" VerticalAlignment="Top" Width="74" Click="Button_Click" Grid.ColumnSpan="2"/>
-
+                        <ComboBox x:Name="cbBusSelection" SelectedIndex="0"  ItemsSource="{Binding}" Grid.Column="2" HorizontalAlignment="Left" Margin="27,224,0,0" Grid.Row="4" VerticalAlignment="Top" Width="120"/>
+                        <Slider x:Name="slSpeedSelector"  IsSnapToTickEnabled="True" TickFrequency="1" Grid.Column="2" Value="1" Minimum="1" ToolTip="Change simulation speed" Maximum="100" HorizontalAlignment="Left" Margin="85,144,0,0" Grid.Row="4" VerticalAlignment="Top" Width="124"/>
+                        <TextBox x:Name="tbSpeedSelector" Grid.Column="2" HorizontalAlignment="Left" PreviewTextInput="TextBox_KeyDown" Height="24" Margin="27,141,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding ElementName=slSpeedSelector, Path=Value, Mode=TwoWay}"  TextAlignment="Center" VerticalAlignment="Top" Width="41"/>
+                        <TextBlock x:Name="tbLineError" TextAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="64,47,0,0" Grid.Row="4" TextWrapping="Wrap" FontSize="12" VerticalAlignment="Top" Width="195" Height="50" Grid.ColumnSpan="2" Grid.Column="1"/>
+                        <Button Style="{StaticResource RoundCorner}" Width="54" Height="46" HorizontalAlignment="Left" Margin="20,130,0,0" Grid.Row="4" VerticalAlignment="Top"  Click="Button_Click" Grid.Column="1">
+                            <Image Source="Resources/lightning.png"/>
+                        </Button>
                     </Grid>
-                    <TextBlock x:Name="tbSpeed" Grid.Column="2" IsEnabled="False"  TextAlignment="Right" HorizontalAlignment="Left" Height="22" Margin="225,209,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Speed:" VerticalAlignment="Top" Width="72"/>
-                    <Label Content="Bus:" HorizontalContentAlignment="Right" Grid.Column="2" HorizontalAlignment="Left" Margin="266,268,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="tbSpeed" Grid.Column="2" IsEnabled="False"  TextAlignment="Right" HorizontalAlignment="Left" Height="22" Margin="225,373,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Speed:" VerticalAlignment="Top" Width="72"/>
+                    <Label Content="Bus:" HorizontalContentAlignment="Right" Grid.Column="2" HorizontalAlignment="Left" Margin="266,450,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
 

@@ -51,5 +51,10 @@ namespace PL
             this.Close();
         }
 
+        private void txtContent_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                ;
+        }
     }
 }
