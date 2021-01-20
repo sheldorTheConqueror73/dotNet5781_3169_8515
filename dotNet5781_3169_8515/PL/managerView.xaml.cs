@@ -605,7 +605,7 @@ namespace PL
         }
 
         /// <summary>
-        /// 
+        /// refresh textbuxes in line tab item
         /// </summary>
         private void refreshLineTextboxes()
         {
