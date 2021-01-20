@@ -65,7 +65,6 @@ namespace BLAPI
         BO.User GetUser(int id);
         void addUser(BO.User user);
         void removeUser(int id);
-        void updateUser(User user);
         string authenticate(string username, string password, out int id);
         int indexOfCbByAccessLevel(int id);
         void sendMail(int id, string subject, string text);
