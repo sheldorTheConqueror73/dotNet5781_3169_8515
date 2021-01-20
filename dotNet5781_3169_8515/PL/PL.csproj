@@ -62,8 +62,15 @@
     <Compile Include="addLine.xaml.cs">
       <DependentUpon>addLine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ForgotPassword.xaml.cs">
+      <DependentUpon>ForgotPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PO\exceptions.cs" />
     <Page Include="addUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ForgotPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,6 +114,7 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\DataSources\BO.busStation.datasource" />
@@ -140,18 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\gasIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AccessDenied.mp3" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\done.mp3" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SadTrombone.mp3" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Startup.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Excel_Light.png" />

@@ -461,6 +461,11 @@ namespace DL
             throw new NotImplementedException();
         }
 
+        public IEnumerable<User> findUser(string Username, string Mail)
+        {
+            throw new NotImplementedException();
+        }
+
 
 
         #endregion

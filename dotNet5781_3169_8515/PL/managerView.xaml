@@ -629,7 +629,18 @@
                                 <GridViewColumn Header="Mail" Width="220"  DisplayMemberBinding="{Binding mail}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Options">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" >
+                                                <Button x:Name="btnSednMail"  Click="btnSednMail_Click"  ToolTip="send an email" Background="Transparent"  BorderThickness="0" BorderBrush="Transparent" Width="20" Height="20" Grid.Row="1" HorizontalAlignment="Center">
+                                                    <Image  Source="Resources/delete.png" Stretch="Fill"/>
+                                                </Button>
+                                            </StackPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

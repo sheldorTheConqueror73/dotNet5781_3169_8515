@@ -630,6 +630,25 @@ namespace BL
         #endregion
 
         #region user
+       public string resetPassword(User user)
+        {
+            Random r = new Random();
+            int length = r.Next(8, 13);
+            string newPassword = "";
+            for(int i=0;i<length;i++)
+                newPassword += (char)r.Next(33,123);
+            user.password = newPassword;
+            updateUser(user);
+            return newPassword;
+        }
+
+        public User checkMail(string userName, string mailAddress)
+        {
+            var result = dl.findUser(userName, mailAddress).ToList();
+            if (result.Count == 1)
+                return Utility.DOtoBOConvertor<BO.User,DO.User>( result.First());
+            return null;
+        }
         public void sendMail(int id, string subject,string text)
         {
             User user = Utility.DOtoBOConvertor<BO.User,DO.User>( dl.GetUser(id));
@@ -800,7 +819,7 @@ namespace BL
         #region History
        public IEnumerable<BO.LineHistory> GetLineHistory()
         {
-            return from line in dl.GetLineHistory()
+            return from line in dl.GetLineHistory().ToList()
                    where line != null
                    select Utility.DOtoBOConvertor<BO.LineHistory, DO.LineHistory>(line);
         }

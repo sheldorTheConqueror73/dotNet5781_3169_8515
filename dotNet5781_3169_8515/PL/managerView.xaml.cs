@@ -1152,6 +1152,13 @@ namespace PL
             }
         }
 
+        private void btnSednMail_Click(object sender, RoutedEventArgs e)
+        {
+            string subject = "testc";
+            string tesxt = "testing tresgtning";
+            bl.sendMail(70, subject, tesxt);
+        }
+
         private void lvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvUsers.Items.Count == 0 || lvUsers.SelectedItem == null)

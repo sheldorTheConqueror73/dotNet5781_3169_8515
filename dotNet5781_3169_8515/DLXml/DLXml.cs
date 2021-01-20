@@ -168,6 +168,14 @@ namespace DL
                     select obj).FirstOrDefault();
         }
 
+
+        public IEnumerable<DO.User> findUser(string Username, string Mail)
+        {
+            return from element in Utility.load(typeof(User)).Elements()
+                          let obj = element.ToObject<User>()
+                          where element != null && obj.enabled == true && obj.name == Username && obj.mail == Mail // change elemnt to obj
+                          select obj;
+        }
         public void removeUser(int id)
         {
             var user = GetUser(id);

@@ -29,7 +29,6 @@ namespace PL
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         string userName = "";
         int userId=-1;
-        IBL bL = BLFactory.GetBL();
         public MainWindow()
         {
             InitializeComponent();
@@ -94,6 +93,12 @@ namespace PL
             managerView managerView= new managerView("Admin");
             this.Hide();
             managerView.ShowDialog();
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            ForgotPassword forgotPassword = new ForgotPassword();
+            forgotPassword.ShowDialog();
         }
     }
 }

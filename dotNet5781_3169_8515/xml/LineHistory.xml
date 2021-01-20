@@ -1,2 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<LineHistory />
+<LineHistory>
+  <LineHistory>
+    <LineId>223</LineId>
+    <LineNumber>37</LineNumber>
+    <start>2021-01-20T09:42:04.9525434+02:00</start>
+    <end>2021-01-20T09:42:06.4196193+02:00</end>
+    <duration>PT1.4670759S</duration>
+    <description>Line has been updated</description>
+    <id>903</id>
+  </LineHistory>
+</LineHistory>
