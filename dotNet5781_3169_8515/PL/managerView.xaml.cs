@@ -596,7 +596,7 @@ namespace PL
             addLine addWindow = new addLine();
             addWindow.ShowDialog();
             cbBusLines.ItemsSource = bl.GetAllbusLines();
-            lvLineHistory.DataContext = bl.GetLineHistory();
+            lvLineHistory.ItemsSource = bl.GetLineHistory();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;            
             initTextBoxByCbInStations();
@@ -708,8 +708,11 @@ namespace PL
             bus.distance += distance;
             bus.totalDistance += distance;
             bl.updateBus(bus);
-            ///-add line and bus hisroty
-            lvLineHistory.DataContext = bl.GetLineHistory();
+            var line=bl.GetBusLine((cbBusLines.SelectedItem as BO.BusLine).id);
+            bl.addLineHistory(new BO.LineHistory() { LineId = line.id, LineNumber = line.number, end = DateTime.Now+driveTime, start=DateTime.Now,  duration=driveTime, description="Line has departed"});
+            bl.addBusHistory(new BO.BusHistory() {BusId=bus.id,PlateNumber=bus.plateNumber, end = DateTime.Now + driveTime, start = DateTime.Now, duration = driveTime, description = "Bus has departed to line "+line.number});
+            lvLineHistory.ItemsSource = bl.GetLineHistory();
+            lvBusHistory.ItemsSource = bl.getBusHistory();
             return;
         }
 

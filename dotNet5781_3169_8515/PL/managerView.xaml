@@ -482,11 +482,11 @@
                         <RowDefinition Height="34*"/>
                         <RowDefinition Height="457*"/>
                     </Grid.RowDefinitions>
-                    <ListView x:Name="lvLineHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="610" BorderThickness="0" Margin="30,0,0,0" Height="691" Grid.RowSpan="2">
+                    <ListView x:Name="lvLineHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="620" BorderThickness="0" Margin="30,0,0,0" Height="691" Grid.RowSpan="2">
                         <ListView.View>
                             <GridView>
 
-                                <GridViewColumn Header="ID" Width="30"  DisplayMemberBinding="{Binding LineId}">
+                                <GridViewColumn Header="ID" Width="40"  DisplayMemberBinding="{Binding LineId}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
@@ -585,7 +585,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Description" Width="180"  DisplayMemberBinding="{Binding description}">
+                                <GridViewColumn Header="Description" Width="200"  DisplayMemberBinding="{Binding description}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>
@@ -599,8 +599,8 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItemUser" Header="Users" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
-                <Grid Margin="30,0,0,0">
-                    <ListView x:Name="lvUsers"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="540" BorderThickness="0"  Height="681" Grid.RowSpan="2" SelectionChanged="lvUser_SelectionChanged">
+                <Grid Margin="0,0,0,0">
+                    <ListView x:Name="lvUsers"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="590" BorderThickness="0"  Height="681" Grid.RowSpan="2" SelectionChanged="lvUser_SelectionChanged">
                         <ListView.View>
                             <GridView >
                                 <GridViewColumn Header="ID" Width="40"  DisplayMemberBinding="{Binding id}">

@@ -170,9 +170,7 @@ namespace PL
                try {  bl.addLine(txbLineNumber.Text, cmbArea.SelectedIndex, tList,distance,time,out id);}
                catch (Exception exc) { lblError.Content = exc.Message; return; }
                 var end = DateTime.Now;
-                bl.addLineHistory(new BO.LineHistory() { LineId=id, LineNumber= txbLineNumber.Text, start=start, end=end, duration=end-start,description="Line has been created" });
-
-
+                bl.addLineHistory(new BO.LineHistory() { LineId=id, LineNumber= txbLineNumber.Text, start=start, end=end, duration=end-start,description="Line has been created" });        
 
             }
             else//update line
