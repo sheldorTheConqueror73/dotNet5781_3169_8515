@@ -636,7 +636,7 @@ namespace BL
             int length = r.Next(8, 13);
             string newPassword = "";
             for(int i=0;i<length;i++)
-                newPassword += (char)r.Next(33,123);
+                newPassword += (char)r.Next(48,123);
             user.password = newPassword;
             updateUser(user);
             return newPassword;

@@ -1154,9 +1154,11 @@ namespace PL
 
         private void btnSednMail_Click(object sender, RoutedEventArgs e)
         {
+            var fxElt = sender as FrameworkElement;
+            var lineData = fxElt.DataContext as BO.User;
             string subject = "testc";
             string tesxt = "testing tresgtning";
-            bl.sendMail(70, subject, tesxt);
+            bl.sendMail(lineData.id, subject, tesxt);
         }
 
         private void lvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
