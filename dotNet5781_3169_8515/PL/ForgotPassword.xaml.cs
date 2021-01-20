@@ -43,7 +43,7 @@ namespace PL
             }
             string password=bl.resetPassword(user);
             string subject = "Your  Password has been reset";
-            string text = $" hello there {user.fullname}"+ ", you seem to have misplaced your password. do not worry, we are here to save you!\nyour new password is:\n" + password+"\nmake sure to store it some safe.";
+            string text = $" hello there {user.fullname}"+ ", you seem to have misplaced your password. do not worry, we are here to save you!\nyour new password is:\n"+password+"\nmake sure to store it some safe.";
             bl.sendMail(user.id, subject, text);
             txbErrorMessage.Foreground = Brushes.GreenYellow;
             txbErrorMessage.Text = "An email has been sent to you account";

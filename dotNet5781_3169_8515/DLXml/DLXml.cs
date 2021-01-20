@@ -39,12 +39,23 @@ namespace DL
         /// </summary>
         /// 
 
-       public void updateTime(int id, TimeSpan time)
+        /// <summary>
+        /// updates time field fo bus
+        /// </summary>
+        /// <param name="id">bus id</param>
+        /// <param name="time">new time to set</param>
+        public void updateTime(int id, TimeSpan time)
         {
             var bus = GetBus(id);
             bus.time = time;
             updateBus(bus);
         }
+        /// <summary>
+        /// updates bus status
+        /// </summary>
+        /// <param name="id">id of bus to update</param>
+        /// <param name="status">new status</param>
+        /// <param name="iconPath">new icon path</param>
         public void updateStatus(int id, string status,string iconPath)
         {
             var bus = GetBus(id);
@@ -53,6 +64,10 @@ namespace DL
             updateBus(bus);
         }
 
+        /// <summary>
+        /// gets all buses
+        /// </summary>
+        /// <returns>IEnumerable bus</returns>
         public IEnumerable<Bus> GetAllBuses()
         {
             return   from element in Utility.load(typeof(Bus)).Elements()
@@ -168,7 +183,12 @@ namespace DL
                     select obj).FirstOrDefault();
         }
 
-
+        /// <summary>
+        /// finds all the users whose  mail address and user name match those given
+        /// </summary>
+        /// <param name="Username">user name</param>
+        /// <param name="Mail">maill address</param>
+        /// <returns>IEnumerable of users</returns>
         public IEnumerable<DO.User> findUser(string Username, string Mail)
         {
             return from element in Utility.load(typeof(User)).Elements()
@@ -490,8 +510,12 @@ namespace DL
 
 
         #endregion
-        
+
         #region History
+        /// <summary>
+        /// gets all line logs
+        /// </summary>
+        /// <returns>IEnumerable of line history</returns>
         public IEnumerable<DO.LineHistory> GetLineHistory()
         {
             return from element in Utility.load(typeof(LineHistory)).Elements()
@@ -499,7 +523,10 @@ namespace DL
                    let obj = element.ToObject<LineHistory>()
                    select obj;
         }
-
+        /// <summary>
+        /// gets all bus logs
+        /// </summary>
+        /// <returns>IEnumerable of bus history</returns>
         public IEnumerable<DO.BusHistory> getBusHistory()
         {
             return from element in Utility.load(typeof(BusHistory)).Elements()
@@ -508,7 +535,10 @@ namespace DL
                    select obj;
         }
 
-
+        /// <summary>
+        /// add a new log to line logpool
+        /// </summary>
+        /// <param name="history">entry to add</param>
         public void addLineHistory(DO.LineHistory history)
         {
           
@@ -516,6 +546,10 @@ namespace DL
             root.Add(history.ToXml());
             Utility.save(root, typeof(LineHistory));
         }
+        /// <summary>
+        /// add a new log to bus logpool
+        /// </summary>
+        /// <param name="history">entry to add</param>
         public void addBusHistory(DO.BusHistory history)
         {
             var root = Utility.load(typeof(BusHistory));
