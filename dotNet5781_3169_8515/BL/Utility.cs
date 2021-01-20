@@ -73,5 +73,28 @@ namespace BL
                     temp += element;
             return temp;
         }
+
+        public static bool passedYearNowAndThen(this BO.Bus bus)//return true if a year has passed since the last maintenance.
+        {
+            DateTime currentDate = DateTime.Now;
+            if ((currentDate.Year - bus.lastMaintenance.Year) < 1)
+                return false;
+            if ((currentDate.Month - bus.lastMaintenance.Month) < 0)
+                return false;
+            if ((currentDate.Day - bus.lastMaintenance.Day) < 0)
+                return false;
+            return true;
+        }
+        public static void UpdateDangerous(this BO.Bus bus)//updates dangerous status of selected bus
+        {
+            if ((bus.distance >= 20000) || (bus.passedYearNowAndThen() == true))
+            {
+                bus.dangerous = true;
+                bus.status = "dangerous";
+                bus.iconPath = "Resources/warningIcon.png";
+                return;
+            }
+            bus.dangerous = false;
+        }
     }
 }
