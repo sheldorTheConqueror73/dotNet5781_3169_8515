@@ -18,7 +18,7 @@ namespace BLAPI
         void Tick(int id);
         void setTimer(ProgressChangedEventHandler doWork);
         ProgressChangedEventHandler getTimer();
-        void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration);
+        void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration,double distance=0);
         void stopTimer(int id);
         void setTimeAcceleration(int timeAcceleration);
         #endregion
