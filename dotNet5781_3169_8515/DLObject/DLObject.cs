@@ -328,7 +328,10 @@ namespace DL
         }
 
 
-
+        public IEnumerable<User> findUser(string Username, string Mail)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region lineInStation
@@ -439,8 +442,8 @@ namespace DL
             return result;
         }
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       
 
+        #region history
         public IEnumerable<LineHistory> GetLineHistory()
         {
             throw new NotImplementedException();
@@ -460,15 +463,10 @@ namespace DL
         {
             throw new NotImplementedException();
         }
-
-        public IEnumerable<User> findUser(string Username, string Mail)
-        {
-            throw new NotImplementedException();
-        }
-
-
+        #endregion
 
         #endregion
+
         #endregion
 
 
