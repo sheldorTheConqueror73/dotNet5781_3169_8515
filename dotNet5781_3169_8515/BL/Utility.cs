@@ -73,7 +73,6 @@ namespace BL
                     temp += element;
             return temp;
         }
-
         public static bool passedYearNowAndThen(this BO.Bus bus)//return true if a year has passed since the last maintenance.
         {
             DateTime currentDate = DateTime.Now;

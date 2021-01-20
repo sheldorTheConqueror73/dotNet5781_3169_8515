@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="SendMail" Height="450" Width="500">
-    <Grid Margin="-2,10,-28,-51">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/bckg1.jpg" />
+    </Window.Background>
+    <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="41*"/>
             <ColumnDefinition Width="540*"/>

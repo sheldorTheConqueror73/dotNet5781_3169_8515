@@ -21,8 +21,9 @@ namespace BO
         public string iconPath { get; set; }
         public string status { get; set; }
         public bool enabled { get; set; }
+        public int  lineId { get; set; }
 
-        
+
 
 
         public Bus()//ctor

@@ -58,7 +58,7 @@ namespace BL
         /// <param name="status">new bus status</param>
         /// <param name="iconPath">new icon path</param>
         /// <param name="timeAcceleration">new time acceleration</param>
-        public void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration=1,double distance=0)
+        public void startTimer(Bus bus, TimeSpan time, string status, string iconPath,int timeAcceleration=1,double distance=0,int lineId=0)
         {
             this.timeAcceleration = timeAcceleration;
             if (TimerInstance == null)
@@ -69,6 +69,7 @@ namespace BL
             bus.fuel -= distance;
             bus.distance += distance;
             bus.totalDistance += distance;
+            bus.lineId = lineId;
             updateBus(bus);
             Timer.add(bus.id);
         }
@@ -93,13 +94,23 @@ namespace BL
             if (bus.time == TimeSpan.Zero)
             {
                 stopTimer(bus.id);
+                bus.lineId = -1;
                 if (bus.dangerous == true && bus.status == "refuling")
-                    dl.updateStatus(id, "dangerous", "Resources/warningIcon .png");
+                {
+                    bus.status = "dangerous";
+                    bus.iconPath = "Resources/warningIcon.png";
+                    dl.updateBus(bus);
+                }
                 else
-                    dl.updateStatus(id, "ready", "Resources/okIcon.png");
+                {
+                    bus.status = "ready";
+                    bus.iconPath = "Resources/okIcon.png";
+                    dl.updateBus(bus);
+                }
+                   
                 return;
             }
-            bus.time += TimeSpan.FromSeconds(-1*timeAcceleration);
+            bus.time += TimeSpan.FromSeconds(-1*timeAcceleration);         
             if (bus.time < TimeSpan.Zero)
                 bus.time = TimeSpan.Zero;
             dl.updateBus(bus);
@@ -355,6 +366,12 @@ namespace BL
             return sumDis;
         }
 
+        public bool LineInBusAtDrive(int lineId)
+        {
+            if (dl.GetAllBuses().Any(bs => bs.enabled == true && bs.lineId == lineId))
+                return true;
+            return false;
+        }
         #endregion
 
 

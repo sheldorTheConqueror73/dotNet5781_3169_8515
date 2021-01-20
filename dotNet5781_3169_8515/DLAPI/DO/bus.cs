@@ -21,6 +21,7 @@ namespace DO
         public string iconPath { get; set; }
         public string plateNumber { get; set; }
         public TimeSpan time { get; set; }
+        public int lineId { get; set; }
 
 
 
