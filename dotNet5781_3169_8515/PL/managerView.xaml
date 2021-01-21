@@ -291,7 +291,7 @@
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <Button HorizontalAlignment="Center"  BorderBrush="#0000" Width="54" Height="45" Background="Transparent" Margin="20,211,66,145" Click="start_Click" Grid.Row="4" Style="{DynamicResource RoundCorner}" RenderTransformOrigin="0.769,1.722" Grid.Column="1">
+                        <Button HorizontalAlignment="Center"  BorderBrush="#0000" Width="54" Height="45" Background="Transparent" Margin="20,211,66,140" Click="start_Click" Grid.Row="4" Style="{DynamicResource RoundCorner}" RenderTransformOrigin="0.769,1.722" Grid.Column="1">
                             <Image x:Name="imStartLine"  Source="Resources/startIcon.png" Stretch="Fill" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2"/>
                         </Button>
                         <ComboBox x:Name="cbBusSelection" SelectedIndex="0"  ItemsSource="{Binding}" Grid.Column="2" HorizontalAlignment="Left" Margin="27,224,0,0" Grid.Row="4" VerticalAlignment="Top" Width="120"/>
