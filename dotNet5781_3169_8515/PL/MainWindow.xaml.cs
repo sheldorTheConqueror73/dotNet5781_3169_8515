@@ -28,7 +28,6 @@ namespace PL
         MediaPlayer player= new MediaPlayer();
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
         string userName = "";
-        int userId=-1;
         public MainWindow()
         {
             InitializeComponent();
@@ -50,16 +49,16 @@ namespace PL
                 txbErrorMessage.Text="Please enter user name AND password";
                 return;
             }
-            string accessLevel="";
-            try { accessLevel = bl.authenticate(username, password, out userId); }//check if user exists and return user access level
+            BO.User user=null;
+            try { user = bl.authenticate(username, password); }//check if user exists and return user access level
             catch (Exception exc) { txbErrorMessage.Text = exc.Message; }
-            managerView = new managerView(accessLevel);
-            if (accessLevel == "Admin" || accessLevel == "Operator")//if user is admin or manager
+            managerView = new managerView(user);
+            if (user.accessLevel == "Admin" || user.accessLevel == "Operator")//if user is admin or manager
             {
                 this.Hide();
                 managerView.ShowDialog();
             }
-            if (accessLevel == "User")//if user is a regular user
+            if (user.accessLevel == "User")//if user is a regular user
             {
                 txbErrorMessage.Foreground = Brushes.Green;
                 txbErrorMessage.Text = $"Welcome {userName}";
@@ -90,7 +89,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            managerView managerView= new managerView("Admin");
+            managerView managerView= new managerView(new BO.User() { id= 70, accessLevel="Admin"});
             this.Hide();
             managerView.ShowDialog();
         }

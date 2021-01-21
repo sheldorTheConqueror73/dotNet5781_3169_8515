@@ -27,11 +27,14 @@ namespace PL
         int busOrder=0;
         int folStatIdSelect = 0;
         private TextBox focusedTextbox = null;
-        TimeSpan fTs, eTs;// timespan varibles to save the time drive between stations and the total drive time before changing   
-        public managerView(string accessLevel)
+        TimeSpan fTs, eTs;// timespan varibles to save the time drive between stations and the total drive time before changing
+        BO.User user;
+        public managerView(BO.User user )
         {
             InitializeComponent();
-            initSource(accessLevel);
+            this.user = user;
+            initSource(user.accessLevel);
+
         }    
 
         #region buses
@@ -1176,7 +1179,36 @@ namespace PL
 
         private void submitUser_click(object sender, RoutedEventArgs e)
         {
-            validateUserUpdateData();
+            tbUserError.Text = "";
+            tbUserError.Foreground = Brushes.Red;
+
+            try
+            {
+                validateUserUpdateData();
+            }
+            catch(Exception exc)
+            {
+                tbUserError.Text = exc.Message;
+                return;
+            }
+            try
+            {
+                user.mail = tbMail.Text;
+                user.password = pbPassword.Password;
+                user.fullname = tbFullName.Text;
+                bl.updateUser(user);
+            }
+
+            catch(Exception exc)
+            {
+                tbUserError.Text = exc.Message;
+                return;
+            }
+            user = bl.GetUser(user.id);
+            pbConfim.Clear();
+            pbPassword.Clear();
+            tbUserError.Foreground = Brushes.Green;
+            tbUserError.Text = "You details have updated";
         }
 
         private void validateUserUpdateData()
@@ -1196,6 +1228,22 @@ namespace PL
             {
                 throw new InvalidUserInputExecption("Invalid mail address");
             }
+        }
+
+        private void lvUsers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (user.accessLevel != "Admin")
+                return;
+            gridEditUser.Visibility = Visibility.Visible;
+            gridSelfUpdate.Visibility = Visibility.Hidden;
+        }
+
+        private void lvUsers_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            gridEditUser.Visibility = Visibility.Hidden;
+            gridSelfUpdate.Visibility = Visibility.Visible;
+            user = bl.GetUser(user.id);
+            gridSelfUpdate.DataContext = user;
         }
 
         /// <summary>

@@ -559,7 +559,7 @@
             </TabItem>
             <TabItem x:Name="tabItemUser" Header="Users" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
                 <Grid Margin="0,0,0,0">
-                    <ListView x:Name="lvUsers"  ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="590" BorderThickness="0"  Height="681" Grid.RowSpan="2" SelectionChanged="lvUser_SelectionChanged">
+                    <ListView x:Name="lvUsers" PreviewMouseDown="lvUsers_PreviewMouseDown" MouseDoubleClick="lvUsers_MouseDoubleClick" ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="590" BorderThickness="0"  Height="681" Grid.RowSpan="2" SelectionChanged="lvUser_SelectionChanged">
                         <ListView.View>
                             <GridView >
                                 <GridViewColumn Header="ID" Width="40"  DisplayMemberBinding="{Binding id}">
@@ -609,7 +609,7 @@
                         </ListView.View>
                     </ListView>
 
-                    <Grid Background="Transparent" Margin="667,0,0,561" Name="gridEditUser">
+                    <Grid Background="Transparent" Margin="667,0,0,561" Name="gridEditUser" Visibility="Hidden">
                         <Button x:Name="btnDeleteUser" Margin="82,60,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Style="{DynamicResource RoundCorner}" Click="btnDeleteUser_Click">
                             <Image x:Name="imDeleteUser"  Source="Resources/delete.png" Stretch="Fill"/>
                         </Button>
@@ -624,17 +624,19 @@
                         </Button>
                         <Label x:Name="lbIdUser" Visibility="Visible" HorizontalContentAlignment="Left" FontSize="17" FontWeight="Bold" HorizontalAlignment="Left" Margin="927,82,0,0"  VerticalAlignment="Top" Height="30" Width="120"/>
                     </Grid>
-                    <Grid  x:Name="gridSelfUpdate" Margin="667,135,0,0">
-                        <TextBox x:Name="tbFullName" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="197,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                    <Grid  x:Name="gridSelfUpdate" Margin="667,135,0,0" Visibility="Hidden">
+                        <TextBox x:Name="tbFullName" TextAlignment="Center" Text="{Binding Path=fullname}" HorizontalAlignment="Left" Height="23" Margin="197,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="183"/>
                         <Label Content="Name:" HorizontalAlignment="Left" Margin="138,45,0,0" VerticalAlignment="Top" Width="45"/>
-                        <TextBox HorizontalAlignment="Left" x:Name="tbMail" Height="23" Margin="197,92,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                        <TextBox HorizontalAlignment="Left" x:Name="tbMail" Text="{Binding Path=mail}" Height="23" Margin="197,92,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="183"/>
                         <Label Content="Mail:" HorizontalAlignment="Left" Margin="148,92,0,0" VerticalAlignment="Top"/>
-                        <PasswordBox HorizontalAlignment="Left"  x:Name="pbPassword" Margin="197,143,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
-                        <PasswordBox HorizontalAlignment="Left"  x:Name="pbConfim" Margin="197,191,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+                        <PasswordBox HorizontalAlignment="Left"  x:Name="pbPassword" Margin="197,143,0,0" VerticalAlignment="Top" Width="183" Height="23"/>
+                        <PasswordBox HorizontalAlignment="Left"  x:Name="pbConfim" Margin="197,191,0,0" VerticalAlignment="Top" Width="183" Height="23"/>
                         <Label Content="Password:" HorizontalAlignment="Left" Margin="120,140,0,0" VerticalAlignment="Top" Width="63"/>
                         <Label Content="Password confirm:"  HorizontalAlignment="Left" Margin="77,188,0,0" VerticalAlignment="Top"/>
-                        <Button Content="Submit" HorizontalAlignment="Left" Click="submitUser_click" Margin="216,245,0,0" VerticalAlignment="Top" Width="75"/>
-                        <TextBlock x:Name="tbUserError" HorizontalAlignment="Left" Margin="100,309,0,0" TextWrapping="Wrap" TextAlignment="Center" Foreground="Red" Text="TextBlock" VerticalAlignment="Top" Width="280" Height="17"/>
+                        <Button  HorizontalAlignment="Left" Style="{StaticResource  RoundCorner}" Click="submitUser_click" Margin="243,238,0,0" VerticalAlignment="Top" Width="75">
+                            <Image Source="Resources\submitIcon.png" />
+                        </Button>
+                        <TextBlock x:Name="tbUserError" HorizontalAlignment="Left" Margin="100,309,0,0" TextWrapping="Wrap" TextAlignment="Center" Foreground="Red" VerticalAlignment="Top" Width="280" Height="17"/>
 
                     </Grid>
 
