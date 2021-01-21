@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,12 +20,15 @@ namespace DS
         public static List<FollowStations> followStation;//list of follow station
         public static List<BusHistory> busLogs;//list of  bus log entries
         public static List<LineHistory> lineLogs;//list of  line log entries
+    
 
         static DataSource()//ctor
         {
             InitAllLists();
 
         }
+   
+
         /// <summary>
         /// initialize all lists
         /// </summary>

@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="Resources/bckg1.jpg" />
     </Window.Background>
     
-    <Grid Margin="-2,10,-28,-51">
+    <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="41*"/>
             <ColumnDefinition Width="540*"/>
