@@ -804,16 +804,14 @@ namespace BL
         /// <param name="password">password</param>
         /// <param name="id">user id</param>
         /// <returns>user access level</returns>
-        public string authenticate(string username, string password, out int id)
+        public User authenticate(string username, string password)
         {
 
             foreach (var user in this.GetAllUsers())
                 if (user.enabled == true && user.name == username && user.password == password)
                 {
-                    id = user.id;
-                    return user.accessLevel.ToString();
+                    return user;
                 }
-            id =-1;
             throw new credentialsIncorrectException("Inncorrect Credentials. please try again");
         }
         /// <summary>
