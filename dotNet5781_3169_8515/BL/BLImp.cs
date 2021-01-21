@@ -95,7 +95,7 @@ namespace BL
             {
                 stopTimer(bus.id);
                 bus.lineId = -1;
-                if (bus.dangerous == true && bus.status == "refuling")
+                if (bus.dangerous == true && bus.status == "refueling")
                 {
                     bus.status = "dangerous";
                     bus.iconPath = "Resources/warningIcon.png";
