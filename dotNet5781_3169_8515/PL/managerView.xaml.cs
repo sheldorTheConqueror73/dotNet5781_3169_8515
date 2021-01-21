@@ -1172,6 +1172,31 @@ namespace PL
             }
             catch (Exception exc) { MessageBox.Show(exc.Message);return; }
         }
+
+        private void submitUser_click(object sender, RoutedEventArgs e)
+        {
+            validateUserUpdateData();
+        }
+
+        private void validateUserUpdateData()
+        {
+            if (pbPassword.Password != pbConfim.Password)
+                throw new InvalidUserInputExecption("Password does not match password confirm");
+            foreach (var chr in tbFullName.Text)
+                if ((chr < 'a' && chr > 'z') || (chr < 'A' && chr > 'Z'))
+                    throw new InvalidUserInputExecption("Your name may only contain latters");
+                if (tbFullName.Text == "" || pbPassword.Password == "" || tbMail.Text == "" || pbConfim.Password == "")
+                throw new InvalidUserInputExecption("All Fileds must bne filled");
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(tbMail.Text);
+            }
+            catch
+            {
+                throw new InvalidUserInputExecption("Invalid mail address");
+            }
+        }
+
         /// <summary>
         /// update the textbox access level and id user by the selected row.
         /// </summary>

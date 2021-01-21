@@ -30,8 +30,6 @@ namespace DL
         private static Mutex FollowMutex = null;
         private static Mutex LineHistoryMutex = null;
         private static Mutex BusHistoryMutex = null;
-        private static int counter = 0;
-
         /// <summary>
         /// returns the path for the file where Type is stored
         /// </summary>
@@ -59,7 +57,6 @@ namespace DL
         }
         private static Mutex getMutex(Type type)
         {
-            counter++;
             if (type == typeof(Bus))
             {
                 if (BusMutex == null)
@@ -88,7 +85,7 @@ namespace DL
             if (type == typeof(LineInStation))
             {
                 if (LISMutex == null)
-                    LISMutex = new Mutex(false, "UsersMutex");
+                    LISMutex = new Mutex(false, "LISMutex");
                 return LISMutex;
             }
             if (type == typeof(FollowStations))
@@ -225,8 +222,6 @@ namespace DL
         {
             Mutex mutex = getMutex(type);
             string filePath = getPath(type);
-            if(mutex==null)
-                Console.WriteLine(counter);
             if (mutex.WaitOne())
             {
                 try { 

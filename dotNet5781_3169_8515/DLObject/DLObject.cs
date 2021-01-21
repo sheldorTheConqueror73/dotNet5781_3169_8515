@@ -30,9 +30,14 @@ namespace DL
         /// </summary>
         public IEnumerable<Bus> GetAllBuses()
         {
-            return from bus in DataSource.buses
+            Mutex mutex = Utilty.getMutex(typeof(Bus));
+                if(mutex.WaitOne())
+            { 
+                 return from bus in DataSource.buses
                    where bus!=null 
                    select bus.Clone();
+            }
+            throw new unexpectedException("Bus Mutex Failed");
         }
         public DO.Bus GetBusByPlateNumber(string plateNumber)
         {
