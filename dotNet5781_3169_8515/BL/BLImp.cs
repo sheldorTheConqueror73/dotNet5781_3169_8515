@@ -162,7 +162,8 @@ namespace BL
         /// <param name="bus">the updated bus</param>
         public void updateBus(Bus bus)
         {
-            bus.UpdateDangerous();
+            if(bus.status!="refueling"&& bus.status != "maintenance")
+                 bus.UpdateDangerous();  
             bus.formatPlateNumber();
             dl.updateBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }

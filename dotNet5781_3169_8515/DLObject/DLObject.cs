@@ -33,9 +33,9 @@ namespace DL
             Mutex mutex = Utilty.getMutex(typeof(Bus));
             if(mutex.WaitOne())
             { 
-                 var buses= from bus in DataSource.buses
+                 var buses= (from bus in DataSource.buses
                    where bus!=null 
-                   select bus.Clone();
+                   select bus.Clone()).ToList();
                 mutex.ReleaseMutex();
                 return buses;
             }
@@ -159,7 +159,6 @@ namespace DL
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.lastMaintenance = DateTime.Now;
-            result.status = "ready";
             result.dangerous = false;
             result.distance = 0;
                 mutex.ReleaseMutex();
