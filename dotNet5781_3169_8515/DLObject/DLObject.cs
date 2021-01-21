@@ -31,19 +31,28 @@ namespace DL
         public IEnumerable<Bus> GetAllBuses()
         {
             Mutex mutex = Utilty.getMutex(typeof(Bus));
-                if(mutex.WaitOne())
+            if(mutex.WaitOne())
             { 
-                 return from bus in DataSource.buses
+                 var buses= from bus in DataSource.buses
                    where bus!=null 
                    select bus.Clone();
+                mutex.ReleaseMutex();
+                return buses;
             }
             throw new unexpectedException("Bus Mutex Failed");
         }
         public DO.Bus GetBusByPlateNumber(string plateNumber)
         {
-            return (from bus in DataSource.buses
+            Mutex mutex = Utilty.getMutex(typeof(Bus));
+            if (mutex.WaitOne())
+            {
+                var buses = (from bus in DataSource.buses
                    where bus != null&&bus.enabled==true&&bus.plateNumber==plateNumber
                    select bus.Clone()).FirstOrDefault();
+                mutex.ReleaseMutex();
+                return buses;
+            }
+            throw new unexpectedException("Bus Mutex Failed");
         }
         /// <summary>
         /// retrun bus by id
@@ -51,10 +60,16 @@ namespace DL
         /// <param name="id">the id of the requested bus</param>
         public Bus GetBus(int id)
         {
-            var result = DataSource.buses.Find(b => b.id == id);
-            if ((result == null)||(result.enabled==false))
-                throw new NoSuchEntryException($"No Bus Matches ID number {id}");
-            return result;
+            Mutex mutex = Utilty.getMutex(typeof(Bus));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.buses.Find(b => b.id == id);
+             if ((result == null)||(result.enabled==false))
+                 throw new NoSuchEntryException($"No Bus Matches ID number {id}");
+                 mutex.ReleaseMutex();
+                    return result;
+            }
+            throw new unexpectedException("Bus Mutex Failed");
 
         }
         /// <summary>
@@ -63,10 +78,17 @@ namespace DL
         /// <param name="b1">the new bus</param>
         public void addBus(Bus b1)
         {
-            var result = DataSource.buses.Find(b => b.id == b1.id);
+            Mutex mutex = Utilty.getMutex(typeof(Bus));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.buses.Find(b => b.id == b1.id);
             if ((result != null) && (result.enabled == true))
                 throw new itemAlreadyExistsException($"ID number {b1.id} is already taken");
-            DataSource.buses.Add(b1.Clone());
+                DataSource.buses.Add(b1.Clone());
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Bus Mutex Failed");
         }
         /// <summary>
         /// remove bus
@@ -74,10 +96,17 @@ namespace DL
         /// <param name="id">the id of the requested bus to remove</param>
         public void removeBus(int id)
         {
-            var result = DataSource.buses.Find(b => b.id == id);
+            Mutex mutex = Utilty.getMutex(typeof(Bus));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.buses.Find(b => b.id == id);
             if ((result == null) || (result.enabled == false))
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
-            result.enabled = false;
+                result.enabled = false;
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Bus Mutex Failed");
         }
         /// <summary>
         /// update bus
@@ -85,11 +114,18 @@ namespace DL
         /// <param name="bus">the updated bus</param>
         public void updateBus(Bus bus)
         {
-            var result = DataSource.buses.Find(b => b.id == bus.id);
+            Mutex mutex = Utilty.getMutex(typeof(Bus));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.buses.Find(b => b.id == bus.id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {bus.id}");
-            DataSource.buses.Remove(result);
-            DataSource.buses.Add(bus.Clone());
+                 DataSource.buses.Remove(result);
+                 DataSource.buses.Add(bus.Clone());
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Bus Mutex Failed");
 
         }
         /// <summary>
@@ -98,10 +134,17 @@ namespace DL
         /// <param name="id">the id of the requested bus</param>
         public void refuel(int id)
         {
-            var result = DataSource.buses.Find(b => b.id == id);
+            Mutex mutex = Utilty.getMutex(typeof(Bus));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.buses.Find(b => b.id == id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
-            result.fuel = Bus.FULL_TANK;
+                result.fuel = Bus.FULL_TANK;
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Bus Mutex Failed");
         }
         /// <summary>
         /// maintenance
@@ -109,13 +152,20 @@ namespace DL
         /// <param name="id">the id of the requested bus</param>
         public void maintain(int id)
         {
-            var result = DataSource.buses.Find(b => b.id == id);
+            Mutex mutex = Utilty.getMutex(typeof(Bus));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.buses.Find(b => b.id == id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
             result.lastMaintenance = DateTime.Now;
             result.status = "ready";
             result.dangerous = false;
             result.distance = 0;
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Bus Mutex Failed");
         }
 
         /// <summary>
@@ -125,9 +175,16 @@ namespace DL
         /// <param name="time">new time to set</param>
         public void updateTime(int id, TimeSpan time)
         {
-            var bus = GetBus(id);
+            Mutex mutex = Utilty.getMutex(typeof(Bus));
+            if (mutex.WaitOne())
+            {
+                var bus = GetBus(id);
             bus.time = time;
             updateBus(bus);
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Bus Mutex Failed");
         }
 
         /// <summary>
@@ -138,10 +195,17 @@ namespace DL
         /// <param name="iconPath">new icon path</param>
         public void updateStatus(int id, string status, string iconPath)
         {
-            var bus = GetBus(id);
+            Mutex mutex = Utilty.getMutex(typeof(Bus));
+            if (mutex.WaitOne())
+            {
+                var bus = GetBus(id);
             bus.status = status;
             bus.iconPath = iconPath;
             updateBus(bus);
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Bus Mutex Failed");
         }
         #endregion
 
@@ -152,8 +216,15 @@ namespace DL
         /// </summary>
         public IEnumerable<BusLine> GetAllbusLines()
         {
-            return from bus in DataSource.Lines
+            Mutex mutex = Utilty.getMutex(typeof(BusLine));
+            if (mutex.WaitOne())
+            {
+                var line= from bus in DataSource.Lines
                    select bus.Clone();
+                mutex.ReleaseMutex();
+                return line;
+            }
+            throw new unexpectedException("Line Mutex Failed");
         }
         /// <summary>
         /// return lines
@@ -161,11 +232,16 @@ namespace DL
         /// <param name="id">the id of the requested line</param>
         public BusLine GetBusLine(int id)
         {
-
-            var result = DataSource.Lines.Find(b => b.id == id);
+            Mutex mutex = Utilty.getMutex(typeof(BusLine));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.Lines.Find(b => b.id == id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
-            return result;
+                mutex.ReleaseMutex();
+                return result;
+            }
+            throw new unexpectedException("Line Mutex Failed");
         }
         /// <summary>
         /// add line
@@ -173,10 +249,17 @@ namespace DL
         /// <param name="line">the new line</param>
         public void addLine(BusLine line)
         {
-            var result = DataSource.Lines.Find(b => b.id == line.id);
+            Mutex mutex = Utilty.getMutex(typeof(BusLine));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.Lines.Find(b => b.id == line.id);
             if ((result != null) && (result.enabled == true))
                 throw new itemAlreadyExistsException($"ID number {line.id} is already taken");
-            DataSource.Lines.Add(line.Clone());
+                DataSource.Lines.Add(line.Clone());
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Line Mutex Failed");
         }
         /// <summary>
         /// remobe line
@@ -184,10 +267,17 @@ namespace DL
         /// <param name="id">the id of the requested line</param>
         public void removeLine(int id)
         {
-            var result = DataSource.Lines.Find(b => b.id == id);
+            Mutex mutex = Utilty.getMutex(typeof(BusLine));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.Lines.Find(b => b.id == id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
-            result.enabled = false;
+                result.enabled = false;
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Line Mutex Failed");
         }
         /// <summary>
         /// update line
@@ -195,11 +285,18 @@ namespace DL
         /// <param name="line">the updated line</param>
         public void updateLine(BusLine line)
         {
-            var result = DataSource.Lines.Find(b => b.id == line.id);
+            Mutex mutex = Utilty.getMutex(typeof(BusLine));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.Lines.Find(b => b.id == line.id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {line.id}");
-            DataSource.Lines.Remove(result);
-            DataSource.Lines.Add(line.Clone());
+                DataSource.Lines.Remove(result);
+                DataSource.Lines.Add(line.Clone());
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Line Mutex Failed");
         }
         /// <summary>
         /// return how many lines exists with this number
@@ -207,10 +304,16 @@ namespace DL
         /// <param name="number">the number of the line</param>
         public int countLines(string number)
         {
-            var result = from line in DataSource.Lines
+            Mutex mutex = Utilty.getMutex(typeof(BusLine));
+            if (mutex.WaitOne())
+            {
+                var result = from line in DataSource.Lines
                          where line != null && line.enabled == true && line.number == number
                          select line;
-            return result.Count();
+                mutex.ReleaseMutex();
+                return result.Count();
+            }
+            throw new unexpectedException("Line Mutex Failed");
         }
         /// <summary>
         /// return line id by number
@@ -218,9 +321,16 @@ namespace DL
         /// <param name="number">number of the requested line</param>
         public int GetBusLineID(string number)
         {
-            return (from line in DataSource.Lines
+            Mutex mutex = Utilty.getMutex(typeof(BusLine));
+            if (mutex.WaitOne())
+            {
+                var lineN= (from line in DataSource.Lines
                     where line != null && line.enabled == true && line.number == number
                     select line.id).First();
+                mutex.ReleaseMutex();
+                return lineN;
+            }
+            throw new unexpectedException("Line Mutex Failed");
         }
         #endregion
 
@@ -232,18 +342,32 @@ namespace DL
         /// <param name="station">the new station</param>
         public void addStation(BusLineStation station)
         {
-            var result = DataSource.LineStations.Find(b => b.code == station.code);
+            Mutex mutex = Utilty.getMutex(typeof(BusLineStation));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.LineStations.Find(b => b.code == station.code);
             if ((result != null) && (result.enabled == true))
                 throw new itemAlreadyExistsException($"ID number {station.code} is already taken");
-            DataSource.LineStations.Add(station.Clone());
+                DataSource.LineStations.Add(station.Clone());
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Station Mutex Failed");
         }
         /// <summary>
         /// return all stations
         /// </summary>
         public IEnumerable<BusLineStation> GetAllbusLineStation()
         {
-            return from station in DataSource.LineStations
+            Mutex mutex = Utilty.getMutex(typeof(BusLineStation));
+            if (mutex.WaitOne())
+            {
+                var stationR= from station in DataSource.LineStations
                    select station.Clone();
+                mutex.ReleaseMutex();
+                return stationR;
+            }
+            throw new unexpectedException("Station Mutex Failed");
         }
         /// <summary>
         /// retrun specific station
@@ -251,10 +375,17 @@ namespace DL
         /// <param name="id">the id of the requested station</param>
         public BusLineStation GetbusLineStation(int id)
         {
-            var result = DataSource.LineStations.Find(b => b.id == id);
+            Mutex mutex = Utilty.getMutex(typeof(BusLineStation));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.LineStations.Find(b => b.id == id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
-            return result;
+                mutex.ReleaseMutex();
+                return result;
+            }
+            throw new unexpectedException("Station Mutex Failed");
+
         }
         /// <summary>
         /// remove station
@@ -262,11 +393,18 @@ namespace DL
         /// <param name="id">the id of the requested station</param>
         public void removebusLineStation(int id)
         {
-            var result = DataSource.LineStations.Find(b => b.id == id);
+            Mutex mutex = Utilty.getMutex(typeof(BusLineStation));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.LineStations.Find(b => b.id == id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {id}");
-            result.enabled = false;
-            DataSource.lineInStations.RemoveAll(b => b.stationid == id);
+                result.enabled = false;
+                DataSource.lineInStations.RemoveAll(b => b.stationid == id);
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Station Mutex Failed");
         }
         /// <summary>
         /// update station
@@ -274,11 +412,18 @@ namespace DL
         /// <param name="station">the updated station</param>
         public void updatebusLineStation(BusLineStation station)
         {
-            var result = DataSource.LineStations.Find(b => b.id == station.id);
+            Mutex mutex = Utilty.getMutex(typeof(BusLineStation));
+            if (mutex.WaitOne())
+            {
+                var result = DataSource.LineStations.Find(b => b.id == station.id);
             if (result == null)
                 throw new NoSuchEntryException($"No entry Matches ID number {station.id}");
-            DataSource.LineStations.Remove(result);
-            DataSource.LineStations.Add(station.Clone());
+                DataSource.LineStations.Remove(result);
+                DataSource.LineStations.Add(station.Clone());
+                mutex.ReleaseMutex();
+                return;
+            }
+            throw new unexpectedException("Station Mutex Failed");
         }
 
         #endregion

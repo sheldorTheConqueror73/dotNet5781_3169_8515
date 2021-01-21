@@ -427,6 +427,7 @@ new BusLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled
             buses[0].status = "dangerous";
             buses[0].dangerous = true;
             buses[1].distance = 19999;
+            buses[0].iconPath = "Resources/warningIcon.png";
             buses[2].fuel = 0;
         }
         /// <summary>
