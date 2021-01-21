@@ -1231,6 +1231,8 @@ namespace PL
 
         private void lvUsers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (user.accessLevel != "Admin")
+                return;
             gridEditUser.Visibility = Visibility.Visible;
             gridSelfUpdate.Visibility = Visibility.Hidden;
         }
