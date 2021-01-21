@@ -32,7 +32,7 @@ namespace BO
 
          public override string ToString()
          {
-             return $" {base.code}, {base.Address}";
+             return $" {base.code}, {base.Name}";
          }
 
 

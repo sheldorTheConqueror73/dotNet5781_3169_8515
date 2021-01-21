@@ -417,7 +417,7 @@ new BusLine(){number="862",id=390,area=Area.Alantis,driveTime="04:33:00",enabled
                         }
                 }
                 DateTime lastM = randomDate(1);
-                buses.Add(new Bus() {registrationDate= rd,lastMaintenance= lastM,plateNumber= plateNumber,fuel= r.Next(0, Bus.FULL_TANK),distance= r.Next(0, 20001),dangerous= false,totalDistance= r.Next(0, 120000),status= "ready",enabled=true });
+                buses.Add(new Bus() {registrationDate= rd,lastMaintenance= lastM,plateNumber= plateNumber,fuel= r.Next(0, Bus.FULL_TANK),distance= r.Next(0, 20001),dangerous= false,totalDistance= r.Next(0, 120000),status= "ready",enabled=true,lineId=-1,time=TimeSpan.Zero,iconPath= "Resources/okIcon.png" });
             }
             buses[0].lastMaintenance = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             buses[0].status = "dangerous";
