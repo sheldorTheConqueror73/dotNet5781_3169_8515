@@ -1176,7 +1176,9 @@ namespace PL
             }
             catch (Exception exc) { MessageBox.Show(exc.Message);return; }
         }
-
+        /// <summary>
+        /// submit after updateted user
+        /// </summary>
         private void submitUser_click(object sender, RoutedEventArgs e)
         {
             tbUserError.Text = "";
@@ -1210,7 +1212,9 @@ namespace PL
             tbUserError.Foreground = Brushes.Green;
             tbUserError.Text = "You details have updated";
         }
-
+        /// <summary>
+        /// checking validate of the fields when updating user data
+        /// </summary>
         private void validateUserUpdateData()
         {
             if (pbPassword.Password != pbConfim.Password)
