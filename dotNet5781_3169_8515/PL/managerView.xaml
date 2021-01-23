@@ -621,7 +621,7 @@
                             <ComboBoxItem Content="None"/>
                         </ComboBox>
                         <Button x:Name="btnUpdateUser" Margin="175,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Background="Transparent" Style="{DynamicResource RoundCorner}" Click="btnUpdateUser_Click">
-                            <Image x:Name="imUpdateAccessLUser"  Source="Resources/updateIcon.png" Stretch="Fill"/>
+                            <Image x:Name="imUpdateAccessLUser"  Source="Resources/submitIcon.png" Stretch="Fill"/>
                         </Button>
                         <Label x:Name="lbIdUser" Visibility="Visible" HorizontalContentAlignment="Left" FontSize="17" FontWeight="Bold" HorizontalAlignment="Left" Margin="927,82,0,0"  VerticalAlignment="Top" Height="30" Width="120"/>
                     </Grid>
