@@ -551,47 +551,6 @@ namespace BL
 
         }
 
-        /// <summary>
-        /// insert the data to file
-        /// </summary>
-        public void listToText()
-        {
-            string LineInsta="", lin="", folSta = "";
-            lin = " Lines = new List<busLine>{";
-            int cnt = 0;
-            foreach (var v1 in dl.GetAllbusLines())
-            {
-                lin += "new busLine(){"+$"number=\"{v1.number}\",id={v1.id},area=Area.{v1.area},driveTime=\"{v1.driveTime}\",enabled=true"+"}";
-                if (cnt != dl.GetAllbusLines().Count()-1)
-                    lin += ",\n";
-                cnt++;
-            }
-            cnt = 0;
-            lin += "};\n\n\n";
-            lin += "####################################################################################\n\n";
-            LineInsta = "lineInStations = new List<lineInStation>{";
-            foreach (var v1 in dl.GetAllLineInStation())
-            {
-                LineInsta += "new lineInStation(){" + $"id={v1.id},stationid={v1.stationid},Lineid={v1.Lineid},placeOrder={v1.placeOrder}" + "}";
-                if (cnt != dl.GetAllLineInStation().Count() - 1)
-                    LineInsta += ",\n";
-                cnt++;
-            }
-            LineInsta += "};\n\n";
-            LineInsta += "####################################################################################\n\n";
-
-            cnt = 0;
-            folSta = "followStation = new List<followStations>{";
-            foreach (var v1 in dl.GetAllFollowStation())
-            {
-                folSta += "new followStations(){" + $"id={v1.id},lineId={v1.lineId},secondStationid={v1.secondStationid},firstStationid={v1.firstStationid},enabled=true,driveTime=TimeSpan.Parse(\"{v1.driveTime}\"),distance={v1.distance}" + "}";
-                if (cnt != dl.GetAllFollowStation().Count() - 1)
-                    folSta += ",\n";
-                cnt++;
-            }
-            folSta += "};";
-            File.WriteAllText( "C:\\Users\\LENOVO\\source\\repos\\sheldorTheConqueror73\\dotNet5781_3169_8515\\dotNet5781_3169_8515\\initList.txt",lin + LineInsta + folSta);
-        }
         
         /// <summary>
         /// update specific station
@@ -599,6 +558,8 @@ namespace BL
         /// <param name="station">the updated station</param>
         public void updateStation(BusLineStation station)
         {
+            if (dl.GetAllbusLineStation().Any(sta => sta.code == station.code && sta.enabled == true))
+                throw new itemAlreadyExistsException($"Input Error: station code {station.code} already exist!");
             dl.updatebusLineStation(Utility.BOtoDOConvertor<DO.BusLineStation, BO.BusLineStation>(station));
         }
        
@@ -639,7 +600,7 @@ namespace BL
         /// <summary>
         /// return list of all followstations objects
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">id of the the first stations </param>
         private IEnumerable<FollowStations> GetAllFollowStations(int id)
         {
             var folllowStation = dl.GetAllFollowStation();
@@ -859,6 +820,11 @@ namespace BL
         #endregion
 
         #region exportToExcel
+        /// <summary>
+        /// create the excel file
+        /// </summary>
+        /// <param name="fileXmlPath">the path of the xml file</param>
+        /// <param name="fileXlName">the name of the excel file</param>
         public void ConvertToExcel(string fileXmlPath,string fileXlName)
         {
             if (fileXlName != "" && fileXmlPath != "") // using Custome Xml File Name  
@@ -882,7 +848,10 @@ namespace BL
                 }
             }
         }
-
+        /// <summary>
+        /// return data table with the datafrom the xml
+        /// </summary>
+        /// <param name="XmlFile">the path of the xml file</param>
         private System.Data.DataTable CreateDataTableFromXml(string XmlFile)
         {
 
@@ -900,6 +869,11 @@ namespace BL
             }
             return Dt;
         }
+        /// <summary>
+        /// create new excel file with the data from the data table
+        /// </summary>
+        /// <param name="table">data table</param>
+        /// <param name="Xlfile">path of the excel file</param>
         private void ExportDataTableToExcel(System.Data.DataTable table, string Xlfile)
         {
 
@@ -977,5 +951,48 @@ namespace BL
         }
         #endregion
 
+        #region other
+        /// <summary>
+        /// insert the data to file
+        /// </summary>
+        public void listToText()
+        {
+            string LineInsta = "", lin = "", folSta = "";
+            lin = " Lines = new List<busLine>{";
+            int cnt = 0;
+            foreach (var v1 in dl.GetAllbusLines())
+            {
+                lin += "new busLine(){" + $"number=\"{v1.number}\",id={v1.id},area=Area.{v1.area},driveTime=\"{v1.driveTime}\",enabled=true" + "}";
+                if (cnt != dl.GetAllbusLines().Count() - 1)
+                    lin += ",\n";
+                cnt++;
+            }
+            cnt = 0;
+            lin += "};\n\n\n";
+            lin += "####################################################################################\n\n";
+            LineInsta = "lineInStations = new List<lineInStation>{";
+            foreach (var v1 in dl.GetAllLineInStation())
+            {
+                LineInsta += "new lineInStation(){" + $"id={v1.id},stationid={v1.stationid},Lineid={v1.Lineid},placeOrder={v1.placeOrder}" + "}";
+                if (cnt != dl.GetAllLineInStation().Count() - 1)
+                    LineInsta += ",\n";
+                cnt++;
+            }
+            LineInsta += "};\n\n";
+            LineInsta += "####################################################################################\n\n";
+
+            cnt = 0;
+            folSta = "followStation = new List<followStations>{";
+            foreach (var v1 in dl.GetAllFollowStation())
+            {
+                folSta += "new followStations(){" + $"id={v1.id},lineId={v1.lineId},secondStationid={v1.secondStationid},firstStationid={v1.firstStationid},enabled=true,driveTime=TimeSpan.Parse(\"{v1.driveTime}\"),distance={v1.distance}" + "}";
+                if (cnt != dl.GetAllFollowStation().Count() - 1)
+                    folSta += ",\n";
+                cnt++;
+            }
+            folSta += "};";
+            File.WriteAllText("C:\\Users\\LENOVO\\source\\repos\\sheldorTheConqueror73\\dotNet5781_3169_8515\\dotNet5781_3169_8515\\initList.txt", lin + LineInsta + folSta);
+        }
+        #endregion
     }
 }

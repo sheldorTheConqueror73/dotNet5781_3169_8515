@@ -43,8 +43,14 @@ namespace DS
             //  initLineInStations1();
             //  initLines1();
             // initFollowStations1();
-            Func12();
+            ConvertListsToXml();
         }  
+
+        /// <summary>
+        /// return xelemlnt
+        /// </summary>
+        /// <typeparam name="T">the type of object</typeparam>
+        /// <param name="data">the converting object</param>
         private static XElement ToXml<T>(T data) where T : DOobject
         {
 
@@ -53,7 +59,10 @@ namespace DS
                      select new XElement(prop.Name, prop.GetValue(data, null)));
             return root;
         }
-        private static void Func12()
+        /// <summary>
+        /// convert the lists to xml files 
+        /// </summary>
+        private static void ConvertListsToXml()
         {
            //buses
                 XElement objRootBus;

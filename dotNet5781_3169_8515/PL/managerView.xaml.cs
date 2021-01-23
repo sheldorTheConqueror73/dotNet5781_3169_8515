@@ -38,7 +38,9 @@ namespace PL
         }    
 
         #region buses
-
+        /// <summary>
+        /// resume the timer when start the app
+        /// </summary>
         private void resumeTimer(object sender, RoutedEventArgs e)
         {
             bl.setTimer(timerUpdateDisplay);
@@ -357,7 +359,7 @@ namespace PL
                 lvLinesInStation.ItemsSource = bl.GetAllLinesInStation((cbStations.SelectedItem as BO.BusLineStation).id);
                 lvFollowStation.ItemsSource = bl.GetAllFollowStationsAsStationsObj((cbStations.SelectedItem as BO.BusLineStation).id);
             }
-
+            tblError.Text = "";
         }
 
        /// <summary>
@@ -518,7 +520,7 @@ namespace PL
             else
             {
                 try { validStationInput(); }
-                catch (Exception exc) { tblError.Text = exc.Message; return; }
+                catch (Exception exc) { tblError.Text = exc.Message; initTextBoxByCbInStations(); return; }
                 finally
                 {
                     init_lvFollowStation_PreviewMouseDown();
@@ -538,7 +540,7 @@ namespace PL
                     cbBusLines.ItemsSource = bl.GetAllbusLines();
                     cbBusLines.SelectedIndex = 0;
                 }
-                catch (Exception exc) { tblError.Text = exc.Message; return; }
+                catch (Exception exc) { initTextBoxByCbInStations(); tblError.Text = exc.Message; return; }
             }
         }
         /// <summary>
@@ -732,7 +734,9 @@ namespace PL
         #endregion
 
         #region utility
-
+        /// <summary>
+        /// return true if the status of the bus is is ready or refueling or maintenance 
+        /// </summary>
         private bool checkStatus(BO.Bus bus=null)
         {
             if (bus.status != "ready" && bus.status != "dangerous")

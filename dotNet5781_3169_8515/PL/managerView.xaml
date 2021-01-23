@@ -178,7 +178,7 @@
                                 <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
-                        <TextBlock x:Name="tbBusesError" FontSize="15" HorizontalAlignment="Center" Margin="10,187,10,0" Grid.Row="8" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20"  Width="330"/>
+                        <TextBlock x:Name="tbBusesError" FontSize="15" HorizontalAlignment="Center" Margin="10,187,10,0" Grid.Row="8" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20"  Width="430"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -297,7 +297,7 @@
                         <ComboBox x:Name="cbBusSelection" SelectedIndex="0"  ItemsSource="{Binding}" Grid.Column="2" HorizontalAlignment="Left" Margin="27,224,0,0" Grid.Row="4" VerticalAlignment="Top" Width="120"/>
                         <Slider x:Name="slSpeedSelector"  IsSnapToTickEnabled="True" TickFrequency="1" Grid.Column="2" Value="1" Minimum="1" ToolTip="Change simulation speed" Maximum="100" HorizontalAlignment="Left" Margin="85,144,0,0" Grid.Row="4" VerticalAlignment="Top" Width="124"/>
                         <TextBox x:Name="tbSpeedSelector" Grid.Column="2" HorizontalAlignment="Left" PreviewTextInput="TextBox_KeyDown" Height="24" Margin="27,141,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding ElementName=slSpeedSelector, Path=Value, Mode=TwoWay}"  TextAlignment="Center" VerticalAlignment="Top" Width="41"/>
-                        <TextBlock x:Name="tbLineError" TextAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="64,47,0,0" Grid.Row="4" TextWrapping="Wrap" FontSize="12" VerticalAlignment="Top" Width="195" Height="50" Grid.ColumnSpan="2" Grid.Column="1"/>
+                        <TextBlock x:Name="tbLineError" TextAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="10,47,0,0" Grid.Row="4" TextWrapping="Wrap" FontSize="12" VerticalAlignment="Top" Width="349" Height="50" Grid.ColumnSpan="2" Grid.Column="1"/>
                         <Button Style="{StaticResource RoundCorner}" Width="54" Height="46" HorizontalAlignment="Left" Margin="20,130,0,0" Grid.Row="4" VerticalAlignment="Top"  Click="Button_Click" Grid.Column="1">
                             <Image Source="Resources/lightning.png"/>
                         </Button>
@@ -430,8 +430,9 @@
                         <Button x:Name="btnStationConvert" Style="{DynamicResource RoundCorner}" Grid.Row="8" Grid.ColumnSpan="3" ToolTip="export to excel" Background="Transparent" HorizontalAlignment="Center"  Margin="0,10,0,0" Width="45" Height="45" Click="btnStationsConvert_Click">
                             <Image  Source="Resources/Excel_Light.png" Stretch="Fill"/>
                         </Button>
+                        <TextBlock x:Name="tblError" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="Red" Grid.ColumnSpan="4" />
                     </Grid>
-                    <TextBlock x:Name="tblError" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="Red" Grid.ColumnSpan="4" Margin="199,310,258,-23"/>
+                    
 
                 </Grid>
             </TabItem>
