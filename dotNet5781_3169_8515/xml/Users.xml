@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Users>
   <User>
-    <password>aaa123</password>
+    <password>anonymoose</password>
     <name>Jack Smith</name>
     <accessLevel>Admin</accessLevel>
     <enabled>true</enabled>
-    <fullname></fullname>
+    <fullname>CLASSIFED</fullname>
     <mail>mrbutlerbot@gmail.com</mail>
     <id>70</id>
   </User>
@@ -14,17 +14,44 @@
     <name>Vladimir Putin</name>
     <accessLevel>Operator</accessLevel>
     <enabled>true</enabled>
-    <fullname></fullname>
+    <fullname>Vladimir Vladimirovich Putin</fullname>
     <mail>mrbutlerbot@gmail.com</mail>
     <id>71</id>
   </User>
   <User>
-    <password>]&gt;.&gt;snR-Ga</password>
-    <name>C.M.O.T Dibbler</name>
+    <password>dsdfghgujh6</password>
+    <name>CMOT Dibbler</name>
     <accessLevel>User</accessLevel>
     <enabled>true</enabled>
-    <fullname></fullname>
+    <fullname>Claude Maximillian Overton Transpire Dibbler</fullname>
     <mail>mrbutlerbot@gmail.com</mail>
     <id>72</id>
+  </User>
+ <User>
+    <password>MAGA</password>
+    <name>Donald Trump</name>
+    <accessLevel>User</accessLevel>
+    <enabled>true</enabled>
+    <fullname>Donald J Trump</fullname>
+    <mail>potus@whitehouse.gov</mail>
+    <id>73</id>
+  </User>
+<User>
+    <password>13dsf3tg</password>
+    <name>Joe "sleepy" Biden</name>
+    <accessLevel>Admin</accessLevel>
+    <enabled>true</enabled>
+    <fullname>Joseph Robinette Biden Jr</fullname>
+    <mail>potus@whitehouse.gov</mail>
+    <id>73</id>
+  </User>
+<User>
+    <password>iWannaNuke:(</password>
+    <name>Kim Jon Un</name>
+    <accessLevel>Admin</accessLevel>
+    <enabled>true</enabled>
+    <fullname>Rocket Man</fullname>
+    <mail>potus@whitehouse.gov</mail>
+    <id>73</id>
   </User>
 </Users>
