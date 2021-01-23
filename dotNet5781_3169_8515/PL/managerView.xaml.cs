@@ -157,7 +157,7 @@ namespace PL
                 btnAddBus.Visibility = Visibility.Visible;
                 var bus = new BO.Bus() {registrationDate= dpRegiDate.SelectedDate.Value,lastMaintenance= dpLastMaintenance.SelectedDate.Value,plateNumber= tbId.Text,fuel= fuel,distance= dist,dangerous= tbDangerous.Text == "YES" ? true : false,totalDistance= totalDIst,status= (lvBuses.SelectedItem as BO.Bus).status,iconPath= (lvBuses.SelectedItem as BO.Bus).iconPath };
                 bus.id = (lvBuses.SelectedItem as BO.Bus).id;
-                bl.updateBus(bus);//calls update function
+                bl.updateBus(bus,1);//calls update function
 
                 bl.addBusHistory(new BO.BusHistory() { BusId = bus.id, PlateNumber = bus.plateNumber, start = DateTime.Now, duration = TimeSpan.Zero, end = DateTime.Now, description = "Bus has been updated" });
 
@@ -540,7 +540,7 @@ namespace PL
                     cbBusLines.ItemsSource = bl.GetAllbusLines();
                     cbBusLines.SelectedIndex = 0;
                 }
-                catch (Exception exc) { initTextBoxByCbInStations(); tblError.Text = exc.Message; return; }
+                catch (Exception exc) { initTextBoxByCbInStations();  tblError.Text = exc.Message; return; }
             }
         }
         /// <summary>

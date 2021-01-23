@@ -29,7 +29,7 @@ namespace BLAPI
         Bus GetBus(int id);
         void addBus(Bus bus);
         void removeBus(int id);
-        void updateBus(Bus bus);
+        void updateBus(Bus bus,int mode= 0);
         void refuel(int id);
         void maintain(int id);
         void canMakeDrive(Bus bus, double distance);
@@ -90,7 +90,9 @@ namespace BLAPI
         void addBusHistory(BO.BusHistory history);
 
         #endregion
-        void listToText();
+
+        #region ConvertToExcel
         void ConvertToExcel(string fileXmlPath, string fileXlName);
+        #endregion
     }
 }

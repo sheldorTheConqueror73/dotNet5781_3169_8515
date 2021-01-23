@@ -160,11 +160,15 @@ namespace BL
         /// update specific bus
         /// </summary>
         /// <param name="bus">the updated bus</param>
-        public void updateBus(Bus bus)
+        public void updateBus(Bus bus,int mode=0)
         {
-            if(bus.status!="refueling"&& bus.status != "maintenance")
-                 bus.UpdateDangerous();  
             bus.formatPlateNumber();
+            if (mode==1)
+                if (dl.GetAllBuses().Any(bs => bs.plateNumber == bus.plateNumber && bs.id != bus.id && bs.enabled == true))
+                    throw new itemAlreadyExistsException($"Input Error: bus plate number {bus.plateNumber} already exist!");
+                
+            if (bus.status!="refueling"&& bus.status != "maintenance")
+                 bus.UpdateDangerous();           
             dl.updateBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
         }
         /// <summary>
@@ -558,7 +562,7 @@ namespace BL
         /// <param name="station">the updated station</param>
         public void updateStation(BusLineStation station)
         {
-            if (dl.GetAllbusLineStation().Any(sta => sta.code == station.code && sta.enabled == true))
+            if (dl.GetAllbusLineStation().Any(sta => sta.code == station.code &&sta.id!=station.id&& sta.enabled == true))
                 throw new itemAlreadyExistsException($"Input Error: station code {station.code} already exist!");
             dl.updatebusLineStation(Utility.BOtoDOConvertor<DO.BusLineStation, BO.BusLineStation>(station));
         }
@@ -568,16 +572,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         public IEnumerable<BusLineStation> GetAllStationNotInLine(int id)
-        {
-            /* if (dl.GetAllbusLineStation() != null && dl.GetAllLineInStation() != null)
-             {
-                 return (from sta in dl.GetAllbusLineStation()
-                          where sta != null && sta.enabled == true
-                          from linInSta in dl.GetAllLineInStation()
-                          where linInSta != null && linInSta.Lineid != id && linInSta.stationid == sta.id
-                          orderby linInSta.placeOrder ascending
-                          select Utility.DOtoBOConvertor<BO.BusLineStation, DO.BusLineStation>(sta)).ToList().GroupBy(x => x.id).Select(y => y.FirstOrDefault());
-             }*/
+        {          
             List<BusLineStation> ls = new List<BusLineStation>();
              if (dl.GetAllbusLineStation() != null && dl.GetAllLineInStation() != null)
             {
@@ -951,48 +946,5 @@ namespace BL
         }
         #endregion
 
-        #region other
-        /// <summary>
-        /// insert the data to file
-        /// </summary>
-        public void listToText()
-        {
-            string LineInsta = "", lin = "", folSta = "";
-            lin = " Lines = new List<busLine>{";
-            int cnt = 0;
-            foreach (var v1 in dl.GetAllbusLines())
-            {
-                lin += "new busLine(){" + $"number=\"{v1.number}\",id={v1.id},area=Area.{v1.area},driveTime=\"{v1.driveTime}\",enabled=true" + "}";
-                if (cnt != dl.GetAllbusLines().Count() - 1)
-                    lin += ",\n";
-                cnt++;
-            }
-            cnt = 0;
-            lin += "};\n\n\n";
-            lin += "####################################################################################\n\n";
-            LineInsta = "lineInStations = new List<lineInStation>{";
-            foreach (var v1 in dl.GetAllLineInStation())
-            {
-                LineInsta += "new lineInStation(){" + $"id={v1.id},stationid={v1.stationid},Lineid={v1.Lineid},placeOrder={v1.placeOrder}" + "}";
-                if (cnt != dl.GetAllLineInStation().Count() - 1)
-                    LineInsta += ",\n";
-                cnt++;
-            }
-            LineInsta += "};\n\n";
-            LineInsta += "####################################################################################\n\n";
-
-            cnt = 0;
-            folSta = "followStation = new List<followStations>{";
-            foreach (var v1 in dl.GetAllFollowStation())
-            {
-                folSta += "new followStations(){" + $"id={v1.id},lineId={v1.lineId},secondStationid={v1.secondStationid},firstStationid={v1.firstStationid},enabled=true,driveTime=TimeSpan.Parse(\"{v1.driveTime}\"),distance={v1.distance}" + "}";
-                if (cnt != dl.GetAllFollowStation().Count() - 1)
-                    folSta += ",\n";
-                cnt++;
-            }
-            folSta += "};";
-            File.WriteAllText("C:\\Users\\LENOVO\\source\\repos\\sheldorTheConqueror73\\dotNet5781_3169_8515\\dotNet5781_3169_8515\\initList.txt", lin + LineInsta + folSta);
-        }
-        #endregion
     }
 }
