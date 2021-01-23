@@ -73,7 +73,7 @@ namespace DL
             return   from element in Utility.load(typeof(Bus)).Elements()
                      where element != null
                      let obj = element.ToObject<Bus>()
-                     where obj.enabled == true // change elemnt to obj
+                     where obj.enabled == true 
                      select obj;
         }
         /// <summary>
@@ -168,7 +168,7 @@ namespace DL
             return from element in Utility.load(typeof(User)).Elements()
                    where element != null
                    let obj = element.ToObject<User>()
-                   where obj.enabled == true // change elemnt to obj
+                   where obj.enabled == true
                    select obj;
         }
         /// <summary>
@@ -179,7 +179,7 @@ namespace DL
         {
             return (from element in Utility.load(typeof(User)).Elements()
                     let obj = element.ToObject<User>()
-                    where element != null && obj.enabled == true && obj.id == id // change elemnt to obj
+                    where element != null && obj.enabled == true && obj.id == id 
                     select obj).FirstOrDefault();
         }
 
@@ -238,7 +238,7 @@ namespace DL
             return from element in Utility.load(typeof(BusLine)).Elements()
                    where element != null
                    let obj = element.ToObject<BusLine>()
-                   where obj.enabled == true // change elemnt to obj
+                   where obj.enabled == true
                    select obj;
         }
         /// <summary>
@@ -250,7 +250,7 @@ namespace DL
             return (from element in Utility.load(typeof(BusLine)).Elements()
                     where element != null
                     let obj = element.ToObject<BusLine>()
-                    where obj.enabled == true &&obj.id==id// change elemnt to obj
+                    where obj.enabled == true &&obj.id==id
                     select obj).FirstOrDefault();
         }
         /// <summary>
@@ -381,7 +381,7 @@ namespace DL
             return from element in Utility.load(typeof(BusLineStation)).Elements()
                    where element != null 
                    let obj = element.ToObject<BusLineStation>()
-                   where obj.enabled == true // change elemnt to obj
+                   where obj.enabled == true
                    select obj;
         }
 
@@ -451,7 +451,7 @@ namespace DL
             return from element in Utility.load(typeof(FollowStations)).Elements()
                    where element != null
                    let obj = element.ToObject<FollowStations>()
-                   where obj.enabled == true // change elemnt to obj
+                   where obj.enabled == true
                    select obj;
         }
 

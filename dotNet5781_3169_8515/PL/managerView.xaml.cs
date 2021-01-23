@@ -1017,10 +1017,10 @@ namespace PL
         /// <summary>
         /// let the user to chose the path of the saving file
         /// </summary>
-        public string SaveExcelWorkBook()
+        public string SaveExcelWorkBook(string fileName)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "TasksExcel"; //default file name
+            dlg.FileName = fileName+"Excel"; //default file name
             dlg.DefaultExt = ".xlsx"; //default file extension
             dlg.Filter = "XLSX Document (.xlsx)|*.xlsx"; //filter files by extension
 
@@ -1043,7 +1043,7 @@ namespace PL
         private void btnBusesConvert_Click(object sender, RoutedEventArgs e)
         {
             string path = "";
-            path = SaveExcelWorkBook();
+            path = SaveExcelWorkBook("Buses");
             if (path == "")
                 return;
             try
@@ -1060,7 +1060,7 @@ namespace PL
         private void btnLinesConvert_Click(object sender, RoutedEventArgs e)
         {
             string path = "";
-            path = SaveExcelWorkBook();
+            path = SaveExcelWorkBook("Lines");
             if (path == "")
                 return;
             try
@@ -1107,7 +1107,7 @@ namespace PL
         private void btnStationsConvert_Click(object sender, RoutedEventArgs e)
         {
             string path = "";
-            path = SaveExcelWorkBook();
+            path = SaveExcelWorkBook("Stations");
             if (path == "")
                 return;
             try
@@ -1138,20 +1138,9 @@ namespace PL
         /// </summary>
         private void btnUpdateUser_Click(object sender, RoutedEventArgs e)
         {
-            if (imUpdateAccessLUser.Source.ToString() == "pack://application:,,,/PL;component/Resources/updateIcon.png")
-            {
-                if (lvUsers.Items.Count == 0)
-                    return;
-                if (lvUsers.SelectedItem == null)
-                    lvUsers.SelectedIndex = 0;
-                cbAccessLevel.Visibility = Visibility.Visible;
-                lbIdUser.Visibility = Visibility.Visible;
-                imUpdateAccessLUser.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/submitIcon.png"));
-            }
-            else
-            {
+
                 try
-                {
+                {      
                     var user = bl.GetUser((lvUsers.SelectedItem as BO.User).id);
                     user.accessLevel = cbAccessLevel.Text.ToString();
                     bl.updateUser(user);
@@ -1160,11 +1149,8 @@ namespace PL
                 finally
                 {
                     lvUsers.ItemsSource = bl.GetAllUsers();
-                    cbAccessLevel.Visibility = Visibility.Hidden;
-                    lbIdUser.Visibility = Visibility.Hidden;
-                    imUpdateAccessLUser.Source = new BitmapImage(new Uri("pack://application:,,,/PL;component/Resources/updateIcon.png"));
+                    gridEditUser.Visibility = Visibility.Hidden;
                 }
-            }
         }
         /// <summary>
         /// send mail to specific user

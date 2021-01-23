@@ -37,7 +37,7 @@
     <registrationDate>1997-02-18T00:00:00</registrationDate>
     <lastMaintenance>2021-01-19T21:08:57.5358216+02:00</lastMaintenance>
     <status>ready</status>
-    <iconPath>Resources/okIcon.png</iconPath>
+    <iconPath>Resources/warningIcon.png</iconPath>
     <plateNumber>62-893-92</plateNumber>
     <time>PT0S</time>
     <id>52</id>
