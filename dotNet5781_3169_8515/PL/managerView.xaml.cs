@@ -1017,10 +1017,10 @@ namespace PL
         /// <summary>
         /// let the user to chose the path of the saving file
         /// </summary>
-        public string SaveExcelWorkBook()
+        public string SaveExcelWorkBook(string fileName)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "TasksExcel"; //default file name
+            dlg.FileName = fileName+"Excel"; //default file name
             dlg.DefaultExt = ".xlsx"; //default file extension
             dlg.Filter = "XLSX Document (.xlsx)|*.xlsx"; //filter files by extension
 
@@ -1043,7 +1043,7 @@ namespace PL
         private void btnBusesConvert_Click(object sender, RoutedEventArgs e)
         {
             string path = "";
-            path = SaveExcelWorkBook();
+            path = SaveExcelWorkBook("Buses");
             if (path == "")
                 return;
             try
@@ -1060,7 +1060,7 @@ namespace PL
         private void btnLinesConvert_Click(object sender, RoutedEventArgs e)
         {
             string path = "";
-            path = SaveExcelWorkBook();
+            path = SaveExcelWorkBook("Lines");
             if (path == "")
                 return;
             try
@@ -1107,7 +1107,7 @@ namespace PL
         private void btnStationsConvert_Click(object sender, RoutedEventArgs e)
         {
             string path = "";
-            path = SaveExcelWorkBook();
+            path = SaveExcelWorkBook("Stations");
             if (path == "")
                 return;
             try

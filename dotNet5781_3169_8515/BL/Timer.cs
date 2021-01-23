@@ -28,6 +28,7 @@ namespace BL
               
             }
         }
+
         public static void add(int observerID)
         {
             Console.WriteLine($"Bus {observerID} has been added to observer list");
