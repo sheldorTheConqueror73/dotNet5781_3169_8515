@@ -410,7 +410,10 @@ namespace BL
             }
             return sumDis;
         }
-
+        /// <summary>
+        /// return true if line is middle on drive
+        /// </summary>
+        /// <param name="lineId"></param>
         public bool LineInBusAtDrive(int lineId)
         {
             if (dl.GetAllBuses().Any(bs => bs.enabled == true && bs.lineId == lineId))
