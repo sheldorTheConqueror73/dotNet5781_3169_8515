@@ -958,7 +958,6 @@ namespace BL
                 {
                     excelWorkSheet.Cells[j + 2, k + 1] = table.Rows[j].ItemArray[k].ToString();
                 }
-     
             }
 
             book.SaveAs(Xlfile);

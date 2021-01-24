@@ -47,6 +47,7 @@
         <Line Stroke="#17FF96" StrokeThickness="2" X1="0" X2="3000" Y1="25" Y2="25" />
         <TabControl VerticalAlignment="Stretch" x:Name="tabbi"  Background="Transparent" BorderThickness="0">
 
+            <!-- Buses  -->
             <TabItem Header="Buses"  x:Name="tbiBuses" Style="{StaticResource customTab}" >
                 <Grid Name="mainGrid" Background="Transparent" >
                     <Grid.ColumnDefinitions>
@@ -182,6 +183,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
+            <!-- Lines  -->
             <TabItem Header="Lines" Style="{StaticResource customTab}">
                 <Grid Name="LinesGrid" >
                     <Grid.RowDefinitions>
@@ -307,7 +309,7 @@
                 </Grid>
             </TabItem>
 
-
+            <!-- Stations  -->
             <TabItem Header="Stations" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}">
                 <Grid Name="StationsGrid" >
                     <Grid.RowDefinitions>
@@ -436,6 +438,7 @@
 
                 </Grid>
             </TabItem>
+            <!-- History of Lines  -->
             <TabItem x:Name="tabItemHistoryLine" Header="History Line" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
                 <Grid Margin="-30,0,0,0">
                     <Grid.RowDefinitions>
@@ -499,6 +502,7 @@
                     </ListView>
                 </Grid>
             </TabItem>
+            <!-- History of Buses  -->
             <TabItem x:Name="tabItemHistoryBus" Header="History Bus" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
                 <Grid Margin="0,0,0,0">
                     <ListView x:Name="lvBusHistory"   ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="690" BorderThickness="0"  Height="681" Grid.RowSpan="2">
@@ -558,6 +562,7 @@
                     </ListView>
                 </Grid>
             </TabItem>
+            <!-- Users  -->
             <TabItem x:Name="tabItemUser" Header="Users" Height="22" VerticalAlignment="Top" Style="{StaticResource customTab}" >
                 <Grid Margin="0,0,0,0">
                     <ListView x:Name="lvUsers" PreviewMouseDown="lvUsers_PreviewMouseDown" MouseDoubleClick="lvUsers_MouseDoubleClick" ItemsSource="{Binding}" HorizontalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="590" BorderThickness="0"  Height="681" Grid.RowSpan="2" SelectionChanged="lvUser_SelectionChanged">
