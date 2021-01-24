@@ -981,7 +981,16 @@ namespace BL
         {
             return from line in dl.GetLineHistory().ToList()
                    where line != null
-                   select Utility.DOtoBOConvertor<BO.LineHistory, DO.LineHistory>(line);
+                   select new BO.LineHistory
+                   {
+                       id = line.id,
+                       description = line.description,
+                       duration = line.duration,
+                       end = line.end,
+                       LineId = line.LineId,
+                       LineNumber = line.LineNumber,
+                       start = line.start
+                   };
         }
         /// <summary>
         /// gets all bus logs
