@@ -85,7 +85,6 @@ namespace PL
             }
             else
             {
-                bool success = true;
                 int fuel, dist, totalDIst;
                 try { validateInput(out fuel, out dist, out totalDIst); }
                 catch (Exception exc) { tbBusesError.Text = exc.Message; return; }
@@ -97,13 +96,12 @@ namespace PL
                 try 
                 {
                      bus = new BO.Bus() { registrationDate = rd, lastMaintenance = lm, plateNumber = plateNumber, fuel = fuel, distance = dist, dangerous = false, totalDistance = totalDIst, status = "ready",iconPath = "pack://application:,,,/PL;component/Resources/okIcon.png" };
-                    bl.addBus(bus);
+                    bl.addBus(bus,DateTime.Now,TimeSpan.Zero,DateTime.Now, "Bus has been created");
                 }
                
                 catch (Exception exc) 
                 { 
                     tbBusesError.Text= exc.Message;
-                    success = false;
                     return;
                 }
 
@@ -113,9 +111,7 @@ namespace PL
                     tbDangerous.Visibility = System.Windows.Visibility.Visible;
                     initTextBoxes(true, false, 1); 
                 }// disable all textboces anyway
-               
-                if(success)
-                    bl.addBusHistory(new BO.BusHistory() { BusId =bus.id, PlateNumber =plateNumber, start = DateTime.Now, duration = TimeSpan.Zero, end = DateTime.Now, description = "Bus has been created" });
+                       
                 refreshBuses(-1);
 
                 
@@ -157,9 +153,7 @@ namespace PL
                 btnAddBus.Visibility = Visibility.Visible;
                 var bus = new BO.Bus() {registrationDate= dpRegiDate.SelectedDate.Value,lastMaintenance= dpLastMaintenance.SelectedDate.Value,plateNumber= tbId.Text,fuel= fuel,distance= dist,dangerous= tbDangerous.Text == "YES" ? true : false,totalDistance= totalDIst,status= (lvBuses.SelectedItem as BO.Bus).status,iconPath= (lvBuses.SelectedItem as BO.Bus).iconPath };
                 bus.id = (lvBuses.SelectedItem as BO.Bus).id;
-                bl.updateBus(bus,1);//calls update function
-
-                bl.addBusHistory(new BO.BusHistory() { BusId = bus.id, PlateNumber = bus.plateNumber, start = DateTime.Now, duration = TimeSpan.Zero, end = DateTime.Now, description = "Bus has been updated" });
+                bl.updateBus(bus, DateTime.Now, TimeSpan.Zero, DateTime.Now, "Bus has been updated",1);//calls update function
 
                 id = bus.id;
             }
@@ -189,22 +183,18 @@ namespace PL
             var fxElt = sender as FrameworkElement;
             var lineData = fxElt.DataContext as BO.Bus;//find the selced line in listView
             int id = lineData.id;
-            bool sucsess = true;
             if (!checkStatus(lineData))
                 return;
            
             try
             {
-                bl.removeBus(id);//remove bus function
+                bl.removeBus(id, DateTime.Now, TimeSpan.Zero, DateTime.Now, "Bus has been deleted");//remove bus function
             }
             catch (Exception ecx)
             { 
                 tbBusesError.Text = ecx.Message;
-                sucsess = false;
                 return;
             }
-            if(sucsess)
-                bl.addBusHistory(new BO.BusHistory() { BusId = id, PlateNumber = lineData.plateNumber, start = DateTime.Now, duration = TimeSpan.Zero, end = DateTime.Now, description = "Bus has been deleted" });
            
             refreshBuses(-1);
             initTextBoxes(false, true, 1);
@@ -227,9 +217,9 @@ namespace PL
                 bl.startTimer(lineData, new TimeSpan(0, 0, 30), "refueling","Resources/waitIcon.png",(int) slSpeedSelector.Value);
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
-            bl.refuel(lineData.id);
             DateTime endt = (DateTime.Now).AddSeconds(30);
-            bl.addBusHistory(new BO.BusHistory() { BusId = id, PlateNumber = lineData.plateNumber, start = DateTime.Now, duration = new TimeSpan(0, 0, 30), end = endt,description= "Bus has been refueled" });
+            bl.refuel(lineData.id, DateTime.Now, new TimeSpan(0, 0, 30), endt, "Bus has been refueled");
+         
             refreshBuses(id);
             
          
@@ -308,9 +298,9 @@ namespace PL
                 bl.startTimer(lineData, new TimeSpan(0, 1, 30), "maintenance", "Resources/waitIcon.png", (int)slSpeedSelector.Value);
             }
             catch (Exception ecx) { tbBusesError.Text = ecx.Message; return; }
-            bl.maintain(lineData.id);
             DateTime endt = (DateTime.Now).AddSeconds(90);
-            bl.addBusHistory(new BO.BusHistory() { BusId = id, PlateNumber = lineData.plateNumber, start = DateTime.Now, duration = new TimeSpan(0, 0, 30), end = endt,description= "Bus has endergone maintenance" });
+            bl.maintain(lineData.id, DateTime.Now, new TimeSpan(0, 0, 90), endt," Bus has endergone maintenance" );
+
             refreshBuses(id);
             
         }
@@ -644,17 +634,11 @@ namespace PL
         {
             var line = cbBusLines.SelectedItem as BO.BusLine;
             if (line == null)
-                return;
-            if (bl.LineInBusAtDrive(line.id))
-            {
-                tbLineError.Text = "You cannot delete line in drive";
-                return;
-            }
-            try { bl.removeLine(line.id); }
+                return;       
+            try { bl.removeLine(line.id, DateTime.Now, TimeSpan.Zero, DateTime.Now, "Line has been deleted"); }
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
-            bl.addLineHistory(new BO.LineHistory() { LineId = line.id, LineNumber = line.number, end = DateTime.Now, start = DateTime.Now, duration = TimeSpan.Zero, description = "Line has been deleted" });
             cbBusLines.ItemsSource = bl.GetAllbusLines();
-            lvLineHistory.DataContext = bl.GetLineHistory();
+            lvLineHistory.ItemsSource = bl.GetLineHistory();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
             initTextBoxByCbInStations();
@@ -678,7 +662,7 @@ namespace PL
             TimeSpan dur = (end - start);
             bl.addLineHistory(new BO.LineHistory() { LineId = line.id, LineNumber = line.number, end = DateTime.Now, start=start,  duration=dur, description="Line has been updated"});
             cbBusLines.ItemsSource = bl.GetAllbusLines();
-            lvLineHistory.DataContext = bl.GetLineHistory();
+            lvLineHistory.ItemsSource = bl.GetLineHistory();
             cbBusLines.Items.Refresh();
             cbBusLines.SelectedIndex = 0;
             initTextBoxByCbInStations();

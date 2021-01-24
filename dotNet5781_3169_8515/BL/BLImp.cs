@@ -70,7 +70,7 @@ namespace BL
             bus.distance += distance;
             bus.totalDistance += distance;
             bus.lineId = lineId;
-            updateBus(bus);
+            updateBus(bus,DateTime.Now,TimeSpan.Zero,DateTime.Now);
             Timer.add(bus.id);
         }
         /// <summary>
@@ -149,7 +149,7 @@ namespace BL
         /// add new bus to data
         /// </summary>
         /// <param name="bus">the new bus </param>
-        public void addBus(Bus bus)
+        public void addBus(Bus bus, DateTime start, TimeSpan duration, DateTime end, string description)
         {
 
             int id = bus.id;
@@ -169,12 +169,13 @@ namespace BL
             bus.formatPlateNumber();
             bus.UpdateDangerous();
             dl.addBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
+            dl.addBusHistory(Utility.BOtoDOConvertor<DO.BusHistory, BO.BusHistory>(new BusHistory() {start=start,BusId=bus.id,PlateNumber=bus.plateNumber,duration=duration,end=end,description=description }));
         }
         /// <summary>
         /// update specific bus
         /// </summary>
         /// <param name="bus">the updated bus</param>
-        public void updateBus(Bus bus,int mode=0)
+        public void updateBus(Bus bus, DateTime start, TimeSpan duration, DateTime end, string description = "", int mode = 0)
         {
             bus.formatPlateNumber();
             if (mode==1)
@@ -184,17 +185,20 @@ namespace BL
             if (bus.status!="refueling"&& bus.status != "maintenance")
                  bus.UpdateDangerous();           
             dl.updateBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
+            if (description != "")
+                dl.addBusHistory(Utility.BOtoDOConvertor<DO.BusHistory, BO.BusHistory>(new BusHistory() { start = start, BusId = bus.id, PlateNumber = bus.plateNumber, duration = duration, end = end, description = description }));
         }
         /// <summary>
         /// remove specific bus
         /// </summary>
         /// <param name="id">id of the removing bus</param>
-        public void removeBus(int id)
+        public void removeBus(int id, DateTime start, TimeSpan duration, DateTime end, string description)
         {
             var bs = GetBus(id);
             if(bs.status!="ready"&& bs.status != "dangerous")
                 throw new BusBusyException("Error: can't delete a bus that it's busy!");
             dl.removeBus(id);
+            dl.addBusHistory(Utility.BOtoDOConvertor<DO.BusHistory, BO.BusHistory>(new BusHistory() { start = start, BusId = bs.id, PlateNumber = bs.plateNumber, duration = duration, end = end, description = description }));
         }
         /// <summary>
         /// return bus by id
@@ -240,19 +244,21 @@ namespace BL
         /// send bus to refuel
         /// </summary>
         /// <param name="id">id of the bus that sending to refuel</param>
-        public void refuel(int id)
+        public void refuel(int id, DateTime start, TimeSpan duration, DateTime end, string description)
         {
             var bus = this.GetBus(id);
             dl.refuel(id);
+            dl.addBusHistory(Utility.BOtoDOConvertor<DO.BusHistory, BO.BusHistory>(new BusHistory() { start = start, BusId = bus.id, PlateNumber = bus.plateNumber, duration = duration, end = end, description = description }));
         }
         /// <summary>
         /// send bus to maintenance
         /// </summary>
         /// <param name="id">id of the bus that sending to maintenance</param>
-        public void maintain(int id)
+        public void maintain(int id, DateTime start, TimeSpan duration, DateTime end, string description)
         {
             var bus = this.GetBus(id);
             dl.maintain(id);
+            dl.addBusHistory(Utility.BOtoDOConvertor<DO.BusHistory, BO.BusHistory>(new BusHistory() { start = start, BusId = bus.id, PlateNumber = bus.plateNumber, duration = duration, end = end, description = description }));
         }
 
 
@@ -288,11 +294,16 @@ namespace BL
         /// remove line
         /// </summary>
         /// <param name="id">id of the removing line</param>
-        public void removeLine(int id)
+        public void removeLine(int id, DateTime start, TimeSpan duration, DateTime end, string description="")
         {
+            if (LineInBusAtDrive(id))
+                throw new BusBusyException("You cannot delete line in drive");
+            var line = GetBusLine(id);
             dl.removeFollowStation(id);
             dl.removeLineInStation(id);
-            dl.removeLine(id);
+            dl.removeLine(id);   
+            if(description!="")
+                dl.addLineHistory(Utility.BOtoDOConvertor<DO.LineHistory, BO.LineHistory>(new LineHistory() { start = start, LineId = line.id, LineNumber = line.number, duration = duration, end = end, description = description }));
         }
 
         /// <summary>
@@ -303,7 +314,7 @@ namespace BL
             TimeSpan drivetime = this.calcDriveTime(time);
             if (drivetime.Days > 0)
                 throw new InvalidUserInputExecption("Bus line route must be less than a day");
-            this.removeLine(id);
+            this.removeLine(id, DateTime.Now, TimeSpan.Zero, DateTime.Now);
             int id2;
             this.addLine(number, area, path, distance, time,out id2);
         }

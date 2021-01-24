@@ -27,11 +27,11 @@ namespace BLAPI
         IEnumerable<Bus> GetAllBuses(int order=0);
         IEnumerable<Bus> GetAllFreeBuses();
         Bus GetBus(int id);
-        void addBus(Bus bus);
-        void removeBus(int id);
-        void updateBus(Bus bus,int mode= 0);
-        void refuel(int id);
-        void maintain(int id);
+        void addBus(Bus bus,DateTime start,TimeSpan duration,DateTime end,string description);
+        void removeBus(int id, DateTime start, TimeSpan duration, DateTime end, string description);
+        void updateBus(Bus bus, DateTime start, TimeSpan duration, DateTime end, string description="",int mode= 0);
+        void refuel(int id, DateTime start, TimeSpan duration, DateTime end, string description);
+        void maintain(int id, DateTime start, TimeSpan duration, DateTime end, string description);
         void canMakeDrive(Bus bus, double distance);
         #endregion
 
@@ -40,7 +40,7 @@ namespace BLAPI
         BusLine GetBusLine(int id);
         void addLine(string number, int area,List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time, out int id);
         int countLines(string number);
-        void removeLine(int id);
+        void removeLine(int id, DateTime start, TimeSpan duration, DateTime end, string description="");
         void updateLine(int id, string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time);
         TimeSpan calcDriveTime(List<TimeSpan> time);
         double GetTotalDistanceLine(int id);
