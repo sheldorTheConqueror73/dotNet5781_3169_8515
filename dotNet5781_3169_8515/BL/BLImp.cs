@@ -561,13 +561,14 @@ namespace BL
             int idsta1 = 0,idsta2=0,idfol1=0,idfol2=0;
             double dist = 0;
             bool flagFirst = false, flagSecond=false;
-            TimeSpan ts=new TimeSpan();
+           
             if(v1.Count()!=0)
             foreach(var lin in dl.GetAllbusLines())
             {
                 if (v1.Any(b => b == lin.id))
                 {
-                     flagFirst = false; flagSecond = false;
+                        TimeSpan ts = new TimeSpan();
+                        flagFirst = false; flagSecond = false;
                     foreach (var folsta in dl.GetAllFollowStation())
                     {
                         if (folsta.secondStationid == id && folsta.lineId == lin.id)
@@ -853,7 +854,10 @@ namespace BL
             dl.removeUser(id);
         }
 
-        
+        /// <summary>
+        /// return the 1/2/3 (index of combobox item) by access level of the specific user
+        /// </summary>
+        /// <param name="id">id of the user</param>>
         public int indexOfCbByAccessLevel(int id)
         {
             var user = GetUser(id);

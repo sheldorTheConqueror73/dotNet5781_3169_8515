@@ -416,7 +416,7 @@ namespace PL
             else
             {
                 try { validStationInput(); }
-                catch (Exception exc) {tblError.Text= exc.Message; initTextBoxByCbInStations(); return; }
+                catch (Exception exc) { initTextBoxByCbInStations(); tblError.Text= exc.Message; return; }
                 finally
                 {
                     init_lvFollowStation_PreviewMouseDown();  
@@ -1227,7 +1227,9 @@ namespace PL
                 throw new InvalidUserInputExecption("Invalid mail address");
             }
         }
-
+        /// <summary>
+        /// when user do double click on the list of the users allowd edit users
+        /// </summary>
         private void lvUsers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (user.accessLevel != "Admin")
@@ -1235,7 +1237,9 @@ namespace PL
             gridEditUser.Visibility = Visibility.Visible;
             gridSelfUpdate.Visibility = Visibility.Hidden;
         }
-
+        /// <summary>
+        ///  when user click on the list of the users initialize the edit grid.
+        /// </summary>
         private void lvUsers_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             gridEditUser.Visibility = Visibility.Hidden;
