@@ -777,6 +777,25 @@ namespace BL
         /// <param name="user">user to add</param>
         public void addUser(BO.User user)
         {
+            var rsult = (from user1 in dl.GetAllbusUsers().ToList()
+                        where user1 != null && user1.name == user.name
+                        select user1).ToList();
+            if (rsult.Count != 0)
+                throw new InvalidUserInputExecption("This username is already taken");
+            int id=user.id;
+            while(true)
+            {
+                try { var temp=  GetUser(id);
+                    if (temp == null)
+                        break;
+                     Random r = new Random();
+                    id = r.Next(1, 999999);
+                }
+                catch (Exception e)
+                { break; }
+            }
+            
+            user.id = id;
             user.accessLevel ="User";
             dl.addUser(Utility.BOtoDOConvertor<DO.User,BO.User>(user));
         }

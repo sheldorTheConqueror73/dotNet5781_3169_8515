@@ -28,7 +28,10 @@ namespace BL
               
             }
         }
-
+        /// <summary>
+        /// adds a new bus to the observer list, starts worker if it is not currently running
+        /// </summary>
+        /// <param name="observerID">bus id</param>
         public static void add(int observerID)
         {
             Console.WriteLine($"Bus {observerID} has been added to observer list");
@@ -36,6 +39,10 @@ namespace BL
             if (!worker.IsBusy)
                 worker.RunWorkerAsync();
         }
+        /// <summary>
+        /// removes a  bus from the observer list, stops worker if it is currently running
+        /// </summary>
+        /// <param name="observerID">bus id</param>
         public static void remove(int observerID)
         {
             Console.WriteLine ($"Bus {observerID} has been removed from observer list");
@@ -44,6 +51,11 @@ namespace BL
                 worker.CancelAsync();
                
         }
+        /// <summary>
+        /// timer engine
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">DoWorkEventArgs</param>
         private static void startTimer(object sender, DoWorkEventArgs e)
         {
             Console.WriteLine("Worker has started");

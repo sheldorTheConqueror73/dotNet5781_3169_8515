@@ -19,6 +19,8 @@ namespace BL
         /// <returns> return the object as BO object</returns>
         internal static T DOtoBOConvertor<T, S>(S line) where T : BO.BOobject, new() where S : DO.DOobject, new()
         {
+            if (line == null)
+                return null;
             T output = new T();
             output.id = line.id;
             foreach (PropertyInfo propTo in output.GetType().GetProperties())
@@ -40,6 +42,8 @@ namespace BL
         /// <returns> return the object as DO object</returns>
         internal static T BOtoDOConvertor<T, S>(S line) where T : DO.DOobject, new() where S : BO.BOobject, new()
         {
+            if (line == null)
+                return null;
             T output = new T();
             output.id = line.id;
             foreach (PropertyInfo propTo in output.GetType().GetProperties())
