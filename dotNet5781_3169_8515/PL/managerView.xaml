@@ -227,7 +227,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Distance" Width="100"  DisplayMemberBinding="{Binding Distance}">
+                                    <GridViewColumn Header="Distance" Width="100"  DisplayMemberBinding="{Binding Distance, StringFormat={}{0:0.##}}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock    Margin="1.5" HorizontalAlignment="Center">
@@ -342,7 +342,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Distance" Width="70"  DisplayMemberBinding="{Binding Distance}">
+                                    <GridViewColumn Header="Distance" Width="70"  DisplayMemberBinding="{Binding Distance,StringFormat={}{0:0.##}}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock   Margin="1.5" HorizontalAlignment="Center"/>

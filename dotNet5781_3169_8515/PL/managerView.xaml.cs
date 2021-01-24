@@ -416,7 +416,7 @@ namespace PL
             else
             {
                 try { validStationInput(); }
-                catch (Exception exc) {tblError.Text= exc.Message; initTextBoxByCbInStations(); return; }
+                catch (Exception exc) { initTextBoxByCbInStations(); tblError.Text= exc.Message; return; }
                 finally
                 {
                     init_lvFollowStation_PreviewMouseDown();  
