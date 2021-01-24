@@ -775,7 +775,6 @@ namespace PL
             {
                 tabItemHistoryBus.Visibility = Visibility.Collapsed;
                 tabItemHistoryLine.Visibility = Visibility.Collapsed;
-                tabItemUser.Visibility = Visibility.Collapsed;
             }
         }
         /// <summary>

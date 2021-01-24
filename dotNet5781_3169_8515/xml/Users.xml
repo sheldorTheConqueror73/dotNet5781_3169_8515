@@ -34,7 +34,7 @@
     <enabled>true</enabled>
     <fullname>Donald J Trump</fullname>
     <mail>potus@whitehouse.gov</mail>
-    <id>73</id>
+    <id>74</id>
   </User>
 <User>
     <password>13dsf3tg</password>
@@ -42,16 +42,16 @@
     <accessLevel>Admin</accessLevel>
     <enabled>true</enabled>
     <fullname>Joseph Robinette Biden Jr</fullname>
-    <mail>potus@whitehouse.gov</mail>
-    <id>73</id>
+    <mail>sleepyJoe@whitehouse.gov</mail>
+    <id>75</id>
   </User>
 <User>
     <password>iWannaNuke:(</password>
     <name>Kim Jon Un</name>
-    <accessLevel>Admin</accessLevel>
+    <accessLevel>User</accessLevel>
     <enabled>true</enabled>
     <fullname>Rocket Man</fullname>
-    <mail>potus@whitehouse.gov</mail>
-    <id>73</id>
+    <mail>littleRocketMan@tyranny.gov.kp</mail>
+    <id>76</id>
   </User>
 </Users>
