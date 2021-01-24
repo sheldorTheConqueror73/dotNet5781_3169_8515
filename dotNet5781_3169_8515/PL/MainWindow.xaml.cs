@@ -51,7 +51,7 @@ namespace PL
             }
             BO.User user=null;
             try { user = bl.authenticate(username, password); }//check if user exists and return user access level
-            catch (Exception exc) { txbErrorMessage.Text = exc.Message; }
+            catch (Exception exc) { txbErrorMessage.Text = exc.Message; return; }
             managerView = new managerView(user);
             if (user.accessLevel == "Admin" || user.accessLevel == "Operator")//if user is admin or manager
             {
