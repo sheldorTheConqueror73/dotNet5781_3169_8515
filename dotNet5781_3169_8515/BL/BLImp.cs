@@ -791,7 +791,10 @@ namespace BL
             dl.removeUser(id);
         }
 
-        
+        /// <summary>
+        /// return the 1/2/3 (index of combobox item) by access level of the specific user
+        /// </summary>
+        /// <param name="id">id of the user</param>>
         public int indexOfCbByAccessLevel(int id)
         {
             var user = GetUser(id);
