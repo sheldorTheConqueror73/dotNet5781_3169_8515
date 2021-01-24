@@ -152,6 +152,20 @@ namespace BL
         public void addBus(Bus bus)
         {
 
+            int id = bus.id;
+            while (true)
+            {
+                try
+                {
+                    var temp = GetBus(id);
+                    if (temp == null)
+                        break;
+                    Random r = new Random();
+                    id = r.Next(1, 999999);
+                }
+                catch (Exception e)
+                { break; }
+            }
             bus.formatPlateNumber();
             bus.UpdateDangerous();
             dl.addBus(Utility.BOtoDOConvertor<DO.Bus, BO.Bus>(bus));
@@ -298,6 +312,7 @@ namespace BL
         /// </summary>
         public void addLine(string number, int area, List<BO.BusLineStation> path, List<double> distance, List<TimeSpan> time, out int id)
         {
+            
             int count = countLines(number);
             TimeSpan drivetime=this.calcDriveTime(time);
             if (count == 2)
@@ -314,6 +329,20 @@ namespace BL
             }
             BusLine line = new BusLine() { number = number, area = (Area)area, driveTime = drivetime.ToString(), enabled=true };
             id = line.id;
+            while (true)
+            {
+                try
+                {
+                    var temp = GetBusLine(id);
+                    if (temp == null)
+                        break;
+                    Random r = new Random();
+                    id = r.Next(1, 999999);
+                    line.id = id;
+                }
+                catch (Exception e)
+                { break; }
+            }
             dl.addLine(Utility.BOtoDOConvertor<DO.BusLine, BO.BusLine>(line));
             for(int i=0;i<path.Count;i++)
             {
@@ -451,6 +480,21 @@ namespace BL
         /// <param name="station">the new station</param>
         public void addStation(BusLineStation station)
         {
+            int id = station.id;
+            while (true)
+            {
+                try
+                {
+                    var temp = GetBus(id);
+                    if (temp == null)
+                        break;
+                    Random r = new Random();
+                    id = r.Next(1, 999999);
+                }
+                catch (Exception e)
+                { break; }
+            }
+            station.id = id;
             var res = (from sta in dl.GetAllbusLineStation()
                       where sta != null && sta.code == station.code
                       select sta).FirstOrDefault();
