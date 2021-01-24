@@ -20,6 +20,7 @@ namespace PL
     public partial class ForgotPassword : Window
     {
         BLAPI.IBL bl = BLAPI.BLFactory.GetBL();
+        BO.User user=null;
         public ForgotPassword()
         {
             InitializeComponent();
@@ -34,13 +35,9 @@ namespace PL
             catch(Exception exc)
             {
                 txbErrorMessage.Text = exc.Message;
-            }
-            BO.User user = bl.checkMail(txbUsername.Text, txbMail.Text);
-            if(user == null)
-            {
-                txbErrorMessage.Text = $"No user matches username {txbUsername.Text} and mail adrress {txbMail.Text}";
                 return;
             }
+          
             string password=bl.resetPassword(user);
             string subject = "Your  Password has been reset";
             string text = $" hello there {user.fullname}"+ ", you seem to have misplaced your password. do not worry, we are here to save you!\nyour new password is:\n"+password+"\nmake sure to store it some safe.";
@@ -71,6 +68,13 @@ namespace PL
             {
                 throw new InvalidUserInputExecption("Invalid mail address");
             }
+            BO.User user = bl.checkMail(txbUsername.Text, txbMail.Text);
+            if (user == null)
+            {
+                throw new InvalidUserInputExecption( $"No user matches username {txbUsername.Text} and mail adrress {txbMail.Text}");
+               
+            }
+            this.user = user;
         }
     }
 }
