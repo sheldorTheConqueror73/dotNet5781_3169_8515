@@ -61,7 +61,7 @@ namespace PL
             if (user.accessLevel == "User")//if user is a regular user
             {
                 txbErrorMessage.Foreground = Brushes.Green;
-                txbErrorMessage.Text = $"Welcome {userName}";
+                txbErrorMessage.Text = $"Hello {userName}, please contact yor supreviser to grant you login permission ";
             }
         }
 
@@ -87,12 +87,12 @@ namespace PL
               login_Click(this, new RoutedEventArgs());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            managerView managerView= new managerView(new BO.User() { id= 70, accessLevel="Admin"});
-            this.Hide();
-            managerView.ShowDialog();
-        }
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    managerView managerView= new managerView(new BO.User() { id= 70, accessLevel="Admin"});
+        //    this.Hide();
+        //    managerView.ShowDialog();
+        //}
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
