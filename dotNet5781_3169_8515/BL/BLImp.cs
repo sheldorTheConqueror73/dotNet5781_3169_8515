@@ -534,7 +534,6 @@ namespace BL
         /// <param name="id">id of line</param>
         public IEnumerable<BusLineStation> GetAllStationInLine(int id)
         {
-            //var line=DOtoBOConvertor<BO.busLine, DO.busLine>(dl.GetBusLine(id));
             if (dl.GetAllbusLineStation() != null && dl.GetAllLineInStation() != null)
             {
                 var station = (from sta in dl.GetAllbusLineStation()
