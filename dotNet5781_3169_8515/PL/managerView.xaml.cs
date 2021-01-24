@@ -710,14 +710,46 @@ namespace PL
             lvBusHistory.ItemsSource = bl.getBusHistory();
             return;
         }
+        //refreshes bus dispaly through the worker
         public void timerUpdateDisplay(object sender, ProgressChangedEventArgs e)
         {
             refreshBuses(-2);
             refreshLineTextboxes();
         }
+        //validates speed selector input 
+        private void TextBox_KeyDown(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            bool flag = regex.IsMatch(e.Text);
+            if (flag)
+            {
+                e.Handled = true;
+                return;
+            }
+            int num = 0;
+            try
+            {
+                num = int.Parse(tbSpeedSelector.Text);
+            }
+            catch { return; }
+            if (num > 100 || num < 1 || tbSpeedSelector.Text.Length > 3)
+                e.Handled = true;
+        }
+        //sets time acceleration for simulation
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            bl.setTimeAcceleration((int)slSpeedSelector.Value);
+        }
+
         #endregion
 
         #region utility
+        // closes prgram on window exit
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
         /// <summary>
         /// return true if the status of the bus is is ready or refueling or maintenance 
         /// </summary>
@@ -1054,35 +1086,8 @@ namespace PL
             catch (Exception exc) { MessageBox.Show(exc.Message); return; }
         }
 
-        private void TextBox_KeyDown(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            bool flag = regex.IsMatch(e.Text);
-            if(flag)
-            {
-                e.Handled = true;
-                return;
-            }
-            int num = 0;
-            try
-            {
-                 num = int.Parse(tbSpeedSelector.Text);
-            }
-            catch { return; }
-            if (num > 100 || num < 1|| tbSpeedSelector.Text.Length > 3)
-                e.Handled = true;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            bl.setTimeAcceleration((int)slSpeedSelector.Value);
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
+   
+       
 
         /// <summary>
         /// convert xml file of stations to excel
